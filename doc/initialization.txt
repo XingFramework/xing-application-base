@@ -1,0 +1,12 @@
+With a correct database.yml, this should work:
+
+
+bundle exec rake db:create
+ pg_restore -c -d <database_name> <binary dump file>
+ bundle exec rake db:migrate
+
+Working example on evan's system:
+
+bundle exec rake db:create; \
+ pg_restore -c -d mindswarms_dev latest.dump; \
+ bundle exec rake db:migrate

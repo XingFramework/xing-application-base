@@ -54,3 +54,4 @@ errors.err
 spec/support/cadre.rb
 .rspec-local
 .simplecov
+*.dump
