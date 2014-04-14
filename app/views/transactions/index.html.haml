@@ -1,0 +1,41 @@
+%h1 Listing transactions
+
+%table
+  %tr
+    %th What
+    %th What type
+    %th Amount
+    %th Note
+    %th Created at
+    %th Updated at
+    %th User
+    %th Payment method
+    %th Reference
+    %th Authorization
+    %th Study
+    %th Category
+    %th
+    %th
+    %th
+
+  - @transactions.each do |transaction|
+    %tr
+      %td= transaction.what_id
+      %td= transaction.what_type
+      %td= transaction.amount
+      %td= transaction.note
+      %td= transaction.created_at
+      %td= transaction.updated_at
+      %td= transaction.user_id
+      %td= transaction.payment_method
+      %td= transaction.reference
+      %td= transaction.authorization
+      %td= transaction.study_id
+      %td= transaction.category
+      %td= link_to 'Show', transaction
+      %td= link_to 'Edit', edit_transaction_path(transaction)
+      %td= link_to 'Destroy', transaction, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Transaction', new_transaction_path

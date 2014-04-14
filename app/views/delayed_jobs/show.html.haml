@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%p
+  %b Priority:
+  = @delayed_job.priority
+%p
+  %b Attempts:
+  = @delayed_job.attempts
+%p
+  %b Handler:
+  = @delayed_job.handler
+%p
+  %b Last error:
+  = @delayed_job.last_error
+%p
+  %b Run at:
+  = @delayed_job.run_at
+%p
+  %b Locked at:
+  = @delayed_job.locked_at
+%p
+  %b Failed at:
+  = @delayed_job.failed_at
+%p
+  %b Locked by:
+  = @delayed_job.locked_by
+%p
+  %b Created at:
+  = @delayed_job.created_at
+%p
+  %b Updated at:
+  = @delayed_job.updated_at
+%p
+  %b Queue:
+  = @delayed_job.queue
+
+= link_to 'Edit', edit_delayed_job_path(@delayed_job)
+\|
+= link_to 'Back', delayed_jobs_path

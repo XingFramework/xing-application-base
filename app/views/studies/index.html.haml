@@ -1,0 +1,89 @@
+%h1 Listing studies
+
+%table
+  %tr
+    %th Title
+    %th Notes
+    %th Quota
+    %th Duration
+    %th Start at
+    %th End at
+    %th Gender m
+    %th Gender f
+    %th Age from
+    %th Age to
+    %th Researcher
+    %th Created at
+    %th Updated at
+    %th Status
+    %th States
+    %th Countries
+    %th Regions
+    %th Internal title
+    %th Seats left
+    %th Admin
+    %th Token
+    %th Admin fee
+    %th Application fee
+    %th Pay rate
+    %th Private
+    %th Logo url
+    %th Token secret
+    %th Language
+    %th Platform web
+    %th Platform ios
+    %th Platform android
+    %th Pre accepted emails
+    %th Single serve
+    %th Transcribe
+    %th Acceptance email copy
+    %th Acceptance email pdf
+    %th
+    %th
+    %th
+
+  - @studies.each do |study|
+    %tr
+      %td= study.title
+      %td= study.notes
+      %td= study.quota
+      %td= study.duration
+      %td= study.start_at
+      %td= study.end_at
+      %td= study.gender_m
+      %td= study.gender_f
+      %td= study.age_from
+      %td= study.age_to
+      %td= study.researcher_id
+      %td= study.created_at
+      %td= study.updated_at
+      %td= study.status
+      %td= study.states
+      %td= study.countries
+      %td= study.regions
+      %td= study.internal_title
+      %td= study.seats_left
+      %td= study.admin
+      %td= study.token
+      %td= study.admin_fee
+      %td= study.application_fee
+      %td= study.pay_rate
+      %td= study.private
+      %td= study.logo_url
+      %td= study.token_secret
+      %td= study.language
+      %td= study.platform_web
+      %td= study.platform_ios
+      %td= study.platform_android
+      %td= study.pre_accepted_emails
+      %td= study.single_serve
+      %td= study.transcribe
+      %td= study.acceptance_email_copy
+      %td= study.acceptance_email_pdf
+      %td= link_to 'Show', study
+      %td= link_to 'Edit', edit_study_path(study)
+      %td= link_to 'Destroy', study, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Studie', new_study_path

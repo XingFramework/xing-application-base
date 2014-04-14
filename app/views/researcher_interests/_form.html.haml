@@ -1,0 +1,31 @@
+= form_for @researcher_interest do |f|
+  - if @researcher_interest.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@researcher_interest.errors.count, "error")} prohibited this researcher_interest from being saved:"
+      %ul
+        - @researcher_interest.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :company_name
+    = f.text_field :company_name
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .actions
+    = f.submit 'Save'

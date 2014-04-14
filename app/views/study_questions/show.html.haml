@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Text:
+  = @study_question.text
+%p
+  %b Study:
+  = @study_question.study_id
+%p
+  %b Attachment file name:
+  = @study_question.attachment_file_name
+%p
+  %b Attachment content type:
+  = @study_question.attachment_content_type
+%p
+  %b Attachment file size:
+  = @study_question.attachment_file_size
+%p
+  %b Attachment updated at:
+  = @study_question.attachment_updated_at
+%p
+  %b Embed:
+  = @study_question.embed
+%p
+  %b Created at:
+  = @study_question.created_at
+%p
+  %b Updated at:
+  = @study_question.updated_at
+
+= link_to 'Edit', edit_study_question_path(@study_question)
+\|
+= link_to 'Back', study_questions_path

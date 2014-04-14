@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Text:
+  = @demo_question.text
+%p
+  %b Caption:
+  = @demo_question.caption
+%p
+  %b Position:
+  = @demo_question.position
+%p
+  %b Multiple:
+  = @demo_question.multiple
+%p
+  %b Created at:
+  = @demo_question.created_at
+%p
+  %b Updated at:
+  = @demo_question.updated_at
+
+= link_to 'Edit', edit_demo_question_path(@demo_question)
+\|
+= link_to 'Back', demo_questions_path

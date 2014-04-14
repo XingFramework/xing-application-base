@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @synonym.name
+%p
+  %b Tag:
+  = @synonym.tag_id
+%p
+  %b Created at:
+  = @synonym.created_at
+%p
+  %b Updated at:
+  = @synonym.updated_at
+
+= link_to 'Edit', edit_synonym_path(@synonym)
+\|
+= link_to 'Back', synonyms_path

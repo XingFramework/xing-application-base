@@ -1,0 +1,51 @@
+%h1 Listing credit_cards
+
+%table
+  %tr
+    %th Researcher
+    %th First name
+    %th Last name
+    %th Number
+    %th Month
+    %th Year
+    %th Ctype
+    %th Cvv
+    %th Address1
+    %th Address2
+    %th City
+    %th State
+    %th Country
+    %th Zip
+    %th Created at
+    %th Updated at
+    %th Reference transaction
+    %th
+    %th
+    %th
+
+  - @credit_cards.each do |credit_card|
+    %tr
+      %td= credit_card.researcher_id
+      %td= credit_card.first_name
+      %td= credit_card.last_name
+      %td= credit_card.number
+      %td= credit_card.month
+      %td= credit_card.year
+      %td= credit_card.ctype
+      %td= credit_card.cvv
+      %td= credit_card.address1
+      %td= credit_card.address2
+      %td= credit_card.city
+      %td= credit_card.state
+      %td= credit_card.country
+      %td= credit_card.zip
+      %td= credit_card.created_at
+      %td= credit_card.updated_at
+      %td= credit_card.reference_transaction
+      %td= link_to 'Show', credit_card
+      %td= link_to 'Edit', edit_credit_card_path(credit_card)
+      %td= link_to 'Destroy', credit_card, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Credit card', new_credit_card_path

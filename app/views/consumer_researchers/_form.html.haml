@@ -1,0 +1,22 @@
+= form_for @consumer_researcher do |f|
+  - if @consumer_researcher.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@consumer_researcher.errors.count, "error")} prohibited this consumer_researcher from being saved:"
+      %ul
+        - @consumer_researcher.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :consumer_id
+    = f.number_field :consumer_id
+  .field
+    = f.label :researcher_id
+    = f.number_field :researcher_id
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,57 @@
+%h1 Listing study_applications
+
+%table
+  %tr
+    %th Study
+    %th Consumer
+    %th Segment
+    %th Status
+    %th Accepted or declined at
+    %th Started at
+    %th Completed at
+    %th Payed at
+    %th Disputed at
+    %th Dispute reason
+    %th Created at
+    %th Updated at
+    %th Inviter
+    %th Applied at
+    %th Referrer
+    %th Refute reason
+    %th Refuted at
+    %th Referral email
+    %th Token
+    %th Notified full at
+    %th
+    %th
+    %th
+
+  - @study_applications.each do |study_application|
+    %tr
+      %td= study_application.study_id
+      %td= study_application.consumer_id
+      %td= study_application.segment_id
+      %td= study_application.status
+      %td= study_application.accepted_or_declined_at
+      %td= study_application.started_at
+      %td= study_application.completed_at
+      %td= study_application.payed_at
+      %td= study_application.disputed_at
+      %td= study_application.dispute_reason
+      %td= study_application.created_at
+      %td= study_application.updated_at
+      %td= study_application.inviter_id
+      %td= study_application.applied_at
+      %td= study_application.referrer_id
+      %td= study_application.refute_reason
+      %td= study_application.refuted_at
+      %td= study_application.referral_email
+      %td= study_application.token
+      %td= study_application.notified_full_at
+      %td= link_to 'Show', study_application
+      %td= link_to 'Edit', edit_study_application_path(study_application)
+      %td= link_to 'Destroy', study_application, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Study application', new_study_application_path

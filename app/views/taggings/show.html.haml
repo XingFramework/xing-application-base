@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Tag:
+  = @tagging.tag_id
+%p
+  %b Taggable:
+  = @tagging.taggable_id
+%p
+  %b Taggable type:
+  = @tagging.taggable_type
+%p
+  %b Tagger:
+  = @tagging.tagger_id
+%p
+  %b Tagger type:
+  = @tagging.tagger_type
+%p
+  %b Context:
+  = @tagging.context
+%p
+  %b Created at:
+  = @tagging.created_at
+
+= link_to 'Edit', edit_tagging_path(@tagging)
+\|
+= link_to 'Back', taggings_path

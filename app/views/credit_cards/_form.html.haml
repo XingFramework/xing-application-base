@@ -1,0 +1,61 @@
+= form_for @credit_card do |f|
+  - if @credit_card.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@credit_card.errors.count, "error")} prohibited this credit_card from being saved:"
+      %ul
+        - @credit_card.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :researcher_id
+    = f.number_field :researcher_id
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :number
+    = f.text_field :number
+  .field
+    = f.label :month
+    = f.text_field :month
+  .field
+    = f.label :year
+    = f.text_field :year
+  .field
+    = f.label :ctype
+    = f.text_field :ctype
+  .field
+    = f.label :cvv
+    = f.text_field :cvv
+  .field
+    = f.label :address1
+    = f.text_field :address1
+  .field
+    = f.label :address2
+    = f.text_field :address2
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :country
+    = f.text_field :country
+  .field
+    = f.label :zip
+    = f.text_field :zip
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .field
+    = f.label :reference_transaction
+    = f.text_field :reference_transaction
+  .actions
+    = f.submit 'Save'

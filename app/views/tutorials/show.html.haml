@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @tutorial.title
+%p
+  %b User type:
+  = @tutorial.user_type
+%p
+  %b Created at:
+  = @tutorial.created_at
+%p
+  %b Updated at:
+  = @tutorial.updated_at
+
+= link_to 'Edit', edit_tutorial_path(@tutorial)
+\|
+= link_to 'Back', tutorials_path

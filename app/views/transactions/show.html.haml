@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b What:
+  = @transaction.what_id
+%p
+  %b What type:
+  = @transaction.what_type
+%p
+  %b Amount:
+  = @transaction.amount
+%p
+  %b Note:
+  = @transaction.note
+%p
+  %b Created at:
+  = @transaction.created_at
+%p
+  %b Updated at:
+  = @transaction.updated_at
+%p
+  %b User:
+  = @transaction.user_id
+%p
+  %b Payment method:
+  = @transaction.payment_method
+%p
+  %b Reference:
+  = @transaction.reference
+%p
+  %b Authorization:
+  = @transaction.authorization
+%p
+  %b Study:
+  = @transaction.study_id
+%p
+  %b Category:
+  = @transaction.category
+
+= link_to 'Edit', edit_transaction_path(@transaction)
+\|
+= link_to 'Back', transactions_path

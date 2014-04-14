@@ -1,0 +1,22 @@
+= form_for @segment do |f|
+  - if @segment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@segment.errors.count, "error")} prohibited this segment from being saved:"
+      %ul
+        - @segment.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :study_id
+    = f.number_field :study_id
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .actions
+    = f.submit 'Save'

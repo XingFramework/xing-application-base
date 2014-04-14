@@ -1,0 +1,118 @@
+= form_for @study do |f|
+  - if @study.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@study.errors.count, "error")} prohibited this study from being saved:"
+      %ul
+        - @study.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :notes
+    = f.text_area :notes
+  .field
+    = f.label :quota
+    = f.number_field :quota
+  .field
+    = f.label :duration
+    = f.number_field :duration
+  .field
+    = f.label :start_at
+    = f.datetime_select :start_at
+  .field
+    = f.label :end_at
+    = f.datetime_select :end_at
+  .field
+    = f.label :gender_m
+    = f.check_box :gender_m
+  .field
+    = f.label :gender_f
+    = f.check_box :gender_f
+  .field
+    = f.label :age_from
+    = f.number_field :age_from
+  .field
+    = f.label :age_to
+    = f.number_field :age_to
+  .field
+    = f.label :researcher_id
+    = f.number_field :researcher_id
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .field
+    = f.label :status
+    = f.number_field :status
+  .field
+    = f.label :states
+    = f.text_area :states
+  .field
+    = f.label :countries
+    = f.text_area :countries
+  .field
+    = f.label :regions
+    = f.text_area :regions
+  .field
+    = f.label :internal_title
+    = f.text_field :internal_title
+  .field
+    = f.label :seats_left
+    = f.number_field :seats_left
+  .field
+    = f.label :admin
+    = f.check_box :admin
+  .field
+    = f.label :token
+    = f.text_field :token
+  .field
+    = f.label :admin_fee
+    = f.number_field :admin_fee
+  .field
+    = f.label :application_fee
+    = f.number_field :application_fee
+  .field
+    = f.label :pay_rate
+    = f.number_field :pay_rate
+  .field
+    = f.label :private
+    = f.check_box :private
+  .field
+    = f.label :logo_url
+    = f.text_field :logo_url
+  .field
+    = f.label :token_secret
+    = f.text_field :token_secret
+  .field
+    = f.label :language
+    = f.text_field :language
+  .field
+    = f.label :platform_web
+    = f.check_box :platform_web
+  .field
+    = f.label :platform_ios
+    = f.check_box :platform_ios
+  .field
+    = f.label :platform_android
+    = f.check_box :platform_android
+  .field
+    = f.label :pre_accepted_emails
+    = f.text_area :pre_accepted_emails
+  .field
+    = f.label :single_serve
+    = f.check_box :single_serve
+  .field
+    = f.label :transcribe
+    = f.check_box :transcribe
+  .field
+    = f.label :acceptance_email_copy
+    = f.text_area :acceptance_email_copy
+  .field
+    = f.label :acceptance_email_pdf
+    = f.text_field :acceptance_email_pdf
+  .actions
+    = f.submit 'Save'

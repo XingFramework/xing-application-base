@@ -1,0 +1,70 @@
+= form_for @study_application do |f|
+  - if @study_application.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@study_application.errors.count, "error")} prohibited this study_application from being saved:"
+      %ul
+        - @study_application.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :study_id
+    = f.number_field :study_id
+  .field
+    = f.label :consumer_id
+    = f.number_field :consumer_id
+  .field
+    = f.label :segment_id
+    = f.number_field :segment_id
+  .field
+    = f.label :status
+    = f.number_field :status
+  .field
+    = f.label :accepted_or_declined_at
+    = f.datetime_select :accepted_or_declined_at
+  .field
+    = f.label :started_at
+    = f.datetime_select :started_at
+  .field
+    = f.label :completed_at
+    = f.datetime_select :completed_at
+  .field
+    = f.label :payed_at
+    = f.datetime_select :payed_at
+  .field
+    = f.label :disputed_at
+    = f.datetime_select :disputed_at
+  .field
+    = f.label :dispute_reason
+    = f.text_area :dispute_reason
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .field
+    = f.label :inviter_id
+    = f.number_field :inviter_id
+  .field
+    = f.label :applied_at
+    = f.datetime_select :applied_at
+  .field
+    = f.label :referrer_id
+    = f.number_field :referrer_id
+  .field
+    = f.label :refute_reason
+    = f.text_field :refute_reason
+  .field
+    = f.label :refuted_at
+    = f.datetime_select :refuted_at
+  .field
+    = f.label :referral_email
+    = f.text_field :referral_email
+  .field
+    = f.label :token
+    = f.text_field :token
+  .field
+    = f.label :notified_full_at
+    = f.datetime_select :notified_full_at
+  .actions
+    = f.submit 'Save'

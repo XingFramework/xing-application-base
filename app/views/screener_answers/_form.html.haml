@@ -1,0 +1,28 @@
+= form_for @screener_answer do |f|
+  - if @screener_answer.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@screener_answer.errors.count, "error")} prohibited this screener_answer from being saved:"
+      %ul
+        - @screener_answer.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :text
+    = f.text_area :text
+  .field
+    = f.label :study_application_id
+    = f.number_field :study_application_id
+  .field
+    = f.label :screener_question_id
+    = f.number_field :screener_question_id
+  .field
+    = f.label :rating
+    = f.number_field :rating
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .actions
+    = f.submit 'Save'

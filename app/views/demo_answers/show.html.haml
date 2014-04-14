@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Text:
+  = @demo_answer.text
+%p
+  %b Position:
+  = @demo_answer.position
+%p
+  %b Demo question:
+  = @demo_answer.demo_question_id
+%p
+  %b Created at:
+  = @demo_answer.created_at
+%p
+  %b Updated at:
+  = @demo_answer.updated_at
+
+= link_to 'Edit', edit_demo_answer_path(@demo_answer)
+\|
+= link_to 'Back', demo_answers_path

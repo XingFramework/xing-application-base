@@ -1,0 +1,133 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :password
+    = f.text_field :password
+  .field
+    = f.label :paypal_email
+    = f.text_field :paypal_email
+  .field
+    = f.label :gender
+    = f.number_field :gender
+  .field
+    = f.label :yob
+    = f.number_field :yob
+  .field
+    = f.label :country
+    = f.text_field :country
+  .field
+    = f.label :zip
+    = f.text_field :zip
+  .field
+    = f.label :time_zone
+    = f.text_field :time_zone
+  .field
+    = f.label :type
+    = f.text_field :type
+  .field
+    = f.label :rating_cache
+    = f.text_field :rating_cache
+  .field
+    = f.label :facebook_uid
+    = f.number_field :facebook_uid
+  .field
+    = f.label :crypted_password
+    = f.text_field :crypted_password
+  .field
+    = f.label :password_salt
+    = f.text_field :password_salt
+  .field
+    = f.label :persistence_token
+    = f.text_field :persistence_token
+  .field
+    = f.label :perishable_token
+    = f.text_field :perishable_token
+  .field
+    = f.label :single_access_token
+    = f.text_field :single_access_token
+  .field
+    = f.label :login_count
+    = f.number_field :login_count
+  .field
+    = f.label :failed_login_count
+    = f.number_field :failed_login_count
+  .field
+    = f.label :last_request_at
+    = f.datetime_select :last_request_at
+  .field
+    = f.label :current_login_at
+    = f.datetime_select :current_login_at
+  .field
+    = f.label :last_login_at
+    = f.datetime_select :last_login_at
+  .field
+    = f.label :current_login_ip
+    = f.text_field :current_login_ip
+  .field
+    = f.label :last_login_ip
+    = f.text_field :last_login_ip
+  .field
+    = f.label :public_token
+    = f.text_field :public_token
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .field
+    = f.label :company
+    = f.text_field :company
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :status
+    = f.number_field :status
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :photo_file_name
+    = f.text_field :photo_file_name
+  .field
+    = f.label :photo_content_type
+    = f.text_field :photo_content_type
+  .field
+    = f.label :photo_file_size
+    = f.number_field :photo_file_size
+  .field
+    = f.label :photo_updated_at
+    = f.datetime_select :photo_updated_at
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :mailer_setting
+    = f.number_field :mailer_setting
+  .field
+    = f.label :dob
+    = f.date_select :dob
+  .field
+    = f.label :blacklist
+    = f.check_box :blacklist
+  .field
+    = f.label :disable_email
+    = f.check_box :disable_email
+  .actions
+    = f.submit 'Save'

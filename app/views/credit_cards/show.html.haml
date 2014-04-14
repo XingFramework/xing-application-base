@@ -1,0 +1,57 @@
+%p#notice= notice
+
+%p
+  %b Researcher:
+  = @credit_card.researcher_id
+%p
+  %b First name:
+  = @credit_card.first_name
+%p
+  %b Last name:
+  = @credit_card.last_name
+%p
+  %b Number:
+  = @credit_card.number
+%p
+  %b Month:
+  = @credit_card.month
+%p
+  %b Year:
+  = @credit_card.year
+%p
+  %b Ctype:
+  = @credit_card.ctype
+%p
+  %b Cvv:
+  = @credit_card.cvv
+%p
+  %b Address1:
+  = @credit_card.address1
+%p
+  %b Address2:
+  = @credit_card.address2
+%p
+  %b City:
+  = @credit_card.city
+%p
+  %b State:
+  = @credit_card.state
+%p
+  %b Country:
+  = @credit_card.country
+%p
+  %b Zip:
+  = @credit_card.zip
+%p
+  %b Created at:
+  = @credit_card.created_at
+%p
+  %b Updated at:
+  = @credit_card.updated_at
+%p
+  %b Reference transaction:
+  = @credit_card.reference_transaction
+
+= link_to 'Edit', edit_credit_card_path(@credit_card)
+\|
+= link_to 'Back', credit_cards_path

@@ -1,0 +1,66 @@
+%p#notice= notice
+
+%p
+  %b Study:
+  = @study_application.study_id
+%p
+  %b Consumer:
+  = @study_application.consumer_id
+%p
+  %b Segment:
+  = @study_application.segment_id
+%p
+  %b Status:
+  = @study_application.status
+%p
+  %b Accepted or declined at:
+  = @study_application.accepted_or_declined_at
+%p
+  %b Started at:
+  = @study_application.started_at
+%p
+  %b Completed at:
+  = @study_application.completed_at
+%p
+  %b Payed at:
+  = @study_application.payed_at
+%p
+  %b Disputed at:
+  = @study_application.disputed_at
+%p
+  %b Dispute reason:
+  = @study_application.dispute_reason
+%p
+  %b Created at:
+  = @study_application.created_at
+%p
+  %b Updated at:
+  = @study_application.updated_at
+%p
+  %b Inviter:
+  = @study_application.inviter_id
+%p
+  %b Applied at:
+  = @study_application.applied_at
+%p
+  %b Referrer:
+  = @study_application.referrer_id
+%p
+  %b Refute reason:
+  = @study_application.refute_reason
+%p
+  %b Refuted at:
+  = @study_application.refuted_at
+%p
+  %b Referral email:
+  = @study_application.referral_email
+%p
+  %b Token:
+  = @study_application.token
+%p
+  %b Notified full at:
+  = @study_application.notified_full_at
+
+= link_to 'Edit', edit_study_application_path(@study_application)
+\|
+= link_to 'Back', study_applications_path

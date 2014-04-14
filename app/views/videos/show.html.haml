@@ -1,0 +1,75 @@
+%p#notice= notice
+
+%p
+  %b Owner:
+  = @video.owner_id
+%p
+  %b Owner type:
+  = @video.owner_type
+%p
+  %b Status:
+  = @video.status
+%p
+  %b Camatar flv url:
+  = @video.camatar_flv_url
+%p
+  %b Camatar image url:
+  = @video.camatar_image_url
+%p
+  %b Camatar thumb url:
+  = @video.camatar_thumb_url
+%p
+  %b Camatar token:
+  = @video.camatar_token
+%p
+  %b Camatar duration:
+  = @video.camatar_duration
+%p
+  %b Camatar max duration:
+  = @video.camatar_max_duration
+%p
+  %b Token:
+  = @video.token
+%p
+  %b Transcoded url:
+  = @video.transcoded_url
+%p
+  %b Transcoded at:
+  = @video.transcoded_at
+%p
+  %b Created at:
+  = @video.created_at
+%p
+  %b Updated at:
+  = @video.updated_at
+%p
+  %b Filename:
+  = @video.filename
+%p
+  %b Zencoder job:
+  = @video.zencoder_job_id
+%p
+  %b Zencoder finished at:
+  = @video.zencoder_finished_at
+%p
+  %b Uploaded filename:
+  = @video.uploaded_filename
+%p
+  %b Upload duration:
+  = @video.upload_duration
+%p
+  %b Transcript upload url:
+  = @video.transcript_upload_url
+%p
+  %b Transcript record:
+  = @video.transcript_record_id
+%p
+  %b Transcript text:
+  = @video.transcript_text
+%p
+  %b Custom text:
+  = @video.custom_text
+
+= link_to 'Edit', edit_video_path(@video)
+\|
+= link_to 'Back', videos_path

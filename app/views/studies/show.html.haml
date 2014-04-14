@@ -1,0 +1,114 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @study.title
+%p
+  %b Notes:
+  = @study.notes
+%p
+  %b Quota:
+  = @study.quota
+%p
+  %b Duration:
+  = @study.duration
+%p
+  %b Start at:
+  = @study.start_at
+%p
+  %b End at:
+  = @study.end_at
+%p
+  %b Gender m:
+  = @study.gender_m
+%p
+  %b Gender f:
+  = @study.gender_f
+%p
+  %b Age from:
+  = @study.age_from
+%p
+  %b Age to:
+  = @study.age_to
+%p
+  %b Researcher:
+  = @study.researcher_id
+%p
+  %b Created at:
+  = @study.created_at
+%p
+  %b Updated at:
+  = @study.updated_at
+%p
+  %b Status:
+  = @study.status
+%p
+  %b States:
+  = @study.states
+%p
+  %b Countries:
+  = @study.countries
+%p
+  %b Regions:
+  = @study.regions
+%p
+  %b Internal title:
+  = @study.internal_title
+%p
+  %b Seats left:
+  = @study.seats_left
+%p
+  %b Admin:
+  = @study.admin
+%p
+  %b Token:
+  = @study.token
+%p
+  %b Admin fee:
+  = @study.admin_fee
+%p
+  %b Application fee:
+  = @study.application_fee
+%p
+  %b Pay rate:
+  = @study.pay_rate
+%p
+  %b Private:
+  = @study.private
+%p
+  %b Logo url:
+  = @study.logo_url
+%p
+  %b Token secret:
+  = @study.token_secret
+%p
+  %b Language:
+  = @study.language
+%p
+  %b Platform web:
+  = @study.platform_web
+%p
+  %b Platform ios:
+  = @study.platform_ios
+%p
+  %b Platform android:
+  = @study.platform_android
+%p
+  %b Pre accepted emails:
+  = @study.pre_accepted_emails
+%p
+  %b Single serve:
+  = @study.single_serve
+%p
+  %b Transcribe:
+  = @study.transcribe
+%p
+  %b Acceptance email copy:
+  = @study.acceptance_email_copy
+%p
+  %b Acceptance email pdf:
+  = @study.acceptance_email_pdf
+
+= link_to 'Edit', edit_study_path(@study)
+\|
+= link_to 'Back', studies_path

@@ -1,0 +1,29 @@
+%h1 Listing hits
+
+%table
+  %tr
+    %th User
+    %th Ip
+    %th Request
+    %th Params
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @hits.each do |hit|
+    %tr
+      %td= hit.user_id
+      %td= hit.ip
+      %td= hit.request
+      %td= hit.params
+      %td= hit.created_at
+      %td= hit.updated_at
+      %td= link_to 'Show', hit
+      %td= link_to 'Edit', edit_hit_path(hit)
+      %td= link_to 'Destroy', hit, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Hit', new_hit_path

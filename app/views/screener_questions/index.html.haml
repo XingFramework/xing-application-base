@@ -1,0 +1,29 @@
+%h1 Listing screener_questions
+
+%table
+  %tr
+    %th Text
+    %th Options
+    %th Study
+    %th Created at
+    %th Updated at
+    %th Answer type
+    %th
+    %th
+    %th
+
+  - @screener_questions.each do |screener_question|
+    %tr
+      %td= screener_question.text
+      %td= screener_question.options
+      %td= screener_question.study_id
+      %td= screener_question.created_at
+      %td= screener_question.updated_at
+      %td= screener_question.answer_type
+      %td= link_to 'Show', screener_question
+      %td= link_to 'Edit', edit_screener_question_path(screener_question)
+      %td= link_to 'Destroy', screener_question, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Screener question', new_screener_question_path

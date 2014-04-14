@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @content.name
+%p
+  %b Group:
+  = @content.group
+%p
+  %b Text:
+  = @content.text
+%p
+  %b Created at:
+  = @content.created_at
+%p
+  %b Updated at:
+  = @content.updated_at
+
+= link_to 'Edit', edit_content_path(@content)
+\|
+= link_to 'Back', contents_path

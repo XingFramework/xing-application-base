@@ -1,0 +1,25 @@
+%h1 Listing tutorials
+
+%table
+  %tr
+    %th Title
+    %th User type
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @tutorials.each do |tutorial|
+    %tr
+      %td= tutorial.title
+      %td= tutorial.user_type
+      %td= tutorial.created_at
+      %td= tutorial.updated_at
+      %td= link_to 'Show', tutorial
+      %td= link_to 'Edit', edit_tutorial_path(tutorial)
+      %td= link_to 'Destroy', tutorial, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Tutorial', new_tutorial_path

@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @researcher_interest.first_name
+%p
+  %b Last name:
+  = @researcher_interest.last_name
+%p
+  %b Email:
+  = @researcher_interest.email
+%p
+  %b Phone:
+  = @researcher_interest.phone
+%p
+  %b Company name:
+  = @researcher_interest.company_name
+%p
+  %b Created at:
+  = @researcher_interest.created_at
+%p
+  %b Updated at:
+  = @researcher_interest.updated_at
+
+= link_to 'Edit', edit_researcher_interest_path(@researcher_interest)
+\|
+= link_to 'Back', researcher_interests_path

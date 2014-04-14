@@ -1,0 +1,79 @@
+= form_for @video do |f|
+  - if @video.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@video.errors.count, "error")} prohibited this video from being saved:"
+      %ul
+        - @video.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :owner_id
+    = f.number_field :owner_id
+  .field
+    = f.label :owner_type
+    = f.text_field :owner_type
+  .field
+    = f.label :status
+    = f.number_field :status
+  .field
+    = f.label :camatar_flv_url
+    = f.text_field :camatar_flv_url
+  .field
+    = f.label :camatar_image_url
+    = f.text_field :camatar_image_url
+  .field
+    = f.label :camatar_thumb_url
+    = f.text_field :camatar_thumb_url
+  .field
+    = f.label :camatar_token
+    = f.text_field :camatar_token
+  .field
+    = f.label :camatar_duration
+    = f.number_field :camatar_duration
+  .field
+    = f.label :camatar_max_duration
+    = f.number_field :camatar_max_duration
+  .field
+    = f.label :token
+    = f.text_field :token
+  .field
+    = f.label :transcoded_url
+    = f.text_field :transcoded_url
+  .field
+    = f.label :transcoded_at
+    = f.datetime_select :transcoded_at
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .field
+    = f.label :filename
+    = f.text_field :filename
+  .field
+    = f.label :zencoder_job_id
+    = f.text_field :zencoder_job_id
+  .field
+    = f.label :zencoder_finished_at
+    = f.datetime_select :zencoder_finished_at
+  .field
+    = f.label :uploaded_filename
+    = f.text_field :uploaded_filename
+  .field
+    = f.label :upload_duration
+    = f.number_field :upload_duration
+  .field
+    = f.label :transcript_upload_url
+    = f.text_field :transcript_upload_url
+  .field
+    = f.label :transcript_record_id
+    = f.text_field :transcript_record_id
+  .field
+    = f.label :transcript_text
+    = f.text_area :transcript_text
+  .field
+    = f.label :custom_text
+    = f.text_area :custom_text
+  .actions
+    = f.submit 'Save'

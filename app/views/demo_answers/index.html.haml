@@ -1,0 +1,27 @@
+%h1 Listing demo_answers
+
+%table
+  %tr
+    %th Text
+    %th Position
+    %th Demo question
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @demo_answers.each do |demo_answer|
+    %tr
+      %td= demo_answer.text
+      %td= demo_answer.position
+      %td= demo_answer.demo_question_id
+      %td= demo_answer.created_at
+      %td= demo_answer.updated_at
+      %td= link_to 'Show', demo_answer
+      %td= link_to 'Edit', edit_demo_answer_path(demo_answer)
+      %td= link_to 'Destroy', demo_answer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Demo answer', new_demo_answer_path

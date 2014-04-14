@@ -1,0 +1,1 @@
+json.extract! @study_question, :id, :text, :study_id, :attachment_file_name, :attachment_content_type, :attachment_file_size, :attachment_updated_at, :embed, :created_at, :updated_at, :created_at, :updated_at

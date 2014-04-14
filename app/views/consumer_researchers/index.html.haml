@@ -1,0 +1,25 @@
+%h1 Listing consumer_researchers
+
+%table
+  %tr
+    %th Consumer
+    %th Researcher
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @consumer_researchers.each do |consumer_researcher|
+    %tr
+      %td= consumer_researcher.consumer_id
+      %td= consumer_researcher.researcher_id
+      %td= consumer_researcher.created_at
+      %td= consumer_researcher.updated_at
+      %td= link_to 'Show', consumer_researcher
+      %td= link_to 'Edit', edit_consumer_researcher_path(consumer_researcher)
+      %td= link_to 'Destroy', consumer_researcher, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Consumer researcher', new_consumer_researcher_path

@@ -1,0 +1,27 @@
+%h1 Listing contents
+
+%table
+  %tr
+    %th Name
+    %th Group
+    %th Text
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @contents.each do |content|
+    %tr
+      %td= content.name
+      %td= content.group
+      %td= content.text
+      %td= content.created_at
+      %td= content.updated_at
+      %td= link_to 'Show', content
+      %td= link_to 'Edit', edit_content_path(content)
+      %td= link_to 'Destroy', content, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Content', new_content_path

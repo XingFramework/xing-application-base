@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Text:
+  = @screener_answer.text
+%p
+  %b Study application:
+  = @screener_answer.study_application_id
+%p
+  %b Screener question:
+  = @screener_answer.screener_question_id
+%p
+  %b Rating:
+  = @screener_answer.rating
+%p
+  %b Created at:
+  = @screener_answer.created_at
+%p
+  %b Updated at:
+  = @screener_answer.updated_at
+
+= link_to 'Edit', edit_screener_answer_path(@screener_answer)
+\|
+= link_to 'Back', screener_answers_path

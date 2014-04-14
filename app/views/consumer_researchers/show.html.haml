@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Consumer:
+  = @consumer_researcher.consumer_id
+%p
+  %b Researcher:
+  = @consumer_researcher.researcher_id
+%p
+  %b Created at:
+  = @consumer_researcher.created_at
+%p
+  %b Updated at:
+  = @consumer_researcher.updated_at
+
+= link_to 'Edit', edit_consumer_researcher_path(@consumer_researcher)
+\|
+= link_to 'Back', consumer_researchers_path

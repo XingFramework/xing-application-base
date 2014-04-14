@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @hit.user_id
+%p
+  %b Ip:
+  = @hit.ip
+%p
+  %b Request:
+  = @hit.request
+%p
+  %b Params:
+  = @hit.params
+%p
+  %b Created at:
+  = @hit.created_at
+%p
+  %b Updated at:
+  = @hit.updated_at
+
+= link_to 'Edit', edit_hit_path(@hit)
+\|
+= link_to 'Back', hits_path

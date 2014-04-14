@@ -1,0 +1,25 @@
+%h1 Listing synonyms
+
+%table
+  %tr
+    %th Name
+    %th Tag
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @synonyms.each do |synonym|
+    %tr
+      %td= synonym.name
+      %td= synonym.tag_id
+      %td= synonym.created_at
+      %td= synonym.updated_at
+      %td= link_to 'Show', synonym
+      %td= link_to 'Edit', edit_synonym_path(synonym)
+      %td= link_to 'Destroy', synonym, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Synonym', new_synonym_path

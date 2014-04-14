@@ -1,0 +1,63 @@
+%h1 Listing videos
+
+%table
+  %tr
+    %th Owner
+    %th Owner type
+    %th Status
+    %th Camatar flv url
+    %th Camatar image url
+    %th Camatar thumb url
+    %th Camatar token
+    %th Camatar duration
+    %th Camatar max duration
+    %th Token
+    %th Transcoded url
+    %th Transcoded at
+    %th Created at
+    %th Updated at
+    %th Filename
+    %th Zencoder job
+    %th Zencoder finished at
+    %th Uploaded filename
+    %th Upload duration
+    %th Transcript upload url
+    %th Transcript record
+    %th Transcript text
+    %th Custom text
+    %th
+    %th
+    %th
+
+  - @videos.each do |video|
+    %tr
+      %td= video.owner_id
+      %td= video.owner_type
+      %td= video.status
+      %td= video.camatar_flv_url
+      %td= video.camatar_image_url
+      %td= video.camatar_thumb_url
+      %td= video.camatar_token
+      %td= video.camatar_duration
+      %td= video.camatar_max_duration
+      %td= video.token
+      %td= video.transcoded_url
+      %td= video.transcoded_at
+      %td= video.created_at
+      %td= video.updated_at
+      %td= video.filename
+      %td= video.zencoder_job_id
+      %td= video.zencoder_finished_at
+      %td= video.uploaded_filename
+      %td= video.upload_duration
+      %td= video.transcript_upload_url
+      %td= video.transcript_record_id
+      %td= video.transcript_text
+      %td= video.custom_text
+      %td= link_to 'Show', video
+      %td= link_to 'Edit', edit_video_path(video)
+      %td= link_to 'Destroy', video, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Video', new_video_path

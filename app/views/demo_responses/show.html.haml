@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @demo_response.user_id
+%p
+  %b Demo answer:
+  = @demo_response.demo_answer_id
+%p
+  %b Created at:
+  = @demo_response.created_at
+%p
+  %b Updated at:
+  = @demo_response.updated_at
+
+= link_to 'Edit', edit_demo_response_path(@demo_response)
+\|
+= link_to 'Back', demo_responses_path

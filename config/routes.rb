@@ -1,4 +1,52 @@
 Rails.application.routes.draw do
+  resources :videos
+
+  resources :users
+
+  resources :tutorials
+
+  resources :transactions
+
+  resources :tags
+
+  resources :taggings
+
+  resources :synonyms
+
+  resources :study_questions
+
+  resources :study_applications
+
+  resources :study_answers
+
+  resources :studies
+
+  resources :segments
+
+  resources :screener_questions
+
+  resources :screener_answers
+
+  resources :researcher_interests
+
+  resources :hits
+
+  resources :demo_responses
+
+  resources :demo_questions
+
+  resources :demo_answers
+
+  resources :delayed_jobs
+
+  resources :credit_cards
+
+  resources :contents
+
+  resources :consumer_researchers
+
+  resources :access_tokens
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

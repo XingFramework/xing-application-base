@@ -1,0 +1,129 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @user.first_name
+%p
+  %b Email:
+  = @user.email
+%p
+  %b Password:
+  = @user.password
+%p
+  %b Paypal email:
+  = @user.paypal_email
+%p
+  %b Gender:
+  = @user.gender
+%p
+  %b Yob:
+  = @user.yob
+%p
+  %b Country:
+  = @user.country
+%p
+  %b Zip:
+  = @user.zip
+%p
+  %b Time zone:
+  = @user.time_zone
+%p
+  %b Type:
+  = @user.type
+%p
+  %b Rating cache:
+  = @user.rating_cache
+%p
+  %b Facebook uid:
+  = @user.facebook_uid
+%p
+  %b Crypted password:
+  = @user.crypted_password
+%p
+  %b Password salt:
+  = @user.password_salt
+%p
+  %b Persistence token:
+  = @user.persistence_token
+%p
+  %b Perishable token:
+  = @user.perishable_token
+%p
+  %b Single access token:
+  = @user.single_access_token
+%p
+  %b Login count:
+  = @user.login_count
+%p
+  %b Failed login count:
+  = @user.failed_login_count
+%p
+  %b Last request at:
+  = @user.last_request_at
+%p
+  %b Current login at:
+  = @user.current_login_at
+%p
+  %b Last login at:
+  = @user.last_login_at
+%p
+  %b Current login ip:
+  = @user.current_login_ip
+%p
+  %b Last login ip:
+  = @user.last_login_ip
+%p
+  %b Public token:
+  = @user.public_token
+%p
+  %b Created at:
+  = @user.created_at
+%p
+  %b Updated at:
+  = @user.updated_at
+%p
+  %b Company:
+  = @user.company
+%p
+  %b City:
+  = @user.city
+%p
+  %b State:
+  = @user.state
+%p
+  %b Status:
+  = @user.status
+%p
+  %b Phone:
+  = @user.phone
+%p
+  %b Photo file name:
+  = @user.photo_file_name
+%p
+  %b Photo content type:
+  = @user.photo_content_type
+%p
+  %b Photo file size:
+  = @user.photo_file_size
+%p
+  %b Photo updated at:
+  = @user.photo_updated_at
+%p
+  %b Last name:
+  = @user.last_name
+%p
+  %b Mailer setting:
+  = @user.mailer_setting
+%p
+  %b Dob:
+  = @user.dob
+%p
+  %b Blacklist:
+  = @user.blacklist
+%p
+  %b Disable email:
+  = @user.disable_email
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path

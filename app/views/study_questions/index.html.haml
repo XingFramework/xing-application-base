@@ -1,0 +1,35 @@
+%h1 Listing study_questions
+
+%table
+  %tr
+    %th Text
+    %th Study
+    %th Attachment file name
+    %th Attachment content type
+    %th Attachment file size
+    %th Attachment updated at
+    %th Embed
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @study_questions.each do |study_question|
+    %tr
+      %td= study_question.text
+      %td= study_question.study_id
+      %td= study_question.attachment_file_name
+      %td= study_question.attachment_content_type
+      %td= study_question.attachment_file_size
+      %td= study_question.attachment_updated_at
+      %td= study_question.embed
+      %td= study_question.created_at
+      %td= study_question.updated_at
+      %td= link_to 'Show', study_question
+      %td= link_to 'Edit', edit_study_question_path(study_question)
+      %td= link_to 'Destroy', study_question, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Study question', new_study_question_path

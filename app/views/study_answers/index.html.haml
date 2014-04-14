@@ -1,0 +1,29 @@
+%h1 Listing study_answers
+
+%table
+  %tr
+    %th Study question
+    %th Study application
+    %th Created at
+    %th Updated at
+    %th Latitude
+    %th Longitude
+    %th
+    %th
+    %th
+
+  - @study_answers.each do |study_answer|
+    %tr
+      %td= study_answer.study_question_id
+      %td= study_answer.study_application_id
+      %td= study_answer.created_at
+      %td= study_answer.updated_at
+      %td= study_answer.latitude
+      %td= study_answer.longitude
+      %td= link_to 'Show', study_answer
+      %td= link_to 'Edit', edit_study_answer_path(study_answer)
+      %td= link_to 'Destroy', study_answer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Study answer', new_study_answer_path

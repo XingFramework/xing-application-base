@@ -1,0 +1,25 @@
+%h1 Listing demo_responses
+
+%table
+  %tr
+    %th User
+    %th Demo answer
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @demo_responses.each do |demo_response|
+    %tr
+      %td= demo_response.user_id
+      %td= demo_response.demo_answer_id
+      %td= demo_response.created_at
+      %td= demo_response.updated_at
+      %td= link_to 'Show', demo_response
+      %td= link_to 'Edit', edit_demo_response_path(demo_response)
+      %td= link_to 'Destroy', demo_response, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Demo response', new_demo_response_path

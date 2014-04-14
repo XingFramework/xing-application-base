@@ -1,0 +1,25 @@
+%h1 Listing segments
+
+%table
+  %tr
+    %th Name
+    %th Study
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @segments.each do |segment|
+    %tr
+      %td= segment.name
+      %td= segment.study_id
+      %td= segment.created_at
+      %td= segment.updated_at
+      %td= link_to 'Show', segment
+      %td= link_to 'Edit', edit_segment_path(segment)
+      %td= link_to 'Destroy', segment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Segment', new_segment_path

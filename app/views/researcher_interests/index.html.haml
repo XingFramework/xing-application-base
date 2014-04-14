@@ -1,0 +1,31 @@
+%h1 Listing researcher_interests
+
+%table
+  %tr
+    %th First name
+    %th Last name
+    %th Email
+    %th Phone
+    %th Company name
+    %th Created at
+    %th Updated at
+    %th
+    %th
+    %th
+
+  - @researcher_interests.each do |researcher_interest|
+    %tr
+      %td= researcher_interest.first_name
+      %td= researcher_interest.last_name
+      %td= researcher_interest.email
+      %td= researcher_interest.phone
+      %td= researcher_interest.company_name
+      %td= researcher_interest.created_at
+      %td= researcher_interest.updated_at
+      %td= link_to 'Show', researcher_interest
+      %td= link_to 'Edit', edit_researcher_interest_path(researcher_interest)
+      %td= link_to 'Destroy', researcher_interest, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Researcher interest', new_researcher_interest_path

@@ -1,0 +1,28 @@
+= form_for @study_answer do |f|
+  - if @study_answer.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@study_answer.errors.count, "error")} prohibited this study_answer from being saved:"
+      %ul
+        - @study_answer.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :study_question_id
+    = f.number_field :study_question_id
+  .field
+    = f.label :study_application_id
+    = f.number_field :study_application_id
+  .field
+    = f.label :created_at
+    = f.datetime_select :created_at
+  .field
+    = f.label :updated_at
+    = f.datetime_select :updated_at
+  .field
+    = f.label :latitude
+    = f.text_field :latitude
+  .field
+    = f.label :longitude
+    = f.text_field :longitude
+  .actions
+    = f.submit 'Save'
