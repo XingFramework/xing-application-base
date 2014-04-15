@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "studies/new" do
   before(:each) do
-    assign(:studie, stub_model(Studie,
+    assign(:study, stub_model(Study,
       :title => "MyString",
       :notes => "MyText",
       :quota => 1,
@@ -38,43 +38,43 @@ describe "studies/new" do
     ).as_new_record)
   end
 
-  it "renders new studie form" do
+  it "renders new study form" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "form[action=?][method=?]", studies_path, "post" do
-      assert_select "input#studie_title[name=?]", "studie[title]"
-      assert_select "textarea#studie_notes[name=?]", "studie[notes]"
-      assert_select "input#studie_quota[name=?]", "studie[quota]"
-      assert_select "input#studie_duration[name=?]", "studie[duration]"
-      assert_select "input#studie_gender_m[name=?]", "studie[gender_m]"
-      assert_select "input#studie_gender_f[name=?]", "studie[gender_f]"
-      assert_select "input#studie_age_from[name=?]", "studie[age_from]"
-      assert_select "input#studie_age_to[name=?]", "studie[age_to]"
-      assert_select "input#studie_researcher_id[name=?]", "studie[researcher_id]"
-      assert_select "input#studie_status[name=?]", "studie[status]"
-      assert_select "textarea#studie_states[name=?]", "studie[states]"
-      assert_select "textarea#studie_countries[name=?]", "studie[countries]"
-      assert_select "textarea#studie_regions[name=?]", "studie[regions]"
-      assert_select "input#studie_internal_title[name=?]", "studie[internal_title]"
-      assert_select "input#studie_seats_left[name=?]", "studie[seats_left]"
-      assert_select "input#studie_admin[name=?]", "studie[admin]"
-      assert_select "input#studie_token[name=?]", "studie[token]"
-      assert_select "input#studie_admin_fee[name=?]", "studie[admin_fee]"
-      assert_select "input#studie_application_fee[name=?]", "studie[application_fee]"
-      assert_select "input#studie_pay_rate[name=?]", "studie[pay_rate]"
-      assert_select "input#studie_private[name=?]", "studie[private]"
-      assert_select "input#studie_logo_url[name=?]", "studie[logo_url]"
-      assert_select "input#studie_token_secret[name=?]", "studie[token_secret]"
-      assert_select "input#studie_language[name=?]", "studie[language]"
-      assert_select "input#studie_platform_web[name=?]", "studie[platform_web]"
-      assert_select "input#studie_platform_ios[name=?]", "studie[platform_ios]"
-      assert_select "input#studie_platform_android[name=?]", "studie[platform_android]"
-      assert_select "textarea#studie_pre_accepted_emails[name=?]", "studie[pre_accepted_emails]"
-      assert_select "input#studie_single_serve[name=?]", "studie[single_serve]"
-      assert_select "input#studie_transcribe[name=?]", "studie[transcribe]"
-      assert_select "textarea#studie_acceptance_email_copy[name=?]", "studie[acceptance_email_copy]"
-      assert_select "input#studie_acceptance_email_pdf[name=?]", "studie[acceptance_email_pdf]"
+      assert_select "input#study_title[name=?]", "study[title]"
+      assert_select "textarea#study_notes[name=?]", "study[notes]"
+      assert_select "input#study_quota[name=?]", "study[quota]"
+      assert_select "input#study_duration[name=?]", "study[duration]"
+      assert_select "input#study_gender_m[name=?]", "study[gender_m]"
+      assert_select "input#study_gender_f[name=?]", "study[gender_f]"
+      assert_select "input#study_age_from[name=?]", "study[age_from]"
+      assert_select "input#study_age_to[name=?]", "study[age_to]"
+      assert_select "input#study_researcher_id[name=?]", "study[researcher_id]"
+      assert_select "input#study_status[name=?]", "study[status]"
+      assert_select "textarea#study_states[name=?]", "study[states]"
+      assert_select "textarea#study_countries[name=?]", "study[countries]"
+      assert_select "textarea#study_regions[name=?]", "study[regions]"
+      assert_select "input#study_internal_title[name=?]", "study[internal_title]"
+      assert_select "input#study_seats_left[name=?]", "study[seats_left]"
+      assert_select "input#study_admin[name=?]", "study[admin]"
+      assert_select "input#study_token[name=?]", "study[token]"
+      assert_select "input#study_admin_fee[name=?]", "study[admin_fee]"
+      assert_select "input#study_application_fee[name=?]", "study[application_fee]"
+      assert_select "input#study_pay_rate[name=?]", "study[pay_rate]"
+      assert_select "input#study_private[name=?]", "study[private]"
+      assert_select "input#study_logo_url[name=?]", "study[logo_url]"
+      assert_select "input#study_token_secret[name=?]", "study[token_secret]"
+      assert_select "input#study_language[name=?]", "study[language]"
+      assert_select "input#study_platform_web[name=?]", "study[platform_web]"
+      assert_select "input#study_platform_ios[name=?]", "study[platform_ios]"
+      assert_select "input#study_platform_android[name=?]", "study[platform_android]"
+      assert_select "textarea#study_pre_accepted_emails[name=?]", "study[pre_accepted_emails]"
+      assert_select "input#study_single_serve[name=?]", "study[single_serve]"
+      assert_select "input#study_transcribe[name=?]", "study[transcribe]"
+      assert_select "textarea#study_acceptance_email_copy[name=?]", "study[acceptance_email_copy]"
+      assert_select "input#study_acceptance_email_pdf[name=?]", "study[acceptance_email_pdf]"
     end
   end
 end

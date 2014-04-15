@@ -6,24 +6,25 @@ describe "study_answers/index" do
       stub_model(StudyAnswer,
         :study_question_id => 1,
         :study_application_id => 2,
-        :latitude => 1.5,
-        :longitude => 1.5
+        :latitude => 3.5,
+        :longitude => 4.5
       ),
       stub_model(StudyAnswer,
         :study_question_id => 1,
         :study_application_id => 2,
-        :latitude => 1.5,
-        :longitude => 1.5
+        :latitude => 3.5,
+        :longitude => 4.5
       )
     ])
   end
 
   it "renders a list of study_answers" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "tr>td", :text => 1.to_s, :count => 2
-    assert_select "tr>td", :text => 2.to_s, :count => 2
-    assert_select "tr>td", :text => 1.5.to_s, :count => 2
-    assert_select "tr>td", :text => 1.5.to_s, :count => 2
+
+    #debugger
+    rendered.should have_css("tr>td", :text => 1.to_s, :count => 2)
+    rendered.should have_css("tr>td", :text => 2.to_s, :count => 2)
+    rendered.should have_css("tr>td", :text => 3.5.to_s, :count => 2)
+    rendered.should have_css("tr>td", :text => 4.5.to_s, :count => 2)
   end
 end

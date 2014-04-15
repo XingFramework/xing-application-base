@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "studies/index" do
   before(:each) do
     assign(:studies, [
-      stub_model(Studie,
+      stub_model(Study,
         :title => "Title",
         :notes => "MyText",
         :quota => 1,
@@ -37,7 +37,7 @@ describe "studies/index" do
         :acceptance_email_copy => "MyText",
         :acceptance_email_pdf => "Acceptance Email Pdf"
       ),
-      stub_model(Studie,
+      stub_model(Study,
         :title => "Title",
         :notes => "MyText",
         :quota => 1,

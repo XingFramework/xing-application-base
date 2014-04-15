@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "studies/show" do
   before(:each) do
-    @studie = assign(:studie, stub_model(Studie,
+    @study = assign(:study, stub_model(Study,
       :title => "Title",
       :notes => "MyText",
       :quota => 1,
