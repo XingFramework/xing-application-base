@@ -4,7 +4,7 @@ class StudiesController < ApplicationController
   # GET /studies
   # GET /studies.json
   def index
-    @studies = Studie.all
+    @studies = Study.all
   end
 
   # GET /studies/1
@@ -14,7 +14,7 @@ class StudiesController < ApplicationController
 
   # GET /studies/new
   def new
-    @study = Studie.new
+    @study = Study.new
   end
 
   # GET /studies/1/edit
@@ -24,11 +24,11 @@ class StudiesController < ApplicationController
   # POST /studies
   # POST /studies.json
   def create
-    @study = Studie.new(study_params)
+    @study = Study.new(study_params)
 
     respond_to do |format|
       if @study.save
-        format.html { redirect_to @study, notice: 'Studie was successfully created.' }
+        format.html { redirect_to @study, notice: 'Study was successfully created.' }
         format.json { render :show, status: :created, location: @study }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class StudiesController < ApplicationController
   def update
     respond_to do |format|
       if @study.update(study_params)
-        format.html { redirect_to @study, notice: 'Studie was successfully updated.' }
+        format.html { redirect_to @study, notice: 'Study was successfully updated.' }
         format.json { render :show, status: :ok, location: @study }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class StudiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_study
-      @study = Studie.find(params[:id])
+      @study = Study.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

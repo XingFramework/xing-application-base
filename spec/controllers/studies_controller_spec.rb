@@ -21,7 +21,7 @@ require 'spec_helper'
 describe StudiesController do
 
   # This should return the minimal set of attributes required to create a valid
-  # Studie. As you add validations to Studie, be sure to
+  # Study. As you add validations to Study, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { "title" => "MyString" } }
 
@@ -32,67 +32,67 @@ describe StudiesController do
 
   describe "GET index" do
     it "assigns all studies as @studies" do
-      studie = Studie.create! valid_attributes
+      study = Study.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:studies).should eq([studie])
+      assigns(:studies).should eq([study])
     end
   end
 
   describe "GET show" do
-    it "assigns the requested studie as @studie" do
-      studie = Studie.create! valid_attributes
-      get :show, {:id => studie.to_param}, valid_session
-      assigns(:studie).should eq(studie)
+    it "assigns the requested study as @study" do
+      study = Study.create! valid_attributes
+      get :show, {:id => study.to_param}, valid_session
+      assigns(:study).should eq(study)
     end
   end
 
   describe "GET new" do
-    it "assigns a new studie as @studie" do
+    it "assigns a new study as @study" do
       get :new, {}, valid_session
-      assigns(:studie).should be_a_new(Studie)
+      assigns(:study).should be_a_new(Study)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested studie as @studie" do
-      studie = Studie.create! valid_attributes
-      get :edit, {:id => studie.to_param}, valid_session
-      assigns(:studie).should eq(studie)
+    it "assigns the requested study as @study" do
+      study = Study.create! valid_attributes
+      get :edit, {:id => study.to_param}, valid_session
+      assigns(:study).should eq(study)
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new Studie" do
+      it "creates a new Study" do
         expect {
-          post :create, {:studie => valid_attributes}, valid_session
-        }.to change(Studie, :count).by(1)
+          post :create, {:study => valid_attributes}, valid_session
+        }.to change(Study, :count).by(1)
       end
 
-      it "assigns a newly created studie as @studie" do
-        post :create, {:studie => valid_attributes}, valid_session
-        assigns(:studie).should be_a(Studie)
-        assigns(:studie).should be_persisted
+      it "assigns a newly created study as @study" do
+        post :create, {:study => valid_attributes}, valid_session
+        assigns(:study).should be_a(Study)
+        assigns(:study).should be_persisted
       end
 
-      it "redirects to the created studie" do
-        post :create, {:studie => valid_attributes}, valid_session
-        response.should redirect_to(Studie.last)
+      it "redirects to the created study" do
+        post :create, {:study => valid_attributes}, valid_session
+        response.should redirect_to(Study.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved studie as @studie" do
+      it "assigns a newly created but unsaved study as @study" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Studie.any_instance.stub(:save).and_return(false)
-        post :create, {:studie => { "title" => "invalid value" }}, valid_session
-        assigns(:studie).should be_a_new(Studie)
+        Study.any_instance.stub(:save).and_return(false)
+        post :create, {:study => { "title" => "invalid value" }}, valid_session
+        assigns(:study).should be_a_new(Study)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Studie.any_instance.stub(:save).and_return(false)
-        post :create, {:studie => { "title" => "invalid value" }}, valid_session
+        Study.any_instance.stub(:save).and_return(false)
+        post :create, {:study => { "title" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -100,59 +100,59 @@ describe StudiesController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested studie" do
-        studie = Studie.create! valid_attributes
+      it "updates the requested study" do
+        study = Study.create! valid_attributes
         # Assuming there are no other studies in the database, this
-        # specifies that the Studie created on the previous line
+        # specifies that the Study created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Studie.any_instance.should_receive(:update).with({ "title" => "MyString" })
-        put :update, {:id => studie.to_param, :studie => { "title" => "MyString" }}, valid_session
+        Study.any_instance.should_receive(:update).with({ "title" => "MyString" })
+        put :update, {:id => study.to_param, :study => { "title" => "MyString" }}, valid_session
       end
 
-      it "assigns the requested studie as @studie" do
-        studie = Studie.create! valid_attributes
-        put :update, {:id => studie.to_param, :studie => valid_attributes}, valid_session
-        assigns(:studie).should eq(studie)
+      it "assigns the requested study as @study" do
+        study = Study.create! valid_attributes
+        put :update, {:id => study.to_param, :study => valid_attributes}, valid_session
+        assigns(:study).should eq(study)
       end
 
-      it "redirects to the studie" do
-        studie = Studie.create! valid_attributes
-        put :update, {:id => studie.to_param, :studie => valid_attributes}, valid_session
-        response.should redirect_to(studie)
+      it "redirects to the study" do
+        study = Study.create! valid_attributes
+        put :update, {:id => study.to_param, :study => valid_attributes}, valid_session
+        response.should redirect_to(study)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the studie as @studie" do
-        studie = Studie.create! valid_attributes
+      it "assigns the study as @study" do
+        study = Study.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Studie.any_instance.stub(:save).and_return(false)
-        put :update, {:id => studie.to_param, :studie => { "title" => "invalid value" }}, valid_session
-        assigns(:studie).should eq(studie)
+        Study.any_instance.stub(:save).and_return(false)
+        put :update, {:id => study.to_param, :study => { "title" => "invalid value" }}, valid_session
+        assigns(:study).should eq(study)
       end
 
       it "re-renders the 'edit' template" do
-        studie = Studie.create! valid_attributes
+        study = Study.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Studie.any_instance.stub(:save).and_return(false)
-        put :update, {:id => studie.to_param, :studie => { "title" => "invalid value" }}, valid_session
+        Study.any_instance.stub(:save).and_return(false)
+        put :update, {:id => study.to_param, :study => { "title" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested studie" do
-      studie = Studie.create! valid_attributes
+    it "destroys the requested study" do
+      study = Study.create! valid_attributes
       expect {
-        delete :destroy, {:id => studie.to_param}, valid_session
-      }.to change(Studie, :count).by(-1)
+        delete :destroy, {:id => study.to_param}, valid_session
+      }.to change(Study, :count).by(-1)
     end
 
     it "redirects to the studies list" do
-      studie = Studie.create! valid_attributes
-      delete :destroy, {:id => studie.to_param}, valid_session
+      study = Study.create! valid_attributes
+      delete :destroy, {:id => study.to_param}, valid_session
       response.should redirect_to(studies_url)
     end
   end
