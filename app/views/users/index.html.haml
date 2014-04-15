@@ -12,23 +12,6 @@
     %th Zip
     %th Time zone
     %th Type
-    %th Rating cache
-    %th Facebook uid
-    %th Crypted password
-    %th Password salt
-    %th Persistence token
-    %th Perishable token
-    %th Single access token
-    %th Login count
-    %th Failed login count
-    %th Last request at
-    %th Current login at
-    %th Last login at
-    %th Current login ip
-    %th Last login ip
-    %th Public token
-    %th Created at
-    %th Updated at
     %th Company
     %th City
     %th State
@@ -39,13 +22,6 @@
     %th Photo file size
     %th Photo updated at
     %th Last name
-    %th Mailer setting
-    %th Dob
-    %th Blacklist
-    %th Disable email
-    %th
-    %th
-    %th
 
   - @users.each do |user|
     %tr
@@ -59,23 +35,6 @@
       %td= user.zip
       %td= user.time_zone
       %td= user.type
-      %td= user.rating_cache
-      %td= user.facebook_uid
-      %td= user.crypted_password
-      %td= user.password_salt
-      %td= user.persistence_token
-      %td= user.perishable_token
-      %td= user.single_access_token
-      %td= user.login_count
-      %td= user.failed_login_count
-      %td= user.last_request_at
-      %td= user.current_login_at
-      %td= user.last_login_at
-      %td= user.current_login_ip
-      %td= user.last_login_ip
-      %td= user.public_token
-      %td= user.created_at
-      %td= user.updated_at
       %td= user.company
       %td= user.city
       %td= user.state
@@ -86,10 +45,6 @@
       %td= user.photo_file_size
       %td= user.photo_updated_at
       %td= user.last_name
-      %td= user.mailer_setting
-      %td= user.dob
-      %td= user.blacklist
-      %td= user.disable_email
       %td= link_to 'Show', user
       %td= link_to 'Edit', edit_user_path(user)
       %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
