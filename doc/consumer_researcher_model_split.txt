@@ -1,0 +1,76 @@
+Test accounts:
+   consumer account w/finished tutorials: 'neweyn.m@gmail.com'
+   researcher account: ryan+dine@mindswarms.com
+
+
+
+
+Account
+    t.string   "email"   # Login field
+    t.string   "encrypted_password"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+
+    t.integer  "facebook_uid",           limit: 8
+    t.integer  "sign_in_count",                    default: 0,     null: false
+    t.integer  "failed_attempts",                  default: 0,     null: false
+    t.datetime "last_request_at"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "public_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+
+    t.string   "type"   # CHANGE TO ROLE
+
+
+Personal for both
+
+Consumer  
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "country"
+    t.integer  "gender"
+    t.string   "zip"
+    t.string   "phone"
+    t.date     "dob"         #  date_of_birth
+    t.string   "city"
+    t.string   "state"
+    t.string   "paypal_email"
+
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "mailer_setting"
+
+    t.integer  "yob"         #  year of birth?  Only set on 1225 records.
+    t.string   "time_zone"   # only set on 312 records
+
+    t.integer  "status"
+
+Researcher
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company"
+
+
+Appear To Be Unused
+    t.float    "rating_cache"
+
+
+Unknown
+    t.boolean  "blacklist",  default: false, null: false   # probably only used for consumer
+    t.boolean  "disable_email"                             # only set true on consumer
+
+Delete
+    t.string   "password"
