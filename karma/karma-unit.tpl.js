@@ -1,6 +1,6 @@
-module.exports = function ( karma ) {
-  karma.configure({
-    /** 
+module.exports = function ( config ) {
+  config.set({
+    /**
      * From where to look for files, starting with the location of this file.
      */
     basePath: '../',
@@ -26,8 +26,7 @@ module.exports = function ( karma ) {
     /**
      * How to report, by default.
      */
-    reporters: 'dots',
-
+    //reporters: 'dots',
     /**
      * On which port should the browser connect, on which port is the test runner
      * operating, and what is the URL path for the browser to use.
@@ -36,10 +35,10 @@ module.exports = function ( karma ) {
     runnerPort: 9100,
     urlRoot: '/',
 
-    /** 
+    /**
      * Disable file watching by default.
      */
-    autoWatch: false,
+    //autoWatch: false,
 
     /**
      * The list of browsers to launch to test on. This includes only "Firefox" by
@@ -55,8 +54,7 @@ module.exports = function ( karma ) {
      * the aesthetic advantage of not launching a browser every time you save.
      */
     browsers: [
-      'Firefox'
+      'Chrome'
     ]
   });
 };
-

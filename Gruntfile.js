@@ -367,10 +367,14 @@ module.exports = function ( grunt ) {
 
     /**
      * The Karma configurations.
+     *
+     * TODO: Add coverage to general Karma runs
      */
     karma: {
       options: {
-        configFile: '<%= build_dir %>/karma-unit.js'
+        configFile: '<%= build_dir %>/karma-unit.js',
+        autoWatch: false,
+        browsers: [ 'PhantomJS' ]
       },
       unit: {
         runnerPort: 9101,
@@ -378,6 +382,9 @@ module.exports = function ( grunt ) {
       },
       continuous: {
         singleRun: true
+      },
+      dev: {
+        browsers: [ 'Chrome' ]
       }
     },
 
@@ -423,6 +430,8 @@ module.exports = function ( grunt ) {
     /**
      * This task compiles the karma template so that changes to its file array
      * don't have to be managed manually.
+     *
+     * TODO: Use the bower interfaces to get the vendor files
      */
     karmaconfig: {
       unit: {
@@ -431,7 +440,8 @@ module.exports = function ( grunt ) {
           '<%= vendor_files.js %>',
           '<%= html2js.app.dest %>',
           '<%= html2js.common.dest %>',
-          '<%= test_files.js %>'
+          '<%= test_files.js %>',
+          '<%= app_files.jsunit %>'
         ]
       }
     },

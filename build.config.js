@@ -21,10 +21,10 @@ module.exports = {
    */
   app_files: {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
-    jsunit: [ 'src/**/*.spec.js' ],
+    jsunit: [ 'test/**/*.js' ],
 
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
-    coffeeunit: [ 'src/**/*.spec.coffee' ],
+    coffeeunit: [ 'test/**/*.coffee' ],
 
     atpl: [ 'src/app/**/*.tpl.html' ],
     ctpl: [ 'src/common/**/*.tpl.html' ],
@@ -60,14 +60,23 @@ module.exports = {
    * The `vendor_files.assets` property holds any assets to be copied along
    * with our app's assets. This structure is flattened, so it is not
    * recommended that you use wildcards.
+   *
+   * TODO: use
+        var bower = require('bower');
+        var bowerFiles;
+        bower.commands.list([], {paths: true}).on('end', function(list){
+          bowerFiles = list;
+        });
+   * to get the list of files we need from bower
+
    */
   vendor_files: {
     js: [
       'vendor/angular/angular.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
-      'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/angular-ui-utils/modules/route/route.js'
+      'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
+      'vendor/angular-ui-utils/ui-utils.js',
+      'vendor/angular-ui-router/release/angular-ui-router.js'
     ],
     css: [
     ],
