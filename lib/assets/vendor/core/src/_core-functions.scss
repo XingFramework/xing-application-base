@@ -1,0 +1,880 @@
+/*****************/
+
+/**
+* @tags: 	url path for background mixins
+* @usage: 	choose 3 different path. null by default, true = ../../../../charcoal/modules/admin/assets/images/, module = get-asset-images?a=
+* 			can be define into stylesheet or specefic class
+*/
+
+$core: null !default;
+
+/*****************/
+
+/**
+* @file _core-functions.scss
+*
+* @author Nicolas Poliquin <nicolas@polikin.ca>
+* @version @Mon Jul  8 15:40:21 EDT 2013
+* @license (c) Polikin.ca 2013
+*/
+
+
+/*****************/
+
+/*  =========
+  MIXIN
+=========
+*/
+
+
+
+/**
+* @tags  : media queries
+* @mixin : @include media-query(value) { attribut }
+* @usage : .selector @include media-query(320px) { width: 60%; }; }
+*/
+
+@mixin core-media-query($value, $operator: 'min-width', $query: 'screen') {
+	@media #{$query} and (#{$operator}: #{$value}px) {
+		@content;
+	}
+}
+
+@mixin core-media-query-max($value, $operator: 'max-width', $query: 'screen') {
+	@media #{$query} and (#{$operator}: #{$value}px) {
+		@content;
+	}
+}
+
+@mixin core-media-query-minmax($value-min, $value-max, $operator: 'min-width', $operator2: 'max-width', $query: 'screen') {
+	@media #{$query} and (#{$operator}: #{$value-min}px) and (#{$operator2}: #{$value-max}px) {
+		@content;
+	}
+}
+
+
+/**
+* @tags  : position
+* @mixin : @include position();
+* @usage : .selector { @include position(absolute, 0, 0, 0, 0); }
+*/
+
+@mixin core-position ($type, $top, $right, $bottom, $left) {
+	position: 	$type;
+    top: 		$top;
+    right: 		$right;
+    bottom: 	$bottom;
+    left: 		$left;
+}
+
+
+/**
+* @tags  : custom size
+* @mixin : @include size();
+* @usage : .selector { @include size(104, 104); }
+*/
+@mixin core-size($height, $width) {
+	height: #{$height}px;
+	width:	#{$width}px;
+}
+
+/*****************/
+
+/**
+* @tags  : backgroundimage
+* @for   : Load background image
+* @mixin : @include backgroundimage();
+* @usage : .selector { @include backgroundimage(bckg-btn-dwlmenu, png); }
+*/
+
+//$module: false !default;
+
+@mixin core-backgroundimage($name, $ext, $pos:top left, $repeat: no-repeat, $bgcolor:transparent, $bgsize: null, $important:null, $size: null, $height: null, $fallback:null) {	
+	@if $core == true {
+		background: url('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}') $pos $repeat $bgcolor $important;
+		
+		@if $ext == svg {
+			@if $fallback == false {
+				//no png fallback
+			}@else {
+				.no-svg & { background: image-url('#{$name}.png') $pos $repeat $bgcolor $important; }
+			}
+		}	
+		
+		@if $bgsize != null {
+			background-size: $bgsize;
+		}	
+		
+	}@elseif $core == module {
+		background: url('get-asset-images?a=#{$name}.#{$ext}') $pos $repeat $bgcolor $important;
+		
+		@if $ext == svg {
+			@if $fallback == false {
+				//no png fallback
+			}@else {
+				.no-svg & { background: image-url('#{$name}.png') $pos $repeat $bgcolor $important; }
+			}
+		}	
+		
+		@if $bgsize != null {
+			background-size: $bgsize;
+		}	
+		
+	}@else {
+		background: image-url('#{$name}.#{$ext}') $pos $repeat $bgcolor $important;
+		
+		@if $ext == svg {
+			@if $fallback == false {
+				//no png fallback
+			}@else {
+				.no-svg & { background: image-url('#{$name}.png') $pos $repeat $bgcolor $important; }
+			}
+		}
+		
+		@if $bgsize != null {
+			background-size: $bgsize;
+		}		
+	}
+	
+	@if $size == true {
+		@if $core == true {
+			height: image-height('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}');
+			width: 	image-width('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}');
+			
+		}@elseif $ext == svg {
+			height: image-height('#{$name}.png');
+			width: 	image-width('#{$name}.png');
+		}
+		@else {
+			height: image-height('#{$name}.#{$ext}');
+			width: 	image-width('#{$name}.#{$ext}');
+		}
+	}
+	
+	@if $height == true {
+		height: image-height('#{$name}.#{$ext}');
+		
+		@if $ext == svg {
+			height: image-height('#{$name}.png');
+		}
+	}
+}
+
+
+/*****************/
+
+/**
+* @tags    : image height
+* @for     : Grab the height of the image in your CSS
+* @library : Compass Image Helper || http://compass-style.org/reference/compass/helpers/urls/
+* @mixin   : @include image-height();
+* @usage   : .selector { @include image-height(img-name, png); }
+*/
+
+@mixin core-image-height($name, $ext) {
+	@if $core == true {
+		height: image-height('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}');
+		
+	}@else {
+		height: image-height('#{$name}.#{$ext}');
+	}
+}
+
+/*****************/
+
+/**
+* @tags    : image width
+* @for     : Grab the width of the image in your CSS
+* @library : Compass Image Helper || http://compass-style.org/reference/compass/helpers/urls/
+* @mixin   : @include image-width();
+* @usage   : .selector { @include image-width(img-name, png); }
+*/
+
+@mixin core-image-width($name, $ext) {
+	@if $core == true {
+		width: 	image-width('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}');
+	}@else {
+		width: 	image-width('#{$name}.#{$ext}');
+	}
+}
+
+/*****************/
+
+/**
+* @tags    : image size
+* @for     : Grab the height/width of the image in your CSS
+* @library : Compass Image Helper || http://compass-style.org/reference/compass/helpers/urls/
+* @mixin   : @include image-size();
+* @usage   : .selector { @include image-size(img-name, png); }
+*/
+
+@mixin core-image-size($name, $ext) {
+	@if $core == true {
+		height: image-height('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}');
+		width: 	image-width('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}');
+	}@else {
+		height: image-height('#{$name}.#{$ext}');
+		width: 	image-width('#{$name}.#{$ext}');
+	}
+}
+
+/*****************/
+
+/**
+* @tags    : center element horizontally in absolute position
+* @for     : Grab the height/width of the image and add a value to the margin-left (half of the width)
+* @library : Compass Image Helper || http://compass-style.org/reference/compass/helpers/urls/
+* @mixin   : @include center-absolute();
+* @usage   : .selector { @include center-absolute(img-name, png); }
+*/
+
+$div: false !default;
+$div-height: null !default;
+
+@mixin core-center-absolute($name: null, $ext: null, $repeat: no-repeat, $bgcolor:transparent, $important: null, $width: null, $height:null, $reset:false, $top: 0, $right: 0, $bottom: 0, $left: 0, $margin-left: auto, $pos:absolute) {
+	
+	
+	
+	@if $reset == true {		
+		position : $pos;
+		top      : $top;
+		right    : $right;
+		bottom   : $bottom;
+		left     : $left;
+		
+		margin-left : $margin-left;
+		
+		width : $width;
+		
+	}@else {
+		position:	$pos;
+		
+		@if $name and $ext !=  null { /* @if background image is call || center vertical & horizontal */
+			@if $top > 0 {
+				top:		$top;
+				right:		0;
+				bottom:		auto;
+				left:		0;
+			}@elseif $right > 0 {
+				top:		0;
+				right:		$right;
+				bottom:		0;
+				left:		auto;			
+			}@elseif $bottom > 0 {
+				top:		auto;
+				right:		0;
+				bottom:		$bottom;
+				left:		0;			
+			}@elseif $left > 0 {
+				top:		0;
+				right:		auto;
+				bottom:		0;
+				left:		$left;			
+			}@else {
+				top:		$top;
+				right:		$right;
+				bottom:		$bottom;
+				left:		$left;
+			}
+		
+			margin:	auto;
+		
+			height: image-height('#{$name}.#{$ext}');
+			width: 	image-width('#{$name}.#{$ext}');
+		
+			@if $core == true { /* @if we need image from the core | use this variable for custom charcoal skin */
+				height: image-height('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}');
+				width: 	image-width('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}');
+			}@else { /* config.rb relative assets */
+				height: image-height('#{$name}.#{$ext}');
+				width: 	image-width('#{$name}.#{$ext}');
+			}
+		
+			@if $core == true { /* @if we need image from the core | use this variable for custom charcoal skin */
+				background: url('../../../../charcoal/modules/admin/assets/images/#{$name}.#{$ext}') $repeat $bgcolor $important;
+			}@elseif $core == module { /* (get-asset-images) charcoal function | take image from the modules define into the config.json */
+				background: url('get-asset-images?a=#{$name}.#{$ext}') $repeat $bgcolor $important;
+			}@else { /* config.rb relative assets */
+				background: image-url('#{$name}.#{$ext}') $repeat $bgcolor $important;
+			}
+		
+			.ie7 & {
+				left:		50%;
+				top:		$top;
+		
+				@if $top == 50% {
+					margin-top:  - image-height('#{$name}.#{$ext}') / 2;
+				}
+		
+				margin-left: - image-width('#{$name}.#{$ext}') / 2;
+				height: image-height('#{$name}.#{$ext}');
+				width: 	image-width('#{$name}.#{$ext}');
+			}
+		
+		}@else {
+			@if $div-height ==  variable { /* @if div height is unknown */
+				left:		50%;
+				//top:		$top;
+				@if $top {
+					top: $top;
+				}@elseif $top == 50% { /* center vertically with height value */
+					margin-top:  - $height / 2;
+				}@elseif $bottom > 0 {
+					left: 	50%;
+					top:	auto;
+					bottom: $bottom;
+				}
+
+				width:	$width;
+				height:	$height;
+
+				margin-left:	- $width/2;
+		
+				z-index:	9999;
+			
+			}@else { /* @if div height is know */
+				@if $top > 0 {
+					top:		$top;
+					right:		0;
+					bottom:		auto;
+					left:		0;
+				}@elseif $right > 0 {
+					top:		0;
+					right:		$right;
+					bottom:		0;
+					left:		auto;			
+				}@elseif $bottom > 0 {
+					top:		auto;
+					right:		0;
+					bottom:		$bottom;
+					left:		0;			
+				}@elseif $left > 0 {
+					top:		0;
+					right:		auto;
+					bottom:		0;
+					left:		$left;			
+				}@else {
+					top:		$top;
+					right:		$right;
+					bottom:		$bottom;
+					left:		$left;
+				}
+				margin:		auto;
+			}	
+		
+			width: 	$width;
+			height:	$height;
+		
+			.ie7 & {
+				position:	$pos;
+				top:		$top;
+				left:		50%;
+
+				width:	$width;
+				height:	$height;
+
+				margin-left:	- $width/2;
+		
+				z-index:	9999;
+			}
+		
+		}
+	}	
+}
+
+
+/*****************/
+
+/**
+* @tags  : prefix
+* @for   : add prefix to your attribut
+* @mixin : @include prefixer();
+* @usage : .selector { @include prefixer(attribut, value, webkit ms moz o spec); } || @include prefixer(background-size, 100%, webkit ms moz o spec);
+*/
+
+
+@mixin core-prefixer ($property, $value, $prefixes: webkit ms moz o spec) {
+	@each $prefix in $prefixes {
+
+		@if $prefix == webkit {
+			-webkit-#{$property}: $value;
+		}
+		@else if $prefix == moz {
+			-moz-#{$property}: $value;
+		}
+		@else if $prefix == ms {
+			-ms-#{$property}: $value;
+		}
+		@else if $prefix == o {
+			-o-#{$property}: $value;
+		}
+		@else if $prefix == spec {
+			#{$property}: $value;
+		}
+		@else {
+			@warn "Unrecognized prefix: #{$prefix}";
+		}
+	}
+}
+
+/*****************/
+
+/**
+* @tags  : css2 translation with fallback
+* @for   : add fallback to your transitions
+* @mixin : @include translate();
+* @usage : .selector { @@include translate(translate3d, $y:-20); }
+*/
+
+@mixin translate($translation:null, $x:0, $y:0, $z:0, $property: transform, $fallback:true) {
+	@if $translation == translate3d {
+		-webkit-#{$property} : translate3d($x, $y, $z);
+		-moz-#{$property}    : translate3d($x, $y, $z);
+		-ms-#{$property}     : translate3d($x, $y, $z);
+		-o-#{$property}      : translate3d($x, $y, $z);		
+	}@else if $translation == translateX {
+		-webkit-#{$property} : translateX($x);
+		-moz-#{$property}    : translateX($x);
+		-ms-#{$property}     : translateX($x);
+		-o-#{$property}      : translateX($x);
+	}@else if $translation == translateY {
+		-webkit-#{$property} : translateY($y);
+		-moz-#{$property}    : translateY($y);
+		-ms-#{$property}     : translateY($y);
+		-o-#{$property}      : translateY($y);
+	}
+	
+	@if $fallback == false {
+	    //no fallback
+	}@else {
+	    @if $x > 0 {
+			.no-csstransforms & { left: $x; }
+		}@else if $x < 0 {
+			.no-csstransforms & { left: $x; }
+		}
+	
+		/* translate on Y axis */
+	
+		@if $y > 0 {
+			.no-csstransforms & { top: $y; }
+		}@else if $y < 0 {
+			.no-csstransforms & { top: $y; }
+		}
+	}
+}
+
+/*****************/
+
+/**
+* @tags  : prefix & suffix
+* @for   : add prefix to your attribut
+* @mixin : @include prefix-suffix();
+* @usage : .selector { @include prefix-suffix(attribut, value, webkit ms moz o spec); } || @include prefixer(background-size, 100%, webkit ms moz o spec);
+*/
+
+@mixin core-prefix-suffix ($property, $value, $prefixes: webkit ms moz o spec) {
+
+  @each $prefix in $prefixes {
+
+    @if $prefix == webkit {
+      -webkit-#{$property}: -webkit-#{$value};
+    }
+    @else if $prefix == moz {
+      -moz-#{$property}: -moz-#{$value};
+    }
+    @else if $prefix == ms {
+      -ms-#{$property}: -ms-#{$value};
+    }
+    @else if $prefix == o {
+      -o-#{$property}: -o-#{$value};
+    }
+    @else if $prefix == spec {
+      #{$property}: #{$value};
+    }
+    @else {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
+}
+
+/*****************/
+
+/**
+* @tags  : suffix
+* @for   : add suffix to your attribut
+* @mixin : @include suffix();
+* @usage : .selector { @include suffix(attribut, value, webkit ms moz o spec); } || @include suffix(background-size, 100%, webkit ms moz o spec);
+*/
+
+@mixin core-suffix ($property, $value, $prefixes: webkit ms moz o spec) {
+
+  @each $prefix in $prefixes {
+
+    @if $prefix == webkit {
+      #{$property}: -webkit-#{$value};
+    }
+    @else if $prefix == moz {
+      #{$property}: -moz-#{$value};
+    }
+    @else if $prefix == ms {
+      #{$property}: -ms-#{$value};
+    }
+    @else if $prefix == o {
+      #{$property}: -o-#{$value};
+    }
+    @else if $prefix == spec {
+      #{$property}: #{$value};
+    }
+    @else {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
+}
+
+/*****************/
+
+/**
+* @tags  : keyframes
+* @for   : add suffix to your keyframes animation
+* @mixin : @include keyframe(animationName, webkit moz o ms spec);
+* @usage : 
+* .selector { @include keyframes(block1-visible, webkit ms moz o spec) {
+*		from, 0% {  }
+*		to { }
+*	}
+*/
+
+@mixin core-keyframes ($property, $prefixes: webkit ms moz o spec) {
+
+  @each $prefix in $prefixes {
+
+    @if $prefix == webkit {
+      @-webkit-keyframes #{$property} { @content; }
+    }
+    @else if $prefix == moz {
+      @-moz-keyframes #{$property} { @content; }
+    }
+    @else if $prefix == ms {
+      @-ms-keyframes #{$property} { @content; }
+    }
+    @else if $prefix == o {
+      @-o-keyframes #{$property} { @content; }
+    }
+    @else if $prefix == spec {
+      @keyframes #{$property} { @content; }
+    }
+    @else {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
+}
+
+@-webkit-keyframes opacityValue {
+}
+
+/*****************/
+
+/**
+* @tags  : debug
+* @for   : add red border to element
+* @mixin : @include debug();
+* @usage : .selector { @include debug(); }
+*/
+
+//Help for debugging
+%debug {
+	border:		1px red dotted;
+	background:	yellow;
+}
+
+/*****************/
+
+/**
+* @tags  : include padding into the width & height of your element
+* @mixin : @include borderbox();
+* @usage : .selector { @include borderbox(); }
+*/
+
+@mixin core-borderbox {
+	box-sizing: 		border-box;
+	-webkit-box-sizing:	border-box;
+	-moz-box-sizing: 	border-box;
+}
+
+/*****************/
+
+/**
+* @tags  : css3 transition delay
+* @mixin : @include delay();
+* @usage : .selector { @include delay(0.3s); }
+*/
+
+@mixin core-delay ($value) {
+	transition-delay: $value;
+	-moz-transition-delay: $value; /* Firefox 4 */
+	-webkit-transition-delay: $value; /* Safari and Chrome */
+	-o-transition-delay: $value; /* Opera */
+}
+
+@mixin core-animation_delay ($value) {
+	animation-delay: $value;
+	-moz-animation-delay: $value; /* Firefox 4 */
+	-webkit-animation-delay: $value; /* Safari and Chrome */
+	-o-animation-delay: $value; /* Opera */
+}
+
+/*****************/
+
+/*  =========
+  FONT FACE
+=========
+*/
+
+/**
+* @tags  : grab every font-face file
+* @mixin : @include font-face();
+* @usage : .selector { @include font-face(font-custom-name, '../dir/font-file-name'); } | @include font-face(avenir, '../fonts/avenir-next-lt-pro');
+*/
+
+$font-url: false !default;
+
+@mixin core-font-face($font-family, $file-path, $weight: normal, $style: normal ) {
+	@if $font-url == true {
+		@font-face {
+			font-family: $font-family;
+			font-weight: $weight;
+			font-style: $style;
+
+			src: font-url('#{$file-path}.eotiefix');
+
+			src: font-url('#{$file-path}.eot?iefix') format('embedded-opentype'),
+			font-url('#{$file-path}.woff') format('woff'),
+			font-url('#{$file-path}.ttf') format('truetype'),
+			font-url('#{$file-path}.svg#{$font-family}') format('svg');
+		}
+	}@elseif $font-url == false {
+		@font-face {
+			font-family: $font-family;
+			font-weight: $weight;
+			font-style: $style;
+
+			src: url('#{$file-path}.eotiefix');
+
+			src: url('#{$file-path}.eot?iefix') format('embedded-opentype'),
+			url('#{$file-path}.woff') format('woff'),
+			url('#{$file-path}.ttf') format('truetype'),
+			url('#{$file-path}.svg#{$font-family}') format('svg');
+		}
+	}
+}
+
+/**
+* @tags   : arrow
+* @format : .selector(@include arrow(10px, black, up);
+*/
+
+
+@mixin core-arrow($value, $color, $direction) {
+	@if $direction == up {
+		width: 		0; 
+		height: 	0; 
+	
+		border:{
+			left: $value solid transparent;
+			right: $value solid transparent;
+			bottom: $value solid $color;
+		};	
+	}@elseif $direction == right {
+		width: 		0; 
+		height: 	0;
+		
+		border:{
+			top: $value solid transparent;
+			bottom: $value solid transparent;
+			left: $value solid $color;
+		};		
+	}@if $direction == down {
+		width: 		0; 
+		height: 	0; 
+	
+		border:{
+			left: $value solid transparent;
+			right: $value solid transparent;
+			top: $value solid $color;
+		};	
+	}@if $direction == left {
+		width: 		0; 
+		height: 	0; 
+	
+		border:{
+			top: $value solid transparent;
+			bottom: $value solid transparent;
+			right: $value solid $color;
+		};	
+	}
+}
+
+/**
+* @tags   : ie js breakpoint fix
+* @format : .selector(@mixin ie-grid(width:60%;));
+*/
+
+@mixin core-ie-grid {
+	.is960 &,
+	.is1024 &,
+	.is1140 & {
+		@content;
+	}
+}
+
+/*****************/
+
+
+/**
+* @tags   : css3 circle
+* @extend : pager button
+* @format : 
+* @include circle(width value, height value, background-color);
+*/
+
+@mixin core-circle($circle-size, $color) {
+	width: 		$circle-size; 
+	height: 	$circle-size; 
+	background:	$color;
+	
+	@include border-radius($circle-size/2);
+}
+
+
+/**
+* @tags   : add any properties in placeholder
+* @format : @include placeholder-color() {your properties}
+* @usage  : @include placeholder-color($color: red);
+*/
+
+@mixin core-placeholder-color($color) { 	
+	@each $prefix in "::-webkit-input", ":moz", "::-moz", ":-ms-input" {
+	    #{$prefix}-placeholder {
+	     	color: $color;	
+	    }
+	}
+}
+
+
+/**
+* @tags   : add any properties in placeholder
+* @format : @include placeholder-content() {your properties}
+* @usage  : @include placeholder-content() { color: yellow; }
+*/
+
+@mixin core-placeholder-content() {
+ 	
+	@each $prefix in "::-webkit-input", ":moz", "::-moz", ":-ms-input" {
+	    #{$prefix}-placeholder {
+
+	     	@content;
+	    }
+	}
+}
+
+/*****************/
+
+/**
+* @tags   : css ellipsis
+* @extend : pager button
+* @format : 
+* <div class="pager"></div>
+*/
+
+@mixin core-truncate($width:null) {
+	width:	$width;
+	
+	white-space: 	pre;
+	text-overflow:	ellipsis;
+	overflow:		hidden;
+}
+
+/*****************/
+
+/*****************/
+
+/**
+* @tags  : css2 translation with fallback
+* @for   : add fallback to your transitions
+* @mixin : @include translate();
+* @usage : .selector { @@include translate(translate3d, $y:-20); }
+*/
+
+@mixin core-translate($translation:null, $x:0, $y:0, $z:0, $property: transform, $fallback:true) {
+	@if $translation == translate3d {
+		-moz-#{$property}    : translate3d($x, $y, $z);
+		-webkit-#{$property} : translate3d($x, $y, $z);
+		-ms-#{$property}     : translate3d($x, $y, $z);
+		-o-#{$property}      : translate3d($x, $y, $z);		
+	}@else if $translation == translateX {
+		-webkit-#{$property} : translateX($x);
+		-moz-#{$property}    : translateX($x);
+		-ms-#{$property}     : translateX($x);
+		-o-#{$property}      : translateX($x);
+	}@else if $translation == translateY {
+		-webkit-#{$property} : translateY($y);
+		-moz-#{$property}    : translateY($y);
+		-ms-#{$property}     : translateY($y);
+		-o-#{$property}      : translateY($y);
+	}
+	
+	@if $fallback == true {
+		@if $x > 0 {
+			.no-csstransforms & { left: $x; }
+		}@else if $x < 0 {
+			.no-csstransforms & { left: $x; }
+		}
+
+		/* translate on Y axis */
+
+		@if $y > 0 {
+			.no-csstransforms & { top: $y; }
+		}@else if $y < 0 {
+			.no-csstransforms & { top: $y; }
+		}
+	}
+}
+
+/*****************/
+
+/**
+* @tags  : https://github.com/SimonWpt/rem
+* @for   : rem() is a Sass mixin that converts pixel values to rem values for whatever property is passed to it.s
+* @mixin : @include rem();
+* @usage : .selector { @include rem('padding',10px 0 2px 5px); }
+*/
+
+@mixin rem($property,$px-values, $baseline-px: 16px) {
+    
+    /* Convert the baseline into rems */
+	$baseline-rem:$baseline-px / 1rem;
+
+    /* Print the first line in pixel values */
+	#{$property}:$px-values;
+
+    /* If there is only one (numeric) value, return the property/value line for it. */
+	@if type-of($px-values) == "number" {
+		#{$property}:$px-values / $baseline-rem;
+	}
+	@else {
+		$rem-values:unquote("");
+		@each $value in $px-values {
+
+            /* If the value is zero or a string or a color, return unchanged input */
+			@if $value == 0 or type-of($value) == "string" or type-of($value) == "color" {
+				$rem-values:append($rem-values,$value);
+			}
+			@else {
+				$rem-values:append($rem-values,$value / $baseline-rem);
+			}
+		}
+
+        /* Return the property and its list of converted values */
+		#{$property}: $rem-values;
+	}
+}

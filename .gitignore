@@ -55,3 +55,4 @@ spec/support/cadre.rb
 .rspec-local
 .simplecov
 *.dump
+stripped-schema.png
