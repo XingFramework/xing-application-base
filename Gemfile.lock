@@ -196,7 +196,6 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
-    spring (1.1.2)
     sprockets (2.12.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -258,7 +257,6 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selenium-webdriver
   simplecov
-  spring
   timecop
   uglifier
   vcr
