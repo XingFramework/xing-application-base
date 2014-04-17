@@ -87,7 +87,7 @@ class BreakUserOutProfiles < ActiveRecord::Migration
         profile.user = user
         profile.save
       end
-    #end
+    end
   end
 
 
