@@ -42,9 +42,8 @@ group :development, :test do
   #gem 'shoulda'
   gem 'vcr'
   gem 'capybara-email'
-  #gem 'cadre'
+  gem 'cadre'
   gem 'timecop'
-
 end
 
 group :test do
