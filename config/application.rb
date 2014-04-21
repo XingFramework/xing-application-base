@@ -21,8 +21,8 @@ module MindSwarms
     # config.i18n.default_locale = :de
     #config.autoload_paths += Dir["#{config.root}/app/lib/**"]
 
-    config.assets.paths.unshift Rails.root.join("lib", "assets", "build")
-    p config.assets
-    p config.assets.paths
+    config.assets.paths.unshift *(Rails.root.join("lib", "assets", "build").children.find_all do |path|
+      path.directory?
+    end)
   end
 end
