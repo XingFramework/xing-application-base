@@ -6,10 +6,20 @@
     "angular-mocks": "~1.2.16",
     "angular-ui-router": "~0.2.10",
     "angular-ui-utils": "~0.1.1",
-    "core": "~0.0.9"
+    "core": "~0.0.9",
+    "sass-import-once": "~0.1.1",
+    "compass-vanilla": "~0.1.0"
   },
   "dependencies": {},
-  "resolutions": {
-    "angular": "~1.2.16"
+  "exportsOverride": {
+    "compass-vanilla": {
+      "stylesheets": "**/stylesheets/**/_*.{css,sass,scss}"
+    },
+    "sass-import-once": {
+      "stylesheets": "_sass-import-once.scss"
+    },
+    "core": {
+      "stylesheets": "**/_*.{css,sass,scss}"
+    }
   }
 }

@@ -7,7 +7,13 @@ module.exports = {
    * development and the `compile_dir` folder is where our app resides once it's
    * completely built.
    */
-  build_dir: 'build',
+  build_dirs: {
+    root: 'build',
+    stylesheets: '<%= build_dirs.root %>/stylesheets',
+    js: '<%= build_dirs.root %>/javascripts',
+    assets: '<%= build_dirs.root %>/assets'
+  },
+  build_dir: '<%= build_dirs.root %>',
   compile_dir: 'bin',
 
   /**
@@ -20,10 +26,10 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
-    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
+    js: [ 'src/**/*.js' ],
     jsunit: [ 'test/**/*.js' ],
 
-    coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
+    coffee: [ 'src/**/*.coffee' ],
     coffeeunit: [ 'test/**/*.coffee' ],
 
     atpl: [ 'src/app/**/*.tpl.html' ],
@@ -31,7 +37,7 @@ module.exports = {
 
     html: [ 'src/index.html' ],
     less: 'src/less/main.less',
-    sass: 'src/sass'
+    sass: 'src/sass/'
   },
 
   /**
@@ -68,15 +74,12 @@ module.exports = {
           bowerFiles = list;
         });
    * to get the list of files we need from bower
+   * Will .done() handle that?
 
    */
   vendor_files: {
     js: [
-      'vendor/angular/angular.js',
-      'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
-      'vendor/angular-ui-utils/ui-utils.js',
-      'vendor/angular-ui-router/release/angular-ui-router.js'
+      'vendor/**/*.js'
     ],
     css: [
     ],
