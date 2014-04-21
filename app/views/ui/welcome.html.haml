@@ -1,0 +1,6 @@
+- content_for :head do
+  / Begin Welcome app integration
+  = stylesheet_link_tag 'welcome'
+  = javascript_include_tag 'welcome'
+  / End Welcome app integration
+%div(ui-view = "main")

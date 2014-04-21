@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', "~> 4.0.2"
 gem 'haml-rails'
 gem 'uglifier'
 gem 'pg'
@@ -38,7 +38,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-steps', ">= 0.0.6"
   gem 'byebug'
-  gem 'quiet_assets'
+#  gem 'quiet_assets'
   #gem 'shoulda'
   gem 'vcr'
   gem 'capybara-email'
@@ -55,5 +55,6 @@ group :development do
   gem 'capistrano-ext'
 
   gem "pivotal-github"
-  gem 'sass-rails-source-maps', :git => "git@github.com:LRDesign/sass-rails-source-maps.git"
+  #gem 'sass-rails-source-maps', :git =>
+  #"git@github.com:LRDesign/sass-rails-source-maps.git"
 end
