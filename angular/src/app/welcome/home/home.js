@@ -26,15 +26,19 @@ angular.module( 'MindSwarms.welcome.home', [
     views: {
       "main": {
         controller: 'HomeCtrl',
-        templateUrl: 'home/home.tpl.html'
+        templateUrl: 'welcome/home/home.tpl.html'
       }
     },
     data:{ pageTitle: 'Home' }
   });
-}).controller( 'HomeCtrl', function HomeController( $scope ) {
-/**
- * And of course we define a controller for our route.
- */
+}).controller( 'HomeCtrl', function HomeController( $rootScope, $scope, User ) {
+  $scope.become = function(user){
+    var users = User.query({email: user.email}, function(){
+      if(users.length > 0) {
+        $rootScope.user = users[0];
+      }
+    });
+  };
 })
 
 ;
