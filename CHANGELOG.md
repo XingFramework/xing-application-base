@@ -1,3 +1,9 @@
+# LRD take over
+
+The thing here is we needed this as soon as possible, and it's going to be more
+reasonable for us to curate an internal repo than to expect every dev to grunt
+ngbp:something:else, so...
+
 # 0.3.1 (2013-09-13)
 
 ## Features
@@ -119,7 +125,3 @@
 ### testacular
 
 * fixed typo in browser docstring ([11a60fa7](https://github.com/joshdmiller/ng-boilerplate/commits/11a60fa7))
-
-
-
-
