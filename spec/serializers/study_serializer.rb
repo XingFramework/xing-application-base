@@ -1,6 +1,5 @@
 require "spec_helper"
 
-
 describe StudySerializer do
   let :study do
     FactoryGirl.build_stubbed(
