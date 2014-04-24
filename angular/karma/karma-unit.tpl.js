@@ -13,6 +13,7 @@ module.exports = function ( config ) {
       <% }); %>
       'src/**/*.js',
       'src/**/*.coffee',
+      'test/json-fixtures/**.json'
     ],
     exclude: [
       'src/assets/**/*.js'
@@ -23,7 +24,8 @@ module.exports = function ( config ) {
       'karma-firefox-launcher',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
-      'karma-coffee-preprocessor'
+      'karma-coffee-preprocessor',
+      'karma-ng-html2js-preprocessor',
     ],
     preprocessors: {
       '**/*.coffee': 'coffee',
@@ -33,9 +35,9 @@ module.exports = function ( config ) {
 
     ngHtml2JsPreprocessor: {
       // strip this from the file path
-      stripPrefix: 'public/',
+      stripPrefix: 'test/',
       // prepend this to the
-      prependPrefix: 'served/',
+      //prependPrefix: '',
 
       // or define a custom transform function
       //cacheIdFromPath: function(filepath) {
@@ -44,7 +46,7 @@ module.exports = function ( config ) {
 
       // setting this option will create only a single module that contains templates
       // from all the files, so you can load them all with module('foo')
-      //moduleName: 'foo'
+      moduleName: 'fixtureCache'
     },
 
     /**

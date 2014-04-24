@@ -1,10 +1,10 @@
-<form class="study-item">
-  <div class="screener-question" ng-repeat="question in study.screeners">
-    <div class="problems" ng-if="question.problems && question.problems.length > 0">
-      <div class="problem" ng-repeat="problem in question.problems">
-        {{problem.text}}
-      </div>
+<form name="editStudyItem" class="study-item">
+  <div class="problems" ng-if="problems && problems.length > 0">
+    <div class="problem" ng-repeat="problem in problems">
+      {{problem.text}}
     </div>
+  </div>
+  <div class="screener-question" ng-repeat="question in study.screeners">
     <label>
       <span>Question</span>
       <input type="text" ng-model="question.text" />

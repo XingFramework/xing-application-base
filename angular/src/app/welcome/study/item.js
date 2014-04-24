@@ -15,18 +15,33 @@ angular.module( 'MindSwarms.welcome.study.item' , [
 }).controller( 'StudyCtrl', function ( $scope, $stateParams, server ) {
   $scope.study = server.study($stateParams.id);
 
-  console.log($scope.study);
-
   $scope.addScreenerQuestion = function(){
-    console.log($scope.study);
     if($scope.study && $scope.study.screeners){
       $scope.study.screeners.push({
         text: "",
-        options: "",
+        options: [],
         answer_type: 0
       });
 
       server.update($scope.study);
     }
+  };
+
+  $scope.addScreenerOption = function(question){
+    if(question.options === undefined) {
+      question.options = [];
+    }
+    question.options.push("");
+
+    server.update($scope.study);
+  };
+
+  $scope.removeScreenerOption = function(question, option){
+    if(question.options === undefined){
+      return;
+    }
+    question.options = question.options.filter(function(item){
+      return item != option;
+    });
   };
 });

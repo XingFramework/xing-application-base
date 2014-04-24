@@ -1,0 +1,8 @@
+{
+  studies: {
+      [ {
+        title: "Test Survey",
+        id: 1
+      } ]
+  }
+}
