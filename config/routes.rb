@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :videos
 
-  resources :users
+  get 'users', :to => 'users#show'
+  #resources :users, :only => :show
 
   resources :tutorials
 

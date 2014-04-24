@@ -1,11 +1,16 @@
 require 'spec_helper'
 
-describe "Users" do
+describe "Users", :json => true do
+
   describe "GET /users" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get users_path
+    let! :user do FactoryGirl.create(:user) end
+
+    it "successfully responds with a user json hash" do
+      json_get users_path, { :email => user.email }
+
       response.status.should be(200)
+      json['user'].should be_present
+      json['user']['email'].should == user.email
     end
   end
 end
