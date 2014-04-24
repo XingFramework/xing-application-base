@@ -1,0 +1,31 @@
+<form class="study-item">
+  <div class="screener-question" ng-repeat="question in study.screeners">
+    <div class="problems" ng-if="question.problems && question.problems.length > 0">
+      <div class="problem" ng-repeat="problem in question.problems">
+        {{problem.text}}
+      </div>
+    </div>
+    <label>
+      <span>Question</span>
+      <input type="text" ng-model="question.text" />
+    </label>
+    <label>
+      <span>Type</span>
+      <select ng-model="question.answer_type">
+        <option value="0">Single</option>
+        <option value="1">Multiple</option>
+        <option value="2">Open</option>
+      </select>
+    </label>
+    <div class="screener-option" ng-if="question.answer_type != 2" ng-repeat="option in question.options">
+      <label>
+        <span>Option</span>
+        <input type="text" ng-model="option.text" />
+      </label>
+      <button ng-click="removeScreenerOption(question, option)">Remove Option</button>
+    </div>
+    <button ng-click="addScreenerOption(question)">Add Option</button>
+    <button ng-click="removeScreenerQuestion(question)">Remove Question</button>
+  </div>
+  <button ng-click="addScreenerQuestion()">Add Question</button>
+</form>

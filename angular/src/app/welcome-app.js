@@ -4,6 +4,7 @@ angular.module( 'MindSwarms.welcome', [
   'templates-common',
   'MindSwarms.resources',
   'MindSwarms.welcome.home',
+  'MindSwarms.welcome.study',
   'ui.router'
 ]).config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/home' );
@@ -14,6 +15,4 @@ angular.module( 'MindSwarms.welcome', [
       $scope.pageTitle = toState.data.pageTitle + ' | MindSwarms' ;
     }
   });
-})
-
-;
+});
