@@ -56,5 +56,18 @@ describe( 'study section', function() {
       expect(item.screeners.length).toBe(1);
       expect(server.update).toHaveBeenCalled();
     });
+
+    it('should add an option to a question', function() {
+
+
+    });
+
+    it('should remove an option', function() {
+
+    });
+
+    it('should remove a question', function() {
+
+    });
   });
 });
