@@ -43,5 +43,15 @@ angular.module( 'MindSwarms.welcome.study.item' , [
     question.options = question.options.filter(function(item){
       return item != option;
     });
+
+    server.update($scope.study);
+  };
+
+  $scope.removeScreenerQuestion = function(question){
+    $scope.study.screeners = $scope.study.screeners.filter(function(item){
+      return item != question;
+    });
+
+    server.update($scope.study);
   };
 });

@@ -1,8 +1,6 @@
 {
-  studies: {
-      [ {
-        title: "Test Survey",
-        id: 1
-      } ]
-  }
+  [ {
+    title: "Test Survey",
+    id: 1
+  } ]
 }

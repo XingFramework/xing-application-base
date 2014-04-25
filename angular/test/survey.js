@@ -34,8 +34,7 @@ describe( 'study section', function() {
     var item;
 
     beforeEach(inject(function($templateCache) {
-      var jsonString = $templateCache.get('json-fixtures/researcher-study.json')
-      console.log(jsonString);
+      var jsonString = $templateCache.get('json-fixtures/researcher-study.json');
       item = angular.fromJson(jsonString);
     }));
 
@@ -69,7 +68,10 @@ describe( 'study section', function() {
     });
 
     it('should remove a question', function() {
-
+      expect(item.screeners.length).toBe(1);
+      $scope.removeScreenerQuestion(item.screeners[0]);
+      expect(item.screeners.length).toBe(0);
+      expect(server.update).toHaveBeenCalled();
     });
   });
 });
