@@ -1,20 +1,18 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :study, :class => 'Studie' do
-    title "MyString"
-    notes "MyText"
-    quota 1
-    duration 1
-    start_at "2014-04-14 15:18:16"
-    end_at "2014-04-14 15:18:16"
-    gender_m false
-    gender_f false
+  factory :study  do
+    title "Cool New Study"
+    notes "Notes on how the study works"
+    quota 20
+    duration 10
+    start_at { (Time.now + 5.days).beginning_of_day }
+    end_at { (Time.now + 15.days).end_of_day }
+    gender_m true
+    gender_f true
     age_from 1
     age_to 1
     researcher_id 1
-    created_at "2014-04-14 15:18:16"
-    updated_at "2014-04-14 15:18:16"
     status 1
     states "MyText"
     countries "MyText"

@@ -10,6 +10,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_model_serializers (0.8.1)
+      activemodel (>= 3.0)
     activemodel (4.0.4)
       activesupport (= 4.0.4)
       builder (~> 3.1.0)
@@ -100,6 +102,9 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    json_spec (1.1.1)
+      multi_json (~> 1.0)
+      rspec (~> 2.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -226,6 +231,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   activerecord-postgis-adapter
   annotate
   byebug
@@ -240,6 +246,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  json_spec
   pg
   pivotal-github
   poltergeist
