@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   has_one :consumer_profile,   :class_name => Profile::Consumer
   has_one :researcher_profile, :class_name => Profile::Researcher
 
+  # TODO: move this association to Profile::Researcher, and out of user.
+  has_many :studies, :inverse_of => :researcher, :foreign_key => 'researcher_id'
+
   def role
     @role    ||= Role.for(self)
   end

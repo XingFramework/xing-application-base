@@ -48,6 +48,7 @@ end
 
 group :test do
   gem 'webmock'
+  gem 'json_spec'
 end
 
 group :development do

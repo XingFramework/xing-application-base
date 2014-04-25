@@ -2,11 +2,21 @@
 
 FactoryGirl.define do
   factory :screener_question do
-    text "MyText"
-    options "MyText"
-    study_id 1
-    created_at "2014-04-14 15:18:12"
-    updated_at "2014-04-14 15:18:12"
-    answer_type 1
+    text "What is your favorite color?"
+    options { [ 'Red', 'Green', 'Blue' ] }
+  end
+
+  factory :screener_question_single, :parent => :screener_question do
+    answer_type { ScreenerQuestion::TYPE_SINGLE }
+  end
+
+  factory :screener_question_multiple, :parent => :screener_question do
+    text "Which colors do you like?"
+    answer_type { ScreenerQuestion::TYPE_MULTIPLE }
+  end
+
+  factory :screener_question_open, :parent => :screener_question do
+    text "Tell me about your favorite color"
+    answer_type { ScreenerQuestion::TYPE_OPEN }
   end
 end
