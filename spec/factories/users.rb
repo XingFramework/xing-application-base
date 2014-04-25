@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
-    email "MyString"
+    sequence(:email) { |nn| "user_#{nn}@example.com" }
     facebook_uid 1
     sign_in_count 20
     failed_attempts 0

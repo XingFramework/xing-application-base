@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :users   #,   :only => [ :show ]
+  get 'users', :to => 'users#show' 
   resources :studies #, :only => [ :index, :show, :create ]
-
   get "ui/*application", :controller => :ui, :action => :show
 
   root "ui#show", :application => "welcome"
