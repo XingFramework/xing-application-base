@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe UsersController do
 
-  let :user do double(User,
-                      :email => 'john@example.com',
-                      :as_json => "user: { valid: 'json'} "
-                     ) end
+  let :user do
+    double(User,
+           :email => 'john@example.com',
+           :as_json => "user: { valid: 'json'} "
+          )
+  end
 
   describe "GET show" do
 

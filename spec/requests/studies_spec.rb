@@ -39,14 +39,16 @@ describe "Studies", :json => true do
     end
 
     context "returned JSON" do
-      subject :json do response.body.tap{|j| p j} end
+      subject :json do response.body end
 
       it { should have_json_type(Array).at_path('') }
       it { should have_json_size(2).at_path('') }
+
       it "should contain the researcher's own studies", :pending => 'figure out how to write this' do
         should include_json(StudySerializer.new(my_studies[0]).to_json).at_path('studies/0/study')
         should include_json(StudySerializer.new(my_studies[1]).to_json).at_path('studies/1/study')
       end
+
       it "should not contain the other study", :pending => 'figure out how to write this' do
         should_not include_json(StudySerializer.new(other_study).to_json)
       end
