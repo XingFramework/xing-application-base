@@ -9,6 +9,10 @@ class StudySerializer < ActiveModel::Serializer
   #  :private, :logo_url, :token_secret, :language, :platform_web,
   #  :platform_ios, :platform_android, :pre_accepted_emails, :single_serve,
   #  :transcribe, :acceptance_email_copy, :acceptance_email_pdf
-
+  #def as_json
+    #super.tap do |json|
+      #p "running yo"
+    #end
+  #end
 
 end

@@ -9,8 +9,7 @@ describe "Users", :json => true do
       json_get users_path, { :email => user.email }
 
       response.status.should be(200)
-      json['user'].should be_present
-      json['user']['email'].should == user.email
+      json['email'].should == user.email
     end
   end
 end
