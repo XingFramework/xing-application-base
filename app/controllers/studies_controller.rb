@@ -1,7 +1,7 @@
 class StudiesController < JsonController
 
   def index
-    @studies = current_user.studies
+    @studies = User.find(params[:owner_id]).studies
     render json: @studies
   end
 

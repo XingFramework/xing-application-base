@@ -70,7 +70,6 @@ describe "Studies", :json => true do
 
         it { should be_json_eq(@study.to_json) }
       end
-
     end
   end
 
