@@ -35,8 +35,10 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   # All calls to the Rails app will be JSON requests .... right?
-  config.include Requests::JsonHelpers, :type => :controller
-  config.include Requests::JsonHelpers, :type => :request, :json => true
+  config.include JsonHelpers, :type => :controller
+  config.include JsonHelpers::Controllers, :type => :controller
+  config.include JsonHelpers, :type => :request, :json => true
+  config.include JsonHelpers::Requests, :type => :request, :json => true
 
   config.before :each, :type => :controller do
     set_json_request if controller.is_a?(JsonController)

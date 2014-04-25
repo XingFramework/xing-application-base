@@ -7,7 +7,7 @@ describe Profile, :pending => true do
     let! :user    do double(User)              end
     let! :profile do double(Profile::Consumer) end
 
-    it "should look up in the registry" end
+    it "should look up in the registry" do
       profile.should_receive()
       Profile.for(user).should == profile
     end

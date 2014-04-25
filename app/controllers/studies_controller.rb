@@ -1,8 +1,7 @@
 class StudiesController < JsonController
-  before_action :set_user
 
   def index
-    @studies = @user.studies
+    @studies = current_user.studies
     render json: @studies
   end
 
@@ -13,6 +12,9 @@ class StudiesController < JsonController
 
   # POST /studies
   def create
+
+    render json: Hash.new
+    #debugger
     #@study = Study.new(study_params)
 
       #if @study.save
@@ -24,9 +26,6 @@ class StudiesController < JsonController
   end
 
   private
-    def set_user
-      @user = User.find(params[:owner])
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_study

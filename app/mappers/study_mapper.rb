@@ -1,0 +1,2 @@
+class StudyMapper
+end
