@@ -7,13 +7,14 @@ class StudiesController < JsonController
 
   # GET /studies/1
   def show
-    #respond_with @study = @user.studies.where(:id => params[:id])
+    @study = Study.find(params[:id])
+    render json: @study
   end
 
   # POST /studies
   def create
     mapper = StudyMapper.new(request.body.read)
-    mapper.save
+    @study = mapper.save
     render json: @study
   end
 

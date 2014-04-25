@@ -20,6 +20,22 @@ describe StudiesController do
     request.headers["X-User-Id"] = user.id.to_s
   end
 
+  describe "GET show" do
+    let :study        do FactoryGirl.build_stubbed(:study) end
+
+    before do
+      Study.stub(:find).and_return(study)
+    end
+    it "should render the correct study" do
+      Study.should_receive(:find).with('1')
+      get :show, :id => 1
+    end
+    it "should succeed" do
+      get :show, :id => 1
+      response.should be_success
+    end
+  end
+
   describe "POST create" do
     let :study_values do { :some => 'values' } end
     let :json_body    do { 'user_id' => user_id }.merge(study_values).to_json end

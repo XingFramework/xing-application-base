@@ -74,6 +74,18 @@ describe "Studies", :json => true do
     end
   end
 
+  describe "GET /study/1" do
+    let :study do FactoryGirl.create(:study) end
+    before do
+      json_get study_path(study), nil
+    end
+    subject :json do response.body end
+
+    it { should be_json_eql(StudySerializer.new(study).to_json)}
+    it { should have_json_path('title')}
+    it { should have_json_type(Array).at_path('screener_questions')}
+  end
+
   describe "GET /studies" do
     before do
       my_studies; other_study
