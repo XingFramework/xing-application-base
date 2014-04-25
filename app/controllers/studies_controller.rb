@@ -1,32 +1,24 @@
 class StudiesController < JsonController
-  before_action :set_user
 
   def index
-    @studies = @user.studies
+    @studies = User.find(params[:owner_id]).studies
     render json: @studies
   end
 
   # GET /studies/1
   def show
-    #respond_with @study = @user.studies.where(:id => params[:id])
+    @study = Study.find(params[:id])
+    render json: @study
   end
 
   # POST /studies
   def create
-    #@study = Study.new(study_params)
-
-      #if @study.save
-        #format.json { render :show, status: :created, location: @study }
-      #else
-        #format.json { render json: @study.errors, status: :unprocessable_entity }
-      #end
-    #end
+    mapper = StudyMapper.new(request.body.read)
+    @study = mapper.save
+    render json: @study
   end
 
   private
-    def set_user
-      @user = User.find(params[:owner])
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_study
