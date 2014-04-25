@@ -12,17 +12,9 @@ class StudiesController < JsonController
 
   # POST /studies
   def create
-
-    render json: Hash.new
-    #debugger
-    #@study = Study.new(study_params)
-
-      #if @study.save
-        #format.json { render :show, status: :created, location: @study }
-      #else
-        #format.json { render json: @study.errors, status: :unprocessable_entity }
-      #end
-    #end
+    mapper = StudyMapper.new(request.body.read)
+    mapper.save
+    render json: @study
   end
 
   private

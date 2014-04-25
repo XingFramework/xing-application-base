@@ -22,24 +22,21 @@ describe StudiesController do
 
   describe "POST create" do
     let :study_values do { :some => 'values' } end
-    let :json_body do { :owner => user_id }.merge(study_values).to_json end
+    let :json_body    do { 'user_id' => user_id }.merge(study_values).to_json end
+    let :study        do FactoryGirl.build_stubbed(:study) end
 
     before do
       StudyMapper.stub(:new).and_return(mapper)
+      mapper.stub(:save).and_return(study)
     end
 
-    context "successful create", :pending => 'this is next for Evan' do
+    context "successful create" do
       let :mapper do
         double(StudyMapper, :save => true)
       end
 
-      it "finds the user" do
-        User.should_receive(:find).with(user_id)
-        post :create, json_body
-      end
-
       it "instantiates and saves a mapper" do
-        StudyMapper.should_receive(:new).with(study_values)
+        StudyMapper.should_receive(:new).with(json_body)
         mapper.should_receive(:save)
         post :create, json_body
       end
@@ -50,7 +47,8 @@ describe StudiesController do
         double(StudyMapper, :save => false)
       end
 
-      it "should do something"
+      it "should return some errors"
+      # TODO: Discuss error format with Judson.
     end
   end
 

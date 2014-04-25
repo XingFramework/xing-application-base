@@ -38,7 +38,7 @@ describe "Studies", :json => true do
 
       let :post_study_json do
         add_to_json(
-          json_fixture('studies/post_study.json'),
+          json_fixture('studies/post_study'),
           :user_id => user.id
         )
       end

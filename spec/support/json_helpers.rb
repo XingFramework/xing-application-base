@@ -52,6 +52,7 @@ module JsonHelpers
   #end
 
   def json_fixture(path)
+    path += '.json' unless path =~ /.json\Z/
     File.open(File.join(Rails.root, 'spec', 'fixtures', 'json', path)).read
   end
 end
