@@ -15,6 +15,7 @@ class JsonController < ActionController::Base
 
   private
   def set_user
+    return unless request.headers['X-User-Id']
     @user_id = request.headers['X-User-Id']
     @current_user = User.find(@user_id)
   end

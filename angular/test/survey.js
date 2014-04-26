@@ -36,6 +36,7 @@ describe( 'study section', function() {
     beforeEach(inject(function($templateCache) {
       var jsonString = $templateCache.get('json-fixtures/researcher-study.json');
       item = angular.fromJson(jsonString);
+      item.$promise = { then: function(){} };
     }));
 
     beforeEach(function() {
@@ -46,31 +47,31 @@ describe( 'study section', function() {
     });
 
     it('should add a question to study', function() {
-      expect(item.screeners.length).toBe(1);
+      expect(item.screener_questions.length).toBe(1);
       $scope.addScreenerQuestion();
 
-      expect(item.screeners.length).toBe(2);
+      expect(item.screener_questions.length).toBe(2);
       expect(server.update).toHaveBeenCalled();
     });
 
     it('should add an option to a question', function() {
-      expect(item.screeners[0].options.length).toBe(3);
-      $scope.addScreenerOption(item.screeners[0]);
-      expect(item.screeners[0].options.length).toBe(4);
+      expect(item.screener_questions[0].options.length).toBe(3);
+      $scope.addScreenerOption(item.screener_questions[0]);
+      expect(item.screener_questions[0].options.length).toBe(4);
       expect(server.update).toHaveBeenCalled();
     });
 
     it('should remove an option', function() {
-      expect(item.screeners[0].options.length).toBe(3);
-      $scope.removeScreenerOption(item.screeners[0], "Tableflip!");
-      expect(item.screeners[0].options.length).toBe(2);
+      expect(item.screener_questions[0].options.length).toBe(3);
+      $scope.removeScreenerOption(item.screener_questions[0], "Tableflip!");
+      expect(item.screener_questions[0].options.length).toBe(2);
       expect(server.update).toHaveBeenCalled();
     });
 
     it('should remove a question', function() {
-      expect(item.screeners.length).toBe(1);
-      $scope.removeScreenerQuestion(item.screeners[0]);
-      expect(item.screeners.length).toBe(0);
+      expect(item.screener_questions.length).toBe(1);
+      $scope.removeScreenerQuestion(item.screener_questions[0]);
+      expect(item.screener_questions.length).toBe(0);
       expect(server.update).toHaveBeenCalled();
     });
   });

@@ -3,7 +3,7 @@ class UsersController < JsonController
   def show
     @user = User.find_by_email(params[:email])
     if @user.present?
-      respond_with @user
+      render :json => @user
     else
       render :json => {:error => 'Not Found'}, :status => 404
     end

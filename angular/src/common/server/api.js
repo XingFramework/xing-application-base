@@ -1,9 +1,14 @@
 angular.module( 'MindSwarms.server', [
   'ngResource'
-]).factory('server', function($resource){
+]).factory('server', function($resource, $http){
+
+  $http.defaults.headers.common.Accept = 'application/json';
+  $http.defaults.headers.post['Content-Type'] = 'application/json';
+  $http.defaults.headers.put['Content-Type'] = 'application/json';
+
   var resources = {
     user: $resource('/users/:id'),
-    study: $resource('studies/:id'),
+    study: $resource('/studies/:id'),
   };
 
   var currentUser;
@@ -17,7 +22,7 @@ angular.module( 'MindSwarms.server', [
       return [];
     }
 
-    currentStudies = resources.study.query({owner: this.currentUser().id});
+    currentStudies = resources.study.query({owner_id: this.currentUser().id});
     return currentStudies;
   };
 
@@ -30,14 +35,13 @@ angular.module( 'MindSwarms.server', [
   };
 
   exported.study = function(id){
-    return resource.study.get({id: id});
+    return resources.study.get({id: id});
   };
 
   exported.login = function(user){
-    return resources.user.query({email: user.email}, function(users){
-      if(users.length > 0){
-        currentUser = users[0];
-      }
+    return resources.user.get({email: user.email}, function(user){
+      console.log(user);
+      currentUser = user;
     }).$promise;
   };
 

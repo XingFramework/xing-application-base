@@ -1,10 +1,11 @@
 {
   "id": 1,
-  "screeners": [
-    {
-    "text": "A test screener question",
-    "options": [ "Okay, cool", "Wait, what?", "Tableflip!" ],
-    "answer_type": 1
-  }
+  "title": "My Awesome Study",
+  "screener_questions": [
+   { "text": "A test question",
+      "options": [ "Okay, cool", "Wait, what?", "Tableflip!" ],
+      "answer_type": 1
+    }
   ]
 }
+

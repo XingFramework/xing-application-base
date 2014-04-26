@@ -15,9 +15,13 @@ angular.module( 'MindSwarms.welcome.study.item' , [
 }).controller( 'StudyCtrl', function ( $scope, $stateParams, server ) {
   $scope.study = server.study($stateParams.id);
 
+  console.log('before', $scope.study);
+  $scope.study.$promise.then( function() {
+    console.log('after', $scope.study);
+  });
   $scope.addScreenerQuestion = function(){
-    if($scope.study && $scope.study.screeners){
-      $scope.study.screeners.push({
+    if($scope.study && $scope.study.screener_questions){
+      $scope.study.screener_questions.push({
         text: "",
         options: [],
         answer_type: 0
@@ -36,19 +40,25 @@ angular.module( 'MindSwarms.welcome.study.item' , [
     server.update($scope.study);
   };
 
-  $scope.removeScreenerOption = function(question, option){
+  $scope.removeScreenerOption = function(question, index){
     if(question.options === undefined){
       return;
     }
-    question.options = question.options.filter(function(item){
-      return item != option;
-    });
+
+    console.log("Removing item", index);
+    console.log("Before:", question.options);
+    question.options.splice(index, 1);
+    console.log("After:", question.options);
+
+      //= question.options.filter(function(item){
+      //return item != option;
+    //});
 
     server.update($scope.study);
   };
 
   $scope.removeScreenerQuestion = function(question){
-    $scope.study.screeners = $scope.study.screeners.filter(function(item){
+    $scope.study.screener_questions = $scope.study.screener_questions.filter(function(item){
       return item != question;
     });
 

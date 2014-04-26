@@ -29,7 +29,7 @@ describe( 'home section', function() {
         email: "existing@user.com"
       };
 
-      $httpBackend.when("GET", "/users?email=existing@user.com").respond([responses.existing_user]);
+      $httpBackend.when("GET", "/users?email=existing@user.com").respond(responses.existing_user);
 
       $scope.become(user);
       $httpBackend.flush();
