@@ -586,7 +586,7 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.jsunit %>'
         ],
-        tasks: [ 'jshint:test', 'karma:unit:run' ],
+        tasks: [ 'jshint:test', 'karmaconfig:unit', 'karma:unit:run' ],
         options: {
           livereload: false
         }

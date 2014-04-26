@@ -38,6 +38,7 @@
     "karma-phantomjs-launcher": "~0.1.4",
     "grunt-sass": "~0.12.1",
     "grunt-sass-to-scss": "~0.1.9",
-    "grunt-bower-task": "~0.3.4"
+    "grunt-bower-task": "~0.3.4",
+    "karma-ng-html2js-preprocessor": "~0.1.0"
   }
 }
