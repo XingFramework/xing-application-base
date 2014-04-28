@@ -68,7 +68,11 @@ function minErr(module) {
       return match;
     });
 
+<<<<<<< HEAD
     message = message + '\nhttp://errors.angularjs.org/1.2.17-build.136+sha.02058bf/' +
+=======
+    message = message + '\nhttp://errors.angularjs.org/1.2.17-build.123+sha.2a778d0/' +
+>>>>>>> master
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i-2) + '=' +
@@ -89,6 +93,7 @@ function minErr(module) {
     -push,
     -toString,
     -ngMinErr,
+    -_angular,
     -angularModule,
     -nodeName_,
     -uid,
@@ -239,6 +244,8 @@ var /** holds major version number for IE or NaN for real browsers */
     toString          = Object.prototype.toString,
     ngMinErr          = minErr('ng'),
 
+
+    _angular          = window.angular,
     /** @name angular */
     angular           = window.angular || (window.angular = {}),
     angularModule,
@@ -1916,7 +1923,11 @@ function setupModuleLoader(window) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
+<<<<<<< HEAD
   full: '1.2.17-build.136+sha.02058bf',    // all of these placeholder strings will be replaced by grunt's
+=======
+  full: '1.2.17-build.123+sha.2a778d0',    // all of these placeholder strings will be replaced by grunt's
+>>>>>>> master
   major: 1,    // package task
   minor: 2,
   dot: 17,
@@ -11878,23 +11889,18 @@ function $RootScopeProvider(){
           child.$$asyncQueue = this.$$asyncQueue;
           child.$$postDigestQueue = this.$$postDigestQueue;
         } else {
-          // Only create a child scope class if somebody asks for one,
-          // but cache it to allow the VM to optimize lookups.
-          if (!this.$$childScopeClass) {
-            this.$$childScopeClass = function() {
-              this.$$watchers = this.$$nextSibling =
-                  this.$$childHead = this.$$childTail = null;
-              this.$$listeners = {};
-              this.$$listenerCount = {};
-              this.$id = nextUid();
-              this.$$childScopeClass = null;
-            };
-            this.$$childScopeClass.prototype = this;
-          }
-          child = new this.$$childScopeClass();
+          ChildScope = function() {}; // should be anonymous; This is so that when the minifier munges
+            // the name it does not become random set of chars. This will then show up as class
+            // name in the web inspector.
+          ChildScope.prototype = this;
+          child = new ChildScope();
+          child.$id = nextUid();
         }
         child['this'] = child;
+        child.$$listeners = {};
+        child.$$listenerCount = {};
         child.$parent = this;
+        child.$$watchers = child.$$nextSibling = child.$$childHead = child.$$childTail = null;
         child.$$prevSibling = this.$$childTail;
         if (this.$$childHead) {
           this.$$childTail.$$nextSibling = child;
@@ -20603,14 +20609,11 @@ var ngStyleDirective = ngDirective(function(scope, element, attr) {
  * leave - happens just after the ngSwitch contents change and just before the former contents are removed from the DOM
  *
  * @usage
- *
- * ```
  * <ANY ng-switch="expression">
  *   <ANY ng-switch-when="matchValue1">...</ANY>
  *   <ANY ng-switch-when="matchValue2">...</ANY>
  *   <ANY ng-switch-default>...</ANY>
  * </ANY>
- * ```
  *
  *
  * @scope

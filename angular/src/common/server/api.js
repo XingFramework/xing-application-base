@@ -9,6 +9,14 @@ angular.module( 'MindSwarms.server', [
   var resources = {
     user: $resource('/users/:id'),
     study: $resource('/studies/:id'),
+    studyList: $resource('/studies')
+  };
+
+  var templates = {
+    study: {
+      title: "",
+      screener_questions: []
+    }
   };
 
   var currentUser;
@@ -31,16 +39,23 @@ angular.module( 'MindSwarms.server', [
   };
 
   exported.update = function(resource){
-    resource.$put();
+    resource.$save();
   };
 
   exported.study = function(id){
-    return resources.study.get({id: id});
+    if(id == "new") {
+      var study = angular.copy(templates.study);
+      study.$save = function(){
+        resources.studyList.save(study);
+      };
+      return study;
+    } else {
+      return resources.study.get({id: id});
+    }
   };
 
   exported.login = function(user){
     return resources.user.get({email: user.email}, function(user){
-      console.log(user);
       currentUser = user;
     }).$promise;
   };

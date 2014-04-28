@@ -12,13 +12,9 @@ angular.module( 'MindSwarms.welcome.study.item' , [
     },
     data:{ pageTitle: 'Study' }
   });
-}).controller( 'StudyCtrl', function ( $scope, $stateParams, server ) {
+}).controller( 'StudyCtrl', function ( $state, $scope, $stateParams, server ) {
   $scope.study = server.study($stateParams.id);
 
-  console.log('before', $scope.study);
-  $scope.study.$promise.then( function() {
-    console.log('after', $scope.study);
-  });
   $scope.addScreenerQuestion = function(){
     if($scope.study && $scope.study.screener_questions){
       $scope.study.screener_questions.push({
@@ -26,18 +22,15 @@ angular.module( 'MindSwarms.welcome.study.item' , [
         options: [],
         answer_type: 0
       });
-
-      server.update($scope.study);
     }
   };
+
 
   $scope.addScreenerOption = function(question){
     if(question.options === undefined) {
       question.options = [];
     }
     question.options.push("");
-
-    server.update($scope.study);
   };
 
   $scope.removeScreenerOption = function(question, index){
@@ -45,23 +38,22 @@ angular.module( 'MindSwarms.welcome.study.item' , [
       return;
     }
 
-    console.log("Removing item", index);
-    console.log("Before:", question.options);
     question.options.splice(index, 1);
-    console.log("After:", question.options);
 
       //= question.options.filter(function(item){
       //return item != option;
     //});
-
-    server.update($scope.study);
   };
 
   $scope.removeScreenerQuestion = function(question){
     $scope.study.screener_questions = $scope.study.screener_questions.filter(function(item){
       return item != question;
     });
+  };
 
+  $scope.saveStudy = function() {
+    $scope.study.user_id = server.currentUser().id;
     server.update($scope.study);
+    $state.go('study-list');
   };
 });

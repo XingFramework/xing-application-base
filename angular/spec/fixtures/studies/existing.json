@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "title": "My Awesome Study",
+  "screener_questions": [
+    { "text": "What is your favorite color?",
+      "options": [ "Red", "No, wait ... blue!", "Aaaaaaargh!" ],
+      "answer_type": 0
+    },
+   { "text": "A test question",
+      "options": [ "Okay, cool", "Wait, what?", "Tableflip!" ],
+      "answer_type": 1
+    },
+   { "text": "What is the airspeed of an unladen swallow?",
+      "answer_type": 2
+    }
+  ]
+}

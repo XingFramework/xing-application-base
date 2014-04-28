@@ -19,9 +19,6 @@ form.study-item{
   margin-bottom: 2em;
   background-color: rgb(173,221,54);
   border-radius: 10px;
-  .center-button{
-    width: 150px;
-    margin: 0 auto;}
   .main, .answer{
     width: 48%;}
   .main{
@@ -40,3 +37,6 @@ form.study-item{
     clear: both;}
   .screener-option{
     font-size: 100%;}}
+.center-button{
+  width: 150px;
+  margin: 0 auto;}
