@@ -7,7 +7,7 @@ describe StudyMapper, :type => :mapper do
     let :mapper     do  StudyMapper.new(valid_json)   end
     let :valid_json do
       add_to_json(
-        json_fixture('studies/post_study'),
+        json_fixture('studies/new'),
         'user_id' => user.id
       )
     end

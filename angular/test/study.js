@@ -18,7 +18,7 @@ describe( 'study section', function() {
     var list;
 
     beforeEach(inject(function($templateCache) {
-      list = angular.fromJson($templateCache.get('json-fixtures/study-index.json'));
+      list = angular.fromJson($templateCache.get('json-fixtures/study-index/one.json'));
     }));
 
     beforeEach(function() {
@@ -34,7 +34,7 @@ describe( 'study section', function() {
     var item;
 
     beforeEach(inject(function($templateCache) {
-      var jsonString = $templateCache.get('json-fixtures/researcher-study.json');
+      var jsonString = $templateCache.get('json-fixtures/studies/existing.json');
       item = angular.fromJson(jsonString);
       item.$promise = { then: function(){} };
     }));
@@ -47,10 +47,10 @@ describe( 'study section', function() {
     });
 
     it('should add a question to study', function() {
-      expect(item.screener_questions.length).toBe(1);
+      expect(item.screener_questions.length).toBe(3);
       $scope.addScreenerQuestion();
 
-      expect(item.screener_questions.length).toBe(2);
+      expect(item.screener_questions.length).toBe(4);
       expect(server.update).toHaveBeenCalled();
     });
 
@@ -69,9 +69,9 @@ describe( 'study section', function() {
     });
 
     it('should remove a question', function() {
-      expect(item.screener_questions.length).toBe(1);
+      expect(item.screener_questions.length).toBe(3);
       $scope.removeScreenerQuestion(item.screener_questions[0]);
-      expect(item.screener_questions.length).toBe(0);
+      expect(item.screener_questions.length).toBe(2);
       expect(server.update).toHaveBeenCalled();
     });
   });

@@ -23,4 +23,8 @@ angular.module( 'MindSwarms.welcome.study.list', [
   $scope.choose = function(study){
     $state.go('study-item', {id: study.id});
   };
+
+  $scope.create = function(){
+    $state.go('study-create');
+  };
 });
