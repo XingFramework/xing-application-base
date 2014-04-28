@@ -594,7 +594,7 @@ module.exports = function ( grunt ) {
        */
       jsunit: {
         files: [
-          '<%= app_files.jsunit %>'
+          '<%= app_files.jsunit %>', 'test/json-fixtures/**/*'
         ],
         tasks: [ 'jshint:test', 'karmaconfig:unit', 'karma:unit:run' ],
         options: {
