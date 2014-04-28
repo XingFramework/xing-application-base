@@ -51,28 +51,24 @@ describe( 'study section', function() {
       $scope.addScreenerQuestion();
 
       expect(item.screener_questions.length).toBe(4);
-      expect(server.update).toHaveBeenCalled();
     });
 
     it('should add an option to a question', function() {
       expect(item.screener_questions[0].options.length).toBe(3);
       $scope.addScreenerOption(item.screener_questions[0]);
       expect(item.screener_questions[0].options.length).toBe(4);
-      expect(server.update).toHaveBeenCalled();
     });
 
     it('should remove an option', function() {
       expect(item.screener_questions[0].options.length).toBe(3);
       $scope.removeScreenerOption(item.screener_questions[0], "Tableflip!");
       expect(item.screener_questions[0].options.length).toBe(2);
-      expect(server.update).toHaveBeenCalled();
     });
 
     it('should remove a question', function() {
       expect(item.screener_questions.length).toBe(3);
       $scope.removeScreenerQuestion(item.screener_questions[0]);
       expect(item.screener_questions.length).toBe(2);
-      expect(server.update).toHaveBeenCalled();
     });
   });
 });
