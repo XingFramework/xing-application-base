@@ -15,6 +15,7 @@ module.exports = function ( config ) {
       'src/**/*.coffee',
       'test/json-fixtures/**/*.json'
     ],
+
     exclude: [
       'src/assets/**/*.js'
     ],

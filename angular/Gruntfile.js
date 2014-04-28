@@ -602,6 +602,15 @@ module.exports = function ( grunt ) {
         }
       },
 
+      karmaconfig: {
+        files: [
+          "<%= build_dirs.root %>/karma-unit.js", "karma/karma-unit.tpl.js"
+        ],
+        options: {
+          reload: true
+        }
+      },
+
       /**
        * When a CoffeeScript unit test file changes, we only want to lint it and
        * run the unit tests. We don't want to do any live reloading.
