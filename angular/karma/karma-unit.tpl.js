@@ -13,7 +13,7 @@ module.exports = function ( config ) {
       <% }); %>
       'src/**/*.js',
       'src/**/*.coffee',
-      'test/json-fixtures/**.json'
+      'test/json-fixtures/**/*.json'
     ],
     exclude: [
       'src/assets/**/*.js'

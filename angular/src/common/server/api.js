@@ -40,7 +40,6 @@ angular.module( 'MindSwarms.server', [
 
   exported.login = function(user){
     return resources.user.get({email: user.email}, function(user){
-      console.log(user);
       currentUser = user;
     }).$promise;
   };
