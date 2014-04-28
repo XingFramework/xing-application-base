@@ -90,10 +90,15 @@ module.exports = function ( grunt ) {
     /**
      * The directories to delete when `grunt clean` is executed.
      */
-    clean: [
-      '<%= build_dirs.root %>',
-      '<%= compile_dir %>'
-    ],
+    clean: {
+      fixtures: [
+        'test/json-fixtures'
+      ],
+      build: [
+        '<%= build_dirs.root %>',
+        '<%= compile_dir %>'
+      ]
+    },
 
     bower: {
       install: {
@@ -110,6 +115,16 @@ module.exports = function ( grunt ) {
      * `build_dir`, and then to copy the assets to `compile_dir`.
      */
     copy: {
+      "authoritative-fixtures": {
+        files: [
+          {
+          cwd: 'spec/fixtures',
+          src: [ '**' ],
+          dest: 'test/json-fixtures',
+          expand: true
+        }
+        ]
+      },
       build_app_assets: {
         files: [
           {
@@ -560,17 +575,12 @@ module.exports = function ( grunt ) {
         tasks: [ 'html2js' ]
       },
 
-      /**
-       * When the CSS files change, we need to compile and minify them.
-      less: {
-        files: [ 'src/**X/*.less' ],
-        tasks: [ 'recess:build' ]
-      },
-       */
-
       sass_scss: {
         files: [ 'src/**/*.sass' ],
-        tasks: [ 'sass_to_scss:build' ] //consider compass watch here (but needs grunt-concurrent (?))
+        tasks: [ 'sass_to_scss:build' ],
+        options: {
+          livereload: false
+        }
       },
 
       sass: {
@@ -629,13 +639,15 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'bower:install', 'html2js', 'jshint', 'coffeelint', 'coffee',
+    'clean:build', 'bower:install', 'html2js', 'jshint', 'coffeelint', 'coffee',
     'sass_to_scss:build', 'sass:build', 'copy:build_app_assets',
     'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs',
     'ngmin', 'sprockets_index:build',
     //'index:build',
     'karmaconfig', 'karma:continuous'
   ]);
+
+  grunt.registerTask( 'update-fixtures', ['clean:fixtures', 'copy:authoritative-fixtures']);
 
   /**
    * The `compile` task gets your app ready for deployment by concatenating and
