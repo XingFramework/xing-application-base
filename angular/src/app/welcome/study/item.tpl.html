@@ -30,8 +30,10 @@
       </div>
       <button ng-click="addScreenerOption(question)">Add Option</button>
     </div>
-    <button ng-if='$index > 0' ng-click="removeScreenerQuestion(question)">Remove Question</button>
     <div class='clearfix'>&nbsp;</div>
+    <div class="center-button">
+      <button ng-if="$index > 0" ng-click="removeScreenerQuestion(question)">Remove Question</button>
+    </div>
   </div>
   <button ng-click="addScreenerQuestion()">Add Question</button>
 </form>

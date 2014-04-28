@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.2.17-build.134+sha.1f1cad8
+ * @license AngularJS v1.2.17-build.136+sha.02058bf
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -68,7 +68,7 @@ function minErr(module) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.2.17-build.134+sha.1f1cad8/' +
+    message = message + '\nhttp://errors.angularjs.org/1.2.17-build.136+sha.02058bf/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i-2) + '=' +
@@ -1916,7 +1916,7 @@ function setupModuleLoader(window) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.2.17-build.134+sha.1f1cad8',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.2.17-build.136+sha.02058bf',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 2,
   dot: 17,
@@ -9151,7 +9151,7 @@ function LocationHashbangUrl(appBase, hashPrefix) {
       Matches paths for file protocol on windows,
       such as /C:/foo/bar, and captures only /foo/bar.
       */
-      var windowsFilePathExp = /^\/?.*?:(\/.*)/;
+      var windowsFilePathExp = /^\/[A-Z]:(\/.*)/;
 
       var firstPathSegmentMatch;
 
@@ -9160,10 +9160,7 @@ function LocationHashbangUrl(appBase, hashPrefix) {
         url = url.replace(base, '');
       }
 
-      /*
-       * The input URL intentionally contains a
-       * first path segment that ends with a colon.
-       */
+      // The input URL intentionally contains a first path segment that ends with a colon.
       if (windowsFilePathExp.exec(url)) {
         return path;
       }
