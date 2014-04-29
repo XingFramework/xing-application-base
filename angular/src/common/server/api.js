@@ -15,7 +15,11 @@ angular.module( 'MindSwarms.server', [
   var templates = {
     study: {
       title: "",
-      screener_questions: []
+      screener_questions: [{
+        text: "",
+        options: [" ", " "],
+        answer_type: 0
+      }]
     }
   };
 
