@@ -14,12 +14,13 @@ angular.module( 'MindSwarms.welcome.study.item' , [
   });
 }).controller( 'StudyCtrl', function ( $state, $scope, $stateParams, server ) {
   $scope.study = server.study($stateParams.id);
+  $scope.state = $stateParams.id;
 
   $scope.addScreenerQuestion = function(){
     if($scope.study && $scope.study.screener_questions){
       $scope.study.screener_questions.push({
         text: "",
-        options: [],
+        options: [" ", " "],
         answer_type: 0
       });
     }

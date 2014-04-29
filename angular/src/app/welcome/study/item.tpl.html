@@ -1,16 +1,25 @@
 <form name="editStudyItem" class="study-item">
-  <h1>
-    <input type="text" name="title" ng-model="study.title" />
+  <h1 ng-if="state == 'new'">
+    Create a New Study
   </h1>
+  <h1 ng-if="state != 'new'">
+    Edit Study
+  </h1>
+  <div class="screener-title">
+    <label class="text">
+      <span>Title</span>
+      <input type="text" name="title" ng-model="study.title" />
+    </label>
+  </div>
   <div class="problems" ng-if="problems && problems.length > 0">
     <div class="problem" ng-repeat="problem in problems">
       {{problem.text}}
     </div>
   </div>
-  <div class="screener-question" ng-repeat="question in study.screener_questions">
+  <div class="screener-question" ng-repeat="question in study.screener_questions track by $index">
     <div class='main'>
       <label class='text'>
-        <span>Question</span>
+        <span>Screener Question {{$index + 1}}</span>
         <textarea ng-model="question.text"></textarea>
       </label>
     </div>
@@ -32,8 +41,10 @@
       </div>
       <button ng-click="addScreenerOption(question)">Add Option</button>
     </div>
-    <button ng-if='$index > 0' ng-click="removeScreenerQuestion(question)">Remove Question</button>
     <div class='clearfix'>&nbsp;</div>
+    <div class="center-button">
+      <button ng-if="$index > 0" ng-click="removeScreenerQuestion(question)">Remove Question</button>
+    </div>
   </div>
   <button ng-click="addScreenerQuestion()">Add Question</button>
   <button ng-click="saveStudy()">Save Study</button>
