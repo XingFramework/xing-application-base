@@ -1,0 +1,12 @@
+<h1>Your Studies</h1>
+
+<div class="study-list">
+  <ul>
+    <li class="study" ng-repeat='study in studies'>
+      <a ui-sref='study-item({id: study.id})'>{{study.title}}</a>
+    </li>
+  </ul>
+  <div class="center-button">
+    <button type="submit" ng-click="create()">New Study</button>
+  </div>
+</div>

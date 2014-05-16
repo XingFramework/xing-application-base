@@ -8,7 +8,8 @@
     "angular-ui-utils": "~0.1.1",
     "core": "~0.0.9",
     "sass-import-once": "~0.1.1",
-    "compass-vanilla": "~0.1.0"
+    "compass-vanilla": "~0.1.0",
+    "angular-resource": "~1.2.16"
   },
   "dependencies": {},
   "exportsOverride": {
@@ -21,5 +22,8 @@
     "core": {
       "stylesheets": "**/_*.{css,sass,scss}"
     }
+  },
+  "resolutions": {
+    "angular": "~1.2.16"
   }
 }

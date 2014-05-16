@@ -4,8 +4,4 @@ build/
 bin/
 node_modules/
 bower_components/
-config/
-db/
-tmp/
-stripped-schema.png
-log/
+.vimrc
