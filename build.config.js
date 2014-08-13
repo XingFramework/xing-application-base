@@ -15,6 +15,8 @@ module.exports = {
   },
   build_dir: '<%= build_dirs.root %>',
   compile_dir: 'bin',
+  //compile_dir: '../server/public',
+  tmp_dir: 'tmp',
 
   /**
    * This is a collection of file patterns that refer to our app code (the
@@ -26,18 +28,17 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
-    js: [ 'src/**/*.js' ],
+    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'test/**/*.js' ],
 
-    coffee: [ 'src/**/*.coffee' ],
+    coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'test/**/*.coffee' ],
 
     atpl: [ 'src/app/**/*.tpl.html' ],
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
     html: [ 'src/index.html' ],
-    less: 'src/less/main.less',
-    sass: 'src/sass/'
+    sass: 'src/sass/main.scss'
   },
 
   /**
@@ -79,7 +80,11 @@ module.exports = {
    */
   vendor_files: {
     js: [
-      'vendor/**/*.js'
+      'vendor/angular/angular.js',
+      'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
+      'vendor/angular-ui-utils/ui-utils.js',
+      'vendor/angular-ui-router/release/angular-ui-router.js'
     ],
     css: [
     ],

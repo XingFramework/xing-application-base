@@ -18,7 +18,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-sass-to-scss');
   grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-ngmin');
+  grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-bower-task');
 
@@ -226,7 +226,7 @@ module.exports = function ( grunt ) {
      * `ng-min` annotates the sources before minifying. That is, it allows us
      * to code without the array syntax.
      */
-    ngmin: {
+    ngAnnotate: {
       compile: {
         files: [
           {
@@ -252,7 +252,6 @@ module.exports = function ( grunt ) {
         }
       }
     },
-
 
     /**
      * Using sass here
@@ -287,6 +286,26 @@ module.exports = function ( grunt ) {
       compile: {
       }
     },
+/*
+    sass: {                                 // task
+      compile: {
+        options: {
+          outputStyle: 'compressed'
+        },                            // target
+        files: {                        // dictionary of files
+          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>' // 'destination': 'source'
+        }
+      },
+      build: {                              // another target
+        options: {                      // dictionary of render options
+          sourceMap: ''
+        },
+        files: {
+          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>' // 'destination': 'source'
+        }
+      }
+    },
+*/
 
     /**
      * `jshint` defines the rules of our linter as well as which files we
@@ -409,7 +428,7 @@ module.exports = function ( grunt ) {
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
-          '<%= compass.build.options.cssDir %>'
+          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css' //XXX
         ]
       },
 
@@ -424,6 +443,7 @@ module.exports = function ( grunt ) {
           '<%= concat.compile_js.dest %>',
           '<%= vendor_files.css %>',
           '<%= compass.compile.options.cssDir %>'
+          //'<%= concat.compile_css.dest %>'
         ]
       }
     },
@@ -458,6 +478,47 @@ module.exports = function ( grunt ) {
           '<%= build_dirs.js %>/**/*.js'
         ],
         dest: '<%= build_dirs.js %>/welcome.js'
+      }
+    },
+    replace: {
+      development: {
+        options: {
+          patterns: [{
+            json: grunt.file.readJSON('./config/environments/development.json')
+          }]
+        },
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['./config/config.js'],
+          dest: 'src/common/'
+        }]
+      },
+      test: {
+        options: {
+          patterns: [{
+            json: grunt.file.readJSON('./config/environments/test.json')
+          }]
+        },
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['./config/config.js'],
+          dest: 'src/common/'
+        }]
+      },
+      production: {
+        options: {
+          patterns: [{
+            json: grunt.file.readJSON('./config/environments/production.json')
+          }]
+        },
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['./config/config.js'],
+          dest: 'src/common/'
+        }]
       }
     },
 
@@ -625,16 +686,21 @@ module.exports = function ( grunt ) {
     'ngmin', 'sprockets_index:build',
     //'index:build',
     'karmaconfig', 'karma:continuous'
-  ]);
 
-  grunt.registerTask( 'update-fixtures', ['clean:fixtures', 'copy:authoritative-fixtures']);
+/* XXX
+    'clean', 'replace:development', 'html2js', 'jshint', 'coffeelint', 'coffee', 'sass:build',
+    'copy:build_vendorcss', 'copy:build_app_assets', 'copy:build_vendor_assets',
+    'copy:build_appjs', 'copy:build_vendorjs', 'index:build', 'karmaconfig',
+    'karma:continuous'
+*/
+  ]);
 
   /**
    * The `compile` task gets your app ready for deployment by concatenating and
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'compass:compile', 'copy:compile_assets', 'concat:compile_js', 'uglify', 'index:compile'
+     'replace:production', 'sass:compile', 'concat:compile_css', 'concat:compile_css', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
   /**
@@ -694,28 +760,11 @@ module.exports = function ( grunt ) {
     });
   });
 
-  grunt.registerMultiTask( 'sprockets_index', 'Build templated sprocket //@require file' , function() {
-    var prefix = this.options({prefix: ''})['prefix'];
-    this.files.forEach(function(files){
-      var jsFiles = promoteAngular(
-        filterForJS( files.src )
-      ).filter(function(path){
-        return path != files.dest;
-      }).map(function(file){
-        return file.replace(new RegExp('^' + prefix + '/?'), '').replace(/\.js$/, '');
-      }, this);
-      grunt.file.copy( 'sprockets/index.tpl.js', files.dest, {
-        process: function(contents, path){
-          return grunt.template.process( contents, {
-            data: {
-              scripts: jsFiles
-            }
-          });
-        }
-      });
-    });
-  });
-
+  /**
+   * In order to avoid having to specify manually the files needed for karma to
+   * run, we use grunt to manage the list for us. The `karma/*` files are
+   * compiled as grunt templates for use by Karma. Yay!
+   */
   grunt.registerMultiTask( 'karmaconfig', 'Process karma config templates', function () {
     var jsFiles = promoteAngular(filterForJS( this.filesSrc ));
 
