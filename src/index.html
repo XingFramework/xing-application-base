@@ -2,9 +2,6 @@
 <html ng-app="LRNewWebsite" ng-controller="AppCtrl">
   <head>
     <title ng-bind="pageTitle"></title>
-    <meta content="text/html;charset=UTF-8" http-equiv="content-type"/>
-    <meta content="{{pageKeywords}}" name="keywords"/>
-    <meta content="{{pageDescription}}" name="description"/>
 
     <!-- social media tags -->
     <meta name="twitter:card" content="summary">
@@ -24,9 +21,6 @@
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-    <style media="screen, projection" type="text/css">
-      {{pageCss}}
-    </style>
 
   </head>
   <body>
