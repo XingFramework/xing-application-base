@@ -21,6 +21,8 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-replace');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   /**
    * Load in our build configuration file.
@@ -522,6 +524,17 @@ module.exports = function ( grunt ) {
       }
     },
 
+    connect: {
+      server: {
+        options: {
+          open: true,
+          port: 9000,
+          hostname: 'localhost',
+          livereload: 35729,
+          base: './build'
+        }
+      }
+    },
     /**
      * And for rapid development, we have a watch set up that checks to see if
      * any of the files listed below change, and then to execute the listed
