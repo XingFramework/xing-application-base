@@ -348,7 +348,7 @@ following to the end of the `body` tag in `index.html`:
 
 Boom!
 
-### Use with Rails
+### Use with Rails or other server-side frameworks
 
 This section needs to be fleshed out but:
 
@@ -360,14 +360,40 @@ we haven't really been using it since the original fork, so it's considered
 unsupported for the time being. Use at your own risk, there might be sharp
 edges, if it breaks you get to keep both pieces.
 
+[Subtree merging](http://git-scm.com/book/en/Git-Tools-Subtree-Merging)
+
 Our process up til now has been to do a subtree merge into an angular directory
 in the Rails project, and set things up so that the angular/build directory is
 in the pipeline's search path for building assets. This process itself needs
 refinement and better documentation, especially the git part.
 
+#### Adding Reasoning to a project
+
+This will add the `reasoning` code to the current project in a client/ directory:
+```
+git remote add reasoning git@git.lrdesign.com:lrd/reasoning.git
+git subtree add -P client/ reasoning master
+```
+
+#### Updating Reasoning
+```
+git subtree pull -P client/ reasoning master
+```
+
+#### Push changes to Reasoning
+```
+git subtree push -P client/ reasoning new_branch
+```
+Then issue a merge request on new_branch
+
+#### Merging requests in Reasoning
+Because reasoning will form the basis of other apps, merge requests need to be
+cherry-picked back to master. This is a more complicated operation than bears
+discussion here.
+
 ### To Do
 
-See the [issues list](http://github.com/LRDesign/reasoning/issues). And
+See the [issues list](http://git.lrdesign.com/lrd/reasoning/issues). And
 feel free to submit your own!
 
 ### Contributing
@@ -381,6 +407,4 @@ of you!
 
 ### Acknowledgements
 
-This was forked with gratitude and admiration from:
-
-# [ngBoilerplate](http://joshdmiller.github.com/ng-boilerplate)
+This was forked with gratitude and admiration from [ngBoilerplate](http://joshdmiller.github.com/ng-boilerplate)
