@@ -253,35 +253,6 @@ module.exports = function ( grunt ) {
       }
     },
 
-    /**
-     * `recess` handles our LESS compilation and uglification automatically.
-     * Only our `main.less` file is included in compilation; all other files
-     * must be imported from this file.
-    recess: {
-      build: {
-        src: [ '<%= app_files.less %>' ],
-        dest: '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css',
-        options: {
-          compile: true,
-          compress: false,
-          noUnderscores: false,
-          noIDs: false,
-          zeroUnits: false
-        }
-      },
-      compile: {
-        src: [ '<%= compass.build.options.cssDir %>' ],
-        dest: '<%= compass.build.options.cssDir %>',
-        options: {
-          compile: true,
-          compress: true,
-          noUnderscores: false,
-          noIDs: false,
-          zeroUnits: false
-        }
-      }
-    },
-     */
 
     /**
      * Using sass here
