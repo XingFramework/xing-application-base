@@ -81,6 +81,7 @@ module.exports = {
   vendor_files: {
     js: [
       'vendor/angular/angular.js',
+      'vendor/angular-cookies/angular-cookies.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-utils/ui-utils.js',
