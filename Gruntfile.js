@@ -225,7 +225,7 @@ module.exports = function ( grunt ) {
     },
 
     /**
-     * `ng-min` annotates the sources before minifying. That is, it allows us
+     * `ngAnnotate` annotates the sources before minifying. That is, it allows us
      * to code without the array syntax.
      */
     ngAnnotate: {
@@ -275,7 +275,7 @@ module.exports = function ( grunt ) {
     sass: {
       options: {
         sourceComments: 'map',
-        //sourceMap: '', //??? Needed?
+        sourceMap: '',
       },
       build: {
         expand: true,
@@ -286,28 +286,17 @@ module.exports = function ( grunt ) {
         extDot: 'last'
       },
       compile: {
-      }
-    },
-/*
-    sass: {                                 // task
-      compile: {
         options: {
           outputStyle: 'compressed'
-        },                            // target
-        files: {                        // dictionary of files
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>' // 'destination': 'source'
-        }
-      },
-      build: {                              // another target
-        options: {                      // dictionary of render options
-          sourceMap: ''
         },
-        files: {
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>' // 'destination': 'source'
-        }
+        expand: true,
+        cwd: '<%= app_files.sass %>',
+        src: '**/*.scss',
+        dest: '<%= build_dirs.stylesheets %>',
+        ext: '.css',
+        extDot: 'last'
       }
     },
-*/
 
     /**
      * `jshint` defines the rules of our linter as well as which files we
@@ -482,6 +471,7 @@ module.exports = function ( grunt ) {
         dest: '<%= build_dirs.js %>/welcome.js'
       }
     },
+
     replace: {
       development: {
         options: {
