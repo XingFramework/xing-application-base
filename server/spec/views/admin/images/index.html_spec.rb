@@ -14,4 +14,3 @@ describe "/admin/images/index" do
     rendered.should have_selector("td img")
   end
 end
-

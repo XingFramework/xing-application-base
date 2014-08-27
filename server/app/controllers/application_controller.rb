@@ -15,5 +15,5 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
     return_path || root_path
   end
-  
+
 end

@@ -5,4 +5,3 @@ describe "/static/index" do
     render
   end
 end
-

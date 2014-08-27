@@ -15,5 +15,3 @@ describe "/admin/documents/new" do
     rendered.should have_selector("form[action='#{admin_documents_path}'][method=post]")
   end
 end
-
-

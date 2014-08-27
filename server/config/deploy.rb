@@ -49,4 +49,3 @@ namespace :sample_data do
 end
 
 before "deploy:assets:precompile", "deploy:link_shared_files"
-

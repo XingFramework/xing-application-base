@@ -11,4 +11,3 @@ describe "/admin/locations/index" do
     render
   end
 end
-

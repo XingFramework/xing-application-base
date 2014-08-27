@@ -8,7 +8,7 @@ class ConvertUsersTableToDevise < ActiveRecord::Migration
         u.password = "wxyz"
         u.password_confirmation = "wxyz"
         u.save
-    end    
+    end
 
     add_column :users, :confirmation_token, :string, :limit => 255
     add_column :users, :confirmed_at, :timestamp

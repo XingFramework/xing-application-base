@@ -1,90 +1,90 @@
 /**
  * Javascript code to support switching, memorizing, and preselecting
  * tabs in a tabbed_panel structure for the plugin logical_tabs.
- * 
+ *
  * NOTE: Includes a full copy of Jookie by Jon Combe, see below.
- * 
+ *
  * Author : Evan Dorn
  * Website: http://lrdesign.com/tools
  * License: MIT License, see included LICENSE file.
  * Version: 1.0
  * Updated: April 29, 2010
- * 
- */   
-  
-// Set up the click observer on the tabs, and 
-$(document).ready( function(){  
+ *
+ */
+
+// Set up the click observer on the tabs, and
+$(document).ready( function(){
   initialize_tabs();
-});        
-              
+});
+
 
 function initialize_tabs() {
-	$('.tabbed_panel .tab a').click(function(event){ event.preventDefault(); handle_tab_click($(this))});  	  
-	$.Jookie.Initialise("tab_memory", 60*24*365);  
-	$('.tabbed_panel').each(function(){ pre_select_tab($(this))});	                   
+	$('.tabbed_panel .tab a').click(function(event){ event.preventDefault(); handle_tab_click($(this))});
+	$.Jookie.Initialise("tab_memory", 60*24*365);
+	$('.tabbed_panel').each(function(){ pre_select_tab($(this))});
 }
 
 // Given a tabbed_panel div element, checks to see if there's a pre-stored
-// tab association.  If there is, select that tab.                                                                        
+// tab association.  If there is, select that tab.
 function pre_select_tab(tabbed_panel) {
     tab_memory = get_tab_memory();
-    tab_id = tab_memory[memory_key_from_tabbed_panel(tabbed_panel.attr('id'))]  
+    tab_id = tab_memory[memory_key_from_tabbed_panel(tabbed_panel.attr('id'))]
     if(tab_id != null) {
       select_tab($("#"+tab_id));
     }
-}   
+}
 
 // Select a tab that's been clicked on and store that preference in a cookie.
-function handle_tab_click(element) {               
+function handle_tab_click(element) {
   tab = element.parents("li.tab");
-  select_tab(tab);    
+  select_tab(tab);
   store_tab_preference(tab.attr('id'));
 }
-           
-           
 
-// Handle the display changes necessary for selecting a new tab. 
+
+
+// Handle the display changes necessary for selecting a new tab.
 // switches on the clicked tab, finds the matching pane, and switches it
 // on. Then iterates the siblings of both and switches them all off
 function select_tab(tab) {
   pane_id = tab.attr('id').replace(/_tab$/,"_pane");
-  pane = $("#"+pane_id);    
+  pane = $("#"+pane_id);
   tab.removeClass('tab_unselected').addClass('tab_selected');
-  tab.siblings().removeClass('tab_selected').addClass('tab_unselected');    
+  tab.siblings().removeClass('tab_selected').addClass('tab_unselected');
   pane.removeClass('pane_unselected').addClass('pane_selected');
-  pane.siblings().removeClass('pane_selected').addClass('pane_unselected');    
-}               
-                 
+  pane.siblings().removeClass('pane_selected').addClass('pane_unselected');
+}
+
 
 // extract the containing tabbed panel's ID from the tab's ID
 function get_tabbed_panel_id(tab_id) {
-	return tab_id.substring(0, tab_id.indexOf("_tp_"));  
-}            
+	return tab_id.substring(0, tab_id.indexOf("_tp_"));
+}
 
 // Generate the key associated with this page's path and this tabbed_panel,
 // starting from the id of an individual tab.
 function memory_key_from_tab(tab_id) {
   return (location.pathname + "--" + get_tabbed_panel_id(tab_id)).replace(/^\//,'')
-}                           
+}
 
 // Generate the key associated with this page's path and this tabbed_panel,
 // starting from the id of the tabbed panel.
 function memory_key_from_tabbed_panel(tabbed_panel_id) {
-  return (location.pathname + "--" + tabbed_panel_id).replace(/^\//,'')  
+  return (location.pathname + "--" + tabbed_panel_id).replace(/^\//,'')
 }
 
 // Store which tab was selected for this URL and tabbed panel combination
-function store_tab_preference(tab_id) {  
+function store_tab_preference(tab_id) {
   tab_memory = get_tab_memory();
   if (tab_memory == null) {
     tab_memory = new Object();
   }
   tab_memory[memory_key_from_tab(tab_id)] = tab_id;
-  $.Jookie.Set('tab_memory', 'tab_history', tab_memory);           
-}   
+  $.Jookie.Set('tab_memory', 'tab_history', tab_memory);
+}
 
 function get_tab_memory() {
-  tab_memory = $.Jookie.Get('tab_memory','tab_history'); 
+  tab_memory = $.Jookie.Get('tab_memory','tab_history');
   if(typeof(tab_memory) == 'undefined') {
 	  tab_memory = {};
 	}

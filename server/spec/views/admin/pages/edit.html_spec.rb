@@ -20,5 +20,3 @@ describe "/admin/pages/edit" do
   end
 
 end
-
-

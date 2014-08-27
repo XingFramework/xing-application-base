@@ -9,4 +9,3 @@ describe "/admin/documents/show" do
     render
   end
 end
-

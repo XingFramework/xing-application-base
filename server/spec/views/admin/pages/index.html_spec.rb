@@ -10,4 +10,3 @@ describe "/admin/pages/index" do
     render
   end
 end
-

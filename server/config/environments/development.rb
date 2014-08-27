@@ -33,4 +33,3 @@ Rails.application.configure do
   config.sass.line_comments = true
   config.sass.cache = false
 end
-

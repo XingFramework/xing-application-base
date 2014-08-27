@@ -119,5 +119,3 @@ module PostgresCommands
   end
   module_function :table_parts
 end
-
-

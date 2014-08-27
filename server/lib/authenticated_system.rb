@@ -6,6 +6,6 @@ module AuthenticatedSystem
 
   def admin?
     logged_in?
-  end         
-    
+  end
+
 end
