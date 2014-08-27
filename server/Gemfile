@@ -4,23 +4,12 @@ gem 'rails', "~> 4.1"
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'pg'
-gem "haml-rails"
-gem "sass-rails"
-gem 'tinymce-rails'
 gem 'devise'
 gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nested_set'
 gem 'jquery-rails'
-gem 'mizugumo'
-gem 'lrd_view_tools'
-gem 'dynamic_form'
 gem 'carrierwave'
 gem 'zeroclipboard-rails'
 gem "rmagick", require: false
-
-group :assets do
-  gem 'sprockets', '~> 2.11.0'
-  gem 'turbo-sprockets-rails3'
-end
 
 group :development, :test do
   gem "rspec", "< 3.0.0"
@@ -32,7 +21,6 @@ group :development, :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'byebug'
-  gem 'quiet_assets'
   gem 'cadre'
 end
 
