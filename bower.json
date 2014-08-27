@@ -11,7 +11,8 @@
     "compass-vanilla": "~0.1.0",
     "angular-resource": "~1.2.16",
     "singularity": "> 0",
-    "sassy-buttons": ""
+    "sassy-buttons": "".
+    "restangular": "~1.4.0"
   },
   "dependencies": {},
   "exportsOverride": {
@@ -26,6 +27,5 @@
     }
   },
   "resolutions": {
-    "angular": "~1.2.16"
   }
 }

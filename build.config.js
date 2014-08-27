@@ -84,7 +84,9 @@ module.exports = {
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-utils/ui-utils.js',
-      'vendor/angular-ui-router/release/angular-ui-router.js'
+      'vendor/angular-ui-router/release/angular-ui-router.js',
+      'vendor/lodash/dist/lodash.js',
+      'vendor/restangular/dist/restangular.js'
     ],
     css: [
     ],
