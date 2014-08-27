@@ -57,12 +57,12 @@ angular.module( 'placeholders.img', [] )
         }
         var matches = scope.dimensions.match( /^(\d+)x(\d+)$/ ),
             dataUrl;
-        
+
         if(  ! matches ) {
           console.error("Expected '000x000'. Got " + scope.dimensions);
           return;
         }
-        
+
         // Grab the provided dimensions.
         scope.size = { w: matches[1], h: matches[2] };
 
@@ -78,7 +78,7 @@ angular.module( 'placeholders.img', [] )
         if ( element.prop( "tagName" ) === "IMG" ) {
           element.prop( 'src', dataUrl );
         } else {
-          element.css( 'background-image', 'url("' + dataUrl + '")' );      
+          element.css( 'background-image', 'url("' + dataUrl + '")' );
         }
       });
 
@@ -103,7 +103,7 @@ angular.module( 'placeholders.img', [] )
         // Create a new canvas if we don't already have one. We reuse the canvas
         // when if gets redrawn so as not to be wasteful.
         canvas = canvas || document.createElement( 'canvas' );
-        
+
         // Obtain a 2d drawing context on which we can add the placeholder
         // image.
         var context = canvas.getContext( '2d' ),
@@ -327,33 +327,33 @@ angular.module( 'placeholders.txt', [] )
     "feugiat", "nibh", "sed", "pulvinar", "proin", "gravida", "hendrerit",
     "lectus", "a", "molestie", "gravida", "dictum"
   ];
-  
+
   function randomInt ( min, max ) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  
+
   return {
     createSentence: function ( sentenceLength ) {
       var wordIndex,
           sentence;
-      
-      // Determine how long the sentence should be. Do it randomly if one was not 
+
+      // Determine how long the sentence should be. Do it randomly if one was not
       // provided.
       sentenceLength = sentenceLength || randomInt( 5, 20 );
-      
+
       // Now we determine were we are going to start in the array randomly. We
       // are just going to take a slice of the array, so we have to ensure
       // whereever we start has enough places left in the array to accommodate
       // the random sentence length from above.
       wordIndex = randomInt(0, words.length - sentenceLength - 1);
-      
+
       // And pull out the words, join them together, separating words by spaces
-      // (duh), and removing any commas that may appear at the end of the 
+      // (duh), and removing any commas that may appear at the end of the
       // sentence. Finally, add a period.
       sentence = words.slice(wordIndex, wordIndex + sentenceLength)
             .join(' ')
             .replace(/\,$/g, '') + '.';
-            
+
       // Capitalize the first letter - it is a sentence, after all.
       sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
 
@@ -362,36 +362,36 @@ angular.module( 'placeholders.txt', [] )
     createSentences: function ( numSentences ) {
       var sentences = [],
           i = 0;
-      
-      // Determine how many sentences we should do. Do it randomly if one was not 
+
+      // Determine how many sentences we should do. Do it randomly if one was not
       // provided.
       numSentences = numSentences || randomInt( 3, 5 );
-      
+
       // For each paragraph, we should generate between 3 and 5 sentences.
       for ( i = 0; i < numSentences; i++ ) {
         sentences.push( this.createSentence() );
       }
-      
+
       // And then we just return the array of sentences, concatenated with spaces.
       return sentences.join( ' ' );
     },
     createParagraph: function ( numSentences ) {
       var sentences = this.createSentences( numSentences );
-      
+
       // Make the sentences into a paragraph and return.
       return "<p>" + sentences + "</p>";
     },
     createParagraphs: function ( numParagraphs, numSentences ) {
       var paragraphs = [],
           i = 0;
-      
+
       numParagraphs = numParagraphs || randomInt( 3, 7 );
-      
+
       // Create the number of paragraphs requested.
       for ( i = 0; i < numParagraphs; i++ ) {
         paragraphs.push( this.createParagraph( numSentences ) );
       }
-      
+
       // Return the paragraphs, concatenated with newlines.
       return paragraphs.join( '\n' );
     }
@@ -445,7 +445,7 @@ angular.module( 'placeholders.txt', [] )
         // And populate everything.
         populate();
       });
-      
+
       // If nothing was passed, the $observe will never run, so we need to trigger
       // the `populate()` manually.
       if ( ! $attrs.phTxt ) {
@@ -454,4 +454,3 @@ angular.module( 'placeholders.txt', [] )
     }]
   };
 }]);
-

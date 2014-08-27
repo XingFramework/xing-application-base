@@ -3,7 +3,7 @@
     @include animation-timing-function(ease-in-out, $prefix);
     @include animate-transform(rotate(0), $prefix);
     @include animate-transform-origin(top left, $prefix);
-  }	
+  }
 	20%, 60% {
 	  @include animation-timing-function(ease-in-out, $prefix);
 	  @include animate-transform(rotate(80deg), $prefix);
@@ -48,4 +48,3 @@
 	  @include animation-name(hinge);
 	}
 }
-

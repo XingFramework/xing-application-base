@@ -63,7 +63,7 @@
   $direction: normal,         // normal | alternate
   $prefix: false
   ) {
-          
+
   $value: $name $duration $timing-function $delay $iteration-count $direction;
 
   @if $prefix {

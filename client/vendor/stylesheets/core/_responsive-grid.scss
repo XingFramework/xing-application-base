@@ -84,7 +84,7 @@ $show_grid: 	null !default;
 
 @mixin responsive($responsive) {
 	@if $responsive == true {
-		@include grid($layout); 
+		@include grid($layout);
 	}@elseif $responsive == false {
 		@include fixed-grid($layout);
 	}
