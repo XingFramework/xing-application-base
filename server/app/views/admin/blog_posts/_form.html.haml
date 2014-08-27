@@ -1,0 +1,40 @@
+= tinymce_assets
+
+= form_for(@page, :url => url, :format => :html) do |f|
+  = f.error_messages
+
+  .form_section
+    %h3 Visible Attributes
+
+    = f.labeled_input :topic_id do
+      = topic_selector(f)
+    = f.labeled_input :title, :comment => "Browser titlebar (optional)"
+    = f.labeled_input :permalink, :comment => "Url for this page (required)"
+    -# it's enough to change this to a :published_start and :published_end
+    -# field to enable that functionality for a CMS
+    = f.labeled_input :published, :comment => "Uncheck to disable this page" do
+      = f.check_box(:published)
+
+  .form_section
+    %h3 Invisible Attributes for Search Engines
+    = f.labeled_input :keywords, :size => 80, :comment => "Comma-separated"
+    = f.labeled_input :description do
+      = f.text_area(:description, :size => "80x2")
+
+  .form_section
+    %h3 Page Content
+    %h4 On-page headline (large type):
+    = f.labeled_input :headline do
+      = f.text_area(:headline, :size => "80x2")
+
+    %h4 Main content
+    = f.labeled_input :content do
+      = f.text_area(:content, :size => "80x40", :class => 'tinymce')
+    = tinymce
+
+  .form_section
+    %h3 Advanced Options
+    .collapsed
+      = f.labeled_input :css, :text => 'CSS Styles' do
+        = f.text_area(:css, :size => '80x8')
+  = f.unlabeled_submit "Save Blog Post"

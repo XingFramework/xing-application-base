@@ -1,0 +1,30 @@
+:javascript
+  $(function() {
+      $("select#location_page_id ").change(function () {
+          $("select#location_page_id option:selected").each(function() {
+            if(!$(this).val()) {
+                $("input#location_path").parent().show();
+            } else {
+                $("input#location_path").parent().hide();
+            }
+          });
+      });
+
+      if($("select#location_page_id option:selected").first().val()) {
+          $("input#location_path").parent().hide();
+      }
+  });
+
+= form_for([:admin,@location]) do |f|
+  = f.error_messages
+  = f.labeled_input :name
+  = f.labeled_input :path
+  = f.labeled_input :page_id do
+    = page_selector(f)
+  = f.labeled_input :parent_id do
+    = location_parent_selector(f)
+  - unless @location.new_record?
+    = f.labeled_input :move_to do
+      = sibling_selector(f)
+
+  = f.unlabeled_submit "Save #{@human_name}"

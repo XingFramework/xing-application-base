@@ -1,0 +1,9 @@
+%tr{:id => "location_#{node.id.to_s}", :class => ('highlight' if defined?(selected_location_id) && selected_location_id.to_s == node.id.to_s)}
+  %td
+    = node.name
+  %td
+    = link_to("URL: #{node.path}", node.path)
+  %td
+    = link_to 'Show', admin_topic_path(node)
+    = link_to 'Edit', edit_admin_topic_path(node)
+    = link_to 'Delete', admin_topic_path(node), :data => {:confirm => 'Are you sure?'}, :method => :delete

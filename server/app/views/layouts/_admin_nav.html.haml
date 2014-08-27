@@ -1,0 +1,12 @@
+- if admin?
+  #admin_tools
+    %h3 Admin Tools:
+    %ul.admin_nav
+      %li= link_to "Edit Pages", admin_pages_path
+      %li= link_to "Edit Menu", admin_locations_path
+      -# %li= link_to "Edit Blog Posts", admin_blog_posts_path
+      -# %li= link_to "Edit Blog Topics", admin_topics_path
+      %li= link_to "Upload Documents", admin_documents_path
+      %li= link_to "Upload Images", admin_images_path
+      %li= link_to "Change Password", edit_user_registration_path
+      %li= button_to "Log out", destroy_user_session_path, :method => 'delete'

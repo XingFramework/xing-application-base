@@ -1,0 +1,4 @@
+%li
+  = link_to(node.name, loc_path(node))
+  - if defined? children
+    = children

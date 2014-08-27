@@ -1,0 +1,18 @@
+- set_headline "Image: #{h @image.image.identifier}"
+
+%table.listing.image-index
+  - ImageUploader.versions.each_key do |style|
+    %tr.uploaded_image{:id => style}
+      %td.image-style
+        = style.to_s.capitalize
+        %p.dimensions
+      %td
+        %div.url-wrapper
+          %input.image-url{:id => "fe_text_#{style}", :type => 'text', :value => @image.image.send(style).url, :size => 80}
+          %button.my_clip_button{:id => "d_clip_button_#{style}", "data-clipboard-target" => "fe_text_#{style}", "data-clipboard-text" => "Default clipboard text from attribute", :title => "Click me to copy to clipboard."}
+            %b Copy To Clipboard
+        %div.arrow-right
+        %div.image-partial
+          = image_tag(@image.image.send(style).url)
+
+= link_to 'Back', admin_images_path

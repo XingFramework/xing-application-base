@@ -1,0 +1,61 @@
+Suppose I want this:
+
+config.generators do |g|
+  g.template_engine 'lrd:haml'
+  g.test_framework :rspec, :fixture => true, :views => false
+  g.fixture_replacement 'lrd:factory'
+end
+
+The template generator must go in a "scaffold" class, because that's
+what 'rails generate scaffold' looks for for the template.
+
+module lrd
+  module generators
+    module haml
+      class scaffold < Rails::Generators::NamedBase
+end end end      
+
+the files have to go in 
+  lib/generators/lrd/haml/scaffold
+  
+Module/class namespace:
+  Lrd::Generators::Haml::Scaffold
+Filesystem namespace goes in a different order:
+  generators/lrd/haml/scaffold
+And the "Generator namespace" given in config.generators omits the 'scaffold'.
+  lrd:haml                                                   
+                                                          
+  
+With factories, it gets much worse.   If I create generator namespace
+lrd:factory for fixture replacement, i either have to put it inside a
+folder named 'rspec', or i have to name the generator 'model' rather than
+'factory'.   Notice that all the ones with 'factory' as the class name
+have to be inside an 'rspec' folder.  Gah!  
+
+  "looking up path rails/generators/rspec/lrd/factory/factory_generator"
+  "looking up path generators/rspec/lrd/factory/factory_generator"
+  "looking up path rails/generators/rspec/lrd/factory_generator"
+  "looking up path generators/rspec/lrd/factory_generator"
+  "looking up path rails/generators/lrd/factory/model/model_generator"
+  "looking up path generators/lrd/factory/model/model_generator"
+  "looking up path rails/generators/lrd/factory/model_generator"
+  "looking up path generators/lrd/factory/model_generator"  
+                                          
+So I end up with this:
+
+Module/class namespace:
+  Lrd::Generators::Factory
+Filesystem namespace
+  generators/rspec/lrd/factory/factory_generator
+Generator namespace:
+  lrd:haml
+  
+Seriously guys, there has to be an easier way.  If you're going to have
+"convention over configuration" it really needs to be an understandable
+convention.  I shouldn't have to put debugging lines in the Rails code to
+try to figure out where to put my generator files because the system is
+so obtuse and the docs are poor.
+
+
+                                                   
+  

@@ -1,0 +1,10 @@
+%ul.posts
+  - @posts.each do |post|
+    .post
+      %h3= post.title
+      %h4= post.updated_at
+      .content
+        %p= truncate(strip_tags(post.content), :length => 130)
+      = link_to("Full text...", page_path(post))
+
+-#.archives

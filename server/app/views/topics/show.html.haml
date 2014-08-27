@@ -1,0 +1,8 @@
+%h1= @topic.name
+- @posts.each do |post|
+  .post
+    %h3= post.title
+    %h4= post.updated_at
+    .content
+      %p= post.content.html_safe
+    = link_to("Full text...", page_path(post), :class => "full-text")

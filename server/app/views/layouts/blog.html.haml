@@ -1,0 +1,14 @@
+- content_for :main_content do
+  #content-wrap
+    #content
+      = render :partial => 'layouts/flash' , :locals => { :flash => flash }
+      %h1 Blog Posts
+      #blog-content
+        = yield
+      #browsing-menu
+        #topics
+          %ul
+            -Location.blog_topics.each do |topic|
+              %li= link_to topic.name, topic_path(topic)
+
+= render :file => 'layouts/boilerplate'

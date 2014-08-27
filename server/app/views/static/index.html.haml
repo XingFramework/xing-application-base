@@ -1,0 +1,9 @@
+- set_headline "LRD CMS Homepage"
+
+%p
+  This is the home page of whatever site uses this CMS.   This should be
+  customized on a per-site basis.      
+
+- unless logged_in?  
+  %p
+    =link_to "Click to login", login_path 

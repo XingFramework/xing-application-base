@@ -1,0 +1,14 @@
+- set_headline "Listing documents"
+
+= link_to 'New document', new_admin_document_path
+%br
+
+%table.listing
+  %tr
+
+  - for document in @documents
+    %tr
+      %td= document.data.identifier
+      %td= link_to 'Show', admin_document_path(document)
+      %td= link_to 'Destroy', admin_document_path(document), :data => {:confirm => 'Are you sure?'}, :method => :delete
+

@@ -1,0 +1,7 @@
+- set_headline "List of #{@human_plural_name}"
+
+%table.listing
+  = render :partial => "list_header"
+  = list_tree('location', 'shared/concat_items', @locations)
+
+= link_to "New #{@human_name}", :action => :new

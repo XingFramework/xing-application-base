@@ -1,0 +1,6 @@
+%li{ :id => dom_id(node) }
+  - if depth > 0
+    %span
+  = nav_menu_link(node)
+  - if defined? children
+    = children

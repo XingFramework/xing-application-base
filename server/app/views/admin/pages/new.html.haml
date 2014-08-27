@@ -1,0 +1,5 @@
+- set_headline "New #@human_name"
+
+= link_to 'Back to List', admin_pages_path
+
+= render :partial => "form", :locals => {:url => url_for(:action => :create)}
