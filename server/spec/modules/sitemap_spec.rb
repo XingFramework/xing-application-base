@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'sitemap'
 
-describe Sitemap do
+describe Sitemap, :pending => "Awaiting implementation in CMS2" do
   describe "with no pages" do
     it "should not crash" do
       Sitemap.create!

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Admin::Images" do
+describe "Admin::Images", :pending => "Awaiting implementation in CMS2" do
   describe "GET /admin_images" do
     it "works! (now write some real specs)" do
       get admin_images_path

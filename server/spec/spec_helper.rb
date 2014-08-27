@@ -40,6 +40,10 @@ RSpec.configure do |config|
 
   truncation_types = [:feature]
 
+  config.before :all, :type => [ :view ] do
+    pending "Pending removal.  Back-end does not use views."
+  end
+
   config.before :all, :type => proc{ |value| truncation_types.include?(value)} do
     Rails.application.config.action_dispatch.show_exceptions = true
     DatabaseCleaner.clean_with :truncation

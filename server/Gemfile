@@ -23,16 +23,14 @@ group :assets do
 end
 
 group :development, :test do
-  gem "rspec", ">= 2.1.0"
-  gem "rspec-rails", ">= 2.1.0"
+  gem "rspec", "< 3.0.0"
+  gem "rspec-rails", "< 3.0.0"
   gem "factory_girl_rails"
   gem 'annotate'
   gem 'simplecov'
   gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'poltergeist'
   gem 'database_cleaner'
-  gem 'rspec-steps'
   gem 'byebug'
   gem 'quiet_assets'
   gem 'cadre'

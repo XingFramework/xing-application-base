@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ImagesController do
+describe Admin::ImagesController, :pending => "Awaiting implementation in CMS2" do
   describe "routing" do
     it "recognizes and generates #index" do
       { :get => "/admin/images" }.should route_to(:controller => "admin/images", :action => "index")

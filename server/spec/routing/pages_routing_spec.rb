@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PagesController do
+describe PagesController, :pending => "Awaiting implementation in CMS2" do
   describe "routing" do
     it "recognizes and generates #show" do
       { :get => "/some_page" }.should route_to(:controller => "pages", :action => "show", :permalink => 'some_page')

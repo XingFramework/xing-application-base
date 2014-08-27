@@ -13,5 +13,5 @@
 
 require 'spec_helper'
 
-describe Document do
+describe Document, :pending => "Awaiting implementation in CMS2" do
 end

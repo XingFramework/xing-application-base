@@ -13,5 +13,5 @@
 
 require 'spec_helper'
 
-describe Image do
+describe Image, :pending => "Awaiting implementation in CMS2" do
 end
