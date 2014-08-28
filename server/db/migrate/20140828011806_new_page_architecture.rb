@@ -5,11 +5,14 @@ class NewPageArchitecture < ActiveRecord::Migration
     remove_column :pages, :content
     remove_column :pages, :css
     remove_column :pages, :headline
-
-    rename_table :locations, :menu_items
+    remove_column :pages, :permalink
 
     add_column :pages, :metadata, :hstore
+    add_column :pages, :url_slug, :string
     add_column :pages, :publication_date, :datetime
+    add_index  :pages, :url_slug
+
+    rename_table :locations, :menu_items
 
     create_table :content_blocks do |t|
       t.string :content_type
@@ -23,6 +26,9 @@ class NewPageArchitecture < ActiveRecord::Migration
       t.string     :name
       t.timestamps
     end
+
+    add_index :page_contents, :page_id
+    add_index :page_contents, :content_block_id
   end
 
 end
