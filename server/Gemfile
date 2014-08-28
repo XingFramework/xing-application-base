@@ -6,9 +6,7 @@ gem 'rails', "~> 4.1"
 gem 'pg'
 gem 'devise'
 gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nested_set'
-gem 'jquery-rails'
 gem 'carrierwave'
-gem 'zeroclipboard-rails'
 gem "rmagick", require: false
 
 group :development, :test do
@@ -28,5 +26,4 @@ group :development do
   gem "populator"
   gem "faker"
   gem "pivotal-github"
-  gem 'sass-rails-source-maps', :git => "git@github.com:LRDesign/sass-rails-source-maps.git"
 end
