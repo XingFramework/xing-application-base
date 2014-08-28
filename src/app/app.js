@@ -1,7 +1,7 @@
 angular.module( 'Reasoning', [
   'templates-app',
   'templates-common',
-  'ngBoilerplate.home',
+  //'client-app.home',
   'ui.router'
 ]).config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/home' );

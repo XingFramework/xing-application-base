@@ -683,19 +683,13 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean:build', 'html2js', 'jshint', 'coffeelint', 'coffee',
+    'clean:build', //'replace:development',
+    'bower:install',
+    'html2js', 'jshint', 'coffeelint', 'coffee',
     'sass_to_scss:build', 'sass:build', 'copy:build_app_assets',
     'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs',
-    'ngmin', 'sprockets_index:build',
-    //'index:build',
+    //'sprockets_index:build', 'index:build',
     'karmaconfig', 'karma:continuous'
-
-/* XXX
-    'clean', 'replace:development', 'html2js', 'jshint', 'coffeelint', 'coffee', 'sass:build',
-    'copy:build_vendorcss', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs', 'copy:build_vendorjs', 'index:build', 'karmaconfig',
-    'karma:continuous'
-*/
   ]);
 
   /**
@@ -703,7 +697,8 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-     'replace:production', 'sass:compile', 'concat:compile_css', 'concat:compile_css', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
+     //'replace:production',
+     'sass:compile', 'concat:compile_css', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
   /**
