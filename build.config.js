@@ -68,28 +68,16 @@ module.exports = {
    * with our app's assets. This structure is flattened, so it is not
    * recommended that you use wildcards.
    *
-   * TODO: use
-        var bower = require('bower');
-        var bowerFiles;
-        bower.commands.list([], {paths: true}).on('end', function(list){
-          bowerFiles = list;
-        });
-   * to get the list of files we need from bower
-   * Will .done() handle that?
-
+   * If stray files make it into vendor, the solution is *not* to change this config
+   * We need to change the Gruntfile.js or bower.json to export only the files we want.
+   *
    */
   vendor_files: {
     js: [
-      'vendor/angular/angular.js',
-      'vendor/angular-cookies/angular-cookies.js',
-      'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'vendor/angular-placeholders/dist/placeholders-0.0.1-SNAPSHOT.min.js',
-      'vendor/angular-ui-utils/ui-utils.js',
-      'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/lodash/dist/lodash.js',
-      'vendor/restangular/dist/restangular.js'
+      'vendor/**/*.js'
     ],
     css: [
+      'vendor/**/*.css', 'vendor/**/*.scss', 'vendor/**/*.sass'
     ],
     assets: [
     ]
