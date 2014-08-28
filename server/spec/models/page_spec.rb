@@ -2,29 +2,20 @@
 #
 # Table name: pages
 #
-#  id                 :integer          not null, primary key
-#  title              :string(255)
-#  headline           :string(255)
-#  permalink          :string(255)
-#  content            :text
-#  css                :text
-#  published          :boolean          default(TRUE), not null
-#  keywords           :text
-#  description        :text
-#  edited_at          :datetime
-#  created_at         :datetime
-#  updated_at         :datetime
-#  image_file_name    :string(255)
-#  image_file_size    :integer
-#  image_content_type :string(255)
-#  image_updated_at   :datetime
-#  optional_column    :text
-#  overlay_headline   :boolean
-#  image_height       :integer
-#  image_width        :integer
-#  layout             :string(255)
-#  publish_start      :datetime
-#  publish_end        :datetime
+#  id               :integer          not null, primary key
+#  title            :string(255)
+#  published        :boolean          default(TRUE), not null
+#  keywords         :text
+#  description      :text
+#  edited_at        :datetime
+#  created_at       :datetime
+#  updated_at       :datetime
+#  layout           :string(255)
+#  publish_start    :datetime
+#  publish_end      :datetime
+#  metadata         :hstore
+#  url_slug         :string(255)
+#  publication_date :datetime
 #
 
 require 'spec_helper'
