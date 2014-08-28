@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ImagesController do
+describe Admin::ImagesController, :pending => "Awaiting implementation in CMS2" do
   include ImageTestHelper
 
   before(:each) do

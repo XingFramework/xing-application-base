@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::DocumentsController do
+describe Admin::DocumentsController, :pending => "Awaiting implementation in CMS2" do
   include DocumentTestHelper
 
   before(:each) do

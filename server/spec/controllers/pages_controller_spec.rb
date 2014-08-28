@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PagesController do
+describe PagesController, :pending => "Awaiting implementation in CMS2" do
 
   ########################################################################################
   #                                      GET SHOW

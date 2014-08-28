@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::LocationsController do
+describe Admin::LocationsController, :pending => "Awaiting implementation in CMS2" do
   describe "routing" do
     it "recognizes and generates #index" do
       { :get => "/admin/locations" }.should route_to(:controller => "admin/locations", :action => "index")

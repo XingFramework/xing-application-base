@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe ApplicationHelper do
+describe ApplicationHelper, :pending => "Awaiting implementation in CMS2" do
 
   describe "location path" do
     describe "when attached to page" do

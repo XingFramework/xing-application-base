@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TreeHelper do
+describe TreeHelper, :pending => "Awaiting implementation in CMS2" do
   # a-+-b---c---d
   #   +-e
   #   \-f-+-g

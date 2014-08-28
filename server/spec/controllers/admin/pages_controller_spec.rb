@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::PagesController do
+describe Admin::PagesController, :pending => "Awaiting implementation in CMS2" do
   include UrlHelper
 
   let! :page do

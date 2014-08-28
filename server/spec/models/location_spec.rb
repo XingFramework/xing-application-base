@@ -15,7 +15,7 @@
 
 require 'spec_helper'
 
-describe Location do
+describe Location, :pending => "Awaiting implementation in CMS2" do
   describe "mass assignment" do
      it "should mass assign name and path" do
        location = Location.new(:name => 'foo', :path => 'bar' )

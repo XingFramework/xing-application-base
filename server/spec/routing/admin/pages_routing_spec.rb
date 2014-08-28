@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::PagesController do
+describe Admin::PagesController, :pending => "Awaiting implementation in CMS2" do
   describe "routing" do
     it "recognizes and generates #index" do
       { :get => "/admin/pages" }.should route_to(:controller => "admin/pages", :action => "index")

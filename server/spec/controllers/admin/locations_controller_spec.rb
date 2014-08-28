@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::LocationsController do
+describe Admin::LocationsController, :pending => "Awaiting implementation in CMS2" do
 
   describe "logged in as admin" do
     before(:each) do

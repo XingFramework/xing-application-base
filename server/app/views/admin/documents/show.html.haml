@@ -1,9 +1,0 @@
-- set_headline "Document: #{h @document.data_file_name}"
-
-= link_to(@document.data.identifier, @document.data.url)
-%br
-
-%input{:type => 'text', :value => @document.data.url, :size => 80}
-%br
-
-= link_to 'Back to Documents', admin_documents_path
