@@ -1,4 +1,4 @@
 angular.module('LRNewWebsite.config', [])
   .constant('configuration', {
-    serverUrl: '@@serverUrl'
+    serverUrl: "http://localhost:3000/"
   });

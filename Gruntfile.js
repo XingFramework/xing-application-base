@@ -21,7 +21,6 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-bower-task');
-  //grunt.loadNpmTasks('grunt-replace');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-traceur-simple');
 
@@ -127,6 +126,21 @@ module.exports = function ( grunt ) {
           expand: true
         }
         ]
+      },
+      "production-env": {
+        files: {
+          "config/config.js": "config/environments/production.js"
+        }
+      },
+      "test-env": {
+        files: {
+          "config/config.js": "config/environments/test.js"
+        }
+      },
+      "development-env": {
+        files: {
+          "config/config.js": "config/environments/development.js"
+        }
       },
       build_app_assets: {
         files: [
@@ -493,48 +507,6 @@ module.exports = function ( grunt ) {
       }
     },
 
-    replace: {
-      development: {
-        options: {
-          patterns: [{
-            json: grunt.file.readJSON('./config/environments/development.json')
-          }]
-        },
-        files: [{
-          expand: true,
-          flatten: true,
-          src: ['./config/config.js'],
-          dest: 'src/common/'
-        }]
-      },
-      test: {
-        options: {
-          patterns: [{
-            json: grunt.file.readJSON('./config/environments/test.json')
-          }]
-        },
-        files: [{
-          expand: true,
-          flatten: true,
-          src: ['./config/config.js'],
-          dest: 'src/common/'
-        }]
-      },
-      production: {
-        options: {
-          patterns: [{
-            json: grunt.file.readJSON('./config/environments/production.json')
-          }]
-        },
-        files: [{
-          expand: true,
-          flatten: true,
-          src: ['./config/config.js'],
-          dest: 'src/common/'
-        }]
-      }
-    },
-
     connect: {
       server: {
         options: {
@@ -704,7 +676,7 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean:build', //'replace:development',
+    'clean:build', 'copy:development-env',
     'bower:install',
     'html2js', 'jshint', 'coffeelint', 'coffee',
     'sass_to_scss:build', 'sass:build', 'copy:build_app_assets',
@@ -718,8 +690,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-     //'replace:production',
-     'sass:compile', 'concat:compile_css', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
+     'copy:production-env', 'sass:compile', 'concat:compile_css', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
   grunt.registerTask( 'construct', [
