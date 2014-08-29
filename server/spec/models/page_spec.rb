@@ -41,6 +41,9 @@ describe Page do
 
       it "should return a hash of ContentBlocks with headline and body" do
         contents.should be_a(Hash)
+        contents.should have(2).contents
+        contents['headline'].should be_a(ContentBlock)
+        contents['main'].should be_a(ContentBlock)
       end
     end
   end
