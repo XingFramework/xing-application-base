@@ -57,7 +57,7 @@ describe Page do
       let! :page do
         FactoryGirl.create(:one_column_page)
       end
-      let! :headline do FactoryGirl.create(:content_block) end
+      let! :headline do FactoryGirl.create(:content_block, :body => 'the content') end
       let! :main     do FactoryGirl.create(:content_block) end
       let! :foo      do FactoryGirl.create(:content_block) end
       let! :bar      do FactoryGirl.create(:content_block) end
@@ -72,10 +72,26 @@ describe Page do
       end
 
       it "should return only the included blocks" do
-        expect(contents).to have_key('headline')
-        expect(contents).to have_key('main')
+        expect(contents).to     have_key('headline')
+        expect(contents).to     have_key('main')
         expect(contents).not_to have_key('foo')
         expect(contents).not_to have_key('bar')
+      end
+
+      describe "and includes a validation specifier" do
+        let :format do
+          [{ :name          => 'headline',
+             :content_type  => 'text/html',
+             :sanitize_with => :clean_this_thing
+          },
+          {  :name         => 'main',
+             :content_type => 'text/html'
+          }]
+        end
+        it "should use the validator for that content body" do
+          page.should_receive(:clean_this_thing).and_return('cleaned content')
+          expect(contents['headline'].body).to eq('cleaned content')
+        end
       end
     end
   end

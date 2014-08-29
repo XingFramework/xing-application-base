@@ -35,10 +35,12 @@ class Page < ActiveRecord::Base
 
 
   scope :published, -> do
+    # TODO: Decide exactly what publication fields we are using and how
     where("(publish_start IS NULL OR publish_start < :now) AND (publish_end IS NULL OR publish_end > :now)", :now => Time.zone.now)
   end
 
   scope :unpublished, -> do
+    # TODO: Decide exactly what publication fields we are using and how
     where("NOT ((publish_start IS NULL OR publish_start < :now) AND (publish_end IS NULL OR publish_end > :now))", :now => Time.zone.now)
   end
 
@@ -47,6 +49,7 @@ class Page < ActiveRecord::Base
   }
 
   def published?
+    # TODO: Decide exactly what publication fields we are using and how
     (publish_start.nil? || publish_start <= Time.zone.now) && (publish_end.nil? || publish_end >= Time.zone.now)
   end
 
@@ -54,13 +57,36 @@ class Page < ActiveRecord::Base
     Hash[page_contents.map do |pc| [ pc.name, pc.content_block ] end ]
   end
 
-  def contents
-    if self.class.content_format.present?
-      all_associated_contents.select{ |key, val| content_format.has_key?(key) }
-    end
+  # subclasses override self.content_format to specify the content blocks
+  # they contain.
+  def self.content_format; end
+  def content_format
+    self.class.content_format
   end
 
+  def contents
+    conts = all_associated_contents
+    if content_format.present?
+      conts.select!{ |name, block| content_format.any?{|pc| pc[:name] == name }}
+      conts.each   { |name, block| sanitize(name, block) }
+    end
+    conts
+  end
+
+  # TODO - probably make this a class method
   def regenerate_sitemap
     Sitemap.create! unless Rails.env.test?
   end
+
+  private
+  def sanitize(name, block)
+    if (sanitizer = named_content_format(name)[:sanitize_with]).present?
+      block.body = send(sanitizer, block.body)
+    end
+  end
+
+  def named_content_format(name)
+    content_format.find{ |cf| cf[:name] == name }
+  end
+
 end
