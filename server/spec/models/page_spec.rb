@@ -40,25 +40,21 @@ describe Page do
       end
 
       it "should return a hash of ContentBlocks with headline and body" do
-        contents.should be_a(Hash)
-        contents.should have(2).contents
-        contents['headline'].should be_a(ContentBlock)
-        contents['main'].should be_a(ContentBlock)
+        expect(contents).to be_a(Hash)
+        expect(contents.length).to eq(2)
+        expect(contents['headline']).to be_a(ContentBlock)
+        expect(contents['main']).to be_a(ContentBlock)
       end
     end
   end
 
-  describe "validations", :pending => 'awaiting implementation' do
+  describe "validations" do
     describe "uniqueness" do
-      it "should not create two pages with the same title" do
-        page_1 = FactoryGirl.create(:page, :title => 'foo')
-        page_2 = FactoryGirl.build(:page, :title => 'foo')
-        page_2.should_not be_valid
-      end
-      it "should not create two pages with the same permalink" do
-        page_1 = FactoryGirl.create(:page, :permalink => 'foo')
-        page_2 = FactoryGirl.build(:page, :permalink => 'foo')
-        page_2.should_not be_valid
+      it "should not create two pages with the same url slug" do
+        FactoryGirl.create(:one_column_page,  :url_slug => 'foo')
+        expect(
+          FactoryGirl.build(:one_column_page, :url_slug => 'foo')
+        ).not_to be_valid
       end
     end
   end
