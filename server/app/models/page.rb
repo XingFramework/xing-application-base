@@ -23,7 +23,7 @@ require 'sitemap'
 class Page < ActiveRecord::Base
   self.inheritance_column = 'layout'
 
-  validates_presence_of :title, :url_slug, :layout
+  validates_presence_of :title, :url_slug
   validates_uniqueness_of :url_slug
 
   after_create :regenerate_sitemap

@@ -21,13 +21,6 @@
 require 'spec_helper'
 
 describe Page do
-  describe "mass assignment", :pending => true do
-    it "should mass assign title and permalink" do
-      page = Page.new(:title => 'foo', :peink => 'bar' )
-      page.title.should == 'foo'
-      page.permalink.should == 'bar'
-    end
-  end
 
   describe "contents" do
     let :contents do
@@ -59,16 +52,15 @@ describe Page do
     end
   end
 
-  describe "published scope", :pending => 'awaiting implementation' do
-    before :each do
-      @page_1 = FactoryGirl.create(:page, :published => true)
-      @page_2 = FactoryGirl.build(:page, :published => false)
-    end
-    it "should include a published page" do
-      Page.published.should include @page_1
+  describe "published scope", :pending => "decide exactly which published parameters we need" do
+    let! :published_page   do FactoryGirl.create(:one_column_page, :published => true)  end
+    let! :unpublished_page do FactoryGirl.create(:one_column_page, :published => false) end
+
+    it "should include a published page but not unpublished page" do
+      expect(Page.published).to include(published_page)
     end
     it "should not include an unpublished page" do
-      Page.published.should_not include @page_2
+      expect(Page.published).not_to include(unpublished_page)
     end
   end
 end

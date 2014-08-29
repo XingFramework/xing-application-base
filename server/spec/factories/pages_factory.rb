@@ -21,7 +21,7 @@ FactoryGirl.define do
 
 
   factory :one_column_page, :parent => :page do
-    layout 'one_column'
+    layout 'OneColumnPage'
 
     after(:create) do |page|
       page.page_contents << PageContent.new(
