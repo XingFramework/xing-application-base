@@ -25,9 +25,11 @@ module.exports = function ( config ) {
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
       'karma-coffee-preprocessor',
+      'karma-traceur-preprocessor',
       'karma-ng-html2js-preprocessor',
     ],
     preprocessors: {
+      '**/*.js': 'traceur',
       '**/*.coffee': 'coffee',
       '**/*.html': ['ng-html2js'],
       '**/*.json': ['ng-html2js']

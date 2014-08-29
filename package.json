@@ -19,7 +19,7 @@
     "grunt-conventional-changelog": "~1.1.0",
     "grunt-bump": "0.0.13",
     "grunt-cli": "~0.1.13",
-    "grunt-traceur": "~0.2.3",
+    "grunt-traceur-simple": "~0.9.7",
     "grunt-karma": "~0.8.3",
     "grunt-sass": "~0.12.1",
     "grunt-sass-to-scss": "~0.1.9",

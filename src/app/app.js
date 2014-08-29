@@ -1,3 +1,5 @@
+import {} from '../../vendor/angular/angular'
+
 angular.module( 'Reasoning', [
   'templates-app',
   'templates-common',

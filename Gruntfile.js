@@ -21,8 +21,9 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-replace');
+  //grunt.loadNpmTasks('grunt-replace');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-traceur-simple');
 
   /**
    * Load in our build configuration file.
@@ -221,6 +222,26 @@ module.exports = function ( grunt ) {
         src: [ '<%= app_files.coffee %>' ],
         dest: '<%= build_dirs.js %>',
         ext: '.js'
+      }
+    },
+
+    /*
+     */
+    traceur: {
+      options: {
+        includeRuntime: true,
+        traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
+        traceurCommand: "./node_modules/.bin/traceur",
+        traceurOptions: "--experimental --source-maps"
+      },
+      build: {
+        files: [
+          {
+          expand: true,
+          src: 'src/app/app.js',
+          dest: '<%= build_dirs.js %>'
+        }
+        ]
       }
     },
 
@@ -700,6 +721,17 @@ module.exports = function ( grunt ) {
      //'replace:production',
      'sass:compile', 'concat:compile_css', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
+
+  grunt.registerTask( 'construct', [
+    'clean:build', //'replace:development',
+    'bower:install',
+    'html2js', 'jshint', 'coffeelint', 'coffee',
+    'traceur:build',
+    'sass_to_scss:build', 'sass:build', 'copy:build_app_assets',
+    'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs',
+    //'sprockets_index:build', 'index:build',
+    'karmaconfig', 'karma:continuous'
+  ])
 
   /**
    * A utility function to get all app JavaScript sources.
