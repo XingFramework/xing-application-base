@@ -21,28 +21,18 @@
 require 'sitemap'
 
 class Page < ActiveRecord::Base
+  self.inheritance_column = 'layout'
 
-  validates_presence_of :title, :permalink
-  validates_uniqueness_of :title, :permalink
-  validates_inclusion_of :layout, :in => PAGE_LAYOUTS.values
+  validates_presence_of :title, :url_slug, :layout
+  validates_uniqueness_of :url_slug
 
   after_create :regenerate_sitemap
   after_update :regenerate_sitemap
   before_destroy :regenerate_sitemap
 
-  has_many :locations
+  has_many :page_contents
+  has_many :content_blocks, :through => :page_contents
 
-  scope :brochure, -> do
-    where(:layout => nil)
-  end
-
-  scope :not_blog, -> do
-    where("layout != 'blog' OR layout IS NULL")
-  end
-
-  scope :blog, -> do
-    where(:layout => "blog")
-  end
 
   scope :published, -> do
     where("(publish_start IS NULL OR publish_start < :now) AND (publish_end IS NULL OR publish_end > :now)", :now => Time.zone.now)
@@ -58,6 +48,10 @@ class Page < ActiveRecord::Base
 
   def published?
     (publish_start.nil? || publish_start <= Time.zone.now) && (publish_end.nil? || publish_end >= Time.zone.now)
+  end
+
+  def contents
+    Hash[page_contents.map { |pc| [ pc.name, pc.content_block ] } ]
   end
 
   def regenerate_sitemap
