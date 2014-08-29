@@ -50,8 +50,14 @@ class Page < ActiveRecord::Base
     (publish_start.nil? || publish_start <= Time.zone.now) && (publish_end.nil? || publish_end >= Time.zone.now)
   end
 
+  def all_associated_contents
+    Hash[page_contents.map do |pc| [ pc.name, pc.content_block ] end ]
+  end
+
   def contents
-    Hash[page_contents.map { |pc| [ pc.name, pc.content_block ] } ]
+    if self.class.content_format.present?
+      all_associated_contents.select{ |key, val| content_format.has_key?(key) }
+    end
   end
 
   def regenerate_sitemap
