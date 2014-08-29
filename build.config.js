@@ -18,6 +18,12 @@ module.exports = {
   //compile_dir: '../server/public',
   tmp_dir: 'tmp',
 
+  pkg: grunt.file.readJSON("package.json"),
+
+  compile_targets: {
+    js: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
+  },
+
   /**
    * This is a collection of file patterns that refer to our app code (the
    * stuff in `src/`). These file paths are used in the configuration of

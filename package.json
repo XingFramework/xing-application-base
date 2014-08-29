@@ -1,5 +1,13 @@
 {
-  "repository": "",
+  "name": "Reasoning",
+  "version": "0.0.1",
+  "repository": "git@git.lrdesign.com:lrd/reasoning.git",
+  "author": "Logical Reality Design",
+  "homepage": "http://lrdesign.com",
+  //"licenses": {
+  //  "type": "All rights reserved",
+  //  "url": ""
+  //},
   "devDependencies": {
     "traceur": "0.0.58",
     "karma": "~0.12",

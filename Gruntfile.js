@@ -14,7 +14,6 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-coffeelint');
-  //grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-sass-to-scss');
   grunt.loadNpmTasks('grunt-karma');
@@ -35,12 +34,6 @@ module.exports = function ( grunt ) {
    */
   var taskConfig = {
     /**
-     * We read in our `package.json` file so we can access the package name and
-     * version. It's already there, so we don't repeat ourselves here.
-     */
-    pkg: grunt.file.readJSON("package.json"),
-
-    /**
      * The banner is the comment that is placed at the top of our compiled
      * source files. It is first processed as a Grunt template, where the `<%=`
      * pairs are evaluated based on this very configuration object.
@@ -52,7 +45,7 @@ module.exports = function ( grunt ) {
         ' * <%= pkg.homepage %>\n' +
         ' *\n' +
         ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-        ' * Licensed <%= pkg.licenses.type %> <<%= pkg.licenses.url %>>\n' +
+        ' <% if(pkg.licenses){ %>* Licensed <%= pkg.licenses.type %> <<%= pkg.licenses.url %>><% } %>\n' +
         ' */\n'
     },
 
@@ -252,8 +245,8 @@ module.exports = function ( grunt ) {
         files: [
           {
           expand: true,
-          src: 'src/app/app.js',
-          dest: '<%= build_dirs.js %>'
+          src: 'src/main.js',
+          dest: '<%= compile_targets.js %>'
         }
         ]
       }
@@ -265,14 +258,9 @@ module.exports = function ( grunt ) {
      */
     ngAnnotate: {
       compile: {
-        files: [
-          {
-            src: [ '<%= app_files.js %>' ],
-            cwd: '<%= build_dirs.js %>',
-            dest: '<%= build_dirs.js %>',
-            expand: true
-          }
-        ]
+        files: {
+          '<%= compile_targets.js %>': '<%= compile_targets.js %>'
+        }
       }
     },
 
@@ -285,7 +273,7 @@ module.exports = function ( grunt ) {
           banner: '<%= meta.banner %>'
         },
         files: {
-          '<%= concat.compile_js.dest %>': '<%= concat.compile_js.dest %>'
+          '<%= compile_targets.js %>': '<%= compile_targets.js %>'
         }
       }
     },
@@ -351,14 +339,31 @@ module.exports = function ( grunt ) {
       gruntfile: [
         'Gruntfile.js'
       ],
+      target: {
+        files: {
+          src: [ '<%= compile_targets.js %>' ],
+          options: {
+            esnext: false
+          }
+        }
+
+      }
+      // c.f. http://www.jshint.com/docs/options/
       options: {
-        curly: true,
-        immed: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        boss: true,
-        eqnull: true
+        bitwise: true, //don't allow ^ | &, which are bitwise not boolean
+        //eqeqeq: true, //require === and !== instead of == and !=
+        forin: true, //require for in loops to filter items with hasOwnProperty
+        curly: true, //require {} for if and while etc
+        immed: true, //immediate function invocations must have ()
+        latedef: "nofunc", //declare variables before use
+        newcap: true, //new lowercase() forbidden
+        noarg: true, //don't use arguments.caller and arguments.callee
+        undef: true, //forbid use of undefined variables
+        sub: true, //okay to use thing['value'] when thing.value would work
+        eqnull: true, //allow `== null`
+        esnext: true, //we're using ES6
+
+        browser: true, //Automatically allow browser-exposed globals
       },
       globals: {}
     },
@@ -559,7 +564,7 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.js %>'
         ],
-        tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs', 'sprockets_index:build' ]
+        tasks: [ 'jshint:src', 'traceur:build', 'jshint:target', 'karma:unit:run' ]
       },
 
       /**
@@ -570,7 +575,7 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.coffee %>'
         ],
-        tasks: [ 'coffeelint:src', 'coffee:source', 'karma:unit:run', 'copy:build_appjs' ]
+        tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build', 'jshint:target', 'karma:unit:run' ]
       },
 
       /**
@@ -665,43 +670,29 @@ module.exports = function ( grunt ) {
    * before watching for changes.
    */
   grunt.renameTask( 'watch', 'delta' );
-  grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
+  grunt.registerTask( 'watch', [ 'develop', 'delta' ] );
 
   /**
    * The default task is to build and compile.
    */
-  grunt.registerTask( 'default', [ 'build', 'compile' ] );
+  grunt.registerTask( 'default', [ 'compile' ] );
 
-  /**
-   * The `build` task gets your app ready to run for development and testing.
-   */
   grunt.registerTask( 'build', [
-    'clean:build', 'copy:development-env',
-    'bower:install',
-    'html2js', 'jshint', 'coffeelint', 'coffee',
-    'sass_to_scss:build', 'sass:build', 'copy:build_app_assets',
-    'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs',
-    //'sprockets_index:build', 'index:build',
-    'karmaconfig', 'karma:continuous'
-  ]);
+    'clean:build', 'bower:install',
+    'html2js', 'jshint:src',
+    'coffeelint', 'coffee',
+    'traceur:build', 'jshint:target',
+    'sass_to_scss:build', 'sass:build',
+    'copy:build_app_assets', 'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs',
+    'karmaconfig'
+  ])
 
-  /**
-   * The `compile` task gets your app ready for deployment by concatenating and
-   * minifying your code.
-   */
+  grunt.registerTask( 'develop', [
+    'copy:development-env', 'build', 'karma:unit'
+  ])
+
   grunt.registerTask( 'compile', [
-     'copy:production-env', 'sass:compile', 'concat:compile_css', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
-  ]);
-
-  grunt.registerTask( 'construct', [
-    'clean:build', //'replace:development',
-    'bower:install',
-    'html2js', 'jshint', 'coffeelint', 'coffee',
-    'traceur:build',
-    'sass_to_scss:build', 'sass:build', 'copy:build_app_assets',
-    'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs',
-    //'sprockets_index:build', 'index:build',
-    'karmaconfig', 'karma:continuous'
+    'copy:production-env', 'build', 'ngAnnotate', 'uglify'
   ])
 
   /**
