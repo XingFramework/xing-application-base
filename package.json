@@ -1,5 +1,9 @@
 {
-  "repository": "",
+  "name": "Reasoning",
+  "version": "0.0.1",
+  "repository": "git@git.lrdesign.com:lrd/reasoning.git",
+  "author": "Logical Reality Design",
+  "homepage": "http://lrdesign.com",
   "devDependencies": {
     "traceur": "0.0.58",
     "karma": "~0.12",
@@ -19,7 +23,7 @@
     "grunt-conventional-changelog": "~1.1.0",
     "grunt-bump": "0.0.13",
     "grunt-cli": "~0.1.13",
-    "grunt-traceur": "~0.2.3",
+    "grunt-traceur-simple": "~0.9.7",
     "grunt-karma": "~0.8.3",
     "grunt-sass": "~0.12.1",
     "grunt-sass-to-scss": "~0.1.9",

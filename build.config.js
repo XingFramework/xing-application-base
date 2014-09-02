@@ -8,7 +8,7 @@ module.exports = {
    * completely built.
    */
   build_dirs: {
-    root: 'build',
+    root: 'src/build',
     stylesheets: '<%= build_dirs.root %>/stylesheets',
     js: '<%= build_dirs.root %>/javascripts',
     assets: '<%= build_dirs.root %>/assets'
@@ -17,6 +17,11 @@ module.exports = {
   compile_dir: 'bin',
   //compile_dir: '../server/public',
   tmp_dir: 'tmp',
+
+  compile_targets: {
+    js: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
+    map: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.map',
+  },
 
   /**
    * This is a collection of file patterns that refer to our app code (the
@@ -28,6 +33,7 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
+    js_roots: [ 'src/main.js' ],
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'test/**/*.js' ],
 

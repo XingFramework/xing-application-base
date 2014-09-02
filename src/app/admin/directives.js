@@ -1,5 +1,6 @@
-angular.module( 'LRNewWebsite.admin', ['ngCookies', 'LRNewWebsite.config'])
+import {configuration} from '../common/config';
 
+angular.module( configuration.appName + '.admin', ['ngCookies', configuration.appName + '.config'])
 .directive('adminOnly',
   ['$cookies', function ($cookies) {
 
