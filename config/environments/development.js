@@ -1,4 +1,4 @@
-angular.module('LRNewWebsite.config', [])
-  .constant('configuration', {
-    serverUrl: "http://localhost:3000/"
-  });
+export var environment = {
+  serverUrl: "http://localhost:3000/",
+  name: "development",
+};

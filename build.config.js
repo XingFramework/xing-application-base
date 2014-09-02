@@ -8,7 +8,7 @@ module.exports = {
    * completely built.
    */
   build_dirs: {
-    root: 'build',
+    root: 'src/build',
     stylesheets: '<%= build_dirs.root %>/stylesheets',
     js: '<%= build_dirs.root %>/javascripts',
     assets: '<%= build_dirs.root %>/assets'
@@ -18,10 +18,9 @@ module.exports = {
   //compile_dir: '../server/public',
   tmp_dir: 'tmp',
 
-  pkg: grunt.file.readJSON("package.json"),
-
   compile_targets: {
-    js: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
+    js: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
+    map: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.map',
   },
 
   /**
@@ -34,7 +33,7 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
-    js_roots: [ 'src/app/app.js' ],
+    js_roots: [ 'src/main.js' ],
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'test/**/*.js' ],
 

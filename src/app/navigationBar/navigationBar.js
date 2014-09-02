@@ -1,4 +1,7 @@
-angular.module( 'LRNewWebsite.navigationBar', []).directive('navigationBar',
+import { configuration } from '../common/config';
+
+angular.module( configuration.appName + '.navigationBar', [])
+.directive('navigationBar',
   function () {
     return {
       restrict: 'E',

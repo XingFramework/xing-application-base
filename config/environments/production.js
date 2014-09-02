@@ -1,4 +1,3 @@
-angular.module('LRNewWebsite.config', [])
-  .constant('configuration', {
-    serverUrl: '/'
-  });
+export var environment = {
+  serverUrl: "/",
+};
