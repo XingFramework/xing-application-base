@@ -3,5 +3,6 @@
 build/
 bin/
 node_modules/
-bower_components/
 .vimrc
+vendor/
+src/common/environment.js

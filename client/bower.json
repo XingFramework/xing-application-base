@@ -2,7 +2,7 @@
   "name": "ng-boilerplate",
   "version": "0.3.1",
   "devDependencies": {
-    "angular": "~1.2.16",
+    "angular": "~1.3.0",
     "angular-mocks": "~1.2.16",
     "angular-ui-router": "~0.2.10",
     "angular-ui-utils": "~0.1.1",
@@ -11,8 +11,9 @@
     "compass-vanilla": "~0.1.0",
     "angular-resource": "~1.2.16",
     "singularity": "> 0",
-    "sassy-buttons": "".
-    "restangular": "~1.4.0"
+    "sassy-buttons": "",
+    "restangular": "~1.4.0",
+    "angular-cookies": "~1.2.22"
   },
   "dependencies": {},
   "exportsOverride": {
@@ -27,5 +28,6 @@
     }
   },
   "resolutions": {
+    "angular": "~1.3.0"
   }
 }

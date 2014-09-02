@@ -1,6 +1,9 @@
-angular.module( 'MindSwarms.server', [
-  'ngResource'
-]).factory('server', function($resource, $http){
+import {configuration} from '../config';
+import {} from '../../../vendor/angular/angular';
+import {} from '../../../vendor/restangular/restangular';
+
+angular.module( configuration.appName + '.server', [ 'ngResource' ])
+.factory('server', function($resource, $http){
 
   $http.defaults.headers.common.Accept = 'application/json';
   $http.defaults.headers.post['Content-Type'] = 'application/json';
@@ -12,68 +15,13 @@ angular.module( 'MindSwarms.server', [
     studyList: $resource('/studies')
   };
 
-  var templates = {
-    study: {
-      title: "",
-      screener_questions: [{
-        text: "",
-        options: [" ", " "],
-        answer_type: 0
-      }]
-    }
-  };
-
   var currentUser;
-  var currentStudies;
-
-  var exported = {
-  };
-
-  exported.updateStudies = function(){
-    if(this.currentRole() != "Researcher"){
-      return [];
-    }
-
-    currentStudies = resources.study.query({owner_id: this.currentUser().id});
-    return currentStudies;
-  };
-
-  exported.currentStudies = function(){
-    return currentStudies;
-  };
-
-  exported.update = function(resource){
-    resource.$save();
-  };
-
-  exported.study = function(id){
-    if(id == "new") {
-      var study = angular.copy(templates.study);
-      study.$save = function(){
-        resources.studyList.save(study);
-      };
-      return study;
-    } else {
-      return resources.study.get({id: id});
-    }
-  };
+  var exported = {};
 
   exported.login = function(user){
     return resources.user.get({email: user.email}, function(user){
       currentUser = user;
     }).$promise;
-  };
-
-  exported.currentUser = function(){
-    return currentUser;
-  };
-
-  exported.currentRole = function(){
-    if(currentUser !== undefined){
-      return "Researcher";
-    }
-
-    return "none";
   };
 
   return exported;

@@ -1,0 +1,18 @@
+{
+  "name": "sassy-buttons",
+  "version": "0.1.4",
+  "main": [
+    "_sassybuttons.sass",
+    "sassy-buttons/sassy-buttons.sass",
+    "sassy-buttons/sassy-buttons/_sassy-button-gradient.sass",
+    "sassy-buttons/sassy-buttons/_sassy-button-pseudo-states.sass",
+    "sassy-buttons/sassy-buttons/_sassy-button-shadows.sass",
+    "sassy-buttons/sassy-buttons/_sassy-button-styles.sass",
+    "sassy-buttons/sassy-buttons/_sassy-button-text.sass"
+  ],
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jhardy/sassy-buttons-bower.git"
+  }
+}

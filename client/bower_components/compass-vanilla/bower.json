@@ -1,0 +1,14 @@
+{
+  "name": "compass-vanilla",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ajgon/compass-vanilla",
+  "authors": [
+    { "name": "Igor Rzegocki", "email": "ajgon@irgon.com","homepage": "http://rzegocki.pl/" }
+  ],
+  "description": "Extracted, ruby independent Chris Eppsteins Compass Core",
+  "keywords": [
+    "SASS",
+    "Compass"
+  ],
+  "license": "MIT"
+}
