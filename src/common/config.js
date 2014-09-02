@@ -5,7 +5,7 @@ export var configuration = {
 };
 
 if(environment.name){
-  configuration.appTitle = `${configuration.appTitle} - ${environment.name}`;
+  configuration.appTitle = `${configuration.appName} - ${environment.name}`;
 } else {
   configuration.appTitle = configuration.appName;
 }

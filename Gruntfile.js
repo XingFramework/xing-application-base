@@ -512,7 +512,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.js %>'
           ],
-          tasks: [ 'jshint:src', 'traceur:build', 'jshint:target', 'karma:unit:run' ]
+          tasks: [ 'jshint:src', 'traceur:build', 'karma:unit:run' ]
         },
 
         /**
@@ -523,7 +523,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.coffee %>'
           ],
-          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build', 'jshint:target', 'karma:unit:run' ]
+          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build', 'karma:unit:run' ]
         },
 
         /**
