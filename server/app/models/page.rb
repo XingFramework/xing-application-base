@@ -84,6 +84,8 @@ class Page < ActiveRecord::Base
       block.body = send(sanitizer, block.body)
     elsif named_content_format(name)[:content_type] == 'text/html'
       block.body = sanitize_html(block.body)
+    elsif named_content_format(name)[:content_type] == 'text/css'
+      block.body = sanitize_css(block.body)
     end
   end
 
