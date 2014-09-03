@@ -82,7 +82,23 @@ class Page < ActiveRecord::Base
   def sanitize(name, block)
     if (sanitizer = named_content_format(name)[:sanitize_with]).present?
       block.body = send(sanitizer, block.body)
+    elsif named_content_format(name)[:content_type] == 'text/html'
+      block.body = sanitize_html(block.body)
     end
+  end
+
+  def sanitize_html(content, config = Sanitize::Config::RESTRICTED)
+    Sanitize.fragment(content, config)
+  end
+
+  def sanitize_user_html(content)
+    sanitize_html(content, USER_CONTENT_DEFAULT_SANITIZER)
+  end
+  def sanitize_admin_html(content)
+    sanitize_html(content, ADMIN_CONTENT_DEFAULT_SANITIZER)
+  end
+  def sanitize_css(content, config = Sanitize::Config::RELAXED)
+    Sanitize::CSS.properties(content, config)
   end
 
   def named_content_format(name)

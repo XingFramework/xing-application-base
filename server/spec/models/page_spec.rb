@@ -42,7 +42,7 @@ describe Page do
 
     describe "when content_format is present" do
       before do
-        Page.stub!(:content_format).and_return(format)
+        Page.stub(:content_format).and_return(format)
       end
 
       let :format do
@@ -78,7 +78,7 @@ describe Page do
         expect(contents).not_to have_key('bar')
       end
 
-      describe "and includes a validation specifier" do
+      describe "and includes a sanitization specifier" do
         let :format do
           [{ :name          => 'headline',
              :content_type  => 'text/html',
@@ -90,6 +90,18 @@ describe Page do
         end
         it "should use the validator for that content body" do
           page.should_receive(:clean_this_thing).and_return('cleaned content')
+          expect(contents['headline'].body).to eq('cleaned content')
+        end
+      end
+
+      describe "And no sanitizer is specified for an HTML block" do
+        let :format do
+          [{ :name          => 'headline',
+             :content_type  => 'text/html',
+          }]
+        end
+        it "should use the default validator for html" do
+          page.should_receive(:sanitize_html).with(headline.body).and_return('cleaned content')
           expect(contents['headline'].body).to eq('cleaned content')
         end
       end

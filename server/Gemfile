@@ -8,6 +8,7 @@ gem 'devise'
 gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nested_set'
 gem 'carrierwave'
 gem "rmagick", require: false
+gem "sanitize"
 
 group :development, :test do
   gem "rspec", "< 3.0.0"

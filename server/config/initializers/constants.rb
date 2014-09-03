@@ -15,3 +15,8 @@ NAV_MENU_CACHE = "nav_menu"
 NAV_TEMPLATE_NAMES = {
   :nav => {:node => "shared/nav_node", :list => "shared/nav_list"}
 }
+
+
+USER_CONTENT_DEFAULT_SANITIZER  = Sanitize::Config::BASIC
+ADMIN_CONTENT_DEFAULT_SANITIZER = Sanitize::Config::RELAXED
+
