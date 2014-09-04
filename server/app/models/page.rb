@@ -87,7 +87,7 @@ class Page < ActiveRecord::Base
       Page.registry[page_name] = self
     end
 
-    def self.get(page_name)
+    def registry_get(page_name)
       Page.registry.fetch(page_name)
     end
   end

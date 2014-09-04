@@ -1,5 +1,0 @@
-class OneColumnPage < Page
-
-
-end
-
