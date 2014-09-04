@@ -96,6 +96,10 @@ class Page < ActiveRecord::Base
     self.class.name.split("::")[1..-1].join.underscore
   end
 
+  def set_url_slug
+    self.url_slug ||= title.to_slug.normalize.to_s
+  end
+
   private
   def sanitize(name, block)
     if (sanitizer = named_content_format(name)[:sanitize_with]).present?

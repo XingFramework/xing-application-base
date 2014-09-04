@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    resources :images
-    resources :documents
-    resources :pages
-    resources :locations
+  get "pages/:slug", :to => 'pages#show'
 
-    resources :blog_posts, :except => 'show'
-    resources :topics, :except => 'show'
+  namespace :admin do
+    #resources :images
+    #resources :documents
+    resources :pages
+    #resources :locations
   end
 
   devise_for :users
@@ -20,5 +19,4 @@ Rails.application.routes.draw do
 
   root :to => 'static#index'
 
-  get '/*permalink', :controller => :pages, :action => 'show'
 end

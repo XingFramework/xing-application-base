@@ -127,8 +127,29 @@ describe Page do
           expect(contents['styles'].body).to eq('.clean { white-space: nowrap; } ')
         end
       end
+    end
+  end
 
+  describe "set_url_slug" do
+    describe "when manually set" do
+      it "should not change the slug" do
+        page = FactoryGirl.build(:page, :url_slug => 'this-is-a-test')
+        expect do
+          page.set_url_slug
+        end.not_to change{page.url_slug}
+      end
+    end
 
+    describe "when not set" do
+      describe "when title is set" do
+
+        it "should create it based on the title" do
+          page = FactoryGirl.build(:page, :url_slug => nil, :title => "The Gettysburgh Address")
+          expect do
+            page.set_url_slug
+          end.to change{page.url_slug}.from(nil).to('the-gettysburgh-address')
+        end
+      end
     end
   end
 

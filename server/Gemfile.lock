@@ -38,6 +38,7 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    babosa (0.3.11)
     bcrypt (3.1.7)
     builder (3.2.2)
     byebug (3.2.0)
@@ -184,6 +185,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   awesome_nested_set!
+  babosa
   byebug
   cadre
   capybara
