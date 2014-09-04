@@ -100,7 +100,10 @@ class Page < ActiveRecord::Base
     self.url_slug ||= title.to_slug.normalize.to_s
   end
 
-  private
+  def named_content_format(name)
+    content_format.find{ |cf| cf[:name] == name }
+  end
+
   def sanitize(name, block)
     if (sanitizer = named_content_format(name)[:sanitize_with]).present?
       block.body = send(sanitizer, block.body)
@@ -111,6 +114,7 @@ class Page < ActiveRecord::Base
     end
   end
 
+  private
   def sanitize_html(content, config = Sanitize::Config::RESTRICTED)
     Sanitize.fragment(content, config)
   end
@@ -125,8 +129,5 @@ class Page < ActiveRecord::Base
     Sanitize::CSS.properties(content, config)
   end
 
-  def named_content_format(name)
-    content_format.find{ |cf| cf[:name] == name }
-  end
 
 end

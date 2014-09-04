@@ -43,7 +43,15 @@ describe PageMapper do
           end.to change{ Page.count}.by(1)
           Page.last.title.should eq 'foo bar'
         end
-        it "should create the content blocks"
+        it "should create the content blocks" do
+          expect do
+            mapper.save
+          end.to change{ ContentBlock.count}.by(2)
+          page = Page.last
+          page.contents['main'].body.should     == 'Fourscore and seven years.'
+          page.contents['headline'].body.should == 'The Gettysburg Address'
+
+        end
       end
 
       describe "when extra content is provided" do
