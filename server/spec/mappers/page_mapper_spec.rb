@@ -56,16 +56,25 @@ describe PageMapper do
 
       describe "when extra content is provided" do
         let :invalid_data do
-          valid_data[:contents] =  {
+          valid_data.deep_merge({ :data => { :contents => {
             main:     { data: { body: "Fourscore and seven years." }},
-            headline: { data: { body: "The Gettysburg Address" }}
-          }
+            headline: { data: { body: "The Gettysburg Address" }},
+            sidebar:  { data: { body: "See below for other famous speeches!" }}
+          }}}
+          )
         end
+
         let :json do
           invalid_data.to_json
         end
-        it "shouldn't create anything"
-        it "should raise an error"
+
+        it "should raise an error without saving anything" do
+          expect do
+            expect do
+              mapper.save
+            end.to raise_error(PageMapper::BadContentException)
+          end.not_to change{ Page.count}
+        end
       end
     end
 

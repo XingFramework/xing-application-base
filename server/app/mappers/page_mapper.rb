@@ -5,8 +5,8 @@ class PageMapper
   end
 
   def save
-    page_attributes    = @source_hash['data']
-    contents_hash = page_attributes.delete('contents')
+    page_attributes = @source_hash['data']
+    contents_hash   = page_attributes.delete('contents')
     page = Page.new(page_attributes)
     page.set_url_slug
 
@@ -17,6 +17,7 @@ class PageMapper
   end
 
   def add_contents(page, contents_hash)
+    bad_blocks = []
     contents_hash.each do |name, body|
       if (format = page.named_content_format(name)).present?
         content_block = ContentBlock.new(
@@ -29,8 +30,13 @@ class PageMapper
         )
         page.sanitize(name, content_block)
       else
-        raise "Received content that doesn't match a spec"
+        bad_blocks << { name => body['data']['body'] }
       end
     end
+    if bad_blocks.present?
+      raise BadContentException.new("JSON contained invalid content: #{bad_blocks.inspect}")
+    end
   end
+
+  class BadContentException < Exception; end
 end
