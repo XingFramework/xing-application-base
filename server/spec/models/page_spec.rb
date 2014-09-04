@@ -23,13 +23,22 @@ require 'spec_helper'
 describe Page do
 
   describe "contents" do
+    let :headline do FactoryGirl.create(:content_block, :body => 'the content') end
+    let :main     do FactoryGirl.create(:content_block) end
+    let :foo      do FactoryGirl.create(:content_block) end
+    let :bar      do FactoryGirl.create(:content_block) end
+    let :styles   do FactoryGirl.create(:content_block, :content_type => 'text/css', :body => "uncleaned") end
+
     let :contents do
       page.contents
     end
 
     describe "with a page that has two blocks" do
       let :page do
-        FactoryGirl.create(:one_column_page)
+        FactoryGirl.create(:page,
+          :page_contents => [  PageContent.new(:name => 'headline', :content_block => headline),
+                               PageContent.new(:name => 'main', :content_block => main)]
+        )
       end
 
       it "should return a hash of ContentBlocks with headline and body" do
@@ -58,13 +67,8 @@ describe Page do
       end
 
       let! :page do
-        FactoryGirl.create(:one_column_page)
+        FactoryGirl.create(:page)
       end
-      let! :headline do FactoryGirl.create(:content_block, :body => 'the content') end
-      let! :main     do FactoryGirl.create(:content_block) end
-      let! :foo      do FactoryGirl.create(:content_block) end
-      let! :bar      do FactoryGirl.create(:content_block) end
-      let! :styles   do FactoryGirl.create(:content_block, :content_type => 'text/css', :body => "uncleaned") end
 
       before do
         page.page_contents =[  PageContent.new(:name => 'headline', :content_block => headline),
@@ -127,7 +131,6 @@ describe Page do
 
     end
   end
-
 
   describe "validations" do
     describe "uniqueness" do

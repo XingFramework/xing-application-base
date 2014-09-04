@@ -20,8 +20,8 @@ FactoryGirl.define do
   end
 
 
-  factory :one_column_page, :parent => :page do
-    layout 'OneColumnPage'
+  factory :one_column_page, :class => Page::OneColumn, :parent => :page do
+    #layout 'OneColumnPage'
 
     after(:create) do |page|
       page.page_contents << PageContent.new(
@@ -31,6 +31,10 @@ FactoryGirl.define do
       page.page_contents << PageContent.new(
         :name => :main,
         :content_block => FactoryGirl.create(:main)
+      )
+      page.page_contents << PageContent.new(
+        :name => :styles,
+        :content_block => FactoryGirl.create(:styles)
       )
     end
   end
@@ -59,9 +63,9 @@ FactoryGirl.define do
       "This is body content #{nn}. It has <em>really awesome</em> html content."
     end
   end
-  factory :css, :parent => :content_block do
+  factory :styles, :parent => :content_block do
     content_type 'text/css'
-    sequence(:body) do
+    body do
       "div { font-size: 1em; }"
     end
   end

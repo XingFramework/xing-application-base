@@ -21,7 +21,6 @@
 require 'sitemap'
 
 class Page < ActiveRecord::Base
-  self.inheritance_column = 'layout'
 
   validates_presence_of :title, :url_slug
   validates_uniqueness_of :url_slug
@@ -90,6 +89,11 @@ class Page < ActiveRecord::Base
     def registry_get(page_name)
       Page.registry.fetch(page_name)
     end
+  end
+
+
+  def layout
+    self.class.name.split("::")[1..-1].join.underscore
   end
 
   private
