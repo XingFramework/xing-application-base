@@ -47,19 +47,51 @@ GET /navigation/main:
   }
 }
 
-GET /pages/home:
+GET /pages
 {
-  links: {
-    self: "/pages/home"
-  },
+  data: [
+    { links: { self: '/pages/:slug1' }
+      data:  { title: 'Page 1'}
+    },
+    { links: { self: '/pages/:slug2' }
+      data:  { title: 'Page 2'}
+    },
+    { links: { self: '/pages/:slug3' }
+      data:  { title: 'Page 3'}
+    }
+  ]
+}
+
+# an individual page
+GET /pages/:slug
+{
+  # links: { },   # to be added later
+
   data: {
+    title: "string",
+    keywords: "string",
+    description: "string",
+    layout:  "one_column",
     contents: {
       main: {
-        type: "text/html", # based on fuzzy recollection of how pages/content
-                           # relate
-        body: {
-          links: { self: "/contents/home-main" }
-          data: { text: "Four score and seven years" }
+        links: { self: "/content-blocks/:id"  }
+        data: {
+          content_type: 'text/html',
+          body: 'Four score and <em>seven</em> years'
+        }
+      },
+      headline: {
+        links: { self: "/content-blocks/:id" },
+        data: {
+          content_type: 'text/html',
+          body: 'The Gettysburg Address'
+        }
+      },
+      styles: {
+        links: { self: "/content-blocks/:id" },
+        data: {
+          content_type: 'text/css',
+          body: 'p { font-weight: bold; }'
         }
       }
     }
