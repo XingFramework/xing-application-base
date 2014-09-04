@@ -78,6 +78,20 @@ class Page < ActiveRecord::Base
     Sitemap.create! unless Rails.env.test?
   end
 
+  class << self
+    def registry
+      @registry ||= {}
+    end
+
+    def register(page_name)
+      Page.registry[page_name] = self
+    end
+
+    def self.get(page_name)
+      Page.registry.fetch(page_name)
+    end
+  end
+
   private
   def sanitize(name, block)
     if (sanitizer = named_content_format(name)[:sanitize_with]).present?

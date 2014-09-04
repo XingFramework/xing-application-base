@@ -151,4 +151,30 @@ describe Page do
       expect(Page.published).not_to include(unpublished_page)
     end
   end
+
+  describe 'registry' do
+    before do
+      class Page::TestPage < Page
+      end
+
+      class Page::SubTestPage < Page::TestPage
+      end
+    end
+
+    after do
+      Page.registry.delete('test_page')
+    end
+
+    it 'should allow registration of page subclasses' do
+      Page::TestPage.register('test_page')
+      Page.registry['test_page'].should == Page::TestPage
+    end
+
+    it "registers sub pages" do
+      Page::TestPage.register('test_page')
+      Page::SubTestPage.register('sub_test_page')
+      Page.registry['sub_test_page'].should == Page::SubTestPage
+    end
+
+  end
 end
