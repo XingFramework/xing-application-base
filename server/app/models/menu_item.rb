@@ -1,21 +1,21 @@
 # == Schema Information
 #
-# Table name: locations
+# Table name: menu_items
 #
-#  id         :integer(4)      not null, primary key
+#  id         :integer          not null, primary key
 #  name       :string(255)
 #  path       :string(255)
-#  parent_id  :integer(4)
-#  lft        :integer(4)
-#  rgt        :integer(4)
-#  page_id    :integer(4)
+#  parent_id  :integer
+#  lft        :integer
+#  rgt        :integer
+#  page_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
+
 require 'absolute_path'
 
-class Location < ActiveRecord::Base
-
+class MenuItem < ActiveRecord::Base
 
   include AbsolutePath
   acts_as_nested_set
@@ -32,9 +32,12 @@ class Location < ActiveRecord::Base
   def self.topics_root
     find_or_create_by(:name => "Blog Topics")
   end
+  def self.main_menu_root
+    find_or_create_by(:name => "Main")
+  end
 
   scope :main_menu, -> do
-    root.self_and_descendants
+    roots.where().self_and_descendants
   end
 
   scope :blog_topics, -> do
