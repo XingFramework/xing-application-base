@@ -6,7 +6,7 @@ angular.module( `${configuration.appName}.pages`, [
 ])
 
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'pages', {
+  $stateProvider.state( 'cms.pages', {
     url: '/pages/:permalink',
     views: {
       "main": {
@@ -17,10 +17,6 @@ angular.module( `${configuration.appName}.pages`, [
     data:{ pageTitle: 'Awesome' }
   });
 })
-
-.factory('Pages', ['Restangular', function PagesService(Restangular) {
-  return Restangular.service('pages');
-}])
 
 .controller( 'PagesCtrl', ['$scope', '$stateParams', 'Pages', '$sce',
   function PagesController( $scope, $stateParams, Pages, $sce ) {
