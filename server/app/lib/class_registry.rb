@@ -4,21 +4,25 @@ module ClassRegistry
       @registry ||= {}
     end
 
-    def register(role_name, klass=self)
-      raise "Invalid registration: #{role_name} exists" if registrar.registry.keys.include?(role_name)
-      registrar.registry[role_name] = klass
+    def register(name, klass=self)
+      raise "Invalid registration: #{name} exists" if registrar.registry.keys.include?(name)
+      registrar.registry[name] = klass
     end
 
     def registry_key(klass)
-      matches = registrar.registry.select{ |key, val| val == klass}.keys.first
+      registrar.registry.select{ |key, val| val == klass}.keys.first
     end
 
-    def users
-      User.where(:role_name => registrar.registry_key(self))
+    def registry_get(name)
+      registrar.registry.fetch(name)
     end
   end
 
+
   def self.included(base)
+    base.define_singleton_method(:registrar) do
+      base
+    end
     base.extend(ClassMethods)
   end
 end

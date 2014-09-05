@@ -21,6 +21,7 @@
 require 'sitemap'
 
 class Page < ActiveRecord::Base
+  include ClassRegistry
 
   validates_presence_of :title, :url_slug
   validates_uniqueness_of :url_slug
@@ -77,19 +78,19 @@ class Page < ActiveRecord::Base
     Sitemap.create! unless Rails.env.test?
   end
 
-  class << self
-    def registry
-      @registry ||= {}
-    end
+  #class << self
+    #def registry
+      #@registry ||= {}
+    #end
 
-    def register(page_name)
-      Page.registry[page_name] = self
-    end
+    #def register(page_name)
+      #Page.registry[page_name] = self
+    #end
 
-    def registry_get(page_name)
-      Page.registry.fetch(page_name)
-    end
-  end
+    #def registry_get(page_name)
+      #Page.registry.fetch(page_name)
+    #end
+  #end
 
 
   def layout
