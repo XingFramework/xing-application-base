@@ -31,47 +31,51 @@ namespace :db do
     desc "Fill the database with sample data for demo purposes"
     task :load => [
       :environment,
-      :populate_pages,
-      :populate_locations,
-      :populate_images,
-      :populate_documents
+      :populate_pages
       ]
 
     task :populate_pages => :environment do
       require 'populator'
-      Page.delete_all
-      pages = [ :about_us, :contact_us ]
+      Page::OneColumn.delete_all
+
+      # Should probably be removed once more layouts are included
+      PageContent.delete_all
+      ContentBlock.delete_all
+
+      pages = [ :about_us, :contact_us, :home, :gallery, :links]
       pages.each do |name|
-        Page.create(
+         create_one_column_page(
           :title => name.to_s.titleize,
-          :headline => name.to_s.titleize,
-          :permalink => name.to_s,
-          :published => true,
-          :content => Populator.paragraphs(1..5)
+          :url_slug => name.to_s,
+          :keywords => name.to_s
         )
       end
     end
 
-    # Generate some sample locations to match the pages a
-    # TODO: finish implementation once the models are created
-    #
-    # This can be customized on a per-client basis
-    task :populate_locations => :environment do
-      Location.delete_all
-      LOCATIONS.each do |name, hash|
-        loc = Location.new(
-          :name => name
-        )
-        loc.page = Page.find_by_title(hash[:page].to_s.titleize) if hash[:page]
-        loc.path = hash[:path] if hash[:path]
-        loc.save!
-      end
+    def create_one_column_page(options = {})
+      new_page = Page::OneColumn.new(options)
+      headline = ContentBlock.new(
+            :content_type => "text/html",
+            :body => Populator.words(1..5).titlecase
+          )
+      main = ContentBlock.new(
+            :content_type => "text/html",
+            :body => Populator.paragraphs(2..4)
+          )
+      new_page.page_contents << PageContent.create(:name => 'headline', :content_block => headline)
+      new_page.page_contents << PageContent.create(:name => 'main', :content_block => main)
 
-      LOCATIONS.each do |name, hash|
-        pp "Moving #{name} to child of #{hash[:parent]} if exists"
-        loc = Location.find_by_name(name)
-        loc.move_to_child_of(Location.find_by_name(hash[:parent].to_s)) if hash[:parent]
-      end
+      sometimes (0.5) do
+        styles = ContentBlock.new(
+          :content_type => "text/css",
+          :body =>" body { background-color: #d0e4fe; }
+                    h1 { color: orange; text-align: center; }
+                    p { font-size: 20px; }"
+          )
+
+        new_page.page_contents << PageContent.create(:name => 'styles', :content_block => styles)
+       end
+       new_page.save
     end
 
     task :populate_images => :environment do
@@ -87,9 +91,3 @@ end
 def sometimes(p, &block)
   yield(block) if rand <= p
 end
-
-LOCATIONS = {
-  :home => { :path => '/' },
-  :about   => { :page => :about_us ,   :parent => :home },
-  :contact => { :page => :contact_us , :parent => :home }
-}

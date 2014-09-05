@@ -66,8 +66,8 @@ class Page < ActiveRecord::Base
   def contents
     conts = all_associated_contents
     if content_format.present?
-      conts.select!{ |name, block| content_format.any?{|pc| pc[:name] == name }}
-      conts.each   { |name, block| sanitize(name, block) }
+      conts.select!{ |name, content_block| content_format.any?{|pc| pc[:name] == name }}
+      conts.each   { |name, content_block| sanitize(name, content_block) }
     end
     conts
   end
