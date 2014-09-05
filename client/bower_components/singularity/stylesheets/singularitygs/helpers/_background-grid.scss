@@ -1,0 +1,230 @@
+// -----------------------------------------------
+// Grid Overlay & Background
+//
+// Uses all your settings to create a grid background for a container element.
+// There are three ways you can display a grid:
+//
+// 1. Manually apply the background to the element -
+//
+//        .container {
+//          @include background-grid;
+//        }
+//
+// 2. Add a switch to toggle an overlay -
+//
+//        @include grid-overlay('.container');
+//
+// 3. Toggle grid with JavaScript
+//
+//        @include grid-toggle;
+//        Add [data-development-grid="show"] to item you want grid applied to
+//        Add "grid.min.js" to your HTML
+//
+// The first will apply a grid background to your container calculated using your
+// grid settings, media breakpoints etc.
+//
+// The second will add a switch to your page which allows you to view a grid
+// overlay over your container (or <body> if none is provided) by hovering over
+// the switch. if you need your mouse for other things you can toggle the overlay
+// on permanently by inspecting <head> and checking :hover in your styles panel.
+//
+// The thid will allow you to toggle your background grid on and off by pressing the 'g' on your keyboard.
+//
+// Note: Sub-pixel rounding can lead to several pixels of variation between browsers.
+
+// -----------------------------------------------
+// Grid Background
+
+@mixin background-grid(
+  $columns: null,
+  $gutter: null,
+  $gutter-style: null,
+  $color: null
+) {
+
+  $color: if($color != null, $color, sgs-get('background grid color'));
+
+  @if sgs-get('debug') != false {
+    $columns: if($columns != null, $columns, sgs-get('grids'));
+    $gutter: if($gutter != null, $gutter, sgs-get('gutters'));
+    $gutter-style: if($gutter-style != null, $gutter-style, sgs-get('gutter styles'));
+
+    @include background-build($columns, $gutter, $gutter-style, $color)
+  }
+}
+
+@function background-map($columns, $gutters, $gutter-styles) {
+  $Grids: ();
+  $Gutters: ();
+  $Styles: ();
+
+  @if $columns and type-of($columns) != 'map' {
+    $Grids: (-1px: $columns);
+  }
+  @else {
+    $Grids: sgs-get('grids');
+  }
+
+  @if $gutters and type-of($gutters) != 'map' {
+    $Gutters: (-1px: $gutters);
+  }
+  @else {
+    $Gutters: sgs-get('gutters');
+  }
+
+  @if $gutter-styles and type-of($gutter-styles) != 'map' {
+    $Styles: (-1px: $gutter-styles);
+  }
+  @else {
+    $Styles: sgs-get('gutter styles');
+  }
+
+  // Build 1st Depth Map
+  $Holder: ();
+
+  // Grids
+  @each $k, $v in $Grids {
+    $Holder: map-merge($Holder, ($k: ('grid': $v)));
+  }
+  // Gutters
+  @each $k, $v in $Gutters {
+    $Grid: map-get($Holder, $k);
+
+    $Map: ('gutter': $v);
+    @if $Grid != null {
+      $Grid: map-get($Grid, 'grid');
+      @if $Grid != null {
+        $Map: map-merge($Map, ('grid': $Grid));
+      }
+    }
+
+    $Holder: map-merge($Holder, ($k: $Map));
+  }
+  // Style
+  @each $k, $v in $Styles {
+    $Grid: map-get($Holder, $k);
+    $Gutter: map-get($Holder, $k);
+
+    $Map: ('style': $v);
+    @if $Grid != null {
+      $Grid: map-get($Grid, 'grid');
+      @if $Grid != null {
+        $Map: map-merge($Map, ('grid': $Grid));
+      }
+    }
+    @if $Gutter != null {
+      $Gutter: map-get($Gutter, 'gutter');
+      @if $Gutter != null {
+        $Map: map-merge($Map, ('gutter': $Gutter));
+      }
+    }
+
+    $Holder: map-merge($Holder, ($k: $Map));
+  }
+
+  $Holder: sort-map($Holder);
+  $Return: ();
+
+  // Build full stack for each breakpoint
+  @for $i from 1 through length($Holder) {
+    $Key: nth(nth($Holder, $i), 1);
+    $Value: nth(nth($Holder, $i), 2);
+
+    $Previous: ();
+    @if $i > 1 {
+      $Previous: nth(nth($Return, $i - 1), 2);
+    }
+
+    @if not map-has-key($Value, 'grid') {
+      $Sort-Grid: map-get($Previous, 'grid');
+      $Value: map-merge($Value, ('grid': $Sort-Grid));
+    }
+
+    @if not map-has-key($Value, 'gutter') {
+      $Sort-Gutter: map-get($Previous, 'gutter');
+      $Value: map-merge($Value, ('gutter': $Sort-Gutter));
+    }
+
+    @if not map-has-key($Value, 'style') {
+      $Sort-Style: map-get($Previous, 'style');
+      $Value: map-merge($Value, ('style': $Sort-Style));
+    }
+
+    $Return: map-merge($Return, ($Key: $Value));
+  }
+
+  @return $Return;
+}
+
+@mixin background-build($columns, $gutters, $gutter-styles, $color) {
+  $Background-Map: background-map($columns, $gutters, $gutter-styles);
+
+  $Column-Color: $color;
+  $Inverse-Column-Color: mix(black, $color, 15%);
+  $Gutter-Color: mix(white, $color, 25%);
+  $Direction: named-direction(sgs-get('direction'));
+
+  @each $bkpt, $def in $Background-Map {
+    $Grid: map-get($def, 'grid');
+    $Gutter: map-get($def, 'gutter');
+    $Style: map-get($def, 'style');
+
+    $Grid-Count: column-count($Grid);
+
+    $Gradient: ();
+
+    $Gutter-Width: gutter-span($Gutter, $Grid, $Style);
+    @if unit($Gutter-Width) != '%' and unit($Gutter-Width) != '' {
+      $Gutter-Width: 0%;
+    }
+
+    @if $Style == 'fixed' {
+      $Gutter-Width: 0%;
+    }
+    $Counter-Width: 0%;
+    $holder: ();
+
+    @for $i from 1 through $Grid-Count {
+      $Holder-Gradient: ();
+      $Loop-Width: column-span(1, $i, $Grid, $Gutter, $Style);
+
+      @if index($Style, 'split') and $i == 1 {
+        $Counter-Width: ($Gutter-Width / 2);
+        $Gradient: append($Gradient, ($Gutter-Color, $Gutter-Color $Counter-Width), 'comma');
+      }
+
+      $Loop-Color: $Column-Color;
+      @if (index($Style, 'fixed') or $Gutter-Width == 0%) and ($i % 2 == 0 ) {
+        $Loop-Color: $Inverse-Column-Color;
+      }
+
+      @if $i != $Grid-Count {
+        $Gradient: append($Gradient, ($Loop-Color $Counter-Width, $Loop-Color ($Counter-Width + $Loop-Width)), 'comma');
+        $Counter-Width: $Counter-Width + $Loop-Width;
+        $Gradient: append($Gradient, ($Gutter-Color $Counter-Width, $Gutter-Color ($Counter-Width + $Gutter-Width)), 'comma');
+        $Counter-Width: $Counter-Width + $Gutter-Width;
+      }
+      @else if $i == 1 {
+        $Gradient: append($Gradient, ($Loop-Color, $Loop-Color $Counter-Width, $Gutter-Color $Counter-Width, $Gutter-Color ($Counter-Width + $Gutter-Width)), 'comma');
+        $Counter-Width: $Counter-Width + $Loop-Width + $Gutter-Width;
+      }
+      @else if $i == $Grid-Count and index($Style, 'split') {
+        $Gradient: append($Gradient, ($Loop-Color $Counter-Width, $Loop-Color ($Counter-Width + $Loop-Width)), 'comma');
+        $Counter-Width: $Counter-Width + $Loop-Width;
+        $Gradient: append($Gradient, ($Gutter-Color $Counter-Width, $Gutter-Color ($Counter-Width + ($Gutter-Width / 2))), 'comma');
+      }
+      @else {
+        $Gradient: append($Gradient, ($Loop-Color $Counter-Width, $Loop-Color), 'comma');
+      }
+    }
+
+    @if $bkpt != -1px {
+      @include breakpoint($bkpt) {
+        background-image: unquote('linear-gradient(to #{opposite-direction($Direction)}, #{$Gradient})');
+      }
+    }
+    @else {
+      background-image: unquote('linear-gradient(to #{opposite-direction($Direction)}, #{$Gradient})');
+    }
+  }
+}

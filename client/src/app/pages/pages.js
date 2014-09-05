@@ -1,10 +1,13 @@
-angular.module( 'LRNewWebsite.pages', [
-  'ui.router.state'
+import {configuration} from '../../common/config';
+
+angular.module( `${configuration.appName}.pages`, [
+  'ui.router.state',
+  'restangular'
 ])
 
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'pages', {
-    url: '/pages/:id',
+  $stateProvider.state( 'cms.pages', {
+    url: '/pages/:permalink',
     views: {
       "main": {
         controller: 'PagesCtrl',
@@ -15,13 +18,17 @@ angular.module( 'LRNewWebsite.pages', [
   });
 })
 
-.controller( 'PagesCtrl', function AboutCtrl( $scope ) {
-  // This is simple a demo for UI Boostrap.
-  $scope.dropdownDemoItems = [
-    "The first choice!",
-    "And another choice for you.",
-    "but wait! A third!"
-  ];
-})
-
-;
+.controller( 'PagesCtrl', ['$scope', '$stateParams', 'Pages', '$sce',
+  function PagesController( $scope, $stateParams, Pages, $sce ) {
+    $scope.content = {};
+    Pages.one($stateParams.permalink).get().then(function(page) {
+      $scope.content = $sce.trustAsHtml(page.content);
+      $scope.headline = page.headline;
+      var metadata = {};
+      metadata.pageTitle = page.title;
+      metadata.pageKeywords = page.keywords;
+      metadata.pageDescription = page.description;
+      metadata.pageCss = page.css;
+      $scope.$emit('metadataSet', metadata);
+    });
+}]);

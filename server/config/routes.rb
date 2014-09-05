@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
-  get "pages/:slug", :to => 'pages#show'
+  get "pages/:slug", :to => 'pages#show', :as => :page
 
   namespace :admin do
     #resources :images
     #resources :documents
     resources :pages
-    #resources :locations
+    resources :menus
+    resources :content_blocks
+
+    resources :blog_posts, :except => 'show'
+    resources :topics, :except => 'show'
   end
 
   devise_for :users

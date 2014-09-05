@@ -1,4 +1,7 @@
-angular.module( 'ngBoilerplate.about', [
+import {configuration} from '../common/config';
+import {} from '../../vendor/angular/angular';
+
+angular.module( configuration.appName + '.about', [
   'ui.router',
   'placeholders'
 ])

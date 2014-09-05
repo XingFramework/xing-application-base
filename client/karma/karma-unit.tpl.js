@@ -3,17 +3,18 @@ module.exports = function ( config ) {
     /**
      * From where to look for files, starting with the location of this file.
      */
-    basePath: '../',
+    basePath: '../../',
 
     /**
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
-      <% scripts.forEach( function ( file ) { %>'<%= file %>',
-      <% }); %>
-      'src/**/*.js',
-      'src/**/*.coffee',
-      'test/json-fixtures/**/*.json'
+      '<%= compile_targets.js %>',
+      {pattern: '<%= compile_targets.map %>', included: false},
+      <% test_files.js.forEach(function(file){ %>
+      '<%= file %>',<% }); %>
+      'test/json-fixtures/**/*.json',
+      'test/**/*.js'
     ],
     exclude: [
       'src/assets/**/*.js'
@@ -24,11 +25,13 @@ module.exports = function ( config ) {
       'karma-firefox-launcher',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
-      'karma-coffee-preprocessor',
+      //'karma-coffee-preprocessor',
+      //'karma-traceur-preprocessor',
       'karma-ng-html2js-preprocessor',
     ],
     preprocessors: {
-      '**/*.coffee': 'coffee',
+      //'**/*.js': 'traceur',
+      //'**/*.coffee': 'coffee',
       '**/*.html': ['ng-html2js'],
       '**/*.json': ['ng-html2js']
     },

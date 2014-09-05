@@ -1,0 +1,191 @@
+$font_color_nav:        black;
+$contact_button_color:  black;
+
+#nav-wrap {
+  width: 100%;
+  height: 100px;
+  background: $bg_color_header;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+  box-shadow: 0 -5px 20px black;
+
+  #nav {
+    min-width: 670px;
+    display: inline-block;
+
+    ul {
+
+      li {
+        font-size: .85em;
+        letter-spacing: .3em;
+        font-family: $font_header;
+        color: $font_color_nav;
+
+        display: inline-block;
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 15px 15px 10px 15px;
+        margin: 0 .6%;
+        position: relative;
+        bottom: 15px;
+      }
+      .dark-button {
+        background-color: $contact_button_color;
+        color: $font_color_main;
+      }
+      [ui-sref-active="active"]:hover {
+        background-color: $bg_color_light;
+      }
+      .active {
+        background-color: $bg_color_light;
+      }
+      img#LRD-logo {
+        position: relative;
+        top: 25px;
+        width: 90px;
+
+        :hover {
+          background-color: none;
+        }
+      }
+    }
+  }
+}
+
+$footer_height: 300px;
+
+#footer-wrap {
+  width: 100%;
+  // Hack for demo purposes
+  height: $footer_height;
+  background-color: $bg_color_footer;
+
+  footer {
+    max-width: $content-width;
+    margin: 0 auto;
+
+    h3 {
+      border-bottom: none;
+      padding-left: 0;
+      float: none;
+    }
+    ul.footer-links{
+      li a {
+        line-height: 1.5em;
+        color: #a9a9a9;
+      }
+    }
+  }
+}
+
+// Trying out collapsable menu
+// Smaller menu when on small screen
+// All padding and margin are in em, so they will scale as well
+@media (min-width : 900px) {
+  #nav {
+    font-size: 1.2em;
+  }
+}
+
+#nav {
+  min-height: 2em;
+  line-height: 1em;
+
+  ul {
+    transition: max-height .25s linear;
+  }
+  li {
+    // visibility transition is on li because multiple transition selectors is not well supported
+    transition: visibility .25s linear;
+  }
+}
+
+@media (max-width : 670px) {
+  #nav-wrap {
+    #nav {
+      min-width: 0px;
+
+      ul {
+        max-height: 0;
+        overflow: hidden;
+        margin: 0 3.5em 0 1em;
+      }
+
+      li {
+        visibility: hidden;
+        display: block;
+        padding: 0.5em 0.6em;
+        border: none;
+      }
+
+      .navbar-handle {
+        display: block;
+      }
+    }
+
+    #navbar-checkbox:checked + #nav{
+      ul {
+        max-height: 300px;
+      }
+
+      li {
+        visibility: visible;
+      }
+      .navbar-handle {
+        &, &:after, &:before {
+          border-color: #aaa;
+        }
+      }
+    }
+  }
+}
+
+.navbar-checkbox {
+    display: none;
+}
+
+.navbar-handle {
+    $height: 45px; // just a reference to compute em values on the fly
+    display: none;
+    cursor: pointer;
+    position: relative;
+    font-size: $height;
+    padding: .5em 0;
+    height: 0;
+    width: 1em * 75px / $height;
+    border-top: (1em * 6px / $height) solid;
+
+    &:before, &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        content: ' ';
+        border-top: (1em * 6px / $height) solid;
+    }
+
+    &:before {
+        top: 1em * 17px / $height;
+    }
+
+    &:after {
+        top: 1em * 40px / $height;
+    }
+}
+
+#nav-wrap {
+  #nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    .navbar-handle {
+      position: absolute;
+      font-size: 1.2em;
+      top: 0.7em;
+      right: 12px;
+      z-index: 10;
+    }
+  }
+}
