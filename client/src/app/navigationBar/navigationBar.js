@@ -1,10 +1,15 @@
-import { configuration } from '../common/config';
+import { configuration } from '../../common/config';
 
-angular.module( configuration.appName + '.navigationBar', [])
-.directive('navigationBar',
+angular.module( `${configuration.appName}.navigationBar`, [])
+.directive('lrdNavbar',
   function () {
     return {
       restrict: 'E',
-      templateUrl: 'navigationBar/navigationBar.tpl.html'
+      templateUrl: 'navigationBar/navigationBar.tpl.html',
+      scope: {
+        id: "=?",
+        menu: "=",
+        subMenu: "=?"
+      }
     };
   });

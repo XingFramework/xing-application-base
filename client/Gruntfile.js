@@ -215,7 +215,7 @@ module.exports = function( grunt ) {
           includeRuntime: true,
           traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
           traceurCommand: "./node_modules/.bin/traceur",
-          traceurOptions: "--experimental --source-maps"
+          traceurOptions: "--array-comprehension --source-maps"
         },
         build: {
           files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
