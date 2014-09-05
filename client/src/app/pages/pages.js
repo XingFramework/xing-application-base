@@ -1,4 +1,7 @@
+import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import {configuration} from '../../common/config';
+
+console.log("START TESTS");
 
 angular.module( `${configuration.appName}.pages`, [
   'ui.router.state',
@@ -17,6 +20,10 @@ angular.module( `${configuration.appName}.pages`, [
     data:{ pageTitle: 'Awesome' }
   });
 })
+
+.factory('Pages', ['Restangular', function PagesService(Restangular) {
+  return Restangular.service('pages');
+}])
 
 .controller( 'PagesCtrl', ['$scope', '$stateParams', 'Pages', '$sce',
   function PagesController( $scope, $stateParams, Pages, $sce ) {

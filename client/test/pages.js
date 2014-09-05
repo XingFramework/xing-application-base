@@ -1,7 +1,5 @@
-import {configuration} from '../../common/config';
-
-describe( 'Pages section', function() {
-  beforeEach( module( `${configuration.appName}.pages` ) );
+ddescribe( 'Pages section', function() {
+  beforeEach( module( 'Reasoning.pages' ) );
 
   describe ('Pages service', function() {
     var restangularMock, restangularSpy, Pages;

@@ -1,5 +1,6 @@
 import {configuration} from '../config';
 import {} from '../../../vendor/angular/angular';
+import {} from '../../../vendor/lodash/lodash.compat';
 import {} from '../../../vendor/restangular/restangular';
 
 angular.module( configuration.appName + '.server', [ 'Restangular' ])
