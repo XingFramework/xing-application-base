@@ -101,7 +101,6 @@ class Page < ActiveRecord::Base
     end
   end
 
-  private
   def sanitize_html(content, config = Sanitize::Config::RESTRICTED)
     Sanitize.fragment(content, config)
   end
@@ -116,5 +115,8 @@ class Page < ActiveRecord::Base
     Sanitize::CSS.properties(content, config)
   end
 
+  def named_content_format(name)
+    content_format.find{ |cf| cf[:name] == name }
+  end
 
 end
