@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Twit.ly",
+    "target": "http://twit.ly",
+    "published": true,
+    "children": [
+      {
+        "name": "Facebook",
+        "target": "http://facebook.com",
+        "published": false,
+        "children": []
+      },
+      {
+        "name": "Google",
+        "target": "http://google.com",
+        "published": "true",
+        "children": [
+          {
+            "name": "Deeply Nested",
+            "target": "http://google.com",
+            "published": "true",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Best Link",
+    "target": "http://chartsock.com",
+    "published": true,
+    "children": []
+  },
+  {
+    "name": "Eh Link",
+    "target": "http://eh.com",
+    "published": false,
+    "children": []
+  }
+]
