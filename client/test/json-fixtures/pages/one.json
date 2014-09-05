@@ -1,11 +1,12 @@
-{
+{"data":
+  {
   "title": "Titular Pizzazz",
   "keywords": "dog cat bird fish",
   "description": "Best Page Ever",
   "layout": "one_columns",
   "contents":
     [{
-      "content_type": "main",
+      "content_type": "text/css",
       "body":
         "<h1>Content Block One</h1>
 
@@ -41,4 +42,5 @@
            <li>Aliquam tincidunt mauris eu risus.</li>
         </ul>"
     }]
+  }
 }
