@@ -1,4 +1,4 @@
-ddescribe( 'Pages section', function() {
+describe( 'Pages section', function() {
   beforeEach( module( 'Reasoning.pages' ) );
 
   describe ('Pages service', function() {

@@ -1,7 +1,6 @@
-import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import {configuration} from '../../common/config';
-
-console.log("START TESTS");
+import {} from '../../common/server/cms';
+import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
 angular.module( `${configuration.appName}.pages`, [
   'ui.router.state',
