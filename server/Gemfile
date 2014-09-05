@@ -9,6 +9,7 @@ gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nes
 gem 'carrierwave'
 gem "rmagick", require: false
 gem "sanitize"
+gem "babosa"
 gem 'active_model_serializers'
 gem 'cancancan'
 
