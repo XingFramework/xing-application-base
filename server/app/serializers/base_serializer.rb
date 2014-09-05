@@ -1,4 +1,8 @@
 class BaseSerializer < ActiveModel::Serializer
+  def routes
+    Rails.application.routes.url_helpers
+  end
+
   def root
     false
   end
