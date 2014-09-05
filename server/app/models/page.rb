@@ -73,24 +73,10 @@ class Page < ActiveRecord::Base
     conts
   end
 
-  # TODO - probably make this a class method
+  # TODO - probably make this an observer
   def regenerate_sitemap
     Sitemap.create! unless Rails.env.test?
   end
-
-  #class << self
-    #def registry
-      #@registry ||= {}
-    #end
-
-    #def register(page_name)
-      #Page.registry[page_name] = self
-    #end
-
-    #def registry_get(page_name)
-      #Page.registry.fetch(page_name)
-    #end
-  #end
 
 
   def layout
