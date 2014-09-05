@@ -1,3 +1,5 @@
+import {configuration} from '../../common/config';
+
 describe( 'Pages section', function() {
   beforeEach( module( `${configuration.appName}.pages` ) );
 
