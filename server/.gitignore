@@ -34,7 +34,7 @@ last_run
 .project
 .conductor/*
 .conductor/**/*
-.*.sw?
+*.sw?
 .#*
 \#*
 *~
