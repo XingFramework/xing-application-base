@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :documents
     resources :pages
     resources :locations
+    resources :content_blocks
 
     resources :blog_posts, :except => 'show'
     resources :topics, :except => 'show'
