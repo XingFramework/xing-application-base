@@ -5,7 +5,8 @@ FactoryGirl.define do
     end
 
     sequence :url_slug do |n|
-      "test/auto_gen_link_url_#{n}"
+      # "test/auto_gen_link_url_#{n}"
+      "auto_gen_link_url_#{n}"
     end
 
     published true
