@@ -1,6 +1,6 @@
 class Menu
   attr_accessor :menu_item
-  DELEGATED_METHODS = [ :name, :parent ]
+  DELEGATED_METHODS = [ :name, :parent, :reload ]
   delegate(*DELEGATED_METHODS, :to => :menu_item)
 
   def initialize(item)
@@ -9,6 +9,10 @@ class Menu
     else
       raise "Cannot instantiate Menu with a non-root MenuItem"
     end
+  end
+
+  def tree
+    self.menu_item.self_and_descendants
   end
 
   def self.list

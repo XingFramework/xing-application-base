@@ -5,11 +5,12 @@ describe Menu do
   let :root_2 do FactoryGirl.create(:menu_item, :parent => nil, :name => 'Menu 2') end
   let :child_1 do FactoryGirl.create(:menu_item, :parent => root_1, :name => 'Child 1') end
   let :child_2 do FactoryGirl.create(:menu_item, :parent => child_1, :name => 'Child 2') end
+   let :menu do Menu.new(item) end
 
   describe 'list' do
 
     before do
-      MenuItem.delete_all
+      MenuItem.delete_all # seeds creates two root menu items
       root_1; root_2; child_1; child_2
     end
 
@@ -26,7 +27,6 @@ describe Menu do
   end
 
   describe 'instantiation' do
-    let :menu do Menu.new(item) end
 
     describe "with a root item" do
       let :item do root_1 end
@@ -46,7 +46,6 @@ describe Menu do
   end
 
   describe 'delegation' do
-    let :menu do Menu.new(item) end
     let :item do root_1 end
 
     it "should delegate proper methods" do
@@ -56,6 +55,26 @@ describe Menu do
       end
     end
 
+  end
+
+
+  describe "tree" do
+    let :item do root_1 end
+
+    before do
+      MenuItem.delete_all  # seeds creates two root menu items
+      root_1; root_2; child_1; child_2
+    end
+
+    it "should have the elements of the tree" do
+      menu.reload
+      expect(menu.tree).to include(root_1, child_1, child_2)
+    end
+
+    it "should not have items outside the tree" do
+      menu.reload
+      expect(menu.tree).not_to include(root_2)
+    end
   end
 
 end
