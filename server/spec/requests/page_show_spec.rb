@@ -34,7 +34,7 @@ describe "pages#show" do
 
   describe "GET /pages/:slug" do
     it "shows page as json" do
-      get "/pages/#{page.url_slug}"
+      json_get "/pages/#{page.url_slug}"
 
       expect(response).to be_success
       expect(response.body).to have_json_path("links")

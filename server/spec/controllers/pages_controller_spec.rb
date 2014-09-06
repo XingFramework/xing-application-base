@@ -6,9 +6,16 @@ describe PagesController do
   #                                      GET SHOW
   ########################################################################################
   describe "responding to GET show" do
+    before do
+      @request.env['HTTP_ACCEPT'] = 'application/json'
+    end
 
     let :page do
       double(Page)
+    end
+
+    let :serializer do
+      double(PageSerializer)
     end
 
     let :slug do
@@ -17,8 +24,9 @@ describe PagesController do
 
     it "should expose the requested published page as @page" do
       Page.should_receive(:find_by_url_slug).with(slug).and_return(page)
-      # controller.should_receive(:render)
-      get :show, :slug => slug, :format => :json
+      PageSerializer.should_receive(:new).with(page).and_return(serializer)
+      #controller.should_receive(:respond_with).with(serializer)
+      get :show, :slug => slug
       expect(assigns[:page]).to eq(page)
     end
 
