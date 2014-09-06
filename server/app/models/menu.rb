@@ -1,5 +1,7 @@
 class Menu
   attr_accessor :menu_item
+  DELEGATED_METHODS = [ :name, :parent ]
+  delegate(*DELEGATED_METHODS, :to => :menu_item)
 
   def initialize(item)
     if item.root?

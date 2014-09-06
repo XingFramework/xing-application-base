@@ -26,9 +26,7 @@ describe Menu do
   end
 
   describe 'instantiation' do
-    let :menu do
-      Menu.new(item)
-    end
+    let :menu do Menu.new(item) end
 
     describe "with a root item" do
       let :item do root_1 end
@@ -48,7 +46,15 @@ describe Menu do
   end
 
   describe 'delegation' do
-    let :root_1 do FactoryGirl.create(:menu_item, :parent => nil, :name => 'Menu 1') end
+    let :menu do Menu.new(item) end
+    let :item do root_1 end
+
+    it "should delegate proper methods" do
+      [:name, :parent ].each do |method|
+        root_1.should_receive(method)
+        menu.send(method)
+      end
+    end
 
   end
 
