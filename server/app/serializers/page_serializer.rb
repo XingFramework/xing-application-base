@@ -8,4 +8,8 @@ class PageSerializer < BaseSerializer
     end
     hash
   end
+
+  def links
+    { :self => routes.page_path(object), :admin => routes.admin_page_path(object) }
+  end
 end
