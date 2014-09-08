@@ -293,7 +293,12 @@ module.exports = function( grunt ) {
        */
       jshint: {
         src: [ '<%= app_files.js %>' ],
-        test: [ '<%= app_files.jsunit %>' ],
+        test: {
+          files: [ { src: ['<%= app_files.jsunit %>' ] }],
+          options: {
+            debug: true,
+          }
+        },
         gruntfile: [ 'Gruntfile.js' ],
         target: {
           files: [ {
@@ -372,16 +377,20 @@ module.exports = function( grunt ) {
         options: {
           configFile: '<%= build_dirs.root %>/karma-unit.js',
           autoWatch: false,
-          browsers: [ 'PhantomJS' ]
+          //browsers: [ 'PhantomJS' ]
         },
         unit: {
-          runnerPort: 9101,
-          background: true
+          options: {
+            runnerPort: 9101,
+            background: true
+          }
         },
         continuous: { singleRun: true },
         dev: {
-          singleRun: true,
-          browsers: [ 'Chrome' ]
+          options: {
+            singleRun: true,
+            browsers: [ 'Chrome' ]
+          }
         }
       },
 
@@ -577,7 +586,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.jsunit %>', 'test/json-fixtures/**/*'
           ],
-          tasks: [ 'jshint:test', 'karmaconfig:unit', 'karma:unit:run' ],
+          tasks: [ 'jshint:test', 'karma:unit:run' ],
           options: {
             livereload: false
           }
@@ -634,7 +643,7 @@ module.exports = function( grunt ) {
     'sass_to_scss:build', 'sass:build',
     'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:karmaUnit'
-  ])
+  ]);
 
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'karma:dev' ]);
 
