@@ -4,7 +4,7 @@
 {
  links: {
    self: "/navigation/main"
-  }
+  },
   data: [
 
     # a top-level menu item
