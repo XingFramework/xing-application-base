@@ -219,6 +219,17 @@ module.exports = function( grunt ) {
         },
         build: {
           files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
+        },
+        test: {
+          options: {
+            includeRuntime: false
+          },
+          files: [ {
+            expand: true,
+            src: [ 'test/**/.js.es6' ],
+            dest: 'test/',
+            ext: '.js'
+          } ]
         }
       },
 
@@ -522,6 +533,11 @@ module.exports = function( grunt ) {
             '<%= app_files.js %>'
           ],
           tasks: [ 'jshint:src', 'traceur:build', 'karma:unit:run' ]
+        },
+
+        es6test: {
+          files: [ 'test/**/*.es6' ],
+          task: [ 'traceur:test' ]
         },
 
         /**
