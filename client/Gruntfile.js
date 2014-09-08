@@ -219,6 +219,17 @@ module.exports = function( grunt ) {
         },
         build: {
           files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
+        },
+        test: {
+          options: {
+            includeRuntime: false
+          },
+          files: [ {
+            expand: true,
+            src: [ 'test/**/.js.es6' ],
+            dest: 'test/',
+            ext: '.js'
+          } ]
         }
       },
 
@@ -293,7 +304,12 @@ module.exports = function( grunt ) {
        */
       jshint: {
         src: [ '<%= app_files.js %>' ],
-        test: [ '<%= app_files.jsunit %>' ],
+        test: {
+          files: [ { src: ['<%= app_files.jsunit %>' ] }],
+          options: {
+            debug: true,
+          }
+        },
         gruntfile: [ 'Gruntfile.js' ],
         target: {
           files: [ {
@@ -372,16 +388,20 @@ module.exports = function( grunt ) {
         options: {
           configFile: '<%= build_dirs.root %>/karma-unit.js',
           autoWatch: false,
-          browsers: [ 'PhantomJS' ]
+          //browsers: [ 'PhantomJS' ]
         },
         unit: {
-          runnerPort: 9101,
-          background: true
+          options: {
+            runnerPort: 9101,
+            background: true
+          }
         },
         continuous: { singleRun: true },
         dev: {
-          singleRun: true,
-          browsers: [ 'Chrome' ]
+          options: {
+            singleRun: true,
+            browsers: [ 'Chrome' ]
+          }
         }
       },
 
@@ -515,6 +535,11 @@ module.exports = function( grunt ) {
           tasks: [ 'jshint:src', 'traceur:build', 'karma:unit:run' ]
         },
 
+        es6test: {
+          files: [ 'test/**/*.es6' ],
+          task: [ 'traceur:test' ]
+        },
+
         /**
          * When our CoffeeScript source files change, we want to run lint them and
          * run our unit tests.
@@ -577,7 +602,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.jsunit %>', 'test/json-fixtures/**/*'
           ],
-          tasks: [ 'jshint:test', 'karmaconfig:unit', 'karma:unit:run' ],
+          tasks: [ 'jshint:test', 'karma:unit:run' ],
           options: {
             livereload: false
           }
@@ -634,7 +659,7 @@ module.exports = function( grunt ) {
     'sass_to_scss:build', 'sass:build',
     'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:karmaUnit'
-  ])
+  ]);
 
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'karma:dev' ]);
 

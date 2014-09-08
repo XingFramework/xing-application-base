@@ -11,6 +11,7 @@ gem "rmagick", require: false
 gem "sanitize"
 gem "babosa"
 gem 'active_model_serializers'
+gem 'cancancan'
 
 group :development, :test do
   gem "rspec", "< 3.0.0"

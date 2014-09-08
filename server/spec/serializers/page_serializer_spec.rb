@@ -5,10 +5,6 @@ describe PageSerializer do
   let :headline do FactoryGirl.create(:content_block, :body => 'the content') end
   let :styles   do FactoryGirl.create(:content_block, :content_type => 'text/css', :body => "uncleaned") end
 
-  # let :contents do
-  #   page.contents
-  # end
-
   let :page do
     FactoryGirl.create(:page,
       :page_contents => [  PageContent.new(:name => 'main', :content_block => main),

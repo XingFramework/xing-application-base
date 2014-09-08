@@ -18,5 +18,3 @@ class Page::OneColumn < Page
 
 
 end
-
-

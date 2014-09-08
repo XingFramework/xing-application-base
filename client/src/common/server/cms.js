@@ -3,6 +3,8 @@ import {} from '../../../vendor/angular/angular';
 import {} from '../../../vendor/lodash/lodash.compat';
 import {} from '../../../vendor/restangular/restangular';
 
+import {Menu} from './menu';
+
 angular.module( configuration.appName + '.server', [ 'restangular' ])
 .factory('cmsBackend', function(Restangular, $http){
 
@@ -15,6 +17,10 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
   return {
     page(slug){
       Restangular.get('page', slug); //...or something
+    },
+    menu(name){
+      var response = Restangular.one('menu', name).get(); // GET /menu/Main
+      return new Menu(response);
     }
   };
 });

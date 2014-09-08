@@ -1,5 +1,4 @@
-# == Schema Information
-#
+
 # Table name: menu_items
 #
 #  id         :integer          not null, primary key
@@ -21,26 +20,11 @@ class MenuItem < ActiveRecord::Base
   acts_as_nested_set
 
   belongs_to :page
-  belongs_to :parent, :class_name => 'Location'
+  belongs_to :parent, :class_name => 'MenuItem'
 
-  validates_presence_of :name#, :path
+  validates_presence_of :name
 
-  def resolved_path
-    absolute_path(page ? page.permalink : path)
-  end
-
-  def self.topics_root
-    find_or_create_by(:name => "Blog Topics")
-  end
-  def self.main_menu_root
-    find_or_create_by(:name => "Main")
-  end
-
-  scope :main_menu, -> do
-    roots.where().self_and_descendants
-  end
-
-  scope :blog_topics, -> do
-    children_of(topics_root.id)
-  end
+  #def resolved_path
+    #absolute_path(page ? page.permalink : path)
+  #end
 end
