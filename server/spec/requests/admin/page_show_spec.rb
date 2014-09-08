@@ -37,12 +37,6 @@ describe "pages#show", :type => :request do
     )
   end
 
-  let :admin do FactoryGirl.create(:admin) end
-
-  before(:each) do
-    authenticate('admin')
-  end
-
   describe "GET admin/pages/:url_slug" do
     it "shows page as json" do
       json_get "admin/pages/#{page.url_slug}"
@@ -58,7 +52,7 @@ describe "pages#show", :type => :request do
       expect(response.body).to have_json_path("data/layout")
       expect(response.body).to have_json_path("data/contents")
       expect(response.body).to have_json_size(3).at_path("data/contents")
-      expect(JSON.parse(response.body)["links"]["self"]).to eq(page.url_slug)
+      expect(JSON.parse(response.body)["links"]["self"]).to eq("/admin/pages/#{page.url_slug}")
       expect(JSON.parse(response.body)["data"]["title"]).to eq(page.title)
       expect(JSON.parse(response.body)["data"]["contents"]["headline"]["links"]["self"]).to eq(admin_content_block_path(headline))
       expect(JSON.parse(response.body)["data"]["contents"]["styles"]["data"]["body"]).to eq(styles.body)
