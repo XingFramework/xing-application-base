@@ -21,6 +21,7 @@
 require 'sitemap'
 
 class Page < ActiveRecord::Base
+  include ClassRegistry
 
   validates_presence_of :title, :url_slug
   validates_uniqueness_of :url_slug
@@ -73,22 +74,8 @@ class Page < ActiveRecord::Base
   end
 
   # TODO - probably make this a class method
-  #def regenerate_sitemap
-    #Sitemap.create! unless Rails.env.test?
-  #end
-
-  class << self
-    def registry
-      @registry ||= {}
-    end
-
-    def register(page_name)
-      Page.registry[page_name] = self
-    end
-
-    def registry_get(page_name)
-      Page.registry.fetch(page_name)
-    end
+  def regenerate_sitemap
+    Sitemap.create! unless Rails.env.test?
   end
 
 
@@ -114,7 +101,6 @@ class Page < ActiveRecord::Base
     end
   end
 
-  private
   def sanitize_html(content, config = Sanitize::Config::RESTRICTED)
     Sanitize.fragment(content, config)
   end
@@ -129,5 +115,8 @@ class Page < ActiveRecord::Base
     Sanitize::CSS.properties(content, config)
   end
 
+  def named_content_format(name)
+    content_format.find{ |cf| cf[:name] == name }
+  end
 
 end

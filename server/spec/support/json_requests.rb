@@ -8,4 +8,3 @@ end
 module RSpec::Rails::RequestExampleGroup
   include JSONRequests
 end
-

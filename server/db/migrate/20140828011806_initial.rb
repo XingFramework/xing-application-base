@@ -82,6 +82,7 @@ class Initial < ActiveRecord::Migration
 	    t.datetime "last_sign_in_at"
 	    t.string   "current_sign_in_ip"
 	    t.string   "last_sign_in_ip"
+      t.string   "role_name"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	    t.string   "encrypted_password"
