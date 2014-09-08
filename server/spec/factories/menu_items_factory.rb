@@ -59,7 +59,7 @@ FactoryGirl.define do
     sequence :name do |n|
       "Blog Topic #{n}"
     end
-    parent FactoryGirl.build(:blog_topics_root)
+    parent do FactoryGirl.build(:blog_topics_root) end
   end
 
 end

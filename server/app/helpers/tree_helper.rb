@@ -14,10 +14,18 @@ module TreeHelper
       @path = []
     end
 
+    def render_list(items, top_level, depth)
+      @view.render :partial => @list_partial, :locals => {:items => items, :depth => depth }
+    end
+
+    def render_node(node, children, depth)
+      @view.render :partial => @node_partial, :locals => { :node => node, :children => children, :depth => depth}
+    end
+
     def pop_level
       depth = @path.length
-      children = (@view.render :partial => @list_partial, :locals => {:items => @stack.pop, :depth => depth })
-      @stack.last << (@view.render :partial => @node_partial, :locals => { :node => @path.pop, :children => children, :depth => depth})
+      children = render_list(@stack.pop, false, depth)
+      @stack.last << render_node(@path.pop, children, depth)
     end
 
     def render
@@ -26,7 +34,7 @@ module TreeHelper
           pop_level
         end
         if after.nil? or !this.is_ancestor_of?(after)
-          @stack.last << (@view.render :partial => @node_partial, :locals => { :node => this, :depth => @path.length })
+          @stack.last << render_node(this, nil, @path.length)
         else
           @path << this
           @stack << []
@@ -35,7 +43,7 @@ module TreeHelper
       until @path.empty?
         pop_level
       end
-      return @view.render(:partial => @list_partial, :locals => {:items => @stack.last, :top_level => true, :depth => 0}).html_safe
+      return render_list(@stack.last, true, 0).html_safe
     end
   end
 

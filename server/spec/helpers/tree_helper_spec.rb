@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe TreeHelper, :pending => "Awaiting implementation in CMS2" do
+describe TreeHelper do
   # a-+-b---c---d
   #   +-e
   #   \-f-+-g
   #       \-h
-  let (:a) { FactoryGirl.create(:location, :path => "a", :name => "a") }
-  let (:b) { FactoryGirl.create(:location, :path => "b", :name => "b", :parent => a) }
-  let (:c) { FactoryGirl.create(:location, :path => "c", :name => "c", :parent => b) }
-  let!(:d) { FactoryGirl.create(:location, :path => "d", :name => "d", :parent => c) }
-  let!(:e) { FactoryGirl.create(:location, :path => "e", :name => "e", :parent => a) }
-  let (:f) { FactoryGirl.create(:location, :path => "f", :name => "f", :parent => a) }
-  let!(:g) { FactoryGirl.create(:location, :path => "g", :name => "g", :parent => f) }
-  let!(:h) { FactoryGirl.create(:location, :path => "h", :name => "h", :parent => f) }
+  let (:a) { FactoryGirl.create(:menu_item, :path => "a", :name => "a") }
+  let (:b) { FactoryGirl.create(:menu_item, :path => "b", :name => "b", :parent => a) }
+  let (:c) { FactoryGirl.create(:menu_item, :path => "c", :name => "c", :parent => b) }
+  let!(:d) { FactoryGirl.create(:menu_item, :path => "d", :name => "d", :parent => c) }
+  let!(:e) { FactoryGirl.create(:menu_item, :path => "e", :name => "e", :parent => a) }
+  let (:f) { FactoryGirl.create(:menu_item, :path => "f", :name => "f", :parent => a) }
+  let!(:g) { FactoryGirl.create(:menu_item, :path => "g", :name => "g", :parent => f) }
+  let!(:h) { FactoryGirl.create(:menu_item, :path => "h", :name => "h", :parent => f) }
 
   it "should produce a correct tree for a node with no childen" do
     list_tree("shared/test_nav_node", "shared/test_nav_list", d.reload.descendants).should match_dom_of <<-EOD
