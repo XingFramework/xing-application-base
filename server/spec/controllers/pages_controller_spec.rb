@@ -25,7 +25,7 @@ describe PagesController do
     it "should expose the requested published page as @page" do
       Page.should_receive(:find_by_url_slug).with(slug).and_return(page)
       PageSerializer.should_receive(:new).with(page).and_return(serializer)
-      #controller.should_receive(:respond_with).with(serializer)
+      #controller.should_receive(:respond_with).with(serializer) This is not testing correctly because of problems with the way formats are being set/read.
       get :show, :slug => slug
       expect(assigns[:page]).to eq(page)
     end
