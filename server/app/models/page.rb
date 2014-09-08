@@ -26,9 +26,9 @@ class Page < ActiveRecord::Base
   validates_presence_of :title, :url_slug
   validates_uniqueness_of :url_slug
 
-  after_create :regenerate_sitemap
-  after_update :regenerate_sitemap
-  before_destroy :regenerate_sitemap
+  #after_create :regenerate_sitemap
+  #after_update :regenerate_sitemap
+  #before_destroy :regenerate_sitemap
 
   has_many :page_contents
   has_many :content_blocks, :through => :page_contents
@@ -67,13 +67,13 @@ class Page < ActiveRecord::Base
   def contents
     conts = all_associated_contents
     if content_format.present?
-      conts.select!{ |name, block| content_format.any?{|pc| pc[:name] == name }}
-      conts.each   { |name, block| sanitize(name, block) }
+      conts.select!{ |name, content_block| content_format.any?{|pc| pc[:name] == name }}
+      conts.each   { |name, content_block| sanitize(name, content_block) }
     end
     conts
   end
 
-  # TODO - probably make this an observer
+  # TODO - probably make this a class method
   def regenerate_sitemap
     Sitemap.create! unless Rails.env.test?
   end
