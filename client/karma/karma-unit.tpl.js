@@ -63,6 +63,8 @@ module.exports = function ( config ) {
     port: 9018,
     runnerPort: 9100,
     urlRoot: '/',
+    browserDisconnectTimeout: 20000,
+    browserNoActivityTimeout: 20000,
 
     /**
      * Disable file watching by default.
