@@ -12,8 +12,8 @@ RSpec.configure do |config|
   config.mock_with :rspec
 
   config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :request
   config.include Devise::TestHelpers, :type => :helper
-  config.include RequestAuthentication, :type => :request
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
 

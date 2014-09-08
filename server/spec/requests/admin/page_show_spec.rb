@@ -24,7 +24,7 @@ require 'spec_helper'
 #       {"links"=>{"self"=>"/admin/content_blocks/4"},
 #        "data"=>{"content_type"=>"text/html", "body"=>"foo bar"}}}}}
 
-describe "pages#show" do
+describe "pages#show", :type => :request do
   let :main     do FactoryGirl.create(:content_block) end
   let :headline do FactoryGirl.create(:content_block, :body => 'the content') end
   let :styles   do FactoryGirl.create(:content_block, :content_type => 'text/css', :body => "more stuff") end
@@ -37,10 +37,10 @@ describe "pages#show" do
     )
   end
 
-  let :admin do FactoryGirl.create(:user, :admin) end
+  let :admin do FactoryGirl.create(:admin) end
 
   before(:each) do
-    login!(admin)
+    authenticate('admin')
   end
 
   describe "GET admin/pages/:url_slug" do
