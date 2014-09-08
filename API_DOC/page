@@ -2,8 +2,10 @@
 # an individual page
 GET /pages/:slug
 {
-  links: { self: "/pages/:slug", admin: "admin/pages/:slug"}
-
+  links: {
+    self: "/pages/:slug",
+    admin: "admin/pages/:slug"
+  },
   data: {
     title: "string",
     keywords: "string",
