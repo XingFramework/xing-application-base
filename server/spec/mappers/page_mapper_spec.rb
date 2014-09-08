@@ -80,4 +80,3 @@ describe PageMapper do
 
   end
 end
-

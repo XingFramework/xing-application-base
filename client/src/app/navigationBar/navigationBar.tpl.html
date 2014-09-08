@@ -1,1 +1,7 @@
-<!-- Insert Navigation Elements Here -->
+<ul ng-attr-id='{{menuId}}' ng-if='menu.length > 0'>
+  <li ng-repeat="item in menu">
+    <a href='{{item.target}}' ng-if='item.external()'>{{item.name}}</a>
+    <a ui-sref='{{pageState}}' ui-sref-opts='{pageUrl: "{{item.target}}"}' ng-if='item.internal()'>{{item.name}}</a>
+    <lrd-navbar menu='item.children' ng-if='item.hasChildren()' />
+  </li>
+</ul>
