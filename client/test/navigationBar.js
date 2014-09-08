@@ -9,6 +9,16 @@ describe('navigationBar directive', function() {
     return element;
   }
 
+  function xpath(context, expr, resType){
+    if(!resType) { resType = XPathResult.ORDERED_NODE_SNAPSHOT_TYPE; }
+    var result = document.evaluate(expr, context[0], null, resType, null);
+    return result;
+  }
+
+  function stringAtXpath(context, expr){
+    return xpath(context, expr, XPathResult.STRING_TYPE).stringValue;
+  }
+
   beforeEach(module('Reasoning.navigationBar'));
 
   beforeEach(inject(function(_$compile_, _$rootScope_){
@@ -33,7 +43,7 @@ describe('navigationBar directive', function() {
     beforeEach(function() {
       element = compiledWithMenu([ {
         name: "Test Page",
-        target: "/test-page",
+        target: "/pages/test-page",
         external: function(){ return false; },
         internal: function(){ return true; },
         hasChildren: function(){ return false; }
@@ -45,19 +55,13 @@ describe('navigationBar directive', function() {
       expect(element.html()).toContain("ul");
     });
 
-    function xpath(context, expr, resType){
-      if(!resType) { resType = XPathResult.ORDERED_NODE_SNAPSHOT_TYPE; }
-      var result = document.evaluate(expr, context[0], null, resType, null);
-      return result;
-    }
-
-    function stringAtXpath(context, expr){
-      return xpath(context, expr, XPathResult.STRING_TYPE).stringValue;
-    }
+    it('should have a ul with an id like "main-nav"', function() {
+      expect(xpath(element, ".//ul[@id='main-nav']").snapshotLength).toBeGreaterThan(0);
+    });
 
     it('have a ui-router state link', function() {
       expect(xpath(element, './/a[@ui-sref="cms.page"]').snapshotLength).toBeGreaterThan(0);
-      expect(stringAtXpath(element, './/a[@ui-sref="cms.page"]/@ui-sref-opts')).toMatch(/Test Page/);
+      expect(stringAtXpath(element, './/a[@ui-sref="cms.page"]/@ui-sref-opts')).toMatch(/test-page/);
     });
   });
 });

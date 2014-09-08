@@ -7,7 +7,7 @@ angular.module( `${configuration.appName}.navigationBar`, ['templates-app'])
     restrict: 'E',
     templateUrl: 'navigationBar/navigationBar.tpl.html',
     scope: {
-      menuId: "=?id",
+      menuId: "@?id",
       menu: "=",
     },
     compile(element, attrs){
