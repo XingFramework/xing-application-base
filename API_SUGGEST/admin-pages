@@ -1,0 +1,95 @@
+# NOTE: public has no view of list of pages
+# This endpoint will NOT include blog posts: this is the list
+# of pages to appear in the "Edit Pages" tool for admin users.
+#
+# RFP:  Is 'self' link the public view of the page, or the admin
+# view of the page?  I'd think the latter
+#
+# GET /admin/pages
+{
+  links {
+    self: '/admin/pages'
+  },
+  data: [
+    { links: {
+        self:   '/admin/pages/:slug1'
+        public: '/pages/:slug1'
+      },
+      data:  {
+        title: 'Page 1',
+        layout: "one_column",
+        published: [true | false],
+        publish_start: <date/time>,
+        publish_end: <date/time>
+      }
+    },
+    { links: {
+        self:   '/admin/pages/:slug2' ,
+        public: '/pages/:slug2'
+      },
+      data:  {
+        title: 'Page 2'
+        layout: "one_column",
+        published: [true | false],
+        publish_start: <date/time>,
+        publish_end: <date/time>
+      }
+    },
+    { links: {
+        self:   '/admin/pages/:slug3'
+        public: '/pages/:slug3'
+      },
+      data:  {
+        title: 'Page 3',
+        layout: "two_column",
+        published: [true | false],
+        publish_start: <date/time>,
+        publish_end: <date/time>
+      }
+    }
+  ]
+}
+
+# RFP: I think this one is ready to go.
+#
+# GET /admin/pages/:url_slug
+{
+  links: {
+    self: "/admin/pages/:slug",
+    public: "/pages/:slug"
+  },
+
+  data: {
+    title: "string",
+    keywords: "string",
+    description: "string",
+    layout:  "one_column",
+    published: "boolean",
+    publish_start: "datetime",
+    publish_end: "datetime",
+    contents: {
+      main: {
+        links: { self: "/content-blocks/:id"  }
+        data: {
+          content_type: 'text/html',
+          body: 'Four score and <em>seven</em> years'
+        }
+      },
+      headline: {
+        links: { self: "/content-blocks/:id" },
+        data: {
+          content_type: 'text/html',
+          body: 'The Gettysburg Address'
+        }
+      },
+      styles: {
+        links: { self: "/content-blocks/:id" },
+        data: {
+          content_type: 'text/css',
+          body: 'p { font-weight: bold; }'
+        }
+      }
+    }
+  }
+}
+
