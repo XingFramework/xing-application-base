@@ -100,10 +100,70 @@
 {
   # links ommitted
   data: {
-    url_slug: <optional string>,
-    title: "string",   #  REQUIRED
-    keywords: "string",
+    url_slug: "string",    # optional
+    title: "string",       # REQUIRED
+    keywords: "string",    # optional
+    description: "string", # optional
+    layout: "",            # REQUIRED - options are an ENUM per project
 
+    published: <boolean>,      # optional - default true
+    publish_start: <datetime>, # optional - default nil
+    publish_end: <datetime>,   # optional - default nil
 
+    contents: {
+      main: {
+        data: {
+          # NOTE: content-type ommitted because that's specified in the back-end
+          # specification for this Page layout
+          body: 'Four score and <em>seven</em> years'
+        }
+      },
+      headline: {
+        data: {
+          body: 'The Gettysburg Address'
+        }
+      },
+      styles: {
+        data: {
+          body: 'p { font-weight: bold; }'
+        }
+      }
+    }
+  }
+}
+
+# PUT /admin/pages/
+# exactly like POST except that all fields are now optional, existing
+# values will be retained
+{
+  # links ommitted
+  data: {
+    url_slug: "string",    # optional
+    title: "string",       # optional
+    keywords: "string",    # optional
+    description: "string", # optional
+    layout: "",            # optional
+
+    published: <boolean>,      # optional - default true
+    publish_start: <datetime>, # optional - default nil
+    publish_end: <datetime>,   # optional - default nil
+
+    contents: {
+      main: {
+        data: {
+          body: 'Four score and <em>seven</em> years'
+        }
+      },
+      headline: {
+        data: {
+          body: 'The Gettysburg Address'
+        }
+      },
+      styles: {
+        data: {
+          body: 'p { font-weight: bold; }'
+        }
+      }
+    }
   }
 }
