@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: locations
+# Table name: menu_items
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
@@ -15,10 +15,10 @@
 
 require 'spec_helper'
 
-describe Location, :pending => "Awaiting implementation in CMS2" do
+describe MenuItem, :pending => "Awaiting implementation in CMS2" do
   describe "mass assignment" do
      it "should mass assign name and path" do
-       location = Location.new(:name => 'foo', :path => 'bar' )
+       location = MenuItem.new(:name => 'foo', :path => 'bar' )
        location.name.should == 'foo'
        location.path.should == 'bar'
      end

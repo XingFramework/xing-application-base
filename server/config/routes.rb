@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  get "pages/:slug", :to => 'pages#show', :as => :page
+
   namespace :admin do
-    resources :images
-    resources :documents
+    #resources :images
+    #resources :documents
     resources :pages
-    resources :locations
+    resources :menus
+    resources :content_blocks
 
     resources :blog_posts, :except => 'show'
     resources :topics, :except => 'show'
@@ -20,5 +23,4 @@ Rails.application.routes.draw do
 
   root :to => 'static#index'
 
-  get '/*permalink', :controller => :pages, :action => 'show'
 end

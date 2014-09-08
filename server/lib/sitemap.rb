@@ -16,7 +16,7 @@ class Sitemap
 
       @url_domain = @url[/([a-z0-9-]+)\.([a-z.]+)/i]
 
-      @pages_to_visit = Page.published.collect { |p| p.permalink }
+      @pages_to_visit = Page.published.collect { |p| p.url_slug }
       generate_sitemap
       update_search_engines if Rails.env.production?
     end

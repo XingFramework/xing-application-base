@@ -9,26 +9,12 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 ActiveSupport::Deprecation.debug = true
 
 RSpec.configure do |config|
-  # == Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
   config.mock_with :rspec
 
-  config.include Devise::TestHelpers, :type => :view
   config.include Devise::TestHelpers, :type => :controller
   config.include Devise::TestHelpers, :type => :helper
-
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
   config.use_transactional_fixtures = false
+  config.infer_spec_type_from_file_location!
 
   DatabaseCleaner.strategy = :transaction
 
@@ -38,28 +24,16 @@ RSpec.configure do |config|
     end
   end
 
-  truncation_types = [:feature]
 
   config.before :all, :type => [ :view ] do
     pending "Pending removal.  Back-end does not use views."
   end
 
-  config.before :all, :type => proc{ |value| truncation_types.include?(value)} do
-    Rails.application.config.action_dispatch.show_exceptions = true
-    DatabaseCleaner.clean_with :truncation
-    load 'db/seeds.rb'
-  end
-
-  config.after :all, :type => proc{ |value| truncation_types.include?(value)} do
-    DatabaseCleaner.clean_with :truncation
-    load 'db/seeds.rb'
-  end
-
-  config.before :each, :type => proc{ |value| not truncation_types.include?(value)} do
+  config.before :each do
     DatabaseCleaner.start
   end
 
-  config.after :each, :type => proc{ |value| not truncation_types.include?(value)} do
+  config.after :each do
     DatabaseCleaner.clean
   end
 
