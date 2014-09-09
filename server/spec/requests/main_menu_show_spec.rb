@@ -1,40 +1,5 @@
 require 'spec_helper'
 
-
-# example JSON output from request
-# {
-#   "links"=>
-#   {
-#     "self" => "/navigation/main"
-#   },
-#   "data"=>
-#   [
-#     {
-#       "links" => {},
-#       "data" => {
-#         "name"=>"About",
-#         "url" =>"/about",
-#         "children" => [{
-#           "links" => {},
-#           "data" => {
-#             "name" => "Services",
-#             "url" => "/services",
-#             "children" => []
-#           }
-#         }]
-#       }
-#     },
-#     {
-#       "links" => {},
-#       "data" => {
-#         "name" => "Yahoo",
-#         "url" => "http://www.yahoo.com",
-#         "children" => []
-#       }
-#     }
-#   ]
-# }
-
 describe "main_menu#show" do
   let (:main_menu) { MenuItem.roots.where(:name => "Main Menu").first }
   let (:services_page) { FactoryGirl.create(:page, :url_slug => "services") }
