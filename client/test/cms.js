@@ -1,3 +1,7 @@
+import '../vendor/angular/angular';
+import '../vendor/angular-mocks/angular-mocks';
+import 'src/app/cms';
+
 describe( 'CmsCtrl', function() {
   describe( 'isCurrentUrl', function() {
     var CmsCtrl, $location, $scope, mockMain;

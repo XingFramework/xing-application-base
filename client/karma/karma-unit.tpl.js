@@ -9,28 +9,29 @@ module.exports = function ( config ) {
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
-      '<%= compile_targets.js %>',
-      {pattern: '<%= compile_targets.map %>', included: false},
+      {pattern: '<%= app_files.js %>', included: false},
       <% test_files.js.forEach(function(file){ %>
       '<%= file %>',<% }); %>
       'test/json-fixtures/**/*.json',
-      'test/**/*.js'
+      {pattern: 'test/**/*.js', included: false},
+      'test/test-main.js'
     ],
     exclude: [
       'src/assets/**/*.js'
     ],
-    frameworks: [ 'jasmine' ],
+    frameworks: [ 'jasmine', 'requirejs', 'traceur' ],
     plugins: [
       'karma-jasmine',
       'karma-firefox-launcher',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
       //'karma-coffee-preprocessor',
-      //'karma-traceur-preprocessor',
+      'karma-requirejs',
+      'karma-traceur-preprocessor',
       'karma-ng-html2js-preprocessor',
     ],
     preprocessors: {
-      //'**/*.js': 'traceur',
+      '**/*.js': 'traceur',
       //'**/*.coffee': 'coffee',
       '**/*.html': ['ng-html2js'],
       '**/*.json': ['ng-html2js']
@@ -50,6 +51,13 @@ module.exports = function ( config ) {
       // setting this option will create only a single module that contains templates
       // from all the files, so you can load them all with module('foo')
       moduleName: 'fixtureCache'
+    },
+
+    traceurPreprocessor: {
+      options: {
+        sourceMaps: true,
+        modules: 'amd',
+      }
     },
 
     /**

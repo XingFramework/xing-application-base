@@ -33,21 +33,24 @@ class Menu {
 
   get children(){
     return this.menuData.children.map((item) => {
-      return new Menu(new Promise((resolve) => { return resolve(item) });
+      return new Menu(new Promise((resolve) => { return resolve(item); }));
     });
   }
 
   get resolvedResponse(){
     var resolved;
     this.response.then(
-      (response) => { resolved = response; },
+      (response) => {
+      console.log("server/menu.js:44", "response", response);
+      resolved = response; },
       (reason) => { throw "There was an error: " + reason.toString(); }
     );
 
+    console.log("server/menu.js:47", "resolved", resolved);
     return resolved;
   }
 
   get menuData(){
-    return resolvedResponse["data"];
+    return this.resolvedResponse["data"];
   }
 }

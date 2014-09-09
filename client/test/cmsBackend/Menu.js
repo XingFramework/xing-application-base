@@ -1,3 +1,5 @@
+import {Menu} from "../../src/common/server/menu";
+
 describe('Menu class', function() {
   var menu;
 
@@ -23,7 +25,7 @@ describe('Menu class', function() {
 
   beforeEach(function() {
     menu = new Menu(
-      $q(function(resolve){ return resolve(responseData()); })
+      new Promise(function(resolve){ return resolve(responseData()); })
     );
   });
 

@@ -226,8 +226,8 @@ module.exports = function( grunt ) {
           },
           files: [ {
             expand: true,
-            src: [ 'test/**/.js.es6' ],
-            dest: 'test/',
+            src: [ 'test/**/*.es6.js' ],
+            dest: '',
             ext: '.js'
           } ]
         }
@@ -529,15 +529,8 @@ module.exports = function( grunt ) {
          * run our unit tests.
          */
         jssrc: {
-          files: [
-            '<%= app_files.js %>'
-          ],
+          files: [ '<%= app_files.js %>' ],
           tasks: [ 'jshint:src', 'traceur:build', 'karma:unit:run' ]
-        },
-
-        es6test: {
-          files: [ 'test/**/*.es6' ],
-          task: [ 'traceur:test' ]
         },
 
         /**
