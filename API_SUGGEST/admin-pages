@@ -132,7 +132,7 @@
   }
 }
 
-# PUT /admin/pages/
+# PUT /admin/pages/:url_slug
 # exactly like POST except that all fields are now optional, existing
 # values will be retained
 {
