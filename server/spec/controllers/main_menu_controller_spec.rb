@@ -20,7 +20,7 @@ describe MainMenuController do
 
     let :roots do
       r = double(ActiveRecord::Relation)
-      r.stub(:where).with(:name => "Main Menu") { main_menu_root }
+      r.stub(:where).with(:name => "Main Menu") { [main_menu_root] }
       r
     end
 
