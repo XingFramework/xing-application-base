@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
-  get "pages/:slug", :to => 'pages#show', :as => :page
+  get "pages/:url_slug", :to => 'pages#show', :as => :page
 
   namespace :admin do
     #resources :images
     #resources :documents
+    get "pages/:url_slug", :to => 'pages#show', :as => :page
     resources :pages
     resources :menus
     resources :content_blocks
