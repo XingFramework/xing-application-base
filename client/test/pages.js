@@ -1,80 +1,81 @@
-// describe( 'Pages section', function() {
-//   beforeEach( module( 'Reasoning.pages' ) );
-//   beforeEach( module( 'Reasoning.server' ) );
-//   beforeEach( module( 'fixtureCache' ) );
+import {configuration} from '../src/common/config';
+import {} from '../src/app/pages/pages';
+import {} from 'test/json-fixtures/pages/one.json';
 
-//   describe('Pages Controller', function () {
+describe( 'Pages section', function() {
 
-//     var PageMock, pageJson, pageObject, $stateParamsMock, q, pagesCtrl, oneSpy, emitSpy, metadata, $sceMock;
+  beforeEach( module( `${configuration.appName}.pages` ) );
+  beforeEach( module( `${configuration.appName}.server` ) );
+  beforeEach( module( 'fixtureCache' ) );
 
-//     beforeEach(function() {
-//       inject(function($templateCache) {
-//         var pageJson = $templateCache.get('json-fixtures/pages/one.json');
-//         pageObject = angular.fromJson(pageJson);
-//       });
-//       PageMock = {
-//         one: function(item) {
-//           return {
-//             page: function() {
-//               return {
-//                 content: 'super duper awesome '+item,
-//                 title: 'awesome-'+item,
-//                 styles: 'div.'+item+' { display: block; }',
-//                 keywords: 'keyword-'+item,
-//                 description: 'description-'+item
-//               };
-//             },
-//             get: function() {
-//               var deferred = q.defer();
-//               deferred.resolve(this.page());
-//               return deferred.promise;
-//             }
-//           };
-//         }
-//       };
+  describe('Pages Controller', function () {
 
-//       $stateParamsMock = {
-//         permalink: 'dude'
-//       };
+    var PageMock, pageJson, pageObject, $stateParamsMock, q, pagesCtrl, oneSpy, emitSpy, metadata, $sceMock;
 
-//       $sceMock = {
-//         trustAsHtml: function(data) {
-//           return data;
-//         }
-//       };
+    beforeEach(function() {
+      inject(function($templateCache) {
+        var pageJson = $templateCache.get('json-fixtures/pages/one.json');
+        pageObject = angular.fromJson(pageJson);
+      });
+      PageMock = {
+        one: function(item) {
+          return {
+            page: function() {
+              return {
+                content: 'super duper awesome '+item,
+                title: 'awesome-'+item,
+                metadata: "metadata",
+                keywords: 'keyword-'+item,
+                description: 'description-'+item
+              };
+            },
+            get: function() {
+              var deferred = q.defer();
+              deferred.resolve(this.page());
+              return deferred.promise;
+            }
+          };
+        }
+      };
 
-//       oneSpy = spyOn(PageMock, 'one');
-//       oneSpy.and.callThrough();
+      $stateParamsMock = {
+        permalink: 'dude'
+      };
 
-//       inject(function($controller, $rootScope, $q) {
-//         q = $q;
-//         this.scope = $rootScope.$new();
-//         emitSpy = spyOn(this.scope, '$emit');
-//         pagesCtrl = $controller('PagesCtrl', {
-//           $scope: this.scope,
-//           $stateParams: $stateParamsMock,
-//           Page: PageMock,
-//           $sce: $sceMock
-//         });
-//         this.scope.$apply();
-//       });
+      $sceMock = {
+        trustAsHtml: function(data) {
+          return data;
+        }
+      };
 
-//     });
+      oneSpy = spyOn(PageMock, 'one');
+      oneSpy.and.callThrough();
 
-//     it('should query the server', function() {
-//       expect(oneSpy).toHaveBeenCalledWith('dude');
-//     });
+      inject(function($controller, $rootScope, $q) {
+        q = $q;
+        this.scope = $rootScope.$new();
+        emitSpy = spyOn(this.scope, '$emit');
+        pagesCtrl = $controller('PagesCtrl', {
+          $scope: this.scope,
+          $stateParams: $stateParamsMock,
+          Page: PageMock,
+          $sce: $sceMock
+        });
+        this.scope.$apply();
+      });
 
-//     xit('should assign the metadata', function(){
-//       expect(this.scope.metadata).toBe(pageObject.metadata);
-//     });
+    });
 
-//     xit('should assign the page', function() {
-//       expect(this.scope.contents).toBe(pageObject.contents);
-//     });
+    it('should query the server', function() {
+      expect(oneSpy).toHaveBeenCalledWith('dude');
+    });
 
-//     xit('should assign the metadata', function() {
-//       expect(emitSpy).toHaveBeenCalledWith('metadataSet', metadata);
-//     });
-//   });
-// });
+    it('should assign the page', function() {
+      expect(this.scope.page).toBe(pageObject.contents);
+    });
+
+    it('should emit the metadata', function() {
+      expect(emitSpy).toHaveBeenCalledWith('metadataSet', metadata);
+    });
+  });
+});
