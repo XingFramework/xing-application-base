@@ -76,6 +76,11 @@ describe Admin::PagesController do
     ########################################################################################
     describe "responding to PUT update" do
 
+      it "should expose the requested page as @page" do
+        Page.should_receive(:find_by_url_slug).with(url_slug).and_return(page)
+        put :update, { :url_slug => url_slug, :json => json }
+      end
+
       it "should update with page mapper and pass the JSON to it" do
       end
 
