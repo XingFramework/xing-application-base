@@ -21,14 +21,14 @@ angular.module( `${configuration.appName}.pages`, [
     }
   });
 })
-
 .controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce',
   function PagesController( $scope, $stateParams, cmsBackend, $sce ) {
-    var thePage = cmsBackend.page($stateParams['permalink']);
-    $scope.metadata = thePage.metadata;
-    $scope.headline = thePage.headline;
-    $scope.main = thePage.main;
-    // TODO: set up metadata emit
-    // var metadata = thePage.metadata;
-    // $scope.$emit('metadataSet', metadata);
+    $scope.content = {};
+    $scope.page = cmsBackend.page($stateParams['permalink']);
+    $scope.page.responsePromise.then( (resolve) =>
+      {
+        $scope.content = $sce.trustAsHtml($scope.page.main);
+        $scope.$emit('metadataSet', $scope.page.metadata);
+      }
+    );
 }]);
