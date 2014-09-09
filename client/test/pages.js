@@ -4,17 +4,25 @@ describe( 'Pages section', function() {
   beforeEach( module( 'fixtureCache' ) );
 
   describe('Pages Controller', function () {
-    var PageMock, $stateParamsMock, pageJson, q, pagesCtrl, oneSpy, emitSpy, $sceMock;
+
+    var PagesMock, pageJson, pageObject, $stateParamsMock, q, pagesCtrl, oneSpy, emitSpy, metadata, $sceMock;
 
     beforeEach(function() {
-      pageJson = angular.fromJson($templateCache.get('json-fixtures/pages/one.json'));
-
-      PageMock = {
+      inject(function($templateCache) {
+        var pageJson = $templateCache.get('json-fixtures/pages/one.json');
+        pageObject = angular.fromJson(pageJson);
+      });
+      metadata = {
+        pageTitle: 'awesome-dude',
+        pageCss: 'div.dude { display: block; }',
+        pageKeywords: 'keyword-dude',
+        pageDescription: 'description-dude'
+      };
+      PagesMock = {
         one: function(item) {
           return {
             page: function() {
               return {
-                headline: 'best ever thing'+item,
                 content: 'super duper awesome '+item,
                 title: 'awesome-'+item,
                 styles: 'div.'+item+' { display: block; }',
@@ -30,6 +38,7 @@ describe( 'Pages section', function() {
           };
         }
       };
+      console.log(PagesMock);
 
       $stateParamsMock = {
         permalink: 'dude'
@@ -64,7 +73,7 @@ describe( 'Pages section', function() {
     });
 
     it('should assign the page', function() {
-      expect(this.scope.content).toBe('super duper awesome dude');
+      expect(this.scope.contents).toBe(pageObject.contents);
     });
 
     it('should assign the metadata', function() {

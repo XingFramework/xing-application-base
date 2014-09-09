@@ -8,6 +8,7 @@ import {Page} from './page';
 
 angular.module( configuration.appName + '.server', [ 'restangular' ])
 .factory('cmsBackend', function(Restangular, $http){
+      console.log("getting here 1");
 
   $http.defaults.headers.common.Accept = 'application/json';
   $http.defaults.headers.post['Content-Type'] = 'application/json';
