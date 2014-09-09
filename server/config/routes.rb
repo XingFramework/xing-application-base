@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   resources :topics, :only => %w{show index}
 
+  get '/navigation/main' => "main_menu#show", :as => :main_menu
+
   root :to => 'static#index'
 
 end

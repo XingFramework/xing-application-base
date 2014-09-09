@@ -1,14 +1,18 @@
-export var Menu;
+import {ServerResponse} from './serverResponse.js';
 
-class Menu {
-  constructor(response) {
-    this.response = response;
+class MenuItem extends ServerResponse {
+  constructor(promise){
+    super(promise);
+    var childrenPromise = this.responsePromise.then((response) => {
+      return response["data"].children;
+    });
+    this._children = new Menu(childrenPromise);
   }
 
   hasChildren(){
     if(typeof this.children == "undefined"){
       return false;
-    } else if(this.children.length > 0) {
+    } else if(this.children.items.length > 0) {
       return true;
     } else {
       return false;
@@ -16,11 +20,15 @@ class Menu {
   }
 
   external(){
-    return this.menuData.type == "raw_url";
+    return this.type == "raw_url";
   }
 
   internal(){
-    return this.menuData.type == "page";
+    return this.type == "page";
+  }
+
+  get type(){
+    return this.menuData.type;
   }
 
   get target(){
@@ -37,17 +45,28 @@ class Menu {
     });
   }
 
-  get resolvedResponse(){
-    var resolved;
-    this.response.then(
-      (response) => { resolved = response; },
-      (reason) => { throw "There was an error: " + reason.toString(); }
-    );
-
-    return resolved;
-  }
-
   get menuData(){
-    return resolvedResponse["data"];
+    if(this.resolved){
+      return this.response["data"];
+    } else {
+      return {};
+    }
+  }
+}
+
+export class Menu extends ServerResponse {
+  constructor(promise){
+    super(promise);
+    this.responsePromise = this.responsePromise.then((response) => {
+      this._items = response["data"].map((item) => {
+        var promise = new Promise((resolve) => { return resolve(item); });
+        return new MenuItem(promise);
+      });
+      return response;
+    });
+    this._items = [];
+  }
+  get items(){
+    return this._items;
   }
 }
