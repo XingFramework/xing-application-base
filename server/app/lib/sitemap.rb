@@ -12,7 +12,6 @@ class Sitemap
         @url = SITEMAP_DEFAULT_URL
       else
         @url = "http://CHANGEME.com/"  #TODO: edit for each client
-        # raise "The URL needs to be changed" if @url == "http://CHANGEME.com/"
       end
 
       @url_domain = @url[/([a-z0-9-]+)\.([a-z.]+)/i]
