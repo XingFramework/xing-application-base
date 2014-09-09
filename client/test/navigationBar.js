@@ -1,3 +1,7 @@
+import '../vendor/angular/angular';
+import '../vendor/angular-mocks/angular-mocks';
+import '../src/app/navigationBar/navigationBar';
+
 describe('navigationBar directive', function() {
   var $compile, $rootScope;
 
@@ -27,10 +31,6 @@ describe('navigationBar directive', function() {
   }));
 
   describe('with an empty menu', function() {
-    beforeEach(function() {
-      menu = {};
-    });
-
     it('should render as empty', function() {
       var element = compiledWithMenu({});
       expect(element.html()).not.toContain("ul");
