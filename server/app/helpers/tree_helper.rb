@@ -45,6 +45,7 @@ module TreeHelper
     return "" unless home_location
     Rails.logger.debug{ "Location tree being build from #{home_location.inspect}" }
 
+    templates = NAV_TEMPLATE_NAMES.fetch(template_name || :nav)
     list_tree(templates[:node], templates[:list], home_location.descendants.includes(:page))
   end
   alias nav_menu location_tree
