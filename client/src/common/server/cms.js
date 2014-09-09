@@ -8,7 +8,6 @@ import {Page} from './page';
 
 angular.module( configuration.appName + '.server', [ 'restangular' ])
 .factory('cmsBackend', function(Restangular, $http){
-      console.log("getting here 1");
 
   $http.defaults.headers.common.Accept = 'application/json';
   $http.defaults.headers.post['Content-Type'] = 'application/json';
@@ -19,10 +18,7 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
   return {
     page(slug){
       var response = Restangular.one('page', slug).get();
-      var pageResponse = new Page(response);
-      console.log("in the cms");
-      console.log(pageResponse);
-      return pageResponse;
+      return new Page(response);
     },
     menu(name){
       var response = Restangular.one('menu', name).get(); // GET /menu/Main

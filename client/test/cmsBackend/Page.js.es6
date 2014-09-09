@@ -3,6 +3,7 @@ describe('Page class', function() {
 
   function responseData() {
     return {
+      // links: {},
       data: {
         title: "Title 1",
         keywords: "keyword1 keyword2",
@@ -41,28 +42,28 @@ describe('Page class', function() {
     );
   });
 
+  it('should have a layout', function() {
+    expect(page.metadata.layout).toEqual('one_column');
+  });
+
   it('should have a title', function() {
-    expect(page.title).toEqual('Title 1');
+    expect(page.metadata.title).toEqual('Title 1');
   });
 
   it('should have keywords', function() {
-    expect(page.keywords).toEqual('keyword1 keyword2');
+    expect(page.metadata.keywords).toEqual('keyword1 keyword2');
   });
 
   it('should have a description', function() {
-    expect(page.description).toEqual('Description 1');
+    expect(page.metadata.description).toEqual('Description 1');
   });
 
-  it('should have a layout', function() {
-    expect(page.layout).toEqual('one_column');
-  });
+  it('should have styles', function(){
+    expect(page.metadata.styles).toEqual('p { font-weight: bold; }');
+  })
 
   it('should have contents', function() {
     expect(page.contents instanceof Array).tobeTruthy();
   });
-
-  it('should have styles', function(){
-    expect(page.styles).toEqual('p { font-weight: bold; }');
-  })
 
 });

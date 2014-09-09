@@ -1,29 +1,29 @@
 {
-  data: {
-    title: "Title 1",
-    keywords: "keyword1 keyword2",
-    description: "Description 1",
-    layout:  "one_column",
-    contents: {
-      main: {
-        links: { self: "/content-blocks/:id"  }
-        data: {
-          content_type: 'text/html',
-          body: 'Four score and <em>seven</em> years'
+  "data": {
+    "title": "Title 1",
+    "keywords": "keyword1 keyword2",
+    "description": "Description 1",
+    "layout":  "one_column",
+    "contents": {
+      "main": {
+        "links": { "self": "/content-blocks/:id"  },
+        "data": {
+          "content_type": "text/html",
+          "body": "Four score and <em>seven</em> years"
         }
       },
-      headline: {
-        links: { self: "/content-blocks/:id" },
-        data: {
-          content_type: 'text/html',
-          body: 'The Gettysburg Address'
+      "headline": {
+        "links": { "self": "/content-blocks/:id" },
+        "data": {
+          "content_type": "text/html",
+          "body": "The Gettysburg Address"
         }
       },
-      styles: {
-        links: { self: "/content-blocks/:id" },
-        data: {
-          content_type: 'text/css',
-          body: 'p { font-weight: bold; }'
+      "styles": {
+        "links": { "self": "/content-blocks/:id" },
+        "data": {
+          "content_type": "text/css",
+          "body": "p { font-weight: bold; }"
         }
       }
     }
