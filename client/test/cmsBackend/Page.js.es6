@@ -62,8 +62,8 @@ describe('Page class', function() {
     expect(page.metadata.styles).toEqual('p { font-weight: bold; }');
   })
 
-  it('should have contents', function() {
-    expect(page.contents instanceof Array).tobeTruthy();
+  it('should have content', function() {
+    expect(page.content instanceof Array).tobeTruthy();
   });
 
 });

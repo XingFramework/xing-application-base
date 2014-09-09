@@ -18,12 +18,12 @@ class Page {
     };
   }
 
-  get main() {
-    return this.pageData.contents.main.data.body;
-  }
-
   get headline() {
     return this.pageData.contents.headline.data.body;
+  }
+
+  get main() {
+    return this.pageData.contents.main.data.body;
   }
 
   get resolvedResponse(){
