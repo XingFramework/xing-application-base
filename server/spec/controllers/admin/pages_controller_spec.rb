@@ -16,7 +16,7 @@ describe Admin::PagesController do
   end
 
   let :json do
-    { json_stuff: "like this" }.to_json
+    { stuff: "like this", more: "like that" }.to_json
   end
 
   let :locator do
@@ -55,7 +55,7 @@ describe Admin::PagesController do
       it "should create a page mapper and pass the JSON to it" do
         PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(true)
-        post :create, { :json => json }
+        post :create, json
 
         expect(response).to be_redirect
       end
@@ -64,7 +64,7 @@ describe Admin::PagesController do
         PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(false)
         controller.stub(:render) # tests are calling render twice, is this a header accept problem?
-        post :create, { :json => json }
+        post :create, json
 
         # expect(response.status).to eq(400)
       end
@@ -79,7 +79,7 @@ describe Admin::PagesController do
       it "should update with page mapper and pass the JSON to it" do
         PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(true)
-        put :update, { :url_slug => url_slug, :json => json }
+        put :update, json, { :url_slug => url_slug}
 
         expect(response).to be_redirect
       end
@@ -88,7 +88,7 @@ describe Admin::PagesController do
         PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(true)
         controller.stub(:render) # tests are calling render twice, is this a header accept problem?
-        put :update, { :url_slug => url_slug, :json => json }
+        put :update, json, { :url_slug => url_slug}
 
         # expect(response.status).to eq(400)
       end

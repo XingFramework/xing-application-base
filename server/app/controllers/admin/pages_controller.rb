@@ -1,5 +1,4 @@
-class Admin::PagesController < Admin::AdminController
-  respond_to :json
+class Admin::PagesController < JsonController
 
   # GET /admin/pages
   def index
@@ -16,8 +15,7 @@ class Admin::PagesController < Admin::AdminController
 
   # POST /admin/pages
   def create
-    json = params[:json]
-    page_mapper = PageMapper.new(json)
+    page_mapper = PageMapper.new(json_body)
 
     if page_mapper.save
       redirect_to 'show' #needs a way to redirect to the URL
@@ -26,11 +24,10 @@ class Admin::PagesController < Admin::AdminController
     end
   end
 
-  # PUT /admin/pages/1
+  # PUT /admin/pages/:url_slug
   def update
     path = params[:url_slug]
-    json = params[:json]
-    page_mapper = PageMapper.new(json, path)
+    page_mapper = PageMapper.new(json_body, path)
 
     if page_mapper.save
       redirect_to 'show'
