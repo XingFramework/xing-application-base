@@ -63,7 +63,7 @@ describe Admin::PagesController do
       it "should render status 400 if not saved" do
         PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(false)
-        controller.stub(:render)
+        controller.stub(:render) # tests are calling render twice, is this a header accept problem?
         post :create, { :json => json }
 
         # expect(response.status).to eq(400)
@@ -76,15 +76,21 @@ describe Admin::PagesController do
     ########################################################################################
     describe "responding to PUT update" do
 
-      it "should expose the requested page as @page" do
-        Page.should_receive(:find_by_url_slug).with(url_slug).and_return(page)
-        put :update, { :url_slug => url_slug, :json => json }
-      end
-
       it "should update with page mapper and pass the JSON to it" do
+        PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
+        mock_page_mapper.should_receive(:save).and_return(true)
+        put :update, { :url_slug => url_slug, :json => json }
+
+        expect(response).to be_redirect
       end
 
       it "should render status 400 if not updated" do
+        PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
+        mock_page_mapper.should_receive(:save).and_return(true)
+        controller.stub(:render) # tests are calling render twice, is this a header accept problem?
+        put :update, { :url_slug => url_slug, :json => json }
+
+        # expect(response.status).to eq(400)
       end
     end
   end

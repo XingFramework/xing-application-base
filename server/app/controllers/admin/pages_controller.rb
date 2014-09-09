@@ -29,20 +29,14 @@ class Admin::PagesController < Admin::AdminController
   # PUT /admin/pages/1
   def update
     path = params[:url_slug]
-    @page = Page.find_by_url_slug(path)
-    # @page = page_scope.find(params[:id])
+    json = params[:json]
+    page_mapper = PageMapper.new(json, path)
 
-    # location_handling
-
-    # if @page.update_attributes(page_attrs)
-    #   if @page.permalink == 'home'
-    #     redirect_to(root_url, :notice => "#{human_name} was successfully updated.")
-    #   else
-    #     redirect_to(page_path(@page), :notice => "#{human_name} was successfully updated.")
-    #   end
-    # else
-    #   render :action => "edit"
-    # end
+    if page_mapper.save
+      redirect_to 'show'
+    else
+      render :status => 400
+    end
   end
 
   # DELETE /admin/pages/1
