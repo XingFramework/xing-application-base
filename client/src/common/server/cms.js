@@ -19,7 +19,7 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
       Restangular.get('page', slug); //...or something
     },
     menu(name){
-      var response = Restangular.one('menu', name).get(); // GET /menu/Main
+      var response = Restangular.one('navigation', name).get(); // GET /menu/Main
       return new Menu(response);
     }
   };

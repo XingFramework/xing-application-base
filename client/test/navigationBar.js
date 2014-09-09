@@ -41,13 +41,13 @@ describe('navigationBar directive', function() {
     var element;
 
     beforeEach(function() {
-      element = compiledWithMenu([ {
+      element = compiledWithMenu({ items: [ {
         name: "Test Page",
         target: "/pages/test-page",
         external: function(){ return false; },
         internal: function(){ return true; },
         hasChildren: function(){ return false; }
-      }]);
+      }] });
     });
 
     it('should render a UL', function() {
