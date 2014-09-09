@@ -13,4 +13,5 @@ class HypermediaJSONMapper
   end
 
   class BadContentException < Exception; end
+  class MissingContentException < Exception; end
 end
