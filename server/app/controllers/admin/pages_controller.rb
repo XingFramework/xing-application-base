@@ -16,12 +16,13 @@ class Admin::PagesController < Admin::AdminController
 
   # POST /admin/pages
   def create
-    @page = Page.new(page_attrs)
+    json = params[:json]
+    page_mapper = PageMapper.new(json)
 
-    if @page.save
-      redirect_to(page_path(@page), :notice => "#{human_name} was successfully created.")
+    if page_mapper.save
+      redirect_to 'show' #needs a way to redirect to the URL
     else
-      render :action => "new"
+      render :status => 400
     end
   end
 

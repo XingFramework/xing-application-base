@@ -29,6 +29,10 @@ RSpec.configure do |config|
     pending "Pending removal.  Back-end does not use views."
   end
 
+  config.before :each, :type => :controller do
+    @request.env['HTTP_ACCEPT'] = 'application/json'
+  end
+
   config.before :each do
     DatabaseCleaner.start
   end
