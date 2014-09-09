@@ -4,6 +4,7 @@ import {} from '../../../vendor/lodash/lodash.compat';
 import {} from '../../../vendor/restangular/restangular';
 
 import {Menu} from './menu';
+import {Page} from './page';
 
 angular.module( configuration.appName + '.server', [ 'restangular' ])
 .factory('cmsBackend', function(Restangular, $http){
@@ -16,7 +17,8 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
 
   return {
     page(slug){
-      Restangular.get('page', slug); //...or something
+      var response = Restangular.one('page', slug).get();
+      return new Page(response);
     },
     menu(name){
       var response = Restangular.one('navigation', name).get(); // GET /menu/Main

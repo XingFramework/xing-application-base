@@ -1,20 +1,4 @@
-class ServerResponse {
-  constructor(responsePromise) {
-    this.response = null;
-    this.errorReason = null;
-    this.resolved = false;
-    this.responsePromise = responsePromise.then( (response) => {
-      this.resolved = true;
-      this.response = response;
-      return response;
-    },
-    (reason) => {
-      this.resolved = true;
-      this.errorReason = reason;
-    });
-  }
-}
-
+import {ServerResponse} from './serverResponse';
 
 class MenuItem extends ServerResponse {
   constructor(promise){
@@ -56,7 +40,9 @@ class MenuItem extends ServerResponse {
   }
 
   get children(){
-    return this._children;
+    return this.menuData.children.map((item) => {
+      return new Menu(new Promise((resolve) => { return resolve(item); }));
+    });
   }
 
   get menuData(){
