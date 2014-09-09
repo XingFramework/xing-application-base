@@ -9,12 +9,11 @@ module.exports = function ( config ) {
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
-      {pattern: '<%= app_files.js %>', included: false},
-      <% test_files.js.forEach(function(file){ %>
-      '<%= file %>',<% }); %>
-      'test/json-fixtures/**/*.json',
+      {pattern: 'test/json-fixtures/**/*.json', included: false},
+      {pattern: 'src/**/*.js', included: false},
       {pattern: 'test/**/*.js', included: false},
-      'test/test-main.js'
+      {pattern: 'vendor/**/*.js', included: false},
+      'test-main.js'
     ],
     exclude: [
       'src/assets/**/*.js'
@@ -31,7 +30,8 @@ module.exports = function ( config ) {
       'karma-ng-html2js-preprocessor',
     ],
     preprocessors: {
-      '**/*.js': 'traceur',
+      'src/**/*.js': 'traceur',
+      'test/**/*.js': 'traceur',
       //'**/*.coffee': 'coffee',
       '**/*.html': ['ng-html2js'],
       '**/*.json': ['ng-html2js']
