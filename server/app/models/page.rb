@@ -95,6 +95,15 @@ class Page < ActiveRecord::Base
     content_format.find{ |cf| cf[:name] == name }
   end
 
+  def required_blocks
+    content_format.reduce([]) do |acc, block_specifier|
+      if block_specifier[:required]
+        acc << block_specifier[:name]
+      end
+      acc
+    end
+  end
+
   def sanitize(name, block)
     if (sanitizer = named_content_format(name)[:sanitize_with]).present?
       block.body = send(sanitizer, block.body)

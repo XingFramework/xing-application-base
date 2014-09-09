@@ -44,8 +44,17 @@ class PageMapper < HypermediaJSONMapper
     contents_data.each do |name, content_block_hash|
       set_content_block(page, name, unwrap_data(content_block_hash))
     end
+    validate_required_blocks_present(page)
     if self.bad_blocks.present?
       raise BadContentException.new("JSON contained invalid content: #{bad_blocks.inspect}")
+    end
+  end
+
+  def validate_required_blocks_present(page)
+    populated_blocks = page.contents.select{ |key,cb| cb.body.present?}.keys
+    missing_blocks = page.required_blocks - populated_blocks
+    if missing_blocks.present?
+      raise MissingContentException.new("Required blocks not set: #{missing_blocks.inspect}")
     end
   end
 

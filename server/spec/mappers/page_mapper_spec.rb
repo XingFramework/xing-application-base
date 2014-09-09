@@ -62,7 +62,7 @@ describe PageMapper do
 
       describe "when extra content is provided" do
         let :invalid_data do
-          valid_data.deep_merge({ :data => { :contents => {
+          valid_data.deep_merge({ data: { contents: {
             main:     { data: { body: "Fourscore and seven years." }},
             headline: { data: { body: "The Gettysburg Address" }},
             sidebar:  { data: { body: "See below for other famous speeches!" }}
@@ -81,6 +81,60 @@ describe PageMapper do
             end.to raise_error(PageMapper::BadContentException)
           end.not_to change{ Page.count}
         end
+      end
+
+      describe "when required content is missing" do
+        let :format do
+          [{ :name         => 'headline',
+             :content_type => 'text/html'
+          },
+          {  :name         => 'main',
+             :content_type => 'text/html',
+             :required     => true
+          }]
+        end
+
+        let :json do
+          invalid_data.to_json
+        end
+
+        describe "because the value is blank" do
+          let :invalid_data do
+            valid_data.deep_merge({data: {contents: {
+              main: { data: { body: "" } }
+            }}})
+          end
+
+
+          it "should raise an error without saving anything" do
+            expect do
+              expect do
+                mapper.save
+              end.to raise_error(PageMapper::MissingContentException)
+            end.not_to change{ Page.count}
+          end
+        end
+
+        describe "because the block is not submitted" do
+          let :invalid_data do
+            { data: {
+              title:    'foo bar',
+              keywords: 'foo, bar',
+              contents: {
+                headline: { data: { body: "The Gettysburg Address" }}
+              }
+            }}
+          end
+
+          it "should raise an error without saving anything" do
+            expect do
+              expect do
+                mapper.save
+              end.to raise_error(PageMapper::MissingContentException)
+            end.not_to change{ Page.count}
+          end
+        end
+
       end
     end
 
