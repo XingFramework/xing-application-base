@@ -215,10 +215,21 @@ module.exports = function( grunt ) {
           includeRuntime: true,
           traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
           traceurCommand: "./node_modules/.bin/traceur",
-          traceurOptions: "--experimental --source-maps"
+          traceurOptions: "--array-comprehension --source-maps"
         },
         build: {
           files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
+        },
+        test: {
+          options: {
+            includeRuntime: false
+          },
+          files: [ {
+            expand: true,
+            src: [ 'test/**/*.es6.js' ],
+            dest: '',
+            ext: '.js'
+          } ]
         }
       },
 
@@ -293,7 +304,12 @@ module.exports = function( grunt ) {
        */
       jshint: {
         src: [ '<%= app_files.js %>' ],
-        test: [ '<%= app_files.jsunit %>' ],
+        test: {
+          files: [ { src: ['<%= app_files.jsunit %>' ] }],
+          options: {
+            debug: true,
+          }
+        },
         gruntfile: [ 'Gruntfile.js' ],
         target: {
           files: [ {
@@ -311,7 +327,7 @@ module.exports = function( grunt ) {
           forin: true, //require for in loops to filter items with hasOwnProperty
           curly: true, //require {} for if and while etc
           immed: true, //immediate function invocations must have ()
-          latedef: "nofunc", //declare variables before use
+          latedef: false, //"nofunc", //declare variables before use
           newcap: true, //new lowercase() forbidden
           noarg: true, //don't use arguments.caller and arguments.callee
           sub: true, //okay to use thing['value'] when thing.value would work
@@ -372,16 +388,20 @@ module.exports = function( grunt ) {
         options: {
           configFile: '<%= build_dirs.root %>/karma-unit.js',
           autoWatch: false,
-          browsers: [ 'PhantomJS' ]
+          //browsers: [ 'PhantomJS' ]
         },
         unit: {
-          runnerPort: 9101,
-          background: true
+          options: {
+            runnerPort: 9101,
+            background: true
+          }
         },
         continuous: { singleRun: true },
         dev: {
-          singleRun: true,
-          browsers: [ 'Chrome' ]
+          options: {
+            singleRun: true,
+            browsers: [ 'Chrome' ]
+          }
         }
       },
 
@@ -509,9 +529,7 @@ module.exports = function( grunt ) {
          * run our unit tests.
          */
         jssrc: {
-          files: [
-            '<%= app_files.js %>'
-          ],
+          files: [ '<%= app_files.js %>' ],
           tasks: [ 'jshint:src', 'traceur:build', 'karma:unit:run' ]
         },
 
@@ -577,7 +595,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.jsunit %>', 'test/json-fixtures/**/*'
           ],
-          tasks: [ 'jshint:test', 'karmaconfig:unit', 'karma:unit:run' ],
+          tasks: [ 'jshint:test', 'karma:unit:run' ],
           options: {
             livereload: false
           }
@@ -634,7 +652,7 @@ module.exports = function( grunt ) {
     'sass_to_scss:build', 'sass:build',
     'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:karmaUnit'
-  ])
+  ]);
 
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'karma:dev' ]);
 

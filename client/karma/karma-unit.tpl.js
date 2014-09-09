@@ -9,28 +9,29 @@ module.exports = function ( config ) {
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
-      '<%= compile_targets.js %>',
-      {pattern: '<%= compile_targets.map %>', included: false},
-      <% test_files.js.forEach(function(file){ %>
-      '<%= file %>',<% }); %>
-      'test/json-fixtures/**/*.json',
-      'test/**/*.js'
+      {pattern: 'test/json-fixtures/**/*.json', included: false},
+      {pattern: 'src/**/*.js', included: false},
+      {pattern: 'test/**/*.js', included: false},
+      {pattern: 'vendor/**/*.js', included: false},
+      'test-main.js'
     ],
     exclude: [
       'src/assets/**/*.js'
     ],
-    frameworks: [ 'jasmine' ],
+    frameworks: [ 'jasmine', 'requirejs', 'traceur' ],
     plugins: [
       'karma-jasmine',
       'karma-firefox-launcher',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
       //'karma-coffee-preprocessor',
-      //'karma-traceur-preprocessor',
+      'karma-requirejs',
+      'karma-traceur-preprocessor',
       'karma-ng-html2js-preprocessor',
     ],
     preprocessors: {
-      //'**/*.js': 'traceur',
+      'src/**/*.js': 'traceur',
+      'test/**/*.js': 'traceur',
       //'**/*.coffee': 'coffee',
       '**/*.html': ['ng-html2js'],
       '**/*.json': ['ng-html2js']
@@ -52,6 +53,13 @@ module.exports = function ( config ) {
       moduleName: 'fixtureCache'
     },
 
+    traceurPreprocessor: {
+      options: {
+        sourceMaps: true,
+        modules: 'amd',
+      }
+    },
+
     /**
      * How to report, by default.
      */
@@ -63,6 +71,8 @@ module.exports = function ( config ) {
     port: 9018,
     runnerPort: 9100,
     urlRoot: '/',
+    browserDisconnectTimeout: 20000,
+    browserNoActivityTimeout: 20000,
 
     /**
      * Disable file watching by default.

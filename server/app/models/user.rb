@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     false
   end
 
+  def role
+    @role    ||= Role.for(self)
+  end
+
   validates_presence_of :login
   validates_uniqueness_of :login
 end

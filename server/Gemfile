@@ -12,6 +12,7 @@ gem "sanitize"
 gem "babosa"
 gem 'active_model_serializers'
 gem 'rails-observers'
+gem 'cancancan'
 
 group :development, :test do
   gem "rspec", "< 3.0.0"

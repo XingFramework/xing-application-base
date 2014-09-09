@@ -21,13 +21,13 @@
 require 'sitemap'
 
 class Page < ActiveRecord::Base
+  include ClassRegistry
 
   validates_presence_of :title, :url_slug
   validates_uniqueness_of :url_slug
 
   has_many :page_contents
   has_many :content_blocks, :through => :page_contents
-
 
   scope :published, -> do
     # TODO: Decide exactly what publication fields we are using and how
@@ -68,23 +68,12 @@ class Page < ActiveRecord::Base
     conts
   end
 
-  class << self
-    def registry
-      @registry ||= {}
-    end
-
-    def register(page_name)
-      Page.registry[page_name] = self
-    end
-
-    def registry_get(page_name)
-      Page.registry.fetch(page_name)
-    end
-  end
-
-
   def layout
     self.class.name.split("::")[1..-1].join.underscore
+  end
+
+  def to_param
+    url_slug
   end
 
   def set_url_slug
@@ -105,7 +94,6 @@ class Page < ActiveRecord::Base
     end
   end
 
-  private
   def sanitize_html(content, config = Sanitize::Config::RESTRICTED)
     Sanitize.fragment(content, config)
   end
@@ -120,5 +108,8 @@ class Page < ActiveRecord::Base
     Sanitize::CSS.properties(content, config)
   end
 
+  def named_content_format(name)
+    content_format.find{ |cf| cf[:name] == name }
+  end
 
 end

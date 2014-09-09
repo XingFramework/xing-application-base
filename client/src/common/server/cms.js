@@ -1,9 +1,12 @@
 import {configuration} from '../config';
 import {} from '../../../vendor/angular/angular';
+import {} from '../../../vendor/lodash/lodash.compat';
 import {} from '../../../vendor/restangular/restangular';
 
-angular.module( configuration.appName + '.server', [ 'Restangular' ])
-.factory('cms', function(restangular, $http){
+import {Menu} from './menu';
+
+angular.module( configuration.appName + '.server', [ 'restangular' ])
+.factory('cmsBackend', function(Restangular, $http){
 
   $http.defaults.headers.common.Accept = 'application/json';
   $http.defaults.headers.post['Content-Type'] = 'application/json';
@@ -13,7 +16,11 @@ angular.module( configuration.appName + '.server', [ 'Restangular' ])
 
   return {
     page(slug){
-      restangular.get('page', slug); //...or something
+      Restangular.get('page', slug); //...or something
+    },
+    menu(name){
+      var response = Restangular.one('navigation', name).get(); // GET /menu/Main
+      return new Menu(response);
     }
   };
 });
