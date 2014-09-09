@@ -101,7 +101,19 @@ describe PageMapper do
         end.to change{ page.reload.title }.to("The New Title")
       end
 
+      # is this too clever for its own good?  trying to avoid having to make
+      # a new mapper and save it for each individual attribute
       it "should not update anything else" do
+        unchanged_fields = [ :url_slug, :keywords, :description, :contents ]
+        expect do
+          mapper.save
+        end.not_to change {
+          page.reload
+          unchanged_fields.map do |key|
+            [ key, page.send(key) ]
+          end
+        }
+
       end
 
     end
