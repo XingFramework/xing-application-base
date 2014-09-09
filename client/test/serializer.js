@@ -1,3 +1,7 @@
+import '../vendor/angular/angular';
+import '../vendor/angular-mocks/angular-mocks';
+import '../src/common/serializer';
+
 describe('serializer', function () {
     'use strict';
 
