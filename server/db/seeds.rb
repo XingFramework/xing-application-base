@@ -14,3 +14,13 @@ end
 unless MenuItem.roots.where(:name => "Blog Topics").exists?
   MenuItem.create!(:name => "Blog Topics")
 end
+
+unless Page::Homepage.new.persisted?
+  Page::Homepage.create!(
+    :url_slug => 'homepage',
+    :title    => "This site's homepage",
+    :keywords => "Info, about, this, site.",
+    :description => "This site was built with LRD's CMS framework."
+  )
+  # TODO: sub-projects should create default content for the homepage here
+end
