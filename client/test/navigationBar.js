@@ -51,7 +51,7 @@ describe('navigationBar directive', function() {
     });
 
     it('should render a UL', function() {
-      console.log("test/navigationBar.js:44", "element.html()", element.html());
+      // console.log("test/navigationBar.js:44", "element.html()", element.html());
       expect(element.html()).toContain("ul");
     });
 

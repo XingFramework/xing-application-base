@@ -1,13 +1,12 @@
-<standard-layout>
-  <article role="main" id="{{title}}">
-    <h2>{{headline}}</h2>
-    <div class="article-body" ng-bind-html="content">
-    </div>
-    <div class="article-links">
-      <h3>Ready to get going?</h3><br />
-      <a ui-sref="contact" class="dark-button">Contact Us</a>
-    </div>
-  </article>
-  <aside role="complementary">
-  </aside>
-</standard-layout>
+<layout>
+  <head>
+    <title>{{title}}</title>
+    <meta name="keywords" content="{{keywords}}" />
+    <meta name="description" content="{{description}}" />
+    <style>
+      {{styles}}
+    </style>
+  </head>
+  <h2>{{headline}}</h2>
+  <div ng-bind-html="mainContent"></div>
+</layout>

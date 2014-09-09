@@ -33,7 +33,7 @@ class Menu {
 
   get children(){
     return this.menuData.children.map((item) => {
-      return new Menu(new Promise((resolve) => { return resolve(item) });
+      return new Menu(new Promise((resolve) => { return resolve(item); }));
     });
   }
 

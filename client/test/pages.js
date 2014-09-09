@@ -1,56 +1,15 @@
 describe( 'Pages section', function() {
   beforeEach( module( 'Reasoning.pages' ) );
-
-  describe ('Pages service', function() {
-    var restangularMock, restangularSpy, Pages;
-    beforeEach(function() {
-      restangularMock = {
-        restangularServices: {},
-        service: function(serviceName) {
-          console.log('called');
-          this.restangularServices[serviceName] = {
-            getList: jasmine.createSpy()
-          };
-          return this.restangularServices[serviceName];
-        }
-      };
-
-      restangularSpy = spyOn(restangularMock, 'service');
-
-      restangularSpy.and.callThrough();
-
-      module(function($provide) {
-        $provide.value('Restangular', restangularMock);
-      });
-
-      inject(function ($injector) {
-        Pages = $injector.get('Pages');
-      });
-
-    });
-
-    it('should create a restangular service', function() {
-      expect(Pages).toBe(restangularMock.restangularServices['pages']);
-      expect(restangularSpy).toHaveBeenCalled();
-    });
-
-    it('should behave like a restangular service', function() {
-      Pages.getList();
-      expect(restangularMock.restangularServices['pages'].getList).toHaveBeenCalled();
-    });
-  });
+  beforeEach( module( 'Reasoning.server' ) );
+  beforeEach( module( 'fixtureCache' ) );
 
   describe('Pages Controller', function () {
-    var PagesMock, $stateParamsMock, q, pagesCtrl, oneSpy, emitSpy, metadata, $sceMock;
+    var PageMock, $stateParamsMock, pageJson, q, pagesCtrl, oneSpy, emitSpy, $sceMock;
 
     beforeEach(function() {
-      metadata = {
-        pageTitle: 'awesome-dude',
-        pageCss: 'div.dude { display: block; }',
-        pageKeywords: 'keyword-dude',
-        pageDescription: 'description-dude'
-      };
-      PagesMock = {
+      pageJson = angular.fromJson($templateCache.get('json-fixtures/pages/one.json'));
+
+      PageMock = {
         one: function(item) {
           return {
             page: function() {
@@ -58,7 +17,7 @@ describe( 'Pages section', function() {
                 headline: 'best ever thing'+item,
                 content: 'super duper awesome '+item,
                 title: 'awesome-'+item,
-                css: 'div.'+item+' { display: block; }',
+                styles: 'div.'+item+' { display: block; }',
                 keywords: 'keyword-'+item,
                 description: 'description-'+item
               };
@@ -82,7 +41,7 @@ describe( 'Pages section', function() {
         }
       };
 
-      oneSpy = spyOn(PagesMock, 'one');
+      oneSpy = spyOn(PageMock, 'one');
       oneSpy.and.callThrough();
 
       inject(function($controller, $rootScope, $q) {
@@ -92,7 +51,7 @@ describe( 'Pages section', function() {
         pagesCtrl = $controller('PagesCtrl', {
           $scope: this.scope,
           $stateParams: $stateParamsMock,
-          Pages: PagesMock,
+          Page: PageMock,
           $sce: $sceMock
         });
         this.scope.$apply();
