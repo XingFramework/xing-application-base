@@ -28,6 +28,7 @@ angular.module( `${configuration.appName}.pages`, [
     $scope.page.responsePromise.then( (resolve) =>
       {
         $scope.content = $sce.trustAsHtml($scope.page.main);
+        $scope.metadata.styles = $sce.css($scope.metadata.styles);
         $scope.$emit('metadataSet', $scope.page.metadata);
       }
     );
