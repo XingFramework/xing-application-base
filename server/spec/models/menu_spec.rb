@@ -68,7 +68,7 @@ describe Menu do
 
     it "should have the elements of the tree" do
       menu.reload
-      expect(menu.tree).to include(root_1, child_1, child_2)
+      expect(menu.tree).to include(child_1, child_2)
     end
 
     it "should not have items outside the tree" do
