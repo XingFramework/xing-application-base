@@ -9,7 +9,10 @@ require 'spec_helper'
 #   {"title"=>"Title for page 2",
 #    "keywords"=>nil,
 #    "description"=>nil,
-#    "layout"=>"",
+#    "layout"=>""
+#    "published" => "true",
+#    "publish_start" => nil,
+#    "publish_end" => nil,
 #    "contents"=>
 #     {"styles"=>
 #       {"links"=>{"self"=>"/admin/content_blocks/6"},
@@ -21,7 +24,7 @@ require 'spec_helper'
 #       {"links"=>{"self"=>"/admin/content_blocks/4"},
 #        "data"=>{"content_type"=>"text/html", "body"=>"foo bar"}}}}}
 
-describe "pages#show" do
+describe "pages#show", :type => :request do
   let :main     do FactoryGirl.create(:content_block) end
   let :headline do FactoryGirl.create(:content_block, :body => 'the content') end
   let :styles   do FactoryGirl.create(:content_block, :content_type => 'text/css', :body => "more stuff") end
@@ -34,14 +37,14 @@ describe "pages#show" do
     )
   end
 
-  describe "GET /pages/:url_slug" do
+  describe "GET admin/pages/:url_slug" do
     it "shows page as json" do
-      json_get "/pages/#{page.url_slug}"
+      json_get "admin/pages/#{page.url_slug}"
 
       expect(response).to be_success
       expect(response.body).to have_json_path("links")
       expect(response.body).to have_json_path("links/self")
-      expect(response.body).to have_json_path("links/admin")
+      expect(response.body).to have_json_path("links/public")
       expect(response.body).to have_json_path("data")
       expect(response.body).to have_json_path("data/title")
       expect(response.body).to have_json_path("data/keywords")
@@ -49,7 +52,7 @@ describe "pages#show" do
       expect(response.body).to have_json_path("data/layout")
       expect(response.body).to have_json_path("data/contents")
       expect(response.body).to have_json_size(3).at_path("data/contents")
-      expect(JSON.parse(response.body)["links"]["self"]).to eq("/pages/#{page.url_slug}")
+      expect(JSON.parse(response.body)["links"]["self"]).to eq("/admin/pages/#{page.url_slug}")
       expect(JSON.parse(response.body)["data"]["title"]).to eq(page.title)
       expect(JSON.parse(response.body)["data"]["contents"]["headline"]["links"]["self"]).to eq(admin_content_block_path(headline))
       expect(JSON.parse(response.body)["data"]["contents"]["styles"]["data"]["body"]).to eq(styles.body)

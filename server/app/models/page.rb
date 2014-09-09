@@ -83,6 +83,10 @@ class Page < ActiveRecord::Base
     self.class.name.split("::")[1..-1].join.underscore
   end
 
+  def to_param
+    url_slug
+  end
+
   def set_url_slug
     self.url_slug ||= title.to_slug.normalize.to_s
   end

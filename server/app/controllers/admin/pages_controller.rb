@@ -1,20 +1,17 @@
 class Admin::PagesController < Admin::AdminController
+  respond_to :json
+
   # GET /admin/pages
   def index
     @pages = page_scope
     @human_plural_name
   end
 
-  # GET /admin/pages/new
-  def new
-    @page = Page.new
-    @human_name = human_name
-  end
-
-  # GET /admin/pages/1/edit
-  def edit
-    @page = page_scope.find(params[:id])
-    @human_name = human_name
+  # GET /admin/pages/:url_slug
+  def show
+    path = params[:url_slug]
+    @page = Page.find_by_url_slug(path)
+    render :json => Admin::PageSerializer.new(@page)
   end
 
   # POST /admin/pages
