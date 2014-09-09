@@ -12,6 +12,7 @@ class Sitemap
         @url = SITEMAP_DEFAULT_URL
       else
         @url = "http://CHANGEME.com/"  #TODO: edit for each client
+        # raise "The URL needs to be changed" if @url == "http://CHANGEME.com/"
       end
 
       @url_domain = @url[/([a-z0-9-]+)\.([a-z.]+)/i]
@@ -28,10 +29,17 @@ class Sitemap
 
       xml.instruct!
       xml.urlset(:xmlns=>'http://www.sitemaps.org/schemas/sitemap/0.9') {
-        @pages_to_visit.each do |url|
-          unless @url == url
+        STATIC_PATHS_FOR_SITEMAP.each do |path|
+          xml.url {
+            xml.loc(@url + path)
+            xml.lastmod(Time.now.utc.iso8601)
+          }
+        end
+
+        @pages_to_visit.each do |path|
+          unless @url == path
             xml.url {
-              xml.loc(@url + url)
+              xml.loc(@url + path)
               xml.lastmod(Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00"))
              }
           end
@@ -40,13 +48,14 @@ class Sitemap
 
       save_file(xml_str)
     end
+
     def save_file(xml)
       File.open("#{ Rails.root }/public/sitemap.xml", "w+") do |f|
         f.write(xml)
       end
     end
 
-     def update_search_engine(host, path, sitemap_uri)
+    def update_search_engine(host, path, sitemap_uri)
       Rails.logger.info{"Notifying #{host}"}
       begin
         res = Net::HTTP.get_response(host, path + sitemap_uri)
