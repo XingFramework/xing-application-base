@@ -23,14 +23,18 @@ describe('Menu class', function() {
     };
   }
 
-  beforeEach(function() {
-    menu = new Menu(
-      new Promise(function(resolve){ return resolve(responseData()); })
-    );
+  beforeEach(function(done) {
+    var promise = new Promise(function(resolve){
+      var data = responseData();
+      return resolve(data);
+    });
+    menu = new Menu(promise);
+    promise.then(function(){done()});
   });
 
-  it('should have a target', function() {
+  it('should have a target', function(done) {
     expect(menu.target).toEqual('pages/test-1');
+    done();
   });
 
   it('should have a name', function() {

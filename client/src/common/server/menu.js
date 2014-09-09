@@ -1,8 +1,18 @@
 export var Menu;
 
 class Menu {
-  constructor(response) {
-    this.response = response;
+  constructor(responsePromise) {
+    this.response = null;
+    this.errorReason = null;
+    this.resolved = false;
+    responsePromise.then( (response) => {
+      this.resolved = true;
+      this.response = response;
+    },
+    (reason) => {
+      this.resolved = true;
+      this.errorReason = reason;
+    })
   }
 
   hasChildren(){
@@ -23,6 +33,10 @@ class Menu {
     return this.menuData.type == "page";
   }
 
+  get type(){
+    return this.menuData.type;
+  }
+
   get target(){
     return this.menuData.url;
   }
@@ -32,25 +46,21 @@ class Menu {
   }
 
   get children(){
-    return this.menuData.children.map((item) => {
-      return new Menu(new Promise((resolve) => { return resolve(item); }));
-    });
-  }
-
-  get resolvedResponse(){
-    var resolved;
-    this.response.then(
-      (response) => {
-      console.log("server/menu.js:44", "response", response);
-      resolved = response; },
-      (reason) => { throw "There was an error: " + reason.toString(); }
-    );
-
-    console.log("server/menu.js:47", "resolved", resolved);
-    return resolved;
+    if(this.resolved){
+      return this.menuData.children.map((item) => {
+        return new Menu(new Promise((resolve) => { return resolve(item); }));
+      });
+    } else {
+      return [];
+    }
   }
 
   get menuData(){
-    return this.resolvedResponse["data"];
+    if(this.resolved){
+      console.log("server/menu.js:60", "this.response", this.response);
+      return this.response["data"];
+    } else {
+      return {};
+    }
   }
 }
