@@ -79,4 +79,34 @@ describe PageMapper do
     end
 
   end
+
+
+  describe "updating" do
+    let :page do
+      FactoryGirl.create(:one_column_page, :title => 'The Old Title')
+    end
+
+    let :mapper do
+      PageMapper.new(json, page.url_slug)
+    end
+
+    describe "an attribute column" do
+      let :json do
+        { data: { title: "The New Title" } }.to_json
+      end
+
+      it "should update the desired column" do
+        expect do
+          mapper.save
+        end.to change{ page.reload.title }.to("The New Title")
+      end
+
+      it "should not update anything else" do
+      end
+
+    end
+
+
+
+  end
 end
