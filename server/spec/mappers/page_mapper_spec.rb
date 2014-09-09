@@ -79,4 +79,72 @@ describe PageMapper do
     end
 
   end
+
+
+  describe "updating" do
+    let :page do
+      FactoryGirl.create(:one_column_page, :title => 'The Old Title')
+    end
+
+    let :mapper do
+      PageMapper.new(json, page.url_slug)
+    end
+
+    describe "an attribute column" do
+      let :json do
+        { data: { title: "The New Title" } }.to_json
+      end
+
+      it "should update the desired column" do
+        expect do
+          mapper.save
+        end.to change{ page.reload.title }.to("The New Title")
+      end
+
+      # is this too clever for its own good?  trying to avoid having to make
+      # a new mapper and save it for each individual attribute
+      it "should not update anything else" do
+        unchanged_fields = [ :url_slug, :keywords, :description, :contents ]
+        expect do
+          mapper.save
+        end.not_to change {
+          page.reload
+          unchanged_fields.map do |key|
+            [ key, page.send(key) ]
+          end
+        }
+
+      end
+    end
+
+    describe "a content body" do
+      let :json do
+        { data: { contents: { main: { data: { body: "The New Body" }}}}}.to_json
+      end
+
+      it "should update the desired column" do
+        expect do
+          mapper.save
+        end.to change{ page.reload.contents['main'].body }.to("The New Body")
+      end
+
+      # is this too clever for its own good?  trying to avoid having to make
+      # a new mapper and save it for each individual attribute
+      it "should not update anything else" do
+        unchanged_fields = [ :url_slug, :keywords, :description, :title ]
+        expect do
+          mapper.save
+        end.not_to change {
+          page.reload
+          unchanged_fields.map do |key|
+            [ key, page.send(key) ]
+          end
+        }
+
+      end
+    end
+
+
+
+  end
 end

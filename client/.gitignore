@@ -6,3 +6,4 @@ node_modules/
 .vimrc
 vendor/
 src/common/environment.js
+**/*.map

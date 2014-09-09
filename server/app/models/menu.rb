@@ -12,7 +12,7 @@ class Menu
   end
 
   def tree
-    self.menu_item.self_and_descendants
+    self.menu_item.descendants
   end
 
   def self.list
