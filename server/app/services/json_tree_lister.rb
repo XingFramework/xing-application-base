@@ -22,7 +22,8 @@ class JsonTreeLister
   end
 
   def pop_level
-    @stack.last << render_node(@path.pop, @stack.pop)
+    children = @stack.pop
+    @stack.last << render_node(@path.pop, children)
   end
 
   def render
@@ -31,7 +32,7 @@ class JsonTreeLister
         pop_level
       end
       if after.nil? or !this.is_ancestor_of?(after)
-        @stack.last << render_node(this, nil)
+        @stack.last << render_node(this, [])
       else
         @path << this
         @stack << []

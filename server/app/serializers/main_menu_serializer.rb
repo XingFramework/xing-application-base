@@ -1,7 +1,7 @@
 class MainMenuSerializer < BaseSerializer
 
   def as_json_without_wrap
-    JsonTreeLister.new(object, MainMenuNodeSerializer).render
+    JsonTreeLister.new(object.tree, MainMenuNodeSerializer).render
   end
 
   def links
