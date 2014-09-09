@@ -17,21 +17,24 @@ class PageMapper < HypermediaJSONMapper
     unless page.save
       raise "Unable to save page.  reasons: #{page.errors.inspect}"
     end
+    page
   end
 
   def save_new
-    page = Page.new(@page_data)
+    page = Page.registry_get(@page_class).new(@page_data)
     page.set_url_slug
 
     add_or_update_contents(page, @contents_data)
     unless page.save
       raise "Unable to save page.  reasons: #{page.errors.inspect}"
     end
+    page
   end
 
   def extract_data
     @page_data     = unwrap_data(@source_hash)
     @contents_data = @page_data.delete('contents')
+    @page_class = @page_data.delete('layout').to_sym if @page_data['layout'].present?
   end
 
   def add_or_update_contents(page, contents_data)

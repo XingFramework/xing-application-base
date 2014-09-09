@@ -17,8 +17,8 @@ class Admin::PagesController < JsonController
   def create
     page_mapper = PageMapper.new(json_body)
 
-    if page_mapper.save
-      redirect_to 'show' #needs a way to redirect to the URL
+    if page = page_mapper.save
+      redirect_to  admin_page_path(page)
     else
       render :status => 400
     end
@@ -29,8 +29,8 @@ class Admin::PagesController < JsonController
     path = params[:url_slug]
     page_mapper = PageMapper.new(json_body, path)
 
-    if page_mapper.save
-      redirect_to 'show'
+    if page = page_mapper.save
+      redirect_to admin_page_path(page)
     else
       render :status => 400
     end
