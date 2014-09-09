@@ -26,13 +26,8 @@ class Page < ActiveRecord::Base
   validates_presence_of :title, :url_slug
   validates_uniqueness_of :url_slug
 
-  #after_create :regenerate_sitemap
-  #after_update :regenerate_sitemap
-  #before_destroy :regenerate_sitemap
-
   has_many :page_contents
   has_many :content_blocks, :through => :page_contents
-
 
   scope :published, -> do
     # TODO: Decide exactly what publication fields we are using and how
@@ -72,12 +67,6 @@ class Page < ActiveRecord::Base
     end
     conts
   end
-
-  # TODO - probably make this a class method
-  def regenerate_sitemap
-    Sitemap.create! unless Rails.env.test?
-  end
-
 
   def layout
     self.class.name.split("::")[1..-1].join.underscore
