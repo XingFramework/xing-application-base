@@ -19,5 +19,4 @@ FactoryGirl.define do
     role_name 'Admin'
   end
   factory :admin, :parent => :admin_user
-
 end
