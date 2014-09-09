@@ -1,3 +1,5 @@
+import {Page} from "../../src/common/server/page";
+
 describe('Page class', function() {
   var page;
 
@@ -11,7 +13,7 @@ describe('Page class', function() {
         layout:  "one_column",
         contents: {
           main: {
-            links: { self: "/content-blocks/:id"  }
+            links: { self: "/content-blocks/:id"  },
             data: {
               content_type: 'text/html',
               body: 'Four score and <em>seven</em> years'
@@ -36,14 +38,20 @@ describe('Page class', function() {
     };
   }
 
-  beforeEach(function() {
-    page = new Page(
-      $q(function(resolve){ return resolve(responseData()); })
-    );
+  beforeEach(function(done) {
+    var promise = new Promise(function(resolve){
+      var data = responseData();
+      return resolve(data);
+    });
+    page = new Page(promise);
+    page.responsePromise.then(function(){
+      done();
+    });
   });
 
+
   it('should have a layout', function() {
-    expect(page.metadata.layout).toEqual('one_column');
+    expect(page.layout).toEqual('one_column');
   });
 
   it('should have a title', function() {
@@ -60,10 +68,10 @@ describe('Page class', function() {
 
   it('should have styles', function(){
     expect(page.metadata.styles).toEqual('p { font-weight: bold; }');
-  })
+  });
 
   it('should have content', function() {
-    expect(page.content instanceof Array).tobeTruthy();
+    expect(page.main).toEqual('Four score and <em>seven</em> years');
   });
 
 });

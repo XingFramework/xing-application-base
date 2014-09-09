@@ -11,6 +11,7 @@ export class ServerResponse {
     (reason) => {
       this.resolved = true;
       this.errorReason = reason;
+      return reason;
     });
   }
 }

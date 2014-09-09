@@ -1,4 +1,4 @@
-import {ServerResponse} from './serverResponse.js';
+import {ServerResponse} from './serverResponse';
 
 class MenuItem extends ServerResponse {
   constructor(promise){

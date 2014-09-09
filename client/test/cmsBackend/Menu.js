@@ -33,7 +33,7 @@ describe('Menu class', function() {
     });
     menu = new Menu(promise);
     promise.then(function(){
-      done()
+      done();
     });
   });
 

@@ -1,8 +1,17 @@
+import {ServerResponse} from './serverResponse';
+
 export var Page;
 
-class Page {
-  constructor(response) {
-    this.response = response;
+class Page extends ServerResponse {
+  constructor(promise) {
+    super(promise);
+    this._pageData = {};
+    this.responsePromise = this.responsePromise.then(
+      (response) => {
+        this._pageData = response["data"];
+        return response;
+      },
+      (reason) => {throw "There was an error: " + reason.toString();});
   }
 
   get layout(){
@@ -26,18 +35,7 @@ class Page {
     return this.pageData.contents.main.data.body;
   }
 
-  get resolvedResponse(){
-    var resolved;
-    this.response.then(
-      (response) => { resolved = response; },
-      (reason) => { throw "There was an error: " + reason.toString(); }
-    );
-
-    return resolved;
+  get pageData() {
+    return this._pageData;
   }
-
-  get pageData(){
-    return resolvedResponse["data"];
-  }
-
 }
