@@ -9,7 +9,7 @@ describe PageMapper do
       end
 
       before do
-        Page.stub(:content_format).and_return(format)
+        Page::OneColumn.stub(:content_format).and_return(format)
       end
 
       let :format do
@@ -25,6 +25,7 @@ describe PageMapper do
         { data: {
           title:    'foo bar',
           keywords: 'foo, bar',
+          layout: 'one_column',
           contents: {
             main:     { data: { body: "Fourscore and seven years." }},
             headline: { data: { body: "The Gettysburg Address" }}
@@ -43,6 +44,11 @@ describe PageMapper do
           end.to change{ Page.count}.by(1)
           Page.last.title.should eq 'foo bar'
         end
+
+        it "should return as page" do
+          expect(mapper.save).to be_a(Page::OneColumn)
+        end
+
         it "should create the content blocks" do
           expect do
             mapper.save
@@ -114,6 +120,7 @@ describe PageMapper do
             { data: {
               title:    'foo bar',
               keywords: 'foo, bar',
+              layout: 'one_column',
               contents: {
                 headline: { data: { body: "The Gettysburg Address" }}
               }
