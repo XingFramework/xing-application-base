@@ -18,28 +18,10 @@ describe "pages#update", :type => :request do
     {
       data: {
         title: "New Title",
-        keywords: "test keywords",
-        description: "test description and blah blah blah",
-        layout: "one_column",
-
-        published: true,
-        publish_start: nil,
-        publish_end: nil,
-
         contents: {
           main: {
             data: {
               body: 'Four score and <em>seven</em> years'
-            }
-          },
-          headline: {
-            data: {
-              body: 'The Gettysburg Address'
-            }
-          },
-          styles: {
-            data: {
-              body: 'p { font-weight: bold; }'
             }
           }
         }

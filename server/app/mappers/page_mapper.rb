@@ -21,7 +21,8 @@ class PageMapper < HypermediaJSONMapper
   end
 
   def save_new
-    page = Page.registry_get(@page_class).new(@page_data)
+    set_page_type
+    page = @page_class.new(@page_data)
     page.set_url_slug
 
     add_or_update_contents(page, @contents_data)
@@ -34,7 +35,15 @@ class PageMapper < HypermediaJSONMapper
   def extract_data
     @page_data     = unwrap_data(@source_hash)
     @contents_data = @page_data.delete('contents')
-    @page_class = @page_data.delete('layout').to_sym if @page_data['layout'].present?
+  end
+
+  def set_page_type
+    if @page_data['layout'].present?
+      page_registry_key = @page_data.delete('layout').to_sym
+      @page_class = Page.registry_get(page_registry_key)
+    else
+      raise MissingLayoutException.new("JSON missing layout information: #{@page_data.inspect}")
+    end
   end
 
   def add_or_update_contents(page, contents_data)

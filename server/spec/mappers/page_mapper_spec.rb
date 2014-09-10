@@ -120,6 +120,7 @@ describe PageMapper do
             { data: {
               title:    'foo bar',
               keywords: 'foo, bar',
+              layout: 'one_column',
               contents: {
                 headline: { data: { body: "The Gettysburg Address" }}
               }
