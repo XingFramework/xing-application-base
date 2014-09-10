@@ -8,7 +8,7 @@
 }
 
 @mixin sized-sprite-image($file) {
-  background: sprite-image($file);  
+  background: sprite-image($file);
   @include image-dimensions($file);
 }
 

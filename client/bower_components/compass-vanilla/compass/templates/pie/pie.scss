@@ -31,7 +31,7 @@ $pie-base-class: pie-element;
 }
 
 .bordered {
-  @include pie; // Because $pie-base-class is set, this results in an extend of .pie-element. 
+  @include pie; // Because $pie-base-class is set, this results in an extend of .pie-element.
   @include border-radius(5px);
 }
 

@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.2.24
+ * @license AngularJS v1.2.23
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -62,8 +62,6 @@ angular.mock.$Browser = function() {
 
     return listener;
   };
-
-  self.$$checkUrlChange = angular.noop;
 
   self.cookieHash = {};
   self.lastCookieHash = {};
