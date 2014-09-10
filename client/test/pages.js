@@ -19,7 +19,6 @@ describe( 'Pages section', function() {
         Page = angular.fromJson(
           $templateCache.get('json-fixtures/pages/client.json')
         );
-        console.log(Page);
       });
 
       metadata = {};
@@ -30,7 +29,8 @@ describe( 'Pages section', function() {
           promise = new Promise(function(resolve){
             return resolve(Page);
           });
-          return {responsePromise: promise};
+          Page.responsePromise = promise;
+          return Page;
         }
       };
 
@@ -66,20 +66,27 @@ describe( 'Pages section', function() {
       expect(pageSpy).toHaveBeenCalledWith('dude');
     });
 
-    xit('should assign the page', function() {
-      expect(this.scope.page).toBeInstanceOf(Page);
+    // verify testing of sce
+    it('should return content as escaped html', function(){
+      Page.responsePromise.then((response) => {
+        expect(this.scope.content).toBe("Four score and <em>seven</em> years");
+        done();
+      });
     });
 
-    xit('should return content as escaped html', function(){
-      expect(this.scope.content).toBe('');
+    // verify testing of sce
+    it('should return styles as escaped css', function(){
+      Page.responsePromise.then((response) => {
+        expect(this.scope.metadata.styles).toBe("p { font-weight: bold; }");
+        done();
+      });
     });
 
-    xit('should return styles as escaped css', function(){
-      expect(this.scope.metadata).toBe('');
-    });
-
-    xit('should emit the metadata', function() {
-      expect(emitSpy).toHaveBeenCalledWith('metadataSet', metadata);
+    it('should emit the metadata', function() {
+      Page.responsePromise.then((response) => {
+        expect(emitSpy).toHaveBeenCalledWith('metadataSet', metadata);
+        done();
+      });
     });
   });
 });
