@@ -82,7 +82,6 @@ describe('Page class', function() {
   });
 
   it('should include appropriate values in metadata object', function(){
-    console.log(page.metadata);
     expect(page.metadata.pageLayout).toEqual('one_column');
     expect(page.metadata.pageTitle).toEqual('Title 1');
     expect(page.metadata.pageKeywords).toEqual('keyword1 keyword2');
