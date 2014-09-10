@@ -36,11 +36,11 @@ class Page extends ServerResponse {
 
   get metadata(){
     return {
-      layout: this.layout,
-      title: this.title,
-      keywords: this.keywords,
-      description: this.description,
-      styles: this.styles
+      pageLayout: this.layout,
+      pageTitle: this.title,
+      pageKeywords: this.keywords,
+      pageDescription: this.description,
+      pageStyles: this.styles
     };
   }
 

@@ -83,11 +83,11 @@ describe('Page class', function() {
 
   it('should include appropriate values in metadata object', function(){
     console.log(page.metadata);
-    expect(page.metadata.layout).toEqual('one_column');
-    expect(page.metadata.title).toEqual('Title 1');
-    expect(page.metadata.keywords).toEqual('keyword1 keyword2');
-    expect(page.metadata.description).toEqual('Description 1');
-    expect(page.metadata.styles).toEqual('p { font-weight: bold; }');
+    expect(page.metadata.pageLayout).toEqual('one_column');
+    expect(page.metadata.pageTitle).toEqual('Title 1');
+    expect(page.metadata.pageKeywords).toEqual('keyword1 keyword2');
+    expect(page.metadata.pageDescription).toEqual('Description 1');
+    expect(page.metadata.pageStyles).toEqual('p { font-weight: bold; }');
   });
 
 });
