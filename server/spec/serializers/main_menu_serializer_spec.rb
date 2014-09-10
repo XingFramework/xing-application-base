@@ -58,4 +58,3 @@ describe MainMenuSerializer do
   end
 
 end
-
