@@ -1,8 +1,6 @@
 import {ServerResponse} from './serverResponse';
 
-export var Page;
-
-class Page extends ServerResponse {
+export class Page extends ServerResponse {
   constructor(promise) {
     super(promise);
     this._pageData = {};
@@ -12,6 +10,10 @@ class Page extends ServerResponse {
         return response;
       },
       (reason) => {throw "There was an error: " + reason.toString();});
+  }
+
+  then(success, failure){
+    return this.responsePromise.then(success, failure);
   }
 
   get layout(){

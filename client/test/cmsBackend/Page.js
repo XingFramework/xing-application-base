@@ -1,4 +1,5 @@
 import {Page} from "../../src/common/server/page";
+import {} from 'test/json-fixtures/pages/server.json';
 
 describe('Page class', function() {
   var page;
@@ -44,7 +45,7 @@ describe('Page class', function() {
       return resolve(data);
     });
     page = new Page(promise);
-    page.responsePromise.then(function(){
+    page.then(function(){
       done();
     });
   });

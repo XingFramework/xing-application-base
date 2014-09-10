@@ -68,30 +68,36 @@ describe( 'Pages section', function() {
 
     it('should return headline', function(){
       Page.responsePromise.then((response) => {
+        console.log("71");
         expect(this.scope.headline).toBe("The Gettysburg Address");
+        console.log("72");
         done();
       });
     });
 
-    // TODO: verify testing of sce
     it('should return content as escaped html', function(){
       Page.responsePromise.then((response) => {
-        expect(this.scope.content).toBe("Four score and <em>seven</em> years");
+        console.log("76");
+        expect(this.scope.content.$$unwrapTrustedValue()).toBe("Four score and <em>seven</em> years");
+        console.log("80");
         done();
       });
     });
 
-    // TODO: verify testing of sce
     it('should return styles as escaped css', function(){
       Page.responsePromise.then((response) => {
-        expect(this.page.metadata.pageStyles).toBe("p { font-weight: bold; }");
+        console.log("87");
+        expect(this.metadata.pageStyles.$$unwrapTrustedValue()).toBe("p { font-weight: bold; }");
+        console.log("89");
         done();
       });
     });
 
     it('should emit the metadata', function() {
       Page.responsePromise.then((response) => {
-        expect(emitSpy).toHaveBeenCalledWith('metadataSet', page.metadata);
+        console.log("96");
+        expect(emitSpy).toHaveBeenCalledWith('metadataSet', this.page.metadata);
+        console.log("98");
         done();
       });
     });

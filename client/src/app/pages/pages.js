@@ -27,12 +27,19 @@ angular.module( `${configuration.appName}.pages`, [
     var page = cmsBackend.page($stateParams['permalink']);
     page.responsePromise.then( (resolve) =>
       {
-        // header info
-        page.metadata.pageStyles = $sce.css(page.metadata.pageStyles);
-        $scope.$emit('metadataSet', page.metadata);
         // page content
+        console.log("page",page);
+        var metadata = page.metadata;
         $scope.headline = page.headline;
         $scope.content = $sce.trustAsHtml(page.mainContent);
+
+        // header info
+        var things = metadata.pageStyles;
+        console.log("before",things);
+        var styles = $sce.trustAs('css', things);
+        console.log("after",styles);
+        console.log(metadata.pageStyles);
+        $scope.$emit('metadataSet', metadata);
       }
     );
 }]);
