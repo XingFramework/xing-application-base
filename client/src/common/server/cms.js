@@ -1,7 +1,7 @@
 import {configuration} from '../config';
 import {} from '../../../vendor/angular/angular';
-import {} from '../../../vendor/lodash/lodash.compat';
-import {} from '../../../vendor/restangular/restangular';
+import {} from '../../../vendor/lodash/dist/lodash.compat';
+import {} from '../../../vendor/restangular/dist/restangular';
 
 import {Menu} from './menu';
 import {Page} from './page';

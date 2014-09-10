@@ -20,6 +20,7 @@ module.exports = {
 
   compile_targets: {
     js: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
+    css: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css',
     map: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.map',
   },
 
@@ -83,7 +84,6 @@ module.exports = {
       'vendor/**/*.js'
     ],
     css: [
-      'vendor/**/*.css', 'vendor/**/*.scss', 'vendor/**/*.sass'
     ],
     assets: [
     ]

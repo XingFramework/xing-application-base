@@ -1,5 +1,5 @@
 import {} from '../../vendor/angular/angular';
-import {} from '../../vendor/angular-ui-router/angular-ui-router';
+import {} from '../../vendor/angular-ui-router/release/angular-ui-router';
 import {} from '../build/templates-app';
 import {} from '../build/templates-common';
 import {} from './navigationBar/navigationBar';
