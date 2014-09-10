@@ -6,9 +6,15 @@
 
 
 /**
- * First, we include the Twitter Bootstrap LESS files. Only the ones used in the
+ * First, we include vendor files Only the ones used in the
  * project should be imported as the rest are just wasting space.
  */
+
+@import "../../vendor/sass-import-once/_sass-import-once.scss";
+@import "../../vendor/compass-vanilla/_compass.scss";
+@import "../../vendor/breakpoint-sass/_breakpoint.scss";
+@import "../../vendor/sassy-buttons/_sassybuttons.sass";
+@import "../../vendor/singularity/_singularitygs.scss";
 
 /**
  * This is our main variables file. It in turn imports the `variables` file from
@@ -16,6 +22,6 @@
  * definitions in our imported stylesheets.
  */
 
-@import "tools/reset.scss";
-@import "constants.scss";
+@import "tools/_reset.scss";
+@import "_constants.scss";
 @import "partials/_admin.scss";

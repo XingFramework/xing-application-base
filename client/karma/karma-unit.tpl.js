@@ -40,6 +40,7 @@ module.exports = function ( config ) {
     ngHtml2JsPreprocessor: {
       // strip this from the file path
       stripPrefix: 'test/',
+      requireDeps: ['angular'],
       // prepend this to the
       //prependPrefix: '',
 

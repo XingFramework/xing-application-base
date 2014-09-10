@@ -13,7 +13,7 @@ angular.module( configuration.appName, [
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/' );
   $stateProvider.state('cms', {
-    templateUrl: "app/cms.tpl.html",
+    templateUrl: "cms.tpl.html",
     controller: 'CmsCtrl',
     resolve: {
       mainMenu(cmsBackend){ return cmsBackend.menu("main"); }
@@ -22,7 +22,7 @@ angular.module( configuration.appName, [
   $stateProvider.state('cms.static', {
     url: "/",
     controller: 'CmsStaticCtrl',
-    templateUrl: "app/cms-static.tpl.html",
+    templateUrl: "cms-static.tpl.html",
   });
 })
 .controller( 'CmsCtrl', function CmsCtrl( $scope, $location, mainMenu ) {

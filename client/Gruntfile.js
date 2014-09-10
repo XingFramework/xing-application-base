@@ -6,19 +6,18 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-concat-sourcemap');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-coffeelint');
-  grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-sass-to-scss');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-bower');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-traceur-simple');
 
@@ -92,19 +91,47 @@ module.exports = function( grunt ) {
         ],
         build: [
           '<%= build_dirs.root %>',
-          '<%= compile_dir %>'
+          '<%= compile_dir %>',
+          'vendor'
         ]
       },
 
       bower: {
         install: {
+          dest: 'vendor',
           options: {
-            targetDir: 'vendor',
-            cleanTargetDir: true,
-            layout: 'byType'
+            expand: true,
+            packageSpecific: {
+              'breakpoint-sass': {
+                files: [
+                  'stylesheets/**'
+                ]
+              },
+              'sass-import-once': {
+                files: [
+                  '_sass-import-once.scss'
+                ]
+              },
+              'compass-vanilla': {
+                files: [
+                  'compass/stylesheets/**'
+                ]
+              },
+              'sassy-buttons': {
+                files: [
+                  "**"
+                ]
+              },
+              'singularity': {
+                files: [
+                  "stylesheets/**"
+                ]
+              }
+            }
           }
         }
       },
+
       /**
        * The `copy` task just copies files from A to B. We use it here to copy
        * our project assets (images, fonts, etc.) and javascripts into
@@ -167,25 +194,15 @@ module.exports = function( grunt ) {
       /**
        * `grunt concat` concatenates multiple source files into a single file.
        */
-      concat: {
-        /**
-         * The `compile_js` target is the concatenation of our application source
-         * code and all specified vendor source code into a single file.
-         */
-        compile_js: {
-          options: {
-            banner: '<%= meta.banner %>'
-          },
-          src: [
-            '<%= vendor_files.js %>',
-            'module.prefix',
-            '<%= build_dirs.root %>/src/**/*.js',
-            '<%= html2js.app.dest %>',
-            '<%= html2js.common.dest %>',
-            'module.suffix'
-          ],
-          dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
-        }
+      concat_sourcemap: {
+        compile_css: {
+          files: {
+            '<%= compile_targets.css %>': [
+            '<%= build_dirs.stylesheets %>/<%= pkg.name %>-<%= pkg.version %>.css',
+            '<%= vendor_files.css %>'
+            ]
+          }
+        },
       },
 
       /**
@@ -253,45 +270,17 @@ module.exports = function( grunt ) {
         }
       },
 
-      /**
-       * Using sass here
-       */
-
-      sass_to_scss: {
-        build: {
-          files: [ {
-            expand: true,
-            cwd: '<%= app_files.sass %>',
-            dest: '<%= app_files.sass %>',
-            src: [ '**/*.sass' ],
-            ext: '.scss',
-            extDot: 'last'
-          } ]
-        }
-      },
 
       sass: {
         options: {
-          sourceComments: 'map',
-          sourceMap: '',
+          sourcemap: 'auto',
+          loadPath: 'vendor/compass-vanilla'
         },
         build: {
-          expand: true,
-          cwd: '<%= app_files.sass %>',
-          src: '**/*.scss',
-          dest: '<%= build_dirs.stylesheets %>',
-          ext: '.css',
-          extDot: 'last'
+          files: {                        // dictionary of files
+            '<%= build_dirs.stylesheets %>/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>' // 'destination': 'source'
+          }
         },
-        compile: {
-          options: { outputStyle: 'compressed' },
-          expand: true,
-          cwd: '<%= app_files.sass %>',
-          src: '**/*.scss',
-          dest: '<%= build_dirs.stylesheets %>',
-          ext: '.css',
-          extDot: 'last'
-        }
       },
 
       /**
@@ -412,35 +401,15 @@ module.exports = function( grunt ) {
       index: {
 
         /**
-         * During development, we don't want to have wait for compilation,
-         * concatenation, minification, etc. So to avoid these steps, we simply
-         * add all script files directly to the `<head>` of `index.html`. The
-         * `src` property contains the list of included files.
-         */
-        build: {
-          dir: '<%= build_dirs.js %>',
-          src: [
-            '<%= vendor_files.js %>',
-            '<%= build_dirs.js %>/src/**/*.js',
-            '<%= html2js.common.dest %>',
-            '<%= html2js.app.dest %>',
-            '<%= vendor_files.css %>',
-            '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css' //XXX
-          ]
-        },
-
-        /**
          * When it is time to have a completely compiled application, we can
          * alter the above to include only a single JavaScript and a single CSS
          * file. Now we're back!
          */
-        compile: {
+        build: {
           dir: '<%= compile_dir %>',
           src: [
-            '<%= concat.compile_js.dest %>',
-            '<%= vendor_files.css %>',
-            '<%= compass.compile.options.cssDir %>'
-            //'<%= concat.compile_css.dest %>'
+            '<%= compile_targets.js %>',
+            '<%= compile_targets.css %>'
           ]
         }
       },
@@ -462,21 +431,6 @@ module.exports = function( grunt ) {
             '<%= test_files.js %>',
             '<%= app_files.jsunit %>'
           ]
-        }
-      },
-
-      // XXX - remove
-      sprockets_index: {
-        build: {
-          options: {
-            prefix: '<%= build_dirs.js %>',
-          },
-          src: [
-            '<%= html2js.app.dest %>',
-            '<%= html2js.common.dest %>',
-            '<%= build_dirs.js %>/**/*.js'
-          ],
-          dest: '<%= build_dirs.js %>/welcome.js'
         }
       },
 
@@ -574,16 +528,8 @@ module.exports = function( grunt ) {
           tasks: [ 'html2js' ]
         },
 
-        sass_scss: {
-          files: [ 'src/**/*.sass' ],
-          tasks: [ 'sass_to_scss:build' ],
-          options: {
-            livereload: false
-          }
-        },
-
         sass: {
-          files: [ 'src/**/*.scss' ],
+          files: [ 'src/**/*.scss', 'src/**/*.sass' ],
           tasks: [ 'sass:build' ]
         },
 
@@ -649,8 +595,11 @@ module.exports = function( grunt ) {
     'html2js', 'jshint:src',
     'coffeelint', 'coffee',
     'traceur:build', //'jshint:target',
-    'sass_to_scss:build', 'sass:build',
+    'sass:build',
+    'concat_sourcemap:compile_css',
     'copy:build_app_assets', 'copy:build_vendor_assets',
+    'copy:compile_assets',
+    'index:build',
     'copy:karmaUnit'
   ]);
 
@@ -708,6 +657,7 @@ module.exports = function( grunt ) {
           data: {
             scripts: jsFiles,
             styles: cssFiles,
+            appName: grunt.config( 'pkg.name' ),
             version: grunt.config( 'pkg.version' )
           }
         });
