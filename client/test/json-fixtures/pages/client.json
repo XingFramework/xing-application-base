@@ -1,0 +1,11 @@
+{
+  "layout": "one_column",
+  "metadata": {
+    "title": "Title 1",
+    "keywords": "keyword1 keyword2",
+    "description": "Description 1",
+    "styles": "p { font-weight: bold; }"
+  },
+  "headline": "The Gettysburg Address",
+  "main": "Four score and <em>seven</em> years"
+}

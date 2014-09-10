@@ -1,80 +1,99 @@
-// describe( 'Pages section', function() {
-//   beforeEach( module( 'Reasoning.pages' ) );
-//   beforeEach( module( 'Reasoning.server' ) );
-//   beforeEach( module( 'fixtureCache' ) );
+import {configuration} from '../src/common/config';
+import {} from '../src/app/pages/pages';
+import {} from 'test/json-fixtures/pages/client.json';
 
-//   describe('Pages Controller', function () {
+describe( 'Pages section', function() {
 
-//     var PageMock, pageJson, pageObject, $stateParamsMock, q, pagesCtrl, oneSpy, emitSpy, metadata, $sceMock;
+  beforeEach( module( `${configuration.appName}.pages` ) );
+  beforeEach( module( `${configuration.appName}.server` ) );
+  beforeEach( module( 'fixtureCache' ) );
 
-//     beforeEach(function() {
-//       inject(function($templateCache) {
-//         var pageJson = $templateCache.get('json-fixtures/pages/one.json');
-//         pageObject = angular.fromJson(pageJson);
-//       });
-//       PageMock = {
-//         one: function(item) {
-//           return {
-//             page: function() {
-//               return {
-//                 content: 'super duper awesome '+item,
-//                 title: 'awesome-'+item,
-//                 styles: 'div.'+item+' { display: block; }',
-//                 keywords: 'keyword-'+item,
-//                 description: 'description-'+item
-//               };
-//             },
-//             get: function() {
-//               var deferred = q.defer();
-//               deferred.resolve(this.page());
-//               return deferred.promise;
-//             }
-//           };
-//         }
-//       };
+  describe('Pages Controller', function () {
 
-//       $stateParamsMock = {
-//         permalink: 'dude'
-//       };
+    var BackendMock, $stateParamsMock, q, pagesCtrl, pageSpy, emitSpy, $sceMock;
 
-//       $sceMock = {
-//         trustAsHtml: function(data) {
-//           return data;
-//         }
-//       };
+    var Page, metadata;
 
-//       oneSpy = spyOn(PageMock, 'one');
-//       oneSpy.and.callThrough();
+    beforeEach(function() {
+      inject(function($templateCache) {
+        Page = angular.fromJson(
+          $templateCache.get('json-fixtures/pages/client.json')
+        );
+      });
 
-//       inject(function($controller, $rootScope, $q) {
-//         q = $q;
-//         this.scope = $rootScope.$new();
-//         emitSpy = spyOn(this.scope, '$emit');
-//         pagesCtrl = $controller('PagesCtrl', {
-//           $scope: this.scope,
-//           $stateParams: $stateParamsMock,
-//           Page: PageMock,
-//           $sce: $sceMock
-//         });
-//         this.scope.$apply();
-//       });
+      metadata = {};
 
-//     });
+      BackendMock = {
+        page(permalink) {
+          var promise;
+          promise = new Promise(function(resolve){
+            return resolve(Page);
+          });
+          Page.responsePromise = promise;
+          return Page;
+        }
+      };
 
-//     it('should query the server', function() {
-//       expect(oneSpy).toHaveBeenCalledWith('dude');
-//     });
+      $stateParamsMock = {
+        permalink: 'dude'
+      };
 
-//     xit('should assign the metadata', function(){
-//       expect(this.scope.metadata).toBe(pageObject.metadata);
-//     });
+      $sceMock = {
+        trustAsHtml: function(data) {
+          return data;
+        }
+      };
 
-//     xit('should assign the page', function() {
-//       expect(this.scope.contents).toBe(pageObject.contents);
-//     });
+      pageSpy = spyOn(BackendMock, 'page');
+      pageSpy.and.callThrough();
 
-//     xit('should assign the metadata', function() {
-//       expect(emitSpy).toHaveBeenCalledWith('metadataSet', metadata);
-//     });
-//   });
-// });
+      inject(function($controller, $rootScope, $q) {
+        q = $q;
+        this.scope = $rootScope.$new();
+        emitSpy = spyOn(this.scope, '$emit');
+        pagesCtrl = $controller('PagesCtrl', {
+          $scope: this.scope,
+          $stateParams: $stateParamsMock,
+          cmsBackend: BackendMock,
+          $sce: $sceMock
+        });
+        this.scope.$apply();
+      });
+
+    });
+
+    it('should query the backend', function() {
+      expect(pageSpy).toHaveBeenCalledWith('dude');
+    });
+
+    it('should return headline', function(){
+      Page.responsePromise.then((response) => {
+        expect(this.scope.headline).toBe("The Gettysburg Address");
+        done();
+      });
+    });
+
+    // TODO: verify testing of sce
+    it('should return content as escaped html', function(){
+      Page.responsePromise.then((response) => {
+        expect(this.scope.content).toBe("Four score and <em>seven</em> years");
+        done();
+      });
+    });
+
+    // TODO: verify testing of sce
+    it('should return styles as escaped css', function(){
+      Page.responsePromise.then((response) => {
+        expect(this.scope.metadata.styles).toBe("p { font-weight: bold; }");
+        done();
+      });
+    });
+
+    it('should emit the metadata', function() {
+      Page.responsePromise.then((response) => {
+        expect(emitSpy).toHaveBeenCalledWith('metadataSet', metadata);
+        done();
+      });
+    });
+  });
+});
