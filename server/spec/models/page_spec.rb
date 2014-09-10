@@ -56,10 +56,10 @@ describe Page do
 
       let :format do
         [{ :name         => 'headline',
-           :content_type => 'text/html'
+           :content_type => 'text/html',
         },
         {  :name         => 'main',
-           :content_type => 'text/html'
+           :content_type => 'text/html',
         },
         {  :name         => 'styles',
            :content_type => 'text/css'
@@ -87,6 +87,8 @@ describe Page do
         expect(contents).not_to have_key('foo')
         expect(contents).not_to have_key('bar')
       end
+
+
 
       describe "and includes a sanitization specifier" do
         let :format do
@@ -129,6 +131,36 @@ describe Page do
       end
     end
   end
+
+  describe :required_blocks do
+    let :page do
+      Page.new
+    end
+
+    before do
+      page.stub(:content_format).and_return(format)
+    end
+
+    let :format do
+      [{ :name         => 'headline',
+         :content_type => 'text/html',
+         :required     => true
+      },
+      {  :name         => 'main',
+         :content_type => 'text/html',
+         :required     => true
+      },
+      {  :name         => 'styles',
+         :content_type => 'text/css'
+      }]
+    end
+
+    it "should have the correct blocks" do
+      expect(page.required_blocks).to     include('headline', 'main')
+      expect(page.required_blocks).not_to include('styles')
+    end
+  end
+
 
   describe "set_url_slug" do
     describe "when manually set" do
