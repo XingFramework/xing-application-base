@@ -487,7 +487,7 @@ module.exports = function( grunt ) {
             port: 9000,
             hostname: 'localhost',
             livereload: 35729,
-            base: './build'
+            base: './bin'
           }
         }
       },
@@ -637,7 +637,7 @@ module.exports = function( grunt ) {
    * before watching for changes.
    */
   grunt.renameTask( 'watch', 'delta' );
-  grunt.registerTask( 'watch', [ 'develop', 'karma:unit:start', 'delta' ] );
+  grunt.registerTask( 'watch', [ 'develop', 'karma:unit:start', 'connect', 'delta' ] );
 
   /**
    * The default task is to build and compile.
