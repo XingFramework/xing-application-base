@@ -66,7 +66,14 @@ describe( 'Pages section', function() {
       expect(pageSpy).toHaveBeenCalledWith('dude');
     });
 
-    // verify testing of sce
+    it('should return headline', function(){
+      Page.responsePromise.then((response) => {
+        expect(this.scope.headline).toBe("The Gettysburg Address");
+        done();
+      });
+    });
+
+    // TODO: verify testing of sce
     it('should return content as escaped html', function(){
       Page.responsePromise.then((response) => {
         expect(this.scope.content).toBe("Four score and <em>seven</em> years");
@@ -74,7 +81,7 @@ describe( 'Pages section', function() {
       });
     });
 
-    // verify testing of sce
+    // TODO: verify testing of sce
     it('should return styles as escaped css', function(){
       Page.responsePromise.then((response) => {
         expect(this.scope.metadata.styles).toBe("p { font-weight: bold; }");
