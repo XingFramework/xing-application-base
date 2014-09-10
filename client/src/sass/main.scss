@@ -11,10 +11,10 @@
  */
 
 @import "../../vendor/sass-import-once/_sass-import-once.scss";
-@import "../../vendor/compass-vanilla/compass/stylesheets/_compass.scss";
-@import "../../vendor/breakpoint-sass/stylesheets/_breakpoint.scss";
-@import "../../vendor/sassy-buttons/sassy-buttons/_sassy-buttons.sass";
-@import "../../vendor/singularity/stylesheets/_singularitygs.scss";
+@import "../../vendor/compass-vanilla/_compass.scss";
+@import "../../vendor/breakpoint-sass/_breakpoint.scss";
+@import "../../vendor/sassy-buttons/_sassybuttons.sass";
+@import "../../vendor/singularity/_singularitygs.scss";
 
 /**
  * This is our main variables file. It in turn imports the `variables` file from

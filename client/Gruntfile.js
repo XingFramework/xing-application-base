@@ -18,7 +18,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-bower');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-traceur-simple');
 
@@ -92,16 +92,43 @@ module.exports = function( grunt ) {
         ],
         build: [
           '<%= build_dirs.root %>',
-          '<%= compile_dir %>'
+          '<%= compile_dir %>',
+          'vendor'
         ]
       },
 
       bower: {
         install: {
+          dest: 'vendor',
           options: {
-            targetDir: 'vendor',
-            cleanTargetDir: true,
-            layout: 'byType'
+            expand: true,
+            packageSpecific: {
+              'breakpoint-sass': {
+                files: [
+                  'stylesheets/**'
+                ]
+              },
+              'sass-import-once': {
+                files: [
+                  '_sass-import-once.scss'
+                ]
+              },
+              'compass-vanilla': {
+                files: [
+                  'compass/stylesheets/**'
+                ]
+              },
+              'sassy-buttons': {
+                files: [
+                  "**"
+                ]
+              },
+              'singularity': {
+                files: [
+                  "stylesheets/**"
+                ]
+              }
+            }
           }
         }
       },
@@ -248,7 +275,7 @@ module.exports = function( grunt ) {
       sass: {
         options: {
           sourcemap: 'auto',
-          loadPath: 'vendor/compass-vanilla/compass/stylesheets'
+          loadPath: 'vendor/compass-vanilla'
         },
         build: {
           files: {                        // dictionary of files
