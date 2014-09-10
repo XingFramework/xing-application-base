@@ -1,0 +1,15 @@
+# Logfile created on 2014-09-10 01:20:13 -0700 by logger.rb/44203
+I, [2014-09-10T01:20:13.094703 #35380]  INFO -- : 0:  chunky_png (1.3.1) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/chunky_png-1.3.1.gemspec
+I, [2014-09-10T01:20:13.095497 #35380]  INFO -- : 0:  multi_json (1.10.1) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/multi_json-1.10.1.gemspec
+I, [2014-09-10T01:20:14.031681 #35380]  INFO -- : 0:  sass (3.4.3) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/sass-3.4.3.gemspec
+I, [2014-09-10T01:20:15.114441 #35380]  INFO -- : 0:  compass-core (1.0.1) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/compass-core-1.0.1.gemspec
+I, [2014-09-10T01:20:15.561378 #35380]  INFO -- : 0:  compass-import-once (1.0.5) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/compass-import-once-1.0.5.gemspec
+I, [2014-09-10T01:20:16.223397 #35380]  INFO -- : 0:  rb-fsevent (0.9.4) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/rb-fsevent-0.9.4.gemspec
+I, [2014-09-10T01:20:23.057390 #35380]  INFO -- : 0:  ffi (1.9.3) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/ffi-1.9.3.gemspec
+I, [2014-09-10T01:20:23.940833 #35380]  INFO -- : 0:  rb-inotify (0.9.5) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/rb-inotify-0.9.5.gemspec
+I, [2014-09-10T01:20:25.694106 #35380]  INFO -- : 0:  compass (1.0.1) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/compass-1.0.1.gemspec
+I, [2014-09-10T01:20:25.694352 #35380]  INFO -- : 0:  bundler (1.5.1) from /usr/local/rvm/gems/ruby-2.1.0@global/specifications/bundler-1.5.1.gemspec
+I, [2014-09-10T01:20:42.328312 #35754]  INFO -- : 0:  sass (3.4.3) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/sass-3.4.3.gemspec
+I, [2014-09-10T01:20:42.328633 #35754]  INFO -- : 0:  bundler (1.5.1) from /usr/local/rvm/gems/ruby-2.1.0@global/specifications/bundler-1.5.1.gemspec
+I, [2014-09-10T01:20:50.898934 #35767]  INFO -- : 0:  sass (3.4.3) from /usr/local/rvm/gems/ruby-2.1.0@cms2/specifications/sass-3.4.3.gemspec
+I, [2014-09-10T01:20:50.899185 #35767]  INFO -- : 0:  bundler (1.5.1) from /usr/local/rvm/gems/ruby-2.1.0@global/specifications/bundler-1.5.1.gemspec
