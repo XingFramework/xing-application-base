@@ -13,18 +13,24 @@ tests = tests.map(function(file){
 requirejs.config({
   baseUrl: '/base/',
   deps: tests,
+  paths: {
+    'angular': './vendor/angular/angular'
+  },
   shim: {
+    'angular': {
+      exports: 'angular'
+    },
     "vendor/angular-mocks/angular-mocks": {
-      deps: [ "vendor/angular/angular" ]
+      deps: [ "angular" ]
     },
     "vendor/angular-ui-router/angular-ui-router": {
-      deps: [ "vendor/angular/angular" ]
+      deps: [ "angular" ]
     },
     "src/build/templates-app": {
-      deps: [ "vendor/angular/angular" ]
+      deps: [ "angular" ]
     },
     "src/build/templates-common": {
-      deps: [ "vendor/angular/angular" ]
+      deps: [ "angular" ]
     }
   },
   callback: window.__karma__.start
