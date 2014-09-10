@@ -9,7 +9,7 @@ describe PageMapper do
       end
 
       before do
-        Page.stub(:content_format).and_return(format)
+        Page::OneColumn.stub(:content_format).and_return(format)
       end
 
       let :format do
