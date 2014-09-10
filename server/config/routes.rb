@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get "pages/:url_slug", :to => 'pages#show', :as => :page
+  get "homepage", :to => 'pages#show', :url_slug => 'homepage', :as => :homepage
 
   namespace :admin do
     #resources :images
