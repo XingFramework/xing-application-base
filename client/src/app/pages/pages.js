@@ -23,16 +23,14 @@ angular.module( `${configuration.appName}.pages`, [
   function PagesController( $scope, $stateParams, cmsBackend, $sce ) {
     $scope.headline = {};
     $scope.content = {};
-    $scope.metadata = {};
 
     var page = cmsBackend.page($stateParams['permalink']);
     page.responsePromise.then( (resolve) =>
       {
         $scope.headline = page.headline;
         $scope.content = $sce.trustAsHtml(page.main);
-        $scope.metadata = page.metadata;
-        $scope.metadata.styles = $sce.css(page.metadata.pageStyles);
-        $scope.$emit('metadataSet', $scope.metadata);
+        page.metadata.pageStyles = $sce.css(page.metadata.pageStyles);
+        $scope.$emit('metadataSet', page.metadata);
       }
     );
 }]);

@@ -84,14 +84,14 @@ describe( 'Pages section', function() {
     // TODO: verify testing of sce
     it('should return styles as escaped css', function(){
       Page.responsePromise.then((response) => {
-        expect(this.scope.metadata.styles).toBe("p { font-weight: bold; }");
+        expect(this.page.metadata.pageStyles).toBe("p { font-weight: bold; }");
         done();
       });
     });
 
     it('should emit the metadata', function() {
       Page.responsePromise.then((response) => {
-        expect(emitSpy).toHaveBeenCalledWith('metadataSet', metadata);
+        expect(emitSpy).toHaveBeenCalledWith('metadataSet', page.metadata);
         done();
       });
     });
