@@ -17,7 +17,7 @@ requirejs.config({
     "vendor/angular-mocks/angular-mocks": {
       deps: [ "vendor/angular/angular" ]
     },
-    "vendor/angular-ui-router/release/angular-ui-router": {
+    "vendor/angular-ui-router/angular-ui-router": {
       deps: [ "vendor/angular/angular" ]
     },
     "src/build/templates-app": {

@@ -18,6 +18,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-traceur-simple');
 
@@ -93,6 +94,16 @@ module.exports = function( grunt ) {
           '<%= build_dirs.root %>',
           '<%= compile_dir %>'
         ]
+      },
+
+      bower: {
+        install: {
+          options: {
+            targetDir: 'vendor',
+            cleanTargetDir: true,
+            layout: 'byType'
+          }
+        }
       },
 
       /**
@@ -554,7 +565,7 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'default', [ 'compile' ] );
 
   grunt.registerTask( 'build', [
-    'clean:build',
+    'clean:build', 'bower:install',
     'html2js', 'jshint:src',
     'coffeelint', 'coffee',
     'traceur:build', //'jshint:target',
