@@ -53,28 +53,41 @@ describe('Page class', function() {
     expect(page.layout).toEqual('one_column');
   });
 
+  it('should have a title', function() {
+    expect(page.title).toEqual('Title 1');
+  });
+
+  it('should have keywords', function() {
+    expect(page.keywords).toEqual('keyword1 keyword2');
+  });
+
+  it('should have a description', function() {
+    expect(page.description).toEqual('Description 1');
+  });
+
+  it('should have styles', function(){
+    expect(page.styles).toEqual('p { font-weight: bold; }');
+  });
+
+  it('should have headline', function(){
+    expect(page.headline).toEqual('The Gettysburg Address');
+  });
+
+  it('should have mainContent', function() {
+    expect(page.mainContent).toEqual('Four score and <em>seven</em> years');
+  });
+
   it('should wrap metadata', function(){
     expect(page.metadata).toBeInstanceOf(Object);
   });
 
-  it('should have a title', function() {
+  it('should include appropriate values in metadata object', function(){
+    console.log(page.metadata);
+    expect(page.metadata.layout).toEqual('one_column');
     expect(page.metadata.title).toEqual('Title 1');
-  });
-
-  it('should have keywords', function() {
     expect(page.metadata.keywords).toEqual('keyword1 keyword2');
-  });
-
-  it('should have a description', function() {
     expect(page.metadata.description).toEqual('Description 1');
-  });
-
-  it('should have styles', function(){
     expect(page.metadata.styles).toEqual('p { font-weight: bold; }');
-  });
-
-  it('should have content', function() {
-    expect(page.main).toEqual('Four score and <em>seven</em> years');
   });
 
 });

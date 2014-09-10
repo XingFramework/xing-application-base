@@ -1,9 +1,7 @@
-// traceur dependencies
 import {configuration} from '../../common/config';
 import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
-// angular dependencies
 angular.module( `${configuration.appName}.pages`, [
   `${configuration.appName}.server`,
   'ui.router.state',
