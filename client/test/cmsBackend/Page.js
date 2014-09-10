@@ -49,9 +49,12 @@ describe('Page class', function() {
     });
   });
 
-
   it('should have a layout', function() {
     expect(page.layout).toEqual('one_column');
+  });
+
+  it('should wrap metadata', function(){
+    expect(page.metadata).toBeInstanceOf(Object);
   });
 
   it('should have a title', function() {
