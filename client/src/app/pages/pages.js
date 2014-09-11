@@ -37,7 +37,7 @@ angular.module( `${configuration.appName}.pages`, [
         $scope.metadata = page.metadata; // attached to scope for testing
         $scope.template = page.template; // attached to scope for testing
         $scope.$emit('metadataSet', page.metadata);
-        $scope.$emit('templateData', page.template);
+        $scope.$emit('templateSet', page.template);
       }
     );
 }]);

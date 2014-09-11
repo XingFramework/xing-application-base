@@ -80,7 +80,6 @@ describe( 'Pages section', function() {
 
     it('should emit the metadataSet', function() {
       expect(emitSpy).toHaveBeenCalledWith('metadataSet', Page.metadata);
-      expect(emitSpy).toHaveBeenCalledWith('templateData', Page.template);
     });
 
     it('should assign the template', function() {
@@ -88,8 +87,8 @@ describe( 'Pages section', function() {
       expect(this.scope.template).toBe(Page.template);
     });
 
-    it('should emit the templateData', function() {
-      expect(emitSpy).toHaveBeenCalledWith('templateData', Page.template);
+    it('should emit the templateSet', function() {
+      expect(emitSpy).toHaveBeenCalledWith('templateSet', Page.template);
     });
   });
 });
