@@ -20,7 +20,13 @@ describe Admin::PagesController do
   end
 
   let :mock_page_mapper do
-    double(PageMapper)
+    double PageMapper
+  end
+  let :mock_page do
+    double Page, :url_slug => url_slug
+  end
+  let :mock_errors do
+    { data: { some_field: "Is required" }}
   end
 
   describe "while logged in" do
@@ -37,7 +43,9 @@ describe Admin::PagesController do
       it "should expose the requested published page as @page" do
         Page.should_receive(:find_by_url_slug).with(url_slug).and_return(page)
         Admin::PageSerializer.should_receive(:new).with(page).and_return(serializer)
-        #controller.should_receive(:render).with(serializer) This is not testing correctly because of problems with the way formats are being set/read.
+        controller.should_receive(:render).
+          with(:json => serializer).
+          and_call_original
         get :show, :url_slug => url_slug
         expect(assigns[:page]).to eq(page)
       end
@@ -48,21 +56,24 @@ describe Admin::PagesController do
     ########################################################################################
     describe "responding to POST create" do
 
-      it "should create a page mapper and pass the JSON to it" do
+      it "should create a page mapper and pass the JSON to it, then redirect to the page" do
         PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
-        mock_page_mapper.should_receive(:save).and_return(page)
+        mock_page_mapper.should_receive(:save).and_return(true)
+        mock_page_mapper.should_receive(:page).and_return(mock_page)
         post :create, json
 
-        expect(response).to be_redirect
+        expect(response).to redirect_to(admin_page_path(mock_page))
       end
 
-      it "should render status 400 if not saved", :pending => "solution to render problem"  do
+      it "should render status 422 if not saved", :pending => "solution to render problem"  do
         PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(false)
-        controller.stub(:render) # tests are calling render twice, is this a header accept problem?
+        mock_page_mapper.should_receive(:errors).and_return(mock_errors)
+        controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
+
         post :create, json
 
-        # expect(response.status).to eq(400)
+        expect(response).to reject_as_unprocessable
       end
 
     end
@@ -74,19 +85,22 @@ describe Admin::PagesController do
 
       it "should update with page mapper and pass the JSON to it" do
         PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
-        mock_page_mapper.should_receive(:save).and_return(page)
+        mock_page_mapper.should_receive(:save).and_return(true)
+        mock_page_mapper.should_receive(:page).and_return(mock_page)
         put :update, json, { :url_slug => url_slug}
 
-        expect(response).to be_redirect
+        expect(response).to redirect_to(admin_page_path(mock_page))
       end
 
-      it "should render status 400 if not updated", :pending => "solution to render problem" do
+      it "should render status 422 if not updated" do
         PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
-        mock_page_mapper.should_receive(:update_attributes).and_return(false)
-        controller.stub(:render) # tests are calling render twice, is this a header accept problem?
-        put :update, json, { :url_slug => url_slug}
+        mock_page_mapper.should_receive(:save).and_return(false)
+        mock_page_mapper.should_receive(:errors).and_return(mock_errors)
+        controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
 
-        # expect(response.status).to eq(400)
+        post :update, json, { :url_slug => url_slug }
+
+        expect(response).to reject_as_unprocessable
       end
     end
   end

@@ -46,7 +46,7 @@ describe PageMapper do
         end
 
         it "should return as page" do
-          expect(mapper.save).to be_a(Page::OneColumn)
+          expect(mapper.save).to be_truthy
         end
 
         it "should create the content blocks" do
@@ -57,6 +57,12 @@ describe PageMapper do
           page.contents['main'].body.should     == 'Fourscore and seven years.'
           page.contents['headline'].body.should == 'The Gettysburg Address'
 
+        end
+
+        it "should be able to return the page" do
+          mapper.save
+          expect(mapper.page).to be_a(Page)
+          expect(mapper.page).to be_persisted
         end
       end
 
@@ -175,6 +181,13 @@ describe PageMapper do
           end
         }
 
+      end
+
+
+      it "should be able to return the page" do
+        mapper.save
+        expect(mapper.page).to eq(page)
+        expect(mapper.page).to be_persisted
       end
     end
 

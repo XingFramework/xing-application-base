@@ -8,4 +8,8 @@ class JsonController < ActionController::Base
   def parse_json
     @parsed_json ||= JSON.parse(json_body)
   end
+
+  def failed_to_process(error_document)
+    render :status => 422, :json => error_document
+  end
 end
