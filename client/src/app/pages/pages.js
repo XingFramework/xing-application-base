@@ -16,8 +16,8 @@ angular.module( `${configuration.appName}.pages`, [
       templateUrl: 'pages/page.tpl.html'
     });
 })
-.controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce', '$state',
-  function PagesController( $scope, $stateParams, cmsBackend, $sce, $state) {
+.controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce',
+  function PagesController( $scope, $stateParams, cmsBackend, $sce) {
     $scope.headline = {};
     $scope.content = {};
     $scope.metadata = {};
