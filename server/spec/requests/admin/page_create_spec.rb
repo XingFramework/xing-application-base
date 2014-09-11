@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "pages#create", :type => :request do
+describe "admin/pages#create", :type => :request do
 
-  let :json_body do
+  let :valid_data do
     {
       data: {
         url_slug: "test_slug",
@@ -33,14 +33,53 @@ describe "pages#create", :type => :request do
           }
         }
       }
-    }.to_json
+    }
+  end
+  let :json_body do
+    data.to_json
   end
 
-  describe "POST admin/pages" do
-    it "redirects to admin page show path" do
-      json_post "admin/pages", json_body
-
-      expect(response).to redirect_to( admin_page_path( Page.find_by_url_slug( "test_slug" ) ) )
+  describe "Successful create" do
+    let :data do
+      valid_data
     end
+
+    describe "POST admin/pages" do
+      it "redirects to admin page show path" do
+        json_post "admin/pages", json_body
+
+        expect(response).to redirect_to( admin_page_path( Page.find_by_url_slug( "test_slug" ) ) )
+      end
+    end
+  end
+
+  describe "failing creates" do
+    describe 'required column omitted' do
+      let :data do
+        valid_data.deep_merge({data: {title: nil}})
+      end
+
+      describe "POST admin/pages" do
+        it "redirects to admin page show path" do
+          json_post "admin/pages", json_body
+          expect(response.status).to eq(422)
+          #TODO:  assert correct errors in response body
+        end
+      end
+      describe 'required content omitted', :pending => 'awaiting new error-accumulation mechanism' do
+        let :data do
+          valid_data.deep_merge({data: {contents: nil}})
+        end
+
+        describe "POST admin/pages" do
+          it "redirects to admin page show path" do
+            json_post "admin/pages", json_body
+            expect(response.status).to eq(422)
+            #TODO:  assert correct errors in response body
+          end
+        end
+      end
+    end
+
   end
 end

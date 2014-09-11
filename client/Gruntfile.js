@@ -400,7 +400,7 @@ module.exports = function( grunt ) {
         dev: {
           options: {
             singleRun: true,
-            browsers: [ 'Chrome' ]
+            browsers: [ 'PhantomJS' ]
           }
         }
       },
@@ -633,7 +633,8 @@ module.exports = function( grunt ) {
     'copy:karmaUnit'
   ]);
 
-  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'karma:dev' ]);
+  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build' ]);
+  grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
   grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'build', 'ngAnnotate', 'uglify' ]);
 
