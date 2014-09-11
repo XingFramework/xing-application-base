@@ -24,4 +24,3 @@ end
 class RSpec::Core::ExampleGroup
   include APIResponseMatchers
 end
-
