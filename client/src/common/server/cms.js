@@ -1,6 +1,6 @@
 import {configuration} from '../config';
 import {} from '../../../vendor/angular/angular';
-import {} from '../../../vendor/lodash/lodash.compat';
+import {} from '../../../vendor/lodash/lodash';
 import {} from '../../../vendor/restangular/restangular';
 
 import {Menu} from './menu';

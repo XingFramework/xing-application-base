@@ -98,7 +98,7 @@
 # POST /admin/pages
 # creates a page with the supplied content
 {
-  # links ommitted
+  # links omitted
   data: {
     url_slug: "string",    # optional
     title: "string",       # REQUIRED
@@ -113,7 +113,7 @@
     contents: {
       main: {
         data: {
-          # NOTE: content-type ommitted because that's specified in the back-end
+          # NOTE: content-type omitted because that's specified in the back-end
           # specification for this Page layout
           body: 'Four score and <em>seven</em> years'
         }
@@ -136,7 +136,7 @@
 # exactly like POST except that all fields are now optional, existing
 # values will be retained
 {
-  # links ommitted
+  # links omitted
   data: {
     url_slug: "string",    # optional
     title: "string",       # optional

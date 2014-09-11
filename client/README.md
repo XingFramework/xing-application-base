@@ -17,6 +17,7 @@ $ cd reasoning
 $ sudo npm -g install grunt-cli karma bower # optional if you don't mind
   putting ./node_modules/bin in your path)
 $ npm install
+$ bundle install #still required till we can switch to libsass
 $ grunt bower:install #optional
 $ grunt watch
 ```
