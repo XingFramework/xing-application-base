@@ -1,29 +1,39 @@
 import {ServerResponse} from './serverResponse';
 
-export var Page;
-
-class Page extends ServerResponse {
-  constructor(promise) {
-    super(promise);
-    this._pageData = {};
-    this.responsePromise = this.responsePromise.then(
-      (response) => {
-        this._pageData = response["data"];
-        return response;
-      },
-      (reason) => {throw "There was an error: " + reason.toString();});
-  }
-
+export class Page extends ServerResponse {
   get layout(){
     return this.pageData.layout;
   }
 
+  get template(){
+    return {
+      name: this.layout,
+      url: `/pages/${this.layout}.tpl.html`
+    };
+  }
+
+  get title(){
+    return this.pageData.title;
+  }
+
+  get keywords(){
+    return this.pageData.keywords;
+  }
+
+  get description(){
+    return this.pageData.description;
+  }
+
+  get styles(){
+    return this.pageData.contents.styles.data.body;
+  }
+
   get metadata(){
     return {
-      title: this.pageData.title,
-      keywords: this.pageData.keywords,
-      description: this.pageData.description,
-      styles: this.pageData.contents.styles.data.body
+      pageTitle: this.title,
+      pageKeywords: this.keywords,
+      pageDescription: this.description,
+      pageStyles: this.styles
     };
   }
 
@@ -31,11 +41,11 @@ class Page extends ServerResponse {
     return this.pageData.contents.headline.data.body;
   }
 
-  get main() {
+  get mainContent() {
     return this.pageData.contents.main.data.body;
   }
 
   get pageData() {
-    return this._pageData;
+    return this._data;
   }
 }

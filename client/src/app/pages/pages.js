@@ -1,9 +1,7 @@
-// traceur dependencies
 import {configuration} from '../../common/config';
 import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
-// angular dependencies
 angular.module( `${configuration.appName}.pages`, [
   `${configuration.appName}.server`,
   'ui.router.state',
@@ -11,30 +9,32 @@ angular.module( `${configuration.appName}.pages`, [
 ])
 
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'cms.cmsBackend', {
-    url: '/pages/:permalink',
-    views: {
-      "main": {
-        controller: 'PagesCtrl',
-        templateUrl: 'pages/pages.tpl.html'
-      }
-    }
-  });
+  $stateProvider
+    .state( 'cms.cmsBackend', {
+      url: '/pages/:permalink',
+      controller: 'PagesCtrl',
+      templateUrl: 'pages/page.tpl.html'
+    });
 })
-.controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce',
-  function PagesController( $scope, $stateParams, cmsBackend, $sce ) {
+.controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce', '$state',
+  function PagesController( $scope, $stateParams, cmsBackend, $sce, $state) {
     $scope.headline = {};
     $scope.content = {};
     $scope.metadata = {};
+    $scope.templateData = {};
 
     var page = cmsBackend.page($stateParams['permalink']);
-    page.responsePromise.then( (resolve) =>
+    page.then( (resolve) =>
       {
+        // page content
         $scope.headline = page.headline;
-        $scope.content = $sce.trustAsHtml(page.main);
-        $scope.metadata = page.metadata;
-        $scope.metadata.styles = $sce.css(page.metadata.styles);
-        $scope.$emit('metadataSet', $scope.metadata);
+        $scope.content = $sce.trustAsHtml(page.mainContent);
+
+        // header info
+        $scope.metadata = page.metadata; // scoped for testing
+        $scope.template = page.template; // scoped for testing
+        $scope.$emit('metadataSet', page.metadata);
+        $scope.$emit('templateSet', page.template);
       }
     );
 }]);

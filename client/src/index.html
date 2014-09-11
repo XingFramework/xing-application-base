@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html ng-app="<%= appName %>">
   <head>
+    <!-- page information -->
     <title ng-bind="pageTitle"></title>
+    <meta name="description" content="{{pageDescription}}">
+    <meta name="keywords" content="{{pageKeywords}}">
 
     <!-- social media tags -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@lrdesign">
-    <meta name="twitter:title" content="LRD Website">
-    <meta name="twitter:description" content="Logical Reality. Startups. Apps. Websites. Code is in our genes.">
-    <meta name="twitter:creator" content="@lrdesign">
-    <meta name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846">
-    <meta property="og:title" content="LRD Website" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://lrdesign.com" />
-    <meta property="og:description" content="Logical Reality. Startups. Apps. Websites. Code is in our genes.">
+    <meta name="twitter:card" content="" />
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:creator" content="">
+    <meta name="twitter:image:src" content="">
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:description" content="">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <!-- user CSS -->
+    <style ng-bind="pageStyles"></style>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>

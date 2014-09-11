@@ -21,15 +21,11 @@ describe( 'Pages section', function() {
         );
       });
 
-      metadata = {};
-
       BackendMock = {
         page(permalink) {
-          var promise;
-          promise = new Promise(function(resolve){
-            return resolve(Page);
-          });
-          Page.responsePromise = promise;
+          Page.then = (resolve) => {
+            resolve();
+          };
           return Page;
         }
       };
@@ -39,7 +35,7 @@ describe( 'Pages section', function() {
       };
 
       $sceMock = {
-        trustAsHtml: function(data) {
+        trustAsHtml(data) {
           return data;
         }
       };
@@ -47,8 +43,7 @@ describe( 'Pages section', function() {
       pageSpy = spyOn(BackendMock, 'page');
       pageSpy.and.callThrough();
 
-      inject(function($controller, $rootScope, $q) {
-        q = $q;
+      inject(function($controller, $rootScope) {
         this.scope = $rootScope.$new();
         emitSpy = spyOn(this.scope, '$emit');
         pagesCtrl = $controller('PagesCtrl', {
@@ -66,34 +61,34 @@ describe( 'Pages section', function() {
       expect(pageSpy).toHaveBeenCalledWith('dude');
     });
 
-    it('should return headline', function(){
-      Page.responsePromise.then((response) => {
-        expect(this.scope.headline).toBe("The Gettysburg Address");
-        done();
-      });
+    it('should assign headline', function(){
+      expect(this.scope.headline).toBe("The Gettysburg Address");
     });
 
-    // TODO: verify testing of sce
-    it('should return content as escaped html', function(){
-      Page.responsePromise.then((response) => {
-        expect(this.scope.content).toBe("Four score and <em>seven</em> years");
-        done();
-      });
+    it('should assign content', function(){
+      expect(this.scope.content).toBe("Four score and <em>seven</em> years");
     });
 
-    // TODO: verify testing of sce
-    it('should return styles as escaped css', function(){
-      Page.responsePromise.then((response) => {
-        expect(this.scope.metadata.styles).toBe("p { font-weight: bold; }");
-        done();
-      });
+    xit('should trust content as html', function() {
+      expect(this.scope.content).toBe("");
     });
 
-    it('should emit the metadata', function() {
-      Page.responsePromise.then((response) => {
-        expect(emitSpy).toHaveBeenCalledWith('metadataSet', metadata);
-        done();
-      });
+    it('should assign the metadata', function() {
+      expect(this.scope.metadata instanceof Object).toBeTruthy();
+      expect(this.scope.metadata).toBe(Page.metadata);
+    });
+
+    it('should emit the metadataSet', function() {
+      expect(emitSpy).toHaveBeenCalledWith('metadataSet', Page.metadata);
+    });
+
+    it('should assign the template', function() {
+      expect(this.scope.template instanceof Object).toBeTruthy();
+      expect(this.scope.template).toBe(Page.template);
+    });
+
+    it('should emit the templateSet', function() {
+      expect(emitSpy).toHaveBeenCalledWith('templateSet', Page.template);
     });
   });
 });
