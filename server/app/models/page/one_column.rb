@@ -9,7 +9,8 @@ class Page::OneColumn < Page
     },
     {  :name         => 'main',
        :content_type => 'text/html',
-       :sanitize_with => :sanitize_admin_html
+       :sanitize_with => :sanitize_admin_html,
+       :required     => true
     },
     {  :name         => 'styles',
        :content_type => 'text/css'

@@ -12,6 +12,10 @@ class HypermediaJSONMapper
     hash['data']
   end
 
+  def errors
+    {}
+  end
+
   class BadContentException < Exception; end
   class MissingContentException < Exception; end
   class MissingLayoutException < Exception; end
