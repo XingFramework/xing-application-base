@@ -12,8 +12,8 @@ export class Page extends ServerResponse {
       (reason) => {throw "There was an error: " + reason.toString();});
   }
 
-  then(success, failure){
-    return this.responsePromise.then(success, failure);
+  then(success, reject){
+    return this.responsePromise.then(success, reject);
   }
 
   get layout(){

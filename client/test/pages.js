@@ -25,11 +25,9 @@ describe( 'Pages section', function() {
 
       BackendMock = {
         page(permalink) {
-          var promise;
-          promise = new Promise(function(resolve){
-            return resolve(Page);
-          });
-          Page.responsePromise = promise;
+          Page.then = (resolve) => {
+            resolve();
+          };
           return Page;
         }
       };
@@ -47,8 +45,7 @@ describe( 'Pages section', function() {
       pageSpy = spyOn(BackendMock, 'page');
       pageSpy.and.callThrough();
 
-      inject(function($controller, $rootScope, $q) {
-        q = $q;
+      inject(function($controller, $rootScope) {
         this.scope = $rootScope.$new();
         emitSpy = spyOn(this.scope, '$emit');
         pagesCtrl = $controller('PagesCtrl', {
@@ -67,39 +64,15 @@ describe( 'Pages section', function() {
     });
 
     it('should return headline', function(){
-      Page.responsePromise.then((response) => {
-        console.log("71");
-        expect(this.scope.headline).toBe("The Gettysburg Address");
-        console.log("72");
-        done();
-      });
+      expect(this.scope.headline).toBe("The Gettysburg Address");
     });
 
     it('should return content as escaped html', function(){
-      Page.responsePromise.then((response) => {
-        console.log("76");
-        expect(this.scope.content.$$unwrapTrustedValue()).toBe("Four score and <em>seven</em> years");
-        console.log("80");
-        done();
-      });
-    });
-
-    it('should return styles as escaped css', function(){
-      Page.responsePromise.then((response) => {
-        console.log("87");
-        expect(this.metadata.pageStyles.$$unwrapTrustedValue()).toBe("p { font-weight: bold; }");
-        console.log("89");
-        done();
-      });
+      expect(this.scope.content).toBe("Four score and <em>seven</em> years");
     });
 
     it('should emit the metadata', function() {
-      Page.responsePromise.then((response) => {
-        console.log("96");
-        expect(emitSpy).toHaveBeenCalledWith('metadataSet', this.page.metadata);
-        console.log("98");
-        done();
-      });
+      expect(emitSpy).toHaveBeenCalledWith('metadataSet', this.scope.metadata);
     });
   });
 });

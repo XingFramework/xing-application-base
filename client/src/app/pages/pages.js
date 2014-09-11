@@ -23,23 +23,19 @@ angular.module( `${configuration.appName}.pages`, [
   function PagesController( $scope, $stateParams, cmsBackend, $sce ) {
     $scope.headline = {};
     $scope.content = {};
+    $scope.metadata = {};
 
     var page = cmsBackend.page($stateParams['permalink']);
-    page.responsePromise.then( (resolve) =>
+    page.then( (resolve) =>
       {
         // page content
-        console.log("page",page);
-        var metadata = page.metadata;
+        $scope.metadata = page.metadata;
         $scope.headline = page.headline;
         $scope.content = $sce.trustAsHtml(page.mainContent);
 
         // header info
-        var things = metadata.pageStyles;
-        console.log("before",things);
-        var styles = $sce.trustAs('css', things);
-        console.log("after",styles);
-        console.log(metadata.pageStyles);
-        $scope.$emit('metadataSet', metadata);
+        var things = $scope.metadata.pageStyles;
+        $scope.$emit('metadataSet', $scope.metadata);
       }
     );
 }]);
