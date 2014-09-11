@@ -21,7 +21,6 @@ angular.module( `${configuration.appName}.pages`, [
     $scope.headline = {};
     $scope.content = {};
     $scope.metadata = {};
-    $scope.templateData = {};
 
     var page = cmsBackend.page($stateParams['permalink']);
     page.complete.then( (resolve) =>
