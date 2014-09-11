@@ -3,6 +3,7 @@ import '../vendor/angular-mocks/angular-mocks';
 import '../src/app/navigationBar/navigationBar';
 import {xpath, stringAtXpath} from "../test-help/xpath";
 
+
 describe('navigationBar directive', function() {
   var $compile, $rootScope;
 

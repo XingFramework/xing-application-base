@@ -568,7 +568,8 @@ module.exports = function( grunt ) {
           ],
           tasks: [ 'jsonlint:fixtures', 'jshint:test', 'karma:unit:run' ],
           options: {
-            livereload: false
+            livereload: false,
+            atBegin: true
           }
         },
 
