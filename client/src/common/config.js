@@ -1,3 +1,4 @@
+import {} from '../../vendor/angular/angular';
 import { environment } from "./environment";
 export var configuration = {
   serverUrl: environment.serverUrl,

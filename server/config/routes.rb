@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     #resources :images
     #resources :documents
     get "pages/:url_slug", :to => 'pages#show', :as => :page
+    put "pages/:url_slug", :to => 'pages#update'
     resources :pages
     resources :menus
     resources :content_blocks

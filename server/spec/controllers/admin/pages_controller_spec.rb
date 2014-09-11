@@ -15,6 +15,20 @@ describe Admin::PagesController do
     "test_slug"
   end
 
+  let :json do
+    { stuff: "like this", more: "like that", layout: "one_column" }.to_json
+  end
+
+  let :mock_page_mapper do
+    double PageMapper
+  end
+  let :mock_page do
+    double Page, :url_slug => url_slug
+  end
+  let :mock_errors do
+    { data: { some_field: "Is required" }}
+  end
+
   describe "while logged in" do
     let :admin do FactoryGirl.create(:admin) end
     before(:each) do
@@ -25,16 +39,68 @@ describe Admin::PagesController do
     #                                      GET SHOW
     ########################################################################################
     describe "responding to GET show" do
-      before do
-        @request.env['HTTP_ACCEPT'] = 'application/json'
-      end
 
       it "should expose the requested published page as @page" do
         Page.should_receive(:find_by_url_slug).with(url_slug).and_return(page)
         Admin::PageSerializer.should_receive(:new).with(page).and_return(serializer)
-        #controller.should_receive(:respond_with).with(serializer) This is not testing correctly because of problems with the way formats are being set/read.
+        controller.should_receive(:render).
+          with(:json => serializer).
+          and_call_original
         get :show, :url_slug => url_slug
         expect(assigns[:page]).to eq(page)
+      end
+    end
+
+    ########################################################################################
+    #                                      POST CREATE
+    ########################################################################################
+    describe "responding to POST create" do
+
+      it "should create a page mapper and pass the JSON to it, then redirect to the page" do
+        PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
+        mock_page_mapper.should_receive(:save).and_return(true)
+        mock_page_mapper.should_receive(:page).and_return(mock_page)
+        post :create, json
+
+        expect(response).to redirect_to(admin_page_path(mock_page))
+      end
+
+      it "should render status 422 if not saved", :pending => "solution to render problem"  do
+        PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
+        mock_page_mapper.should_receive(:save).and_return(false)
+        mock_page_mapper.should_receive(:errors).and_return(mock_errors)
+        controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
+
+        post :create, json
+
+        expect(response).to reject_as_unprocessable
+      end
+
+    end
+
+    ########################################################################################
+    #                                      PUT UPDATE
+    ########################################################################################
+    describe "responding to PUT update" do
+
+      it "should update with page mapper and pass the JSON to it" do
+        PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
+        mock_page_mapper.should_receive(:save).and_return(true)
+        mock_page_mapper.should_receive(:page).and_return(mock_page)
+        put :update, json, { :url_slug => url_slug}
+
+        expect(response).to redirect_to(admin_page_path(mock_page))
+      end
+
+      it "should render status 422 if not updated" do
+        PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
+        mock_page_mapper.should_receive(:save).and_return(false)
+        mock_page_mapper.should_receive(:errors).and_return(mock_errors)
+        controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
+
+        post :update, json, { :url_slug => url_slug }
+
+        expect(response).to reject_as_unprocessable
       end
     end
   end
@@ -57,131 +123,6 @@ describe Admin::PagesController do
           assigns[:pages].should == Page.brochure
           assigns[:pages].should include(page)
           assigns[:pages].should_not include(blog_post)
-        end
-      end
-
-      ########################################################################################
-      #                                      POST CREATE
-      ########################################################################################
-      describe "responding to POST create" do
-
-        describe "with valid params" do
-          before do
-            @valid_create_params = {
-              :title => 'test',
-              :permalink => 'test/123',
-              :published => false,
-              :image => Rack::Test::UploadedFile.new(Rails.root + 'spec/fixtures/' + 'test_image.png', 'image/png')
-            }
-          end
-
-          it "should create a new page in the database" do
-            lambda do
-              post :create, :page => @valid_create_params
-            end.should change(Page, :count).by(1)
-          end
-
-          it "should expose a saved page as @page" do
-            post :create, :page => @valid_create_params
-            assigns[:page].should be_a(Page)
-          end
-
-          it "should save the newly created page as @page" do
-            post :create, :page => @valid_create_params
-            assigns[:page].should_not be_new_record
-          end
-
-          it "should redirect to the created page" do
-            post :create, :page => @valid_create_params
-            new_page = assigns[:page]
-            response.should redirect_to(page_path(new_page))
-          end
-        end
-
-        describe "with invalid params" do
-          before do
-            @invalid_create_params = {
-              :title => page.title,
-              :permalink => nil,    # this is invalid
-              :image => Rack::Test::UploadedFile.new(Rails.root + 'spec/fixtures/' + 'test_image.png', 'image/png')
-            }
-          end
-
-          it "should not create a new page in the database" do
-            lambda do
-              post :create, :page => @invalid_create_params
-            end.should_not change(Page, :count)
-          end
-
-          it "should expose a newly created page as @page" do
-            post :create, :page => @invalid_create_params
-            assigns(:page).should be_a(Page)
-          end
-
-          it "should expose an unsaved page as @page" do
-            post :create, :page => @invalid_create_params
-            assigns(:page).should be_new_record
-          end
-
-          it "should re-render the 'new' template" do
-            post :create, :page => @invalid_create_params
-            response.should render_template('new')
-          end
-        end
-      end
-
-      ########################################################################################
-      #                                      PUT UPDATE
-      ########################################################################################
-      describe "responding to PUT update" do
-
-        describe "with valid params" do
-          before do
-            @valid_update_params = {
-              :title => 'test2',
-              :permalink => 'test/12345'
-            }
-          end
-
-          it "should update the requested page in the database" do
-            lambda do
-              put :update, :id => page.id, :page => @valid_update_params
-            end.should change{ page.reload.attributes }
-          end
-
-          it "should expose the requested page as @page" do
-            put :update, :id => page.id, :page => @valid_update_params
-            assigns(:page).should == page
-          end
-
-          it "should redirect to the page" do
-            put :update, :id => page.id, :page => @valid_update_params
-            response.should redirect_to(page_path(page.reload))
-          end
-        end
-
-        describe "with invalid params" do
-          before do
-            @invalid_update_params = {
-              :title => nil
-            }
-          end
-
-          it "should not change the page in the database" do
-            lambda do
-              put :update, :id => page.id, :page => @invalid_update_params
-            end.should_not change{ page.reload }
-          end
-
-          it "should expose the page as @page" do
-            put :update, :id => page.id, :page => @invalid_update_params
-            assigns(:page).should == page
-          end
-
-          it "should re-render the 'edit' template" do
-            put :update, :id => page.id, :page => @invalid_update_params
-            response.should render_template('edit')
-          end
         end
       end
 

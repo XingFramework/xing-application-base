@@ -3,16 +3,31 @@ export class ServerResponse {
     this.response = null;
     this.errorReason = null;
     this.resolved = false;
-    this.responsePromise = responsePromise.then( (response) => {
-      this.resolved = true;
-      this.response = response;
+    this._data = this.emptyData();
+    this.responsePromise = responsePromise;
+    this.completePromise = responsePromise.then( (response) => {
+      this.absorbResponse(response);
       return response;
     },
     (reason) => {
-      this.resolved = true;
       this.errorReason = reason;
       return reason;
     });
   }
-}
 
+  get received(){
+    return this.responsePromise;
+  }
+
+  get complete(){
+    return this.completePromise;
+  }
+
+  absorbResponse(response) {
+    this._data = response["data"];
+  }
+
+  emptyData(){
+    return {};
+  }
+}

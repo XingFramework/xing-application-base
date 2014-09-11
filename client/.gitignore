@@ -1,3 +1,4 @@
+.bundle/
 *.sw*
 *~
 build/
@@ -6,4 +7,6 @@ node_modules/
 .vimrc
 vendor/
 src/common/environment.js
+.ruby-gemset
 **/*.map
+.sass-cache/

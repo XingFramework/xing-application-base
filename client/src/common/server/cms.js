@@ -1,6 +1,6 @@
 import {configuration} from '../config';
 import {} from '../../../vendor/angular/angular';
-import {} from '../../../vendor/lodash/lodash.compat';
+import {} from '../../../vendor/lodash/lodash';
 import {} from '../../../vendor/restangular/restangular';
 
 import {Menu} from './menu';
@@ -22,6 +22,7 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
     },
     menu(name){
       var response = Restangular.one('navigation', name).get(); // GET /menu/Main
+      console.log("server/cms.js:25", "response", response);
       return new Menu(response);
     }
   };

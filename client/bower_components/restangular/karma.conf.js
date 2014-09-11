@@ -11,12 +11,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular.js',
-      'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular-mocks.js',
-      'http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js',
+      'http://code.angularjs.org/1.1.4/angular.js',
+      'http://code.angularjs.org/1.1.4/angular-resource.js',
+      'http://code.angularjs.org/1.1.4/angular-mocks.js',
+      'http://cdnjs.cloudflare.com/ajax/libs/lodash.js/1.2.0/lodash.min.js',
       'src/restangular.js',
-      'test/*.js',
-      'test/json-fixtures/**/*.json'
+      'test/*.js'
     ],
 
 
@@ -24,22 +24,6 @@ module.exports = function(config) {
     exclude: [
 
     ],
-
-    ngHtml2JsPreprocessor: {
-      // strip this from the file path
-      stripPrefix: 'test/',
-      // prepend this to the
-      //prependPrefix: '',
-
-      // or define a custom transform function
-      //cacheIdFromPath: function(filepath) {
-      //  return cacheId;
-      //},
-
-      // setting this option will create only a single module that contains templates
-      // from all the files, so you can load them all with module('foo')
-      moduleName: 'fixtureCache'
-    },
 
 
     // test results reporter to use

@@ -1,5 +1,4 @@
-class Admin::PagesController < Admin::AdminController
-  respond_to :json
+class Admin::PagesController < JsonController
 
   # GET /admin/pages
   def index
@@ -16,33 +15,27 @@ class Admin::PagesController < Admin::AdminController
 
   # POST /admin/pages
   def create
-    @page = Page.new(page_attrs)
+    page_mapper = PageMapper.new(json_body)
 
-    if @page.save
-      redirect_to(page_path(@page), :notice => "#{human_name} was successfully created.")
+    if page_mapper.save
+      redirect_to  admin_page_path(page_mapper.page)
     else
-      render :action => "new"
+      failed_to_process(page_mapper.errors)
     end
   end
 
-  # PUT /admin/pages/1
+  # PUT /admin/pages/:url_slug
   def update
-    @page = page_scope.find(params[:id])
+    page_mapper = PageMapper.new(json_body, params[:url_slug])
 
-    location_handling
-
-    if @page.update_attributes(page_attrs)
-      if @page.permalink == 'home'
-        redirect_to(root_url, :notice => "#{human_name} was successfully updated.")
-      else
-        redirect_to(page_path(@page), :notice => "#{human_name} was successfully updated.")
-      end
+    if page_mapper.save
+      redirect_to admin_page_path(page_mapper.page)
     else
-      render :action => "edit"
+      failed_to_process(page_mapper.errors)
     end
   end
 
-  # DELETE /admin/pages/1
+  # DELETE /admin/pages/:url_slug
   def destroy
     @admin_page = page_scope.find(params[:id])
     @admin_page.destroy

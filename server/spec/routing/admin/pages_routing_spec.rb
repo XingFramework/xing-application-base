@@ -5,19 +5,19 @@ describe Admin::PagesController do
     it "recognizes and generates #show" do
       expect({ :get => "/admin/pages/url_slug" }).to route_to(:controller => "admin/pages", :action => "show", :url_slug => "url_slug")
     end
+
+    it "recognizes and generates #create" do
+      expect({ :post => "/admin/pages" }).to route_to(:controller => "admin/pages", :action => "create")
+    end
+
+    it "recognizes and generates #update" do
+      expect({ :put => "/admin/pages/url_slug" }).to route_to(:controller => "admin/pages", :action => "update", :url_slug => "url_slug")
+    end
   end
 
   describe "pending", :pending => "Awaiting implementation in CMS2" do
     it "recognizes and generates #index" do
       { :get => "/admin/pages" }.should route_to(:controller => "admin/pages", :action => "index")
-    end
-
-    it "recognizes and generates #create" do
-      { :post => "/admin/pages" }.should route_to(:controller => "admin/pages", :action => "create")
-    end
-
-    it "recognizes and generates #update" do
-      { :put => "/admin/pages/1" }.should route_to(:controller => "admin/pages", :action => "update", :id => "1")
     end
 
     it "recognizes and generates #destroy" do

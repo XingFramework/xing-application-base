@@ -20,6 +20,7 @@ module.exports = {
 
   compile_targets: {
     js: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
+    css: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css',
     map: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.map',
   },
 
@@ -36,6 +37,7 @@ module.exports = {
     js_roots: [ 'src/main.js' ],
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'test/**/*.js' ],
+    jstest: [ 'test/**/*.js', 'test-help/**/*.js' ],
 
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'test/**/*.coffee' ],
@@ -83,7 +85,6 @@ module.exports = {
       'vendor/**/*.js'
     ],
     css: [
-      'vendor/**/*.css', 'vendor/**/*.scss', 'vendor/**/*.sass'
     ],
     assets: [
     ]
