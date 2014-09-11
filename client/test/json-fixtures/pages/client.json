@@ -1,6 +1,9 @@
 {
+  "template": {
+    "templateName": "one_column",
+    "templateUrl": "pages/one_column.tpl.html"
+  },
   "metadata": {
-    "pageLayout": "one_column",
     "pageTitle": "Title 1",
     "pageKeywords": "keyword1 keyword2",
     "pageDescription": "Description 1",

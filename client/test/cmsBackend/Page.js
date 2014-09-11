@@ -50,12 +50,12 @@ describe('Page class', function() {
     });
   });
 
-  it('should have a layout', function() {
-    expect(page.layout).toEqual('one_column');
+  it('should have a title', function() {
+    expect(page.title).toEqual('Title 1');
   });
 
   it('should have a title', function() {
-    expect(page.title).toEqual('Title 1');
+    expect(page.layout).toEqual('one_column');
   });
 
   it('should have keywords', function() {
@@ -78,12 +78,20 @@ describe('Page class', function() {
     expect(page.mainContent).toEqual('Four score and <em>seven</em> years');
   });
 
+  it('should wrap templateData', function(){
+    expect(page.template).toBeInstanceOf(Object);
+  });
+
+  it('should include appropriate values in templateData object', function(){
+    expect(page.template.templateName).toEqual('one_column');
+    expect(page.template.templateUrl).toEqual('/pages/one_column.tpl.html');
+  });
+
   it('should wrap metadata', function(){
     expect(page.metadata).toBeInstanceOf(Object);
   });
 
   it('should include appropriate values in metadata object', function(){
-    expect(page.metadata.pageLayout).toEqual('one_column');
     expect(page.metadata.pageTitle).toEqual('Title 1');
     expect(page.metadata.pageKeywords).toEqual('keyword1 keyword2');
     expect(page.metadata.pageDescription).toEqual('Description 1');

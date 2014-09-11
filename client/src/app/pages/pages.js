@@ -24,17 +24,20 @@ angular.module( `${configuration.appName}.pages`, [
     $scope.headline = {};
     $scope.content = {};
     $scope.metadata = {};
+    $scope.templateData = {};
 
     var page = cmsBackend.page($stateParams['permalink']);
     page.then( (resolve) =>
       {
         // page content
-        $scope.metadata = page.metadata;
         $scope.headline = page.headline;
         $scope.content = $sce.trustAsHtml(page.mainContent);
 
         // header info
-        $scope.$emit('metadataSet', $scope.metadata);
+        $scope.metadata = page.metadata; // attached to scope for testing
+        $scope.template = page.template; // attached to scope for testing
+        $scope.$emit('metadataSet', page.metadata);
+        $scope.$emit('templateData', page.template);
       }
     );
 }]);

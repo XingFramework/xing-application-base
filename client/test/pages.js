@@ -78,8 +78,18 @@ describe( 'Pages section', function() {
       expect(this.scope.metadata).toBe(Page.metadata);
     });
 
-    it('should emit the metadata', function() {
+    it('should emit the metadataSet', function() {
       expect(emitSpy).toHaveBeenCalledWith('metadataSet', Page.metadata);
+      expect(emitSpy).toHaveBeenCalledWith('templateData', Page.template);
+    });
+
+    it('should assign the template', function() {
+      expect(this.scope.template instanceof Object).toBeTruthy();
+      expect(this.scope.template).toBe(Page.template);
+    });
+
+    it('should emit the templateData', function() {
+      expect(emitSpy).toHaveBeenCalledWith('templateData', Page.template);
     });
   });
 });

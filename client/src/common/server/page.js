@@ -20,6 +20,13 @@ export class Page extends ServerResponse {
     return this.pageData.layout;
   }
 
+  get template(){
+    return {
+      templateName: this.layout,
+      templateUrl: `/pages/${this.layout}.tpl.html`
+    };
+  }
+
   get title(){
     return this.pageData.title;
   }
@@ -38,7 +45,6 @@ export class Page extends ServerResponse {
 
   get metadata(){
     return {
-      pageLayout: this.layout,
       pageTitle: this.title,
       pageKeywords: this.keywords,
       pageDescription: this.description,
