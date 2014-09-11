@@ -17,10 +17,12 @@ angular.module( `${configuration.appName}.pages`, [
       templateUrl: 'pages/page.tpl.html'
     })
     .state( 'cms.cmsBackend.one_column', {
-      templateUrl: 'pages/one_column.tpl.html'
+      url: '',
+      templateUrl: 'pages/template/one_column.tpl.html'
     })
     .state( 'cms.cmsBackend.two_column', {
-      templateUrl: 'pages/two_column.tpl.html'
+      url: '',
+      templateUrl: 'pages/template/two_column.tpl.html'
     });
 })
 .controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce', '$state',
