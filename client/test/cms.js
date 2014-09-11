@@ -11,7 +11,9 @@ describe( 'CmsCtrl', function() {
     beforeEach( inject( function( $controller, _$location_, $rootScope ) {
       $location = _$location_;
       $scope = $rootScope.$new();
-      mockMain = {};
+      mockMain = {
+        then(resolve){ resolve(); }
+      };
 
       CmsCtrl = $controller( 'CmsCtrl', { $location: $location, $scope: $scope, mainMenu: mockMain });
     }));

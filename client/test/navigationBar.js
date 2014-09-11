@@ -1,26 +1,18 @@
 import '../vendor/angular/angular';
 import '../vendor/angular-mocks/angular-mocks';
 import '../src/app/navigationBar/navigationBar';
+import {xpath, stringAtXpath} from "../test-help/xpath";
 
 describe('navigationBar directive', function() {
   var $compile, $rootScope;
 
   function compiledWithMenu(menu){
     $rootScope.mainMenu = menu;
+    menu.complete = { then: (cb) => { cb(); } };
     var element = $compile("<lrd-navbar id='main-nav' menu='mainMenu' />")($rootScope);
     $rootScope.$digest();
 
     return element;
-  }
-
-  function xpath(context, expr, resType){
-    if(!resType) { resType = XPathResult.ORDERED_NODE_SNAPSHOT_TYPE; }
-    var result = document.evaluate(expr, context[0], null, resType, null);
-    return result;
-  }
-
-  function stringAtXpath(context, expr){
-    return xpath(context, expr, XPathResult.STRING_TYPE).stringValue;
   }
 
   beforeEach(module('Reasoning.navigationBar'));

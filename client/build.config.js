@@ -37,6 +37,7 @@ module.exports = {
     js_roots: [ 'src/main.js' ],
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'test/**/*.js' ],
+    jstest: [ 'test/**/*.js', 'test-help/**/*.js' ],
 
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'test/**/*.coffee' ],

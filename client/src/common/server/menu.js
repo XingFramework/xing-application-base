@@ -1,12 +1,45 @@
 import {ServerResponse} from './serverResponse';
 
+export class Menu extends ServerResponse {
+  constructor(promise){
+    super(promise);
+    this.completePromise = this.completePromise.then((result) => {
+      var completes = this._items.map((item) => {
+        return item.complete;
+      });
+      return Promise.all( completes);
+    });
+  }
+
+  emptyData(){
+    return [];
+  }
+
+  absorbResponse(response){
+    super(response);
+    if (typeof this._data === "undefined" || this._data.length === 0) {
+      this._items = [];
+    } else {
+      this._items = this._data.map((item) => {
+        var promise = new Promise((resolve) => { return resolve(item); });
+        return new MenuItem(promise);
+      });
+    }
+  }
+
+  get items(){
+    return this._items;
+  }
+}
+
 class MenuItem extends ServerResponse {
   constructor(promise){
     super(promise);
     var childrenPromise = this.responsePromise.then((response) => {
-      return response["data"].children;
+      return { data: response["data"].children };
     });
-    this._children = new Menu(childrenPromise);
+    this.subMenu = new Menu(childrenPromise);
+    this.completePromise = Promise.all([ this.completePromise, this.subMenu.completePromise ]);
   }
 
   hasChildren(){
@@ -40,33 +73,10 @@ class MenuItem extends ServerResponse {
   }
 
   get children(){
-    return this.menuData.children.map((item) => {
-      return new Menu(new Promise((resolve) => { return resolve(item); }));
-    });
+    return this.subMenu;
   }
 
   get menuData(){
-    if(this.resolved){
-      return this.response["data"];
-    } else {
-      return {};
-    }
-  }
-}
-
-export class Menu extends ServerResponse {
-  constructor(promise){
-    super(promise);
-    this.responsePromise = this.responsePromise.then((response) => {
-      this._items = response["data"].map((item) => {
-        var promise = new Promise((resolve) => { return resolve(item); });
-        return new MenuItem(promise);
-      });
-      return response;
-    });
-    this._items = [];
-  }
-  get items(){
-    return this._items;
+    return this._data;
   }
 }
