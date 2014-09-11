@@ -34,7 +34,6 @@ angular.module( `${configuration.appName}.pages`, [
         $scope.content = $sce.trustAsHtml(page.mainContent);
 
         // header info
-        var things = $scope.metadata.pageStyles;
         $scope.$emit('metadataSet', $scope.metadata);
       }
     );

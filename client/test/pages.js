@@ -21,8 +21,6 @@ describe( 'Pages section', function() {
         );
       });
 
-      metadata = {};
-
       BackendMock = {
         page(permalink) {
           Page.then = (resolve) => {
@@ -37,7 +35,7 @@ describe( 'Pages section', function() {
       };
 
       $sceMock = {
-        trustAsHtml: function(data) {
+        trustAsHtml(data) {
           return data;
         }
       };
@@ -63,16 +61,25 @@ describe( 'Pages section', function() {
       expect(pageSpy).toHaveBeenCalledWith('dude');
     });
 
-    it('should return headline', function(){
+    it('should assign headline', function(){
       expect(this.scope.headline).toBe("The Gettysburg Address");
     });
 
-    it('should return content as escaped html', function(){
+    it('should assign content', function(){
       expect(this.scope.content).toBe("Four score and <em>seven</em> years");
     });
 
+    xit('should trust content as html', function() {
+      expect(this.scope.content).toBe("");
+    });
+
+    it('should assign the metadata', function() {
+      expect(this.scope.metadata instanceof Object).toBeTruthy();
+      expect(this.scope.metadata).toBe(Page.metadata);
+    });
+
     it('should emit the metadata', function() {
-      expect(emitSpy).toHaveBeenCalledWith('metadataSet', this.scope.metadata);
+      expect(emitSpy).toHaveBeenCalledWith('metadataSet', Page.metadata);
     });
   });
 });
