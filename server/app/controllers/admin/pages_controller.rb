@@ -20,7 +20,7 @@ class Admin::PagesController < JsonController
     if page_mapper.save
       redirect_to  admin_page_path(page_mapper.page)
     else
-      render :status => 422, :json => page_mapper.errors
+      failed_to_process(page_mapper.errors)
     end
   end
 
@@ -31,7 +31,7 @@ class Admin::PagesController < JsonController
     if page_mapper.save
       redirect_to admin_page_path(page_mapper.page)
     else
-      render :status => 422, :json => page_mapper.errors
+      failed_to_process(page_mapper.errors)
     end
   end
 

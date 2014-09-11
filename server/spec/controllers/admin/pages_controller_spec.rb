@@ -69,11 +69,11 @@ describe Admin::PagesController do
         PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(false)
         mock_page_mapper.should_receive(:errors).and_return(mock_errors)
-        controller.should_receive(:render).with(:status => 422, :json => mock_errors).and_call_original
+        controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
 
         post :create, json
 
-        expect(response.status).to eq(422)
+        expect(response).to reject_as_unprocessable
       end
 
     end
@@ -96,11 +96,11 @@ describe Admin::PagesController do
         PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(false)
         mock_page_mapper.should_receive(:errors).and_return(mock_errors)
-        controller.should_receive(:render).with(:status => 422, :json => mock_errors).and_call_original
+        controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
 
         post :update, json, { :url_slug => url_slug }
 
-        expect(response.status).to eq(422)
+        expect(response).to reject_as_unprocessable
       end
     end
   end
