@@ -9,18 +9,22 @@ angular.module( `${configuration.appName}.pages`, [
 ])
 
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'cms.cmsBackend', {
-    url: '/pages/:permalink',
-    views: {
-      "main": {
-        controller: 'PagesCtrl',
-        templateUrl: 'pages/pages.tpl.html'
-      }
-    }
-  });
+  $stateProvider
+    .state( 'cms.cmsBackend', {
+      abstract: true,
+      url: '/pages/:permalink',
+      controller: 'PagesCtrl',
+      templateUrl: 'pages/page.tpl.html'
+    })
+    .state( 'cms.cmsBackend.one_column', {
+      templateUrl: 'pages/one_column.tpl.html'
+    })
+    .state( 'cms.cmsBackend.two_column', {
+      templateUrl: 'pages/two_column.tpl.html'
+    });
 })
-.controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce',
-  function PagesController( $scope, $stateParams, cmsBackend, $sce ) {
+.controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce', '$state',
+  function PagesController( $scope, $stateParams, cmsBackend, $sce, $state) {
     $scope.headline = {};
     $scope.content = {};
     $scope.metadata = {};
@@ -34,10 +38,13 @@ angular.module( `${configuration.appName}.pages`, [
         $scope.content = $sce.trustAsHtml(page.mainContent);
 
         // header info
-        $scope.metadata = page.metadata; // attached to scope for testing
-        $scope.template = page.template; // attached to scope for testing
+        $scope.metadata = page.metadata; // scoped for testing
+        $scope.template = page.template; // scoped for testing
         $scope.$emit('metadataSet', page.metadata);
         $scope.$emit('templateSet', page.template);
+
+        // go to state for template
+        $state.transitionTo(`cms.cmsBackend.${page.template.name}`);
       }
     );
 }]);

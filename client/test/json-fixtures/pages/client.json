@@ -1,7 +1,7 @@
 {
   "template": {
-    "templateName": "one_column",
-    "templateUrl": "pages/one_column.tpl.html"
+    "name": "one_column",
+    "url": "pages/one_column.tpl.html"
   },
   "metadata": {
     "pageTitle": "Title 1",

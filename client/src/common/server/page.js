@@ -22,8 +22,8 @@ export class Page extends ServerResponse {
 
   get template(){
     return {
-      templateName: this.layout,
-      templateUrl: `/pages/${this.layout}.tpl.html`
+      name: this.layout,
+      url: `/pages/${this.layout}.tpl.html`
     };
   }
 

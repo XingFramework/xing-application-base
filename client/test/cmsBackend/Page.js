@@ -78,13 +78,13 @@ describe('Page class', function() {
     expect(page.mainContent).toEqual('Four score and <em>seven</em> years');
   });
 
-  it('should wrap templateData', function(){
+  it('should wrap template', function(){
     expect(page.template).toBeInstanceOf(Object);
   });
 
-  it('should include appropriate values in templateData object', function(){
-    expect(page.template.templateName).toEqual('one_column');
-    expect(page.template.templateUrl).toEqual('/pages/one_column.tpl.html');
+  it('should include appropriate values in template object', function(){
+    expect(page.template.name).toEqual('one_column');
+    expect(page.template.url).toEqual('/pages/one_column.tpl.html');
   });
 
   it('should wrap metadata', function(){
