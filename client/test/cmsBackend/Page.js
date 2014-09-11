@@ -45,7 +45,7 @@ describe('Page class', function() {
       return resolve(data);
     });
     page = new Page(promise);
-    page.then(function(){
+    page.complete.then(function(){
       done();
     });
   });
