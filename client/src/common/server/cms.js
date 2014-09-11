@@ -22,6 +22,7 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
     },
     menu(name){
       var response = Restangular.one('navigation', name).get(); // GET /menu/Main
+      console.log("server/cms.js:25", "response", response);
       return new Menu(response);
     }
   };

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="<%= appName %>" ng-controller="CmsCtrl">
+<html ng-app="<%= appName %>">
   <head>
     <!-- page information -->
     <title ng-bind="pageTitle"></title>
@@ -30,20 +30,8 @@
 
   </head>
   <body>
-    <admin-only>
-      <admin-nav></admin-nav>
-    </admin-only>
-    <div id="inset">
-      <div id="wrapper">
-        <div id="header">
-          <navigation-bar></navigation-bar>
-        </div>
-        <div id="content-wrap">
-          <flash></flash>
-          <div id="content" ui-view>
-          </div>
-        </div>
-      </div>
+    <div ui-view>
+      <p>This space is supposed to be blank</p>
     </div>
   </body>
 </html>

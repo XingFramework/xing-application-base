@@ -20,6 +20,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-bower');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-traceur-simple');
+  grunt.loadNpmTasks('grunt-jsonlint');
 
   /**
    * Load in our build configuration file.
@@ -294,7 +295,7 @@ module.exports = function( grunt ) {
       jshint: {
         src: [ '<%= app_files.js %>' ],
         test: {
-          files: [ { src: ['<%= app_files.jsunit %>' ] }],
+          files: [ { src: ['<%= app_files.jstest %>' ] }],
           options: {
             debug: true,
           }
@@ -326,6 +327,16 @@ module.exports = function( grunt ) {
           browser: true, //Automatically allow browser-exposed globals
         },
         globals: {}
+      },
+
+      jsonlint: {
+        dummies: {
+          src: ['../dummy-api/**/*'],
+          filter: 'isFile'
+        },
+        fixtures: {
+          src: ['test/json-fixtures/**/*.json']
+        }
       },
 
       /**
@@ -437,11 +448,25 @@ module.exports = function( grunt ) {
       connect: {
         server: {
           options: {
+            debug: true,
             open: true,
             port: 9000,
             hostname: 'localhost',
             livereload: 35729,
-            base: './bin'
+            middleware: function(connect, options, middlewares) {
+              middlewares.unshift(function(req, res, next) {
+                if(/application\/json/.test(req.headers["Accept"])){
+                  res.setHeader("Content-Type", "application/json");
+                }
+                return next();
+              });
+
+              return middlewares;
+            },
+            base: [
+              './bin',
+              '../dummy-api'
+            ]
           }
         }
       },
@@ -484,7 +509,7 @@ module.exports = function( grunt ) {
          */
         jssrc: {
           files: [ '<%= app_files.js %>' ],
-          tasks: [ 'jshint:src', 'traceur:build', 'karma:unit:run' ]
+          tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ]
         },
 
         /**
@@ -539,12 +564,18 @@ module.exports = function( grunt ) {
          */
         jsunit: {
           files: [
-            '<%= app_files.jsunit %>', 'test/json-fixtures/**/*'
+            '<%= app_files.jstest %>', 'test/json-fixtures/**/*'
           ],
-          tasks: [ 'jshint:test', 'karma:unit:run' ],
+          tasks: [ 'jsonlint:fixtures', 'jshint:test', 'karma:unit:run' ],
           options: {
-            livereload: false
+            livereload: false,
+            atBegin: true
           }
+        },
+
+        dummyapi: {
+          files: [ "../dummy-api/**" ],
+          tasks: [ 'jsonlint:dummies' ]
         },
 
         karmaconfig: {
@@ -592,7 +623,7 @@ module.exports = function( grunt ) {
 
   grunt.registerTask( 'build', [
     'clean:build', 'bower:install',
-    'html2js', 'jshint:src',
+    'html2js', 'jshint:src', 'jsonlint',
     'coffeelint', 'coffee',
     'traceur:build', //'jshint:target',
     'sass:build',
