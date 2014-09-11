@@ -1,5 +1,5 @@
 class PageMapper < HypermediaJSONMapper
-  attr_accessor :bad_blocks
+  attr_accessor :bad_blocks, :page
 
   def save
     extract_data
@@ -11,25 +11,19 @@ class PageMapper < HypermediaJSONMapper
   end
 
   def find_and_update
-    page = Page.find_by_url_slug(@locator)
-    page.update_attributes(@page_data)
+    self.page = Page.find_by_url_slug(@locator)
+    self.page.update_attributes(@page_data)
     add_or_update_contents(page, @contents_data)
-    unless page.save
-      raise "Unable to save page.  reasons: #{page.errors.inspect}"
-    end
-    page
+    self.page.save
   end
 
   def save_new
     set_page_type
-    page = @page_class.new(@page_data)
-    page.set_url_slug
+    self.page = @page_class.new(@page_data)
+    self.page.set_url_slug
 
     add_or_update_contents(page, @contents_data)
-    unless page.save
-      raise "Unable to save page.  reasons: #{page.errors.inspect}"
-    end
-    page
+    self.page.save
   end
 
   def extract_data
@@ -55,6 +49,7 @@ class PageMapper < HypermediaJSONMapper
     end
     validate_required_blocks_present(page)
     if self.bad_blocks.present?
+      # TODO: accumulate errors in JSON reply resource instead
       raise BadContentException.new("JSON contained invalid content: #{bad_blocks.inspect}")
     end
   end
@@ -63,6 +58,7 @@ class PageMapper < HypermediaJSONMapper
     populated_blocks = page.contents.select{ |key,cb| cb.body.present?}.keys
     missing_blocks = page.required_blocks - populated_blocks
     if missing_blocks.present?
+      # TODO: accumulate errors in JSON reply resource instead
       raise MissingContentException.new("Required blocks not set: #{missing_blocks.inspect}")
     end
   end

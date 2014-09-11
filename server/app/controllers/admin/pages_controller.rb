@@ -17,26 +17,25 @@ class Admin::PagesController < JsonController
   def create
     page_mapper = PageMapper.new(json_body)
 
-    if page = page_mapper.save
-      redirect_to  admin_page_path(page)
+    if page_mapper.save
+      redirect_to  admin_page_path(page_mapper.page)
     else
-      render :status => 400
+      render :status => 422, :json => page_mapper.errors
     end
   end
 
   # PUT /admin/pages/:url_slug
   def update
-    path = params[:url_slug]
-    page_mapper = PageMapper.new(json_body, path)
+    page_mapper = PageMapper.new(json_body, params[:url_slug])
 
-    if page = page_mapper.save
-      redirect_to admin_page_path(page)
+    if page_mapper.save
+      redirect_to admin_page_path(page_mapper.page)
     else
-      render :status => 400
+      render :status => 422, :json => page_mapper.errors
     end
   end
 
-  # DELETE /admin/pages/1
+  # DELETE /admin/pages/:url_slug
   def destroy
     @admin_page = page_scope.find(params[:id])
     @admin_page.destroy
