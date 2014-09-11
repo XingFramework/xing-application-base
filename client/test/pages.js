@@ -23,9 +23,7 @@ describe( 'Pages section', function() {
 
       BackendMock = {
         page(permalink) {
-          Page.then = (resolve) => {
-            resolve();
-          };
+          Page.complete = { then: (resolve) => {resolve();}};
           return Page;
         }
       };
