@@ -146,8 +146,3 @@
 }
 
 
-# DELETE /admin/menu-items/:id
-
-# Create, update, delete individual menu items.
-#
-
