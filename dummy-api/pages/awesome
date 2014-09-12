@@ -1,0 +1,31 @@
+{
+  "data": {
+    "title": "Title 1",
+    "keywords": "keyword1 keyword2",
+    "description": "Description 1",
+    "layout":  "one_column",
+    "contents": {
+      "main": {
+        "links": { "self": "/content-blocks/1"  },
+        "data": {
+          "content_type": "text/html",
+          "body": "Four score and <em>seven</em> years"
+        }
+      },
+      "headline": {
+        "links": { "self": "/content-blocks/2" },
+        "data": {
+          "content_type": "text/html",
+          "body": "The Gettysburg Address"
+        }
+      },
+      "styles": {
+        "links": { "self": "/content-blocks/3" },
+        "data": {
+          "content_type": "text/css",
+          "body": "p { font-weight: bold; }"
+        }
+      }
+    }
+  }
+}
