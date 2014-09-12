@@ -5,11 +5,8 @@ export class Page extends ServerResponse {
     return this.pageData.layout;
   }
 
-  get template(){
-    return {
-      name: this.layout,
-      url: `/pages/${this.layout}.tpl.html`
-    };
+  get templateUrl(){
+    return `pages/templates/${this.layout}.tpl.html`;
   }
 
   get title(){
@@ -39,6 +36,18 @@ export class Page extends ServerResponse {
 
   get headline() {
     return this.pageData.contents.headline.data.body;
+  }
+
+  get contentBlocks() {
+    var contents = this.pageData.contents;
+    var blocks = [];
+    for(var name in contents){
+      if(contents.hasOwnProperty(name)){
+        var content = contents[name];
+        blocks.push({ name, content });
+      }
+    }
+    return blocks;
   }
 
   get mainContent() {
