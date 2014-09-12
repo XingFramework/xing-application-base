@@ -10,7 +10,6 @@
 #  edited_at        :datetime
 #  created_at       :datetime
 #  updated_at       :datetime
-#  layout           :string(255)
 #  publish_start    :datetime
 #  publish_end      :datetime
 #  metadata         :hstore

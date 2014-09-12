@@ -1,6 +1,6 @@
-import {Page} from "../../src/common/server/page";
+import {Homepage} from "../../src/common/server/homepage";
 
-describe('Page class', function() {
+describe('Homepage class', function() {
   var page;
 
   function responseData() {
@@ -21,7 +21,7 @@ describe('Page class', function() {
       var data = responseData();
       return resolve(data);
     });
-    page = new Page(promise);
+    page = new Homepage(promise);
     page.responsePromise.then(function(){
       done();
     });

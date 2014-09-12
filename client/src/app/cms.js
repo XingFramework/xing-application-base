@@ -27,8 +27,8 @@ angular.module( configuration.appName, [
   });
   $stateProvider.state('cms.static', {
     url: "",
-    controller: 'CmsStaticCtrl',
-    templateUrl: "cms-static.tpl.html",
+    controller: 'HomepageCtrl',
+    templateUrl: "homepage.tpl.html",
   });
 })
 .run( function ( $rootScope ) {
@@ -55,6 +55,18 @@ angular.module( configuration.appName, [
   console.log("app/cms.js:55", "mainMenu", mainMenu);
   $scope.mainMenu = mainMenu;
 })
-.controller( 'CmsStaticCtrl', function CmsStaticCtrl($scope) {
+.controller( 'HomepageCtrl', function HomepageCtrl($scope, cmsBackend) {
   console.log("app/cms.js:36", "staticControler", $scope);
+  
+  $scope.metadata = {};
+
+  var page = cmsBackend.page($stateParams['permalink']);
+  page.responsePromise.then( (resolve) =>
+    {
+      $scope.metadata = page.metadata;
+      //$scope.metadata.styles = $sce.css(page.metadata.styles);
+      $scope.$emit('metadataSet', $scope.metadata);
+    }
+  );
+
 });
