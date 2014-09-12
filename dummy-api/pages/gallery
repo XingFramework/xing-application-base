@@ -1,0 +1,32 @@
+{
+    "links": {
+        "self": "/pages/gallery",
+        "admin": "/admin/pages/gallery"
+    },
+    "data": {
+        "title": "Gallery",
+        "keywords": "gallery",
+        "description": null,
+        "layout": "one_column",
+        "contents": {
+            "main": {
+                "links": {
+                    "self": "/admin/content_blocks/9"
+                },
+                "data": {
+                    "content_type": "text/html",
+                    "body": "Eligendi quod repellat enim autem dolorem voluptatem fuga quo laborum quis. ut perferendis soluta placeat ipsam vel quae eligendi exercitationem amet consequatur ipsum eum impedit. odit ad iste voluptas ipsam aut reprehenderit sit libero necessitatibus voluptates. voluptatibus aut quia aut nihil et dignissimos porro autem rem velit ea facilis quaerat aliquid a. ipsum doloribus quo maiores occaecati accusantium in. porro accusantium sed perferendis id dolor id nesciunt dolor vel dolorem atque sed. vel omnis laboriosam aperiam voluptate ab est sunt molestias perferendis et iure quia beatae eos tenetur autem fugiat. blanditiis ad earum quia minus hic veniam dolorem possimus\n\nQuis itaque consequatur ducimus enim est et labore ea laboriosam pariatur illo sint nihil est. molestias eius est nisi vitae debitis et delectus temporibus ex mollitia distinctio. ut consequatur ut sed dolores aut et eveniet officia numquam optio distinctio aut inventore. dolorum temporibus in temporibus exercitationem dolore aspernatur at nam. et perspiciatis aut exercitationem autem nihil. incidunt adipisci velit cum magnam est suscipit nemo est dolorem quia molestias tenetur at voluptatibus molestias nam expedita nobis. aut labore aspernatur aut qui et natus dolor officiis aut quaerat molestiae tenetur quia\n\nTemporibus soluta molestiae voluptas qui dolorem quam. aut praesentium velit ratione praesentium. adipisci reprehenderit eligendi neque nisi amet quam explicabo enim est suscipit error aliquid reiciendis ipsum consequatur quam. nemo enim nobis ut voluptatem illo ut minima doloribus labore delectus adipisci facilis sed quas ratione. reiciendis et sed quae voluptatem officia mollitia amet eum. est dolores reiciendis qui ut alias nesciunt dolores voluptatem aut consectetur omnis. quis libero excepturi vero expedita ipsa quis ad. amet ipsum molestiae aut in\n\nAperiam vitae nesciunt velit sit est qui animi magni. facere molestiae excepturi consequuntur veritatis aut eveniet perferendis at qui. sed eos autem sit eius commodi dicta aperiam in quo tenetur deserunt vero ipsum magni"
+                }
+            },
+            "headline": {
+                "links": {
+                    "self": "/admin/content_blocks/8"
+                },
+                "data": {
+                    "content_type": "text/html",
+                    "body": "Numquam Nostrum"
+                }
+            }
+        }
+    }
+}
