@@ -10,7 +10,7 @@ describe 'db:sample_data namespace rake task',
     Rake::Task.define_task(:environment)
   end
 
-  it "should succeed" do
+  it "should succeed and create reasonable data" do
     Rake::Task["db:sample_data:load"].invoke
 
     Page::OneColumn.count.should == 5
@@ -33,5 +33,10 @@ describe 'db:sample_data namespace rake task',
       page.page_contents.map(&:name).should include("headline", "main")
       page.page_contents.map(&:name).should include("styles") if page.contents.count == 3
     end
+
+
+    expect(Menu.list).to have(2).menus
+    expect(Menu.new('Main Menu').tree.length).to eq(7)
+
   end
 end
