@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     put "pages/:url_slug", :to => 'pages#update'
     resources :pages
     resources :menus
+    resources :menu_items
     resources :content_blocks
 
     resources :blog_posts, :except => 'show'

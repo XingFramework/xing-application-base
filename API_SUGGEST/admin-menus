@@ -88,7 +88,7 @@
       links : {
         self: 'admin/menu-item/:id'
       }
-      data : {
+      data: {
         name: "About Web Security",
         path: 'https://www.owasp.org/index.php/Main_Page',
         type: 'raw_url',
@@ -99,7 +99,22 @@
 }
 
 #
-# POST /admin/menu-items/:id
+# GET /admin/menu-items/:id
+#
+{
+  links : {
+    self: 'admin/menu-items/:id'
+  }
+  data: {
+    name: 'Services',
+    path: 'https://www.owasp.org/index.php/Main_Page',
+    page_id: <integer>,
+    parent_id: <integer>
+  }
+}
+
+#
+# POST /admin/menu-items
 #
 
 {
@@ -115,7 +130,7 @@
 }
 
 #
-# PUT /admin/menu-items
+# PUT /admin/menu-items/:id
 #
 
 {
