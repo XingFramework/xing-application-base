@@ -18,6 +18,7 @@
       data:  {
         title: 'Page 1',
         layout: "one_column",
+        url_slug: "url_slug",
         published: [true | false],
         publish_start: <date/time>,
         publish_end: <date/time>

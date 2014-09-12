@@ -51,7 +51,7 @@
       }
       data : {
         name: "Services",
-        url: 'services',
+        path: 'services',
         type: [ 'page' | 'raw_url' ]
         children: [
 
@@ -62,7 +62,7 @@
             },
             data: {
               name: "Startup MVPs",
-              url: '/startup-mvps',
+              path: '/startup-mvps',
               type: [ 'page' | 'raw_url' ],
               # no children - key omitted
             }
@@ -73,7 +73,7 @@
             },
             data: {
               name: "Code Rescue",
-              url: '/code-rescue'
+              path: '/code-rescue'
               type: [ 'page' | 'raw_url' ]
               # no children - key omitted
             }
@@ -85,22 +85,54 @@
 
     # a top-level menu item with an external link
     {
-      links : {}
+      links : {
+        self: 'admin/menu-item/:id'
+      }
       data : {
         name: "About Web Security",
-        url: 'https://www.owasp.org/index.php/Main_Page',
+        path: 'https://www.owasp.org/index.php/Main_Page',
         type: 'raw_url',
-        # no children - key ommitted
+        # no children - key omitted
       }
     }
   ]
 }
 
 #
-# PUT /admin/menu-items/:id
-# DELETE /admin/menu-items/:id
-# POST /admin/menu-items
+# POST /admin/menu-items/:id
 #
+
+{
+  # links omitted
+
+  data : {
+    name: "Services",               # REQUIRED
+    path: '/services',               # optional if links to page
+    page_url_slug: '/page_url_slug' # optional if links to external website
+    type: [ 'page' | 'raw_url' ]    # REQUIRED
+    parent_id: <integer>               # optional
+  }
+}
+
+#
+# PUT /admin/menu-items
+#
+
+{
+  # links omitted
+
+  data : {
+    name: "Services",               # optional
+    path: '/services',               # optional
+    page_url_slug: '/page_url_slug' # optional
+    type: [ 'page' | 'raw_url' ]    # optional
+    parent_id: <integer>               # optional
+  }
+}
+
+
+# DELETE /admin/menu-items/:id
+
 # Create, update, delete individual menu items.
 #
 
