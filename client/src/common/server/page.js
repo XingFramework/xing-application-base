@@ -5,10 +5,6 @@ export class Page extends ServerResponse {
     return this.pageData.layout;
   }
 
-  get templateUrl(){
-    return `pages/templates/${this.layout}.tpl.html`;
-  }
-
   get title(){
     return this.pageData.title;
   }

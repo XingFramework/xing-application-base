@@ -17,7 +17,7 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
 
   return {
     page(slug){
-      var response = Restangular.one('page', slug).get();
+      var response = Restangular.one('pages', slug).get();
       return new Page(response);
     },
     menu(name){

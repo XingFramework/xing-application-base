@@ -13,44 +13,33 @@ angular.module( `${configuration.appName}.pages`, [
     .state( 'cms.page', {
       url: 'pages/:pageUrl',
       controller: 'PagesCtrl',
+      templateUrl: 'pages/pages.tpl.html',
       resolve: {
-        page(cmsBackend, $stateParams){
-          return cmsBackend.page($stateParams['permalink']);
+        page(cmsBackend, $stateParams) {
+          return cmsBackend.page($stateParams.pageUrl);
         }
-      },
-      templateUrl: 'pages/page.tpl.html'
-    })
-    .state( 'cms.page.layout', {
-      url: '',
-      templateUrl($scope){
-        return $scope.page.layoutUrl;
       }
     });
-
 })
-.controller( 'PagesCtrl', function( $scope, $state, $sce, page) {
+.controller( 'PagesCtrl', function( $scope, $stateParams, $sce, page) {
     $scope.headline = {};
     $scope.content = {};
     $scope.metadata = {};
+    $scope.template = "";
 
-    console.log("pages/pages.js:36", "page", page);
-    page.complete.then( (resolve) =>
+    page.complete.then( (page) =>
       {
         // page content
         $scope.headline = page.headline;
+        $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
         $scope.content = {};
-        console.log("pages/pages.js:41", "page.contentBlocks", page.contentBlocks);
         for(var block of page.contentBlocks){
           $scope.content[block.name] = $sce.trustAsHtml(block.content);
         }
-
         // header info
         $scope.metadata = page.metadata; // scoped for testing
         $scope.template = page.template; // scoped for testing
         $scope.$emit('metadataSet', page.metadata);
-        $scope.$emit('templateSet', page.template);
-
-        $state.go('layout');
       }
     );
 });
