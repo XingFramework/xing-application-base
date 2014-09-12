@@ -16,13 +16,12 @@ angular.module( `${configuration.appName}.navigationBar`, ['templates-app', 'ui.
       // Break the recursion loop by removing the contents
       var contents = element.contents().remove();
       var compiledContents;
-      console.log("navigationBar/navigationBar.js:24", "$state.href('cms.page')", $state.href('cms.page', {pageUrl: "test"}));
       return {
         //pre: null,
         post(scope, element){
           scope.menu.complete.then(() => {
             scope.pageState = "cms.page";
-            console.log("navigationBar/navigationBar.js:24", "$state.href('cms.page')", $state.href('cms.page', {pageUrl: "test"}));
+            scope.$state = $state;
             // Compile the contents
             if(!compiledContents){ compiledContents = $compile(contents); }
             // Re-add the compiled contents to the element

@@ -5,7 +5,7 @@ import {xpath, stringAtXpath} from "../test-help/xpath";
 
 
 describe('navigationBar directive', function() {
-  var $compile, $rootScope;
+  var $compile, $rootScope, $state;
 
   function compiledWithMenu(menu){
     $rootScope.mainMenu = menu;
@@ -16,12 +16,16 @@ describe('navigationBar directive', function() {
     return element;
   }
 
-  beforeEach(module('Reasoning.navigationBar'));
+  beforeEach(module('Reasoning.navigationBar', "ui.router.state", function($stateProvider) {
+    $stateProvider.state('cms', {url: "/"});
+  }));
 
-  beforeEach(inject(function(_$compile_, _$rootScope_){
+  beforeEach(inject(function(_$state_, _$compile_, _$rootScope_){
+    $state = _$state_;
     $compile = _$compile_;
     $rootScope = _$rootScope_;
   }));
+
 
   describe('with an empty menu', function() {
     it('should render as empty', function() {
@@ -51,8 +55,9 @@ describe('navigationBar directive', function() {
       expect(xpath(element, ".//ul[@id='main-nav']").snapshotLength).toBeGreaterThan(0);
     });
 
-    xit('have a ui-router state link', function() {
-      expect(xpath(element, './/a[@ui-sref]').snapshotLength).toBeGreaterThan(0);
+    it('have a ui-router state link', function() {
+      var sref = $state.href("cms.page", {pageUrl: encodeURI("/pages/test-page")});
+      expect(xpath(element, `.//a[@href="${sref}"]`).snapshotLength).toBeGreaterThan(0);
       //expect(stringAtXpath(element, './/a[@ui-sref]/@ui-sref')).toMatch(/test-page/);
     });
   });

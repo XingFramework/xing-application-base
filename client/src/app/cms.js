@@ -10,7 +10,7 @@ import "../common/ui-route-logger";
 angular.module( configuration.appName, [
   'templates-app', 'templates-common', 'ui.router',
   `${configuration.appName}.server`, `${configuration.appName}.navigationBar`,
-  `${configuration.appName}.route-logger`
+  `${configuration.appName}.route-logger`,
   `${configuration.appName}.pages`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
@@ -34,5 +34,4 @@ angular.module( configuration.appName, [
 })
 .controller( 'CmsCtrl', function CmsCtrl( $scope, $location, mainMenu, $state ) {
   $scope.mainMenu = mainMenu;
-  console.log("app/cms.js:36", "$state.href('cms.page', {pageUrl: 'test'})", $state.href('cms.page', {pageUrl: 'test'}));
 });

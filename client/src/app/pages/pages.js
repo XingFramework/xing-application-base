@@ -11,7 +11,7 @@ angular.module( `${configuration.appName}.pages`, [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'cms.page', {
-      url: '/pages/:pageUrl',
+      url: 'pages/:pageUrl',
       controller: 'PagesCtrl',
       templateUrl: 'pages/page.tpl.html'
     });
