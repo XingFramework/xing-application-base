@@ -31,8 +31,28 @@ namespace :db do
     desc "Fill the database with sample data for demo purposes"
     task :load => [
       :environment,
-      :populate_pages
+      :populate_pages,
+      :populate_menu
       ]
+
+    task :populate_menu => :environment do
+      menu = Menu.new("Main Menu")
+
+                 menu_item('About Us', menu.menu_item)
+      services = menu_item('Services', menu.menu_item)
+                 menu_item('Products', menu.menu_item)
+                 menu_item('Contact',  menu.menu_item)
+
+      menu_item('Startup MVPs', services)
+      menu_item('Code Rescue',  services)
+      menu_item('Training',     services)
+      menu.menu_item.reload
+    end
+
+    def menu_item(name, parent)
+      item = MenuItem.create(:name => :name, :page => Page.all.pick, :parent => parent)
+      item
+    end
 
     task :populate_pages => :environment do
       require 'populator'
