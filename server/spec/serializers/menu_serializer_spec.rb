@@ -50,11 +50,14 @@ describe MenuSerializer do
       MenuSerializer.new(main_menu).to_json
     end
 
-    it { is_expected.to be_present}
-    it { is_expected.to have_json_path('links')}
-    it { is_expected.to have_json_type(String).at_path('links/self')}
-    it { is_expected.to have_json_path('data')}
-    it { is_expected.to be_json_eql(rendered_tree.to_json).at_path('data')}
+    it "should have correct JSON structure" do
+      is_expected.to be_present
+      is_expected.to have_json_path('links')
+      is_expected.to have_json_type(String).at_path('links/self')
+      is_expected.to have_json_type(String).at_path('links/admin')
+      is_expected.to have_json_path('data')
+      is_expected.to be_json_eql(rendered_tree.to_json).at_path('data')
+    end
   end
 
 end

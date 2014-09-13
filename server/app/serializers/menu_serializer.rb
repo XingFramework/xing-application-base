@@ -6,7 +6,8 @@ class MenuSerializer < BaseSerializer
 
   def links
     {
-      :self => routes.menu_path(object)
+      :self => routes.menu_path(object),
+      :admin => routes.admin_menu_path(object)
     }
   end
 

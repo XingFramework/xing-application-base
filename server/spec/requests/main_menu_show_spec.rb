@@ -12,7 +12,8 @@ describe "menu#show" do
     {
       "links"=>
       {
-        "self" => "/menus/#{main_menu.id}"
+        "self" => "/menus/#{main_menu.id}",
+        "admin" => "/admin/menus/#{main_menu.id}"
       },
       "data"=>
       [
