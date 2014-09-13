@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get "pages/:url_slug", :to => 'pages#show', :as => :page
     put "pages/:url_slug", :to => 'pages#update'
     resources :pages
-    resources :menus
+    resources :menus, :only => [ :show, :index ]
     resources :menu_items
     resources :content_blocks
 
