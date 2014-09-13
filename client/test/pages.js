@@ -23,10 +23,8 @@ ddescribe( 'Pages section', function() {
     });
     page = new Page(promise);
     page.complete.then((result) => {
-      console.log("test/pages.js:26", "page", page);
       done();
     });
-
   });
 
   beforeEach(function() {
@@ -58,24 +56,15 @@ ddescribe( 'Pages section', function() {
   });
 
   it('should assign content', function(){
-    expect($scope.content.main).toBe("Four score and <em>seven</em> years");
-  });
-
-  it('should assign the metadata', function() {
-    expect($scope.metadata instanceof Object).toBeTruthy();
-    expect($scope.metadata).toBe(Page.metadata);
+    expect($scope.contentBlocks['main']).toBe("Four score and <em>seven</em> years");
   });
 
   it('should emit the metadataSet', function() {
-    expect(emitSpy).toHaveBeenCalledWith('metadataSet', Page.metadata);
+    expect(emitSpy).toHaveBeenCalledWith('metadataSet', page.metadata);
   });
 
   it('should assign the template', function() {
-    expect($scope.template instanceof Object).toBeTruthy();
-    expect($scope.template).toBe(Page.template);
+    expect($scope.template).toBe('pages/templates/'+page.layout +".tpl.html");
   });
 
-  it('should emit the templateSet', function() {
-    expect(emitSpy).toHaveBeenCalledWith('templateSet', Page.template);
-  });
 });

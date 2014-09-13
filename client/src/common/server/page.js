@@ -18,7 +18,11 @@ export class Page extends ServerResponse {
   }
 
   get styles(){
-    return this.pageData.contents.styles.data.body;
+    if (typeof(this.pageData.contents.styles) != 'undefined') {
+      return this.pageData.contents.styles.data.body;
+    } else {
+      return null;
+    }
   }
 
   get metadata(){
@@ -35,15 +39,13 @@ export class Page extends ServerResponse {
   }
 
   get contentBlocks() {
-    var contents = this.pageData.contents;
-    var blocks = [];
-    for(var name in contents){
-      if(contents.hasOwnProperty(name)){
-        var content = contents[name];
-        blocks.push({ name, content });
+    var contentBlocks = {};
+    for (var name in this.pageData.contents) {
+      if (this.pageData.contents.hasOwnProperty(name)) {
+        contentBlocks[name] = this.pageData.contents[name].data.body;
       }
     }
-    return blocks;
+    return contentBlocks;
   }
 
   get mainContent() {
