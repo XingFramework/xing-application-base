@@ -28,6 +28,15 @@ end
 namespace :db do
   namespace :sample_data do
 
+    desc "Wipe the database and reload"
+    task "reload" => [ :wipe, 'db:seed', :load]
+
+    task :wipe => :environment do
+      [ User, Page, ContentBlock, PageContent, MenuItem ].each do |table|
+        table.delete_all
+      end
+    end
+
     desc "Fill the database with sample data for demo purposes"
     task :load => [
       :environment,

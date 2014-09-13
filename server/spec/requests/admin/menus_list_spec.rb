@@ -38,6 +38,9 @@ describe "admin/menus#index", :type => :request do
   #]
 #}
 
+      puts "---"
+      puts response.body
+      puts "---"
       expect(response).to be_success
       expect(response.body).to have_json_path("links")
       expect(response.body).to have_json_path("links/self")
@@ -49,3 +52,4 @@ describe "admin/menus#index", :type => :request do
     end
   end
 end
+
