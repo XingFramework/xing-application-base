@@ -8,7 +8,7 @@ class Admin::MenusController < JsonController
   # GET /admin/menus/:id
   def show
     menu = Menu.new(MenuItem.find(params[:id]))
-    render :json => Admin::MenuItemSerializer.new(menu)
+    render :json => Admin::MenuSerializer.new(menu)
   end
 
 end

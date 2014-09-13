@@ -25,17 +25,17 @@ namespace :dummy_api do
     endpoints += Page.all.map     { |page| routes.page_path(page) }
     endpoints += Page.all.map     { |page| routes.admin_page_path(page) }
     endpoints += Menu.list.map    { |menu| routes.admin_menu_path(menu) }
-    endpoints += MenuItem.all.map { |item| routes.admin_menu_item_path(item) }
+    endpoints += MenuItem.where('parent_id IS NOT NULL').map { |item| routes.admin_menu_item_path(item) }
 
     endpoints.each do |endpoint|
-      p endpoint
       filename = File.join(TARGET_DIRECTORY, endpoint + ".json")
       FileUtils.mkdir_p(File.dirname(filename))
 
       begin
-        response = `curl -H 'Accept: application/json' http://localhost:3000#{endpoint}`
+        response = `curl -H 'Accept: application/json' http://localhost:3000#{endpoint} 2> /dev/null`
         json_hash = JSON.parse(response)
       rescue JSON::ParserError
+        puts "A parser error occurred:  please see error.html"
         File.open('error.html', 'w') do |file|
           file.write response
         end
