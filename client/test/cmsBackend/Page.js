@@ -45,7 +45,7 @@ describe('Page class', function() {
       return resolve(data);
     });
     page = new Page(promise);
-    page.complete.then(function(){
+    page.completePromise = page.complete.then(function(){
       done();
     });
   });
@@ -76,15 +76,6 @@ describe('Page class', function() {
 
   it('should have mainContent', function() {
     expect(page.mainContent).toEqual('Four score and <em>seven</em> years');
-  });
-
-  it('should wrap template', function(){
-    expect(page.template).toBeInstanceOf(Object);
-  });
-
-  it('should include appropriate values in template object', function(){
-    expect(page.template.name).toEqual('one_column');
-    expect(page.template.url).toEqual('/pages/one_column.tpl.html');
   });
 
   it('should wrap metadata', function(){

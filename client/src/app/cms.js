@@ -14,7 +14,10 @@ angular.module( configuration.appName, [
   `${configuration.appName}.pages`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/' );
+  $urlRouterProvider.otherwise(($injector, $location) => {
+    console.log("app/cms.js:18", "$location", $location);
+    return '/';
+  });
   $stateProvider.state('cms', {
     templateUrl: "cms.tpl.html",
     controller: 'CmsCtrl',

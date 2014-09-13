@@ -15,12 +15,14 @@ angular.module( `${configuration.appName}.pages`, [
       templateUrl: 'pages/pages.tpl.html',
       resolve: {
         page(cmsBackend, $stateParams) {
+          console.log("pages/pages.js:18", "$stateParams", $stateParams);
           return cmsBackend.page($stateParams.pageUrl).complete;
         }
       }
     });
 })
 .controller( 'PagesCtrl', function( $scope, $stateParams, $sce, page) {
+  console.log("pages/pages.js:25", "page", page);
   $scope.contentBlocks = {};
   $scope.headline = page.headline;
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";

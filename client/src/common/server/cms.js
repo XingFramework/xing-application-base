@@ -18,6 +18,7 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
   return {
     page(slug){
       var response = Restangular.one('pages', slug).get();
+      console.log("server/cms.js:21", "response", response);
       return new Page(response);
     },
     menu(name){

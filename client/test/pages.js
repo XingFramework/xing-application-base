@@ -3,7 +3,7 @@ import {} from '../src/app/pages/pages';
 import {} from 'test/json-fixtures/pages/client.json';
 import {Page} from '../src/common/server/page';
 
-ddescribe( 'Pages section', function() {
+describe( 'Pages section', function() {
 
   beforeEach( module( `${configuration.appName}.pages` ) );
   beforeEach( module( `${configuration.appName}.server` ) );

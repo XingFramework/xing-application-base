@@ -6,7 +6,7 @@
     { "links" : {},
       "data" : {
         "name": "Services",
-        "url": "/services",
+        "path": "/services",
         "type":  [ "page" ],
         "children": [
           {
