@@ -1,5 +1,5 @@
 class MainMenuNodeSerializer < BaseSerializer
-  attributes :name, :url, :type, :children
+  attributes :name, :path, :type, :children
 
   def node
     object.node
@@ -10,7 +10,7 @@ class MainMenuNodeSerializer < BaseSerializer
     node.name
   end
 
-  def url
+  def path
     node.page ? "/#{node.page.url_slug}" : node.path
   end
 

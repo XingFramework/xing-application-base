@@ -20,13 +20,13 @@ describe "main_menu#show" do
           "links" => {},
           "data" => {
             "name"=>"About",
-            "url" =>"/about",
+            "path" =>"/about",
             "type" => "page",
             "children" => [{
               "links" => {},
               "data" => {
                 "name" => "Services",
-                "url" => "/services",
+                "path" => "/services",
                 "type" => "page",
                 "children" => []
               }
@@ -37,7 +37,7 @@ describe "main_menu#show" do
           "links" => {},
           "data" => {
             "name" => "Yahoo",
-            "url" => "http://www.yahoo.com",
+            "path" => "http://www.yahoo.com",
             "type" => "raw_url",
             "children" => []
           }
