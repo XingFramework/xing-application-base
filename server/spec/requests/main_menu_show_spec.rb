@@ -19,15 +19,15 @@ describe "menu#show" do
         {
           "links" => {},
           "data" => {
-            "name"=>"About",
-            "path" =>"/about",
             "type" => "page",
+            "name"=>"About",
+            "page" => { "links" => { "self" => "/pages/about" }},
             "children" => [{
               "links" => {},
               "data" => {
-                "name" => "Services",
-                "path" => "/services",
                 "type" => "page",
+                "name" => "Services",
+                "page" => { "links" => { "self" => "/pages/services" }},
                 "children" => []
               }
             }]
@@ -36,9 +36,9 @@ describe "menu#show" do
         {
           "links" => {},
           "data" => {
+            "type" => "raw_url",
             "name" => "Yahoo",
             "path" => "http://www.yahoo.com",
-            "type" => "raw_url",
             "children" => []
           }
         }

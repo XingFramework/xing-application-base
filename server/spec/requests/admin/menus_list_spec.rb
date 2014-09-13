@@ -9,6 +9,35 @@ describe "admin/menus#index", :type => :request do
     it "shows page as json" do
       json_get "admin/menus"
 
+#{
+  #links; {
+    #self: "/admin/menus"
+  #},
+  #data: [
+    #{ links: {
+        #self: 'admin/menus/:id1'
+      #},
+      #data: {
+        #name: 'Menu 1'
+      #}
+    #},
+    #{ links: {
+        #self: 'admin/menus/:id2'
+      #},
+      #data: {
+        #name: 'Menu 2'
+      #}
+    #},
+    #{ links: {
+        #self: 'admin/menus/:id3'
+      #},
+      #data: {
+        #name: 'Menu 3'
+      #}
+    #}
+  #]
+#}
+
       expect(response).to be_success
       expect(response.body).to have_json_path("links")
       expect(response.body).to have_json_path("links/self")

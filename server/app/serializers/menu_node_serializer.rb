@@ -1,17 +1,30 @@
 class MenuNodeSerializer < BaseSerializer
-  attributes :name, :path, :type, :children
+  attributes :type, :name, :path, :page, :type, :children
 
   def node
     object.node
   end
 
   def name
-
     node.name
   end
 
+  def filter(keys)
+    if node.page.present?
+      keys - [ :path ]
+    else
+      keys - [ :page ]
+    end
+  end
+
   def path
-    node.page ? "/#{node.page.url_slug}" : node.path
+    node.path
+  end
+
+  def page
+    if node.page
+      { links: { self: routes.page_path(node.page) }}
+    end
   end
 
   def type
