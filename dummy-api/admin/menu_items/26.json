@@ -1,0 +1,15 @@
+{
+  "links": {
+    "self": "/admin/menu_items/26"
+  },
+  "data": {
+    "type": "page",
+    "name": "Products",
+    "page": {
+      "links": {
+        "self": "/pages/about_us"
+      }
+    },
+    "parent_id": 1
+  }
+}

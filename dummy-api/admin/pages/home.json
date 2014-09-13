@@ -1,0 +1,36 @@
+{
+  "links": {
+    "self": "/admin/pages/home",
+    "public": "/pages/home"
+  },
+  "data": {
+    "title": "Home",
+    "keywords": "home",
+    "description": null,
+    "layout": "one_column",
+    "contents": {
+      "headline": {
+        "links": {
+          "self": "/admin/content_blocks/46"
+        },
+        "data": {
+          "content_type": "text/html",
+          "body": "Rerum"
+        }
+      },
+      "main": {
+        "links": {
+          "self": "/admin/content_blocks/47"
+        },
+        "data": {
+          "content_type": "text/html",
+          "body": "Distinctio aspernatur est sed ipsum tempora expedita nobis deleniti in. autem repudiandae ratione voluptatem a excepturi voluptatibus aut qui autem cumque ab distinctio. est blanditiis voluptatem ut qui natus sed qui et architecto explicabo sed. iure aut aut perspiciatis dolores\n\nQui explicabo quaerat dignissimos eligendi. architecto quis consequuntur et aperiam minima sed similique quae. dolores vel ut fugiat consequuntur similique. nam et quae est eveniet corrupti ullam\n\nMagnam repellat beatae maiores ducimus omnis quisquam eum minus at quibusdam officia architecto vero. laborum sunt animi explicabo nemo repellendus rem officiis nemo quos provident quos error earum impedit quam est excepturi assumenda nemo. necessitatibus ducimus eum dolore esse voluptas libero a consequatur ea saepe ratione provident. at ipsa libero eius doloremque sit aut sapiente quibusdam autem enim animi qui accusantium cupiditate pariatur nisi dolor earum reiciendis. necessitatibus qui voluptatem explicabo aut neque labore eveniet sint repellat laborum. ea mollitia dolores architecto est. omnis veniam rerum assumenda animi quibusdam et a eius est rem tenetur reiciendis atque est fugiat odio"
+        }
+      }
+    },
+    "url_slug": "home",
+    "published": true,
+    "publish_start": null,
+    "publish_end": null
+  }
+}

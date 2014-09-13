@@ -32,9 +32,12 @@ namespace :db do
     task :reload => [ :wipe, 'db:seed', :load]
 
     task :wipe => :environment do
-      [ User, Page, ContentBlock, PageContent, MenuItem ].each do |table|
+      [ User, Page, ContentBlock, PageContent ].each do |table|
         table.delete_all
       end
+
+      # leave in the roots
+      MenuItem.where("parent_id IS NOT NULL").delete_all
     end
 
     desc "Fill the database with sample data for demo purposes"

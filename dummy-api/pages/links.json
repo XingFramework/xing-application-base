@@ -1,0 +1,32 @@
+{
+  "links": {
+    "self": "/pages/links",
+    "admin": "/admin/pages/links"
+  },
+  "data": {
+    "title": "Links",
+    "keywords": "links",
+    "description": null,
+    "layout": "one_column",
+    "contents": {
+      "headline": {
+        "links": {
+          "self": "/admin/content_blocks/51"
+        },
+        "data": {
+          "content_type": "text/html",
+          "body": "Iste Sit Deserunt Odio"
+        }
+      },
+      "main": {
+        "links": {
+          "self": "/admin/content_blocks/52"
+        },
+        "data": {
+          "content_type": "text/html",
+          "body": "Voluptatem ad est voluptatibus qui perspiciatis. voluptatem vitae qui non laborum vero impedit ipsam natus animi nihil accusamus et id ut consequatur in facere recusandae. omnis velit quis numquam expedita autem voluptatum facere impedit perferendis qui animi voluptas ullam. perspiciatis enim corporis at aut dolorem occaecati nesciunt voluptatibus et fuga qui dignissimos saepe omnis\n\nFugiat quia adipisci impedit nemo autem animi. alias voluptatum pariatur quibusdam corrupti laboriosam maiores. fugit dolor voluptatibus perspiciatis reiciendis laudantium dolores aut consequuntur repellat cupiditate iste illum voluptas sunt. quos quia autem eos nulla autem soluta dolor voluptatem. voluptatibus quod veritatis explicabo minus. vel optio laborum vero quia eveniet odio necessitatibus est quidem nihil vel non voluptate. voluptate et harum tempore dolor distinctio quasi dolores numquam repellendus incidunt aut totam ab dolorum possimus voluptatum possimus vel qui. officia facere laboriosam voluptas tempore doloribus non optio"
+        }
+      }
+    }
+  }
+}

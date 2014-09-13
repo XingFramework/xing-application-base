@@ -14,8 +14,11 @@ namespace :dummy_api do
   end
 
   desc "Wipe and regenerate API fixtures in /dummy-api from development mode endpoints"
-  task :regenerate => [ 'db:sample_data:reload', :generate ]
+  task :regenerate => [ 'db:sample_data:reload', :wipe_dummy_directory, :generate ]
 
+  task :wipe_dummy_directory do
+    sh "rm -rf #{TARGET_DIRECTORY}"
+  end
 
   desc "Generate API fixtures in /dummy-api from development mode endpoints"
   task :generate => :environment do
@@ -32,7 +35,7 @@ namespace :dummy_api do
       FileUtils.mkdir_p(File.dirname(filename))
 
       begin
-        response = `curl -H 'Accept: application/json' http://localhost:3000#{endpoint} 2> /dev/null`
+        response = `curl -H 'Accept: application/json' http://localhost:3000#{endpoint}` # 2> /dev/null`
         json_hash = JSON.parse(response)
       rescue JSON::ParserError
         puts "A parser error occurred:  please see error.html"
