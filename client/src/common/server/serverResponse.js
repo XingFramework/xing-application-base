@@ -10,6 +10,7 @@ export class ServerResponse {
       return this;
     },
     (reason) => {
+      console.log("server/serverResponse.js:13", "reason", reason);
       this.errorReason = reason;
       return reason;
     });
@@ -24,6 +25,7 @@ export class ServerResponse {
   }
 
   absorbResponse(response) {
+    console.log("server/serverResponse.js:27", "response", response);
     this._data = response["data"];
   }
 

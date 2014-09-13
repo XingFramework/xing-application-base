@@ -508,7 +508,7 @@ module.exports = function( grunt ) {
          * run our unit tests.
          */
         jssrc: {
-          files: [ '<%= app_files.js %>' ],
+          files: [ 'src/**/*.js' ],
           tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ]
         },
 
