@@ -1,4 +1,4 @@
-class MainMenuNodeSerializer < BaseSerializer
+class MenuNodeSerializer < BaseSerializer
   attributes :name, :path, :type, :children
 
   def node

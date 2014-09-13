@@ -67,11 +67,17 @@ describe Menu do
     let :item do root_1 end
 
     it "should delegate proper methods" do
-      [:name, :parent ].each do |method|
+      [:name, :parent, :id, :reload ].each do |method|
         root_1.should_receive(method)
         menu.send(method)
       end
     end
+
+    it "should correctly return the menu_item's id" do
+      item = FactoryGirl.create(:main_menu_root)
+      Menu.new(item).id.should == item.id
+    end
+
 
   end
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "main_menu#show" do
+describe "menu#show" do
   let (:main_menu) { MenuItem.roots.where(:name => "Main Menu").first }
   let (:services_page) { FactoryGirl.create(:page, :url_slug => "services") }
   let (:about_page) { FactoryGirl.create(:page, :url_slug => "about") }
@@ -12,7 +12,7 @@ describe "main_menu#show" do
     {
       "links"=>
       {
-        "self" => "/navigation/main"
+        "self" => "/menus/#{main_menu.id}"
       },
       "data"=>
       [

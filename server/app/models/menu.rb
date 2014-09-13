@@ -1,6 +1,6 @@
 class Menu
   attr_accessor :menu_item
-  DELEGATED_METHODS = [ :name, :parent, :reload, :read_attribute_for_serialization ]
+  DELEGATED_METHODS = [ :name, :parent, :reload, :read_attribute_for_serialization, :id, :to_param ]
   delegate(*DELEGATED_METHODS, :to => :menu_item)
 
   def initialize(item_or_name)

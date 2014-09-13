@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MainMenuNodeSerializer do
+describe MenuNodeSerializer do
   let :menu_item_with_page    do FactoryGirl.create(:menu_item_with_page) end
   let :menu_item_without_page do FactoryGirl.create(:menu_item_without_page) end
 
@@ -13,7 +13,7 @@ describe MainMenuNodeSerializer do
   describe 'as_json' do
 
     subject :json do
-      MainMenuNodeSerializer.new(menu_node).to_json
+      MenuNodeSerializer.new(menu_node).to_json
     end
 
     context "for menu item for a page" do

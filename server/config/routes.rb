@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+  # Top fixed routes for the front-end
+  get "/homepage",        :to => 'pages#show', :url_slug => 'homepage', :as => :homepage
+  get '/navigation/main', :to => "menus#show", :id => MAIN_MENU.id, :as => :main_menu
+
+
   get "pages/:url_slug", :to => 'pages#show', :as => :page
-  get "homepage", :to => 'pages#show', :url_slug => 'homepage', :as => :homepage
+  resources :menus, :only => [ :show ]
 
   namespace :admin do
     #resources :images
@@ -25,7 +30,6 @@ Rails.application.routes.draw do
 
   resources :topics, :only => %w{show index}
 
-  get '/navigation/main' => "main_menu#show", :as => :main_menu
 
   root :to => 'static#index'
 

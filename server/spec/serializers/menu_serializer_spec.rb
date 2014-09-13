@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MainMenuSerializer do
+describe MenuSerializer do
   let :rendered_tree do
     [
       {
@@ -41,13 +41,13 @@ describe MainMenuSerializer do
   end
 
   before do
-    JsonTreeLister.should_receive(:new).with(menu_item_list, MainMenuNodeSerializer).and_return(json_tree_lister)
+    JsonTreeLister.should_receive(:new).with(menu_item_list, MenuNodeSerializer).and_return(json_tree_lister)
     json_tree_lister.should_receive(:render).and_return(rendered_tree)
   end
 
   describe "as_json" do
     subject :json do
-      MainMenuSerializer.new(main_menu).to_json
+      MenuSerializer.new(main_menu).to_json
     end
 
     it { is_expected.to be_present}
