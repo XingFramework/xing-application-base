@@ -7,7 +7,7 @@
       "links": {},
       "data": {
         "name": "Contact Us",
-        "path": "/contact_us",
+        "path": "contact_us",
         "type": "page",
         "children": []
       }
