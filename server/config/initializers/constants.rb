@@ -21,5 +21,5 @@ USER_CONTENT_DEFAULT_SANITIZER  = Sanitize::Config::BASIC
 ADMIN_CONTENT_DEFAULT_SANITIZER = Sanitize::Config::RELAXED
 
 # These two menus are in seeds.rb and should always exist
-MAIN_MENU        = Menu.new("Main Menu")    or raise "Can't find main menu.  Did you run rake db:seed?"
-BLOG_TOPICS_MENU = Menu.new("Blog Topics")  or raise "Can't find blog topics.  Did you run rake db:seed?"
+MAIN_MENU        = Menu.new("Main Menu")    or warn "Can't find main menu.  Did you run rake db:seed?"
+BLOG_TOPICS_MENU = Menu.new("Blog Topics")  or warn "Can't find blog topics.  Did you run rake db:seed?"
