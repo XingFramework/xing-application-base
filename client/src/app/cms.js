@@ -75,4 +75,3 @@ angular.module( configuration.appName, [
     }
   );
 });
-

@@ -21,4 +21,3 @@ describe "admin/menus#index", :type => :request do
     end
   end
 end
-

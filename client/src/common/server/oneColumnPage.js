@@ -21,4 +21,4 @@ class OneColumnPage extends Page {
     return this.pageData.contents.main.data.body;
   }
 
-} 
+}
