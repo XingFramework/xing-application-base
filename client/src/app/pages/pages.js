@@ -20,13 +20,16 @@ angular.module( `${configuration.appName}.pages`, [
       }
     })
     .state( 'root.inner.page', {
-      url: '^/pages/:pageUrl',
+      url: '^/pages/*pageUrl',
       controller: 'PagesCtrl',
       templateUrl: 'pages/pages.tpl.html',
       resolve: {
         page(cmsBackend, $stateParams) {
           console.log("pages/pages.js:29", "$stateParams", $stateParams);
-          return cmsBackend.page($stateParams.pageUrl).complete;
+          return cmsBackend.page($stateParams.pageUrl).complete.then( (page) => {
+            console.log("pages/pages.js:30", "page", page);
+            return page;
+          });
         }
       }
     });
