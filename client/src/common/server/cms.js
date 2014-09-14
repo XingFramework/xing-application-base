@@ -17,8 +17,9 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
 
   return {
     page(slug){
+      slug = slug.replace(/^\//,'');
       console.log("server/cms.js:20", "slug", slug);
-      var response = Restangular.one(slug).get();
+      var response = Restangular.one("").customGET(slug);
       console.log("server/cms.js:21", "response", response);
       return new Page(response);
     },
