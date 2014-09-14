@@ -7,12 +7,14 @@ import {} from '../common/server/cms';
 import {configuration} from '../common/config';
 import "../common/ui-route-logger";
 import '../../vendor/responsive-nav/responsive-nav';
+import {} from './admin/directives';
 
 angular.module( configuration.appName, [
   'templates-app', 'templates-common', 'ui.router',
   `${configuration.appName}.server`, `${configuration.appName}.navigationBar`,
   `${configuration.appName}.route-logger`,
-  `${configuration.appName}.pages`
+  `${configuration.appName}.pages`,
+  `${configuration.appName}.admin`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise(($injector, $location) => {
@@ -20,7 +22,7 @@ angular.module( configuration.appName, [
     return '/home';
   });
   $stateProvider.state('root', {
-    templateUrl: "root.tpl.html",
+    template: "root.tpl.html",
     controller: 'RootCtrl',
     abstract: true,
     url: "/",

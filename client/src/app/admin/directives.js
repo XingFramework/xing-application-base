@@ -1,6 +1,6 @@
 import { configuration } from '../../common/config';
 
-angular.module( configuration.appName + '.admin', ['ngCookies', configuration.appName + '.config'])
+angular.module( configuration.appName + '.admin', [configuration.appName + '.config'])
 .directive('adminOnly',
   ['$cookies', function ($cookies) {
 
