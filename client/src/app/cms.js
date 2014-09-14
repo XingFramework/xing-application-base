@@ -22,7 +22,7 @@ angular.module( configuration.appName, [
     return '/home';
   });
   $stateProvider.state('root', {
-    template: "root.tpl.html",
+    templateUrl: "root.tpl.html",
     controller: 'RootCtrl',
     abstract: true,
     url: "/",
