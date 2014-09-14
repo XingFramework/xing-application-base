@@ -159,13 +159,17 @@ module.exports = function( grunt ) {
             "src/common/environment.js": "config/environments/development.js"
           }
         },
+        "integration-env": {
+          files: {
+            "src/common/environment.js": "config/environments/integration.js"
+          }
+        },
 
         traceur_runtime: {
           files: {
             "bin/assets/traceur-runtime.js": "./node_modules/traceur/bin/traceur-runtime.js",
           }
         },
-
         karmaUnit: {
           options: { process: function( contents, path ) { return grunt.template.process( contents ); } },
           files: { '<%= build_dirs.root %>/karma-unit.js': ['karma/karma-unit.tpl.js'] }
@@ -548,8 +552,7 @@ module.exports = function( grunt ) {
          */
         html: {
           files: [ '<%= app_files.html %>' ],
-          tasks: [ 'index:build' ],
-          options: { atBegin: true }
+          tasks: [ 'index:build' ]
         },
 
         /**
@@ -586,11 +589,6 @@ module.exports = function( grunt ) {
         dummyapi: {
           files: [ "../dummy-api/**" ],
           tasks: [ 'jsonlint:dummies' ]
-        },
-
-        traceur_runtime: {
-          files: [ "./node_modules/traceur/bin/traceur-runtime.js" ],
-          tasks: [ 'copy:traceur_runtime' ],
         },
 
         karmaconfig: {
@@ -649,8 +647,8 @@ module.exports = function( grunt ) {
     'copy:karmaUnit'
   ]);
 
-  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'copy:traceur_runtime'  ]);
-
+  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'copy:traceur_runtime' ]);
+  grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime' ]);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
   grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'build', 'ngAnnotate', 'uglify' ]);
