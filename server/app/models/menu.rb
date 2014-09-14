@@ -1,9 +1,15 @@
 class Menu
   attr_accessor :menu_item
-  DELEGATED_METHODS = [ :name, :parent, :reload ]
+  DELEGATED_METHODS = [ :name, :parent, :reload, :read_attribute_for_serialization, :id, :to_param ]
   delegate(*DELEGATED_METHODS, :to => :menu_item)
 
-  def initialize(item)
+  def initialize(item_or_name)
+    item = case item_or_name
+    when MenuItem then item_or_name
+    when String   then MenuItem.roots.where(:name => item_or_name).first
+    when Symbol   then MenuItem.roots.where(:name => item_or_name.to_s).first
+    end
+
     if item.root?
       @menu_item = item
     else
@@ -22,4 +28,12 @@ class Menu
   def self.wrap(item_or_array)
     [*item_or_array].map { |mi| Menu.new(mi) }
   end
+
+  def self.main_menu
+    self.new(MenuItem.find_by_name("Main Menu"))
+  end
+  def self.blog_topics
+    self.new(MenuItem.find_by_name("Blog Topics"))
+  end
 end
+

@@ -18,10 +18,12 @@ angular.module( configuration.appName + '.server', [ 'restangular' ])
   return {
     page(slug){
       var response = Restangular.one('page', slug).get();
+      console.log("server/cms.js:21", "response", response);
+
 
       // TODO:  this should instantiate the right page class based on the
       // layout field of the page.
-      return new OneColumnPage(response);
+      return new Page(response);
     },
     menu(name){
       var response = Restangular.one('navigation', name).get(); // GET /menu/Main

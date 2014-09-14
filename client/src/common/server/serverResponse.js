@@ -7,9 +7,10 @@ export class ServerResponse {
     this.responsePromise = responsePromise;
     this.completePromise = responsePromise.then( (response) => {
       this.absorbResponse(response);
-      return response;
+      return this;
     },
     (reason) => {
+      console.log("server/serverResponse.js:13", "reason", reason);
       this.errorReason = reason;
       return reason;
     });

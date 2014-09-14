@@ -1,7 +1,5 @@
 import {Page} from './page';
 
-export var Homepage;
+export class Homepage extends Page {
 
-class Homepage extends Page {
-
-} 
+}

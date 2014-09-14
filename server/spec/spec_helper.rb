@@ -51,3 +51,7 @@ end
 def content_for(name)
   view.instance_variable_get("@content_for_#{name}")
 end
+
+def routes
+  Rails.application.routes.url_helpers
+end

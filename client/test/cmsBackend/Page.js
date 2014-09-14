@@ -1,4 +1,5 @@
 import {Page} from "../../src/common/server/page";
+import {} from 'test/json-fixtures/pages/server.json';
 
 describe('Page class', function() {
   var page;
@@ -11,7 +12,29 @@ describe('Page class', function() {
         keywords: "keyword1 keyword2",
         description: "Description 1",
         layout:  "one_column",
-        contents: { }
+        contents: {
+          main: {
+            links: { self: "/content-blocks/:id"  },
+            data: {
+              content_type: 'text/html',
+              body: 'Four score and <em>seven</em> years'
+            }
+          },
+          headline: {
+            links: { self: "/content-blocks/:id" },
+            data: {
+              content_type: 'text/html',
+              body: 'The Gettysburg Address'
+            }
+          },
+          styles: {
+            links: { self: "/content-blocks/:id" },
+            data: {
+              content_type: 'text/css',
+              body: 'p { font-weight: bold; }'
+            }
+          }
+        }
       }
     };
   }
@@ -22,30 +45,48 @@ describe('Page class', function() {
       return resolve(data);
     });
     page = new Page(promise);
-    page.responsePromise.then(function(){
+    page.completePromise = page.complete.then(function(){
       done();
     });
   });
 
-  it('should have a layout', function() {
+  it('should have a title', function() {
+    expect(page.title).toEqual('Title 1');
+  });
+
+  it('should have a title', function() {
     expect(page.layout).toEqual('one_column');
+  });
+
+  it('should have keywords', function() {
+    expect(page.keywords).toEqual('keyword1 keyword2');
+  });
+
+  it('should have a description', function() {
+    expect(page.description).toEqual('Description 1');
+  });
+
+  it('should have styles', function(){
+    expect(page.styles).toEqual('p { font-weight: bold; }');
+  });
+
+  it('should have headline', function(){
+    expect(page.headline).toEqual('The Gettysburg Address');
+  });
+
+  it('should have mainContent', function() {
+    expect(page.mainContent).toEqual('Four score and <em>seven</em> years');
   });
 
   it('should wrap metadata', function(){
     expect(page.metadata).toBeInstanceOf(Object);
   });
 
-  it('should have a title', function() {
-    expect(page.metadata.title).toEqual('Title 1');
+  it('should include appropriate values in metadata object', function(){
+    expect(page.metadata.pageTitle).toEqual('Title 1');
+    expect(page.metadata.pageKeywords).toEqual('keyword1 keyword2');
+    expect(page.metadata.pageDescription).toEqual('Description 1');
+    expect(page.metadata.pageStyles).toEqual('p { font-weight: bold; }');
   });
-
-  it('should have keywords', function() {
-    expect(page.metadata.keywords).toEqual('keyword1 keyword2');
-  });
-
-  it('should have a description', function() {
-    expect(page.metadata.description).toEqual('Description 1');
-  });
-
 
 });

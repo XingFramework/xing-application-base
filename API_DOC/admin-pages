@@ -18,6 +18,7 @@
       data:  {
         title: 'Page 1',
         layout: "one_column",
+        url_slug: "url_slug",
         published: [true | false],
         publish_start: <date/time>,
         publish_end: <date/time>
@@ -30,6 +31,7 @@
       data:  {
         title: 'Page 2'
         layout: "one_column",
+        url_slug: "url_slug",
         published: [true | false],
         publish_start: <date/time>,
         publish_end: <date/time>
@@ -42,6 +44,7 @@
       data:  {
         title: 'Page 3',
         layout: "two_column",
+        url_slug: "url_slug",
         published: [true | false],
         publish_start: <date/time>,
         publish_end: <date/time>
@@ -65,6 +68,7 @@
     keywords: "string",
     description: "string",
     layout:  "one_column",
+    url_slug: "url_slug",
     published: "boolean",
     publish_start: "datetime",
     publish_end: "datetime",

@@ -65,7 +65,7 @@ describe Admin::PagesController do
         expect(response).to redirect_to(admin_page_path(mock_page))
       end
 
-      it "should render status 422 if not saved", :pending => "solution to render problem"  do
+      it "should render status 422 if not saved"  do
         PageMapper.should_receive(:new).with(json).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(false)
         mock_page_mapper.should_receive(:errors).and_return(mock_errors)

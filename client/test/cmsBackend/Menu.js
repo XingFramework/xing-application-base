@@ -10,14 +10,14 @@ describe('Menu class', function() {
         links: {},
         data: {
           name: 'Test 1',
-          url: 'pages/test-1',
+          path: 'pages/test-1',
           type: 'page',
           children: [
             {
             links: {},
             data: {
               name: 'Sublevel 1',
-              url: 'pages/test-2',
+              path: 'pages/test-2',
               type: 'page'
             }
           } ]

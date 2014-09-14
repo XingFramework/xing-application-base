@@ -35,17 +35,9 @@ describe('Homepage class', function() {
     expect(page.metadata).toBeInstanceOf(Object);
   });
 
-  it('should have a title', function() {
-    expect(page.metadata.title).toEqual('Title 1');
+  it('should include appropriate values in metadata object', function(){
+    expect(page.metadata.pageTitle).toEqual('Title 1');
+    expect(page.metadata.pageKeywords).toEqual('keyword1 keyword2');
+    expect(page.metadata.pageDescription).toEqual('Description 1');
   });
-
-  it('should have keywords', function() {
-    expect(page.metadata.keywords).toEqual('keyword1 keyword2');
-  });
-
-  it('should have a description', function() {
-    expect(page.metadata.description).toEqual('Description 1');
-  });
-
-
 });

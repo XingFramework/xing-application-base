@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
-  get "pages/:url_slug", :to => 'pages#show', :as => :page
+  # Top fixed routes for the front-end
+  get "/homepage",        :to => 'pages#show', :url_slug => 'homepage', :as => :homepage
+  get '/navigation/main', :to => "menus#show", :id => Menu.main_menu.id, :as => :main_menu
 
-  get "some/random/crap/:url_slug/other_thing/foo", :to => 'pages#show'
-  get "homepage", :to => 'pages#show', :url_slug => 'homepage', :as => :homepage
+
+  get "pages/:url_slug", :to => 'pages#show', :as => :page
+  resources :menus, :only => [ :show ]
 
   namespace :admin do
     #resources :images
@@ -11,7 +14,8 @@ Rails.application.routes.draw do
     get "pages/:url_slug", :to => 'pages#show', :as => :page
     put "pages/:url_slug", :to => 'pages#update'
     resources :pages
-    resources :menus
+    resources :menus, :only => [ :show, :index ]
+    resources :menu_items
     resources :content_blocks
 
     resources :blog_posts, :except => 'show'
@@ -26,7 +30,6 @@ Rails.application.routes.draw do
 
   resources :topics, :only => %w{show index}
 
-  get '/navigation/main' => "main_menu#show", :as => :main_menu
 
   root :to => 'static#index'
 

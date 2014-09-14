@@ -15,4 +15,7 @@ end
 
 module RSpec::Rails::RequestExampleGroup
   include JSONRequests
+  include JsonSpec::Matchers
 end
+
+

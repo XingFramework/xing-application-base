@@ -65,7 +65,11 @@ class MenuItem extends ServerResponse {
   }
 
   get target(){
-    return this.menuData.url;
+    if(this.internal()){
+      return this.menuData.path;
+    } else {
+      return this.menuData.url;
+    }
   }
 
   get name(){

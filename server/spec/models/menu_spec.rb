@@ -39,7 +39,25 @@ describe Menu do
     describe "with a non-root item" do
       let :item do child_1 end
 
+      it "should result in an error" do
+        expect{ menu }.to raise_error
+      end
+    end
+
+    describe "with the name of a root item" do
+      let :item do root_1 end
+      let :menu do Menu.new(root_1.name) end
+
       it "should result in a Menu with that MenuItem stored" do
+        expect(menu).to           be_a(Menu)
+        expect(menu.menu_item).to eq(item)
+      end
+    end
+    describe "with the name of a non-root item" do
+      let :item do child_1 end
+      let :menu do Menu.new(child_1.name) end
+
+      it "should result in an error" do
         expect{ menu }.to raise_error
       end
     end
@@ -49,11 +67,17 @@ describe Menu do
     let :item do root_1 end
 
     it "should delegate proper methods" do
-      [:name, :parent ].each do |method|
+      [:name, :parent, :id, :reload ].each do |method|
         root_1.should_receive(method)
         menu.send(method)
       end
     end
+
+    it "should correctly return the menu_item's id" do
+      item = FactoryGirl.create(:main_menu_root)
+      Menu.new(item).id.should == item.id
+    end
+
 
   end
 

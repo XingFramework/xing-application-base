@@ -1,40 +1,47 @@
-// traceur dependencies
 import {configuration} from '../../common/config';
 import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
-// angular dependencies
 angular.module( `${configuration.appName}.pages`, [
   `${configuration.appName}.server`,
-  'ui.router.state',
-  'restangular'
+  'ui.router.state'
 ])
 
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'cms.cmsBackend', {
-    url: '/pages/:permalink',
-    views: {
-      "main": {
-        controller: 'PagesCtrl',
-        templateUrl: 'pages/pages.tpl.html'
+  $stateProvider
+    .state( 'cms.homepage', {
+      url: 'pages/:pageUrl',
+      controller: 'PagesCtrl',
+      templateUrl: 'pages/homepage.tpl.html',
+      resolve: {
+        page(cmsBackend, $stateParams) {
+          console.log("pages/pages.js:18", "$stateParams", $stateParams);
+          return cmsBackend.page($stateParams.pageUrl).complete;
+        }
       }
-    }
-  });
+    })
+    .state( 'cms.page', {
+      url: 'pages/:pageUrl',
+      controller: 'PagesCtrl',
+      templateUrl: 'pages/pages.tpl.html',
+      resolve: {
+        page(cmsBackend, $stateParams) {
+          console.log("pages/pages.js:29", "$stateParams", $stateParams);
+          return cmsBackend.page($stateParams.pageUrl).complete;
+        }
+      }
+    });
 })
-.controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce',
-  function PagesController( $scope, $stateParams, cmsBackend, $sce ) {
-    $scope.headline = {};
-    $scope.content = {};
-    $scope.metadata = {};
-
-    var page = cmsBackend.page($stateParams['permalink']);
-    page.responsePromise.then( (resolve) =>
-      {
-        $scope.headline = page.headline;
-        $scope.content = $sce.trustAsHtml(page.main);
-        $scope.metadata = page.metadata;
-        $scope.metadata.styles = $sce.css(page.metadata.styles);
-        $scope.$emit('metadataSet', $scope.metadata);
-      }
-    );
-}]);
+.controller( 'PagesCtrl', function( $scope, $stateParams, $sce, page) {
+  console.log("pages/pages.js:25", "page", page);
+  $scope.contentBlocks = {};
+  $scope.headline = page.headline;
+  $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
+  for(var name in page.contentBlocks) {
+    if (page.contentBlocks.hasOwnProperty(name)) {
+      $scope.contentBlocks[name] = $sce.trustAsHtml(page.contentBlocks[name]);
+    }
+  }
+  // header info
+  $scope.$emit('metadataSet', page.metadata);
+});
