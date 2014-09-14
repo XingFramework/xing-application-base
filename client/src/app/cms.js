@@ -8,13 +8,14 @@ import {configuration} from '../common/config';
 import "../common/ui-route-logger";
 import '../../vendor/responsive-nav/responsive-nav';
 import {} from './admin/directives';
+import {} from './auth/auth';
 
 angular.module( configuration.appName, [
   'templates-app', 'templates-common', 'ui.router',
   `${configuration.appName}.server`, `${configuration.appName}.navigationBar`,
   `${configuration.appName}.route-logger`,
   `${configuration.appName}.pages`,
-  `${configuration.appName}.auth`
+  `${configuration.appName}.auth`,
   `${configuration.appName}.admin`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {

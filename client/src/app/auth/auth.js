@@ -1,6 +1,7 @@
 import {configuration} from '../../common/config';
 import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
+import {} from '../../../vendor/angular-cookies/angular-cookies';
 import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 
 angular.module( `${configuration.appName}.auth`, [
@@ -25,8 +26,8 @@ angular.module( `${configuration.appName}.auth`, [
     emailRegistrationPath:   '/users',
     accountUpdatePath:       '/users',
     accountDeletePath:       '/users',
-    passwordResetPath:       '/users/password'
-    passwordUpdatePath:      '/users/password'
+    passwordResetPath:       '/users/password',
+    passwordUpdatePath:      '/users/password',
     emailSignInPath:         '/users/sign_in',
     storage:                 'localStorage',
   });
@@ -35,7 +36,7 @@ angular.module( `${configuration.appName}.auth`, [
   $scope.login = {
     login: '',
     password: ''
-  }
+  };
   $scope.loginSubmit = function() {
     $auth.submitLogin({user: $scope.login})
       .then(function(resp) {
@@ -44,7 +45,6 @@ angular.module( `${configuration.appName}.auth`, [
       .catch(function(resp) {
         // handle error response
       });
-    };
   };
 
 });
