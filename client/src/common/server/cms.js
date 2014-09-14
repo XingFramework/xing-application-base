@@ -25,7 +25,9 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
 
   return {
     page(slug){
-      var response = Restangular.one('page', slug).get();
+      slug = slug.replace(/^\//,'');
+      console.log("server/cms.js:20", "slug", slug);
+      var response = Restangular.one("").customGET(slug);
       console.log("server/cms.js:21", "response", response);
 
 

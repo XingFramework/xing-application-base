@@ -66,7 +66,7 @@ class MenuItem extends ServerResponse {
 
   get target(){
     if(this.internal()){
-      return this.menuData.path;
+      return this.menuData.page.links.self;
     } else {
       return this.menuData.url;
     }
