@@ -12,7 +12,8 @@
     "sassy-buttons": "",
     "restangular": "~1.3.1",
     "angular-cookies": "~1.2.22",
-    "compass-vanilla": "~0.1.0"
+    "compass-vanilla": "~0.1.0",
+    "ng-token-auth": "~0.0.21"
   },
   "exportsOverride": {
     "sass-import-once": {

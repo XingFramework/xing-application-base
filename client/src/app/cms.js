@@ -11,7 +11,8 @@ angular.module( configuration.appName, [
   'templates-app', 'templates-common', 'ui.router',
   `${configuration.appName}.server`, `${configuration.appName}.navigationBar`,
   `${configuration.appName}.route-logger`,
-  `${configuration.appName}.pages`
+  `${configuration.appName}.pages`,
+  `${configuration.appName}.auth`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise(($injector, $location) => {

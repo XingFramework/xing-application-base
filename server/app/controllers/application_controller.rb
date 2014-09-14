@@ -1,6 +1,8 @@
 require 'authenticated_system'
 
 class ApplicationController < ActionController::Base
+  include DeviseTokenAuth::Concerns::SetUserByToken
+
   protect_from_forgery
   before_filter :check_format
 

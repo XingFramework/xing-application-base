@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get "/homepage",        :to => 'pages#show', :url_slug => 'homepage', :as => :homepage
   get '/navigation/main', :to => "menus#show", :id => Menu.main_menu.id, :as => :main_menu
 
-
   get "pages/:url_slug", :to => 'pages#show', :as => :page
   resources :menus, :only => [ :show ]
 
@@ -22,14 +21,9 @@ Rails.application.routes.draw do
     resources :topics, :except => 'show'
   end
 
-  devise_for :users
-  devise_scope :user do
-    get "/login" => "devise/sessions#new", :as => :login
-    delete "/logout" => "devise/sessions#destroy", :as => :logout
-  end
-
   resources :topics, :only => %w{show index}
 
+  mount_devise_token_auth_for 'User', at: '/users'
 
   root :to => 'static#index'
 
