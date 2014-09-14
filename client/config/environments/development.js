@@ -1,4 +1,4 @@
 export var environment = {
-  serverUrl: "http://localhost:3000/",
+  serverUrl: "/",
   name: "development",
 };
