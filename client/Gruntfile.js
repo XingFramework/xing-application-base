@@ -160,6 +160,12 @@ module.exports = function( grunt ) {
           }
         },
 
+        traceur_runtime: {
+          files: {
+            "bin/assets/traceur-runtime.js": "./node_modules/traceur/bin/traceur-runtime.js",
+          }
+        },
+
         karmaUnit: {
           options: { process: function( contents, path ) { return grunt.template.process( contents ); } },
           files: { '<%= build_dirs.root %>/karma-unit.js': ['karma/karma-unit.tpl.js'] }
@@ -230,7 +236,7 @@ module.exports = function( grunt ) {
       */
       traceur: {
         options: {
-          includeRuntime: true,
+          includeRuntime: false,
           traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
           traceurCommand: "./node_modules/.bin/traceur",
           traceurOptions: "--array-comprehension --source-maps"
@@ -542,7 +548,8 @@ module.exports = function( grunt ) {
          */
         html: {
           files: [ '<%= app_files.html %>' ],
-          tasks: [ 'index:build' ]
+          tasks: [ 'index:build' ],
+          options: { atBegin: true }
         },
 
         /**
@@ -579,6 +586,11 @@ module.exports = function( grunt ) {
         dummyapi: {
           files: [ "../dummy-api/**" ],
           tasks: [ 'jsonlint:dummies' ]
+        },
+
+        traceur_runtime: {
+          files: [ "./node_modules/traceur/bin/traceur-runtime.js" ],
+          tasks: [ 'copy:traceur_runtime' ],
         },
 
         karmaconfig: {
@@ -637,7 +649,8 @@ module.exports = function( grunt ) {
     'copy:karmaUnit'
   ]);
 
-  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build' ]);
+  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'copy:traceur_runtime'  ]);
+
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
   grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'build', 'ngAnnotate', 'uglify' ]);
