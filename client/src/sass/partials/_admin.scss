@@ -7,13 +7,16 @@ body.with_admin #inset {
 #admin_tools {
   width: 100%;
   font-size: 11px;
-  background: $admin_background_color;
   color: white;
   height: $admin_menu_height;
   border-bottom: 1px solid black;
   padding: 5px;
   font-family: Helvetica, Arial, sans-serif;
-  height: 15px;
+  height: 20px;
+
+  background: $admin_background_color;
+  // TODO:  why can't i get any compass mixins to work?
+  /*@include background-image(linear-gradient(white, #cccccc, #aaaaaa));*/
   h3 {
     float: left;
     margin: 0 1em 0 0;
