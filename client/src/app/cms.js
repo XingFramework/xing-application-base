@@ -18,9 +18,9 @@ angular.module( configuration.appName, [
     console.log("app/cms.js:18", "$location", $location);
     return '/home';
   });
-  $stateProvider.state('cms', {
-    templateUrl: "cms.tpl.html",
-    controller: 'CmsCtrl',
+  $stateProvider.state('root', {
+    templateUrl: "root.tpl.html",
+    controller: 'RootCtrl',
     abstract: true,
     url: "/",
     resolve: {
@@ -29,9 +29,13 @@ angular.module( configuration.appName, [
         return menu;
       }
     }
+  }).state('root.inner', {
+    templateUrl: "innerpage.tpl.html",
+    abstract: true,
+    url: "inner"
   });
 })
-.controller( 'CmsCtrl', function CmsCtrl( $scope, $location, mainMenu, $state ) {
+.controller( 'RootCtrl', function RootCtrl( $scope, $location, mainMenu, $state ) {
   $scope.mainMenu = mainMenu;
 })
 .controller( 'MetadataCtrl', function MetadataCtrl($scope, $rootScope) {
@@ -56,7 +60,7 @@ angular.module( configuration.appName, [
 })
 
 .controller( 'HomepageCtrl', function HomepageCtrl($scope, cmsBackend) {
-  console.log("app/cms.js:36", "staticControler", $scope);
+  console.log("app/cms.js:36", "homepageControler", $scope);
 
   $scope.metadata = {};
 

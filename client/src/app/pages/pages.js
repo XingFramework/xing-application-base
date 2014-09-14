@@ -9,7 +9,7 @@ angular.module( `${configuration.appName}.pages`, [
 
 .config(function config( $stateProvider ) {
   $stateProvider
-    .state( 'cms.homepage', {
+    .state( 'root.homepage', {
       url: 'home',
       controller: 'PagesCtrl',
       templateUrl: 'pages/homepage.tpl.html',
@@ -19,8 +19,8 @@ angular.module( `${configuration.appName}.pages`, [
         }
       }
     })
-    .state( 'cms.page', {
-      url: 'pages/:pageUrl',
+    .state( 'root.inner.page', {
+      url: '^/pages/:pageUrl',
       controller: 'PagesCtrl',
       templateUrl: 'pages/pages.tpl.html',
       resolve: {
