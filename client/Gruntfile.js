@@ -568,7 +568,7 @@ module.exports = function( grunt ) {
 
         sass: {
           files: [ 'src/**/*.scss', 'src/**/*.sass' ],
-          tasks: [ 'sass:build' ]
+          tasks: [ 'sass:build', 'concat_sourcemap:compile_css' ]
         },
 
         /**
