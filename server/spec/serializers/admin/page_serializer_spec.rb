@@ -25,6 +25,7 @@ describe Admin::PageSerializer do
     it { should have_json_path('data/keywords')}
     it { should have_json_path('data/description')}
     it { should have_json_path('data/layout')}
+    it { should have_json_path('data/url_slug')}
     it { should have_json_path('data/published')}
     it { should have_json_path('data/publish_start')}
     it { should have_json_path('data/publish_end')}

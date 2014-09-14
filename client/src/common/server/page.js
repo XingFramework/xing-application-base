@@ -5,13 +5,6 @@ export class Page extends ServerResponse {
     return this.pageData.layout;
   }
 
-  get template(){
-    return {
-      name: this.layout,
-      url: `/pages/${this.layout}.tpl.html`
-    };
-  }
-
   get title(){
     return this.pageData.title;
   }
@@ -25,7 +18,11 @@ export class Page extends ServerResponse {
   }
 
   get styles(){
-    return this.pageData.contents.styles.data.body;
+    if (typeof(this.pageData.contents.styles) != 'undefined') {
+      return this.pageData.contents.styles.data.body;
+    } else {
+      return null;
+    }
   }
 
   get metadata(){
@@ -39,6 +36,16 @@ export class Page extends ServerResponse {
 
   get headline() {
     return this.pageData.contents.headline.data.body;
+  }
+
+  get contentBlocks() {
+    var contentBlocks = {};
+    for (var name in this.pageData.contents) {
+      if (this.pageData.contents.hasOwnProperty(name)) {
+        contentBlocks[name] = this.pageData.contents[name].data.body;
+      }
+    }
+    return contentBlocks;
   }
 
   get mainContent() {

@@ -1,6 +1,7 @@
 import {configuration} from '../src/common/config';
 import {} from '../src/app/pages/pages';
 import {} from 'test/json-fixtures/pages/client.json';
+import {Page} from '../src/common/server/page';
 
 describe( 'Pages section', function() {
 
@@ -8,87 +9,62 @@ describe( 'Pages section', function() {
   beforeEach( module( `${configuration.appName}.server` ) );
   beforeEach( module( 'fixtureCache' ) );
 
-  describe('Pages Controller', function () {
+  var $scope, $stateMock, pagesCtrl, pageSpy, emitSpy, $sceMock;
 
-    var BackendMock, $stateParamsMock, q, pagesCtrl, pageSpy, emitSpy, $sceMock;
+  var page, pageJson, metadata;
 
-    var Page, metadata;
+  beforeEach( inject(function($templateCache) {
+    pageJson = angular.fromJson( $templateCache.get('json-fixtures/pages/server.json'));
+  }));
 
-    beforeEach(function() {
-      inject(function($templateCache) {
-        Page = angular.fromJson(
-          $templateCache.get('json-fixtures/pages/client.json')
-        );
-      });
-
-      BackendMock = {
-        page(permalink) {
-          Page.then = (resolve) => {
-            resolve();
-          };
-          return Page;
-        }
-      };
-
-      $stateParamsMock = {
-        permalink: 'dude'
-      };
-
-      $sceMock = {
-        trustAsHtml(data) {
-          return data;
-        }
-      };
-
-      pageSpy = spyOn(BackendMock, 'page');
-      pageSpy.and.callThrough();
-
-      inject(function($controller, $rootScope) {
-        this.scope = $rootScope.$new();
-        emitSpy = spyOn(this.scope, '$emit');
-        pagesCtrl = $controller('PagesCtrl', {
-          $scope: this.scope,
-          $stateParams: $stateParamsMock,
-          cmsBackend: BackendMock,
-          $sce: $sceMock
-        });
-        this.scope.$apply();
-      });
-
+  beforeEach(function(done) {
+    var promise = new Promise((resolve, reject) => {
+      resolve(pageJson);
     });
-
-    it('should query the backend', function() {
-      expect(pageSpy).toHaveBeenCalledWith('dude');
-    });
-
-    it('should assign headline', function(){
-      expect(this.scope.headline).toBe("The Gettysburg Address");
-    });
-
-    it('should assign content', function(){
-      expect(this.scope.content).toBe("Four score and <em>seven</em> years");
-    });
-
-    xit('should trust content as html', function() {
-      expect(this.scope.content).toBe("");
-    });
-
-    it('should assign the metadata', function() {
-      expect(this.scope.metadata instanceof Object).toBeTruthy();
-      expect(this.scope.metadata).toBe(Page.metadata);
-    });
-
-    it('should emit the metadataSet', function() {
-      expect(emitSpy).toHaveBeenCalledWith('metadataSet', Page.metadata);
-    });
-
-    it('should assign the template', function() {
-      expect(this.scope.template instanceof Object).toBeTruthy();
-      expect(this.scope.template).toBe(Page.template);
-    });
-
-    it('should emit the templateSet', function() {
-      expect(emitSpy).toHaveBeenCalledWith('templateSet', Page.template);
+    page = new Page(promise);
+    page.complete.then((result) => {
+      done();
     });
   });
+
+  beforeEach(function() {
+    $stateMock = {
+      go(state){}
+    };
+
+    $sceMock = {
+      trustAsHtml(data) {
+        return data;
+      }
+    };
+  });
+
+  beforeEach( inject(function($controller, $rootScope) {
+    $scope = $rootScope.$new();
+    emitSpy = spyOn($scope, '$emit');
+    pagesCtrl = $controller('PagesCtrl', {
+      $scope: $scope,
+      $state: $stateMock,
+      $sce: $sceMock,
+      page: page
+    });
+    $scope.$apply();
+  }));
+
+  it('should assign headline', function(){
+    expect($scope.headline).toBe("The Gettysburg Address");
+  });
+
+  it('should assign content', function(){
+    expect($scope.contentBlocks['main']).toBe("Four score and <em>seven</em> years");
+  });
+
+  it('should emit the metadataSet', function() {
+    expect(emitSpy).toHaveBeenCalledWith('metadataSet', page.metadata);
+  });
+
+  it('should assign the template', function() {
+    expect($scope.template).toBe('pages/templates/'+page.layout +".tpl.html");
+  });
+
 });

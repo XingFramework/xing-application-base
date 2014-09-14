@@ -10,6 +10,7 @@ export class ServerResponse {
       return this;
     },
     (reason) => {
+      console.log("server/serverResponse.js:13", "reason", reason);
       this.errorReason = reason;
       return reason;
     });

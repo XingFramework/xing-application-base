@@ -4,8 +4,7 @@ import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
 angular.module( `${configuration.appName}.pages`, [
   `${configuration.appName}.server`,
-  'ui.router.state',
-  'restangular'
+  'ui.router.state'
 ])
 
 .config(function config( $stateProvider ) {
@@ -13,28 +12,25 @@ angular.module( `${configuration.appName}.pages`, [
     .state( 'cms.page', {
       url: 'pages/:pageUrl',
       controller: 'PagesCtrl',
-      templateUrl: 'pages/page.tpl.html'
+      templateUrl: 'pages/pages.tpl.html',
+      resolve: {
+        page(cmsBackend, $stateParams) {
+          console.log("pages/pages.js:18", "$stateParams", $stateParams);
+          return cmsBackend.page($stateParams.pageUrl).complete;
+        }
+      }
     });
 })
-.controller( 'PagesCtrl', ['$scope', '$stateParams', 'cmsBackend', '$sce', '$state',
-  function PagesController( $scope, $stateParams, cmsBackend, $sce, $state) {
-    $scope.headline = {};
-    $scope.content = {};
-    $scope.metadata = {};
-    $scope.templateData = {};
-
-    var page = cmsBackend.page($stateParams['permalink']);
-    page.then( (resolve) =>
-      {
-        // page content
-        $scope.headline = page.headline;
-        $scope.content = $sce.trustAsHtml(page.mainContent);
-
-        // header info
-        $scope.metadata = page.metadata; // scoped for testing
-        $scope.template = page.template; // scoped for testing
-        $scope.$emit('metadataSet', page.metadata);
-        $scope.$emit('templateSet', page.template);
-      }
-    );
-}]);
+.controller( 'PagesCtrl', function( $scope, $stateParams, $sce, page) {
+  console.log("pages/pages.js:25", "page", page);
+  $scope.contentBlocks = {};
+  $scope.headline = page.headline;
+  $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
+  for(var name in page.contentBlocks) {
+    if (page.contentBlocks.hasOwnProperty(name)) {
+      $scope.contentBlocks[name] = $sce.trustAsHtml(page.contentBlocks[name]);
+    }
+  }
+  // header info
+  $scope.$emit('metadataSet', page.metadata);
+});

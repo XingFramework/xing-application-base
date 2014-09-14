@@ -14,7 +14,10 @@ angular.module( configuration.appName, [
   `${configuration.appName}.pages`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/' );
+  $urlRouterProvider.otherwise(($injector, $location) => {
+    console.log("app/cms.js:18", "$location", $location);
+    return '/';
+  });
   $stateProvider.state('cms', {
     templateUrl: "cms.tpl.html",
     controller: 'CmsCtrl',
@@ -34,4 +37,25 @@ angular.module( configuration.appName, [
 })
 .controller( 'CmsCtrl', function CmsCtrl( $scope, $location, mainMenu, $state ) {
   $scope.mainMenu = mainMenu;
+})
+.controller( 'MetadataCtrl', function MetadataCtrl($scope, $rootScope) {
+  var loadMetadata = function (metadata) {
+    if ( angular.isDefined( metadata.pageTitle ) ) {
+      $scope.pageTitle = metadata.pageTitle + ' | Logical Reality' ;
+    }
+    if ( angular.isDefined( metadata.pageKeywords ) ) {
+      $scope.pageKeywords = metadata.pageKeywords;
+    }
+    if ( angular.isDefined( metadata.pageDescription ) ) {
+      $scope.pageDescription = metadata.pageDescription;
+    }
+    if ( angular.isDefined( metadata.pageCss ) ) {
+      $scope.pageCss = metadata.pageCss ;
+    }
+  };
+
+  $rootScope.$on('metadataSet', function(event, metadata) {
+    loadMetadata(metadata);
+  });
+
 });

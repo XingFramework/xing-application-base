@@ -1,0 +1,15 @@
+{
+  "links": {
+    "self": "/admin/menu_items/29"
+  },
+  "data": {
+    "type": "page",
+    "name": "Code Rescue",
+    "page": {
+      "links": {
+        "self": "/pages/home"
+      }
+    },
+    "parent_id": 25
+  }
+}

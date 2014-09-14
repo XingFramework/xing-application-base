@@ -1,0 +1,15 @@
+{
+  "links": {
+    "self": "/admin/menu_items/27"
+  },
+  "data": {
+    "type": "page",
+    "name": "Contact",
+    "page": {
+      "links": {
+        "self": "/pages/gallery"
+      }
+    },
+    "parent_id": 1
+  }
+}
