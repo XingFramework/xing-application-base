@@ -28,4 +28,12 @@ class Menu
   def self.wrap(item_or_array)
     [*item_or_array].map { |mi| Menu.new(mi) }
   end
+
+  def self.main_menu
+    self.new(MenuItem.find_by_name("Main Menu"))
+  end
+  def self.blog_topics
+    self.new(MenuItem.find_by_name("Blog Topics"))
+  end
 end
+

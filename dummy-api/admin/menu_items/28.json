@@ -1,0 +1,15 @@
+{
+  "links": {
+    "self": "/admin/menu_items/28"
+  },
+  "data": {
+    "type": "page",
+    "name": "Startup MVPs",
+    "page": {
+      "links": {
+        "self": "/pages/homepage"
+      }
+    },
+    "parent_id": 25
+  }
+}

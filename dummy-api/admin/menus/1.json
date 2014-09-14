@@ -1,7 +1,6 @@
 {
   "links": {
-    "self": "/menus/1",
-    "admin": "/admin/menus/1"
+    "self": "/admin/menus/1"
   },
   "data": [
     {

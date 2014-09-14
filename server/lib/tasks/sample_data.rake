@@ -28,6 +28,18 @@ end
 namespace :db do
   namespace :sample_data do
 
+    desc "Wipe the database and reload"
+    task :reload => [ :wipe, 'db:seed', :load]
+
+    task :wipe => :environment do
+      [ User, Page, ContentBlock, PageContent ].each do |table|
+        table.delete_all
+      end
+
+      # leave in the roots
+      MenuItem.where("parent_id IS NOT NULL").delete_all
+    end
+
     desc "Fill the database with sample data for demo purposes"
     task :load => [
       :environment,
@@ -50,7 +62,7 @@ namespace :db do
     end
 
     def menu_item(name, parent)
-      item = MenuItem.create(:name => :name, :page => Page.all.pick, :parent => parent)
+      item = MenuItem.create(:name => name, :page => Page.all.pick, :parent => parent)
       item
     end
 
