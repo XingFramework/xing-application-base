@@ -46,8 +46,9 @@ module.exports = {
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
     html: [ 'src/index.html' ],
-    sass: 'src/sass/main.scss'
+    sass: 'src/sass'
   },
+
 
   /**
    * This is a collection of files used during testing only.
