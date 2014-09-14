@@ -25,13 +25,18 @@
     <style ng-bind="pageStyles"></style>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="assets/traceur-runtime.js"></script>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
 
   </head>
   <body>
-    <div ui-view>
-      <p>This space is supposed to be blank</p>
+    <admin-nav></admin-nav>
+    <div id='wrap'>
+      <div ui-view>
+        <p>This space is supposed to be blank</p>
+      </div>
     </div>
+
   </body>
 </html>

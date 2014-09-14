@@ -9,14 +9,27 @@ angular.module( `${configuration.appName}.pages`, [
 
 .config(function config( $stateProvider ) {
   $stateProvider
-    .state( 'cms.page', {
-      url: 'pages/:pageUrl',
+    .state( 'root.homepage', {
+      url: 'home',
+      controller: 'PagesCtrl',
+      templateUrl: 'pages/homepage.tpl.html',
+      resolve: {
+        page(cmsBackend) {
+          return cmsBackend.page("/homepage").complete;
+        }
+      }
+    })
+    .state( 'root.inner.page', {
+      url: '^/pages/*pageUrl',
       controller: 'PagesCtrl',
       templateUrl: 'pages/pages.tpl.html',
       resolve: {
         page(cmsBackend, $stateParams) {
-          console.log("pages/pages.js:18", "$stateParams", $stateParams);
-          return cmsBackend.page($stateParams.pageUrl).complete;
+          console.log("pages/pages.js:29", "$stateParams", $stateParams);
+          return cmsBackend.page($stateParams.pageUrl).complete.then( (page) => {
+            console.log("pages/pages.js:30", "page", page);
+            return page;
+          });
         }
       }
     });

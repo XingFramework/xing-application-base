@@ -36,4 +36,3 @@ class Menu
     self.new(MenuItem.find_by_name("Blog Topics"))
   end
 end
-

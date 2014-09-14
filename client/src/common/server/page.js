@@ -35,7 +35,11 @@ export class Page extends ServerResponse {
   }
 
   get headline() {
-    return this.pageData.contents.headline.data.body;
+    if(typeof this.pageData.contents.headline === "undefined") {
+      return null;
+    } else {
+      return this.pageData.contents.headline.data.body;
+    }
   }
 
   get contentBlocks() {

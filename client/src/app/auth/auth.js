@@ -11,7 +11,7 @@ angular.module( `${configuration.appName}.auth`, [
 
 .config(function config( $stateProvider, $authProvider) {
   $stateProvider
-    .state( 'cms.login', {
+    .state( 'root.inner.login', {
       url: 'login',
       controller: 'LoginCtrl',
       templateUrl: 'auth/login.tpl.html',

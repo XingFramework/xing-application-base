@@ -20,7 +20,7 @@ angular.module( `${configuration.appName}.navigationBar`, ['templates-app', 'ui.
         //pre: null,
         post(scope, element){
           scope.menu.complete.then(() => {
-            scope.pageState = "cms.page";
+            scope.pageState = "root.inner.page";
             scope.$state = $state;
             // Compile the contents
             if(!compiledContents){ compiledContents = $compile(contents); }

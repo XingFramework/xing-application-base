@@ -1,22 +1,18 @@
-import {configuration} from '../common/config';
+import { configuration } from '../../common/config';
 
-angular.module( configuration.appName + '.admin', ['ngCookies', configuration.appName + '.config'])
+angular.module( configuration.appName + '.admin', [`{configuration.appName}.config`, 'ng-token-auth'])
 .directive('adminOnly',
-  ['$cookies', function ($cookies) {
-
+  ['$auth', function ($rootScope, $auth) {
     function link(scope, element, attrs) {
-      function setShowAdmin(cookieValue) {
-        if (cookieValue == '1') {
-          scope.showAdmin = true;
-        } else {
-          scope.showAdmin = false;
-        }
-      }
-
-      setShowAdmin($cookies.admin);
-
-      scope.$watch($cookies.admin, function(newValue, oldValue) {
-        setShowAdmin(newValue);
+      scope.showAdmin = false;
+      $auth.validateUser().then((user) => {
+        scope.showAdmin = true;
+      });
+      $rootScope.$on('auth:login-success', (ev, user) {
+        scope.showAdmin = true;
+      });
+      $rootScope.$on('auth:logout-success', (ev, user) {
+        scope.showAdmin = false;
       });
     }
     return {
@@ -30,6 +26,7 @@ angular.module( configuration.appName + '.admin', ['ngCookies', configuration.ap
 
 .directive('adminNav',
   function() {
+    console.log('admin/directives.js:34');
     return {
       restrict: 'E',
       templateUrl: 'admin/adminNav.tpl.html'

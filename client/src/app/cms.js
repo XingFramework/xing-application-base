@@ -6,6 +6,8 @@ import {} from './navigationBar/navigationBar';
 import {} from '../common/server/cms';
 import {configuration} from '../common/config';
 import "../common/ui-route-logger";
+import '../../vendor/responsive-nav/responsive-nav';
+import {} from './admin/directives';
 
 angular.module( configuration.appName, [
   'templates-app', 'templates-common', 'ui.router',
@@ -13,15 +15,16 @@ angular.module( configuration.appName, [
   `${configuration.appName}.route-logger`,
   `${configuration.appName}.pages`,
   `${configuration.appName}.auth`
+  `${configuration.appName}.admin`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise(($injector, $location) => {
     console.log("app/cms.js:18", "$location", $location);
-    return '/';
+    return '/home';
   });
-  $stateProvider.state('cms', {
-    templateUrl: "cms.tpl.html",
-    controller: 'CmsCtrl',
+  $stateProvider.state('root', {
+    templateUrl: "root.tpl.html",
+    controller: 'RootCtrl',
     abstract: true,
     url: "/",
     resolve: {
@@ -30,13 +33,13 @@ angular.module( configuration.appName, [
         return menu;
       }
     }
-  });
-  $stateProvider.state('cms.static', {
-    url: "",
-    templateUrl: "cms-static.tpl.html",
+  }).state('root.inner', {
+    templateUrl: "innerpage.tpl.html",
+    abstract: true,
+    url: "inner"
   });
 })
-.controller( 'CmsCtrl', function CmsCtrl( $scope, $location, mainMenu, $state ) {
+.controller( 'RootCtrl', function RootCtrl( $scope, $location, mainMenu, $state ) {
   $scope.mainMenu = mainMenu;
 })
 .controller( 'MetadataCtrl', function MetadataCtrl($scope, $rootScope) {
@@ -58,5 +61,19 @@ angular.module( configuration.appName, [
   $rootScope.$on('metadataSet', function(event, metadata) {
     loadMetadata(metadata);
   });
+})
 
+.controller( 'HomepageCtrl', function HomepageCtrl($scope, cmsBackend) {
+  console.log("app/cms.js:36", "homepageControler", $scope);
+
+  $scope.metadata = {};
+
+  var page = cmsBackend.page($stateParams['permalink']);
+  page.responsePromise.then( (resolve) =>
+    {
+      $scope.metadata = page.metadata;
+      //$scope.metadata.styles = $sce.css(page.metadata.styles);
+      $scope.$emit('metadataSet', $scope.metadata);
+    }
+  );
 });

@@ -17,7 +17,8 @@ describe('navigationBar directive', function() {
   }
 
   beforeEach(module('Reasoning.navigationBar', "ui.router.state", function($stateProvider) {
-    $stateProvider.state('cms', {url: "/"});
+    $stateProvider.state('root', {url: "/"});
+    $stateProvider.state('root.inner', {url: "/"});
   }));
 
   beforeEach(inject(function(_$state_, _$compile_, _$rootScope_){
@@ -56,7 +57,8 @@ describe('navigationBar directive', function() {
     });
 
     it('have a ui-router state link', function() {
-      var sref = $state.href("cms.page", {pageUrl: encodeURI("/pages/test-page")});
+      var sref = $state.href("root.inner.page", {pageUrl: encodeURI("/pages/test-page")});
+      console.log(element);
       expect(xpath(element, `.//a[@href="${sref}"]`).snapshotLength).toBeGreaterThan(0);
       //expect(stringAtXpath(element, './/a[@ui-sref]/@ui-sref')).toMatch(/test-page/);
     });
