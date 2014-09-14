@@ -10,13 +10,12 @@ angular.module( `${configuration.appName}.pages`, [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'cms.homepage', {
-      url: 'pages/:pageUrl',
+      url: 'home',
       controller: 'PagesCtrl',
       templateUrl: 'pages/homepage.tpl.html',
       resolve: {
-        page(cmsBackend, $stateParams) {
-          console.log("pages/pages.js:18", "$stateParams", $stateParams);
-          return cmsBackend.page($stateParams.pageUrl).complete;
+        page(cmsBackend) {
+          return cmsBackend.page("/homepage").complete;
         }
       }
     })

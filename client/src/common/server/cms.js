@@ -29,10 +29,6 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
       console.log("server/cms.js:20", "slug", slug);
       var response = Restangular.one("").customGET(slug);
       console.log("server/cms.js:21", "response", response);
-
-
-      // TODO:  this should instantiate the right page class based on the
-      // layout field of the page.
       return new Page(response);
     },
     menu(name){

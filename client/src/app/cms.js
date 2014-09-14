@@ -16,7 +16,7 @@ angular.module( configuration.appName, [
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise(($injector, $location) => {
     console.log("app/cms.js:18", "$location", $location);
-    return '/';
+    return '/home';
   });
   $stateProvider.state('cms', {
     templateUrl: "cms.tpl.html",
@@ -29,11 +29,6 @@ angular.module( configuration.appName, [
         return menu;
       }
     }
-  });
-  $stateProvider.state('cms.static', {
-    url: "",
-    controller: 'CmsStaticCtrl',
-    templateUrl: "cms-static.tpl.html",
   });
 })
 .controller( 'CmsCtrl', function CmsCtrl( $scope, $location, mainMenu, $state ) {
@@ -58,7 +53,6 @@ angular.module( configuration.appName, [
   $rootScope.$on('metadataSet', function(event, metadata) {
     loadMetadata(metadata);
   });
-
 })
 
 .controller( 'HomepageCtrl', function HomepageCtrl($scope, cmsBackend) {
