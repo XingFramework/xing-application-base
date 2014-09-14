@@ -1,6 +1,6 @@
-import {configuration} from '../common/config';
+import { configuration } from '../../common/config';
 
-angular.module( configuration.appName + '.admin', ['ngCookies', configuration.appName + '.config'])
+angular.module( configuration.appName + '.admin', [configuration.appName + '.config'])
 .directive('adminOnly',
   ['$cookies', function ($cookies) {
 
@@ -30,6 +30,7 @@ angular.module( configuration.appName + '.admin', ['ngCookies', configuration.ap
 
 .directive('adminNav',
   function() {
+    console.log('admin/directives.js:34');
     return {
       restrict: 'E',
       templateUrl: 'admin/adminNav.tpl.html'
