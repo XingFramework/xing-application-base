@@ -2,11 +2,19 @@ import {configuration} from '../config';
 import {} from '../../../vendor/angular/angular';
 import {} from '../../../vendor/lodash/lodash';
 import {} from '../../../vendor/restangular/restangular';
+import {} from '../serializer';
 
 import {Menu} from './menu';
 import {Page} from './page';
 
-angular.module( configuration.appName + '.server', [ 'restangular' ])
+angular.module( configuration.appName + '.server', [ 'restangular', 'serializer' ])
+.config( function myAppConfig (RestangularProvider) {
+  RestangularProvider.setBaseUrl(configuration.serverUrl);
+})
+.run( function run (Restangular, RequestInterceptor, ResponseInterceptor) {
+  Restangular.addRequestInterceptor(RequestInterceptor);
+  Restangular.addResponseInterceptor(ResponseInterceptor);
+})
 .factory('cmsBackend', function(Restangular, $http){
 
   $http.defaults.headers.common.Accept = 'application/json';
