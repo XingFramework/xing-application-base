@@ -1,32 +1,30 @@
 import { configuration } from '../../common/config';
 
-angular.module( configuration.appName + '.admin', [configuration.appName + '.config'])
-.directive('adminOnly',
-  ['$cookies', function ($cookies) {
-
-    function link(scope, element, attrs) {
-      function setShowAdmin(cookieValue) {
-        if (cookieValue == '1') {
-          scope.showAdmin = true;
-        } else {
-          scope.showAdmin = false;
-        }
+angular.module( configuration.appName + '.adminDirectives', [configuration.appName + '.config'])
+.directive('adminOnly', function ($cookies) {
+  function link(scope, element, attrs) {
+    function setShowAdmin(cookieValue) {
+      if (cookieValue == '1') {
+        scope.showAdmin = true;
+      } else {
+        scope.showAdmin = false;
       }
-
-      setShowAdmin($cookies.admin);
-
-      scope.$watch($cookies.admin, function(newValue, oldValue) {
-        setShowAdmin(newValue);
-      });
     }
-    return {
-      restrict: 'E',
-      scope: true,
-      link: link,
-      transclude: true,
-      templateUrl: 'admin/adminOnly.tpl.html'
-    };
-  }])
+
+    setShowAdmin($cookies.admin);
+
+    scope.$watch($cookies.admin, function(newValue, oldValue) {
+      setShowAdmin(newValue);
+    });
+  }
+  return {
+    restrict: 'E',
+    scope: true,
+    link: link,
+    transclude: true,
+    templateUrl: 'admin/adminOnly.tpl.html'
+  };
+})
 
 .directive('adminNav',
   function() {

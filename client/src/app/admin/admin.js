@@ -1,9 +1,12 @@
 import {configuration} from '../../common/config';
 import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
+import {} from "./directives";
 
+console.log("admin/admin.js:6");
 angular.module( `${configuration.appName}.admin`, [
   `${configuration.appName}.server`,
+  `${configuration.appName}.adminDirectives`,
   'ui.router.state'
 ])
 

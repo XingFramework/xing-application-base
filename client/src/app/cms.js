@@ -7,7 +7,7 @@ import {} from '../common/server/cms';
 import {configuration} from '../common/config';
 import "../common/ui-route-logger";
 import '../../vendor/responsive-nav/responsive-nav';
-import {} from './admin/directives';
+import {} from './admin/admin';
 
 angular.module( configuration.appName, [
   'templates-app', 'templates-common', 'ui.router',
