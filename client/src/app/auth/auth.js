@@ -14,7 +14,7 @@ angular.module( `${configuration.appName}.auth`, [
     .state( 'cms.login', {
       url: 'login',
       controller: 'LoginCtrl',
-      templateUrl: 'login/login.tpl.html',
+      templateUrl: 'auth/login.tpl.html',
     });
   $authProvider.configure({
     apiUrl: configuration.serverUrl,
@@ -39,7 +39,7 @@ angular.module( `${configuration.appName}.auth`, [
   $scope.loginSubmit = function() {
     $auth.submitLogin({user: $scope.login})
       .then(function(resp) {
-        // handle success response
+
       })
       .catch(function(resp) {
         // handle error response
