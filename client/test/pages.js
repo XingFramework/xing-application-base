@@ -1,4 +1,4 @@
-import {configuration} from '../src/common/config';
+  import {configuration} from '../src/common/config';
 import {} from '../src/app/pages/pages';
 import {} from 'test/json-fixtures/pages/client.json';
 import {Page} from '../src/common/server/page';
@@ -22,7 +22,7 @@ describe( 'Pages section', function() {
       resolve(pageJson);
     });
     page = new Page(promise);
-    page.complete.then((result) => {
+    page.completePromise = page.complete.then((result) => {
       done();
     });
   });

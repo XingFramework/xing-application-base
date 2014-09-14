@@ -10,15 +10,15 @@ describe('Menu class', function() {
         links: {},
         data: {
           name: 'Test 1',
-          path: 'pages/test-1',
           type: 'page',
+          page: { links: { self: '/pages/test-1'} },
           children: [
             {
             links: {},
             data: {
               name: 'Sublevel 1',
-              path: 'pages/test-2',
-              type: 'page'
+              type: 'page',
+              page: { links: { self: '/pages/test-2'} },
             }
           } ]
         }
@@ -42,7 +42,7 @@ describe('Menu class', function() {
   });
 
   it('should have a target', function() {
-    expect(menu.items[0].target).toEqual('pages/test-1');
+    expect(menu.items[0].target).toEqual('/pages/test-1');
   });
 
   it('should have a name', function() {
