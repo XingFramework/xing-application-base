@@ -455,10 +455,13 @@ module.exports = function( grunt ) {
             livereload: 35729,
             middleware: function(connect, options, middlewares) {
               middlewares.unshift(function(req, res, next) {
-                if(/application\/json/.test(req.headers["Accept"])){
+                if(/application\/json/.test(req.headers["accept"])){
                   res.setHeader("Content-Type", "application/json");
+                  res.setHeader("X-Judson-Irritation", "extreme");
+                  req.url = req.url + ".json";
+                  console.log("Next was rewritten to:", req.url);
                 }
-                return next();
+                next();
               });
 
               return middlewares;
