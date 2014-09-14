@@ -159,6 +159,11 @@ module.exports = function( grunt ) {
             "src/common/environment.js": "config/environments/development.js"
           }
         },
+        "integration-env": {
+          files: {
+            "src/common/environment.js": "config/environments/integration.js"
+          }
+        },
 
         karmaUnit: {
           options: { process: function( contents, path ) { return grunt.template.process( contents ); } },
@@ -618,7 +623,7 @@ module.exports = function( grunt ) {
    */
   grunt.renameTask( 'watch', 'delta' );
   grunt.registerTask( 'watch', [ 'develop', 'karma:unit:start', 'connect', 'delta' ] );
-
+  grunt.registerTask( 'watch:integrate', ['integrate', 'karma:unit:start', 'connect', 'delta']);
   /**
    * The default task is to build and compile.
    */
@@ -638,6 +643,7 @@ module.exports = function( grunt ) {
   ]);
 
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build' ]);
+  grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build' ]);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
   grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'build', 'ngAnnotate', 'uglify' ]);
