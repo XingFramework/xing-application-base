@@ -21,7 +21,6 @@ FactoryGirl.define do
 
 
   factory :one_column_page, :class => Page::OneColumn, :parent => :page do
-    #layout 'OneColumnPage'
 
     after(:create) do |page|
       page.page_contents << PageContent.new(
@@ -30,6 +29,27 @@ FactoryGirl.define do
       )
       page.page_contents << PageContent.new(
         :name => :main,
+        :content_block => FactoryGirl.create(:main)
+      )
+      page.page_contents << PageContent.new(
+        :name => :styles,
+        :content_block => FactoryGirl.create(:styles)
+      )
+    end
+  end
+  factory :two_column_page, :class => Page::TwoColumn, :parent => :page do
+
+    after(:create) do |page|
+      page.page_contents << PageContent.new(
+        :name => :headline,
+        :content_block => FactoryGirl.create(:headline)
+      )
+      page.page_contents << PageContent.new(
+        :name => :column_one,
+        :content_block => FactoryGirl.create(:main)
+      )
+      page.page_contents << PageContent.new(
+        :name => :column_two,
         :content_block => FactoryGirl.create(:main)
       )
       page.page_contents << PageContent.new(
