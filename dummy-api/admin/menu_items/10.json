@@ -1,13 +1,13 @@
 {
   "links": {
-    "self": "/admin/menu_items/26"
+    "self": "/admin/menu_items/10"
   },
   "data": {
     "type": "page",
-    "name": "Products",
+    "name": "About Us",
     "page": {
       "links": {
-        "self": "/pages/about_us"
+        "self": "/pages/contact_us"
       }
     },
     "parent_id": 1

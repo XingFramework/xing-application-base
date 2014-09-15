@@ -68,7 +68,8 @@ namespace :db do
 
     task :populate_pages => :environment do
       require 'populator'
-      Page.delete_all
+      Page::OneColumn.delete_all
+      Page::TwoColumn.delete_all
 
       # Should probably be removed once more layouts are included
       PageContent.delete_all
