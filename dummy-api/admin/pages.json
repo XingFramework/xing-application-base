@@ -86,6 +86,20 @@
         "publish_start": null,
         "publish_end": null
       }
+    },
+    {
+      "links": {
+        "self": "/admin/pages/newsletter",
+        "public": "/pages/newsletter"
+      },
+      "data": {
+        "title": "Newsletter",
+        "url_slug": "newsletter",
+        "layout": "two_column",
+        "published": true,
+        "publish_start": null,
+        "publish_end": null
+      }
     }
   ]
 }

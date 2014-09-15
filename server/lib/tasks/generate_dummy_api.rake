@@ -25,9 +25,13 @@ namespace :dummy_api do
     require 'fileutils'
 
     endpoints = FIXED_ENDPOINTS
+    puts "Making public pages"
     endpoints += Page.all.map     { |page| routes.page_path(page) }
+    puts "Making admin pages"
     endpoints += Page.all.map     { |page| routes.admin_page_path(page) }
+    puts "Making admin menus"
     endpoints += Menu.list.map    { |menu| routes.admin_menu_path(menu) }
+    puts "Making admin menu items"
     endpoints += MenuItem.where('parent_id IS NOT NULL').map { |item| routes.admin_menu_item_path(item) }
 
     endpoints.each do |endpoint|
@@ -35,10 +39,11 @@ namespace :dummy_api do
       FileUtils.mkdir_p(File.dirname(filename))
 
       begin
-        response = `curl -H 'Accept: application/json' http://localhost:3000#{endpoint}` # 2> /dev/null`
+        response = `curl -H 'Accept: application/json' http://localhost:3000#{endpoint}`
         json_hash = JSON.parse(response)
-      rescue JSON::ParserError
-        puts "A parser error occurred:  please see error.html"
+      rescue JSON::ParserError => ex
+        puts ex.backtrace
+        puts "A parser error occurred on endpoint #{endpoint}:  please see error.html"
         File.open('error.html', 'w') do |file|
           file.write response
         end

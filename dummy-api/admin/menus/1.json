@@ -11,7 +11,7 @@
         "name": "About Us",
         "page": {
           "links": {
-            "self": "/pages/about_us"
+            "self": "/pages/contact_us"
           }
         },
         "children": [
@@ -27,7 +27,7 @@
         "name": "Services",
         "page": {
           "links": {
-            "self": "/pages/home"
+            "self": "/pages/contact_us"
           }
         },
         "children": [
@@ -37,22 +37,6 @@
             "data": {
               "type": "page",
               "name": "Startup MVPs",
-              "page": {
-                "links": {
-                  "self": "/pages/homepage"
-                }
-              },
-              "children": [
-
-              ]
-            }
-          },
-          {
-            "links": {
-            },
-            "data": {
-              "type": "page",
-              "name": "Code Rescue",
               "page": {
                 "links": {
                   "self": "/pages/home"
@@ -68,10 +52,26 @@
             },
             "data": {
               "type": "page",
-              "name": "Training",
+              "name": "Code Rescue",
               "page": {
                 "links": {
                   "self": "/pages/contact_us"
+                }
+              },
+              "children": [
+
+              ]
+            }
+          },
+          {
+            "links": {
+            },
+            "data": {
+              "type": "page",
+              "name": "Training",
+              "page": {
+                "links": {
+                  "self": "/pages/newsletter"
                 }
               },
               "children": [
@@ -90,7 +90,7 @@
         "name": "Products",
         "page": {
           "links": {
-            "self": "/pages/about_us"
+            "self": "/pages/links"
           }
         },
         "children": [
@@ -106,7 +106,7 @@
         "name": "Contact",
         "page": {
           "links": {
-            "self": "/pages/gallery"
+            "self": "/pages/home"
           }
         },
         "children": [
