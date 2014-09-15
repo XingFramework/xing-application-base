@@ -16,12 +16,13 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-bower');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-traceur-simple');
   grunt.loadNpmTasks('grunt-jsonlint');
 
+  grunt.loadNpmTasks('grunt-concurrent');
   /**
    * Load in our build configuration file.
    */
@@ -209,7 +210,7 @@ module.exports = function( grunt ) {
         compile_css: {
           files: {
             '<%= compile_targets.css %>': [
-            '<%= build_dirs.stylesheets %>/<%= pkg.name %>-<%= pkg.version %>.css',
+            '<%= build_dirs.stylesheets %>/*.css',
             '<%= vendor_files.css %>'
             ]
           }
@@ -282,16 +283,26 @@ module.exports = function( grunt ) {
       },
 
 
-      sass: {
+      compass: {
         options: {
-          sourcemap: 'auto',
-          loadPath: 'vendor/compass-vanilla'
+          sassDir: '<%= app_files.sass %>',
+          cssDir: '<%= build_dirs.stylesheets %>'
         },
         build: {
-          files: {                        // dictionary of files
-            '<%= build_dirs.stylesheets %>/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>' // 'destination': 'source'
+        },
+        server: {
+          options: {
+            watch: true
+          }
           }
         },
+      concurrent:{
+        server: {
+          tasks: ['compass:server', 'delta'],
+          options: {
+            logConcurrentOutput: true
+          }
+        }
       },
 
       /**
@@ -567,8 +578,8 @@ module.exports = function( grunt ) {
         },
 
         sass: {
-          files: [ 'src/**/*.scss', 'src/**/*.sass' ],
-          tasks: [ 'sass:build', 'concat_sourcemap:compile_css' ]
+          files: [ '<%= build_dirs.stylesheets %>/*.css'],
+          tasks: [ 'concat_sourcemap:compile_css' ]
         },
 
         /**
@@ -627,7 +638,7 @@ module.exports = function( grunt ) {
    * before watching for changes.
    */
   grunt.renameTask( 'watch', 'delta' );
-  grunt.registerTask( 'watch', [ 'develop', 'karma:unit:start', 'connect', 'delta' ] );
+  grunt.registerTask( 'watch', [ 'develop', 'karma:unit:start', 'connect', 'concurrent:server' ] );
   grunt.registerTask( 'watch:integrate', [ 'integrate', 'karma:unit:start', 'connect', 'delta' ] );
 
   /**
@@ -640,7 +651,7 @@ module.exports = function( grunt ) {
     'html2js', 'jshint:src', 'jsonlint',
     'coffeelint', 'coffee',
     'traceur:build', //'jshint:target',
-    'sass:build',
+    'compass:build',
     'concat_sourcemap:compile_css',
     'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:compile_assets',

@@ -14,7 +14,8 @@
     "angular-cookies": "~1.2.24",
     "compass-vanilla": "~0.1.0",
     "ng-token-auth": "~0.0.21",
-    "responsive-nav": "~1.0.32"
+    "responsive-nav": "~1.0.32",
+    "angular-froala": "~1.2.0"
   },
   "exportsOverride": {
     "sass-import-once": {
