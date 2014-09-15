@@ -53,7 +53,7 @@ describe( 'Pages section', function() {
   }));
 
   it('should assign headline', function(){
-    expect($scope.headline).toBe("The Gettysburg Address");
+    expect($scope.page.headline).toBe("The Gettysburg Address");
   });
 
   it('should assign content', function(){

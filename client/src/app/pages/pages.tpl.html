@@ -1,2 +1,27 @@
 <div ng-include="template">
 </div>
+<!-- pages.tpl -->
+<admin-only>
+  <form>
+    <label>
+      Title
+      <input ng-model="page.title"></input>
+    </label>
+    <label>
+      Headline
+      <input ng-model="page.headline"></input>
+    </label>
+    <label>
+      Keywords
+      <input ng-model="page.keywords"></input>
+    </label>
+    <label>
+      Description
+      <input ng-model="page.description"></input>
+    </label>
+    <label>
+      Styles
+      <input ng-model="page.styles"></input>
+    </label>
+  </form>
+</admin-only>
