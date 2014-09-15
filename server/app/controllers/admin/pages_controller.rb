@@ -2,15 +2,13 @@ class Admin::PagesController < JsonController
 
   # GET /admin/pages
   def index
-    @pages = page_scope
-    @human_plural_name
+    render :json => Admin::PagesSerializer.new(Page.all)
   end
 
   # GET /admin/pages/:url_slug
   def show
-    path = params[:url_slug]
-    @page = Page.find_by_url_slug(path)
-    render :json => Admin::PageSerializer.new(@page)
+    page = Page.find_by_url_slug(params[:url_slug])
+    render :json => Admin::PageSerializer.new(page)
   end
 
   # POST /admin/pages
@@ -37,52 +35,11 @@ class Admin::PagesController < JsonController
 
   # DELETE /admin/pages/:url_slug
   def destroy
-    @admin_page = page_scope.find(params[:id])
-    @admin_page.destroy
+    page = Page.find_by_url_slug(params[:url_slug])
+    page.destroy
 
-    redirect_to(:action => :index)
+    render :status => 204, :json => {}
   end
 
-  # def page_path(page)
-  #   "/#{page.permalink}"
-  # end
-  #
-  private
 
-  def human_name
-    "Page"
-  end
-
-  def human_plural_name
-    "Pages"
-  end
-
-  def location_handling
-  end
-
-  def page_layout
-    nil
-  end
-
-  def page_scope
-    Page.brochure
-  end
-
-  def page_params
-    @page_params ||= params.required(:page).tap do |page_params|
-
-    if page_params.delete(:published)
-      page_params[:published_start] = Time.at(0)
-    else
-      page_params[:published_end] = Time.at(0)
-    end
-
-      page_params[:layout] = page_layout
-    end
-  end
-
-  def page_attrs
-    page_params.permit(:title, :permalink, :content, :edited_at, :description,
-                      :headline, :keywords, :publish_start, :publish_end, :layout, :css)
-  end
 end
