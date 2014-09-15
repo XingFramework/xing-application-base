@@ -1,10 +1,8 @@
 import { configuration } from '../../common/config';
 import {} from '../../../vendor/angular-cookies/angular-cookies';
 import {} from '../../../vendor/ng-token-auth/ng-token-auth';
-import {} from "../../../vendor/FroalaWysiwygEditor/froala_editor.min";
-import {} from "../../../vendor/angular-froala/angular-froala";
 
-angular.module( configuration.appName + '.adminDirectives', [`${configuration.appName}.config`, 'ng-token-auth', 'froala'])
+angular.module( configuration.appName + '.adminDirectives', [`${configuration.appName}.config`, 'ng-token-auth'])
 .directive('adminOnly',
   ['$rootScope', '$auth', function ($rootScope, $auth) {
 

@@ -46,7 +46,8 @@ describe( 'Pages section', function() {
       $scope: $scope,
       $state: $stateMock,
       $sce: $sceMock,
-      page: page
+      page: page,
+      isAdmin: false
     });
     $scope.$apply();
   }));

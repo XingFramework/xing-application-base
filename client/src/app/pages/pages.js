@@ -1,11 +1,11 @@
 import {configuration} from '../../common/config';
 import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
-import '../../../vendor/angular-froala/angular-froala';
 import './admin-edit';
 
 angular.module( `${configuration.appName}.pages`, [
   `${configuration.appName}.server`,
+  `${configuration.appName}.adminEditDirective`,
   'ui.router.state'
 ])
 
@@ -16,6 +16,19 @@ angular.module( `${configuration.appName}.pages`, [
       controller: 'PagesCtrl',
       templateUrl: 'pages/homepage.tpl.html',
       resolve: {
+        isAdmin($auth){
+          return $auth.validateUser().then(
+            (success) => {
+            console.log("pages/pages.js:31", "success", success);
+            return true; },
+            (failure) => {
+              console.log("pages/pages.js:34", "failure", failure);
+              return false; }
+          ).then((bool) => {
+            console.log("pages/pages.js:37", "bool", bool);
+            return bool;
+          });
+        },
         page(cmsBackend) {
           return cmsBackend.page("/homepage").complete;
         }
@@ -58,12 +71,10 @@ angular.module( `${configuration.appName}.pages`, [
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
   for(var name in page.contentBlocks) {
     if (page.contentBlocks.hasOwnProperty(name)) {
-      $scope.contentBlocks[name] = $sce.trustAsHtml(page.contentBlocks[name]);
-      if(isAdmin){
-        $scope.rawContentBlocks[name] = page.contentBlocks[name];
-      }
+      $scope.contentBlocks[name] = page.contentBlocks[name];
     }
   }
+  $scope.page = page;
   // header info
   $scope.$emit('metadataSet', page.metadata);
 });
