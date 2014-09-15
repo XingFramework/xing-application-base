@@ -86,8 +86,11 @@ module.exports = {
       'vendor/**/*.js'
     ],
     css: [
+      'vendor/FroalaWysiwygEditor/froala_editor.min.css',
+      'vendor/FroalaWysiwygEditor/font-awesome.min.css'
     ],
     assets: [
+      'vendor/FroalaWysiwygEditor/fontawesome-webfont.*'
     ]
   },
 };

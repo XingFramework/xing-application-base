@@ -4,17 +4,29 @@ export class Page extends ServerResponse {
   get layout(){
     return this.pageData.layout;
   }
+  set layout(value){
+    this.pageData.layout = value;
+  }
 
   get title(){
     return this.pageData.title;
+  }
+  set title(value){
+    this.pageData.title = value;
   }
 
   get keywords(){
     return this.pageData.keywords;
   }
+  set keywords(value){
+    this.pageData.keywords = value;
+  }
 
   get description(){
     return this.pageData.description;
+  }
+  set description(value){
+    this.pageData.description = value;
   }
 
   get styles(){
@@ -24,14 +36,11 @@ export class Page extends ServerResponse {
       return null;
     }
   }
-
-  get metadata(){
-    return {
-      pageTitle: this.title,
-      pageKeywords: this.keywords,
-      pageDescription: this.description,
-      pageStyles: this.styles
-    };
+  set styles(value){
+    if (typeof(this.pageData.contents.styles) != 'undefined') {
+      this.pageData.contents.styles = { data: {}};
+    }
+    this.pageData.contents.styles.data.body = value;
   }
 
   get headline() {
@@ -40,6 +49,47 @@ export class Page extends ServerResponse {
     } else {
       return this.pageData.contents.headline.data.body;
     }
+  }
+  set headline(value){
+    if (typeof(this.pageData.contents.headline) != 'undefined') {
+      this.pageData.contents.headline = { data: {}};
+    }
+    this.pageData.contents.headline.data.body = value;
+  }
+
+  get publishStart(){
+    return this.pageData.publishStart;
+  }
+  set publishStart(value){
+    this.pageData.publishStart = value;
+  }
+
+  get publishEnd(){
+    return this.pageData.publishEnd;
+  }
+  set publishEnd(value){
+    this.pageData.publishEnd = value;
+  }
+
+  get urlSlug(){
+    return this.pageData.urlSlug;
+  }
+  set urlSlug(value){
+    this.pageData.urlSlug = value;
+  }
+
+
+  get putUrl(){
+    return this._links["self"];
+  }
+
+  get metadata(){
+    return {
+      pageTitle: this.title,
+      pageKeywords: this.keywords,
+      pageDescription: this.description,
+      pageStyles: this.styles
+    };
   }
 
   get contentBlocks() {

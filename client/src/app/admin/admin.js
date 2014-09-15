@@ -20,11 +20,11 @@ angular.module( `${configuration.appName}.admin`, [
       url: 'pages',
       controller: 'AdminPagesCtrl',
       templateUrl: 'admin/pages.tpl.html',
-      //resolve: {
-        //page(cmsBackend) {
-          //return cmsBackend.page("/homepage").complete;
-        //}
-      //}
+      resolve: {
+        pageList(cmsBackend) {
+          return cmsBackend.pageList().complete;
+        }
+      }
     })
     .state( 'root.admin.menus', {
       url: 'menus',

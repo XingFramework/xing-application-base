@@ -16,6 +16,14 @@ export class ServerResponse {
     });
   }
 
+  get isNew(){
+    return false;
+  }
+
+  get putUrl(){
+    return this._links["self"];
+  }
+
   get received(){
     return this.responsePromise;
   }
@@ -24,8 +32,14 @@ export class ServerResponse {
     return this.completePromise;
   }
 
+  get dataForSave(){
+    return this._response;
+  }
+
   absorbResponse(response) {
+    this._response = response;
     this._data = response["data"];
+    this._links = response["links"];
   }
 
   emptyData(){
