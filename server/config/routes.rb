@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   namespace :admin do
     #resources :images
     #resources :documents
-    get "pages/:url_slug", :to => 'pages#show', :as => :page
-    put "pages/:url_slug", :to => 'pages#update'
-    resources :pages
+    #get "pages/:url_slug", :to => 'pages#show', :as => :page
+    #put "pages/:url_slug", :to => 'pages#update'
+    resources :pages, :param => :url_slug
     resources :menus, :only => [ :show, :index ]
     resources :menu_items
     resources :content_blocks
