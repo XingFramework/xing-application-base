@@ -1,4 +1,3 @@
-require 'authenticated_system'
 
 class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
@@ -14,7 +13,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  include AuthenticatedSystem
   include UrlHelper
 
   def store_location
