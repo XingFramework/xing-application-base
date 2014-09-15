@@ -57,6 +57,28 @@ export class Page extends ServerResponse {
     this.pageData.contents.headline.data.body = value;
   }
 
+  get publishStart(){
+    return this.pageData.publishStart;
+  }
+  set publishStart(value){
+    this.pageData.publishStart = value;
+  }
+
+  get publishEnd(){
+    return this.pageData.publishEnd;
+  }
+  set publishEnd(value){
+    this.pageData.publishEnd = value;
+  }
+
+  get urlSlug(){
+    return this.pageData.urlSlug;
+  }
+  set urlSlug(value){
+    this.pageData.urlSlug = value;
+  }
+
+
   get metadata(){
     return {
       pageTitle: this.title,

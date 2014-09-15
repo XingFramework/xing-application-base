@@ -49,7 +49,9 @@ angular.module( `${configuration.appName}.pages`, [
         page(isAdmin, cmsBackend, $stateParams) {
           console.log("pages/pages.js:50", "isAdmin", isAdmin);
           console.log("pages/pages.js:29", "$stateParams", $stateParams);
-          return cmsBackend.page($stateParams.pageUrl).complete.then( (page) => {
+          var role = "guest";
+          if(isAdmin){ role = "admin"; }
+          return cmsBackend.page($stateParams.pageUrl, role).complete.then( (page) => {
             console.log("pages/pages.js:30", "page", page);
             return page;
           });

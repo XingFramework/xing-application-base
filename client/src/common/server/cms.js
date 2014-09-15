@@ -24,10 +24,23 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
   var currentUser;
 
   return {
-    page(slug){
+    page(slug, forRole){
       slug = slug.replace(/^\//,'');
       console.log("server/cms.js:20", "slug", slug);
-      var response = Restangular.one("").customGET(slug);
+      var response = Restangular.one(slug).get();
+      if(forRole == "admin"){
+        var publicData;
+        response = response.then((serverData) => {
+          publicData = serverData;
+          console.log("server/cms.js:35", "serverData", serverData);
+          var newUrl = serverData.links.admin.replace(/^\//,'');
+          return Restangular.one(newUrl).get();
+        }).catch((failure) => {
+          //assuming unauthorized
+          console.log("server/cms.js:40", "publicData", publicData);
+          return publicData;
+        });
+      }
       console.log("server/cms.js:21", "response", response);
       return new Page(response);
     },
