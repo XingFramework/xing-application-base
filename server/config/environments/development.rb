@@ -35,6 +35,7 @@ Rails.application.configure do
           origins '*'
           resource '*',
               :headers => :any,
+              :expose => ['access-token', 'token-type', 'client', 'expiry', 'uid'],
           :methods => [:get, :post, :delete, :put, :patch, :options]
       end
   end

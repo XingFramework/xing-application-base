@@ -1,19 +1,17 @@
 import {configuration} from '../../common/config';
-import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import {} from '../../../vendor/angular-cookies/angular-cookies';
 import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 
 angular.module( `${configuration.appName}.auth`, [
-  `${configuration.appName}.server`,
   'ui.router.state',
   'ng-token-auth'
 ])
-
 .config(function config( $stateProvider, $authProvider) {
+
   $stateProvider
     .state( 'root.inner.login', {
-      url: 'login',
+      url: '^/login',
       controller: 'LoginCtrl',
       templateUrl: 'auth/login.tpl.html',
     });

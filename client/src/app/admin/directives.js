@@ -27,9 +27,14 @@ angular.module( configuration.appName + '.admin', [`${configuration.appName}.con
   }])
 
 .directive('adminNav',
-  function() {
-    console.log('admin/directives.js:34');
+  function($auth) {
+    function link(scope, element, attrs) {
+      scope.logout = () => {
+        $auth.signOut();
+      };
+    }
     return {
+      link: link,
       restrict: 'E',
       templateUrl: 'admin/adminNav.tpl.html'
     };

@@ -10,5 +10,11 @@ class DeviseTokenAuthAddTokenInfoToUsers < ActiveRecord::Migration
     end
 
     add_index :users, :uid,                  :unique => true
+
+    User.reset_column_information
+    User.all.each do |user|
+      user.uid = user.login
+      user.save
+    end
   end
 end
