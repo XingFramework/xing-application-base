@@ -1,2 +1,3 @@
 <h1>{{headline}}</h1>
-<div ng-bind-html="contentBlocks['main']"></div>
+<div ng-bind-html="contentBlocks['main']" ng-if="!isAdmin"></div>
+<textarea froala ng-model="rawContentBlocks['main']" ng-if="isAdmin"></textarea>

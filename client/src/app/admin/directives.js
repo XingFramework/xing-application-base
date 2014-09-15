@@ -1,21 +1,23 @@
 import { configuration } from '../../common/config';
 import {} from '../../../vendor/angular-cookies/angular-cookies';
 import {} from '../../../vendor/ng-token-auth/ng-token-auth';
+import {} from "../../../vendor/FroalaWysiwygEditor/froala_editor.min";
+import {} from "../../../vendor/angular-froala/angular-froala";
 
-angular.module( configuration.appName + '.adminDirectives', [`${configuration.appName}.config`, 'ng-token-auth'])
+angular.module( configuration.appName + '.adminDirectives', [`${configuration.appName}.config`, 'ng-token-auth', 'froala'])
 .directive('adminOnly',
   ['$rootScope', '$auth', function ($rootScope, $auth) {
 
     function link(scope, element, attrs) {
       scope.showAdmin = false;
       $auth.validateUser().then((user) => {
-          scope.showAdmin = true;
+        scope.showAdmin = true;
       });
       $rootScope.$on('auth:login-success', (ev, user) => {
         scope.showAdmin = true;
       });
       $rootScope.$on('auth:logout-success', (ev, user) => {
-          scope.showAdmin = false;
+        scope.showAdmin = false;
       });
     }
     return {
