@@ -639,7 +639,7 @@ module.exports = function( grunt ) {
    */
   grunt.renameTask( 'watch', 'delta' );
   grunt.registerTask( 'watch', [ 'develop', 'karma:unit:start', 'connect', 'concurrent:server' ] );
-  grunt.registerTask( 'watch:integrate', [ 'integrate', 'karma:unit:start', 'connect', 'delta' ] );
+  grunt.registerTask( 'watch:integrate', [ 'integrate', 'karma:unit:start', 'connect', 'concurrent:server' ] );
 
   /**
    * The default task is to build and compile.
