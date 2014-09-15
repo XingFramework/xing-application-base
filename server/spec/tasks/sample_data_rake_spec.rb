@@ -14,6 +14,7 @@ describe 'db:sample_data namespace rake task',
     Rake::Task["db:sample_data:load"].invoke
 
     Page::OneColumn.count.should == 5
+    Page::TwoColumn.count.should == 1
 
     Page::OneColumn.all.map(&:title).should include("About Us", "Contact Us", "Home", "Gallery", "Links")
 
