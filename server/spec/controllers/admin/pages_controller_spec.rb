@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Admin::PagesController do
-  include UrlHelper
 
   let :page do
     double(Page)
