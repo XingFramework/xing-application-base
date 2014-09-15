@@ -3,7 +3,7 @@ namespace :dummy_api do
   FIXED_ENDPOINTS = [
     "/navigation/main",
     "/homepage",
-    #"/admin/pages",
+    "/admin/pages",
     "/admin/menus"
   ]
 

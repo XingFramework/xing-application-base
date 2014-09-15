@@ -1,41 +1,36 @@
 
-$admin_menu_height: 20px;
-
-body.with_admin #inset {
-  margin-top: $admin_menu_height;
-}
-
 #admin_tools {
   width: 100%;
   font-size: 11px;
-  color: white;
-  height: $admin_menu_height;
+  color: #334;
   border-bottom: 1px solid black;
   padding: 5px;
   font-family: Helvetica, Arial, sans-serif;
-  height: 20px;
 
-  //background: $admin_background_color;
-  // TODO:  why can't i get any compass mixins to work?
   @include background(linear-gradient(white, #cccccc, #aaaaaa));
+  h3, li, a {
+    font-size: 12px;
+  }
+  h3, li {
+    margin: 0 1em 0 0 ;
+    display: inline-block;
+  }
   h3 {
-    float: left;
-    margin: 0 1em 0 0;
-    font-size: 11px;
+    padding: 0.25em;
     font-weight: bold;
   }
   ul {
+    display: inline-block;
     list-style: none;
     margin: 0;
-    padding-bottom: 5px;
+    padding: 0;
   }
   li {
     list-style: none;
-    display: block;
-    float: left;
-    margin-right: 1em;
     a {
-      color: white;
+      padding: 0.25em;
+      color: #334;
+      margin: 0;
     }
     a:hover {
       color: #ffff66;
@@ -53,9 +48,8 @@ body.with_admin #inset {
 }
 
 .admin_tool, .admin_tool a {
-  background: $admin_background_color;
+  /*background: $admin_background_color;*/
   color: white;
-  padding: 5px;
 }
 
 .admin_tool:hover, admin_tool a:hover {
