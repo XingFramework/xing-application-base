@@ -1,1 +1,4 @@
 <h1>List of pages</h1>
+<ul>
+<li ng-repeat="page in pages"><a ui-sref="root.inner.page({pageUrl: page.target})">{{page.title}}</a></li>
+</ul>

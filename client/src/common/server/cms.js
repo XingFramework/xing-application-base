@@ -6,6 +6,7 @@ import {} from '../serializer';
 
 import {Menu} from './menu';
 import {Page} from './page';
+import {PageList} from './pageList';
 
 angular.module( configuration.appName + '.server', [ 'restangular', 'serializer' ])
 .config( function myAppConfig (RestangularProvider) {
@@ -43,7 +44,8 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
       ///Restangular.one(url);
     },
     pageList(){
-      var response = Restangular.all("admin/pages").get();
+      var response = Restangular.one("admin/pages").get();
+      return new PageList(response);
     },
     page(slug, forRole){
       var ResourceClass = Page;

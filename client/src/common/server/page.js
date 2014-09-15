@@ -79,10 +79,6 @@ export class Page extends ServerResponse {
   }
 
 
-  get putUrl(){
-    return this._links["self"];
-  }
-
   get metadata(){
     return {
       pageTitle: this.title,
@@ -91,6 +87,24 @@ export class Page extends ServerResponse {
       pageStyles: this.styles
     };
   }
+
+  contentBody(name) {
+    var block = this.pageData.contents[name];
+    if(block.data && block.data.body){
+      return block.data.body;
+    } else {
+      return "";
+    }
+  }
+
+  updateContentBody(name, value) {
+    var block = this.pageData.contents[name];
+    if(!(block.data)){
+      block.data = {};
+    }
+    block.data.body = value;
+  }
+
 
   get contentBlocks() {
     var contentBlocks = {};

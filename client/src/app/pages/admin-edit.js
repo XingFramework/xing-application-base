@@ -4,13 +4,16 @@ import '../../../vendor/angular-froala/angular-froala';
 import { configuration } from '../../common/config';
 
 angular.module(`${configuration.appName}.adminEditDirective`, ['froala'])
-.directive('lrdAdminEdits', function() {
+.directive('lrdAdminEdits', function($sce) {
   return {
     templateUrl: 'pages/admin-edit.tpl.html',
     scope: true,
-    controller($scope, $attrs, $sce) {
-      $scope.contentBlock = $sce.trustAsHtml($scope.contentBlocks[$attrs.contentName]);
-      $scope.adminContentBlock = $scope.contentBlocks[$attrs.contentName];
+    link(scope, elem, attrs) {
+      scope.contentBlock = $sce.trustAsHtml(scope.contentBlocks[attrs.contentName]);
+      scope.editable = { content: scope.page.contentBody(attrs.contentName) };
+      scope.$watch('editable.content', (value)=> {
+        scope.page.updateContentBody(attrs.contentName, value);
+      });
     }
   };
 });
