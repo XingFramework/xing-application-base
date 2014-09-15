@@ -221,8 +221,9 @@ describe PageMapper do
     describe "a content body with layout specified" do
       let :json do
         { data: {
-          contents: { main: { data: { body: "The New Body" }}}},
+          contents: { main: { data: { body: "The New Body" }}},
           'layout' => 'one_column'
+          }
         }.to_json
       end
 
