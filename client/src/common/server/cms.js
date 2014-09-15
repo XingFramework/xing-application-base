@@ -23,8 +23,30 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
 
   var currentUser;
 
+  function mangleUrl(url){
+    return url.replace(/^\//,'');
+  }
+
   return {
+    save(resource){
+      var url, serverReq;
+      var data = resource.dataForSave;
+      if(resource.isNew){
+        url = mangleUrl(resource.postUrl);
+        serverReq = Restangular.restangularizeCollection(null, {}, url);
+        serverReq.post(data);
+      } else {
+        url = mangleUrl(resource.putUrl);
+        serverReq = Restangular.restangularizeElement(null, data, url);
+        serverReq.put();
+      }
+      ///Restangular.one(url);
+    },
+    pageList(){
+      var response = Restangular.all("admin/pages").get();
+    },
     page(slug, forRole){
+      var ResourceClass = Page;
       slug = slug.replace(/^\//,'');
       console.log("server/cms.js:20", "slug", slug);
       var response = Restangular.one(slug).get();
@@ -42,7 +64,7 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
         });
       }
       console.log("server/cms.js:21", "response", response);
-      return new Page(response);
+      return new ResourceClass(response);
     },
     menu(name){
       var response = Restangular.one('navigation', name).get(); // GET /menu/Main

@@ -79,6 +79,10 @@ export class Page extends ServerResponse {
   }
 
 
+  get putUrl(){
+    return this._links["self"];
+  }
+
   get metadata(){
     return {
       pageTitle: this.title,

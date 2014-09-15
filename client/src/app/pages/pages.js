@@ -59,7 +59,11 @@ angular.module( `${configuration.appName}.pages`, [
       }
     });
 })
-.controller( 'PagesCtrl', function( $scope, $stateParams, $sce, page, isAdmin) {
+.controller( 'PagesCtrl', function( $scope, $stateParams, $sce, page, isAdmin, cmsBackend) {
+  $scope.savePage = function(){
+    cmsBackend.save($scope.page);
+  };
+  $scope.page = page;
   $scope.isAdmin = isAdmin;
   $scope.contentBlocks = {};
   $scope.rawContentBlocks = {};
@@ -69,7 +73,6 @@ angular.module( `${configuration.appName}.pages`, [
       $scope.contentBlocks[name] = page.contentBlocks[name];
     }
   }
-  $scope.page = page;
   // header info
   $scope.$emit('metadataSet', page.metadata);
 });
