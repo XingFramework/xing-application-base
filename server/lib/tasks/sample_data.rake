@@ -69,6 +69,7 @@ namespace :db do
     task :populate_pages => :environment do
       require 'populator'
       Page::OneColumn.delete_all
+      Page::TwoColumn.delete_all
 
       # Should probably be removed once more layouts are included
       PageContent.delete_all
@@ -79,24 +80,51 @@ namespace :db do
          create_one_column_page(
           :title => name.to_s.titleize,
           :url_slug => name.to_s,
-          :keywords => name.to_s
+          :keywords => name.to_s,
+          :description => Populator.sentences(1..3)
         )
       end
+      create_two_column_page(
+        :title => "Newsletter",
+        :url_slug => 'newsletter',
+        :keywords => Populator.words(2..5).split(" ").join(', '),
+        :description => Populator.sentences(1..3)
+      )
+    end
+
+    def create_two_column_page(options = {})
+      page = Page::TwoColumn.new(options)
+      create_common_page_contents(page)
+      c1 = ContentBlock.new(
+            :content_type => "text/html",
+            :body => Populator.paragraphs(2..4)
+          )
+      c2 = ContentBlock.new(
+            :content_type => "text/html",
+            :body => Populator.paragraphs(2..4)
+          )
+      page.page_contents << PageContent.create(:name => 'column_one', :content_block => c1)
+      page.page_contents << PageContent.create(:name => 'column_two', :content_block => c2)
+      page.save
     end
 
     def create_one_column_page(options = {})
-      new_page = Page::OneColumn.new(options)
-      headline = ContentBlock.new(
-            :content_type => "text/html",
-            :body => Populator.words(1..5).titlecase
-          )
+      page = Page::OneColumn.new(options)
+      create_common_page_contents(page)
       main = ContentBlock.new(
             :content_type => "text/html",
             :body => Populator.paragraphs(2..4)
           )
-      new_page.page_contents << PageContent.create(:name => 'headline', :content_block => headline)
-      new_page.page_contents << PageContent.create(:name => 'main', :content_block => main)
+      page.page_contents << PageContent.create(:name => 'main', :content_block => main)
+      page.save
+    end
 
+    def create_common_page_contents(page)
+      headline = ContentBlock.new(
+            :content_type => "text/html",
+            :body => Populator.words(1..5).titlecase
+          )
+      page.page_contents << PageContent.create(:name => 'headline', :content_block => headline)
       sometimes (0.5) do
         styles = ContentBlock.new(
           :content_type => "text/css",
@@ -105,10 +133,10 @@ namespace :db do
                     p { font-size: 20px; }"
           )
 
-        new_page.page_contents << PageContent.create(:name => 'styles', :content_block => styles)
+        page.page_contents << PageContent.create(:name => 'styles', :content_block => styles)
        end
-       new_page.save
     end
+
 
     task :populate_images => :environment do
     end

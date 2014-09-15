@@ -9,7 +9,7 @@ class HypermediaJSONMapper
   end
 
   def unwrap_data(hash)
-    hash['data']
+    hash['data'].with_indifferent_access
   end
 
   def errors

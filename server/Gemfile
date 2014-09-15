@@ -14,6 +14,7 @@ gem 'active_model_serializers'
 gem 'rails-observers'
 gem 'cancancan'
 gem 'devise_token_auth', :github => 'hannahhoward/devise_token_auth'
+gem 'bibliotech'
 
 group :development, :test do
   gem 'rack-cors', :require => 'rack/cors'

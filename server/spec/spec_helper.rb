@@ -44,6 +44,7 @@ RSpec.configure do |config|
   config.before :suite do
     DatabaseCleaner.clean_with :truncation
     load 'db/seeds.rb'
+    p MenuItem.all.to_a
   end
 
 end
