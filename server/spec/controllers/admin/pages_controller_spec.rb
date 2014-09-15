@@ -36,18 +36,35 @@ describe Admin::PagesController do
     end
 
     ########################################################################################
+    #                                      GET index
+    ########################################################################################
+    describe "responding to GET index" do
+      let :serializer do
+        double(Admin::PagesSerializer)
+      end
+
+      it "should find all pages and pass them to Admin::PagesSerializer" do
+
+        Page.should_receive(:all).and_return([page])
+        Admin::PagesSerializer.should_receive(:new).with([page]).and_return(serializer)
+        controller.should_receive(:render).
+          with(:json => serializer).
+          and_call_original
+        get :index
+      end
+    end
+    ########################################################################################
     #                                      GET SHOW
     ########################################################################################
     describe "responding to GET show" do
 
-      it "should expose the requested published page as @page" do
+      it "should find the page and pass it to a serializer" do
         Page.should_receive(:find_by_url_slug).with(url_slug).and_return(page)
         Admin::PageSerializer.should_receive(:new).with(page).and_return(serializer)
         controller.should_receive(:render).
           with(:json => serializer).
           and_call_original
         get :show, :url_slug => url_slug
-        expect(assigns[:page]).to eq(page)
       end
     end
 
@@ -103,73 +120,43 @@ describe Admin::PagesController do
         expect(response).to reject_as_unprocessable
       end
     end
-  end
 
 
 
-  describe "pending", :pending => "Awaiting implementation in CMS2" do
-    describe "while logged in" do
-      let :admin do FactoryGirl.create(:admin) end
-      before(:each) do
-        authenticate('admin')
-      end
 
-      ########################################################################################
-      #                                      GET INDEX
-      ########################################################################################
-      describe "GET index" do
-        it "should expose all pages as @pages" do
-          get :index
-          assigns[:pages].should == Page.brochure
-          assigns[:pages].should include(page)
-          assigns[:pages].should_not include(blog_post)
-        end
-      end
+    ########################################################################################
+    #                                      DELETE DESTROY
+    ########################################################################################
+    describe "DELETE destroy" do
 
-
-      ########################################################################################
-      #                                      DELETE DESTROY
-      ########################################################################################
-      describe "DELETE destroy" do
-
-        it "should reduce page count by one" do
-          lambda do
-            delete :destroy, :id => page.id
-          end.should change(Page, :count).by(-1)
-        end
-
-        it "should make the admin_pages unfindable in the database" do
-          delete :destroy, :id => page.id
-          lambda{ Page.find(page.id) }.should raise_error(ActiveRecord::RecordNotFound)
-        end
-
-        it "should redirect to the admin_pages list" do
-          delete :destroy, :id => page.id
-          response.should redirect_to(admin_pages_url)
-        end
+      it "should delete the record and respond with 204" do
+        Page.should_receive(:find_by_url_slug).with('slug').and_return(mock_page)
+        mock_page.should_receive(:destroy)
+        delete :destroy, :url_slug => 'slug'
+        expect(response.status).to eql(204)
       end
     end
+  end
 
-    describe "while not logged in" do
-      before(:each) do
-        logout
-      end
+  describe "while not logged in" do
+    before(:each) do
+      logout
+    end
 
-      describe "every action" do
-        it "should redirect to root" do
-          get :index
-          response.should redirect_to(:root)
-          get :new
-          response.should redirect_to(:root)
-          get :edit, :id => 1
-          response.should redirect_to(:root)
-          put :update, :id => 1
-          response.should redirect_to(:root)
-          delete :destroy, :id => 1
-          response.should redirect_to(:root)
-          post :create
-          response.should redirect_to(:root)
-        end
+    describe "every action", :pending => "Awaiting implementation" do
+      it "should redirect to root" do
+        get :index
+        expect(response.status).to eq(401)
+        get :new
+        expect(response.status).to eq(401)
+        get :edit, :url_slug => 1
+        expect(response.status).to eq(401)
+        put :update, :url_slug => 1
+        expect(response.status).to eq(401)
+        delete :destroy, :url_slug => 1
+        expect(response.status).to eq(401)
+        post :create
+        expect(response.status).to eq(401)
       end
     end
   end

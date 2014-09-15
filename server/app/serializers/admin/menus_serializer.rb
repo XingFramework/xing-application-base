@@ -4,10 +4,18 @@ class Admin::MenusSerializer < BaseSerializer
 
   def as_json_without_wrap(options={})
     object.map do |menu|
-      Admin::BareMenuSerializer.new(menu).as_json
+      BareMenuSerializer.new(menu).as_json
     end
   end
   def links
     { :self => routes.admin_menus_path  }
+  end
+
+  class BareMenuSerializer < BaseSerializer
+    attributes :name
+
+    def links
+      { :self => routes.admin_menu_path(object.menu_item)  }
+    end
   end
 end
