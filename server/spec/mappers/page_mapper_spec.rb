@@ -41,7 +41,7 @@ describe PageMapper do
         it "should create the page" do
           expect do
             mapper.save
-          end.to change{ Page.count}.by(1)
+          end.to change{ Page::OneColumn.count}.by(1)
           Page.last.title.should eq 'foo bar'
         end
 
@@ -194,6 +194,36 @@ describe PageMapper do
     describe "a content body" do
       let :json do
         { data: { contents: { main: { data: { body: "The New Body" }}}}}.to_json
+      end
+
+      it "should update the desired column" do
+        expect do
+          mapper.save
+        end.to change{ page.reload.contents['main'].body }.to("The New Body")
+      end
+
+      # is this too clever for its own good?  trying to avoid having to make
+      # a new mapper and save it for each individual attribute
+      it "should not update anything else" do
+        unchanged_fields = [ :url_slug, :keywords, :description, :title ]
+        expect do
+          mapper.save
+        end.not_to change {
+          page.reload
+          unchanged_fields.map do |key|
+            [ key, page.send(key) ]
+          end
+        }
+
+      end
+    end
+
+    describe "a content body with layout specified" do
+      let :json do
+        { data: {
+          contents: { main: { data: { body: "The New Body" }}}},
+          'layout' => 'one_column'
+        }.to_json
       end
 
       it "should update the desired column" do
