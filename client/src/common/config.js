@@ -1,9 +1,9 @@
 import {} from '../../vendor/angular/angular';
 import { environment } from "./environment";
-export var configuration = {
-  serverUrl: environment.serverUrl,
-  appName: "Reasoning"
-};
+
+export var serverUrl = environment.serverUrl;
+export var appName = "Reasoning";
+export var configuration = { serverUrl, appName };
 
 if(environment.name){
   configuration.appTitle = `${configuration.appName} - ${environment.name}`;

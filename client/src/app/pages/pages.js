@@ -2,6 +2,7 @@ import {configuration} from '../../common/config';
 import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import '../../../vendor/angular-froala/angular-froala';
+import './admin-edit';
 
 angular.module( `${configuration.appName}.pages`, [
   `${configuration.appName}.server`,
