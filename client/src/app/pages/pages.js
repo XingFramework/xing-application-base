@@ -46,7 +46,8 @@ angular.module( `${configuration.appName}.pages`, [
             return bool;
           });
         },
-        page(cmsBackend, $stateParams) {
+        page(isAdmin, cmsBackend, $stateParams) {
+          console.log("pages/pages.js:50", "isAdmin", isAdmin);
           console.log("pages/pages.js:29", "$stateParams", $stateParams);
           return cmsBackend.page($stateParams.pageUrl).complete.then( (page) => {
             console.log("pages/pages.js:30", "page", page);
