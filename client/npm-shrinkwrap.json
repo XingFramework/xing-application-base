@@ -2682,6 +2682,30 @@
         }
       }
     },
+    "grunt-concurrent": {
+      "version": "1.0.0",
+      "from": "grunt-concurrent@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/grunt-concurrent/-/grunt-concurrent-1.0.0.tgz",
+      "dependencies": {
+        "async": {
+          "version": "0.9.0",
+          "from": "async@>=0.9.0 <0.10.0",
+          "resolved": "https://registry.npmjs.org/async/-/async-0.9.0.tgz"
+        },
+        "pad-stdio": {
+          "version": "1.0.0",
+          "from": "pad-stdio@>=1.0.0 <2.0.0",
+          "resolved": "https://registry.npmjs.org/pad-stdio/-/pad-stdio-1.0.0.tgz",
+          "dependencies": {
+            "lpad": {
+              "version": "1.0.0",
+              "from": "lpad@>=1.0.0 <2.0.0",
+              "resolved": "https://registry.npmjs.org/lpad/-/lpad-1.0.0.tgz"
+            }
+          }
+        }
+      }
+    },
     "grunt-contrib-clean": {
       "version": "0.5.0",
       "from": "grunt-contrib-clean@0.5.0",
@@ -2737,6 +2761,74 @@
           "version": "2.4.1",
           "from": "lodash@2.4.1",
           "resolved": "https://registry.npmjs.org/lodash/-/lodash-2.4.1.tgz"
+        }
+      }
+    },
+    "grunt-contrib-compass": {
+      "version": "1.0.1",
+      "from": "grunt-contrib-compass@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/grunt-contrib-compass/-/grunt-contrib-compass-1.0.1.tgz",
+      "dependencies": {
+        "async": {
+          "version": "0.9.0",
+          "from": "async@>=0.9.0 <0.10.0",
+          "resolved": "https://registry.npmjs.org/async/-/async-0.9.0.tgz"
+        },
+        "bin-version-check": {
+          "version": "1.0.0",
+          "from": "bin-version-check@>=1.0.0 <2.0.0",
+          "resolved": "https://registry.npmjs.org/bin-version-check/-/bin-version-check-1.0.0.tgz",
+          "dependencies": {
+            "bin-version": {
+              "version": "1.0.0",
+              "from": "bin-version@>=1.0.0 <2.0.0",
+              "resolved": "https://registry.npmjs.org/bin-version/-/bin-version-1.0.0.tgz",
+              "dependencies": {
+                "find-versions": {
+                  "version": "1.1.1",
+                  "from": "find-versions@>=1.0.0 <2.0.0",
+                  "resolved": "https://registry.npmjs.org/find-versions/-/find-versions-1.1.1.tgz",
+                  "dependencies": {
+                    "array-uniq": {
+                      "version": "1.0.0",
+                      "from": "array-uniq@>=1.0.0 <2.0.0",
+                      "resolved": "https://registry.npmjs.org/array-uniq/-/array-uniq-1.0.0.tgz"
+                    },
+                    "get-stdin": {
+                      "version": "3.0.0",
+                      "from": "get-stdin@>=3.0.0 <4.0.0",
+                      "resolved": "https://registry.npmjs.org/get-stdin/-/get-stdin-3.0.0.tgz"
+                    },
+                    "semver-regex": {
+                      "version": "1.0.0",
+                      "from": "semver-regex@>=1.0.0 <2.0.0",
+                      "resolved": "https://registry.npmjs.org/semver-regex/-/semver-regex-1.0.0.tgz"
+                    }
+                  }
+                }
+              }
+            },
+            "minimist": {
+              "version": "1.1.0",
+              "from": "minimist@>=1.1.0 <2.0.0",
+              "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.1.0.tgz"
+            },
+            "semver": {
+              "version": "3.0.1",
+              "from": "semver@>=3.0.1 <4.0.0",
+              "resolved": "https://registry.npmjs.org/semver/-/semver-3.0.1.tgz"
+            }
+          }
+        },
+        "dargs": {
+          "version": "2.0.3",
+          "from": "dargs@>=2.0.3 <3.0.0",
+          "resolved": "https://registry.npmjs.org/dargs/-/dargs-2.0.3.tgz"
+        },
+        "tmp": {
+          "version": "0.0.24",
+          "from": "tmp@0.0.24",
+          "resolved": "https://registry.npmjs.org/tmp/-/tmp-0.0.24.tgz"
         }
       }
     },

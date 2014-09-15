@@ -12,7 +12,8 @@
     "sassy-buttons": "",
     "restangular": "~1.3.1",
     "angular-cookies": "~1.2.22",
-    "responsive-nav": "~1.0.32"
+    "responsive-nav": "~1.0.32",
+    "angular-froala": "~1.2.0"
   },
   "exportsOverride": {
     "sass-import-once": {
