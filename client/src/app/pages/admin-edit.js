@@ -9,8 +9,12 @@ angular.module(`${configuration.appName}.adminEditDirective`, ['froala'])
     templateUrl: 'pages/admin-edit.tpl.html',
     scope: true,
     link(scope, elem, attrs) {
-      scope.contentBlock = $sce.trustAsHtml(scope.contentBlocks[attrs.contentName]);
+      scope.contentBlock = scope.contentBlocks[attrs.contentName];
       scope.editable = { content: scope.page.contentBody(attrs.contentName) };
+      scope.froalaConfig.placeholder = "";
+      if(scope.editable.content.length === 0){
+        scope.froalaConfig.placeholder = `Add content for ${attrs.contentName} here`;
+      }
       scope.$watch('editable.content', (value)=> {
         scope.page.updateContentBody(attrs.contentName, value);
       });

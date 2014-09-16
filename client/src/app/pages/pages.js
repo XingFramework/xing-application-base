@@ -63,6 +63,25 @@ angular.module( `${configuration.appName}.pages`, [
   $scope.savePage = function(){
     cmsBackend.save($scope.page);
   };
+  $scope.updateButtonText = function(){
+    if($scope.nowEditing){
+      $scope.editButtonText = "Stop Editing";
+    } else {
+      $scope.editButtonText = "Edit this page";
+    }
+  };
+  $scope.nowEditing = false;
+  $scope.updateButtonText();
+
+  $scope.toggleEdit = function(){
+    $scope.nowEditing = !$scope.nowEditing;
+    $scope.updateButtonText();
+  };
+
+  $scope.froalaConfig = {
+  };
+
+
   $scope.page = page;
   $scope.isAdmin = isAdmin;
   $scope.contentBlocks = {};
@@ -70,7 +89,7 @@ angular.module( `${configuration.appName}.pages`, [
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
   for(var name in page.contentBlocks) {
     if (page.contentBlocks.hasOwnProperty(name)) {
-      $scope.contentBlocks[name] = page.contentBlocks[name];
+      $scope.contentBlocks[name] = $sce.trustAsHtml(page.contentBlocks[name]);
     }
   }
   // header info
