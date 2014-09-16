@@ -176,6 +176,15 @@ module.exports = function( grunt ) {
           files: { '<%= build_dirs.root %>/karma-unit.js': ['karma/karma-unit.tpl.js'] }
         },
 
+        vendor_fonts: {
+          files: [ {
+            expand: true,
+            src: ["vendor/**/*.eot", "vendor/**/*.ttf", "vendor/**/*.woff", "vendor/**/fontawesome-webfont.svg"],
+            flatten: true,
+            dest: "bin/fonts"
+          }]
+        },
+
         build_app_assets: {
           files: [ {
             src: [ '**' ],
@@ -654,7 +663,7 @@ module.exports = function( grunt ) {
     'compass:build',
     'concat_sourcemap:compile_css',
     'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:compile_assets',
+    'copy:compile_assets', 'copy:vendor_fonts',
     'index:build',
     'copy:karmaUnit'
   ]);
