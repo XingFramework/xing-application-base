@@ -1,6 +1,45 @@
 import {ServerResponse} from './serverResponse';
 
+class ContentBody {
+  constructor(page, contentName) {
+    this.page = page;
+    this.contentName = contentName;
+  }
+
+  get content(){
+    var pageData = this.page.pageData;
+    if(!pageData || !pageData.contents){
+      return "";
+    }
+    var block = pageData.contents[this.contentName];
+    if(block && block["data"] && block["data"]["body"]){
+      return block["data"]["body"];
+    } else {
+      return "";
+    }
+  }
+
+  set content(value){
+    var data = this.page.pageData;
+    if(!(data.contents)){
+      data.contents = {};
+    }
+    if(!(data.contents[this.contentName])){
+      data.contents[this.contentName] = {};
+    }
+    var block = data.contents[this.contentName];
+    if(!(block.data)){
+      block.data = {};
+    }
+    block.data.body = value;
+  }
+}
+
 export class Page extends ServerResponse {
+  contentBody(name) {
+    return new ContentBody(this, name);
+  }
+
   get layout(){
     return this.pageData.layout;
   }
@@ -87,24 +126,6 @@ export class Page extends ServerResponse {
       pageStyles: this.styles
     };
   }
-
-  contentBody(name) {
-    var block = this.pageData.contents[name];
-    if(block.data && block.data.body){
-      return block.data.body;
-    } else {
-      return "";
-    }
-  }
-
-  updateContentBody(name, value) {
-    var block = this.pageData.contents[name];
-    if(!(block.data)){
-      block.data = {};
-    }
-    block.data.body = value;
-  }
-
 
   get contentBlocks() {
     var contentBlocks = {};
