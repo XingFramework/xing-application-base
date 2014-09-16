@@ -28,12 +28,13 @@ class PageMapper < HypermediaJSONMapper
 
   def extract_data
     @page_data     = unwrap_data(@source_hash)
+    @layout        = @page_data.delete('layout')
     @contents_data = @page_data.delete('contents')
   end
 
   def set_page_type
-    if @page_data['layout'].present?
-      page_registry_key = @page_data.delete('layout').to_sym
+    if @layout.present?
+      page_registry_key = @layout.to_sym
       @page_class = Page.registry_get(page_registry_key)
     else
       raise MissingLayoutException.new("JSON missing layout information: #{@page_data.inspect}")

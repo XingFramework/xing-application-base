@@ -30,8 +30,23 @@ class Menu
   end
 
   def self.main_menu
-    self.new(MenuItem.find_by_name("Main Menu"))
+    MenuItem.find_or_create_by(:name => "Main Menu", :parent => nil)
   end
+
+  # The conditional and error checking here are because we need to check for
+  # the main menu id in config/routes.rb, and that ends up breaking when we're
+  # migrating a fresh database or doing other things where the AR model may not
+  # have been loaded.  TODO:  better solution?
+  def self.main_menu_id
+    if defined? MenuItem
+      main_menu.id
+    else
+      1
+    end
+  rescue PG::UndefinedTable, ActiveRecord::StatementInvalid
+    1
+  end
+
   def self.blog_topics
     self.new(MenuItem.find_by_name("Blog Topics"))
   end

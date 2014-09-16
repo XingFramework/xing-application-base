@@ -20,11 +20,11 @@ angular.module( `${configuration.appName}.admin`, [
       url: 'pages',
       controller: 'AdminPagesCtrl',
       templateUrl: 'admin/pages.tpl.html',
-      //resolve: {
-        //page(cmsBackend) {
-          //return cmsBackend.page("/homepage").complete;
-        //}
-      //}
+      resolve: {
+        pageList(cmsBackend) {
+          return cmsBackend.pageList().complete;
+        }
+      }
     })
     .state( 'root.admin.menus', {
       url: 'menus',
@@ -42,8 +42,9 @@ angular.module( `${configuration.appName}.admin`, [
       templateUrl: 'admin/images.tpl.html',
     });
 })
-.controller( 'AdminPagesCtrl', function( $scope, $stateParams, $sce) {
-  console.log("admin/admin.js:34", "admin", page);
+.controller( 'AdminPagesCtrl', function( $scope, $stateParams, $sce, pageList) {
+  $scope.pageList = pageList;
+  $scope.pages = pageList.pages;
   // header info
 })
 .controller( 'AdminMenusCtrl', function( $scope, $stateParams, $sce) {

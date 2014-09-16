@@ -294,8 +294,8 @@ module.exports = function( grunt ) {
           options: {
             watch: true
           }
-          }
-        },
+        }
+      },
       concurrent:{
         server: {
           tasks: ['compass:server', 'delta'],

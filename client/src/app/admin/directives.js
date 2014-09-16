@@ -9,13 +9,13 @@ angular.module( configuration.appName + '.adminDirectives', [`${configuration.ap
     function link(scope, element, attrs) {
       scope.showAdmin = false;
       $auth.validateUser().then((user) => {
-          scope.showAdmin = true;
+        scope.showAdmin = true;
       });
       $rootScope.$on('auth:login-success', (ev, user) => {
         scope.showAdmin = true;
       });
       $rootScope.$on('auth:logout-success', (ev, user) => {
-          scope.showAdmin = false;
+        scope.showAdmin = false;
       });
     }
     return {

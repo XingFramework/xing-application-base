@@ -46,13 +46,14 @@ describe( 'Pages section', function() {
       $scope: $scope,
       $state: $stateMock,
       $sce: $sceMock,
-      page: page
+      page: page,
+      isAdmin: false
     });
     $scope.$apply();
   }));
 
   it('should assign headline', function(){
-    expect($scope.headline).toBe("The Gettysburg Address");
+    expect($scope.page.headline).toBe("The Gettysburg Address");
   });
 
   it('should assign content', function(){
