@@ -2,7 +2,8 @@
 </div>
 <!-- pages.tpl -->
 <admin-only>
-  <form>
+  <button ng-click="toggleEdit()">{{editButtonText}}</button>
+  <form ng-if="nowEditing">
     <label>
       Title
       <input ng-model="page.title"></input>
@@ -24,12 +25,15 @@
       <input ng-model="page.styles"></input>
     </label>
     <label>
+      Publish Start
       <input ng-model="page.publishStart" type="date" />
     </label>
     <label>
+      Publish End
       <input ng-model="page.publishEnd" type="date" />
     </label>
     <label>
+      URL Slug
       <input ng-model="page.urlSlug" />
     </label>
     <button ng-click="savePage()">Save</button>
