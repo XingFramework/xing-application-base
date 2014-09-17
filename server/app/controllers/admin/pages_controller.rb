@@ -16,7 +16,13 @@ class Admin::PagesController < JsonController
     page_mapper = PageMapper.new(json_body)
 
     if page_mapper.save
-      redirect_to  admin_page_path(page_mapper.page)
+      #response.headers["Location"] = page_mapper.page
+      #
+      loc = admin_page_path(page_mapper.page)
+      p loc
+      #redirect_to loc
+      render :status => 201, :location => loc, :json => {}
+
     else
       failed_to_process(page_mapper.errors)
     end

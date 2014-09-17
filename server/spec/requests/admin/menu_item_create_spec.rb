@@ -22,10 +22,11 @@ describe "admin/menu_items#create", :type => :request do
     end
 
     describe "POST admin/menu_items" do
-      it "redirects to admin menu item show path" do
+      it "returns 201 with the new address in the header 'Location'" do
         json_post "admin/menu_items", json_body
 
-        expect(response).to redirect_to( admin_menu_item_path( MenuItem.find_by_name( 'Services' ) ) )
+        expect(response.status).to eq(201)
+        expect(response.headers["Location"]).to eq(admin_menu_item_path( MenuItem.find_by_name( 'Services' ) ) )
       end
     end
   end

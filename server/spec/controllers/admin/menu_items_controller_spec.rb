@@ -66,7 +66,8 @@ describe Admin::MenuItemsController do
       mock_menu_item_mapper.should_receive(:menu_item).and_return(mock_menu_item)
       post :create, json
 
-      expect(response).to redirect_to(admin_menu_item_path(mock_menu_item))
+      expect(response.status).to eq(201)
+      expect(response.headers["Location"]).to eq(admin_menu_item_path(mock_menu_item))
     end
   end
 

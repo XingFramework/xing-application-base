@@ -78,7 +78,11 @@ describe Admin::PagesController do
         mock_page_mapper.should_receive(:page).and_return(mock_page)
         post :create, json
 
-        expect(response).to redirect_to(admin_page_path(mock_page))
+        #expect(response).to redirect_to(admin_page_path(mock_page))
+
+        expect(response.status).to eq(201)
+        expect(response.headers["Location"]).to eq(admin_page_path(mock_page))
+
       end
 
       it "should render status 422 if not saved"  do
