@@ -1,0 +1,39 @@
+<div ng-include="template">
+</div>
+<!-- page-edit.tpl -->
+<form ng-if="nowEditing">
+  <label>
+    Title
+    <input ng-model="page.title"></input>
+  </label>
+  <label>
+    Headline
+    <input ng-model="page.headline"></input>
+  </label>
+  <label>
+    Keywords
+    <input ng-model="page.keywords"></input>
+  </label>
+  <label>
+    Description
+    <input ng-model="page.description"></input>
+  </label>
+  <label>
+    Styles
+    <input ng-model="page.styles"></input>
+  </label>
+  <label>
+    Publish Start
+    <input ng-model="page.publishStart" type="date" />
+  </label>
+  <label>
+    Publish End
+    <input ng-model="page.publishEnd" type="date" />
+  </label>
+  <label>
+    URL Slug
+    <input ng-model="page.urlSlug" />
+  </label>
+  <button ng-click="savePage()">Save</button>
+  <button ng-click="cancelEdit()">Cancel</button>
+</form>
