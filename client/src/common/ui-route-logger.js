@@ -17,6 +17,6 @@ angular.module( `${configuration.appName}.route-logger`, [] )
     /*jshint -W075 */
     console.table({event, fromState, fromParams, toState, toParams, error});
     console.log("ui-router", error.stack);
-    console.endGroup();
+    console.groupEnd();
   });
 });

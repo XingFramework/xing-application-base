@@ -2,7 +2,6 @@ import { configuration } from '../../common/config';
 import {} from "../../build/templates-app";
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
-
 angular.module( `${configuration.appName}.navigationBar`, ['templates-app', 'ui.router.state', `${configuration.appName}.pages`])
 .directive('lrdNavbar', function ($compile, $state) {
   return {
@@ -20,7 +19,7 @@ angular.module( `${configuration.appName}.navigationBar`, ['templates-app', 'ui.
         //pre: null,
         post(scope, element){
           scope.menu.complete.then(() => {
-            scope.pageState = "root.inner.page";
+            scope.pageState = "root.inner.page.show";
             scope.$state = $state;
             // Compile the contents
             if(!compiledContents){ compiledContents = $compile(contents); }
