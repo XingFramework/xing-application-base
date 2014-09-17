@@ -107,9 +107,14 @@ describe Admin::PagesController do
         PageMapper.should_receive(:new).with(json, url_slug).and_return(mock_page_mapper)
         mock_page_mapper.should_receive(:save).and_return(true)
         mock_page_mapper.should_receive(:page).and_return(mock_page)
+        Admin::PageSerializer.should_receive(:new).with(mock_page).and_return(serializer)
+
+        controller.should_receive(:render).
+          with(:json => serializer).
+          and_call_original
+
         put :update, json, { :url_slug => url_slug}
 
-        expect(response).to redirect_to(admin_page_path(mock_page))
       end
 
       it "should render status 422 if not updated" do

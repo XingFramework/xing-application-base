@@ -22,7 +22,7 @@ class Admin::MenuItemsController < JsonController
     mapper = MenuItemMapper.new(json_body, params[:id])
 
     if mapper.save
-      redirect_to  admin_menu_item_path(mapper.menu_item)
+      render :json => Admin::MenuItemSerializer.new(mapper.menu_item)
     else
       failed_to_process(mapper.errors)
     end
