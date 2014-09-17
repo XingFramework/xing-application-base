@@ -11,7 +11,7 @@ class Admin::MenuItemsController < JsonController
     mapper = MenuItemMapper.new(json_body)
 
     if mapper.save
-      render :status => 201, :location => admin_menu_item_path(mapper.menu_item), :json => {}
+      successful_create(admin_menu_item_path(mapper.menu_item))
     else
       failed_to_process(mapper.errors)
     end
