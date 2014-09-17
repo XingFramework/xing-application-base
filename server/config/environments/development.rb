@@ -22,7 +22,7 @@ Rails.application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-    # Do not compress assets
+  # Do not compress assets
   config.assets.compress = false
 
   # Expands the lines which load the assets
@@ -30,14 +30,14 @@ Rails.application.configure do
 
   config.assets.initialize_on_precompile = false
 
-  config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
-      allow do
-          origins '*'
-          resource '*',
-              :headers => :any,
-              :expose => ['access-token', 'token-type', 'client', 'expiry', 'uid'],
-          :methods => [:get, :post, :delete, :put, :patch, :options]
-      end
+  config.middleware.insert_before Warden::Manager, Rack::Cors do
+    allow do
+      origins '*'
+      resource '*',
+        :headers => :any,
+        :expose => ['access-token', 'token-type', 'client', 'expiry', 'uid'],
+        :methods => [:get, :post, :delete, :put, :patch, :options]
+    end
   end
 
 end
