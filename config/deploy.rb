@@ -38,7 +38,7 @@ namespace :deploy do
 
   task :perms do
     on roles(:app), :in => :parallel do
-      within server_path do
+      within File::join(release_path, "server") do
         execute "chown", "apache:apache", "-R", "public"
       end
     end
