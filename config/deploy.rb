@@ -36,6 +36,15 @@ namespace :deploy do
   end
   after 'symlink:shared', :build
 
+  task :perms do
+    on roles(:app), :in => :parallel do
+      within server_path do
+        execute "chown", "apache:apache", "-R", "public"
+      end
+    end
+  end
+  after 'symlink:shared', :perms
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
