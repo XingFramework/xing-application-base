@@ -545,6 +545,12 @@ module.exports = function( grunt ) {
           tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ]
         },
 
+        js_qa: {
+          files: [],
+          tasks: [ 'jshint:src', "jsonlint" ],
+          options: { atBegin: true }
+        },
+
         /**
          * When our CoffeeScript source files change, we want to run lint them and
          * run our unit tests.
@@ -657,8 +663,7 @@ module.exports = function( grunt ) {
 
   grunt.registerTask( 'build', [
     'clean:build', 'bower:install',
-    'html2js', 'jshint:src', 'jsonlint',
-    'coffeelint', 'coffee',
+    'html2js', 'coffee',
     'traceur:build', //'jshint:target',
     'compass:build',
     'concat_sourcemap:compile_css',
@@ -667,6 +672,8 @@ module.exports = function( grunt ) {
     'index:build',
     'copy:karmaUnit'
   ]);
+
+  grunt.registerTask( 'qa', "Check source code before deploy", [ 'jshint:src', 'jsonlint', 'coffeelint', ]);
 
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'copy:traceur_runtime' ]);
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime' ]);
