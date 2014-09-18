@@ -1,39 +1,55 @@
 <div ng-include="template">
 </div>
 <!-- page-edit.tpl -->
-<form ng-if="nowEditing">
-  <label>
-    Title
-    <input ng-model="page.title"></input>
-  </label>
-  <label>
-    Headline
-    <input ng-model="page.headline"></input>
-  </label>
-  <label>
-    Keywords
-    <input ng-model="page.keywords"></input>
-  </label>
-  <label>
-    Description
-    <input ng-model="page.description"></input>
-  </label>
-  <label>
-    Styles
-    <input ng-model="page.styles"></input>
-  </label>
-  <label>
-    Publish Start
-    <input ng-model="page.publishStart" type="date" />
-  </label>
-  <label>
-    Publish End
-    <input ng-model="page.publishEnd" type="date" />
-  </label>
-  <label>
-    URL Slug
-    <input ng-model="page.urlSlug" />
-  </label>
+<form ng-if="nowEditing" class="admin-form">
+  <fieldset>
+    <legend>Title and Address</legend>
+    <label>
+      <span class='label'>Title</span>
+      <input ng-model="page.title"></input>
+      <span class='comment'>Visible Page/Tab Title</span>
+    </label>
+    <label>
+      <span class='label'>URL Slug / Permalink</span>
+      <input ng-model="page.urlSlug" />
+      <span class='comment'>This page's address. Leave blank to set automatically based on the title.</span>
+    </label>
+    <!--<label>-->
+      <!--<span class='label'>Published</span>-->
+      <!--<input ng-model="page.published" type='checkbox' />-->
+      <!--<span class='comment'>Uncheck to hide this page completely.</span>-->
+    <!--</label>-->
+  </fieldset>
+  <fieldset>
+    <legend>Invisible fields for SEO (Search Engine Optimization)</legend>
+    <label>
+      <span class='label'>Keywords</span>
+      <input ng-model="page.keywords"></input>
+      <span class='comment'>Keywords</span>
+    </label>
+    <label>
+      <span class='label'>Description</span>
+      <input ng-model="page.description"></input>
+      <span class='comment'>Description</span>
+    </label>
+  </fieldset>
+  <fieldset>
+    <legend>Advanced Options</legend>
+    <label>
+      <span class='label'>Custom CSS Styles</span>
+      <textarea ng-model="page.styles"></textarea>
+    </label>
+    <label>
+      <span class='label'>Publish Start</span>
+      <input ng-model="page.publishStart" type="date" />
+      <span class='comment'>Don't show the page before this date</span>
+    </label>
+    <label>
+      <span class='label'>Publish End</span>
+      <input ng-model="page.publishEnd" type="date" />
+      <span class='comment'>Don't show the page after this date</span>
+    </label>
+  </fieldset>
   <button ng-click="savePage()">Save</button>
   <button ng-click="cancelEdit()">Cancel</button>
 </form>

@@ -1,0 +1,100 @@
+@mixin admin_tool
+  @include background(linear-gradient(white, #cccccc, #aaaaaa))
+
+
+#admin_tools
+  width: 100%
+  font-size: 11px
+  color: #334
+  border-bottom: 1px solid black
+  padding: 5px
+  font-family: Helvetica, Arial, sans-serif
+
+  @include admin_tool
+
+  h3, li, a
+    font-size: 12px
+
+  h3, li
+    margin: 0 1em 0 0
+    display: inline-block
+
+  h3
+    padding: 0.25em
+    font-weight: bold
+
+  ul
+    display: inline-block
+    list-style: none
+    margin: 0
+    padding: 0
+
+  li
+    list-style: none
+    a
+      padding: 0.25em
+      color: #334
+      margin: 0
+
+    a:hover
+      color: #ffff66
+
+    form
+      margin: 0 0 0 0
+      padding: 0
+      border: 0
+      background: transparent
+
+    form div input[type='submit']
+      font-size: 10px
+
+
+
+
+.admin_tool, .admin_tool a
+  /*background: $admin_background_color*/
+  color: white
+
+
+.admin_tool:hover, admin_tool a:hover
+  color: #ffff66
+
+
+.admin-form
+
+  fieldset
+    margin-top: 2em
+    background: #e0e0f0
+    border: 1px solid #ccc
+
+    legend
+      @include isolation-span(12, 1, 'both')
+      @include background(linear-gradient(white, #ccccfc, #aaaaea))
+      content: "Click to edit"
+      font-size: 14px
+      padding: 2px
+      display: block
+      font-weight: normal
+      margin-bottom: 1em
+
+  label
+    margin: 0.5em 0
+
+    span.label
+      @include isolation-span(2, 1, 'both')
+      text-align: right
+      font-size: 12px
+
+    input
+      @include isolation-span(3, 3)
+      position: relative
+      top: -0.25em
+    textarea
+      @include isolation-span(6, 3)
+
+    span.comment
+      @include isolation-span(7, 6)
+      font-size: 12px
+      font-style: italic
+
+
