@@ -35,88 +35,90 @@ class ContentBody {
   }
 }
 
+var jsonPaths = {
+  layout: "$.data.layout",
+  title: "$.data.title",
+  keywords: "$.data.keywords",
+  description: "$.data.description",
+  styles: "$.data.contents.styles.data.body",
+  headline: "$.data.contents.headline.data.body",
+  mainContent: "$.data.contents.main.data.body",
+  publishStart: "$.data.publishStart",
+  publishEnd: "$.data.publishEnd",
+  urlSlug: "$.data.urlSlug",
+};
+
 export class Page extends ServerResponse {
   contentBody(name) {
     return new ContentBody(this, name);
   }
 
   get layout(){
-    return this.pageData.layout;
+    return this.pathGet(jsonPaths.layout);
   }
   set layout(value){
-    this.pageData.layout = value;
+    return this.pathSet(jsonPaths.layout, value);
   }
 
   get title(){
-    return this.pageData.title;
+    return this.pathGet(jsonPaths.title);
   }
   set title(value){
-    this.pageData.title = value;
+    return this.pathSet(jsonPaths.title, value);
   }
 
   get keywords(){
-    return this.pageData.keywords;
+    return this.pathGet(jsonPaths.keywords);
   }
   set keywords(value){
-    this.pageData.keywords = value;
+    return this.pathSet(jsonPaths.keywords, value);
   }
 
   get description(){
-    return this.pageData.description;
+    return this.pathGet(jsonPaths.description);
   }
   set description(value){
-    this.pageData.description = value;
+    return this.pathSet(jsonPaths.description, value);
   }
 
   get styles(){
-    if (typeof(this.pageData.contents.styles) != 'undefined') {
-      return this.pageData.contents.styles.data.body;
-    } else {
-      return null;
-    }
+    return this.pathGet(jsonPaths.styles);
   }
   set styles(value){
-    if (typeof(this.pageData.contents.styles) != 'undefined') {
-      this.pageData.contents.styles = { data: {}};
-    }
-    this.pageData.contents.styles.data.body = value;
+    return this.pathSet(jsonPaths.styles, value);
   }
 
-  get headline() {
-    if(typeof this.pageData.contents.headline === "undefined") {
-      return null;
-    } else {
-      return this.pageData.contents.headline.data.body;
-    }
+  get headline(){
+    return this.pathGet(jsonPaths.headline);
   }
   set headline(value){
-    if (typeof(this.pageData.contents.headline) != 'undefined') {
-      this.pageData.contents.headline = { data: {}};
-    }
-    this.pageData.contents.headline.data.body = value;
+    return this.pathSet(jsonPaths.headline, value);
   }
 
   get publishStart(){
-    return this.pageData.publishStart;
+    return this.pathGet(jsonPaths.publishStart);
   }
   set publishStart(value){
-    this.pageData.publishStart = value;
+    return this.pathSet(jsonPaths.publishStart, value);
   }
 
   get publishEnd(){
-    return this.pageData.publishEnd;
+    return this.pathGet(jsonPaths.publishEnd);
   }
   set publishEnd(value){
-    this.pageData.publishEnd = value;
+    return this.pathSet(jsonPaths.publishEnd, value);
   }
 
   get urlSlug(){
-    return this.pageData.urlSlug;
+    return this.pathGet(jsonPaths.urlSlug);
   }
   set urlSlug(value){
-    this.pageData.urlSlug = value;
+    return this.pathSet(jsonPaths.urlSlug, value);
   }
 
+  get mainContent() {
+    return this.pathGet(jsonPaths.mainContent);
+  }
 
   get metadata(){
     return {
@@ -135,10 +137,6 @@ export class Page extends ServerResponse {
       }
     }
     return contentBlocks;
-  }
-
-  get mainContent() {
-    return this.pageData.contents.main.data.body;
   }
 
   get pageData() {

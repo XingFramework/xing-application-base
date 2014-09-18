@@ -1,3 +1,5 @@
+import jsonPath from '../jsonpath';
+
 export class ServerResponse {
   constructor(responsePromise) {
     this.response = null;
@@ -12,8 +14,26 @@ export class ServerResponse {
     (reason) => {
       console.log("server/serverResponse.js:13", "reason", reason);
       this.errorReason = reason;
-      return reason;
+      return this;
     });
+  }
+
+  pathGet(path){
+    return jsonPath(this._response, path, {wrap: false});
+  }
+
+  pathSet(jsonpath, value){
+    var path = jsonPath(this._response, jsonpath, {wrap: false, resultType: "path"});
+    var root = path.shift();
+    var target = path.pop();
+    var thumb = this._response;
+    if(root !== "$"){
+      console.log(`root of normalized path was '${root}', not '$'`);
+    }
+    for(var segment of path){
+      thumb = thumb[segment];
+    }
+    thumb[target] = value;
   }
 
   get isNew(){
