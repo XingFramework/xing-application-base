@@ -1,3 +1,4 @@
+$include-clearfix: true;
 /**
  * This is the main application stylesheet. It should include or import all
  * stylesheets used throughout the application as this is the only stylesheet in
@@ -12,7 +13,7 @@
 
 @import "../../vendor/sass-import-once/_sass-import-once.scss";
 @import "compass";
-//@import "../../vendor/breakpoint-sass/_breakpoint.scss";
+@import "../../vendor/breakpoint-sass/_breakpoint.scss";
 @import "../../vendor/sassy-buttons/_sassybuttons.sass";
 @import "../../vendor/singularity/_singularitygs.scss";
 
@@ -25,7 +26,10 @@
 @import "tools/_reset.scss";
 @import "_constants.scss";
 @import "partials/_layout.scss";
-@import "partials/_admin.scss";
+@import "partials/_login.sass";
+@import "partials/_admin.sass";
+@import "partials/_in_line_edit.sass";
+@import "partials/_footer.sass";
 @import "partials/_navbar.scss";
 @import "partials/_typography.sass";
 /*@import "partials/_responsive-nav.sass";*/

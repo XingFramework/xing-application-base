@@ -1,13 +1,11 @@
 <h1>Login</h1>
 
-<form>
-  <div>
+<form id='login-form'>
     <label for="login">Login:</label>
     <input name="login" ng-model="login.login" placeholder="Login" />
-  </div>
-  <div>
+    <span class='comment'></span>
     <label for="password">Password:</label>
     <input name="password" ng-model="login.password" placeholder="Password" />
-  </div>
-  <button type="submit" ng-click="loginSubmit()">Log In</button>
+    <span class='comment'></span>
+    <button type="submit" ng-click="loginSubmit()">Log In</button>
 </form>
