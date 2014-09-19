@@ -14,6 +14,15 @@ angular.module( `${configuration.appName}.auth`, [
       url: '^/login',
       controller: 'LoginCtrl',
       templateUrl: 'auth/login.tpl.html',
+    })
+    .state( 'root.inner.loginSuccess', {
+      url: '^/login-success',
+      templateUrl: 'auth/login-success.tpl.html',
+      resolve: {
+        isAdmin($auth){
+          return $auth.validateUser();
+        }
+      }
     });
   $authProvider.configure({
     apiUrl: configuration.serverUrl,
@@ -30,7 +39,7 @@ angular.module( `${configuration.appName}.auth`, [
     storage:                 'localStorage',
   });
 })
-.controller( 'LoginCtrl', function( $scope, $auth) {
+.controller( 'LoginCtrl', function( $scope, $auth, $state) {
   $scope.login = {
     login: '',
     password: ''
@@ -38,7 +47,7 @@ angular.module( `${configuration.appName}.auth`, [
   $scope.loginSubmit = function() {
     $auth.submitLogin({user: $scope.login})
       .then(function(resp) {
-
+        $state.go('root.inner.loginSuccess');
       })
       .catch(function(resp) {
         // handle error response
