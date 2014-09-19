@@ -1,13 +1,28 @@
 import jsonPath from '../jsonpath';
 
+// The more I think about it, this is a Server*Resource* not a response
 export class ServerResponse {
-  constructor(responsePromise) {
-    this.response = null;
+  constructor(backend, responsePromise) {
+    this.backend = backend;
+
     this.errorReason = null;
     this.resolved = false;
-    this._data = this.emptyData();
+    this._response = {
+      "links": {},
+      "data": this.emptyData()
+    };
+    this.responsePromise = null;
+    this.completePromise = null;
+
+    if(responsePromise){
+      this.serverResponds(responsePromise);
+    }
+  }
+
+  serverResponds(responsePromise){
     this.responsePromise = responsePromise;
     this.completePromise = responsePromise.then( (response) => {
+      this.resolved = true;
       this.absorbResponse(response);
       return this;
     },
@@ -16,6 +31,10 @@ export class ServerResponse {
       this.errorReason = reason;
       return this;
     });
+  }
+
+  save(){
+    return this.backend.save(this);
   }
 
   pathGet(path){
@@ -37,7 +56,7 @@ export class ServerResponse {
   }
 
   get isNew(){
-    return false;
+    return (responsePromise === null);
   }
 
   get putUrl(){
@@ -56,10 +75,16 @@ export class ServerResponse {
     return this._response;
   }
 
+  get _data(){
+    return this._response["data"];
+  }
+
+  get _links(){
+    return this._response["links"];
+  }
+
   absorbResponse(response) {
     this._response = response;
-    this._data = response["data"];
-    this._links = response["links"];
   }
 
   emptyData(){

@@ -1,45 +1,11 @@
 import {ServerResponse} from './serverResponse';
 
-class ContentBody {
-  constructor(page, contentName) {
-    this.page = page;
-    this.contentName = contentName;
-  }
-
-  get content(){
-    var pageData = this.page.pageData;
-    if(!pageData || !pageData.contents){
-      return "";
-    }
-    var block = pageData.contents[this.contentName];
-    if(block && block["data"] && block["data"]["body"]){
-      return block["data"]["body"];
-    } else {
-      return "";
-    }
-  }
-
-  set content(value){
-    var data = this.page.pageData;
-    if(!(data.contents)){
-      data.contents = {};
-    }
-    if(!(data.contents[this.contentName])){
-      data.contents[this.contentName] = {};
-    }
-    var block = data.contents[this.contentName];
-    if(!(block.data)){
-      block.data = {};
-    }
-    block.data.body = value;
-  }
-}
-
 var jsonPaths = {
   layout: "$.data.layout",
   title: "$.data.title",
   keywords: "$.data.keywords",
   description: "$.data.description",
+  contents: '$.data.contents',
   styles: "$.data.contents.styles.data.body",
   headline: "$.data.contents.headline.data.body",
   mainContent: "$.data.contents.main.data.body",
@@ -49,10 +15,6 @@ var jsonPaths = {
 };
 
 export class Page extends ServerResponse {
-  contentBody(name) {
-    return new ContentBody(this, name);
-  }
-
   get layout(){
     return this.pathGet(jsonPaths.layout);
   }
@@ -129,11 +91,17 @@ export class Page extends ServerResponse {
     };
   }
 
+  contentBody(name) {
+    return new ContentBody(this, name);
+  }
+
   get contentBlocks() {
     var contentBlocks = {};
-    for (var name in this.pageData.contents) {
-      if (this.pageData.contents.hasOwnProperty(name)) {
-        contentBlocks[name] = this.pageData.contents[name].data.body;
+    var contents = this.pathGet(jsonPaths.contents);
+    for (var name in contents) {
+      if (contents.hasOwnProperty(name)) {
+        //contentBlocks[name] = this.pageData.contents[name].data.body;
+        contentBlocks[name] = this.contentBody(name).content;
       }
     }
     return contentBlocks;
@@ -141,5 +109,26 @@ export class Page extends ServerResponse {
 
   get pageData() {
     return this._data;
+  }
+}
+
+class ContentBody {
+  constructor(page, contentName) {
+    this.page = page;
+    this.contentName = contentName;
+    this.path = `$.data.contents.${contentName}.data.body`;
+  }
+
+  get content(){
+    var body = this.page.pathGet(this.path);
+    if(body){
+      return body;
+    } else {
+      return "";
+    }
+  }
+
+  set content(value){
+    return this.page.pathSet(this.path, value);
   }
 }

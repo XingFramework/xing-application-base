@@ -39,12 +39,15 @@ describe('Page class', function() {
     };
   }
 
+  var mockBackend;
+
   beforeEach(function(done) {
     var promise = new Promise(function(resolve){
       var data = responseData();
       return resolve(data);
     });
-    page = new Page(promise);
+    mockBackend = {};
+    page = new Page(mockBackend, promise);
     page.completePromise = page.complete.then(function(){
       done();
     });

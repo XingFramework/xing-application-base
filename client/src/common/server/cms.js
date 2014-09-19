@@ -8,6 +8,8 @@ import {Menu} from './menu';
 import {Page} from './page';
 import {PageList} from './pageList';
 
+import CMSBackend from './backend-server';
+
 angular.module( configuration.appName + '.server', [ 'restangular', 'serializer' ])
 .config( function myAppConfig (RestangularProvider) {
   RestangularProvider.setBaseUrl(configuration.serverUrl);
@@ -24,53 +26,5 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
 
   var currentUser;
 
-  function mangleUrl(url){
-    return url.replace(/^\//,'');
-  }
-
-  return {
-    save(resource){
-      var url, serverReq;
-      var data = resource.dataForSave;
-      if(resource.isNew){
-        url = mangleUrl(resource.postUrl);
-        serverReq = Restangular.restangularizeCollection(null, {}, url);
-        serverReq.post(data);
-      } else {
-        url = mangleUrl(resource.putUrl);
-        serverReq = Restangular.restangularizeElement(null, data, url);
-        serverReq.put();
-      }
-      ///Restangular.one(url);
-    },
-    pageList(){
-      var response = Restangular.one("admin/pages").get();
-      return new PageList(response);
-    },
-    page(slug, forRole){
-      var ResourceClass = Page;
-      slug = slug.replace(/^\//,'');
-      var response = Restangular.one(slug).get();
-      if(forRole == "admin"){
-        var publicData;
-        response = response.then((serverData) => {
-          publicData = serverData;
-          var newUrl = serverData.links.admin.replace(/^\//,'');
-          return Restangular.one(newUrl).get();
-        }).catch((failure) => {
-          //assuming unauthorized
-          return publicData;
-        });
-      }
-      return new ResourceClass(response);
-    },
-    menu(name){
-      var response = Restangular.one('navigation', name).get(); // GET /menu/Main
-      return new Menu(response);
-    },
-    homepage(){
-      var response = Restangular.one('homepage').get();
-      return new Homepage(response);
-    }
-  };
+  return CMSBackend.new(Restangular);
 });

@@ -66,17 +66,19 @@ angular.module( `${configuration.appName}.pages`, [
       }
     });
 })
-.controller( 'PageEditCtrl', function( $scope, $state, cmsBackend ){
-  console.log("pages/pages.js:70", "$scope.nowEditing", $scope.nowEditing);
+.controller( 'PageEditCtrl', function( $scope, $state, page ){
+  // I think there's potential for improving UX here: duplicate the existing page, edit that -
+  // on save, submit that and discard the old page. On cancel, swap it back in.
+  // Let admin switch back and forth until they decide "this is good" and save
+  //    --jdl
   $scope.nowEditing = true;
   $scope.cancelEdit = function(){
     $state.go("^.show");
   };
   $scope.savePage = function(){
-    cmsBackend.save($scope.page);
+    page.save();
     $state.go("^.show");
   };
-  console.log("pages/pages.js:76", "$scope.nowEditing", $scope.nowEditing);
 })
 .controller( 'PagesCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.nowEditing = false;

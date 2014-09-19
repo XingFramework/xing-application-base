@@ -1,7 +1,7 @@
 import {Menu} from "../../src/common/server/menu";
 
 describe('Menu class', function() {
-  var menu;
+  var menu, mockBackend;
 
   function responseData() {
     return {
@@ -31,7 +31,8 @@ describe('Menu class', function() {
       var data = responseData();
       return resolve(data);
     });
-    menu = new Menu(promise);
+    mockBackend = {};
+    menu = new Menu(mockBackend, promise);
     menu.complete.then(function(){
       done();
     });
