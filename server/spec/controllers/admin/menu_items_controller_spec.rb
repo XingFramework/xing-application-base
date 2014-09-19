@@ -66,7 +66,8 @@ describe Admin::MenuItemsController do
       mock_menu_item_mapper.should_receive(:menu_item).and_return(mock_menu_item)
       post :create, json
 
-      expect(response).to redirect_to(admin_menu_item_path(mock_menu_item))
+      expect(response.status).to eq(201)
+      expect(response.headers["Location"]).to eq(admin_menu_item_path(mock_menu_item))
     end
   end
 
@@ -90,9 +91,13 @@ describe Admin::MenuItemsController do
       MenuItemMapper.should_receive(:new).with(json, id).and_return(mock_menu_item_mapper)
       mock_menu_item_mapper.should_receive(:save).and_return(true)
       mock_menu_item_mapper.should_receive(:menu_item).and_return(mock_menu_item)
-      put :update, json, { :id => id}
+      Admin::MenuItemSerializer.should_receive(:new).with(mock_menu_item).and_return(serializer)
 
-      expect(response).to redirect_to(admin_menu_item_path(mock_menu_item))
+      controller.should_receive(:render).
+        with(:json => serializer).
+        and_call_original
+
+      put :update, json, { :id => id}
     end
 
     it "should render status 422 if not updated" do

@@ -13,23 +13,23 @@ class Admin::PagesController < JsonController
 
   # POST /admin/pages
   def create
-    page_mapper = PageMapper.new(json_body)
+    mapper = PageMapper.new(json_body)
 
-    if page_mapper.save
-      redirect_to  admin_page_path(page_mapper.page)
+    if mapper.save
+      successful_create(admin_page_path(mapper.page))
     else
-      failed_to_process(page_mapper.errors)
+      failed_to_process(mapper.errors)
     end
   end
 
   # PUT /admin/pages/:url_slug
   def update
-    page_mapper = PageMapper.new(json_body, params[:url_slug])
+    mapper = PageMapper.new(json_body, params[:url_slug])
 
-    if page_mapper.save
-      redirect_to admin_page_path(page_mapper.page)
+    if mapper.save
+      render :json => Admin::PageSerializer.new(mapper.page)
     else
-      failed_to_process(page_mapper.errors)
+      failed_to_process(mapper.errors)
     end
   end
 

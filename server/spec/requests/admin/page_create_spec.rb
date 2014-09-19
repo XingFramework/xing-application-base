@@ -45,10 +45,11 @@ describe "admin/pages#create", :type => :request do
     end
 
     describe "POST admin/pages" do
-      it "redirects to admin page show path" do
+      it "returns 201 with the new address in the header 'Location'" do
         json_post "admin/pages", json_body
 
-        expect(response).to redirect_to( admin_page_path( Page.find_by_url_slug( "test_slug" ) ) )
+        expect(response.status).to eq(201)
+        expect(response.headers["Location"]).to eq(admin_page_path( Page.find_by_url_slug( "test_slug" ) ) )
       end
     end
   end

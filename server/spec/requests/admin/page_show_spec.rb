@@ -52,10 +52,10 @@ describe "pages#show", :type => :request do
       expect(response.body).to have_json_path("data/layout")
       expect(response.body).to have_json_path("data/contents")
       expect(response.body).to have_json_size(3).at_path("data/contents")
-      expect(JSON.parse(response.body)["links"]["self"]).to eq("/admin/pages/#{page.url_slug}")
-      expect(JSON.parse(response.body)["data"]["title"]).to eq(page.title)
-      expect(JSON.parse(response.body)["data"]["contents"]["headline"]["links"]["self"]).to eq(admin_content_block_path(headline))
-      expect(JSON.parse(response.body)["data"]["contents"]["styles"]["data"]["body"]).to eq(styles.body)
+      expect(response.body).to be_json_eql("\"/admin/pages/#{page.url_slug}\"").at_path("links/self")
+      expect(response.body).to be_json_eql("\"#{page.title}\"").at_path("data/title")
+      expect(response.body).to be_json_eql("\"#{admin_content_block_path(headline)}\"").at_path("data/contents/headline/links/self")
+      expect(response.body).to be_json_eql("\"#{styles.body}\"").at_path("data/contents/styles/data/body")
     end
   end
 end

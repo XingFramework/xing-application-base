@@ -14,6 +14,11 @@ angular.module( `${configuration.appName}.admin`, [
     .state( 'root.admin', {
       url: 'admin',
       templateUrl: 'admin/admin.tpl.html',
+      resolve: {
+        isAdmin($auth){
+          return $auth.validateUser();
+        }
+      }
    })
     .state( 'root.admin.pages', {
       url: 'pages',
