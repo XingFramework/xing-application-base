@@ -28,10 +28,12 @@ angular.module( configuration.appName + '.adminDirectives', [`${configuration.ap
   }])
 
 .directive('adminNav',
-  function($auth) {
+  function($auth, $state) {
     function link(scope, element, attrs) {
       scope.logout = () => {
-        $auth.signOut();
+        $auth.signOut().then((response) => {
+          $state.go('root.homepage.show');
+        });
       };
     }
     return {

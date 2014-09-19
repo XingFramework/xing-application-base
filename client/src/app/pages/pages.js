@@ -12,9 +12,10 @@ angular.module( `${configuration.appName}.pages`, [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'root.homepage', {
-      url: 'home',
       controller: 'PagesCtrl',
-      templateUrl: 'pages/homepage.tpl.html',
+      template: "<ui-view></ui-view>",
+      abstract: true,
+      url: 'home',
       resolve: {
         isAdmin($auth){
           return $auth.validateUser().then(
@@ -26,8 +27,23 @@ angular.module( `${configuration.appName}.pages`, [
             return bool;
           });
         },
-        page(cmsBackend) {
-          return cmsBackend.page("/homepage").complete;
+        page(isAdmin, cmsBackend) {
+          var role = "guest";
+          if(isAdmin){ role = "admin"; }
+          return cmsBackend.page("/homepage", role).complete;
+        }
+      }
+    })
+    .state( 'root.homepage.show', {
+      url: '',
+      templateUrl: 'pages/homepage.tpl.html',
+    })
+    .state( 'root.homepage.edit', {
+      templateUrl: 'pages/homepage-edit.tpl.html',
+      controller: 'PageEditCtrl',
+      resolve: {
+        onlyAdmin($auth){
+          return $auth.validateUser();
         }
       }
     })
@@ -67,7 +83,7 @@ angular.module( `${configuration.appName}.pages`, [
     });
 })
 .controller( 'PageEditCtrl', function( $scope, $state, cmsBackend ){
-  console.log("pages/pages.js:70", "$scope.nowEditing", $scope.nowEditing);
+  console.log("pages/pages.js:85", "$scope.nowEditing", $scope.nowEditing);
   $scope.nowEditing = true;
   $scope.cancelEdit = function(){
     $state.go("^.show");
@@ -76,7 +92,7 @@ angular.module( `${configuration.appName}.pages`, [
     cmsBackend.save($scope.page);
     $state.go("^.show");
   };
-  console.log("pages/pages.js:76", "$scope.nowEditing", $scope.nowEditing);
+  console.log("pages/pages.js:94", "$scope.nowEditing", $scope.nowEditing);
 })
 .controller( 'PagesCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.nowEditing = false;

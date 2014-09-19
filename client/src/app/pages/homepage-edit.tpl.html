@@ -1,0 +1,36 @@
+<lrd-navbar id="main_nav" menu="mainMenu"></lrd-navbar>
+<div id='content'>
+
+  <h1>CMS Homepage</h1>
+  <p>This will be the home page of whatever project is based on the LRD CMS.</p>
+
+  <form ng-if="nowEditing" class="admin-form">
+    <fieldset>
+      <legend>Title and Address</legend>
+      <label>
+        <span class='label'>Title</span>
+        <input ng-model="page.title"></input>
+        <span class='comment'>Visible Page/Tab Title</span>
+      </label>
+      <!--<label>-->
+        <!--<span class='label'>Published</span>-->
+        <!--<input ng-model="page.published" type='checkbox' />-->
+        <!--<span class='comment'>Uncheck to hide this page completely.</span>-->
+      <!--</label>-->
+    </fieldset>
+    <fieldset>
+      <legend>Invisible fields for SEO (Search Engine Optimization)</legend>
+      <label>
+        <span class='label'>Keywords</span>
+        <input ng-model="page.keywords"></input>
+        <span class='comment'>Keywords</span>
+      </label>
+      <label>
+        <span class='label'>Description</span>
+        <textarea ng-model="page.description"></textarea>
+      </label>
+    </fieldset>
+    <button ng-click="savePage()">Save</button>
+    <button ng-click="cancelEdit()">Cancel</button>
+  </form>
+</div>
