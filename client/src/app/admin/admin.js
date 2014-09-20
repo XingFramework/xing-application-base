@@ -44,6 +44,9 @@ angular.module( `${configuration.appName}.admin`, [
 .controller( 'AdminPagesCtrl', function( $scope, $stateParams, $sce, pageList) {
   $scope.pageList = pageList;
   $scope.pages = pageList.pages;
+  $scope.newPage = function(){
+    cmsBackend.createPage();
+  };
   // header info
 })
 .controller( 'AdminMenusCtrl', function( $scope, $stateParams, $sce) {

@@ -26,5 +26,10 @@ describe('JsonPath', function() {
       var result = jsonpath(json, "$.a..d", {resultType: "path", wrap: false });
       expect(result).toEqual(["$", "a", "b", "c", "d"]);
     });
+
+    it('should speculate about array path', function() {
+      var result = jsonpath(json, "$.x..z", {resultType: "path", wrap: false });
+      expect(result).toEqual(false);
+    });
   });
 });

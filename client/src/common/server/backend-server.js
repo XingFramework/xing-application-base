@@ -44,6 +44,12 @@ export default class CMSBackendServer {
     return new ResourceClass(this, this.unwrap(response));
   }
 
+  create(ResourceClass, postUrl){
+    var resource =  new ResourceClass(this);
+    resource.postUrl = postUrl;
+    return resource;
+  }
+
   unwrap(serverResponds){
     return serverResponds.then((fullResponse) => {
       return fullResponse.data;
@@ -78,5 +84,9 @@ export default class CMSBackendServer {
         });
       });
     }
+  }
+
+  createPage(){
+    return create(Page, '/admin/pages');
   }
 }

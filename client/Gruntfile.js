@@ -324,13 +324,21 @@ module.exports = function( grunt ) {
        */
       jshint: {
         src: [ '<%= app_files.js %>' ],
+
+        precompile: {
+          files: [ '<%= app_files.js %>' ],
+          options: { debug: false }
+        },
+
         test: {
           files: [ { src: ['<%= app_files.jstest %>' ] }],
           options: {
             debug: true,
           }
         },
+
         gruntfile: [ 'Gruntfile.js' ],
+
         target: {
           files: [ {
             src: [ '<%= compile_targets.js %>' ]
@@ -342,6 +350,7 @@ module.exports = function( grunt ) {
         },
         // c.f. http://www.jshint.com/docs/options/
         options: {
+          debug: true,
           bitwise: true, //don't allow ^ | &, which are bitwise not boolean
           //eqeqeq: true, //require === and !== instead of == and !=
           forin: true, //require for in loops to filter items with hasOwnProperty
@@ -679,7 +688,7 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime' ]);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'build', 'ngAnnotate', 'uglify' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'ngAnnotate', 'uglify' ]);
 
   /**
    * A utility function to get all app JavaScript sources.

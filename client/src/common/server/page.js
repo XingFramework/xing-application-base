@@ -14,7 +14,63 @@ var jsonPaths = {
   urlSlug: "$.data.urlSlug",
 };
 
+var layouts = {
+  "one_column": {
+    "main": { type: "text/html" },
+  },
+  "two_column": {
+    "columnOne": { type: "text/html" },
+    "columnTwo": { type: "text/html" }
+  }
+};
+
 export class Page extends ServerResponse {
+  emptyData(){
+    return {
+      "layout": "one_column",
+      "title": "",
+      "keywords": "",
+      "description": "",
+      "contents": {
+        "styles": this.emptyContent("text/css"),
+        "headline": this.emptyContent("text/html")
+      },
+      "publishStart": null,
+      "publishEnd": null,
+      "urlSlug": ""
+    };
+  }
+
+  emptyContent(type){
+    return {
+      "links": {},
+      "data": {
+        "contentType": type,
+        "body": ""
+      }
+    };
+  }
+
+  setupContents(){
+    var blockName;
+    var contents = this.pathGet(jsonPaths.contents);
+    var templateLayout = layouts[this.layout];
+    if(templateLayout){
+      var layoutNames = Object.getOwnPropertyNames(templateLayout);
+      layoutNames.push("headline", "styles");
+      for(blockName of layoutNames) {
+        if(!contents.hasOwnProperty(blockName)){
+          contents[blockName] = this.emptyContent(templateLayout.type);
+        }
+      }
+      for(blockName of Object.getOwnPropertyNames(contents)) {
+        if("headline" !== blockName && "styles" !== blockName && !templateLayout.hasOwnProperty(blockName)){
+          delete contents[blockName];
+        }
+      }
+    }
+  }
+
   get layout(){
     return this.pathGet(jsonPaths.layout);
   }

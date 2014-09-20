@@ -17,7 +17,7 @@ function unshift(elem, arr) { arr = arr.slice(); arr.unshift(elem); return arr; 
 
 export default function jsonPath(obj, expr, arg) {
    var P = {
-      resultType: arg && arg.resultType || "VALUE",
+      resultType: arg && arg.resultType || "value",
       flatten: arg && arg.flatten || false,
       wrap: (arg && arg.hasOwnProperty('wrap')) ? arg.wrap : true,
       sandbox: (arg && arg.sandbox) ? arg.sandbox : {},
@@ -174,7 +174,12 @@ export default function jsonPath(obj, expr, arg) {
          }
        }
        if (result.length === 1 && !P.wrap && !Array.isArray(result[0].value)) {
-         return result[0][resultType] || false;
+         var ret = result[0][resultType];
+         if(typeof ret === "undefined"){
+           return false;
+         } else {
+           return ret;
+         }
        }
        return result.reduce(function(result, ea) {
          var valOrPath = ea[resultType];

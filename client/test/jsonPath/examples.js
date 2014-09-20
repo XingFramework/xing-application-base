@@ -29,11 +29,15 @@ describe('JsonPath', function() {
       ],
       "bicycle": {
         "color": "red",
-        "price": 19.95
+        "price": 19.95,
+        "empty": ""
       }
     }
     };
 
+    it('return empty strings', function() {
+      expect(jsonpath(json, "$.store.bicycle.empty", {wrap: false})).toEqual("");
+    });
 
     it('should match wildcards', function() {
         var books = json.store.book;
@@ -117,6 +121,7 @@ describe('JsonPath', function() {
       });
       expected.push(json.store.bicycle.color);
       expected.push(json.store.bicycle.price);
+      expected.push(json.store.bicycle.empty);
 
       var result = jsonpath(json, "$..*");
       expect(result).toEqual(expected);
