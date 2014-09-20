@@ -16,11 +16,17 @@ var jsonPaths = {
 
 var layouts = {
   "one_column": {
-    "main": { type: "text/html" },
+    "label": "One Column",
+    "template": {
+      "main": { type: "text/html" },
+    }
   },
   "two_column": {
-    "columnOne": { type: "text/html" },
-    "columnTwo": { type: "text/html" }
+    "label": "Two Column",
+    "template": {
+      "columnOne": { type: "text/html" },
+      "columnTwo": { type: "text/html" }
+    }
   }
 };
 
@@ -51,10 +57,20 @@ export class Page extends ServerResponse {
     };
   }
 
+  get layoutKinds(){
+    var kindList = [];
+    for(var layoutName in layouts){
+      if(layouts.hasOwnProperty(layoutName)){
+        kindList.push([layouts[layoutName]["label"], layoutName]);
+      }
+    }
+    return kindList;
+  }
+
   setupContents(){
     var blockName;
     var contents = this.pathGet(jsonPaths.contents);
-    var templateLayout = layouts[this.layout];
+    var templateLayout = layouts[this.layout]["template"];
     if(templateLayout){
       var layoutNames = Object.getOwnPropertyNames(templateLayout);
       layoutNames.push("headline", "styles");

@@ -17,4 +17,3 @@ class JsonController < ActionController::Base
     render :status => 201, :json => {}, :location => new_resource_path
   end
 end
-
