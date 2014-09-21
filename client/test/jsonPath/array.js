@@ -4,6 +4,7 @@ describe('JsonPath', function() {
   describe('getting arrays', function() {
     var json = {
       "store": {
+        "empty": [],
         "book": { "category": "reference",
           "author": "Nigel Rees",
           "title": "Sayings of the Century",
@@ -29,6 +30,11 @@ describe('JsonPath', function() {
       var expected = json.store.books;
       var result = jsonpath(json, "store.books", {flatten: true, wrap: false});
       expect(result).toEqual(expected);
+    });
+
+    it('should get an empty array', function() {
+      var result = jsonpath(json, "store.empty", {flatten: true, wrap: false});
+      expect(result).toEqual([]);
     });
   });
 });

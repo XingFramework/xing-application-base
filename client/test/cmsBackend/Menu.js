@@ -12,15 +12,33 @@ describe('Menu class', function() {
           name: 'Test 1',
           type: 'page',
           page: { links: { self: '/pages/test-1'} },
-          children: [
-            {
+          children: [ {
             links: {},
             data: {
               name: 'Sublevel 1',
               type: 'page',
               page: { links: { self: '/pages/test-2'} },
+              children: [
+                {
+                links: {},
+                data: {
+                  name: 'Sub-Sublevel 1',
+                  type: 'page',
+                  page: { links: { self: '/pages/test-3'} },
+                  children: [ ]
+                }
+              } ]
             }
           } ]
+        }
+      },
+      {
+        links: {},
+        data: {
+          name: 'Sublevel 2',
+          type: 'page',
+          page: { links: { self: '/pages/test-4'} },
+          children: [ ]
         }
       } ]
     };
@@ -61,5 +79,14 @@ describe('Menu class', function() {
 
   it('should have children', function() {
     expect(menu.items[0].children instanceof Menu).toBeTruthy();
+  });
+
+  it('should have grandchildren', function() {
+    console.log("cmsBackend/Menu.js:90", "menu.items[0].children.items", menu.items[0].children.items[0].children);
+    expect(menu.items[0].children.items[0].children instanceof Menu).toBeTruthy();
+  });
+
+  it('report no children correctly', function() {
+    expect(menu.items[1].hasChildren()).toBeFalsy();
   });
 });

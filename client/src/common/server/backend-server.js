@@ -28,18 +28,18 @@ export default class CMSBackendServer {
     var data = resource.dataForSave;
     if(resource.isNew){
       url = mangleUrl(resource.postUrl);
-      serverReq = Restangular.restangularizeCollection(null, {}, url);
+      serverReq = this.Restangular.restangularizeCollection(null, {}, url);
       responds = serverReq.post(data);
     } else {
       url = mangleUrl(resource.putUrl);
-      serverReq = Restangular.restangularizeElement(null, data, url);
+      serverReq = this.Restangular.restangularizeElement(null, data, url);
       responds = serverReq.put();
     }
     resource.serverResponds(this.unwrap(responds));
   }
 
   load(ResourceClass, url, responseFn){
-    var response = Restangular.one(mangleUrl(url)).get();
+    var response = this.Restangular.one(mangleUrl(url)).get();
     if(responseFn){ response = responseFn(response); }
     return new ResourceClass(this, this.unwrap(response));
   }
@@ -74,10 +74,10 @@ export default class CMSBackendServer {
     } else {
       return this.load(Page, slug, (response) => {
         var publicData;
-        response = response.then((serverData) => {
+        return response.then((serverData) => {
           publicData = serverData;
           var newUrl = mangleUrl(serverData.data.links.admin);
-          return Restangular.one(newUrl).get();
+          return this.Restangular.one(newUrl).get();
         }).catch((failure) => {
           //assuming unauthorized
           return publicData;

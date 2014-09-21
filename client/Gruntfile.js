@@ -663,6 +663,7 @@ module.exports = function( grunt ) {
    */
   grunt.renameTask( 'watch', 'delta' );
   grunt.registerTask( 'watch', [ 'develop', 'karma:unit:start', 'connect', 'concurrent:server' ] );
+  grunt.registerTask( 'watch:develop', [ 'develop', 'karma:unit:start', 'concurrent:server' ] );
   grunt.registerTask( 'watch:integrate', [ 'integrate', 'karma:unit:start', 'connect', 'concurrent:server' ] );
 
   /**
@@ -730,6 +731,7 @@ module.exports = function( grunt ) {
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
+    jsFiles.push("http://localhost:35729/livereload.js?snipver=1");
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });

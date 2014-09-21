@@ -38,7 +38,7 @@ export class ServerResponse {
   }
 
   pathGet(path){
-    return jsonPath(this._response, path, {wrap: false});
+    return jsonPath(this._response, path, {flatten: true, wrap: false});
   }
 
   pathSet(jsonpath, value){
@@ -56,7 +56,7 @@ export class ServerResponse {
   }
 
   get isNew(){
-    return (responsePromise === null);
+    return (this.responsePromise === null);
   }
 
   get putUrl(){

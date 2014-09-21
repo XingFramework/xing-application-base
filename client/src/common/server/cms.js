@@ -4,10 +4,6 @@ import {} from '../../../vendor/lodash/lodash';
 import {} from '../../../vendor/restangular/restangular';
 import {} from '../serializer';
 
-import {Menu} from './menu';
-import {Page} from './page';
-import {PageList} from './pageList';
-
 import CMSBackend from './backend-server';
 
 angular.module( configuration.appName + '.server', [ 'restangular', 'serializer' ])
@@ -26,5 +22,5 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
 
   var currentUser;
 
-  return CMSBackend.new(Restangular);
+  return new CMSBackend(Restangular);
 });

@@ -48,7 +48,7 @@ class MenuItem extends ServerResponse {
     var childrenPromise = this.responsePromise.then((response) => {
       return { data: response["data"]["children"] };
     });
-    this.subMenu = new Menu(childrenPromise);
+    this.subMenu = new Menu(this.backend, childrenPromise);
     this.completePromise = Promise.all([ this.completePromise, this.subMenu.completePromise ]).then((responses) => { return this; });
   }
 
