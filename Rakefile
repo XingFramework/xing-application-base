@@ -42,6 +42,8 @@ namespace :develop do
         test_conn.close rescue nil
       end
 
+      sleep 3 #It's possible the existing browser just hasn't connected to the new LR yet
+
       changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{server_port}/changed")))
       if changes["clients"].empty?
         puts "No running development browsers: launching...."
