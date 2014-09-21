@@ -42,9 +42,27 @@ namespace :develop do
         test_conn.close rescue nil
       end
 
-      changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{server_port}/changes")))
+      changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{server_port}/changed")))
       if changes["clients"].empty?
-        sh *%w{open http://localhost:3000/}
+        puts "No running development browsers: launching...."
+
+        cmds = %w{open xdg-open chrome chromium}
+        cmd = nil
+        begin
+          cmd = cmds.shift
+          sh "which", cmd
+        rescue
+          if cmds.empty?
+            warn "Can't find any executable to launch a browser with. (WTF?) --jdl"
+          else
+            retry
+          end
+        end
+
+        sh cmd, "http://localhost:3000/"
+      else
+        puts "There's already a browser attached to the LiveReload server."
+        p changes["clients"].first
       end
     end
   end
@@ -78,7 +96,7 @@ namespace :develop do
     child_pids << child_pid
   end
 
-  task :all => [:grunt_watch, :rails_server] do
+  task :all => [:grunt_watch, :rails_server, :launch_browser] do
     Process.waitall
   end
 
