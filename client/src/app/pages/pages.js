@@ -12,9 +12,10 @@ angular.module( `${configuration.appName}.pages`, [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'root.homepage', {
-      url: 'home',
       controller: 'PagesCtrl',
-      templateUrl: 'pages/homepage.tpl.html',
+      template: "<ui-view></ui-view>",
+      abstract: true,
+      url: 'home',
       resolve: {
         isAdmin($auth){
           return $auth.validateUser().then(
@@ -26,8 +27,23 @@ angular.module( `${configuration.appName}.pages`, [
             return bool;
           });
         },
-        page(cmsBackend) {
-          return cmsBackend.page("/homepage").complete;
+        page(isAdmin, cmsBackend) {
+          var role = "guest";
+          if(isAdmin){ role = "admin"; }
+          return cmsBackend.page("/homepage", role).complete;
+        }
+      }
+    })
+    .state( 'root.homepage.show', {
+      url: '',
+      templateUrl: 'pages/homepage.tpl.html',
+    })
+    .state( 'root.homepage.edit', {
+      templateUrl: 'pages/homepage-edit.tpl.html',
+      controller: 'PageEditCtrl',
+      resolve: {
+        onlyAdmin($auth){
+          return $auth.validateUser();
         }
       }
     })
@@ -68,7 +84,7 @@ angular.module( `${configuration.appName}.pages`, [
       controller: 'PageEditCtrl',
       resolve: {
         onlyAdmin($auth){ return $auth.validateUser(); }
-      }
+        }
     })
     .state( 'root.inner.page.new', {
       url: 'new',
@@ -93,7 +109,7 @@ angular.module( `${configuration.appName}.pages`, [
   $scope.savePage = function(){
     page.save();
     page.complete.then((page) => {
-      $state.go("^.show");
+    $state.go("^.show");
       return page;
     });
   };

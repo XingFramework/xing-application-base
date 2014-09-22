@@ -13,7 +13,6 @@ angular.module('froala', []).
 				froala : '='
 			},
 			link: function(scope, element, attrs, ngModel) {
-                          console.log("linking ng-f");
 				var defaultOptions = {};
 				var contentChangedCallback;
 				var options = angular.extend(defaultOptions, froalaConfig, scope.froala);
@@ -40,12 +39,9 @@ angular.module('froala', []).
 						return;
 					}
 
-                                        console.log("ng-f update", theHTML);
-                                        console.log("ng-f ngM", ngModel);
 					ngModel.$setViewValue(theHTML);
 					if (!scope.$root.$$phase) {
 
-                                          console.log("ng-f apply");
 						scope.$apply();
 					}
 				};
