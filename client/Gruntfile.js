@@ -461,6 +461,15 @@ module.exports = function( grunt ) {
             '<%= compile_targets.js %>',
             '<%= compile_targets.css %>'
           ]
+        },
+
+        deploy: {
+          production: true,
+          dir: '<%= compile_dir %>',
+          src: [
+            '<%= compile_targets.js %>',
+            '<%= compile_targets.css %>'
+          ]
         }
       },
 
@@ -588,7 +597,10 @@ module.exports = function( grunt ) {
          */
         html: {
           files: [ '<%= app_files.html %>' ],
-          tasks: [ 'index:build' ]
+          tasks: [ 'index:build' ],
+          options: {
+            atBegin: true
+          }
         },
 
         /**
@@ -680,7 +692,6 @@ module.exports = function( grunt ) {
     'concat_sourcemap:compile_css',
     'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:compile_assets', 'copy:vendor_fonts',
-    'index:build',
     'copy:karmaUnit'
   ]);
 
@@ -690,7 +701,7 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime' ]);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'ngAnnotate', 'uglify' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'index:compile', 'ngAnnotate', 'uglify' ]);
 
   /**
    * A utility function to get all app JavaScript sources.
@@ -732,7 +743,9 @@ module.exports = function( grunt ) {
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
-    jsFiles.push("http://localhost:35729/livereload.js?snipver=1");
+    if(!this.data.production){
+      jsFiles.push("http://localhost:35729/livereload.js?snipver=1");
+    }
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
