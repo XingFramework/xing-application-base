@@ -1,7 +1,7 @@
 import {Homepage} from "../../src/common/server/homepage";
 
 describe('Homepage class', function() {
-  var page;
+  var page, mockBackend;
 
   function responseData() {
     return {
@@ -21,7 +21,8 @@ describe('Homepage class', function() {
       var data = responseData();
       return resolve(data);
     });
-    page = new Homepage(promise);
+    mockBackend = {};
+    page = new Homepage(mockBackend, promise);
     page.responsePromise.then(function(){
       done();
     });

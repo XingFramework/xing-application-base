@@ -1,3 +1,7 @@
 .DS_Store
 *.sw?
 .ruby-gemset
+server/public/assets
+server/public/fonts
+server/public/index.html
+server/vendor

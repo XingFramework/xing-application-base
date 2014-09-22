@@ -26,16 +26,16 @@ angular.module( `${configuration.appName}.auth`, [
     });
   $authProvider.configure({
     apiUrl: configuration.serverUrl,
-    tokenValidationPath:     '/users/validate_token',
-    signOutUrl:              '/users/sign_out',
+    tokenValidationPath:     'users/validate_token',
+    signOutUrl:              'users/sign_out',
     // ng-token-auth expects to setup with email -- we've modified the server
     // side to work with anything but haven't forked ng-token-auth yet.
-    emailRegistrationPath:   '/users',
-    accountUpdatePath:       '/users',
-    accountDeletePath:       '/users',
-    passwordResetPath:       '/users/password',
-    passwordUpdatePath:      '/users/password',
-    emailSignInPath:         '/users/sign_in',
+    emailRegistrationPath:   'users',
+    accountUpdatePath:       'users',
+    accountDeletePath:       'users',
+    passwordResetPath:       'users/password',
+    passwordUpdatePath:      'users/password',
+    emailSignInPath:         'users/sign_in',
     storage:                 'localStorage',
   });
 })

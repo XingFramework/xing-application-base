@@ -11,19 +11,26 @@ describe( 'Pages section', function() {
 
   var $scope, $stateMock, pagesCtrl, pageSpy, emitSpy, $sceMock;
 
+  var mockBackend;
+
   var page, pageJson, metadata;
 
   beforeEach( inject(function($templateCache) {
     pageJson = angular.fromJson( $templateCache.get('json-fixtures/pages/server.json'));
   }));
 
+  beforeEach(function() {
+    mockBackend = {};
+  });
+
   beforeEach(function(done) {
     var promise = new Promise((resolve, reject) => {
       resolve(pageJson);
     });
-    page = new Page(promise);
+    page = new Page(mockBackend, promise);
     page.completePromise = page.complete.then((result) => {
       done();
+      return result;
     });
   });
 

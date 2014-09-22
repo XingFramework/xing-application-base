@@ -32,7 +32,7 @@ angular.module( configuration.appName + '.adminDirectives', [`${configuration.ap
     function link(scope, element, attrs) {
       scope.logout = () => {
         $auth.signOut().then((response) => {
-          $state.go('root.homepage');
+          $state.go('root.homepage.show');
         });
       };
     }
