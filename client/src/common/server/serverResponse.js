@@ -1,12 +1,17 @@
 import jsonPath from '../jsonpath';
 
-// The more I think about it, this is a Server*Resource* not a response
+var paths = {
+  selfUrl: "$.links.self"
+};
+
+// XXX The more I think about it, this is a Server*Resource* not a response -jdl
 export class ServerResponse {
   constructor(backend, responsePromise) {
     this.backend = backend;
 
     this.errorReason = null;
     this.resolved = false;
+    this._dirty = false;
     this._response = {
       "links": {},
       "data": this.emptyData()
@@ -20,9 +25,11 @@ export class ServerResponse {
   }
 
   serverResponds(responsePromise){
+    console.log("server/serverResponse.js:28", "responsePromise", responsePromise);
     this.responsePromise = responsePromise;
     this.completePromise = responsePromise.then( (response) => {
       this.resolved = true;
+      this._dirty = false;
       this.absorbResponse(response);
       return this;
     },
@@ -31,6 +38,16 @@ export class ServerResponse {
       this.errorReason = reason;
       return this;
     });
+  }
+
+  loadFrom(url){
+    if(typeof url === "undefined"){
+      return;
+    }
+
+    if(url != this.selfUrl && this.isDirty){
+      return this.backend.loadTo(url, this);
+    }
   }
 
   save(){
@@ -52,11 +69,22 @@ export class ServerResponse {
     for(var segment of path){
       thumb = thumb[segment];
     }
+    if(thumb[target] != value){
+      this._dirty = true;
+    }
     thumb[target] = value;
+  }
+
+  get isDirty(){
+    return this._dirty;
   }
 
   get isNew(){
     return (this.responsePromise === null);
+  }
+
+  get selfUrl(){
+    return pathGet(paths.selfUrl);
   }
 
   get putUrl(){

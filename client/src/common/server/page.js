@@ -1,6 +1,8 @@
 import {ServerResponse} from './serverResponse';
 
 var jsonPaths = {
+  publicUrl: "$.links.public",
+  adminUrl: "$.links.admin",
   layout: "$.data.layout",
   title: "$.data.title",
   keywords: "$.data.keywords",
@@ -31,6 +33,11 @@ var layouts = {
 };
 
 export class Page extends ServerResponse {
+  constructor(backend, promise){
+    super(backend, promise);
+    this._role = "guest";
+  }
+
   emptyData(){
     return {
       "layout": "one_column",
@@ -57,6 +64,49 @@ export class Page extends ServerResponse {
     };
   }
 
+  serverResponds(promise){
+    super(promise);
+    this.completePromise = this.completePromise.then((page) => {
+      if(this.role === "admin"){
+        this.loadFrom(this.adminUrl);
+      }
+      return page;
+    });
+  }
+
+  loadFrom(url){
+    if(typeof url === "undefined"){
+      return;
+    }
+
+    if(this.role === "admin"){
+      if(url != this.selfUrl && url != this.publicUrl && this.isDirty){
+        return this.backend.loadTo(url, this);
+      }
+    } else {
+      if(url != this.selfUrl && this.isDirty){
+        return this.backend.loadTo(url, this);
+      }
+    }
+  }
+
+  get publicUrl(){
+    return this.pathGet(jsonPaths.publicUrl);
+  }
+  get adminUrl(){
+    return this.pathGet(jsonPaths.adminUrl);
+  }
+
+  get role(){
+    return this._role;
+  }
+  set role(value){
+    if(this._role !== value){
+      this._dirty = true;
+    }
+    this._role = value;
+  }
+
   get layoutKinds(){
     var kindList = [];
     for(var layoutName in layouts){
@@ -72,6 +122,7 @@ export class Page extends ServerResponse {
     var contents = this.pathGet(jsonPaths.contents);
     var templateLayout = layouts[this.layout]["template"];
     if(templateLayout){
+
       var layoutNames = Object.getOwnPropertyNames(templateLayout);
       layoutNames.push("headline", "styles");
       for(blockName of layoutNames) {

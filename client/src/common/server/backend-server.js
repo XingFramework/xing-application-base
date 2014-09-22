@@ -44,6 +44,11 @@ export default class CMSBackendServer {
     return new ResourceClass(this, this.unwrap(response));
   }
 
+  loadTo(resource, url){
+    var response = this.Restangular.one(mangleUrl(url)).get();
+    return resource.serverResponds(response);
+  }
+
   create(ResourceClass, postUrl){
     var resource =  new ResourceClass(this);
     resource.postUrl = postUrl;

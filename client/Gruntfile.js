@@ -550,8 +550,9 @@ module.exports = function( grunt ) {
          * run our unit tests.
          */
         jssrc: {
+          options: { livereloadOnError: false },
           files: [ 'src/**/*.js' ],
-          tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ]
+          tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ],
         },
 
         js_qa: {

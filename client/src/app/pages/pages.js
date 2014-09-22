@@ -32,7 +32,7 @@ angular.module( `${configuration.appName}.pages`, [
       }
     })
     .state( 'root.inner.page', {
-      url: '^/pages/*pageUrl',
+      url: '^/pages/',
       controller: 'PagesCtrl',
       abstract: true,
       template: "<ui-view></ui-view>",
@@ -43,28 +43,40 @@ angular.module( `${configuration.appName}.pages`, [
             (failure) => { return false; }
           ).then((bool) => { return bool; });
         },
-        page(isAdmin, cmsBackend, $stateParams) {
-          var role = "guest";
-          if(isAdmin){ role = "admin"; }
-          return cmsBackend.page($stateParams.pageUrl, role).complete.then( (page) => {
-            return page;
-          });
-        }
+        page(cmsBackend) { return cmsBackend.createPage(); }
       }
     })
     .state( 'root.inner.page.show', {
-      url: '',
+      url: '*pageUrl',
+      resolve: {
+        pageLoaded(isAdmin, page, $stateParams){
+          if(isAdmin){
+            page.role = "admin";
+          } else {
+            page.role = "guest";
+          }
+          return page.loadFrom($stateParams.pageUrl);
+        }
+      },
       templateUrl: 'pages/pages.tpl.html',
     })
     .state( 'root.inner.page.edit', {
       templateUrl: 'pages/page-edit.tpl.html',
       controller: 'PageEditCtrl',
       resolve: {
-        onlyAdmin($auth){
-          return $auth.validateUser();
-        }
+        onlyAdmin($auth){ return $auth.validateUser(); }
       }
+    })
+    .state( 'root.inner.page.new', {
+      url: 'new',
+      resolve: {
+        onlyAdmin($auth){ return $auth.validateUser(); }
+      },
+      controller: 'PageNewCtrl'
     });
+})
+.controller( 'PageNewCtrl', function( $state ){
+  $state.go("^.edit");
 })
 .controller( 'PageEditCtrl', function( $scope, $state, page ){
   // I think there's potential for improving UX here: duplicate the existing page, edit that -

@@ -1,5 +1,5 @@
 import {Page} from "../../src/common/server/page";
-import {} from 'test/json-fixtures/pages/server.json';
+  import {} from 'test/json-fixtures/pages/server.json';
 
 describe('Page class', function() {
   describe('created in the client', function() {
@@ -114,7 +114,7 @@ describe('Page class', function() {
       });
       mockBackend = {};
       page = new Page(mockBackend, promise);
-      page.completePromise = page.complete.then(function(){
+      page.complete.then(function(){
         done();
       });
     });
