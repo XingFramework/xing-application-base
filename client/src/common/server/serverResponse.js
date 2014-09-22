@@ -25,7 +25,6 @@ export class ServerResponse {
   }
 
   serverResponds(responsePromise){
-    console.log("server/serverResponse.js:28", "responsePromise", responsePromise);
     this.responsePromise = responsePromise;
     this.completePromise = responsePromise.then( (response) => {
       this.resolved = true;
@@ -45,7 +44,7 @@ export class ServerResponse {
       return;
     }
 
-    if(url != this.selfUrl && this.isDirty){
+    if( url != this.selfUrl ){
       return this.backend.loadTo(url, this);
     }
   }
@@ -84,11 +83,11 @@ export class ServerResponse {
   }
 
   get selfUrl(){
-    return pathGet(paths.selfUrl);
+    return this.pathGet(paths.selfUrl);
   }
 
   get putUrl(){
-    return this._links["self"];
+    return this.selfUrl;
   }
 
   get received(){

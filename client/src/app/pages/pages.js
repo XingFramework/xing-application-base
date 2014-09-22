@@ -43,7 +43,9 @@ angular.module( `${configuration.appName}.pages`, [
             (failure) => { return false; }
           ).then((bool) => { return bool; });
         },
-        page(cmsBackend) { return cmsBackend.createPage(); }
+        page(cmsBackend) {
+          console.log("pages/pages.js:47", "new page");
+          return cmsBackend.createPage(); }
       }
     })
     .state( 'root.inner.page.show', {
@@ -55,7 +57,8 @@ angular.module( `${configuration.appName}.pages`, [
           } else {
             page.role = "guest";
           }
-          return page.loadFrom($stateParams.pageUrl);
+          page.loadFrom($stateParams.pageUrl);
+          return page.complete;
         }
       },
       templateUrl: 'pages/pages.tpl.html',
@@ -89,7 +92,10 @@ angular.module( `${configuration.appName}.pages`, [
   };
   $scope.savePage = function(){
     page.save();
-    $state.go("^.show");
+    page.complete.then((page) => {
+      $state.go("^.show");
+      return page;
+    });
   };
 })
 .controller( 'PagesCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {

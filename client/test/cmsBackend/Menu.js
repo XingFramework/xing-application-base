@@ -82,7 +82,6 @@ describe('Menu class', function() {
   });
 
   it('should have grandchildren', function() {
-    console.log("cmsBackend/Menu.js:90", "menu.items[0].children.items", menu.items[0].children.items[0].children);
     expect(menu.items[0].children.items[0].children instanceof Menu).toBeTruthy();
   });
 

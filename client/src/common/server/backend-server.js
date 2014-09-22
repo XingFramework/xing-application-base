@@ -44,9 +44,9 @@ export default class CMSBackendServer {
     return new ResourceClass(this, this.unwrap(response));
   }
 
-  loadTo(resource, url){
+  loadTo(url, resource){
     var response = this.Restangular.one(mangleUrl(url)).get();
-    return resource.serverResponds(response);
+    return resource.serverResponds(this.unwrap(response));
   }
 
   create(ResourceClass, postUrl){
@@ -92,6 +92,6 @@ export default class CMSBackendServer {
   }
 
   createPage(){
-    return create(Page, '/admin/pages');
+    return this.create(Page, '/admin/pages');
   }
 }

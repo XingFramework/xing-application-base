@@ -67,8 +67,8 @@ export class Page extends ServerResponse {
   serverResponds(promise){
     super(promise);
     this.completePromise = this.completePromise.then((page) => {
-      if(this.role === "admin"){
-        this.loadFrom(this.adminUrl);
+      if(page.role === "admin" && page.adminUrl){
+        page.loadFrom(page.adminUrl); //XXX Whole new load flow - other complete.thens unpredictable
       }
       return page;
     });
@@ -79,14 +79,8 @@ export class Page extends ServerResponse {
       return;
     }
 
-    if(this.role === "admin"){
-      if(url != this.selfUrl && url != this.publicUrl && this.isDirty){
-        return this.backend.loadTo(url, this);
-      }
-    } else {
-      if(url != this.selfUrl && this.isDirty){
-        return this.backend.loadTo(url, this);
-      }
+    if((url != this.selfUrl || (this.role === "admin" && url != this.publicUrl) )){
+      return this.backend.loadTo(url, this);
     }
   }
 

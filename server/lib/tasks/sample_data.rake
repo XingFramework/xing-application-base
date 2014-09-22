@@ -62,7 +62,7 @@ namespace :db do
     end
 
     def menu_item(name, parent)
-      item = MenuItem.create(:name => name, :page => Page.all.pick, :parent => parent)
+      item = MenuItem.create(:name => name, :page => Page.where.not(:type => 'Page::Homepage').all.pick, :parent => parent)
       item
     end
 
@@ -94,7 +94,7 @@ namespace :db do
 
     def create_two_column_page(options = {})
       page = Page::TwoColumn.new(options)
-      create_common_page_contents(page)
+      create_common_page_contents(page, options[:title])
       c1 = ContentBlock.new(
             :content_type => "text/html",
             :body => Populator.paragraphs(2..4)
@@ -110,7 +110,7 @@ namespace :db do
 
     def create_one_column_page(options = {})
       page = Page::OneColumn.new(options)
-      create_common_page_contents(page)
+      create_common_page_contents(page, options[:title])
       main = ContentBlock.new(
             :content_type => "text/html",
             :body => Populator.paragraphs(2..4)
@@ -119,10 +119,10 @@ namespace :db do
       page.save
     end
 
-    def create_common_page_contents(page)
+    def create_common_page_contents(page, name)
       headline = ContentBlock.new(
             :content_type => "text/html",
-            :body => Populator.words(1..5).titlecase
+            :body => name.titlecase
           )
       page.page_contents << PageContent.create(:name => 'headline', :content_block => headline)
       sometimes (0.5) do
