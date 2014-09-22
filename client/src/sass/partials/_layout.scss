@@ -14,10 +14,10 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
   margin-top: 1em;
-  
+
 }
 #container {
-  padding: 1em gutter-span(); 
+  padding: 1em gutter-span();
 }
 #content {
   @include add-grid(12);

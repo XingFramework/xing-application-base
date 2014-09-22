@@ -324,13 +324,21 @@ module.exports = function( grunt ) {
        */
       jshint: {
         src: [ '<%= app_files.js %>' ],
+
+        precompile: {
+          files: [ '<%= app_files.js %>' ],
+          options: { debug: false }
+        },
+
         test: {
           files: [ { src: ['<%= app_files.jstest %>' ] }],
           options: {
             debug: true,
           }
         },
+
         gruntfile: [ 'Gruntfile.js' ],
+
         target: {
           files: [ {
             src: [ '<%= compile_targets.js %>' ]
@@ -342,6 +350,7 @@ module.exports = function( grunt ) {
         },
         // c.f. http://www.jshint.com/docs/options/
         options: {
+          debug: true,
           bitwise: true, //don't allow ^ | &, which are bitwise not boolean
           //eqeqeq: true, //require === and !== instead of == and !=
           forin: true, //require for in loops to filter items with hasOwnProperty
@@ -452,6 +461,15 @@ module.exports = function( grunt ) {
             '<%= compile_targets.js %>',
             '<%= compile_targets.css %>'
           ]
+        },
+
+        deploy: {
+          production: true,
+          dir: '<%= compile_dir %>',
+          src: [
+            '<%= compile_targets.js %>',
+            '<%= compile_targets.css %>'
+          ]
         }
       },
 
@@ -541,8 +559,15 @@ module.exports = function( grunt ) {
          * run our unit tests.
          */
         jssrc: {
+          options: { livereloadOnError: false },
           files: [ 'src/**/*.js' ],
-          tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ]
+          tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ],
+        },
+
+        js_qa: {
+          files: [],
+          tasks: [ 'jshint:src', "jsonlint" ],
+          options: { atBegin: true }
         },
 
         /**
@@ -572,7 +597,10 @@ module.exports = function( grunt ) {
          */
         html: {
           files: [ '<%= app_files.html %>' ],
-          tasks: [ 'index:build' ]
+          tasks: [ 'index:build' ],
+          options: {
+            atBegin: true
+          }
         },
 
         /**
@@ -648,6 +676,7 @@ module.exports = function( grunt ) {
    */
   grunt.renameTask( 'watch', 'delta' );
   grunt.registerTask( 'watch', [ 'develop', 'karma:unit:start', 'connect', 'concurrent:server' ] );
+  grunt.registerTask( 'watch:develop', [ 'develop', 'karma:unit:start', 'concurrent:server' ] );
   grunt.registerTask( 'watch:integrate', [ 'integrate', 'karma:unit:start', 'connect', 'concurrent:server' ] );
 
   /**
@@ -657,22 +686,22 @@ module.exports = function( grunt ) {
 
   grunt.registerTask( 'build', [
     'clean:build', 'bower:install',
-    'html2js', 'jshint:src', 'jsonlint',
-    'coffeelint', 'coffee',
+    'html2js', 'coffee',
     'traceur:build', //'jshint:target',
     'compass:build',
     'concat_sourcemap:compile_css',
     'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:compile_assets', 'copy:vendor_fonts',
-    'index:build',
     'copy:karmaUnit'
   ]);
+
+  grunt.registerTask( 'qa', "Check source code before deploy", [ 'jshint:src', 'jsonlint', 'coffeelint', ]);
 
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'copy:traceur_runtime' ]);
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime' ]);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'build', 'ngAnnotate', 'uglify' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'index:compile', 'ngAnnotate', 'uglify' ]);
 
   /**
    * A utility function to get all app JavaScript sources.
@@ -714,6 +743,9 @@ module.exports = function( grunt ) {
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
+    if(!this.data.production){
+      jsFiles.push("http://localhost:35729/livereload.js?snipver=1");
+    }
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });

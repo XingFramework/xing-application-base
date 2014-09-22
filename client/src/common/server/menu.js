@@ -1,18 +1,20 @@
 import {ServerResponse} from './serverResponse';
 
 export class Menu extends ServerResponse {
-  constructor(promise){
+  emptyData(){
+    return [];
+  }
+
+  serverResponds(promise){
     super(promise);
     this.completePromise = this.completePromise.then((result) => {
       var completes = this._items.map((item) => {
         return item.complete;
       });
-      return Promise.all( completes);
-    });
-  }
-
-  emptyData(){
-    return [];
+      return Promise.all(completes);
+    }).then((responses) => {
+        return this;
+      });
   }
 
   absorbResponse(response){
@@ -22,7 +24,7 @@ export class Menu extends ServerResponse {
     } else {
       this._items = this._data.map((item) => {
         var promise = new Promise((resolve) => { return resolve(item); });
-        return new MenuItem(promise);
+        return new MenuItem(this.backend, promise);
       });
     }
   }
@@ -32,24 +34,27 @@ export class Menu extends ServerResponse {
   }
 }
 
+var itemPaths = {
+  children: '$.data.children',
+  internalTarget: '$.data.page.links.self',
+  externalTarget: '$.data.url',
+  type: '$.data.type',
+  name: '$.data.name',
+};
+
 class MenuItem extends ServerResponse {
-  constructor(promise){
+  serverResponds(promise){
     super(promise);
     var childrenPromise = this.responsePromise.then((response) => {
-      return { data: response["data"].children };
+      return { data: response["data"]["children"] };
     });
-    this.subMenu = new Menu(childrenPromise);
-    this.completePromise = Promise.all([ this.completePromise, this.subMenu.completePromise ]);
+    this.subMenu = new Menu(this.backend, childrenPromise);
+    this.completePromise = Promise.all([ this.completePromise, this.subMenu.completePromise ]).then((responses) => { return this; });
   }
 
   hasChildren(){
-    if(typeof this.children == "undefined"){
-      return false;
-    } else if(this.children.items.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    var children = this.pathGet(itemPaths.children);
+    return (children && children.length > 0);
   }
 
   external(){
@@ -60,20 +65,20 @@ class MenuItem extends ServerResponse {
     return this.type == "page";
   }
 
-  get type(){
-    return this.menuData.type;
-  }
-
   get target(){
     if(this.internal()){
-      return this.menuData.page.links.self;
+      return this.pathGet(itemPaths.internalTarget);
     } else {
-      return this.menuData.url;
+      return this.pathGet(itemPaths.externalTarget);
     }
   }
 
+  get type(){
+    return this.pathGet(itemPaths.type);
+  }
+
   get name(){
-    return this.menuData.name;
+    return this.pathGet(itemPaths.name);
   }
 
   get children(){

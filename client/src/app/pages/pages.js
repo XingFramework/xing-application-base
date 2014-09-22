@@ -48,7 +48,7 @@ angular.module( `${configuration.appName}.pages`, [
       }
     })
     .state( 'root.inner.page', {
-      url: '^/pages/*pageUrl',
+      url: '^/pages/',
       controller: 'PagesCtrl',
       abstract: true,
       template: "<ui-view></ui-view>",
@@ -59,40 +59,60 @@ angular.module( `${configuration.appName}.pages`, [
             (failure) => { return false; }
           ).then((bool) => { return bool; });
         },
-        page(isAdmin, cmsBackend, $stateParams) {
-          var role = "guest";
-          if(isAdmin){ role = "admin"; }
-          return cmsBackend.page($stateParams.pageUrl, role).complete.then( (page) => {
-            return page;
-          });
-        }
+        page(cmsBackend) {
+          console.log("pages/pages.js:47", "new page");
+          return cmsBackend.createPage(); }
       }
     })
     .state( 'root.inner.page.show', {
-      url: '',
+      url: '*pageUrl',
+      resolve: {
+        pageLoaded(isAdmin, page, $stateParams){
+          if(isAdmin){
+            page.role = "admin";
+          } else {
+            page.role = "guest";
+          }
+          page.loadFrom($stateParams.pageUrl);
+          return page.complete;
+        }
+      },
       templateUrl: 'pages/pages.tpl.html',
     })
     .state( 'root.inner.page.edit', {
       templateUrl: 'pages/page-edit.tpl.html',
       controller: 'PageEditCtrl',
       resolve: {
-        onlyAdmin($auth){
-          return $auth.validateUser();
+        onlyAdmin($auth){ return $auth.validateUser(); }
         }
-      }
+    })
+    .state( 'root.inner.page.new', {
+      url: 'new',
+      resolve: {
+        onlyAdmin($auth){ return $auth.validateUser(); }
+      },
+      controller: 'PageNewCtrl'
     });
 })
-.controller( 'PageEditCtrl', function( $scope, $state, cmsBackend ){
-  console.log("pages/pages.js:85", "$scope.nowEditing", $scope.nowEditing);
+.controller( 'PageNewCtrl', function( $state ){
+  $state.go("^.edit");
+})
+.controller( 'PageEditCtrl', function( $scope, $state, page ){
+  // I think there's potential for improving UX here: duplicate the existing page, edit that -
+  // on save, submit that and discard the old page. On cancel, swap it back in.
+  // Let admin switch back and forth until they decide "this is good" and save
+  //    --jdl
   $scope.nowEditing = true;
   $scope.cancelEdit = function(){
     $state.go("^.show");
   };
   $scope.savePage = function(){
-    cmsBackend.save($scope.page);
+    page.save();
+    page.complete.then((page) => {
     $state.go("^.show");
+      return page;
+    });
   };
-  console.log("pages/pages.js:94", "$scope.nowEditing", $scope.nowEditing);
 })
 .controller( 'PagesCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.nowEditing = false;

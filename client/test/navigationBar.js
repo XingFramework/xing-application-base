@@ -56,8 +56,9 @@ describe('navigationBar directive', function() {
       expect(xpath(element, ".//ul[@id='main-nav']").snapshotLength).toBeGreaterThan(0);
     });
 
+
     it('have a ui-router state link', function() {
-      var sref = $state.href("root.inner.page", {pageUrl: encodeURI("/pages/test-page")});
+      var sref = $state.href("root.inner.page.show", {pageUrl: encodeURI("/pages/test-page")});
       expect(xpath(element, `.//a[@href="${sref}"]`).snapshotLength).toBeGreaterThan(0);
       //expect(stringAtXpath(element, './/a[@ui-sref]/@ui-sref')).toMatch(/test-page/);
     });

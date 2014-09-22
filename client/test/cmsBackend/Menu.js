@@ -1,7 +1,7 @@
 import {Menu} from "../../src/common/server/menu";
 
 describe('Menu class', function() {
-  var menu;
+  var menu, mockBackend;
 
   function responseData() {
     return {
@@ -12,15 +12,33 @@ describe('Menu class', function() {
           name: 'Test 1',
           type: 'page',
           page: { links: { self: '/pages/test-1'} },
-          children: [
-            {
+          children: [ {
             links: {},
             data: {
               name: 'Sublevel 1',
               type: 'page',
               page: { links: { self: '/pages/test-2'} },
+              children: [
+                {
+                links: {},
+                data: {
+                  name: 'Sub-Sublevel 1',
+                  type: 'page',
+                  page: { links: { self: '/pages/test-3'} },
+                  children: [ ]
+                }
+              } ]
             }
           } ]
+        }
+      },
+      {
+        links: {},
+        data: {
+          name: 'Sublevel 2',
+          type: 'page',
+          page: { links: { self: '/pages/test-4'} },
+          children: [ ]
         }
       } ]
     };
@@ -31,7 +49,8 @@ describe('Menu class', function() {
       var data = responseData();
       return resolve(data);
     });
-    menu = new Menu(promise);
+    mockBackend = {};
+    menu = new Menu(mockBackend, promise);
     menu.complete.then(function(){
       done();
     });
@@ -60,5 +79,13 @@ describe('Menu class', function() {
 
   it('should have children', function() {
     expect(menu.items[0].children instanceof Menu).toBeTruthy();
+  });
+
+  it('should have grandchildren', function() {
+    expect(menu.items[0].children.items[0].children instanceof Menu).toBeTruthy();
+  });
+
+  it('report no children correctly', function() {
+    expect(menu.items[1].hasChildren()).toBeFalsy();
   });
 });

@@ -3,7 +3,6 @@ import {} from '../../common/server/cms';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import {} from "./directives";
 
-console.log("admin/admin.js:6");
 angular.module( `${configuration.appName}.admin`, [
   `${configuration.appName}.server`,
   `${configuration.appName}.adminDirectives`,
@@ -50,6 +49,9 @@ angular.module( `${configuration.appName}.admin`, [
 .controller( 'AdminPagesCtrl', function( $scope, $stateParams, $sce, pageList) {
   $scope.pageList = pageList;
   $scope.pages = pageList.pages;
+  $scope.newPage = function(){
+    cmsBackend.createPage();
+  };
   // header info
 })
 .controller( 'AdminMenusCtrl', function( $scope, $stateParams, $sce) {
