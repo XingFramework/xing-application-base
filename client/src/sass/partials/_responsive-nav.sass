@@ -18,7 +18,10 @@
   display: block
   overflow: hidden
   zoom: 1
-
+  @include breakpoint($medium)
+    position: relative
+    &.closed
+      max-height: none
 .nav-collapse.opened
   max-height: 9999px
 
@@ -33,11 +36,5 @@
   -ms-user-select: none
   -o-user-select: none
   user-select: none
-
-@media screen and (min-width: 40em)
-  .js .nav-collapse
-    position: relative
-    &.closed
-      max-height: none
-  .nav-toggle
+  @include breakpoint($medium)
     display: none

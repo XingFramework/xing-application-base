@@ -6,9 +6,9 @@ import {} from './navigationBar/navigationBar';
 import {} from '../common/server/backend';
 import {configuration} from '../common/config';
 import "../common/ui-route-logger";
-import '../../vendor/responsive-nav/responsive-nav';
 import {} from './admin/admin';
 import {} from './auth/auth';
+import {} from './responsiveMenu/responsiveMenu';
 
 angular.module( configuration.appName, [
   'templates-app', 'templates-common', 'ui.router',
@@ -16,7 +16,8 @@ angular.module( configuration.appName, [
   `${configuration.appName}.route-logger`,
   `${configuration.appName}.pages`,
   `${configuration.appName}.auth`,
-  `${configuration.appName}.admin`
+  `${configuration.appName}.admin`,
+  `${configuration.appName}.responsiveMenu`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise(($injector, $location) => {
