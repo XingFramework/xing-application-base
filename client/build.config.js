@@ -8,7 +8,7 @@ module.exports = {
    * completely built.
    */
   build_dirs: {
-    root: 'src/build',
+    root: 'build',
     stylesheets: '<%= build_dirs.root %>/stylesheets',
     js: '<%= build_dirs.root %>/javascripts',
     assets: '<%= build_dirs.root %>/assets'

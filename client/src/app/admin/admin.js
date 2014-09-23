@@ -1,5 +1,5 @@
 import {configuration} from '../../common/config';
-import {} from '../../common/server/cms';
+import {} from '../../common/server/backend';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import {} from "./directives";
 
@@ -25,8 +25,8 @@ angular.module( `${configuration.appName}.admin`, [
       controller: 'AdminPagesCtrl',
       templateUrl: 'admin/pages.tpl.html',
       resolve: {
-        pageList(cmsBackend) {
-          return cmsBackend.pageList().complete;
+        pageList(backend) {
+          return backend.pageList().complete;
         }
       }
     })
@@ -50,7 +50,7 @@ angular.module( `${configuration.appName}.admin`, [
   $scope.pageList = pageList;
   $scope.pages = pageList.pages;
   $scope.newPage = function(){
-    cmsBackend.createPage();
+    backend.createPage();
   };
   // header info
 })

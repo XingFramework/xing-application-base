@@ -4,7 +4,7 @@ import {} from '../../../vendor/lodash/lodash';
 import {} from '../../../vendor/restangular/restangular';
 import {} from '../serializer';
 
-import Backend from '../resources/AppServer.js';
+import Backend from '../resources/AppServer';
 
 angular.module( configuration.appName + '.server', [ 'restangular', 'serializer' ])
 .config( function myAppConfig (RestangularProvider) {

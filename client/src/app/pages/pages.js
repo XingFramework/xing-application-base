@@ -1,5 +1,5 @@
 import {configuration} from '../../common/config';
-import {} from '../../common/server/cms';
+import {} from '../../common/server/backend';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import './admin-edit';
 
@@ -27,10 +27,10 @@ angular.module( `${configuration.appName}.pages`, [
             return bool;
           });
         },
-        page(isAdmin, cmsBackend) {
+        page(isAdmin, backend) {
           var role = "guest";
           if(isAdmin){ role = "admin"; }
-          return cmsBackend.page("/homepage", role).complete;
+          return backend.page("/homepage", role).complete;
         }
       }
     })
@@ -59,9 +59,9 @@ angular.module( `${configuration.appName}.pages`, [
             (failure) => { return false; }
           ).then((bool) => { return bool; });
         },
-        page(cmsBackend) {
+        page(backend) {
           console.log("pages/pages.js:47", "new page");
-          return cmsBackend.createPage(); }
+          return backend.createPage(); }
       }
     })
     .state( 'root.inner.page.show', {

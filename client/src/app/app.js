@@ -1,9 +1,9 @@
 import {} from '../../vendor/angular/angular';
 import {} from '../../vendor/angular-ui-router/angular-ui-router';
-import {} from '../build/templates-app';
-import {} from '../build/templates-common';
+import {} from '../../build/templates-app';
+import {} from '../../build/templates-common';
 import {} from './navigationBar/navigationBar';
-import {} from '../common/server/cms';
+import {} from '../common/server/backend';
 import {configuration} from '../common/config';
 import "../common/ui-route-logger";
 import '../../vendor/responsive-nav/responsive-nav';
@@ -29,8 +29,8 @@ angular.module( configuration.appName, [
     abstract: true,
     url: "/",
     resolve: {
-      mainMenu(cmsBackend){
-        var menu = cmsBackend.menu("main");
+      mainMenu(backend){
+        var menu = backend.menu("main");
         return menu;
       }
     }
@@ -64,12 +64,11 @@ angular.module( configuration.appName, [
   });
 })
 
-.controller( 'HomepageCtrl', function HomepageCtrl($scope, cmsBackend) {
-  console.log("app/cms.js:36", "homepageControler", $scope);
+.controller( 'HomepageCtrl', function HomepageCtrl($scope, backend) {
 
   $scope.metadata = {};
 
-  var page = cmsBackend.page($stateParams['permalink']);
+  var page = backend.page($stateParams['permalink']);
   page.responsePromise.then( (resolve) =>
     {
       $scope.metadata = page.metadata;
