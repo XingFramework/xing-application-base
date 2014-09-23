@@ -4,7 +4,7 @@ import {} from '../../../vendor/lodash/lodash';
 import {} from '../../../vendor/restangular/restangular';
 import {} from '../serializer';
 
-import CMSBackend from './backend-server';
+import Backend from '../resources/AppServer.js';
 
 angular.module( configuration.appName + '.server', [ 'restangular', 'serializer' ])
 .config( function myAppConfig (RestangularProvider) {
@@ -14,7 +14,7 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
   Restangular.addRequestInterceptor(RequestInterceptor);
   Restangular.addResponseInterceptor(ResponseInterceptor);
 })
-.factory('cmsBackend', function(Restangular, $http){
+.factory('backend', function(Restangular, $http){
 
   $http.defaults.headers.common.Accept = 'application/json';
   $http.defaults.headers.post['Content-Type'] = 'application/json';
@@ -22,5 +22,5 @@ angular.module( configuration.appName + '.server', [ 'restangular', 'serializer'
 
   var currentUser;
 
-  return new CMSBackend(Restangular);
+  return new Backend(Restangular);
 });

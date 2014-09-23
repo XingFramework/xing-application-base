@@ -1,12 +1,9 @@
-import {Menu} from './menu';
-import {Page} from './page';
-import {PageList} from './pageList';
 
 function mangleUrl(url){
   return url.replace(/^\//,'');
 }
 
-export default class CMSBackendServer {
+export default class BackendServer {
   constructor(restangular){
     this.Restangular = restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setFullResponse(true);
@@ -61,37 +58,4 @@ export default class CMSBackendServer {
     });
   }
 
-  pageList(){
-    return this.load(PageList, '/admin/pages');
-  }
-
-  menu(name){
-    return this.load(Menu, `/navigation/${name}`);
-  }
-
-  homepage(){
-    return this.load(Homepage, '/homepage');
-  }
-
-  page(slug, forRole){
-    if(forRole !== "admin"){
-      return this.load(Page, slug);
-    } else {
-      return this.load(Page, slug, (response) => {
-        var publicData;
-        return response.then((serverData) => {
-          publicData = serverData;
-          var newUrl = mangleUrl(serverData.data.links.admin);
-          return this.Restangular.one(newUrl).get();
-        }).catch((failure) => {
-          //assuming unauthorized
-          return publicData;
-        });
-      });
-    }
-  }
-
-  createPage(){
-    return this.create(Page, '/admin/pages');
-  }
 }

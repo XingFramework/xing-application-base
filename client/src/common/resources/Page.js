@@ -1,4 +1,4 @@
-import {ServerResponse} from './serverResponse';
+import {ServerResponse} from '../server/ServerResponse';
 
 var jsonPaths = {
   publicUrl: "$.links.public",
