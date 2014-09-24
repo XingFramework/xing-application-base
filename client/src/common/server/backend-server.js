@@ -28,7 +28,7 @@ export default class CMSBackendServer {
     var data = resource.dataForSave;
     if(resource.isNew){
       url = mangleUrl(resource.postUrl);
-      serverReq = this.Restangular.restangularizeCollection(null, {}, url);
+      serverReq = this.Restangular.all(url);
       responds = serverReq.post(data);
     } else {
       url = mangleUrl(resource.putUrl);

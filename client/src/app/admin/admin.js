@@ -46,11 +46,11 @@ angular.module( `${configuration.appName}.admin`, [
       templateUrl: 'admin/images.tpl.html',
     });
 })
-.controller( 'AdminPagesCtrl', function( $scope, $stateParams, $sce, pageList) {
+.controller( 'AdminPagesCtrl', function( $scope, $stateParams, $sce, $state, pageList) {
   $scope.pageList = pageList;
   $scope.pages = pageList.pages;
-  $scope.newPage = function(){
-    cmsBackend.createPage();
+  $scope.createPage = function(){
+    $state.go('^.^.inner.page.new');
   };
   // header info
 })

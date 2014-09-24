@@ -35,7 +35,14 @@ var layouts = {
 export class Page extends ServerResponse {
   constructor(backend, promise){
     super(backend, promise);
+    this.setupContents();
     this._role = "guest";
+    this._layoutKinds = [];
+    for(var layoutName in layouts){
+      if(layouts.hasOwnProperty(layoutName)){
+        this._layoutKinds.push({"name": layouts[layoutName]["label"], "value": layoutName});
+      }
+    }
   }
 
   emptyData(){
@@ -102,13 +109,7 @@ export class Page extends ServerResponse {
   }
 
   get layoutKinds(){
-    var kindList = [];
-    for(var layoutName in layouts){
-      if(layouts.hasOwnProperty(layoutName)){
-        kindList.push([layouts[layoutName]["label"], layoutName]);
-      }
-    }
-    return kindList;
+    return this._layoutKinds;
   }
 
   setupContents(){
@@ -136,7 +137,9 @@ export class Page extends ServerResponse {
     return this.pathGet(jsonPaths.layout);
   }
   set layout(value){
-    return this.pathSet(jsonPaths.layout, value);
+    var ret = this.pathSet(jsonPaths.layout, value);
+    this.setupContents();
+    return ret;
   }
 
   get title(){

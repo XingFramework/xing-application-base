@@ -64,6 +64,14 @@ angular.module( `${configuration.appName}.pages`, [
           return cmsBackend.createPage(); }
       }
     })
+    .state( 'root.inner.page.new', {
+      url: 'new',
+      resolve: {
+        onlyAdmin($auth){ return $auth.validateUser(); }
+      },
+      controller: 'PageNewCtrl',
+      templateUrl: 'pages/page-create.tpl.html'
+    })
     .state( 'root.inner.page.show', {
       url: '*pageUrl',
       resolve: {
@@ -85,17 +93,10 @@ angular.module( `${configuration.appName}.pages`, [
       resolve: {
         onlyAdmin($auth){ return $auth.validateUser(); }
         }
-    })
-    .state( 'root.inner.page.new', {
-      url: 'new',
-      resolve: {
-        onlyAdmin($auth){ return $auth.validateUser(); }
-      },
-      controller: 'PageNewCtrl'
     });
 })
-.controller( 'PageNewCtrl', function( $state ){
-  $state.go("^.edit");
+.controller( 'PageNewCtrl', function( $scope, $state, page ){
+  $scope.page = page;
 })
 .controller( 'PageEditCtrl', function( $scope, $state, page ){
   // I think there's potential for improving UX here: duplicate the existing page, edit that -
@@ -103,23 +104,25 @@ angular.module( `${configuration.appName}.pages`, [
   // Let admin switch back and forth until they decide "this is good" and save
   //    --jdl
   $scope.nowEditing = true;
-  $scope.cancelEdit = function(){
-    $state.go("^.show");
-  };
-  $scope.savePage = function(){
-    page.save();
-    page.complete.then((page) => {
-    $state.go("^.show");
-      return page;
-    });
-  };
 })
 .controller( 'PagesCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {
-  $scope.nowEditing = false;
-  $scope.edit = function(){
-    $state.go('^.edit');
+  $scope.pageActions = {
+    show(){
+      $state.go("^.show");
+    },
+    edit(){
+      $state.go('^.edit');
+    },
+    save(){
+      page.save();
+      page.complete.then((page) => {
+        $state.go("^.show");
+        return page;
+      });
+    }
   };
 
+  $scope.nowEditing = false;
   $scope.froalaConfig = { };
 
   $scope.page = page;
