@@ -1,10 +1,10 @@
 import {configuration} from '../../common/config';
-import {} from '../../common/server/backend';
+import {} from '../../common/backend/backend';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import './admin-edit';
 
 angular.module( `${configuration.appName}.pages`, [
-  `${configuration.appName}.server`,
+  `${configuration.appName}.backend`,
   `${configuration.appName}.adminEditDirective`,
   'ui.router.state'
 ])
@@ -60,7 +60,6 @@ angular.module( `${configuration.appName}.pages`, [
           ).then((bool) => { return bool; });
         },
         page(backend) {
-          console.log("pages/pages.js:47", "new page");
           return backend.createPage(); }
       }
     })

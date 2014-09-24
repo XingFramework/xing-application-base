@@ -25,7 +25,7 @@ angular.module( `${configuration.appName}.auth`, [
       }
     });
   $authProvider.configure({
-    apiUrl: configuration.serverUrl,
+    apiUrl: configuration.backendUrl,
     tokenValidationPath:     'users/validate_token',
     signOutUrl:              'users/sign_out',
     // ng-token-auth expects to setup with email -- we've modified the server

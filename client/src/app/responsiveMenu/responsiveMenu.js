@@ -1,5 +1,5 @@
 import { configuration } from '../../common/config';
-import {} from "../../build/templates-app";
+import {} from "../../../build/templates-app";
 import {} from '../../../vendor/responsive-nav/responsive-nav';
 
 angular.module( `${configuration.appName}.responsiveMenu`, ['templates-app'])

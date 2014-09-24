@@ -1,4 +1,4 @@
-import {ServerResponse} from '../server/ServerResponse';
+import {BackendResource} from '../backend/BackendResource';
 
 var jsonPaths = {
   publicUrl: "$.links.public",
@@ -32,7 +32,7 @@ var layouts = {
   }
 };
 
-export class Page extends ServerResponse {
+export class Page extends BackendResource {
   constructor(backend, promise){
     super(backend, promise);
     this._role = "guest";
@@ -64,7 +64,7 @@ export class Page extends ServerResponse {
     };
   }
 
-  serverResponds(promise){
+  backendResponds(promise){
     super(promise);
     this.completePromise = this.completePromise.then((page) => {
       if(page.role === "admin" && page.adminUrl){

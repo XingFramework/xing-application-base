@@ -4,11 +4,11 @@ import {} from '../../../vendor/lodash/lodash';
 import {} from '../../../vendor/restangular/restangular';
 import {} from '../serializer';
 
-import Backend from '../resources/AppServer';
+import Backend from '../resources/AppBackend';
 
-angular.module( configuration.appName + '.server', [ 'restangular', 'serializer' ])
+angular.module( configuration.appName + '.backend', [ 'restangular', 'serializer' ])
 .config( function myAppConfig (RestangularProvider) {
-  RestangularProvider.setBaseUrl(configuration.serverUrl);
+  RestangularProvider.setBaseUrl(configuration.backendUrl);
 })
 .run( function run (Restangular, RequestInterceptor, ResponseInterceptor) {
   Restangular.addRequestInterceptor(RequestInterceptor);

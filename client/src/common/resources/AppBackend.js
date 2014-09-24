@@ -2,9 +2,9 @@ import {Menu} from './Menu';
 import {Page} from './Page';
 import {PageList} from './PageList';
 import {Homepage} from './Homepage';
-import BackendServer from '../server/BackendServer'
+import BackendServer from '../backend/BackendServer';
 
-export default class AppServer extends BackendServer {
+export default class AppBackend extends BackendServer {
 
   pageList(){
     return this.load(PageList, '/admin/pages');
@@ -24,9 +24,9 @@ export default class AppServer extends BackendServer {
     } else {
       return this.load(Page, slug, (response) => {
         var publicData;
-        return response.then((serverData) => {
-          publicData = serverData;
-          var newUrl = mangleUrl(serverData.data.links.admin);
+        return response.then((backendData) => {
+          publicData = backendData;
+          var newUrl = this.mangleUrl(backendData.data.links.admin);
           return this.Restangular.one(newUrl).get();
         }).catch((failure) => {
           //assuming unauthorized

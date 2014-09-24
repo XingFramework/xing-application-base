@@ -1,4 +1,4 @@
-import {Menu} from "../../src/common/server/menu";
+import {Menu} from "../../src/common/resources/Menu";
 
 describe('Menu class', function() {
   var menu, mockBackend;

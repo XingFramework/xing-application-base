@@ -1,5 +1,4 @@
-import {Page} from "../../src/common/server/page";
-  import {} from 'test/json-fixtures/pages/server.json';
+import {Page} from "../../src/common/resources/Page";
 
 describe('Page class', function() {
   describe('created in the client', function() {

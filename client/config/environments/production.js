@@ -1,3 +1,3 @@
 export var environment = {
-  serverUrl: "/",
+  backendUrl: "/",
 };

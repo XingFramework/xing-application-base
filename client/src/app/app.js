@@ -3,25 +3,24 @@ import {} from '../../vendor/angular-ui-router/angular-ui-router';
 import {} from '../../build/templates-app';
 import {} from '../../build/templates-common';
 import {} from './navigationBar/navigationBar';
-import {} from '../common/server/backend';
-import {configuration} from '../common/config';
+import {} from '../common/backend/backend';
+import {appName} from '../common/config';
 import "../common/ui-route-logger";
 import {} from './admin/admin';
 import {} from './auth/auth';
 import {} from './responsiveMenu/responsiveMenu';
 
-angular.module( configuration.appName, [
+angular.module( appName, [
   'templates-app', 'templates-common', 'ui.router',
-  `${configuration.appName}.server`, `${configuration.appName}.navigationBar`,
-  `${configuration.appName}.route-logger`,
-  `${configuration.appName}.pages`,
-  `${configuration.appName}.auth`,
-  `${configuration.appName}.admin`,
-  `${configuration.appName}.responsiveMenu`
+  `${appName}.backend`, `${appName}.navigationBar`,
+  `${appName}.route-logger`,
+  `${appName}.pages`,
+  `${appName}.auth`,
+  `${appName}.admin`,
+  `${appName}.responsiveMenu`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise(($injector, $location) => {
-    console.log("app/cms.js:18", "$location", $location);
     return '/home';
   });
   $stateProvider.state('root', {
@@ -30,13 +29,13 @@ angular.module( configuration.appName, [
     abstract: true,
     url: "/",
     resolve: {
-      mainMenu(backend){
+      mainMenu(backend) {
         var menu = backend.menu("main");
         return menu;
       }
     }
   }).state('root.inner', {
-    templateUrl: "innerpage.tpl.html",
+    templateUrl: "inner.tpl.html",
     abstract: true,
     url: "inner"
   });

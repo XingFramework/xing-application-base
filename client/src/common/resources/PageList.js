@@ -1,6 +1,6 @@
-import {ServerResponse} from '../server/ServerResponse';
+import {BackendResource} from '../backend/BackendResource';
 
-export class PageList extends ServerResponse {
+export class PageList extends BackendResource {
   get pages(){
     return this._data.map((item) => { return new PageItem(item); });
   }

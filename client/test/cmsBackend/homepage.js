@@ -1,4 +1,4 @@
-import {Homepage} from "../../src/common/server/homepage";
+import {Homepage} from "../../src/common/resources/Homepage";
 
 describe('Homepage class', function() {
   var page, mockBackend;

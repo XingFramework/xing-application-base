@@ -3,9 +3,7 @@ import jsonPath from '../jsonpath';
 var paths = {
   selfUrl: "$.links.self"
 };
-
-// XXX The more I think about it, this is a Server*Resource* not a response -jdl
-export class ServerResponse {
+export class BackendResource {
   constructor(backend, responsePromise) {
     this.backend = backend;
 
@@ -20,11 +18,11 @@ export class ServerResponse {
     this.completePromise = null;
 
     if(responsePromise){
-      this.serverResponds(responsePromise);
+      this.backendResponds(responsePromise);
     }
   }
 
-  serverResponds(responsePromise){
+  backendResponds(responsePromise){
     this.responsePromise = responsePromise;
     this.completePromise = responsePromise.then( (response) => {
       this.resolved = true;
@@ -33,7 +31,6 @@ export class ServerResponse {
       return this;
     },
     (reason) => {
-      console.log("server/serverResponse.js:13", "reason", reason);
       this.errorReason = reason;
       return this;
     });

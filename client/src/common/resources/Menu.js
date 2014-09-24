@@ -1,11 +1,11 @@
-import {ServerResponse} from '../server/ServerResponse';
+import {BackendResource} from '../backend/BackendResource';
 
-export class Menu extends ServerResponse {
+export class Menu extends BackendResource {
   emptyData(){
     return [];
   }
 
-  serverResponds(promise){
+  backendResponds(promise){
     super(promise);
     this.completePromise = this.completePromise.then((result) => {
       var completes = this._items.map((item) => {
@@ -42,8 +42,8 @@ var itemPaths = {
   name: '$.data.name',
 };
 
-class MenuItem extends ServerResponse {
-  serverResponds(promise){
+class MenuItem extends BackendResource {
+  backendResponds(promise){
     super(promise);
     var childrenPromise = this.responsePromise.then((response) => {
       return { data: response["data"]["children"] };
