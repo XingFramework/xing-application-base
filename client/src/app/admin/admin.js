@@ -1,11 +1,11 @@
-import {configuration} from '../../common/config';
+import {appName} from '../../common/config';
 import {} from '../../common/backend/backend';
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 import {} from "./directives";
 
-angular.module( `${configuration.appName}.admin`, [
-  `${configuration.appName}.backend`,
-  `${configuration.appName}.adminDirectives`,
+angular.module( `${appName}.admin`, [
+  `${appName}.backend`,
+  `${appName}.adminDirectives`,
   'ui.router.state'
 ])
 

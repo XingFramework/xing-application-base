@@ -1,7 +1,6 @@
 import {Menu} from './Menu';
 import {Page} from './Page';
 import {PageList} from './PageList';
-import {Homepage} from './Homepage';
 import BackendServer from '../backend/BackendServer';
 
 export default class AppBackend extends BackendServer {
@@ -12,10 +11,6 @@ export default class AppBackend extends BackendServer {
 
   menu(name){
     return this.load(Menu, `/navigation/${name}`);
-  }
-
-  homepage(){
-    return this.load(Homepage, '/homepage');
   }
 
   page(slug, forRole){

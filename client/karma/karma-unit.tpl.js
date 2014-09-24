@@ -3,13 +3,14 @@ module.exports = function ( config ) {
     /**
      * From where to look for files, starting with the location of this file.
      */
-    basePath: '../../',
+    basePath: '..',
 
     /**
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
       {pattern: 'test/json-fixtures/**/*.json', included: false},
+      {pattern: 'build/**/*.js', included: false},
       {pattern: 'src/**/*.js', included: false},
       {pattern: 'test/**/*.js', included: false},
       {pattern: 'test-help/**/*.js', included: false},
@@ -31,6 +32,7 @@ module.exports = function ( config ) {
       'karma-ng-html2js-preprocessor',
     ],
     preprocessors: {
+      'build/**/*.js': 'traceur',
       'src/**/*.js': 'traceur',
       'test/**/*.js': 'traceur',
       'test-help/**/*.js': 'traceur',

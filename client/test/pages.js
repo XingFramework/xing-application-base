@@ -1,12 +1,12 @@
-  import {configuration} from '../src/common/config';
+import {configuration} from '../src/common/config';
 import {} from '../src/app/pages/pages';
-import {} from 'test/json-fixtures/pages/client.json';
 import {Page} from '../src/common/resources/Page';
+import {} from './json-fixtures/pages/server.json';
 
 describe( 'Pages section', function() {
 
   beforeEach( module( `${configuration.appName}.pages` ) );
-  beforeEach( module( `${configuration.appName}.server` ) );
+  beforeEach( module( `${configuration.appName}.backend` ) );
   beforeEach( module( 'fixtureCache' ) );
 
   var $scope, $stateMock, pagesCtrl, pageSpy, emitSpy, $sceMock;

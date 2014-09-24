@@ -1,8 +1,9 @@
 import { appName } from '../../common/config';
 import {} from "../../../vendor/FroalaWysiwygEditor/froala_editor.min";
-import '../../../vendor/angular-froala/angular-froala';
+import {} from '../../../vendor/angular-froala/angular-froala';
 
 angular.module(`${appName}.adminEditDirective`, ['froala'])
+
 .directive('lrdAdminEditable', function($sce, $compile, $http, $templateCache) {
   return {
     restrict: 'A',
@@ -17,7 +18,7 @@ angular.module(`${appName}.adminEditDirective`, ['froala'])
         if(scope.editable.content.length === 0){
           scope.froalaConfig.placeholder = `Add content for ${contentName} here`;
         }
-        $http.get('pages/admin-edit.tpl.html', {cache: $templateCache}).then( (template) => {
+        $http.get('adminEdit/admin-edit.tpl.html', {cache: $templateCache}).then( (template) => {
           $elem.html(template.data);
           $compile($elem.contents())(scope);
         });

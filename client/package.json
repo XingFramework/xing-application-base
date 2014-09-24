@@ -1,7 +1,7 @@
 {
-  "name": "Reasoning",
+  "name": "LRD-CMS2",
   "version": "0.0.1",
-  "repository": "git@git.lrdesign.com:lrd/reasoning.git",
+  "repository": "git@git.lrdesign.com:lrd/cms2.git",
   "author": "Logical Reality Design",
   "homepage": "http://lrdesign.com",
   "devDependencies": {

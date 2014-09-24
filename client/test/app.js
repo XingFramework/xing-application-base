@@ -1,12 +1,12 @@
 import '../vendor/angular/angular';
 import '../vendor/angular-mocks/angular-mocks';
-import '../src/app/cms';
+import '../src/app/app';
 
 describe( 'RootCtrl', function() {
   describe( 'isCurrentUrl', function() {
     var RootCtrl, $location, $scope, mockMain;
 
-    beforeEach( module( 'Reasoning' ) );
+    beforeEach( module( 'LRD-CMS2' ) );
 
     beforeEach( inject( function( $controller, _$location_, $rootScope ) {
       $location = _$location_;

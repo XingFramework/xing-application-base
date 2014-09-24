@@ -11,16 +11,25 @@ requireJsConfig = {
     "vendor/FroalaWysiwygEditor/froala_editor.min": {
       deps: [ "jquery" ]
     },
+    "vendor/angular-cookies/angular-cookies": {
+      deps: [ "angular" ]
+    },
+    "vendor/ng-token-auth/ng-token-auth": {
+      deps: [ "angular" ]
+    },
     "vendor/angular-mocks/angular-mocks": {
+      deps: [ "angular" ]
+    },
+    "vendor/restangular/restangular": {
       deps: [ "angular" ]
     },
     "vendor/angular-ui-router/angular-ui-router": {
       deps: [ "angular" ]
     },
-    "src/build/templates-app": {
+    "build/templates-app": {
       deps: [ "angular" ]
     },
-    "src/build/templates-common": {
+    "build/templates-common": {
       deps: [ "angular" ]
     }
 

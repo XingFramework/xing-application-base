@@ -2,7 +2,7 @@ import {} from '../../vendor/angular/angular';
 import { environment } from "./environment";
 
 export var backendUrl = environment.backendUrl;
-export var appName = "Reasoning";
+export var appName = "LRD-CMS2";
 export var configuration = { backendUrl, appName };
 
 if(environment.name){

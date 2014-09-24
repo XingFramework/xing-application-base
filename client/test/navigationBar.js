@@ -16,7 +16,7 @@ describe('navigationBar directive', function() {
     return element;
   }
 
-  beforeEach(module('Reasoning.navigationBar', "ui.router.state", function($stateProvider) {
+  beforeEach(module('LRD-CMS2.navigationBar', "ui.router.state", function($stateProvider) {
     $stateProvider.state('root', {url: "/"});
     $stateProvider.state('root.inner', {url: "/"});
   }));
