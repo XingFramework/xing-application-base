@@ -10,4 +10,3 @@ angular.module( `${appName}.admin`, [
   `${appName}.adminNav`,
   'ui.router.state'
 ]);
-

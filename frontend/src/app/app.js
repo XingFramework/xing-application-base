@@ -49,4 +49,3 @@ angular.module( appName, [
 .controller( 'RootCtrl', function RootCtrl( $scope, $location, mainMenu, $state ) {
   $scope.mainMenu = mainMenu;
 });
-
