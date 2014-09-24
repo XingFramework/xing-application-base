@@ -31,6 +31,7 @@ export class BackendResource {
       return this;
     },
     (reason) => {
+      console.log("Backend error:", this, reason);
       this.errorReason = reason;
       return this;
     });

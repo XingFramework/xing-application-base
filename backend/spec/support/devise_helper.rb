@@ -53,4 +53,3 @@ end
 module RSpec::Rails::HelperExampleGroup
   include DeviseExtraTestHelper
 end
-

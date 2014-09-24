@@ -21,7 +21,14 @@ angular.module(`${appName}.pages`)
           return backend.createPage(); }
       }
     })
-
+    .state( 'root.inner.page.new', {
+      url: 'new',
+      templateUrl: 'pages/page-create.tpl.html',
+      resolve: {
+        onlyAdmin($auth){ return $auth.validateUser(); }
+      },
+      controller: 'PageNewCtrl'
+    })
     .state( 'root.inner.page.show', {
       url: '*pageUrl',
       resolve: {
@@ -44,13 +51,5 @@ angular.module(`${appName}.pages`)
       resolve: {
         onlyAdmin($auth){ return $auth.validateUser(); }
         }
-    })
-
-    .state( 'root.inner.page.new', {
-      url: 'new',
-      resolve: {
-        onlyAdmin($auth){ return $auth.validateUser(); }
-      },
-      controller: 'PageNewCtrl'
     });
 });

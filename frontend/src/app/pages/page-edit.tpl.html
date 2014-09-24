@@ -1,7 +1,7 @@
 <div ng-include="template">
 </div>
 <!-- page-edit.tpl -->
-<form ng-if="nowEditing" class="admin-form">
+<form class="admin-form">
   <fieldset>
     <legend>Title and Address</legend>
     <label>
@@ -50,6 +50,6 @@
       <span class='comment'>Don't show the page after this date</span>
     </label>
   </fieldset>
-  <button ng-click="savePage()">Save</button>
-  <button ng-click="cancelEdit()">Cancel</button>
+  <button ng-click="pageActions.save()">Save</button>
+  <button ng-click="pageActions.show()">Cancel</button>
 </form>

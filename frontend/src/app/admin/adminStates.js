@@ -5,7 +5,7 @@ angular.module( `${appName}.admin` )
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'root.admin', {
-      url: 'admin',
+      url: 'admin/',
       templateUrl: 'admin/admin.tpl.html',
       resolve: {
         isAdmin($auth){
