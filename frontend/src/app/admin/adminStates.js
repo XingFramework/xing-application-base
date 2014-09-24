@@ -1,14 +1,7 @@
 import {appName} from '../../common/config';
-import {} from '../../common/backend/backend';
-import {} from '../../../vendor/angular-ui-router/angular-ui-router';
-import {} from "./directives";
+import {} from './adminModule';
 
-angular.module( `${appName}.admin`, [
-  `${appName}.backend`,
-  `${appName}.adminDirectives`,
-  'ui.router.state'
-])
-
+angular.module( `${appName}.admin` )
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'root.admin', {
@@ -45,21 +38,4 @@ angular.module( `${appName}.admin`, [
       controller: 'AdminImagesCtrl',
       templateUrl: 'admin/images.tpl.html',
     });
-})
-.controller( 'AdminPagesCtrl', function( $scope, $stateParams, $sce, pageList) {
-  $scope.pageList = pageList;
-  $scope.pages = pageList.pages;
-  $scope.newPage = function(){
-    backend.createPage();
-  };
-  // header info
-})
-.controller( 'AdminMenusCtrl', function( $scope, $stateParams, $sce) {
-
-})
-.controller( 'AdminDocumentsCtrl', function( $scope, $stateParams, $sce) {
-
-})
-.controller( 'AdminImagesCtrl', function( $scope, $stateParams, $sce) {
-
 });

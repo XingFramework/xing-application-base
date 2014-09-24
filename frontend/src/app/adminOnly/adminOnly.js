@@ -1,8 +1,8 @@
-import { configuration } from '../../common/config';
+import { appName } from '../../common/config';
 import {} from '../../../vendor/angular-cookies/angular-cookies';
 import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 
-angular.module( configuration.appName + '.adminDirectives', [`${configuration.appName}.config`, 'ng-token-auth'])
+angular.module( `${appName}.adminOnly`, [`${appName}.config`, 'ng-token-auth'])
 .directive('adminOnly',
   ['$rootScope', '$auth', function ($rootScope, $auth) {
 
@@ -23,22 +23,6 @@ angular.module( configuration.appName + '.adminDirectives', [`${configuration.ap
       scope: true,
       link: link,
       transclude: true,
-      templateUrl: 'admin/adminOnly.tpl.html'
+      templateUrl: 'adminOnly/admin-only.tpl.html'
     };
-  }])
-
-.directive('adminNav',
-  function($auth, $state) {
-    function link(scope, element, attrs) {
-      scope.logout = () => {
-        $auth.signOut().then((response) => {
-          $state.go('root.homepage.show');
-        });
-      };
-    }
-    return {
-      link: link,
-      restrict: 'E',
-      templateUrl: 'admin/adminNav.tpl.html'
-    };
-  });
+  }]);

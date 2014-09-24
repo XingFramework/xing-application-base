@@ -1,8 +1,11 @@
-import { configuration } from '../../common/config';
+import { appName } from '../../common/config';
 import {} from "../../../build/templates-app";
 import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
-angular.module( `${configuration.appName}.navigationBar`, ['templates-app', 'ui.router.state', `${configuration.appName}.pages`])
+angular.module( `${appName}.navigationBar`,
+  ['templates-app',
+  'ui.router.state',
+  `${appName}.pages`])
 .directive('lrdNavbar', function ($compile, $state) {
   return {
     restrict: 'E',

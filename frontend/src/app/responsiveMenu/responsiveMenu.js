@@ -1,8 +1,8 @@
-import { configuration } from '../../common/config';
+import { appName } from '../../common/config';
 import {} from "../../../build/templates-app";
 import {} from '../../../vendor/responsive-nav/responsive-nav';
 
-angular.module( `${configuration.appName}.responsiveMenu`, ['templates-app'])
+angular.module( `${appName}.responsiveMenu`, ['templates-app'])
 .directive('lrdResponsiveMenu', function () {
   return {
     restrict: 'E',
