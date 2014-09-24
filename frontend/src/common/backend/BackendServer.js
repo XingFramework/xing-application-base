@@ -23,7 +23,7 @@ export default class BackendServer {
     var data = resource.dataForSave;
     if(resource.isNew){
       url = this.mangleUrl(resource.postUrl);
-      backendReq = this.Restangular.restangularizeCollection(null, {}, url);
+      backendReq = this.Restangular.all(url);
       responds = backendReq.post(data);
     } else {
       url = this.mangleUrl(resource.putUrl);
@@ -51,8 +51,13 @@ export default class BackendServer {
   }
 
   unwrap(backendResponds){
+    var backend = this;
     return backendResponds.then((fullResponse) => {
-      return fullResponse.data;
+      if(fullResponse.status === 201 && fullResponse.headers().location){
+        return backend.unwrap(backend.Restangular.oneUrl("response", fullResponse.headers().location).get());
+      } else {
+        return fullResponse.data;
+      }
     });
   }
 
