@@ -6,13 +6,13 @@ task :build => 'build:all'
 desc "Run rails server and grunt watch to start a dev environment"
 task :develop => 'develop:all'
 
-namespace :client do
+namespace :frontend do
   task :npm_install do
-    Dir.chdir("client"){ sh *%w{npm install} }
+    Dir.chdir("frontend"){ sh *%w{npm install} }
   end
 
   task :bundle_install do
-    Dir.chdir("client"){ sh *%w{bundle install} }
+    Dir.chdir("frontend"){ sh *%w{bundle install} }
   end
 
   task :setup => [:npm_install, :bundle_install]
@@ -69,9 +69,9 @@ namespace :develop do
     end
   end
 
-  task :grunt_watch => 'client:setup' do
+  task :grunt_watch => 'frontend:setup' do
     child_pid = Process.fork do
-      Dir.chdir("client"){
+      Dir.chdir("frontend"){
         sh *%w{bundle exec node_modules/.bin/grunt watch:develop}
       }
     end
@@ -79,18 +79,18 @@ namespace :develop do
     child_pids << child_pid
   end
 
-  namespace :server do
+  namespace :backend do
     task :bundle_install do
       Bundler.with_clean_env do
-        Dir.chdir("server"){ sh *%w{bundle install} }
+        Dir.chdir("backend"){ sh *%w{bundle install} }
       end
     end
     task :setup => [:bundle_install]
   end
 
-  task :rails_server => [:links, 'server:setup'] do
+  task :rails_server => [:links, 'backend:setup'] do
     child_pid = Process.fork do
-      Dir.chdir("server"){
+      Dir.chdir("backend"){
         sh *%w{bundle exec rails server}
       }
     end
@@ -104,35 +104,35 @@ namespace :develop do
 
   task :links do
     %w{index.html assets fonts}.each do |thing|
-      sh "ln", "-sfn", "../../client/bin/#{thing}", "server/public/#{thing}"
+      sh "ln", "-sfn", "../../frontend/bin/#{thing}", "backend/public/#{thing}"
     end
   end
   task :all => [:links]
 end
 
 namespace :build do
-  task :all => %w{client:all server:all}
+  task :all => %w{frontend:all backend:all}
 
-  namespace :client do
+  namespace :frontend do
     task :npm_install do
-      desc "Compile the client app into client/bin"
+      desc "Compile the frontend app into frontend/bin"
       task :grunt_compile => [:npm_install, :bundle_install] do
-        Dir.chdir("client"){ sh *%w{bundle exec node_modules/.bin/grunt compile} }
+        Dir.chdir("frontend"){ sh *%w{bundle exec node_modules/.bin/grunt compile} }
       end
 
       task :all => [:npm_install, :grunt_compile]
     end
   end
 
-  task :client_to_assets do
-    sh *%w{cp -a client/bin/* server/public/}
+  task :frontend_to_assets do
+    sh *%w{cp -a frontend/bin/* backend/public/}
   end
 
 
-  namespace :server do
+  namespace :backend do
     task :bundle_install do
       Bundler.with_clean_env do
-        Dir.chdir("server"){ sh *%w{bundle install --deployment} }
+        Dir.chdir("backend"){ sh *%w{bundle install --deployment} }
       end
     end
     task :setup => [:bundle_install]
@@ -140,19 +140,19 @@ namespace :build do
     desc "Migrate database up to current"
     task :db_migrate => :bundle_install do
       Bundler.with_clean_env do
-        Dir.chdir("server"){ sh *%w{bundle exec rake db:migrate db:seed} }
+        Dir.chdir("backend"){ sh *%w{bundle exec rake db:migrate db:seed} }
       end
     end
 
     desc "Precompile rails assets"
     task :assets_precompile => [:bundle_install, :db_migrate] do
       Bundler.with_clean_env do
-        Dir.chdir("server"){ sh *%w{bundle exec rake assets:precompile}}
+        Dir.chdir("backend"){ sh *%w{bundle exec rake assets:precompile}}
       end
     end
 
     task :all => [:db_migrate, :assets_precompile]
   end
 
-  task 'server:assets_precompile' => :client_to_assets
+  task 'backend:assets_precompile' => :frontend_to_assets
 end

@@ -1,0 +1,2 @@
+<nav class="nav-collapse" ng-transclude>
+</nav>

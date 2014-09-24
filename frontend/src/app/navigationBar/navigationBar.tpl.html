@@ -1,0 +1,7 @@
+<ul ng-attr-id='{{menuId}}' ng-if='menu.items.length > 0' >
+  <li ng-repeat="item in menu.items">
+    <a href='{{item.target}}' ng-if='item.external()'>{{item.name}}</a>
+    <a ui-sref='{{pageState}}({pageUrl: item.target})' ng-if='item.internal()'>{{item.name}}</a>
+    <lrd-navbar menu='item.children' ng-if='item.hasChildren()' />
+  </li>
+</ul>

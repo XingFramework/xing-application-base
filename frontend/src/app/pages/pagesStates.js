@@ -1,0 +1,56 @@
+import {appName} from '../../common/config';
+import {} from './pagesModule';
+
+angular.module(`${appName}.pages`)
+.config(function config( $stateProvider ) {
+  $stateProvider
+
+    .state( 'root.inner.page', {
+      url: '^/pages/',
+      controller: 'PagesCtrl',
+      abstract: true,
+      template: "<ui-view></ui-view>",
+      resolve: {
+        isAdmin($auth){
+          return $auth.validateUser().then(
+            (success) => { return true; },
+            (failure) => { return false; }
+          ).then((bool) => { return bool; });
+        },
+        page(backend) {
+          return backend.createPage(); }
+      }
+    })
+
+    .state( 'root.inner.page.show', {
+      url: '*pageUrl',
+      resolve: {
+        pageLoaded(isAdmin, page, $stateParams){
+          if(isAdmin){
+            page.role = "admin";
+          } else {
+            page.role = "guest";
+          }
+          page.loadFrom($stateParams.pageUrl);
+          return page.complete;
+        }
+      },
+      templateUrl: 'pages/pages.tpl.html',
+    })
+
+    .state( 'root.inner.page.edit', {
+      templateUrl: 'pages/page-edit.tpl.html',
+      controller: 'PageEditCtrl',
+      resolve: {
+        onlyAdmin($auth){ return $auth.validateUser(); }
+        }
+    })
+
+    .state( 'root.inner.page.new', {
+      url: 'new',
+      resolve: {
+        onlyAdmin($auth){ return $auth.validateUser(); }
+      },
+      controller: 'PageNewCtrl'
+    });
+});
