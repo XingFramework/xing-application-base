@@ -3,20 +3,20 @@ import {} from './adminModule';
 
 angular.module( `${appName}.admin` )
 
-.controller( 'AdminPagesCtrl', function( $scope, $stateParams, $sce, pageList) {
+.controller( 'AdminPagesCtrl', function( $scope, $state, pageList) {
   $scope.pageList = pageList;
   $scope.pages = pageList.pages;
   $scope.newPage = function(){
-    backend.createPage();
+    $state.go('^.^.inner.page.new');
   };
   // header info
 })
-.controller( 'AdminMenusCtrl', function( $scope, $stateParams, $sce) {
+.controller( 'AdminMenusCtrl', function() {
 
 })
-.controller( 'AdminDocumentsCtrl', function( $scope, $stateParams, $sce) {
+.controller( 'AdminDocumentsCtrl', function() {
 
 })
-.controller( 'AdminImagesCtrl', function( $scope, $stateParams, $sce) {
+.controller( 'AdminImagesCtrl', function() {
 
 });

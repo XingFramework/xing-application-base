@@ -35,7 +35,14 @@ var layouts = {
 export class Page extends BackendResource {
   constructor(backend, promise){
     super(backend, promise);
+    this.setupContents();
     this._role = "guest";
+    this._layoutKinds = [];
+    for(var layoutName in layouts){
+      if(layouts.hasOwnProperty(layoutName)){
+        this._layoutKinds.push({"name": layouts[layoutName]["label"], "value": layoutName});
+      }
+    }
   }
 
   emptyData(){
@@ -84,6 +91,10 @@ export class Page extends BackendResource {
     }
   }
 
+  get slugUrl(){
+    return this.publicUrl || this.selfUrl;
+  }
+
   get publicUrl(){
     return this.pathGet(jsonPaths.publicUrl);
   }
@@ -102,13 +113,7 @@ export class Page extends BackendResource {
   }
 
   get layoutKinds(){
-    var kindList = [];
-    for(var layoutName in layouts){
-      if(layouts.hasOwnProperty(layoutName)){
-        kindList.push([layouts[layoutName]["label"], layoutName]);
-      }
-    }
-    return kindList;
+    return this._layoutKinds;
   }
 
   setupContents(){
@@ -136,7 +141,9 @@ export class Page extends BackendResource {
     return this.pathGet(jsonPaths.layout);
   }
   set layout(value){
-    return this.pathSet(jsonPaths.layout, value);
+    var ret = this.pathSet(jsonPaths.layout, value);
+    this.setupContents();
+    return ret;
   }
 
   get title(){
