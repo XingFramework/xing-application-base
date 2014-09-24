@@ -91,6 +91,10 @@ export class Page extends BackendResource {
     }
   }
 
+  get slugUrl(){
+    return this.publicUrl || this.selfUrl;
+  }
+
   get publicUrl(){
     return this.pathGet(jsonPaths.publicUrl);
   }

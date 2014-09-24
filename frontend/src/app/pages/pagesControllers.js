@@ -22,7 +22,7 @@ angular.module(`${appName}.pages`)
       $state.go('^.edit', {}, {location: false});
     },
     show(){
-      $state.go("^.show", {pageUrl: page.selfUrl});
+      $state.go("^.show", {pageUrl: page.slugUrl});
     },
     save(){
       if(!page.title){
@@ -33,15 +33,12 @@ angular.module(`${appName}.pages`)
       }
       page.save();
       page.complete.then((page) => {
-        $state.go("^.show");
+        $state.go("^.show", {pageUrl: page.slugUrl});
         return page;
       });
     }
   };
   $scope.nowEditing = false;
-  $scope.edit = function(){
-  };
-
   $scope.froalaConfig = { };
 
   $scope.page = page;
