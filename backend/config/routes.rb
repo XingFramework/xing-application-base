@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :menus, :only => [ :show ]
 
   namespace :admin do
-    #resources :images
+    resources :images
     #resources :documents
     resources :pages, :param => :url_slug
     resources :menus, :only => [ :show, :index ]

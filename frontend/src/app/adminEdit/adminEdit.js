@@ -15,6 +15,8 @@ angular.module(`${appName}.adminEditDirective`, ['froala'])
 
       if(scope.nowEditing){
         scope.froalaConfig.placeholder = "";
+        scope.froalaConfig.imageUploadParam = 'image';
+        scope.froalaConfig.imageUploadURL = '/admin/images';
         if(scope.editable.content.length === 0){
           scope.froalaConfig.placeholder = `Add content for ${contentName} here`;
         }

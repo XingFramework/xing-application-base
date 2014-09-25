@@ -1,4 +1,5 @@
 class Admin::ImagesController < Admin::AdminController
+  skip_before_filter :check_format, only: :create
   # GET /admin/upload/images
   def index
     @images = Image.all
@@ -16,12 +17,14 @@ class Admin::ImagesController < Admin::AdminController
 
   # POST /admin/upload/images
   def create
-    @image = Image.new(params[:image].permit(:image))
+    @image = Image.new(:image => params['image'])
 
     if @image.save
-      redirect_to(admin_image_path(@image), :notice => 'Image was successfully created.')
+      response = { link: @image.image.url }
+      render :status => 201, :json => response, :location => admin_images_path(@image)
     else
-      render :action => "new"
+      response = { error: "Didn't upload!" }
+      render :status => 422, :json => response
     end
   end
 
