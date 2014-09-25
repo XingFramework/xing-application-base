@@ -75,4 +75,8 @@ describe( 'Pages section', function() {
     expect($scope.template).toBe('pages/templates/'+page.layout +".tpl.html");
   });
 
+  it('should set nowEditing to false', function(){
+    expect($scope.nowEditing).toBeFalsy();
+  });
+
 });
