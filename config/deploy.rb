@@ -9,10 +9,10 @@ set :repo_url, 'git@git.lrdesign.com:lrd/uccf-website.git'
 # Default value for :log_level is :debug
 # set :log_level, :debug
 
-set :linked_files, %w{server/config/database.yml server/config/secrets.yml}
+set :linked_files, %w{backend/config/database.yml backend/config/secrets.yml}
 set :linked_dirs, %w{
   client/node_modules
-  server/log server/tmp/pids server/tmp/cache server/tmp/sockets server/vendor/bundle server/public/system
+  backend/log backend/tmp/pids backend/tmp/cache backend/tmp/sockets backend/vendor/bundle backend/public/system
 }
 
 # Default value for default_env is {}
@@ -21,7 +21,7 @@ set :linked_dirs, %w{
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :server_path, proc{ File::join(release_path, "server") }
+set :backend_path, proc{ File::join(release_path, "backend") }
 
 namespace :deploy do
   desc 'Build app'
@@ -38,7 +38,7 @@ namespace :deploy do
 
   task :perms do
     on roles(:app), :in => :parallel do
-      within File::join(release_path, "server") do
+      within File::join(release_path, "backend") do
         execute "chown", "apache:apache", "-R", "public"
       end
     end
@@ -48,7 +48,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      within fetch(:server_path) do
+      within fetch(:backend_path) do
         execute :touch, 'tmp/restart.txt'
       end
     end
@@ -59,7 +59,7 @@ namespace :deploy do
 #  after :restart, :clear_cache do
 #    on roles(:web), in: :groups, limit: 3, wait: 10 do
 #      # Here we can do anything such as:
-#      within fetch(:server_path) do
+#      within fetch(:backend_path) do
 #        with :rails_env => fetch(:stage) do
 #          execute :bundle, 'exec', 'rake', 'cache:clear'
 #        end
