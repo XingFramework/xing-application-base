@@ -611,7 +611,7 @@ module.exports = function( grunt ) {
             '<%= app_files.atpl %>',
             '<%= app_files.ctpl %>'
           ],
-          tasks: [ 'html2js' ]
+          tasks: [ 'html2js', 'karma:unit:run', 'traceur:build' ],
         },
 
         sass: {

@@ -27,6 +27,11 @@ angular.module( `${appName}.admin` )
       url: 'menus',
       controller: 'AdminMenusCtrl',
       templateUrl: 'admin/menus.tpl.html',
+      resolve: {
+        menuList(backend) {
+          return backend.menuList().complete;
+        }
+      }
     })
     .state( 'root.admin.documents', {
       url: 'documents',
