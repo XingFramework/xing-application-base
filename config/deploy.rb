@@ -11,7 +11,7 @@ set :repo_url, 'git@git.lrdesign.com:lrd/uccf-website.git'
 
 set :linked_files, %w{backend/config/database.yml backend/config/secrets.yml}
 set :linked_dirs, %w{
-  client/node_modules
+  frontend/node_modules
   backend/log backend/tmp/pids backend/tmp/cache backend/tmp/sockets backend/vendor/bundle backend/public/system
 }
 
