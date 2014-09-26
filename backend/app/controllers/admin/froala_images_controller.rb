@@ -1,6 +1,10 @@
 class Admin::FroalaImagesController < Admin::AdminController
   skip_before_filter :check_format, only: :create
 
+  # GET /admin/froala-images/index
+
+  # POST /admin/froala-images/delete => :destroy
+
   # POST /admin/upload/images
   def create
     @image = Image.new(:image => params['image'])
