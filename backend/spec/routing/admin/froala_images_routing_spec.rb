@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Admin::FroalaImagesController do
   describe "routing" do
-    xit "recognizes and generates #index" do
+    it "recognizes and generates #index" do
       { :get => "/admin/froala_images" }.should route_to(:controller => "admin/froala_images", :action => "index")
     end
 

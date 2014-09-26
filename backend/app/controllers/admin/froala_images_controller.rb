@@ -1,7 +1,12 @@
 class Admin::FroalaImagesController < Admin::AdminController
-  skip_before_filter :check_format, only: [:create, :index]
+  skip_before_filter :check_format, only: [:index, :create]
 
   # GET /admin/froala_images/
+  def index
+    @images = Image.all
+    response = @images.map{|img| img.image.url }
+    render :json => response, :root => false
+  end
 
   # POST /admin/froala_images/delete => :destroy
 

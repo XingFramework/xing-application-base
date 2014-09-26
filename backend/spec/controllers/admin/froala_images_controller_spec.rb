@@ -3,10 +3,6 @@ require 'spec_helper'
 describe Admin::FroalaImagesController do
   include ImageTestHelper
 
-  let :image do
-    double(Image)
-  end
-
   describe "while logged in" do
 
     let :admin do FactoryGirl.create(:admin) end
@@ -14,19 +10,43 @@ describe Admin::FroalaImagesController do
       authenticate('admin')
     end
 
+    let :valid_img do
+      image = mock_proper_image(:save => true)
+      image.stub_chain(:image, :url).and_return('http://imageishere.com')
+      image
+    end
+
     ########################################################################################
-    #                                      POST CREATE
+    #                                      GET index
+    ########################################################################################
+    describe "responding to GET index" do
+
+      before(:each) do
+        Image.should_receive(:all).and_return([valid_img])
+        get :index
+      end
+
+      let :success_response do
+        [valid_img.image.url].to_json
+      end
+
+      it "should expose all images as @images" do
+        assigns(:images).should eq([valid_img])
+      end
+
+      it "should respond with an array of the image urls" do
+        p response.body
+        expect(response.body).to eq(success_response)
+      end
+    end
+
+    ########################################################################################
+    #                                      POST create
     ########################################################################################
     describe "responding to POST create" do
 
       let :valid_params do
         { image: 'uploaded_file' }
-      end
-
-      let :valid_img do
-        image = mock_proper_image(:save => true )
-        image.stub_chain(:image, :url).and_return('http://imageishere.com')
-        image
       end
 
       let :success_response do
