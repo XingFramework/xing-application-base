@@ -75,24 +75,6 @@ export class Page extends BackendResource {
     }
   }
 
-  get jsonPaths() {
-    return {
-      publicUrl: "$.links.public",
-      adminUrl: "$.links.admin",
-      layout: "$.data.layout",
-      title: "$.data.title",
-      keywords: "$.data.keywords",
-      description: "$.data.description",
-      contents: '$.data.contents',
-      styles: "$.data.contents.styles.data.body",
-      headline: "$.data.contents.headline.data.body",
-      mainContent: "$.data.contents.main.data.body",
-      publishStart: "$.data.publishStart",
-      publishEnd: "$.data.publishEnd",
-      urlSlug: "$.data.urlSlug",
-    };
-  }
-
   get slugUrl(){
     return this.publicUrl || this.selfUrl;
   }
@@ -171,6 +153,20 @@ export class Page extends BackendResource {
     return this._data;
   }
 }
+
+Page.prototype.defineJsonProperty('publicUrl', "$.links.public");
+Page.prototype.defineJsonProperty("adminUrl", "$.links.admin");
+Page.prototype.defineJsonProperty("layout", "$.data.layout");
+Page.prototype.defineJsonProperty("title", "$.data.title");
+Page.prototype.defineJsonProperty("keywords", "$.data.keywords");
+Page.prototype.defineJsonProperty("description", "$.data.description");
+Page.prototype.defineJsonProperty("contents", '$.data.contents');
+Page.prototype.defineJsonProperty("styles", "$.data.contents.styles.data.body");
+Page.prototype.defineJsonProperty("headline", "$.data.contents.headline.data.body");
+Page.prototype.defineJsonProperty("mainContent", "$.data.contents.main.data.body");
+Page.prototype.defineJsonProperty("publishStart", "$.data.publishStart");
+Page.prototype.defineJsonProperty("publishEnd", "$.data.publishEnd");
+Page.prototype.defineJsonProperty("urlSlug", "$.data.urlSlug");
 
 class ContentBody {
   constructor(page, contentName) {

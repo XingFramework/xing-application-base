@@ -20,35 +20,22 @@ export class BackendResource {
     if(responsePromise){
       this.backendResponds(responsePromise);
     }
-
-    this.setupJsonPaths();
-
-  }
-
-  get jsonPaths() {
-    return {};
   }
 
   defineJsonProperty(name, path) {
-    Object.defineProperty(this, name, {
-      enumerable: true,
-      configurable: true,
-      get: () => {
-        return this.pathGet(path);
-      },
-      set: (value) => {
-        return this.pathSet(path, value);
-      }
-    });
-  }
-
-  setupJsonPaths() {
-    for (var path in this.jsonPaths) {
-      if (this.jsonPaths.hasOwnProperty(path)) {
-        if (!(path in this)) {
-          this.defineJsonProperty(path, this.jsonPaths[path]);
+    this.jsonPaths = this.jsonPaths || {};
+    this.jsonPaths[name] = path;
+    if (!(name in this)) {
+      Object.defineProperty(this, name, {
+        enumerable: true,
+        configurable: true,
+        get: function() {
+          return this.pathGet(path);
+        },
+        set: function(value) {
+          return this.pathSet(path, value);
         }
-      }
+      });
     }
   }
 

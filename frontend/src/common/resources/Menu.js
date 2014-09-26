@@ -44,16 +44,6 @@ class MenuItem extends BackendResource {
     this.completePromise = Promise.all([ this.completePromise, this.subMenu.completePromise ]).then((responses) => { return this; });
   }
 
-  get jsonPaths() {
-    return {
-      children: '$.data.children',
-      internalTarget: '$.data.page.links.self',
-      externalTarget: '$.data.url',
-      type: '$.data.type',
-      name: '$.data.name',
-    };
-  }
-
   hasChildren(){
     var children = this.pathGet(this.jsonPaths.children);
     return (children && children.length > 0);
@@ -83,3 +73,9 @@ class MenuItem extends BackendResource {
     return this._data;
   }
 }
+
+MenuItem.prototype.defineJsonProperty("children", '$.data.children');
+MenuItem.prototype.defineJsonProperty("internalTarget", '$.data.page.links.self');
+MenuItem.prototype.defineJsonProperty("externalTarget", '$.data.url');
+MenuItem.prototype.defineJsonProperty("type", '$.data.type');
+MenuItem.prototype.defineJsonProperty("name", '$.data.name');
