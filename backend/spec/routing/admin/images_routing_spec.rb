@@ -1,33 +1,25 @@
 require 'spec_helper'
 
-describe Admin::ImagesController, :pending => "Awaiting implementation in CMS2" do
+describe Admin::FroalaImagesController do
   describe "routing" do
-    it "recognizes and generates #index" do
-      { :get => "/admin/images" }.should route_to(:controller => "admin/images", :action => "index")
+    xit "recognizes and generates #index" do
+      { :get => "/admin/froala_images" }.should route_to(:controller => "admin/froala_images", :action => "index")
     end
 
-    it "recognizes and generates #new" do
-      { :get => "/admin/images/new" }.should route_to(:controller => "admin/images", :action => "new")
-    end
-
-    it "recognizes and generates #show" do
-      { :get => "/admin/images/1" }.should route_to(:controller => "admin/images", :action => "show", :id => "1")
-    end
-
-    it "recognizes and generates #edit" do
-      { :get => "/admin/images/1/edit" }.should route_to(:controller => "admin/images", :action => "edit", :id => "1")
+    xit "recognizes and generates #show" do
+      { :get => "/admin/froala_images/1" }.should route_to(:controller => "admin/froala_images", :action => "show", :id => "1")
     end
 
     it "recognizes and generates #create" do
-      { :post => "/admin/images" }.should route_to(:controller => "admin/images", :action => "create")
+      { :post => "/admin/froala_images" }.should route_to(:controller => "admin/froala_images", :action => "create")
     end
 
-    it "recognizes and generates #update" do
-      { :put => "/admin/images/1" }.should route_to(:controller => "admin/images", :action => "update", :id => "1")
+    xit "recognizes and generates #update" do
+      { :put => "/admin/froala_images/1" }.should route_to(:controller => "admin/froala_images", :action => "update", :id => "1")
     end
 
-    it "recognizes and generates #destroy" do
-      { :delete => "/admin/images/1" }.should route_to(:controller => "admin/images", :action => "destroy", :id => "1")
+    xit "recognizes and generates #destroy" do
+      { :delete => "/admin/froala_images/1" }.should route_to(:controller => "admin/froala_images", :action => "destroy", :id => "1")
     end
   end
 end

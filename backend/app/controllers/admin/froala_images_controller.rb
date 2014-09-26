@@ -5,7 +5,7 @@ class Admin::FroalaImagesController < Admin::AdminController
 
   # POST /admin/froala-images/delete => :destroy
 
-  # POST /admin/upload/images
+  # POST /admin/images
   def create
     @image = Image.new(:image => params['image'])
 
