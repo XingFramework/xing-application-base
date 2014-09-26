@@ -60,4 +60,5 @@ coverage/
 errors.err
 .cadre/
 spec/support/cadre.rb
-secrets.yml
+secrets.ymlspec/support/cadre.rb
+config/secrets.yml

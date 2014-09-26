@@ -1,29 +1,23 @@
 class MenuItemMapper < HypermediaJSONMapper
-  attr_accessor :menu_item
+  alias menu_item record
+  alias menu_item= record=
 
-  def save
-    extract_data
-    if @locator.present?
-      find_and_update
-    else
-      save_new
-    end
+  attr_accessor :parent_id
+
+  def record_class
+    MenuItem
   end
 
-  def find_and_update
-    self.menu_item = MenuItem.find(@locator)
-    self.menu_item.update_attributes(@menu_item_data)
-    self.menu_item.save
-  end
-
-  def save_new
-    self.menu_item = MenuItem.new(@menu_item_data)
+  def update_record
+    self.menu_item.assign_attributes(@menu_item_data)
     set_link
-    self.menu_item.save
   end
 
   def extract_data
     @menu_item_data = unwrap_data(@source_hash)
+    if parent_id.present?
+      @menu_item_data["parent_id"] = parent_id
+    end
     @menu_item_type = @menu_item_data.delete('type')
     @external_path = @menu_item_data.delete('path')
     @page_url_slug = @menu_item_data.delete('page_url_slug')
@@ -53,5 +47,4 @@ class MenuItemMapper < HypermediaJSONMapper
       raise MissingLinkException.new("External URL not set: #{@menu_item_data.inspect}")
     end
   end
-
 end

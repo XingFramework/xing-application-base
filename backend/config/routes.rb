@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     #resources :images
     #resources :documents
     resources :pages, :param => :url_slug
-    resources :menus, :only => [ :show, :index ]
+    resources :menus, :only => [ :show, :index, :update ]
     resources :menu_items
     resources :content_blocks
 
