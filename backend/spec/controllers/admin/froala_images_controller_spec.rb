@@ -8,13 +8,8 @@ describe Admin::FroalaImagesController do
   ########################################################################################
   describe "responding to POST create" do
 
-    # it should expose the new image as @image
     let :valid_params do
       { image: 'uploaded_file' }
-    end
-
-    let :invalid_params do
-      { image: nil }
     end
 
     let :valid_img do
@@ -23,11 +18,7 @@ describe Admin::FroalaImagesController do
       image
     end
 
-    let :invalid_img do
-      mock_improper_image(:save => false)
-    end
-
-    let :expected_response do
+    let :success_response do
       { link: 'http://imageishere.com' }.to_json
     end
 
@@ -40,55 +31,61 @@ describe Admin::FroalaImagesController do
       expect(response.status).not_to eq(406)
     end
 
-    it "should create an image and pass the params to it, then redirect to the page" do
-      Image.should_receive(:new).with(:image => 'uploaded_file').and_return(valid_img)
-      post :create, valid_params
+    describe 'with valid params' do
+      before(:each) do
+        Image.should_receive(:new).with(:image => 'uploaded_file').and_return(valid_img)
+        xhr :post, :create, valid_params
+      end
 
-      expect(response.status).to eq(201)
-      expect(response.body).to eq(expected_response)
-      expect(response.headers["Location"]).to eq(admin_froala_images_path(valid_img))
+      it "should create a new image and expose it" do
+        assigns(:image).should equal(valid_img)
+      end
+
+      it "should create an image and pass the params to it, then redirect to the page" do
+
+        expect(response.status).to eq(201)
+        expect(response.body).to eq(success_response)
+        expect(response.headers["Location"]).to eq(admin_froala_images_path(valid_img))
+      end
 
     end
 
-    it "should render status 422 if not saved"  do
-      Image.should_receive(:new).with(:image => nil).and_return(invalid_img)
+    describe 'with invalid params' do
+      before(:each) do
+        Image.should_receive(:new).with(:image => nil).and_return(invalid_img)
+        xhr :post, :create, invalid_params
+      end
 
-      post :create, invalid_params
+      let :invalid_params do
+        { image: nil }
+      end
 
-      expect(response).to reject_as_unprocessable
+      let :invalid_img do
+        image = mock_improper_image(:save => false )
+        image.stub_chain(:errors, :full_messages) { errors_full }
+        image
+      end
+
+      let :errors_response do
+        { error: errors_full }.to_json
+      end
+
+      let :errors_full do
+        ["Error one", "Error 2"]
+      end
+
+      it "should create a new image and expose it" do
+        assigns(:image).should equal(invalid_img)
+      end
+
+      it "should render status 422 if not saved"  do
+        expect(response).to reject_as_unprocessable
+      end
+
+      it "should return relevant errors"  do
+        expect(response.body).to eq(errors_response)
+      end
     end
-
-    # describe "with valid params" do
-    #   before do
-    #     @img = mock_proper_image(:save => true)
-    #     Image.should_receive(:new).with({'image' => 'uploaded_file'}).and_return(@img)
-    #     post :create, :image => {:image => 'uploaded_file'}
-    #   end
-
-    #   it "should create a new image and expose it" do
-    #     assigns(:image).should equal(@img)
-    #   end
-
-    # end
-
-    # describe "with invalid params" do
-    #   before do
-    #     lambda do
-    #       @img = mock_improper_image(:save => false)
-    #       Image.should_receive(:new).with({'image' => 'uploaded_file'}).and_return(@img)
-    #       post :create, :image => {:image => 'uploaded_file'}
-    #     end.should_not change(Image, :count)
-    #   end
-
-    #   it "should expose a newly created image as @image" do
-    #     assigns(:image).should equal(@img)
-    #   end
-
-
-    #   it "should re-render the 'new' template" do
-    #     response.should render_template('new')
-    #   end
-    # end
   end
 
 end

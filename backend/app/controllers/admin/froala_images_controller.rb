@@ -13,7 +13,7 @@ class Admin::FroalaImagesController < Admin::AdminController
       response = { link: @image.image.url }
       render :status => 201, :json => response, :location => admin_froala_images_path(@image)
     else
-      response = { error: "Didn't upload!" } # display better errors
+      response = { error: @image.errors.full_messages }
       render :status => 422, :json => response
     end
   end
