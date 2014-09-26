@@ -326,7 +326,7 @@ module.exports = function( grunt ) {
         src: [ '<%= app_files.js %>' ],
 
         precompile: {
-          files: [ '<%= app_files.js %>' ],
+          files: [ { src: [ '<%= app_files.js %>' ]}],
           options: { debug: false }
         },
 
@@ -701,7 +701,7 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime', 'index:build' ]);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'index:compile', 'ngAnnotate', 'uglify' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'index:deploy', 'ngAnnotate', 'uglify' ]);
 
   /**
    * A utility function to get all app JavaScript sources.
