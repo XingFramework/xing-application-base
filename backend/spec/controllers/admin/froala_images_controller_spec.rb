@@ -8,8 +8,6 @@ describe Admin::FroalaImagesController do
   ########################################################################################
   describe "responding to POST create" do
 
-    # it should not be blocked by before_filter
-    # it should create a new image
     # it should expose the new image as @image
     let :valid_params do
       { image: 'uploaded_file' }
@@ -31,6 +29,15 @@ describe Admin::FroalaImagesController do
 
     let :expected_response do
       { link: 'http://imageishere.com' }.to_json
+    end
+
+    it "should not be rejected if request format other than json" do
+      Image.should_receive(:new).with(:image => 'uploaded_file').and_return(valid_img)
+
+      request.accept = 'html'
+      post :create, valid_params
+
+      expect(response.status).not_to eq(406)
     end
 
     it "should create an image and pass the params to it, then redirect to the page" do
