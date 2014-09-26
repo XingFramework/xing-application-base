@@ -26,7 +26,7 @@ describe Admin::FroalaImagesController do
       Image.should_receive(:new).with(:image => 'uploaded_file').and_return(valid_img)
 
       request.accept = 'html'
-      post :create, valid_params
+      xhr :post, :create, valid_params
 
       expect(response.status).not_to eq(406)
     end
