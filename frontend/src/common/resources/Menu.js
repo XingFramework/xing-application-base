@@ -34,14 +34,6 @@ export class Menu extends BackendResource {
   }
 }
 
-var itemPaths = {
-  children: '$.data.children',
-  internalTarget: '$.data.page.links.self',
-  externalTarget: '$.data.url',
-  type: '$.data.type',
-  name: '$.data.name',
-};
-
 class MenuItem extends BackendResource {
   backendResponds(promise){
     super(promise);
@@ -52,8 +44,18 @@ class MenuItem extends BackendResource {
     this.completePromise = Promise.all([ this.completePromise, this.subMenu.completePromise ]).then((responses) => { return this; });
   }
 
+  get jsonPaths() {
+    return {
+      children: '$.data.children',
+      internalTarget: '$.data.page.links.self',
+      externalTarget: '$.data.url',
+      type: '$.data.type',
+      name: '$.data.name',
+    };
+  }
+
   hasChildren(){
-    var children = this.pathGet(itemPaths.children);
+    var children = this.pathGet(this.jsonPaths.children);
     return (children && children.length > 0);
   }
 
@@ -67,18 +69,10 @@ class MenuItem extends BackendResource {
 
   get target(){
     if(this.internal()){
-      return this.pathGet(itemPaths.internalTarget);
+      return this.pathGet(this.jsonPaths.internalTarget);
     } else {
-      return this.pathGet(itemPaths.externalTarget);
+      return this.pathGet(this.jsonPaths.externalTarget);
     }
-  }
-
-  get type(){
-    return this.pathGet(itemPaths.type);
-  }
-
-  get name(){
-    return this.pathGet(itemPaths.name);
   }
 
   get children(){

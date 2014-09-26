@@ -1,21 +1,5 @@
 import {BackendResource} from '../backend/BackendResource';
 
-var jsonPaths = {
-  publicUrl: "$.links.public",
-  adminUrl: "$.links.admin",
-  layout: "$.data.layout",
-  title: "$.data.title",
-  keywords: "$.data.keywords",
-  description: "$.data.description",
-  contents: '$.data.contents',
-  styles: "$.data.contents.styles.data.body",
-  headline: "$.data.contents.headline.data.body",
-  mainContent: "$.data.contents.main.data.body",
-  publishStart: "$.data.publishStart",
-  publishEnd: "$.data.publishEnd",
-  urlSlug: "$.data.urlSlug",
-};
-
 var layouts = {
   "one_column": {
     "label": "One Column",
@@ -91,15 +75,26 @@ export class Page extends BackendResource {
     }
   }
 
-  get slugUrl(){
-    return this.publicUrl || this.selfUrl;
+  get jsonPaths() {
+    return {
+      publicUrl: "$.links.public",
+      adminUrl: "$.links.admin",
+      layout: "$.data.layout",
+      title: "$.data.title",
+      keywords: "$.data.keywords",
+      description: "$.data.description",
+      contents: '$.data.contents',
+      styles: "$.data.contents.styles.data.body",
+      headline: "$.data.contents.headline.data.body",
+      mainContent: "$.data.contents.main.data.body",
+      publishStart: "$.data.publishStart",
+      publishEnd: "$.data.publishEnd",
+      urlSlug: "$.data.urlSlug",
+    };
   }
 
-  get publicUrl(){
-    return this.pathGet(jsonPaths.publicUrl);
-  }
-  get adminUrl(){
-    return this.pathGet(jsonPaths.adminUrl);
+  get slugUrl(){
+    return this.publicUrl || this.selfUrl;
   }
 
   get role(){
@@ -118,7 +113,7 @@ export class Page extends BackendResource {
 
   setupContents(){
     var blockName;
-    var contents = this.pathGet(jsonPaths.contents);
+    var contents = this.pathGet(this.jsonPaths.contents);
     var templateLayout = layouts[this.layout]["template"];
     if(templateLayout){
 
@@ -138,72 +133,13 @@ export class Page extends BackendResource {
   }
 
   get layout(){
-    return this.pathGet(jsonPaths.layout);
+    return this.pathGet(this.jsonPaths.layout);
   }
+
   set layout(value){
-    var ret = this.pathSet(jsonPaths.layout, value);
+    var ret = this.pathSet(this.jsonPaths.layout, value);
     this.setupContents();
     return ret;
-  }
-
-  get title(){
-    return this.pathGet(jsonPaths.title);
-  }
-  set title(value){
-    return this.pathSet(jsonPaths.title, value);
-  }
-
-  get keywords(){
-    return this.pathGet(jsonPaths.keywords);
-  }
-  set keywords(value){
-    return this.pathSet(jsonPaths.keywords, value);
-  }
-
-  get description(){
-    return this.pathGet(jsonPaths.description);
-  }
-  set description(value){
-    return this.pathSet(jsonPaths.description, value);
-  }
-
-  get styles(){
-    return this.pathGet(jsonPaths.styles);
-  }
-  set styles(value){
-    return this.pathSet(jsonPaths.styles, value);
-  }
-
-  get headline(){
-    return this.pathGet(jsonPaths.headline);
-  }
-  set headline(value){
-    return this.pathSet(jsonPaths.headline, value);
-  }
-
-  get publishStart(){
-    return this.pathGet(jsonPaths.publishStart);
-  }
-  set publishStart(value){
-    return this.pathSet(jsonPaths.publishStart, value);
-  }
-
-  get publishEnd(){
-    return this.pathGet(jsonPaths.publishEnd);
-  }
-  set publishEnd(value){
-    return this.pathSet(jsonPaths.publishEnd, value);
-  }
-
-  get urlSlug(){
-    return this.pathGet(jsonPaths.urlSlug);
-  }
-  set urlSlug(value){
-    return this.pathSet(jsonPaths.urlSlug, value);
-  }
-
-  get mainContent() {
-    return this.pathGet(jsonPaths.mainContent);
   }
 
   get metadata(){
@@ -221,7 +157,7 @@ export class Page extends BackendResource {
 
   get contentBlocks() {
     var contentBlocks = {};
-    var contents = this.pathGet(jsonPaths.contents);
+    var contents = this.pathGet(this.jsonPaths.contents);
     for (var name in contents) {
       if (contents.hasOwnProperty(name)) {
         //contentBlocks[name] = this.pageData.contents[name].data.body;
