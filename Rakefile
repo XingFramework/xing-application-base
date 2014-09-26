@@ -71,9 +71,11 @@ namespace :develop do
 
   task :grunt_watch => 'frontend:setup' do
     child_pid = Process.fork do
-      Dir.chdir("frontend"){
-        sh *%w{bundle exec node_modules/.bin/grunt watch:develop}
-      }
+      Bundler.with_clean_env do
+        Dir.chdir("frontend"){
+          sh *%w{bundle exec node_modules/.bin/grunt watch:develop}
+        }
+      end
     end
     puts "Grunt running in pid #{child_pid}"
     child_pids << child_pid
@@ -90,9 +92,11 @@ namespace :develop do
 
   task :rails_server => [:links, 'backend:setup'] do
     child_pid = Process.fork do
-      Dir.chdir("backend"){
-        sh *%w{bundle exec rails server}
-      }
+      Bundler.with_clean_env do
+        Dir.chdir("backend"){
+          sh *%w{bundle exec rails server}
+        }
+      end
     end
     puts "Rails running in pid #{child_pid}"
     child_pids << child_pid
