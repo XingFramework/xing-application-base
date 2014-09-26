@@ -37,7 +37,7 @@ export class Menu extends BackendResource {
 var itemPaths = {
   children: '$.data.children',
   internalTarget: '$.data.page.links.self',
-  externalTarget: '$.data.url',
+  externalTarget: '$.data.path',
   type: '$.data.type',
   name: '$.data.name',
 };
