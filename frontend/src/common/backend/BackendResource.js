@@ -23,9 +23,11 @@ export class BackendResource {
   }
 
   defineJsonProperty(name, path) {
-    this.jsonPaths = this.jsonPaths || {};
+    if (!(this.hasOwnProperty("jsonPaths"))) {
+      this.jsonPaths = Object.create(this.jsonPaths || {});
+    }
     this.jsonPaths[name] = path;
-    if (!(name in this)) {
+    if (!(this.hasOwnProperty(name))) {
       Object.defineProperty(this, name, {
         enumerable: true,
         configurable: true,
