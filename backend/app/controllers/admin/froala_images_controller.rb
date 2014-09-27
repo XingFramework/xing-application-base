@@ -1,14 +1,22 @@
 class Admin::FroalaImagesController < Admin::AdminController
-  skip_before_filter :check_format, only: [:index, :create]
+  skip_before_filter :check_format, only: [:index, :create, :destroy]
 
   # GET /admin/froala_images/
   def index
     @images = Image.all
     response = @images.map{|img| img.image.url }
+
     render :json => response, :root => false
   end
 
-  # POST /admin/froala_images/delete => :destroy
+  # POST /admin/froala_images/delete
+  def destroy
+    image_id = params[:src].split('/')[-2].to_i
+    image = Image.find(image_id)
+    image.destroy
+
+    render :status => 204, :json => {}
+  end
 
   # POST /admin/froala_images/
   def create

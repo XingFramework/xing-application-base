@@ -10,14 +10,22 @@ describe Admin::FroalaImagesController do
       authenticate('admin')
     end
 
+    let :img_id do
+      101
+    end
+
+    let :img_url do
+      "http://imageishere.com/#{img_id}/name.png"
+    end
+
     let :valid_img do
       image = mock_proper_image(:save => true)
-      image.stub_chain(:image, :url).and_return('http://imageishere.com')
+      image.stub_chain(:image, :url).and_return(img_url)
       image
     end
 
     ########################################################################################
-    #                                      GET index
+    #                                      GET INDEX
     ########################################################################################
     describe "responding to GET index" do
 
@@ -35,13 +43,12 @@ describe Admin::FroalaImagesController do
       end
 
       it "should respond with an array of the image urls" do
-        p response.body
         expect(response.body).to eq(success_response)
       end
     end
 
     ########################################################################################
-    #                                      POST create
+    #                                      POST CREATE
     ########################################################################################
     describe "responding to POST create" do
 
@@ -50,7 +57,7 @@ describe Admin::FroalaImagesController do
       end
 
       let :success_response do
-        { link: 'http://imageishere.com' }.to_json
+        { link: valid_img.image.url }.to_json
       end
 
       it "should not be rejected if request format other than json" do
@@ -115,6 +122,17 @@ describe Admin::FroalaImagesController do
         it "should return relevant errors"  do
           expect(response.body).to eq(errors_response)
         end
+      end
+    end
+    ########################################################################################
+    #                                      DELETE DESTROY
+    ########################################################################################
+    describe "DELETE destroy" do
+      it "should delete the record and respond with 204" do
+        Image.should_receive(:find).with(img_id).and_return(valid_img)
+        valid_img.should_receive(:destroy)
+        xhr :post, :destroy, :src => valid_img.image.url
+        expect(response.status).to eql(204)
       end
     end
   end
