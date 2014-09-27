@@ -76,6 +76,6 @@ class MenuItem extends BackendResource {
 
 MenuItem.prototype.defineJsonProperty("children", '$.data.children');
 MenuItem.prototype.defineJsonProperty("internalTarget", '$.data.page.links.self');
-MenuItem.prototype.defineJsonProperty("externalTarget", '$.data.url');
+MenuItem.prototype.defineJsonProperty("externalTarget", '$.data.path');
 MenuItem.prototype.defineJsonProperty("type", '$.data.type');
 MenuItem.prototype.defineJsonProperty("name", '$.data.name');
