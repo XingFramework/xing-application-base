@@ -22,6 +22,25 @@ export class BackendResource {
     }
   }
 
+  defineJsonProperty(name, path) {
+    if (!(this.hasOwnProperty("jsonPaths"))) {
+      this.jsonPaths = Object.create(this.jsonPaths || {});
+    }
+    this.jsonPaths[name] = path;
+    if (!(this.hasOwnProperty(name))) {
+      Object.defineProperty(this, name, {
+        enumerable: true,
+        configurable: true,
+        get: function() {
+          return this.pathGet(path);
+        },
+        set: function(value) {
+          return this.pathSet(path, value);
+        }
+      });
+    }
+  }
+
   backendResponds(responsePromise){
     this.responsePromise = responsePromise;
     this.completePromise = responsePromise.then( (response) => {

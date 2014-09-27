@@ -71,9 +71,11 @@ namespace :develop do
 
   task :grunt_watch => 'frontend:setup' do
     child_pid = Process.fork do
-      Dir.chdir("frontend"){
-        sh *%w{bundle exec node_modules/.bin/grunt watch:develop}
-      }
+      Bundler.with_clean_env do
+        Dir.chdir("frontend"){
+          sh *%w{bundle exec node_modules/.bin/grunt watch:develop}
+        }
+      end
     end
     puts "Grunt running in pid #{child_pid}"
     child_pids << child_pid
@@ -90,9 +92,11 @@ namespace :develop do
 
   task :rails_server => [:links, 'backend:setup'] do
     child_pid = Process.fork do
-      Dir.chdir("backend"){
-        sh *%w{bundle exec rails server}
-      }
+      Bundler.with_clean_env do
+        Dir.chdir("backend"){
+          sh *%w{bundle exec rails server}
+        }
+      end
     end
     puts "Rails running in pid #{child_pid}"
     child_pids << child_pid
@@ -114,20 +118,16 @@ namespace :build do
   task :all => %w{frontend:all backend:all}
 
   namespace :frontend do
-    task :npm_install do
-      desc "Compile the frontend app into frontend/bin"
-      task :grunt_compile => [:npm_install, :bundle_install] do
-        Dir.chdir("frontend"){ sh *%w{bundle exec node_modules/.bin/grunt compile} }
-      end
-
-      task :all => [:npm_install, :grunt_compile]
+    task :grunt_compile => ['frontend:setup'] do
+      Dir.chdir("frontend"){ sh *%w{bundle exec node_modules/.bin/grunt compile} }
     end
+
+    task :all => [:grunt_compile]
   end
 
   task :frontend_to_assets do
     sh *%w{cp -a frontend/bin/* backend/public/}
   end
-
 
   namespace :backend do
     task :bundle_install do
