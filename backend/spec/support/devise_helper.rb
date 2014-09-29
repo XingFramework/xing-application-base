@@ -17,11 +17,13 @@ module DeviseExtraTestHelper
   def login_as(user)
     user = case user
            when Symbol
-             User.find_by_login(user.to_s) || Factory.create(user)
+            Factory.create(user)
            when String
-             User.find_by_login(user)
-           else
+            FactoryGirl.create(user.to_sym)
+           when User
              user
+           else
+             raise "Could not figure out login_as mapping for #{user.inspect}"
            end
     sign_in user
     user
