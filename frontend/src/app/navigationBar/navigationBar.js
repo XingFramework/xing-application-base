@@ -10,6 +10,7 @@ angular.module( `${appName}.navigationBar`,
   return {
     restrict: 'E',
     templateUrl: 'navigationBar/navigationBar.tpl.html',
+    tranclude: true,
     scope: {
       menuId: "@?id",
       menu: "=",

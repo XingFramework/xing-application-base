@@ -74,6 +74,14 @@ $topbar-link-padding: 10px;
     @include clearfix();
   }
 
+  lrd-session-links {
+    display: block;
+  }
+
+  lrd-session-links:after {
+    @include clearfix();
+  }
+
   a {
     display: block;
     width: 10em;
@@ -83,6 +91,12 @@ $topbar-link-padding: 10px;
     text-decoration: underline;
   }
   @include breakpoint($medium) {
+    lrd-navbar {
+      float: left;
+    }
+    lrd-session-links {
+      float: right;
+    }
     li {
       float: left;
       width: 10em !important;
