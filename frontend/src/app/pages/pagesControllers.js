@@ -16,13 +16,19 @@ angular.module(`${appName}.pages`)
   $scope.nowEditing = true;
 })
 
-.controller( 'PagesCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {
+.controller( 'PagesCtrl', function( $window, $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.pageActions = {
     edit(){
       $state.go('^.edit', {}, {location: false});
     },
     show(){
       $state.go("^.show", {pageUrl: page.slugUrl});
+    },
+    remove(){
+      if($window.confirm("This will delete the page - it cannot be undone!")){
+        page.remove();
+        $state.go("^.^.^.admin.pages");
+      }
     },
     save(){
       if(!page.title){
