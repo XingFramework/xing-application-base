@@ -20,11 +20,14 @@ group :development, :test do
   gem 'rack-cors', :require => 'rack/cors'
   gem "rspec", "< 3.0.0"
   gem "rspec-rails", "< 3.0.0"
+  gem 'rspec-steps', :github => "LRDesign/rspec-steps"
   gem "factory_girl_rails"
   gem 'annotate'
   gem 'simplecov'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'selenium-webdriver'
+  gem 'capybara-email'
   gem 'database_cleaner'
   gem 'byebug'
   gem 'cadre'

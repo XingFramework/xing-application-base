@@ -8,11 +8,17 @@ require 'rspec/rails'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 ActiveSupport::Deprecation.debug = true
 
+include BrowserTools
+TEST_PASSWORD = 'password'
+TEST_IMAGE = File.join(Rails.root, '/spec/fixtures/test_image.png')
+
 RSpec.configure do |config|
   config.mock_with :rspec
 
   config.include Devise::TestHelpers, :type => :controller
   config.include Devise::TestHelpers, :type => :helper
+  config.include Features::SessionHelpers, type: :feature
+
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
 

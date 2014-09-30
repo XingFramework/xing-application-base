@@ -18,11 +18,65 @@ This module provides the following features:
 * Extensive [event notifications](#events)
 * Allows for extensive [configuration](#configuration) to work with any API
 * Session support using cookies or localStorage
-* Tested with Chrome, Safari, Firefox and [IE8+](#ie8-and-ie9)
+* Tested with Chrome, Safari, Firefox and [IE8+](#internet-explorer)
 
 # [Live Demo](http://ng-token-auth-demo.herokuapp.com/)
 
 This project comes bundled with a test app. You can run the demo locally by following [these instructions](#development), or you can use it [here in production](http://ng-token-auth-demo.herokuapp.com/).
+
+
+# Table of Contents
+
+* [About this module](#about-this-module)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [API](#api)
+  * [`$auth.authenticate`](#authauthenticate)
+  * [`$auth.validateUser`](#authvalidateuser)
+  * [`$auth.submitRegistration`](#authsubmitregistration)
+  * [`$auth.submitLogin`](#authsubmitlogin)
+  * [`$auth.signOut`](#authsignout)
+  * [`$auth.requestPasswordReset`](#authrequestpasswordreset)
+  * [`$auth.updatePassword`](#authupdatepassword)
+  * [`$auth.updateAccount`](#authupdateaccount)
+  * [`$auth.destroyAccount`](#authdestroyaccount)
+* [Events](#events)
+  * [`auth:login-success`](#authlogin-success)
+  * [`auth:login-error`](#authlogin-error)
+  * [`auth:validation-success`](#authvalidation-success)
+  * [`auth:validation-error`](#authvalidation-error)
+  * [`auth:logout-success`](#authlogout-success)
+  * [`auth:logout-error`](#authlogout-error)
+  * [`auth:registration-email-success`](#authregistration-email-success)
+  * [`auth:registration-email-error`](#authregistration-email-error)
+  * [`auth:email-confirmation-success`](#authemail-confirmation-success)
+  * [`auth:email-confirmation-error`](#authemail-confirmation-error)
+  * [`auth:password-reset-request-success`](#authpassword-reset-request-success)
+  * [`auth:password-reset-request-error`](#authpassword-reset-request-error)
+  * [`auth:password-reset-confirm-success`](#authpassword-reset-confirm-success)
+  * [`auth:password-reset-confirm-error`](#authpassword-reset-confirm-error)
+  * [`auth:password-change-success`](#authpassword-change-success)
+  * [`auth:password-change-error`](#authpassword-change-error)
+  * [`auth:account-update-success`](#authaccount-update-success)
+  * [`auth:account-update-error`](#authaccount-update-error)
+  * [`auth:account-destroy-success`](#authaccount-destroy-success)
+  * [`auth:account-destroy-error`](#authaccount-destroy-error)
+* [Using alternate response formats](#using-alternate-response-formats)
+* [Multiple user types](#using-multiple-user-types)
+* [File uploads](#file-uploads)
+* [Conceptual Diagrams](#conceptual)
+  * [OAuth2 Authentication](#oauth2-authentication-flow)
+  * [Token Validation](#token-validation-flow)
+  * [Email Registration](#email-registration-flow)
+  * [Email Sign In](#email-sign-in-flow)
+  * [Password Reset Request](#password-reset-flow)
+* [Notes on Token Management](#about-token-management)
+* [Notes on Batch Requests](#about-batch-requests)
+* [Notes on Token Formatting](#identifying-users-on-the-server)
+* [Internet Explorer Caveats](#internet-explorer)
+* [Development](#development)
+* [Contribution Guidelines](#contributing)
+* [Alteratives to This Module](#alternatives)
 
 # About this module
 
@@ -37,13 +91,26 @@ This module was designed to work out of the box with the outstanding [devise tok
 
 # Installation
 
-* `bower install ng-token-auth --save`
-* include `ng-token-auth` in your app.
 
-##### Example module inclusion:
-~~~javascript
-angular.module('myApp', ['ng-token-auth'])
-~~~
+* Download this module and its dependencies:   
+  ~~~bash
+  # from the terminal at the root of your project
+  bower install ng-token-auth --save
+  ~~~
+  
+* Ensure that [angularjs](https://github.com/angular/angular.js), [ng-cookies](https://docs.angularjs.org/api/ngCookies), and ng-token-auth are included on your page: 
+  ~~~html
+  <!-- in your index.html file -->
+  <script src="/js/angular/angular.js"></script>
+  <script src="/js/angular-cookies/angular-cookies.js"></script>
+  <script src="/js/ng-token-auth/dist/ng-token-auth.js"></script>
+  ~~~
+  
+* Include `ng-token-auth` in your module's dependencies:
+  ~~~javascript
+  // in your js app's module definition
+  angular.module('myApp', ['ng-token-auth'])
+  ~~~
 
 ## Configuration
 
@@ -117,7 +184,7 @@ angular.module('myApp', ['ng-token-auth'])
 ##### Config options:
 | param | description |
 |---|---|
-| **apiUrl** | the base route to your api. Each of the following paths will be relative to this URL. |
+| **apiUrl** | the base route to your api. Each of the following paths will be relative to this URL. Authentication headers will only be added to requests with this value as the base URL. |
 | **authProviderPaths** | an object containing paths to auth endpoints. keys are names of the providers, values are their auth paths relative to the `apiUrl`. [Read more](#oauth2-authentication-flow). |
 | **tokenValidationPath** | relative path to validate authentication tokens. [Read more](#token-validation-flow). |
 | **signOutUrl** | relative path to sign user out. this will destroy the user's token both server-side and client-side. |
@@ -130,7 +197,7 @@ angular.module('myApp', ['ng-token-auth'])
 | **passwordUpdatePath** | path for submitting new passwords for authenticated users. [Read more](#password-reset-flow) |
 | **passwordResetSuccessUrl** | the URL to which the API should redirect after users visit the links contained in password-reset emails. [Read more](#password-reset-flow). |
 | **storage** | the method used to persist tokens between sessions. cookies are used by default, but `window.localStorage` can be used as well. allowed values are `cookies` and `localStorage`. |
-| **proxyIf** | older browsers have trouble with CORS ([read more](#ie8-and-ie9)). pass a method here to determine whether or not a proxy should be used. example: `function() { return !Modernizr.cors }` |
+| **proxyIf** | older browsers have trouble with CORS ([read more](#internet-explorer)). pass a method here to determine whether or not a proxy should be used. example: `function() { return !Modernizr.cors }` |
 | **proxyUrl** | proxy url if proxy is to be used |
 | **tokenFormat** | a template for authentication tokens. the template will be provided a context with the following params:<br><ul><li>token</li><li>clientId</li><li>uid</li><li>expiry</li></ul>Defaults to the [RFC 6750 Bearer Token](http://tools.ietf.org/html/rfc6750) format. [Read more](#using-alternate-header-formats). |
 | **parseExpiry** | a function that will return the token's expiry from the current headers. Returns null if no headers or expiry are found. [Read more](#using-alternate-header-formats). |
@@ -145,20 +212,23 @@ angular.module('myApp', ['ng-token-auth'])
 
 The `$auth` module is available for dependency injection during your app's run phase (for controllers, directives, filters, etc.). Each API method returns a [$q deferred promise](https://docs.angularjs.org/api/ng/service/$q) that will be resolved on success, 
 
-## API Table of Contents
-
-* [`$auth.authenticate`](#authauthenticate)
-* [`$auth.validateUser`](#authvalidateuser)
-* [`$auth.submitRegistration`](#authsubmitregistration)
-* [`$auth.submitLogin`](#authsubmitlogin)
-* [`$auth.signOut`](#authsignout)
-* [`$auth.requestPasswordReset`](#authrequestpasswordreset)
-* [`$auth.updatePassword`](#authupdatepassword)
-* [`$auth.updateAccount`](#authupdateaccount)
-* [`$auth.destroyAccount`](#authdestroyaccount)
 
 ###$auth.authenticate
-Initiate an OAuth2 authentication. This method takes 1 argument, a string that is also the name of the target provider service. This method is also added to the `$rootScope` for use in templates. [Read more](#oauth2-authentication-flow).
+Initiate an OAuth2 authentication. This method accepts 2 arguments:
+
+* **provider**: a string that is also the name of the target provider service. For example, to authenticate using github: 
+  ~~~javascript
+  $auth.authenticate('github')
+  ~~~
+  
+* **options**: _(optional)_ an object containing the following params:
+  *  **params**: additional params to be passed to the OAuth provider. For example, to pass the user's favorite color on sign up:
+
+     ~~~javascript
+     $auth.authenticate('github', {params: {favorite_color: 'green'})
+     ~~~
+
+This method is also added to the `$rootScope` for use in templates. [Read more](#oauth2-authentication-flow).
 
 This method emits the following events:
 
@@ -837,6 +907,122 @@ angular.module('myApp', ['ng-token-auth'])
   });
 ~~~
 
+## Using multiple user types
+
+### [View Live Multi-User Demo](http://ng-token-auth-demo.herokuapp.com/multi-user)
+
+This module allows for the use of multiple user authentication configurations. The following example assumes that the API supports two user classes, `User` an `EvilUser`. The following examples assume that `User` authentication routes are mounted at `/auth`, and the `EvilUser` authentication routes are mounted at `evil_user_auth`.
+
+### Multiple user type configuration
+
+To set up an application for multiple users, pass an array of configuration objects to the [`$auth.configure`](#configure) method. The keys of these configuration objects (`default` and `evilUser` in this example) will be used to select the desired configuration for authentication.
+
+##### Multiple user configuration example
+~~~javascript
+$authProvider.configure([
+  { 
+    default: {
+      apiUrl:  CONFIG.apiUrl,
+      proxyIf: function() { window.isOldIE() },
+      authProviderPaths: {
+        github:    '/auth/github',
+        facebook:  '/auth/facebook',
+        google:    '/auth/google_oauth2'
+      }
+    }   
+  }, {
+    evilUser: {
+      apiUrl:                CONFIG.apiUrl,
+      proxyIf:               function() { window.isOldIE() },
+      signOutUrl:            '/evil_user_auth/sign_out',
+      emailSignInPath:       '/evil_user_auth/sign_in',
+      emailRegistrationPath: '/evil_user_auth',
+      accountUpdatePath:     '/evil_user_auth',
+      accountDeletePath:     '/evil_user_auth',
+      passwordResetPath:     '/evil_user_auth/password',
+      passwordUpdatePath:    '/evil_user_auth/password',
+      tokenValidationPath:   '/evil_user_auth/validate_token',
+      authProviderPaths: {
+        github:    '/evil_user_auth/github',
+        facebook:  '/evil_user_auth/facebook',
+        google:    '/evil_user_auth/google_oauth2'
+      }
+    }
+  }
+]);
+~~~
+
+### Multiple user type usage
+
+The following API methods accept a `config` option that can be used to specify the desired configuration. 
+
+* [`$auth.authenticate`](#authauthenticate)
+* [`$auth.validateUser`](#authvalidateuser)
+* [`$auth.submitRegistration`](#authsubmitregistration)
+* [`$auth.submitLogin`](#authsubmitlogin)
+* [`$auth.requestPasswordReset`](#authrequestpasswordreset)
+
+All other methods (`$auth.signOut`, `$auth.updateAccount`, etc.) derive the configuration type from the current signed-in user.
+
+The first available configuration will be used if none is provided (`default` in this example).
+
+##### Examples using an alternate user type
+
+~~~javascript
+// OAuth
+$auth.authenticate('github', {
+  config: 'evilUser',
+  params: {
+    favorite_color: $scope.favoriteColor
+  }
+});
+
+// Email Registration
+$auth.submitRegistration({
+  email:                 $scope.email,
+  password:              $scope.password,
+  password_confirmation: $scope.passwordConfirmation,
+  favorite_color:        $scope.favoriteColor
+}, {
+  config: 'evilUser'
+});
+
+// Email Sign In
+$auth.submitLogin({
+  email: $scope.email,
+  password: $scope.password
+}, {
+  config: 'evilUser'
+});
+
+// Password reset request
+$auth.requestPasswordReset({
+  email: $scope.passwordResetEmail
+}, {
+  config: 'evilUser'
+});
+~~~
+
+## File uploads
+
+Some file upload libraries interfere with the authentication headers set by this module. Workarounds are documented below:
+
+### [angular-file-upload](https://github.com/danialfarid/angular-file-upload)#
+
+The `upload` method accepts a `headers` option. Manually pass the current auth headers to the `upload` method as follows:
+
+~~~javascript
+$scope.onFileSelect = function($files, $auth) {
+    var file = $files[0];
+    $scope.upload = $upload.upload({
+        url:     'api/users/update_image',
+        method:  'POST',
+        headers: $auth.retrieveData('auth_headers'),
+        file:    file
+    });
+}
+~~~
+
 # Conceptual
 
 The following is a high-level overview of this module's implementation.
@@ -987,13 +1173,13 @@ This will all happen automatically when using this module.
 
 **Note**: You can customize the auth headers however you like. [Read more](#using-alternate-header-formats).
 
-# IE8 and IE9
+# Internet Explorer
 
-IE8 and IE9 present the following obstacles:
+Internet Explorer (8, 9, 10, & 11) present the following obstacles:
 
-* They don't really support cross origin requests (CORS).
-* Their `postMessage` implementations don't work for our purposes.
-* They both try to cache ajax requests.
+* IE8 & IE9 don't really support cross origin requests (CORS).
+* IE8+ `postMessage` implementations don't work for our purposes.
+* IE8 & IE9 both try to cache ajax requests.
 
 The following measures are necessary when dealing with these older browsers.
 
@@ -1047,16 +1233,16 @@ app.all('/proxy/*', function(req, res, next) {
 
 The above example assumes that you're using [express](http://expressjs.com/), [request](https://github.com/mikeal/request), and [http-proxy](https://github.com/nodejitsu/node-http-proxy), and that you have set the API_URL value using [node-config](https://github.com/lorenwest/node-config).
 
-#### IE8 and IE9 must use hard redirects for provider authentication
+#### IE8+ must use hard redirects for provider authentication
 
-Modern browsers can communicate across tabs and windows using [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage). This doesn't work for older browsers such as IE8 and IE9. In these cases the client must take the following steps when performing provider authentication (facebook, github, etc.):
+Most modern browsers can communicate across tabs and windows using [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage). This doesn't work for certain flawed browsers. In these cases the client must take the following steps when performing provider authentication (facebook, github, etc.):
 
 1. navigate from the client site to the API
 1. navigate from the API to the provider
 1. navigate from the provider to the API
 1. navigate from the API back to the client
 
-These steps are taken automatically when using this module with IE8 and IE9. I am currently investigating several `postMessage` polyfills. Hopefully this issue will be resolved shortly.
+These steps are taken automatically when using this module with IE8+.
 
 ---
 
@@ -1068,7 +1254,7 @@ There is a test project in the `test` directory of this app. To start a dev serv
 
 1. `cd` to the root of this project.
 1. `npm install`
-1. `cd test && bundle install`
+1. `cd test && bower install`
 1. `cd ..`
 1. `gulp dev`
 
@@ -1100,16 +1286,16 @@ Just send a pull request. You will be granted commit access if you send quality 
 ###[Satellizer](https://github.com/sahat/satellizer) 
 
 Satellizer occupies the same problem domain as ng-token-auth. Advantages of ng-token-auth (at the time of this writing) include:
-  * Support for [IE8 and IE9](#ie8-and-ie9).
+  * Support for [IE8+](#internet-explorer).
   * [Events](#events).
   * Seamless, out-of-the-box integration with the [devise token auth](https://github.com/lynndylanhurley/devise_token_auth) gem. This gem provides a high level of security with minimal configuration.
   * [Auth header customization](#using-alternate-header-formats).
   * [Auth response customization](#using-alternate-response-formats).
   * Supports both cookies and localStorage for session persistence.
-  * Allows for multiple concurrent sessions. For example, you can be authenticated on your phone and on your laptop at the same time.
   * Supports [password reset](#authrequestpasswordreset) and [password update](#authupdatepassword) for users that registered by email.
   * Supports [account updates](#authupdateaccount) and [account deletion](#authdestroyaccount).
   * Supports [changing tokens with each request](#about-token-management).
+  * Supports [multiple user types](#using-multiple-user-types).
 
 # License
 
