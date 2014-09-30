@@ -16,7 +16,8 @@ angular.module(`${appName}.menus`)
             (failure) => { return false; }
           ).then((bool) => { return bool; });
         },
-        menu(backend) { return backend.createMenu(); }
+        menu(backend) { return backend.createMenu(); },
+        pageList(backend) { return backend.pageList().complete; }
       }
     })
     .state( 'root.admin.menu.new', {
@@ -27,6 +28,7 @@ angular.module(`${appName}.menus`)
     })
     .state( 'root.admin.menu.show', {
       url: '*menuUrl',
+      controller: 'MenuShowCtrl',
       resolve: {
         menuLoaded(isAdmin, menu, $stateParams){
           if(isAdmin){
@@ -35,7 +37,10 @@ angular.module(`${appName}.menus`)
             menu.role = "guest";
           }
           menu.loadFrom($stateParams.menuUrl);
-          return menu.complete;
+          return menu.complete.catch((error) => {
+            console.log("menus/menusStates.js:40", "error", error);
+            throw error;
+          });
         }
       },
       //templateUrl: 'menus/menus.tpl.html',

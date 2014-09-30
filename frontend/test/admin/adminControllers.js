@@ -9,7 +9,8 @@ describe('Admin Controllers', function() {
       module(`${appName}.admin`);
 
       $scope = {};
-      $state = jasmine.createSpyObj('$state', ["go"]);
+      $state = jasmine.createSpyObj('$state', ["go", "get"]);
+      $state.get.and.returnValue([]);
       menuList = { menus: ["Some", "Menus"] };
 
       inject(function($controller){

@@ -42,11 +42,22 @@ namespace :develop do
         test_conn.close rescue nil
       end
 
-      sleep 3 #It's possible the existing browser just hasn't connected to the new LR yet
+      started = Time.now
+      max_wait = 16
 
-      changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{server_port}/changed")))
+      changes = {}
+      while(Time.now - started < max_wait)
+        changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{server_port}/changed")))
+        if changes["clients"].empty?
+          sleep 0.25
+        else
+          break
+        end
+      end
+
       if changes["clients"].empty?
         puts "No running development browsers: launching...."
+        p changes
 
         cmds = %w{open xdg-open chrome chromium}
         cmd = nil

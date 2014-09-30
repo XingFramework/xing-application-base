@@ -3,9 +3,7 @@ require 'spec_helper'
 describe MenuMapper do
   let :request_data do
     {
-      data: {
-      name: "Test Root",
-      children: [
+      data: [
         {
           links: {},
           data: {
@@ -28,7 +26,7 @@ describe MenuMapper do
           name: 'Three',
           path: path,
           type: 'raw_url'
-    } } ] } }
+    } } ] }
   end
 
   let :path do
@@ -66,33 +64,30 @@ describe MenuMapper do
 
   describe "reordering an existing menu" do
     let :second_data do
-      {
-        data: {
-        name: "Test Root",
-        children: [
-          {
-        links: {},
-        data: {
-        name: 'One',
-        path: path,
-        type: 'raw_url'
-      }
-      },
+      { data: [
         {
-        links: {},
-        data: {
-        name: 'Three',
-        path: path,
-        type: 'raw_url'
-      }
-      },
+          links: {},
+          data: {
+          name: 'One',
+          path: path,
+          type: 'raw_url'
+        }
+        },
         {
-        links: {},
-        data: {
-        name: 'Two',
-        path: path,
-        type: 'raw_url'
-      } } ] } }
+          links: {},
+          data: {
+          name: 'Three',
+          path: path,
+          type: 'raw_url'
+        }
+        },
+        {
+          links: {},
+          data: {
+          name: 'Two',
+          path: path,
+          type: 'raw_url'
+        } } ] }
     end
 
     it "should save reordered menu" do
@@ -104,7 +99,7 @@ describe MenuMapper do
       expect(menu_root.children[1].name).to eq("Two")
       expect(menu_root.children[2].name).to eq("Three")
 
-      second = MenuMapper.new(second_data.to_json, menu_root.id)
+      second = MenuMapper.new(second_data.to_json.tap{|value| puts "#{__FILE__}:#{__LINE__} => #{value.inspect}"}, menu_root.id)
       second.save
       menu_root.reload
 

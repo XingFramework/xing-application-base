@@ -68,8 +68,8 @@
     border: 1px solid #ccc
 
     legend
-      @include isolation-span(12, 1, 'both')
-      @include background(linear-gradient(white, #ccccfc, #aaaaea))
+      +isolation-span(12, 1, 'both')
+      +background(linear-gradient(white, #ccccfc, #aaaaea))
       content: "Click to edit"
       font-size: 14px
       padding: 2px
@@ -81,18 +81,22 @@
     margin: 0.5em 0
 
     span.label
-      @include isolation-span(2, 1, 'both')
+      +isolation-span(2, 1, 'both')
       text-align: right
       font-size: 12px
 
     input
-      @include isolation-span(3, 3)
+      +isolation-span(3, 3)
+      position: relative
+      top: -0.25em
+    select
+      +isolation-span(3, 3)
       position: relative
       top: -0.25em
     textarea
-      @include isolation-span(6, 3)
+      +isolation-span(6, 3)
 
     span.comment
-      @include isolation-span(7, 6)
+      +isolation-span(7, 6)
       font-size: 12px
       font-style: italic

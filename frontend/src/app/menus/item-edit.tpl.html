@@ -1,0 +1,10 @@
+<div ui-tree-handle>
+  <a class="edit control" data-nodrag ng-click="editing.select(this)"><fa name='edit'></fa></a>
+  <a class="collapse control" data-nodrag ng-click="editing.toggle(this)" ng-if="editing.hasChildren(this)"><fa name='{{collapsed ? "chevron-right" : "chevron-down"}}'></fa></a>
+  <span class="name">{{item.name}}</span>
+  <a class="remove control" data-nodrag ng-click="editing.remove(this)"><fa name="remove"></fa></a>
+  <a class="add control" data-nodrag ng-click="editing.newSubItem(this)"><fa name="plus"></fa></a>
+</div>
+<ul ui-tree-nodes="treeOptions" ng-model="item.children.items" ng-hide="collapsed">
+  <li ng-repeat="item in item.children.items" ui-tree-node ng-include="'menus/item-edit.tpl.html'"></li>
+</ul>

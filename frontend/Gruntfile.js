@@ -253,7 +253,7 @@ module.exports = function( grunt ) {
           includeRuntime: false,
           traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
           traceurCommand: "./node_modules/.bin/traceur",
-          traceurOptions: "--array-comprehension --source-maps"
+          traceurOptions: "--array-comprehension true --source-maps"
         },
         build: {
           files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
@@ -744,7 +744,7 @@ module.exports = function( grunt ) {
       return file.replace( dirRE, '' );
     });
     if(!this.data.production){
-      jsFiles.push("http://localhost:35729/livereload.js?snipver=1");
+      jsFiles.push("http://localhost:35729/livereload.js?snipver=1&maxdelay=15000");
     }
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );

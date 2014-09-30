@@ -1,6 +1,7 @@
 import {} from '../../vendor/jquery/jquery';
 import {appName} from '../common/config';
 import {} from '../../vendor/angular/angular';
+import {} from '../../vendor/angular-fontawesome/angular-fontawesome';
 import {} from '../../vendor/angular-ui-router/angular-ui-router';
 import {} from '../../build/templates-app';
 import {} from '../../build/templates-common';
@@ -10,15 +11,18 @@ import {} from "../common/ui-route-logger";
 import {} from './admin/admin';
 import {} from './auth/auth';
 import {} from './pages/pages';
+import {} from './menus/menus';
 import {} from './homepage/homepage';
 import {} from './metadata/metadata';
 import {} from './responsiveMenu/responsiveMenu';
 
 angular.module( appName, [
   'templates-app', 'templates-common', 'ui.router',
+  'picardy.fontawesome',
   `${appName}.backend`, `${appName}.navigationBar`,
   `${appName}.route-logger`,
   `${appName}.pages`,
+  `${appName}.menus`,
   `${appName}.homepage`,
   `${appName}.auth`,
   `${appName}.admin`,

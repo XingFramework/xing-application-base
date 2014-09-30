@@ -61,7 +61,7 @@ export class BackendResource {
     var target = path.pop();
     var thumb = this._response;
     if(root !== "$"){
-      console.log(`root of normalized path was '${root}', not '$'`);
+      console.log(`root of normalized path '${path}' was '${root}', not '$'`);
     }
     for(var segment of path){
       thumb = thumb[segment];
@@ -70,6 +70,21 @@ export class BackendResource {
       this._dirty = true;
     }
     thumb[target] = value;
+  }
+
+  pathClear(jsonpath){
+    var path = jsonPath(this._response, jsonpath, {wrap: false, resultType: "path"});
+    if(!path){ return; }
+    var root = path.shift();
+    var target = path.pop();
+    var thumb = this._response;
+    if(root !== "$"){
+      console.log(`root of normalized path was '${root}', not '$'`);
+    }
+    for(var segment of path){
+      thumb = thumb[segment];
+    }
+    delete thumb[target];
   }
 
   get isDirty(){

@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular.module('ui.tree')
@@ -24,6 +24,9 @@
           },
 
           setNodeAttribute: function(scope, attrName, val) {
+            if (!scope.$modelValue) {
+              return undefined;
+            }
             var data = this.nodesData[scope.$modelValue.$$hashKey];
             if (!data) {
               data = {};
@@ -33,11 +36,14 @@
           },
 
           getNodeAttribute: function(scope, attrName) {
+            if (!scope.$modelValue) {
+              return undefined;
+            }
             var data = this.nodesData[scope.$modelValue.$$hashKey];
             if (data) {
               return data[attrName];
             }
-            return null;
+            return undefined;
           },
 
           /**
@@ -47,7 +53,7 @@
            * @return {Bool} check if the node can be dragged.
            */
           nodrag: function (targetElm) {
-            return (typeof targetElm.attr('data-nodrag')) != "undefined";
+            return (typeof targetElm.attr('nodrag')) != "undefined";
           },
 
           /**
@@ -66,72 +72,96 @@
           },
 
           dragInfo: function(node) {
-            return {
-              source: node,
-              sourceInfo: {
-                nodeScope: node,
-                index: node.index(),
-                nodesScope: node.$parentNodesScope
-              },
-              index: node.index(),
-              siblings: node.siblings().slice(0),
-              parent: node.$parentNodesScope,
+            if (angular.isDefined(node)) {
+              return {
+                source: node,
+                sourceInfo: {
+                  nodeScope: node,
+                  index: (angular.isFunction(node.index)) ? node.index() : 0,
+                  nodesScope: node.$parentNodesScope
+                },
+                index: (angular.isFunction(node.index)) ? node.index() : 0,
+                siblings: (angular.isFunction(node.siblings)) ? node.siblings().slice(0) : [],
+                parent: node.$parentNodesScope,
 
-              moveTo: function(parent, siblings, index) { // Move the node to a new position
-                this.parent = parent;
-                this.siblings = siblings.slice(0);
-                var i = this.siblings.indexOf(this.source); // If source node is in the target nodes
-                if (i > -1) {
-                  this.siblings.splice(i, 1);
-                  if (this.source.index() < index) {
-                    index--;
+                moveTo: function(parent, siblings, index) { // Move the node to a new position
+                  if (parent.accept(node, index) === true)
+                  {
+                    this.parent = parent;
+                    this.siblings = siblings.slice(0);
+                    var i = this.siblings.indexOf(this.source); // If source node is in the target nodes
+
+                    if (i > -1) {
+                      this.siblings.splice(i, 1);
+                      if (this.source.index() < index) {
+                        index--;
+                      }
+                    }
+
+                    this.siblings.splice(index, 0, this.source);
+                    this.index = index;
+
+                    return true;
+                  }
+
+                  return false;
+                },
+
+                parentNode: function() {
+                  return this.parent.$nodeScope;
+                },
+
+                prev: function() {
+                  if (this.index > 0) {
+                    return this.siblings[this.index - 1];
+                  }
+                  return undefined;
+                },
+
+                next: function() {
+                  if (this.index < this.siblings.length - 1) {
+                    return this.siblings[this.index + 1];
+                  }
+                  return undefined;
+                },
+
+                isDirty: function() {
+                  return this.source.$parentNodesScope != this.parent ||
+                          this.source.index() != this.index;
+                },
+
+                eventArgs: function(elements, pos) {
+                  return {
+                    source: this.sourceInfo,
+                    dest: {
+                      index: this.index,
+                      nodesScope: this.parent
+                    },
+                    elements: elements,
+                    pos: pos
+                  };
+                },
+
+                apply: function(copy) {
+                  var nodeData = this.source.$modelValue;
+                  if (!copy) {
+                    this.source.remove();
+                  }
+
+                  if (angular.isDefined(this.parent))
+                  {
+                    var data = (copy) ? angular.copy(nodeData) : nodeData;
+                    var index = this.index;
+                    if (copy && this.sourceInfo.index < this.index && this.sourceInfo.nodesScope === this.parent) {
+                      index = this.index + 1;
+                    }
+                    this.parent.insertNode(index, data);
                   }
                 }
-                this.siblings.splice(index, 0, this.source);
-                this.index = index;
-              },
-
-              parentNode: function() {
-                return this.parent.$nodeScope;
-              },
-
-              prev: function() {
-                if (this.index > 0) {
-                  return this.siblings[this.index - 1];
-                }
-                return null;
-              },
-
-              next: function() {
-                if (this.index < this.siblings.length - 1) {
-                  return this.siblings[this.index + 1];
-                }
-                return null;
-              },
-
-              isDirty: function() {
-                return this.source.$parentNodesScope != this.parent ||
-                        this.source.index() != this.index;
-              },
-
-              eventArgs: function(elements, pos) {
-                return {
-                  source: this.sourceInfo,
-                  dest: {
-                    index: this.index,
-                    nodesScope: this.parent
-                  },
-                  elements: elements,
-                  pos: pos
-                };
-              },
-
-              apply: function() {
-                var nodeData = this.source.$modelValue;
-                this.source.remove();
-                this.parent.insertNode(this.index, nodeData);
-              }
-            };
+              };
+            } else {
+              return undefined;
+            }
           },
 
           /**
@@ -257,9 +287,72 @@
             }
 
             pos.dirAx = newAx;
+          },
+
+          findIntersect: function(elmPos, nodes, collideWith, direction, horizontal) {
+            var self = this;
+            var intersectWith;
+            for (var nodeIdx = 0; nodeIdx < nodes.length; nodeIdx++) {
+              var intersectWithChild;
+              var nodeElement = angular.element(nodes[nodeIdx]);
+
+              if (angular.isDefined(nodeElement[0])) {
+                if (nodeElement.hasClass('angular-ui-tree-node')) {
+                  intersectWithChild = self.findIntersect(elmPos, nodeElement.children(), collideWith, direction, horizontal);
+
+                  if (angular.isUndefined(intersectWithChild)) {
+                    var nodeOffset = self.offset(nodeElement);
+                    var nodePos = {
+                      left: nodeOffset.left,
+                      width: nodeOffset.width,
+                      right: nodeOffset.left + nodeOffset.width,
+                      top: nodeOffset.top,
+                      height: nodeOffset.height,
+                      bottom: nodeOffset.top + nodeOffset.height
+                    };
+
+                    var isOverElementWidth;
+                    var isOverElementHeight;
+                    if (horizontal) {
+                      if (direction < 0) {
+                        isOverElementWidth = (collideWith === 'bottom') ? (elmPos.left <= nodePos.right && elmPos.right >= nodePos.left)
+                                                                         : (elmPos.right <= nodePos.right && elmPos.right >= nodePos.left);
+                      } else if (direction > 0) {
+                        isOverElementWidth = (collideWith === 'bottom') ? (elmPos.right >= nodePos.left && elmPos.left <= nodePos.right)
+                                                                        : (elmPos.left >= nodePos.left && elmPos.left <= nodePos.right);
+                      }
+                    }
+
+                    if (direction < 0) {
+                      isOverElementHeight = (collideWith === 'bottom') ? (elmPos.top <= nodePos.bottom && elmPos.bottom >= nodePos.top)
+                                                                       : (elmPos.bottom <= nodePos.bottom && elmPos.bottom >= nodePos.top);
+                    } else if (direction > 0) {
+                      isOverElementHeight = (collideWith === 'bottom') ? (elmPos.bottom >= nodePos.top && elmPos.top <= nodePos.bottom)
+                                                                       : (elmPos.top >= nodePos.top && elmPos.top <= nodePos.bottom);
+                    }
+
+                    if ((horizontal && (isOverElementWidth && isOverElementHeight)) || (!horizontal && isOverElementHeight)) {
+                      intersectWith = nodes[nodeIdx];
+                    }
+                  } else {
+                    intersectWith = intersectWithChild;
+                  }
+                } else {
+                  if (angular.isDefined(nodeElement.children()) && nodeElement.children().length > 0) {
+                    intersectWith = self.findIntersect(elmPos, nodeElement.children(), collideWith, direction, horizontal);
+                  }
+                }
+              }
+
+              if (angular.isDefined(intersectWith))
+              {
+                break;
+              }
+            }
+
+            return intersectWith;
           }
         };
       }
     ]);
-
 })();
