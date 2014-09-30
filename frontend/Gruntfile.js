@@ -560,7 +560,7 @@ module.exports = function( grunt ) {
          */
         jssrc: {
           options: { livereloadOnError: false },
-          files: [ 'src/**/*.js' ],
+          files: [ 'src/**/*.js', '<%= build_dirs.root %>/**/*.js' ],
           tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ],
         },
 
