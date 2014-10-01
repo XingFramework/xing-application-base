@@ -1,26 +1,22 @@
 require 'spec_helper'
 
-steps "User confirms email", :type => :feature, :js => true, :vcr => {} do
+feature "User confirms email", :js => true, :vcr => {} do
 
 
-  before :all do
-    u = User.create!(:email => "joe@joesponsor.com",
-      :email_confirmation => "joe@joesponsor.com",
+  background do
+    u = User.create!(:email => "joe@joehomebuyer.com",
+      :email_confirmation => "joe@joehomebuyer.com",
       :password => TEST_PASSWORD,
       :password_confirmation => TEST_PASSWORD)
     u.send_confirmation_instructions({redirect_url: "/#/"})
-    email = open_email('joe@joesponsor.com')
+    email = open_email('joe@joehomebuyer.com')
     email.click_link('Confirm my account')
-    visit '/'
-    click_on "Sign In"
-    fill_in "Email", :with => 'joe@joesponsor.com'
-    fill_in "Password", :with => TEST_PASSWORD
-    click_button "Sign In"
   end
 
-  it "when I confirm and sign in, should send me to the login success page" do
-     URI.parse(current_url).request_uri.should == '#/login_success'
-     page.should have_content("You have successfully logged in!")
+  scenario "sign in after confirming email" do
+    sign_in_with('joe@joehomebuyer.com', TEST_PASSWORD)
+
+    expect(page).to have_content("Sign Out")
   end
 
 end

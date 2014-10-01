@@ -26,6 +26,15 @@ angular.module(`${appName}.auth`)
     })
     .state( 'root.inner.registrationsSuccess', {
       url: '^/signed-up',
-      templateUrl: 'auth/registrationsSuccess.tpl.html'
+      templateUrl: 'auth/registrations-success.tpl.html'
+    })
+    .state( 'root.inner.confirmationsSuccess', {
+      url: '^/confirmed',
+      templateUrl: 'auth/confirmations-success.tpl.html',
+      resolve: {
+        isAdmin: function($auth){
+          return $auth.validateUser();
+        }
+      }
     });
 });

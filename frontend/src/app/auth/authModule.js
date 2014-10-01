@@ -5,9 +5,13 @@ import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 
 angular.module( `${configuration.appName}.auth`, [
   'ui.router.state',
-  'ng-token-auth'
+  'ng-token-auth',
+  'serializer'
 ])
 .config( function ($authProvider) {
+
+  var location = window.location.href;
+  location = location.split("#")[0] + "#/confirmed";
 
   $authProvider.configure({
     apiUrl: configuration.backendUrl,
@@ -22,6 +26,7 @@ angular.module( `${configuration.appName}.auth`, [
     passwordUpdatePath:      'users/password',
     emailSignInPath:         'users/sign_in',
     storage:                 'localStorage',
+    confirmationSuccessUrl:  location
   });
 
 });

@@ -5,15 +5,17 @@ module Features
       visit '/'
       click_on "Sign Up"
       fill_in "Email",           :with => email
-      fill_in "Email confirmation", :with => email
+      fill_in "Email Confirmation", :with => email
       fill_in "Password",        :with => password
-      fill_in "Password confirmation", :with => password
-      click_on "Submit"
+      fill_in "Password Confirmation", :with => password
+      click_button "Sign Up"
     end
 
     def sign_in_with(email, password)
       visit '/'
-      click_on "Sign In"
+      within ".session-links" do
+        click_link "Sign In"
+      end
       fill_in "Email", :with => email
       fill_in "Password", :with => password
       click_button "Sign In"

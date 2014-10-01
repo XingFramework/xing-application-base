@@ -24,6 +24,7 @@ describe('auth states', function() {
       $templateCache.put('auth/sessions-success.tpl.html', '');
       $templateCache.put('auth/registrations.tpl.html', '');
       $templateCache.put('auth/registrations-success.tpl.html', '');
+      $templateCache.put('auth/confirmations-success.tpl.html', '');
     });
   });
 
@@ -123,9 +124,54 @@ describe('auth states', function() {
     });
 
     it('should render the sessions template', function() {
-      expect(state.templateUrl).toEqual('auth/registrationsSuccess.tpl.html');
+      expect(state.templateUrl).toEqual('auth/registrations-success.tpl.html');
     });
 
   });
 
+  describe("confirmationsSuccess", function() {
+
+    beforeEach(function() {
+      state = $state.get('root.inner.confirmationsSuccess');
+    });
+
+    it('should respond to URL', function() {
+      expect($state.href(state)).toEqual('#/confirmed');
+    });
+
+    it('should render the sessions template', function() {
+      expect(state.templateUrl).toEqual('auth/confirmations-success.tpl.html');
+    });
+
+    describe("when not logged in", function() {
+      beforeEach(function() {
+        spyOn($auth, 'validateUser').and.returnValue($q(
+          (resolve, reject) => { reject(); }));
+        $state.go('root.inner.confirmationsSuccess');
+        $rootScope.$digest();
+      });
+
+      it("should not transition successfully", function() {
+        expect($state.current.name).not.toBe(state.name);
+      });
+    });
+
+    describe("when logged in", function() {
+      beforeEach(function() {
+        spyOn($auth, 'validateUser').and.returnValue($q(
+          (resolve, reject) => { resolve("Awesome"); }));
+        $state.go('root.inner.confirmationsSuccess');
+        $rootScope.$apply();
+      });
+
+      it("should transition successfully", function() {
+        expect($state.current.name).toBe(state.name);
+      });
+
+      it("should resolve isAdmin", function() {
+        expect($injector.invoke($state.current.resolve.isAdmin).$$state.value).toBe('Awesome');
+      });
+    });
+
+  });
 });
