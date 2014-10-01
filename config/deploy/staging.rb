@@ -1,6 +1,7 @@
 server 'appserver2.lrdesign.com', user: 'root', roles: %w{web app}
 set :branch, "staging"
 set :application, "staging.uccf-losangles.org"
+set :rails_warmup_url, 'http://uccf-staging.lrdesign.com/homepage'
 
 # Custom SSH Options
 # ==================

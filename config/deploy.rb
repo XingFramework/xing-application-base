@@ -75,7 +75,7 @@ namespace :deploy do
             execute "su", 'apache', '-s /bin/sh', '-c', "'test -w #{filename}'"
           rescue Object #SSHKit::Runner::ExecuteError
             error "Test for writeability failed. User 'apache' cannot write #{filename}."
-            exit 1
+            exit 1  #TODO: prevent this from printing a stack trace, if possible.
           end
         end
       end
@@ -92,7 +92,17 @@ namespace :deploy do
     end
   end
 
+  desc "Preload the rails app"
+  task :warm_up_rails do
+    if url = fetch(:rails_warmup_url)
+      puts "Attempting to warm up the rails app."
+      sh "curl -H \"Accept: application/json\" #{url} > /dev/null"
+    end
+  end
+
+
   after :publishing, :restart
+  after :publishing, :warm_up_rails
 
 #  after :restart, :clear_cache do
 #    on roles(:web), in: :groups, limit: 3, wait: 10 do
