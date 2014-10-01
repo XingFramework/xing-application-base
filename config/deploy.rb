@@ -66,9 +66,14 @@ namespace :deploy do
   task :confirm_writeable_files do
     on roles(:app), :in => :parallel do
       within File::join(release_path) do
-        required_writeable_files.each do |filename|
-          retval = execute "su", 'apache', '-s /bin/sh', '-c', "'test -w #{filename}'"
-          puts "Return value for #{filename} is #{retval}"
+        fetch(:required_writeable_files).each do |filename|
+          begin
+            puts "Testing writeability of #{filename} is #{retval}"
+            execute "su", 'apache', '-s /bin/sh', '-c', "'test -w #{filename}'"
+          rescue SSHKit::Runner::ExecuteError => error
+            error "Test for writeability by user 'apache' failed",  file: filename, host: host
+            exit 1
+          end
         end
       end
     end
