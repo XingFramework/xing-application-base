@@ -39,9 +39,9 @@ angular.module( appName, [
     abstract: true,
     url: "/",
     resolve: {
-      mainMenu(backend) {
+      menuRoot(backend) {
         var menu = backend.menu("main");
-        return menu;
+        return menu.complete;
       }
     }
   }).state('root.inner', {
@@ -50,6 +50,6 @@ angular.module( appName, [
     url: "inner"
   });
 })
-.controller( 'RootCtrl', function RootCtrl( $scope, $location, mainMenu, $state ) {
-  $scope.mainMenu = mainMenu;
+.controller( 'RootCtrl', function RootCtrl( $scope, $location, menuRoot, $state ) {
+  $scope.mainMenu = menuRoot.children;
 });

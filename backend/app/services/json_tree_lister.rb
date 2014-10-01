@@ -41,7 +41,7 @@ class JsonTreeLister
     until @path.empty?
       pop_level
     end
-    return @stack.last
+    return @stack.last.first
   end
 
 end

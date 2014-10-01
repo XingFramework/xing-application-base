@@ -50,7 +50,7 @@ var itemPaths = {
   name: '$.data.name',
 };
 
-class MenuItem extends BackendResource {
+export class MenuItem extends BackendResource {
   constructor(backend,promise){
     super(backend,promise);
     this.attic = {

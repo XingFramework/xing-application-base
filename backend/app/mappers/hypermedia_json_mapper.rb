@@ -26,14 +26,29 @@ class HypermediaJSONMapper
   end
   attr_accessor :locator, :record
 
+  def router
+    Rails.application.routes
+  end
+
+  def route_to(path)
+    router.recognize_path(path)
+  end
+
   # Default save - subclasses might override
-  def save
+  def save!
     extract_data
     if @locator.present?
       find_and_update
     else
       save_new
     end
+  end
+
+  def save
+    save!
+    return true
+  rescue ActiveRecord::RecordInvalid
+    return false
   end
 
   # Default for saving existing records
@@ -51,7 +66,7 @@ class HypermediaJSONMapper
   end
 
   def save_record
-    self.record.save
+    self.record.save!
   end
 
   # Default for finding an existing record - override this *or* define

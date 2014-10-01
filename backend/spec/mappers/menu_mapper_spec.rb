@@ -3,7 +3,9 @@ require 'spec_helper'
 describe MenuMapper do
   let :request_data do
     {
-      data: [
+      data: {
+      name: "Test Root",
+      children: [
         {
           links: {},
           data: {
@@ -26,7 +28,7 @@ describe MenuMapper do
           name: 'Three',
           path: path,
           type: 'raw_url'
-    } } ] }
+    } } ] } }
   end
 
   let :path do
@@ -49,8 +51,7 @@ describe MenuMapper do
     end
 
     it "should be able to return the menu item with correct attributes" do
-      Rails.logger.warn{ "Beginning test" }
-      mapper.save
+      mapper.save!
       expect(mapper.menu_root).to be_a(MenuItem)
       expect(mapper.menu_root).to be_persisted
       expect(mapper.menu_root).to be_root
@@ -62,32 +63,66 @@ describe MenuMapper do
     end
   end
 
+  describe "saving a new menu with a page" do
+    let :request_data do
+      {
+        data: {
+        name: "Test Root",
+        children: [
+          {
+        links: {},
+        data: {
+        name: 'One',
+        page: { links: { self: "/pages/#{page.url_slug}" } },
+        type: 'page'
+      }
+      } ] } }
+    end
+
+    let! :page do
+      FactoryGirl.create(:page)
+    end
+
+    it "should be able to return the menu item with correct attributes" do
+      mapper.save!
+      expect(mapper.menu_root).to be_a(MenuItem)
+      expect(mapper.menu_root).to be_persisted
+      expect(mapper.menu_root).to be_root
+      expect(mapper.menu_root.children.first.path).to be_nil
+      expect(mapper.menu_root.children.first.page).not_to be_nil
+      expect(mapper.menu_root.children[0].name).to eq("One")
+    end
+  end
+
   describe "reordering an existing menu" do
     let :second_data do
-      { data: [
+      {
+        data: {
+        name: "Test Root",
+        children: [
+          {
+        links: {},
+        data: {
+        name: 'One',
+        path: path,
+        type: 'raw_url'
+      }
+      },
         {
-          links: {},
-          data: {
-          name: 'One',
-          path: path,
-          type: 'raw_url'
-        }
-        },
+        links: {},
+        data: {
+        name: 'Three',
+        path: path,
+        type: 'raw_url'
+      }
+      },
         {
-          links: {},
-          data: {
-          name: 'Three',
-          path: path,
-          type: 'raw_url'
-        }
-        },
-        {
-          links: {},
-          data: {
-          name: 'Two',
-          path: path,
-          type: 'raw_url'
-        } } ] }
+        links: {},
+        data: {
+        name: 'Two',
+        path: path,
+        type: 'raw_url'
+      } } ] } }
     end
 
     it "should save reordered menu" do
@@ -99,8 +134,10 @@ describe MenuMapper do
       expect(menu_root.children[1].name).to eq("Two")
       expect(menu_root.children[2].name).to eq("Three")
 
-      second = MenuMapper.new(second_data.to_json.tap{|value| puts "#{__FILE__}:#{__LINE__} => #{value.inspect}"}, menu_root.id)
-      second.save
+      second = MenuMapper.new(second_data.to_json, menu_root.id)
+      expect{
+        second.save
+      }.not_to change{ MenuItem.roots.count }
       menu_root.reload
 
       expect(menu_root.children[0].name).to eq("One")

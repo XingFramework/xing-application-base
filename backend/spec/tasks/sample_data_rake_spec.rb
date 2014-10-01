@@ -37,7 +37,7 @@ describe 'db:sample_data namespace rake task',
 
 
     expect(Menu.list.length).to eq(2)
-    expect(Menu.new('Main Menu').tree.length).to eq(7)
+    expect(Menu.new('Main Menu').tree.length).to eq(8)
 
   end
 end

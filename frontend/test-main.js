@@ -11,6 +11,9 @@ requireJsConfig = {
     "vendor/FroalaWysiwygEditor/froala_editor.min": {
       deps: [ "jquery" ]
     },
+    "vendor/angular-fontawesome/angular-fontawesome": {
+      deps: [ "angular" ]
+    },
     "vendor/angular-cookies/angular-cookies": {
       deps: [ "angular" ]
     },

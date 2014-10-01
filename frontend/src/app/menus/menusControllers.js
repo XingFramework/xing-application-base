@@ -45,8 +45,8 @@ angular.module(`${appName}.menus`)
       sourceScope = event.source.nodesScope.$nodeScope;
       destScope = event.dest.nodesScope.$nodeScope;
 
-      sourceMenu = sourceScope === null ? menu : sourceScope.$modelValue.children;
-      destMenu = destScope === null ? menu : destScope.$modelValue.children;
+      sourceMenu = sourceScope === null ? menu.children : sourceScope.$modelValue.children;
+      destMenu = destScope === null ? menu.children : destScope.$modelValue.children;
 
       sourceMenu.syncItems();
       if(sourceMenu != destMenu){

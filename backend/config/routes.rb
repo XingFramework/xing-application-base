@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   get '/navigation/main', :to => "menus#show", :id => Menu.main_menu_id, :as => :main_menu
 
   get "pages/:url_slug", :to => 'pages#show', :as => :page
-  resources :menus, :only => [ :show ]
+  resources :menus, :only => [ :show, :index, :update ]
 
   namespace :admin do
     #resources :images
     #resources :documents
     resources :pages, :param => :url_slug
-    resources :menus, :only => [ :show, :index, :update ]
     resources :menu_items
     resources :content_blocks
 

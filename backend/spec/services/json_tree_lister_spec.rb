@@ -12,46 +12,50 @@ describe JsonTreeLister do
   let!(:h) { FactoryGirl.create(:menu_item, :path => "h", :name => "h", :parent => f) }
 
   let :expected_tree do
-    [
-      {
-        name: "b",
-        url: "b",
-        children: [
-           {
-             name: "c",
-             url: "c",
-             children: [
-                {
-                  name: "d",
-                  url: "d",
-                  children: []
-                }
-             ]
-           }
-        ]
-      },
-      {
-        name: "e",
-        url: "e",
-        children: []
-      },
-      {
-        name: "f",
-        url: "f",
-        children: [
-          {
-            name: "g",
-            url: "g",
-            children: []
-          },
-          {
-            name: "h",
-            url: "h",
-            children: []
-          }
-        ]
-      }
-    ]
+    {
+      name: "a",
+      url: "a",
+      children: [
+        {
+          name: "b",
+          url: "b",
+          children: [
+             {
+               name: "c",
+               url: "c",
+               children: [
+                  {
+                    name: "d",
+                    url: "d",
+                    children: []
+                  }
+               ]
+             }
+          ]
+        },
+        {
+          name: "e",
+          url: "e",
+          children: []
+        },
+        {
+          name: "f",
+          url: "f",
+          children: [
+            {
+              name: "g",
+              url: "g",
+              children: []
+            },
+            {
+              name: "h",
+              url: "h",
+              children: []
+            }
+          ]
+        }
+      ]
+    }
   end
 
   class SimpleNodeSerializer
@@ -71,11 +75,11 @@ describe JsonTreeLister do
   end
 
   it "should produce a correct tree for a node with no childen" do
-    expect(JsonTreeLister.new(d.reload.descendants, SimpleNodeSerializer).render).to eq([])
+    expect(JsonTreeLister.new(d.reload.self_and_descendants, SimpleNodeSerializer).render).to eq({name: "d", url: "d", children: []})
   end
 
   it "should produce a correct tree for a parent of a big tree" do
-    expect(JsonTreeLister.new(a.reload.descendants, SimpleNodeSerializer).render).to eq(expected_tree)
+    expect(JsonTreeLister.new(a.reload.self_and_descendants, SimpleNodeSerializer).render).to eq(expected_tree)
   end
 
 end

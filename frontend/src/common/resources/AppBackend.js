@@ -1,4 +1,4 @@
-import {Menu} from './Menu';
+import {Menu, MenuItem} from './Menu';
 import {Page} from './Page';
 import {PageList} from './PageList';
 import MenuList from './MenuList';
@@ -11,11 +11,11 @@ export default class AppBackend extends BackendServer {
   }
 
   menuList(){
-    return this.load(MenuList, '/admin/menus');
+    return this.load(MenuList, '/menus');
   }
 
   menu(name){
-    return this.load(Menu, `/navigation/${name}`);
+    return this.load(MenuItem, `/navigation/${name}`);
   }
 
   page(slug, forRole){
@@ -41,6 +41,6 @@ export default class AppBackend extends BackendServer {
   }
 
   createMenu(){
-    return this.create(Menu, '/admin/menus');
+    return this.create(MenuItem, '/menus');
   }
 }

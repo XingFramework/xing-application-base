@@ -28,11 +28,11 @@ class Admin::MenuItemsController < JsonController
     end
   end
 
-    # DELETE /admin/menu_items/:id
-    def destroy
-      menu_item = MenuItem.find(params[:id])
-      menu_item.destroy
+  # DELETE /admin/menu_items/:id
+  def destroy
+    menu_item = MenuItem.find(params[:id])
+    menu_item.destroy
 
-      redirect_to admin_menus_path
-    end
+    redirect_to menus_path
   end
+end

@@ -1,6 +1,6 @@
 # Serializes an array of Menu objects ... i.e. top-
 # level (root) menu items
-class MenusListSerializer < BaseSerializer
+class MenuListSerializer < BaseSerializer
   def as_json_without_wrap(options={})
     object.map do |menu|
       BareMenuSerializer.new(menu).as_json
@@ -8,7 +8,7 @@ class MenusListSerializer < BaseSerializer
   end
 
   def links
-    { :self => routes.admin_menus_path  }
+    { :self => routes.menus_path  }
   end
 
   class BareMenuSerializer < BaseSerializer

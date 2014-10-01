@@ -9,7 +9,8 @@ class MenuItemMapper < HypermediaJSONMapper
   end
 
   def update_record
-    self.menu_item.assign_attributes(@menu_item_data)
+    attrs_hash = @menu_item_data.slice(*(@menu_item_data.keys - ["children", :children]))
+    menu_item.assign_attributes(attrs_hash)
     set_link
   end
 
@@ -20,7 +21,7 @@ class MenuItemMapper < HypermediaJSONMapper
     end
     @menu_item_type = @menu_item_data.delete('type')
     @external_path = @menu_item_data.delete('path')
-    @page_url_slug = @menu_item_data.delete('page_url_slug')
+    @embedded_page = @menu_item_data.delete('page')
   end
 
   def set_link
@@ -32,8 +33,10 @@ class MenuItemMapper < HypermediaJSONMapper
   end
 
   def set_page
-    if @page_url_slug.present?
-      page = Page.find_by_url_slug(@page_url_slug)
+    if @embedded_page.present?
+      page_url = @embedded_page.with_indifferent_access[:links][:self]
+      url_slug = route_to(page_url)[:url_slug]
+      page = Page.find_by_url_slug(url_slug)
       self.menu_item.page = page
     else
       raise MissingLinkException.new("Page URL not set: #{@menu_item_data.inspect}")
