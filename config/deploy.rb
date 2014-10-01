@@ -28,10 +28,8 @@ set :linked_dirs, %w{
 # or deploy is not considered successful
 set :required_writeable_files, %w{
   backend/log
-  backend/tmp
   backend/tmp/pids
   backend/tmp/cache
-  backend/vendor/bundle
   backend/public/system
   backend/public/sitemap.xml
 }
@@ -76,7 +74,7 @@ namespace :deploy do
             puts "Testing writeability of #{filename}"
             execute "su", 'apache', '-s /bin/sh', '-c', "'test -w #{filename}'"
           rescue Object #SSHKit::Runner::ExecuteError
-            error "Test for writeability by user 'apache' failed",  file: filename, host: host
+            error "Test for writeability failed. User 'apache' cannot write #{filename}."
             exit 1
           end
         end
