@@ -181,10 +181,7 @@ angular.module('ng-token-auth', ['ngCookies']).provider('$auth', function() {
                 };
               })(this)).error((function(_this) {
                 return function(resp) {
-                  _this.rejectDfd({
-                    reason: 'unauthorized',
-                    errors: ['Invalid credentials']
-                  });
+                  _this.rejectDfd(resp);
                   return $rootScope.$broadcast('auth:login-error', resp);
                 };
               })(this));
