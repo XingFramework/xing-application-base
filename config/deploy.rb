@@ -9,10 +9,26 @@ set :repo_url, 'git@git.lrdesign.com:lrd/uccf-website.git'
 # Default value for :log_level is :debug
 # set :log_level, :debug
 
-set :linked_files, %w{backend/config/database.yml backend/config/secrets.yml}
+set :linked_files, %w{
+  backend/config/database.yml
+  backend/config/secrets.yml
+  backend/public/sitemap.xml
+}
 set :linked_dirs, %w{
   frontend/node_modules
   backend/log backend/tmp/pids backend/tmp/cache backend/tmp/sockets backend/vendor/bundle backend/public/system
+}
+
+# These files and directories must be writeable by user 'apache'
+# or deploy is not considered successful
+set :required_writeable_files, %w{
+  backend/log
+  backend/tmp
+  backend/tmp/pids
+  backend/tmp/cache
+  backend/vendor/bundle
+  backend/public/system
+  backend/public/sitemap.xml
 }
 
 # Default value for default_env is {}
@@ -39,11 +55,25 @@ namespace :deploy do
   task :perms do
     on roles(:app), :in => :parallel do
       within File::join(release_path, "backend") do
-        execute "chown", "apache:apache", "-R", "public"
+        execute "chown", "root:web", "-R", "public"
+        execute "chown", "root:web", "-R", "tmp"
+        execute "chown", "root:web", "-R", "log"
       end
     end
   end
   after 'symlink:shared', :perms
+
+  task :confirm_writeable_files do
+    on roles(:app), :in => :parallel do
+      within File::join(release_path) do
+        required_writeable_files.each do |filename|
+          retval = execute "su", 'apache', '-s /bin/sh', '-c', "'test -w #{filename}'"
+          puts "Return value for #{filename} is #{retval}"
+        end
+      end
+    end
+  end
+  after 'symlink:shared', :confirm_writeable_files
 
   desc 'Restart application'
   task :restart do
