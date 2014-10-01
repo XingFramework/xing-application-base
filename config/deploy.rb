@@ -16,7 +16,12 @@ set :linked_files, %w{
 }
 set :linked_dirs, %w{
   frontend/node_modules
-  backend/log backend/tmp/pids backend/tmp/cache backend/tmp/sockets backend/vendor/bundle backend/public/system
+  backend/log
+  backend/tmp/pids
+  backend/tmp/cache
+  backend/tmp/sockets
+  backend/vendor/bundle
+  backend/public/system
 }
 
 # These files and directories must be writeable by user 'apache'
@@ -68,9 +73,9 @@ namespace :deploy do
       within File::join(release_path) do
         fetch(:required_writeable_files).each do |filename|
           begin
-            puts "Testing writeability of #{filename} is #{retval}"
+            puts "Testing writeability of #{filename}"
             execute "su", 'apache', '-s /bin/sh', '-c', "'test -w #{filename}'"
-          rescue SSHKit::Runner::ExecuteError => error
+          rescue Object #SSHKit::Runner::ExecuteError
             error "Test for writeability by user 'apache' failed",  file: filename, host: host
             exit 1
           end
