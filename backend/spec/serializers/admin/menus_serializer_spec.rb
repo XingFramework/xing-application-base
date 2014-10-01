@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::MenusSerializer do
+describe Admin::MenusSerializer, :type => :serializer do
 
   before do
     MenuItem.delete_all # get rid of the ones from seeds

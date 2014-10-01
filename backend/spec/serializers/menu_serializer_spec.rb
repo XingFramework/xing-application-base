@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MenuSerializer do
+describe MenuSerializer, :type => :serializer do
   let :rendered_tree do
     [
       {

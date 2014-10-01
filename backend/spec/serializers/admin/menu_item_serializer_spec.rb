@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::MenuItemSerializer do
+describe Admin::MenuItemSerializer, :type => :serializer do
   let :menu_item_with_page    do FactoryGirl.create(:menu_item_with_page) end
   let :menu_item_without_page do FactoryGirl.create(:menu_item_without_page) end
 

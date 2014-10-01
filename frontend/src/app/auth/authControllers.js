@@ -18,6 +18,7 @@ angular.module(`${appName}.auth`)
         $state.go('root.inner.sessionsSuccess');
       })
       .catch(function(resp) {
+        console.log(resp);
         $scope.flash = resp.errors[0];
         $timeout(() => { $scope.flash = "";}, 5000);
         // handle error response
