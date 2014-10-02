@@ -47,6 +47,10 @@ export class BackendResource {
     }
   }
 
+  reload(){
+    return this.backend.loadTo(this.selfUrl, this);
+  }
+
   save(){
     return this.backend.save(this);
   }
@@ -101,6 +105,10 @@ export class BackendResource {
 
   get putUrl(){
     return this.selfUrl;
+  }
+
+  get etag(){
+    return this._response.restangularEtag;
   }
 
   get received(){

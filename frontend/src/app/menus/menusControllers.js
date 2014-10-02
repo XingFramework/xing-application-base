@@ -3,7 +3,7 @@ import slugify from '../../common/slugify';
 import {} from './menusModule';
 
 angular.module(`${appName}.menus`)
-.controller( 'MenusCtrl', function( $scope, $state, $stateParams, menu, isAdmin, pageList, backend) {
+.controller( 'MenusCtrl', function( $scope, $state, $stateParams, menu, isAdmin, pageList, backend, menuRoot) {
   $scope.menuActions = {
     edit(){
       $state.go('^.edit', {}, {location: false});
@@ -16,6 +16,7 @@ angular.module(`${appName}.menus`)
     save(){
       menu.save();
       menu.complete.then((menu) => {
+        menuRoot.reload();
         $state.go("^.^.menus");
         return menu;
       });
