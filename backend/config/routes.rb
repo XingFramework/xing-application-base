@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :menus, :only => [ :show, :index, :update ]
 
   namespace :admin do
-    #resources :images
+    resources :froala_images, :only => [:index, :create]
+    post "/froala_images/delete", :to => 'froala_images#destroy'
     #resources :documents
     resources :pages, :param => :url_slug
     resources :menu_items

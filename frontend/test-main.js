@@ -2,7 +2,8 @@ requireJsConfig = {
   baseUrl: '/base/',
   paths: {
     'angular': './vendor/angular/angular',
-    'jquery': './vendor/jquery/jquery'
+    'jquery': './vendor/jquery/jquery',
+    'froala': './vendor/FroalaWysiwygEditor/froala_editor.min'
   },
   shim: {
     'angular': {
@@ -10,6 +11,12 @@ requireJsConfig = {
     },
     "vendor/FroalaWysiwygEditor/froala_editor.min": {
       deps: [ "jquery" ]
+    },
+    "vendor/FroalaWysiwygEditor/media_manager.min": {
+      deps: [ "jquery", "froala"]
+    },
+    "vendor/angular-froala/angular-froala": {
+      deps: [ "angular" ]
     },
     "vendor/angular-fontawesome/angular-fontawesome": {
       deps: [ "angular" ]

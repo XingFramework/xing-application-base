@@ -7,7 +7,6 @@ export class Menu extends BackendResource {
 
   backendResponds(promise){
     super(promise);
-
     this.completePromise = this.completePromise.then((result) => {
       var completes = this._items.map((item) => {
         return item.complete;
@@ -42,14 +41,6 @@ export class Menu extends BackendResource {
   }
 }
 
-var itemPaths = {
-  children: '$.data.children',
-  internalTarget: '$.data.page.links.self',
-  externalTarget: '$.data.url',
-  type: '$.data.type',
-  name: '$.data.name',
-};
-
 export class MenuItem extends BackendResource {
   constructor(backend,promise){
     super(backend,promise);
@@ -60,7 +51,6 @@ export class MenuItem extends BackendResource {
       }
     };
   }
-
   backendResponds(promise){
     super(promise);
     var childrenPromise = this.responsePromise.then((response) => {
@@ -80,13 +70,12 @@ export class MenuItem extends BackendResource {
     return {
       "name": "",
       "type": "raw_url",
-      "url": "",
+      "path": "",
       "children": []
     };
   }
-
   hasChildren(){
-    var children = this.pathGet(itemPaths.children);
+    var children = this.pathGet(this.jsonPaths.children);
     return (children && children.length > 0);
   }
 
@@ -100,30 +89,30 @@ export class MenuItem extends BackendResource {
 
   get target(){
     if(this.internal()){
-      return this.pathGet(itemPaths.internalTarget);
+      return this.pathGet(this.jsonPaths.internalTarget);
     } else {
-      return this.pathGet(itemPaths.externalTarget);
+      return this.pathGet(this.jsonPaths.externalTarget);
     }
   }
   set target(value){
     if(this.internal()){
-      return this.pathSet(itemPaths.internalTarget, value);
+      return this.pathSet(this.jsonPaths.internalTarget, value);
     } else {
-      return this.pathSet(itemPaths.externalTarget, value);
+      return this.pathSet(this.jsonPaths.externalTarget, value);
     }
   }
 
   get type(){
-    return this.pathGet(itemPaths.type);
+    return this.pathGet(this.jsonPaths.type);
   }
   set type(value){
     var thumb, segment;
     if(MenuItem.types.indexOf(value) != -1){
       this.attic.types[this.type] = this.target;
-      for(var path of [itemPaths.internalTarget, itemPaths.externalTarget]){
+      for(var path of [this.jsonPaths.internalTarget, this.jsonPaths.externalTarget]){
         this.pathClear(path);
       }
-      this.pathSet(itemPaths.type, value);
+      this.pathSet(this.jsonPaths.type, value);
       if(this.internal()){
         thumb = this._response;
         for(segment of ["data", "page", "links" ]){
@@ -141,16 +130,16 @@ export class MenuItem extends BackendResource {
           }
           thumb = thumb[segment];
         }
-        thumb["url"] = this.attic.types[this.type];
+        thumb["path"] = this.attic.types[this.type];
       }
     }
   }
 
   get name(){
-    return this.pathGet(itemPaths.name);
+    return this.pathGet(this.jsonPaths.name);
   }
   set name(value){
-    return this.pathSet(itemPaths.name, value);
+    return this.pathSet(this.jsonPaths.name, value);
   }
 
   get children(){
@@ -170,3 +159,9 @@ MenuItem.typeOptions = [
   { name: "Content Page", type: "page" },
 ];
 MenuItem.types = [for (option of MenuItem.typeOptions) option.type];
+
+MenuItem.prototype.defineJsonProperty("children", '$.data.children');
+MenuItem.prototype.defineJsonProperty("internalTarget", '$.data.page.links.self');
+MenuItem.prototype.defineJsonProperty("externalTarget", '$.data.path');
+MenuItem.prototype.defineJsonProperty("type", '$.data.type');
+MenuItem.prototype.defineJsonProperty("name", '$.data.name');
