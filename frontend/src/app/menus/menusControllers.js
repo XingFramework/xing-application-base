@@ -3,7 +3,7 @@ import slugify from '../../common/slugify';
 import {} from './menusModule';
 
 angular.module(`${appName}.menus`)
-.controller( 'MenusCtrl', function( $scope, $state, $stateParams, menu, isAdmin, pageList) {
+.controller( 'MenusCtrl', function( $scope, $state, $stateParams, menu, isAdmin, pageList, backend) {
   $scope.menuActions = {
     edit(){
       $state.go('^.edit', {}, {location: false});
@@ -22,6 +22,16 @@ angular.module(`${appName}.menus`)
     }
   };
 
+  function syncScope(scope){
+    var menuList;
+    if(scope === null){
+      menuList = menu.children;
+    } else {
+      menuList = scope.$modelValue.children;
+    }
+    menuList.syncItems();
+  }
+
   $scope.editing = {
     toggle(editScope){ editScope.toggle(); },
     hasChildren(editScope){
@@ -31,28 +41,25 @@ angular.module(`${appName}.menus`)
       $scope.selectedItem = editScope.$modelValue;
     },
     remove(editScope){
-      console.log("menus/menusControllers.js:35", "remove editScope", editScope);
+      if($scope.selectedItem == editScope.$modelValue){
+        $scope.selectedItem = null;
+      }
+      editScope.remove();
+      syncScope(editScope.$parentNodeScope);
     },
     newSubItem(editScope){
-      console.log("menus/menusControllers.js:38", "new sub editScope", editScope);
+      var item = backend.createMenu();
+      editScope.$modelValue.children.items.push(item);
+      $scope.selectedItem = item;
+      syncScope(editScope);
     }
   };
   $scope.menu = menu;
   $scope.pages = pageList.pages;
   $scope.treeOptions = {
     dropped(event){
-      var sourceMenu, destMenu, sourceScope, destScope;
-      sourceScope = event.source.nodesScope.$nodeScope;
-      destScope = event.dest.nodesScope.$nodeScope;
-
-      sourceMenu = sourceScope === null ? menu.children : sourceScope.$modelValue.children;
-      destMenu = destScope === null ? menu.children : destScope.$modelValue.children;
-
-      sourceMenu.syncItems();
-      if(sourceMenu != destMenu){
-        destMenu.syncItems();
-      }
-
+      syncScope( event.source.nodesScope.$nodeScope );
+      syncScope( event.dest.nodesScope.$nodeScope );
     }
   };
   $scope.isAdmin = isAdmin;

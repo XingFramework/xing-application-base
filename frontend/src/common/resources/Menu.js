@@ -76,6 +76,15 @@ export class MenuItem extends BackendResource {
     this.completePromise = Promise.all([ this.completePromise, this.subMenu.completePromise ]).then((responses) => { return this; });
   }
 
+  emptyData(){
+    return {
+      "name": "",
+      "type": "raw_url",
+      "url": "",
+      "children": []
+    };
+  }
+
   hasChildren(){
     var children = this.pathGet(itemPaths.children);
     return (children && children.length > 0);

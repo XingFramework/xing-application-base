@@ -1,4 +1,26 @@
-import {Menu} from "../../src/common/resources/Menu";
+import {Menu, MenuItem} from "../../src/common/resources/Menu";
+
+describe('MenuItem class', function(){
+  describe('created by front end', function() {
+    var menuItem, mockBackend;
+
+    beforeEach(function() {
+      mockBackend = {};
+      menuItem = new MenuItem(mockBackend);
+    });
+
+    it('should have defined values on all getters', function() {
+      expect(menuItem.type).not.toEqual(undefined);
+      expect(menuItem.type).not.toEqual(false);
+
+      expect(menuItem.target).not.toEqual(undefined);
+      expect(menuItem.target).not.toEqual(false);
+
+      expect(menuItem.name).not.toEqual(undefined);
+      expect(menuItem.name).not.toEqual(false);
+    });
+  });
+});
 
 describe('Menu class', function() {
   var menu, mockBackend;
