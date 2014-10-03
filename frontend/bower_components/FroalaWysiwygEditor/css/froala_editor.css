@@ -1,6 +1,6 @@
-@import url('froala_page.css');
+@import url('froala_page.min.css');
 /*!
- * froala_editor v1.2.1 (http://editor.froala.com)
+ * froala_editor v1.2.2 (http://editor.froala.com)
  * Copyright 2014-2014 Froala
  */
 [contenteditable],
@@ -97,7 +97,7 @@ button {
   display: none !important;
 }
 .froala-element {
-  min-height: 30px;
+  min-height: 35px;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
@@ -105,6 +105,15 @@ button {
   line-height: 140%;
   vertical-align: top;
   text-align: left;
+}
+.froala-element:after {
+  position: absolute;
+  bottom: 0px;
+  right: 5px;
+  color: #CCC;
+  content: attr(data-chars);
+  font-size: 15px;
+  font-family: "Times New Roman", Georgia, Serif;
 }
 .froala-element * {
   -webkit-box-sizing: content-box;
@@ -359,7 +368,6 @@ button {
   border: solid 1px #252525;
   border-top: solid 5px #252525;
   padding: 0;
-  position: absolute;
   user-select: none;
   -o-user-select: none;
   -moz-user-select: none;
@@ -370,6 +378,9 @@ button {
   z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 140%;
+}
+.froala-editor.f-inline {
+  position: absolute;
 }
 .froala-editor * {
   -webkit-box-sizing: content-box;
@@ -453,6 +464,7 @@ button {
   padding: 0;
   border: solid 1px #252525;
   z-index: 1000;
+  -webkit-overflow-scrolling: touch;
 }
 .froala-editor .fr-dropdown .fr-dropdown-menu li {
   list-style-type: none;
@@ -518,7 +530,7 @@ button {
   float: left;
 }
 .froala-editor .fr-dropdown.fr-color-picker .fr-dropdown-menu p a.fr-bttn {
-  display: inline;
+  display: inline-block;
   float: right;
   padding: 0;
   color: #444444;
@@ -1061,8 +1073,11 @@ button {
   width: 225px;
 }
 .froala-popup.froala-link-popup div.f-popup-line input[type="text"]:disabled {
-  background: #FFF;
-  color: #000;
+  background: #ffffff;
+  color: #aaaaaa;
+}
+.froala-popup.froala-link-popup div.f-popup-line input[type="text"].fr-error {
+  border-color: #b8312f;
 }
 .froala-popup.froala-link-popup div.f-popup-line:not(.fr-hidden) + div.f-popup-line,
 .froala-popup.froala-link-popup div.f-popup-line + div.f-popup-line:last-child {
@@ -1427,8 +1442,11 @@ button {
 .froala-editor.f-basic {
   padding: 0px;
   z-index: 999;
-  position: relative;
+  width: 100%;
   border-bottom: 0 !important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .froala-editor.f-basic:before {
   display: none;
