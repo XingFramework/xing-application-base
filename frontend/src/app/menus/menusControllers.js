@@ -60,6 +60,9 @@ angular.module(`${appName}.menus`)
       syncScope(editScope);
     }
   };
+  $scope.isSelected = function(editScope){
+    return $scope.selectedItem == editScope.$nodeScope.$modelValue;
+  };
   $scope.menu = menu;
   $scope.pages = pageList.pages;
   $scope.treeOptions = {

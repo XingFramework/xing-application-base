@@ -1,6 +1,6 @@
 <div ui-tree-handle>
-  <button class="edit control" data-nodrag ng-click="editing.select(this)"><fa name='edit'></fa></button>
-  <button class="collapse control" data-nodrag ng-click="editing.toggle(this)" ng-if="editing.hasChildren(this)"><fa name='{{collapsed ? "chevron-right" : "chevron-down"}}'></fa></button>
+  <button class="edit control" ng-class='{selected: isSelected(this)}' data-nodrag ng-click="editing.select(this)"><fa name='edit'></fa></button>
+  <button class="collapse control" ng-class='{selected: !collapsed}' data-nodrag ng-click="editing.toggle(this)" ng-if="editing.hasChildren(this)"><fa name='{{collapsed ? "chevron-right" : "chevron-down"}}'></fa></button>
   <span class="name">{{item.name}}</span>
   <button class="remove control" data-nodrag ng-click="editing.remove(this)"><fa name="remove"></fa></button>
   <button class="add control" data-nodrag ng-click="editing.newSubItem(this)"><fa name="plus"></fa></button>
