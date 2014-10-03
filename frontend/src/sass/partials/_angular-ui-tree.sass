@@ -1,7 +1,9 @@
 =control-button($color, $text-color)
-  $first-color: adjust-lightness($color, 10%)
-  $second-color: adjust-lightness($color, -15%)
-  +sassy-button("simple", 5px, 12px, $first-color, $second-color, $text-color, "inset")
+  //$first-color: adjust-lightness($color, 10%)
+  //$second-color: adjust-lightness($color, -15%)
+  //+sassy-button("simple", 5px, 12px, $first-color, $second-color, $text-color, "inset")
+  width: 16px
+  height: 16px
   padding: 0.2em 0.6em
 
 #item-detail
@@ -18,6 +20,11 @@
     +control-button(#a58, white)
   .add.control
     +control-button(#6c6, white)
+  .icon-spacer
+    +control-button(white, white)
+  i.fa 
+    width: 16px
+    height: 16px
 
 .angular-ui-tree-empty
   border: 1px dashed #bbb

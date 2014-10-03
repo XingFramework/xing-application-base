@@ -1,9 +1,15 @@
-<div ui-tree-handle>
-  <a class="edit control" data-nodrag ng-click="editing.select(this)"><fa name='edit'></fa></a>
-  <a class="collapse control" data-nodrag ng-click="editing.toggle(this)" ng-if="editing.hasChildren(this)"><fa name='{{collapsed ? "chevron-right" : "chevron-down"}}'></fa></a>
-  <span class="name">{{item.name}}</span>
-  <a class="remove control" data-nodrag ng-click="editing.remove(this)"><fa name="remove"></fa></a>
-  <a class="add control" data-nodrag ng-click="editing.newSubItem(this)"><fa name="plus"></fa></a>
+<div class='menu-item' ui-tree-handle>
+  <span class='item-info depth-{{this.depth()}}'>
+     <a class="collapse control" data-nodrag ng-click="editing.toggle(this)" ng-if="editing.hasChildren(this)"><fa name='{{collapsed ? "chevron-right" : "chevron-down"}}'></fa></a>
+    <a class="collapse control" data-nodrag ng-hide="editing.hasChildren(this)"><span class='icon-spacer'></span></a>
+
+    <span class="name">{{item.name}}</span>
+  </span>
+  <span class='controls'>
+    <a class="edit control" data-nodrag ng-click="editing.select(this)" title='Edit this menu item'><fa name='edit'></fa></a>
+    <a class="add control" data-nodrag ng-click="editing.newSubItem(this)" title='Add a child item'><fa name="plus"></fa></a>
+    <a class="remove control" data-nodrag ng-click="editing.remove(this)" title='Delete this menu item'><fa name="remove"></fa></a>
+  </span>
 </div>
 <ul ui-tree-nodes="treeOptions" ng-model="item.children.items" ng-hide="collapsed">
   <li ng-repeat="item in item.children.items" ui-tree-node ng-include="'menus/item-edit.tpl.html'"></li>
