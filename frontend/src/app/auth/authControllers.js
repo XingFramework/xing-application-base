@@ -3,7 +3,7 @@ import {} from './authModule';
 
 angular.module(`${appName}.auth`)
 
-.controller( 'SessionsCtrl', function( $scope, $auth, $state, $timeout, Serializer) {
+.controller( 'SessionsCtrl', function( $scope, $auth, $state, $lrdToast, Serializer) {
   $scope.session = {
     email: '',
     password: ''
@@ -18,16 +18,14 @@ angular.module(`${appName}.auth`)
         $state.go('root.inner.sessionsSuccess');
       })
       .catch(function(resp) {
-        console.log(resp);
-        $scope.flash = resp.errors[0];
-        $timeout(() => { $scope.flash = "";}, 5000);
+        $lrdToast.error(resp.errors);
         // handle error response
       });
   };
 
 })
 
-.controller( 'RegistrationsCtrl', function( $scope, $auth, $state, $timeout, Serializer) {
+.controller( 'RegistrationsCtrl', function( $scope, $auth, $state, $lrdToast, Serializer) {
   $scope.registration = {
     email: '',
     emailConfirmation: '',
@@ -44,8 +42,7 @@ angular.module(`${appName}.auth`)
         $state.go('root.inner.registrationsSuccess');
       })
       .catch(function(resp) {
-        $scope.flash = resp.errors[0];
-        $timeout(() => { $scope.flash = "";}, 5000);
+        $lrdToast.errorList(resp.data.errors, "We cannot process your registration because:");
         // handle error response
       });
   };

@@ -1,3 +1,4 @@
+import '../vendor/jquery/jquery';
 import '../vendor/angular/angular';
 import '../vendor/angular-mocks/angular-mocks';
 import '../src/app/app';

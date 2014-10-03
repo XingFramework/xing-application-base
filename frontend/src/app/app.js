@@ -14,6 +14,7 @@ import {} from './homepage/homepage';
 import {} from './metadata/metadata';
 import {} from './responsiveMenu/responsiveMenu';
 import {} from './sessionLinks/sessionLinks';
+import {} from '../common/toast/toast';
 
 angular.module( appName, [
   'templates-app', 'templates-common', 'ui.router',
@@ -25,7 +26,8 @@ angular.module( appName, [
   `${appName}.admin`,
   `${appName}.responsiveMenu`,
   `${appName}.metadata`,
-  `${appName}.sessionLinks`
+  `${appName}.sessionLinks`,
+  `${appName}.toast`
 ])
 .config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise(($injector, $location) => {

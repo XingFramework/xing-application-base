@@ -5,11 +5,12 @@ describe( 'Auth controllers', function() {
 
   beforeEach( module( `${appName}.auth` ) );
 
-  var $scope, $stateMock, $authMock, $timeoutMock, sessionsCtrl, mockSerializer, authSpy;
+  var $scope, $stateMock, $authMock, $toastMock, sessionsCtrl, mockSerializer, authSpy;
 
   beforeEach(inject(function($q) {
-
-    $timeoutMock = jasmine.createSpy();
+    $toastMock = {};
+    $toastMock.error = jasmine.createSpy('error');
+    $toastMock.errorList = jasmine.createSpy('errorList');
 
     $stateMock = {
       go(state){}
@@ -31,7 +32,7 @@ describe( 'Auth controllers', function() {
           });
         } else {
           return $q((resolve, reject) => {
-            reject({errors: ["Invalid Login"]});
+            reject({errors: "Invalid Login"});
           });
         }
       },
@@ -45,7 +46,11 @@ describe( 'Auth controllers', function() {
           });
         } else {
           return $q((resolve, reject) => {
-            reject({errors: ["Email must match confirmation"]});
+            reject({
+              data: {
+                errors: { emailConfirmation: "must match email" }
+              }
+            });
           });
         }
       }
@@ -64,7 +69,7 @@ describe( 'Auth controllers', function() {
         $scope: $scope,
         $state: $stateMock,
         $auth: $authMock,
-        $timeout: $timeoutMock,
+        $lrdToast: $toastMock,
         Serializer: mockSerializer
       });
       $scope.$apply();
@@ -107,12 +112,8 @@ describe( 'Auth controllers', function() {
           expect($authMock.submitLogin).toHaveBeenCalled();
         });
 
-        it ("should set the flash error message", function() {
-          expect($scope.flash).toEqual("Invalid Login");
-        });
-
-        it ("should set a timeout for removing the flash", function() {
-          expect($timeoutMock).toHaveBeenCalled();
+        it ("should set the toast error message", function() {
+          expect($toastMock.error).toHaveBeenCalledWith("Invalid Login");
         });
       });
     });
@@ -126,7 +127,7 @@ describe( 'Auth controllers', function() {
         $scope: $scope,
         $state: $stateMock,
         $auth: $authMock,
-        $timeout: $timeoutMock,
+        $lrdToast: $toastMock,
         Serializer: mockSerializer
       });
       $scope.$apply();
@@ -181,12 +182,9 @@ describe( 'Auth controllers', function() {
           expect($authMock.submitRegistration).toHaveBeenCalled();
         });
 
-        it ("should set the flash error message", function() {
-          expect($scope.flash).toEqual("Email must match confirmation");
-        });
-
-        it ("should set a timeout for removing the flash", function() {
-          expect($timeoutMock).toHaveBeenCalled();
+        it ("should set the toast error message", function() {
+          expect($toastMock.errorList).toHaveBeenCalledWith({ emailConfirmation: "must match email" },
+            "We cannot process your registration because:");
         });
       });
     });

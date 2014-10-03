@@ -1,11 +1,14 @@
 requireJsConfig = {
   baseUrl: '/base/',
   paths: {
-    'angular': './vendor/angular/angular',
     'jquery': './vendor/jquery/jquery',
+    'angular': './vendor/angular/angular',
     'froala': './vendor/FroalaWysiwygEditor/froala_editor.min'
   },
   shim: {
+    'jquery': {
+      exports: 'jquery'
+    },
     'angular': {
       exports: 'angular'
     },
