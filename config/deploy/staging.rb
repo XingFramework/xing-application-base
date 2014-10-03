@@ -1,4 +1,4 @@
-server 'uccf-losangeles.org', user: 'lrdesign', roles: %w{web app}
+server 'appserver2.lrdesign.com', user: 'root', roles: %w{web app}
 set :branch, "staging"
 set :application, "staging.uccf-losangles.org"
 set :rails_warmup_url, 'http://staging.uccf-losangeles.org'
