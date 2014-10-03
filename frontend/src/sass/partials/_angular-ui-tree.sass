@@ -1,17 +1,22 @@
 =control-button($color, $text-color)
-  //$first-color: adjust-lightness($color, 10%)
-  //$second-color: adjust-lightness($color, -15%)
-  //+sassy-button("simple", 5px, 12px, $first-color, $second-color, $text-color, "inset")
+  //$first-color: adjust-lightness($color, 5%)
+  //$second-color: adjust-lightness($color, -5%)
+  //$darker-color: adjust-lightness($color, -10%)
+  //+sassy-button("matte", 5px, 12px, $first-color, $second-color, $text-color, "inset")
   width: 16px
   height: 16px
   padding: 0.2em 0.6em
+
+  //&.selected
+    //@include sassy-button-style("inset", $darker-color)
+
 
 #item-detail
   &:after
     +clearfix
   margin-top: 2em
 
-.angular-ui-tree
+.menu
   .collapse.control
     +control-button(#67c, white)
   .edit.control
@@ -25,6 +30,11 @@
   i.fa 
     width: 16px
     height: 16px
+
+#item-detail
+  &:after
+    +clearfix
+  margin-top: 2em
 
 .angular-ui-tree-empty
   border: 1px dashed #bbb

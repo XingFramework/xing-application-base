@@ -17,7 +17,6 @@ angular.module(`${appName}.menus`)
       menu.save();
       menu.complete.then((menu) => {
         menuRoot.reload();
-        $state.go("^.^.menus");
         return menu;
       });
     }
@@ -48,12 +47,21 @@ angular.module(`${appName}.menus`)
       editScope.remove();
       syncScope(editScope.$parentNodeScope);
     },
+    newTopItem(){
+      var item = backend.createMenu();
+      menu.children.items.push(item);
+      $scope.selectedItem = item;
+      menu.children.syncItems();
+    },
     newSubItem(editScope){
       var item = backend.createMenu();
       editScope.$modelValue.children.items.push(item);
       $scope.selectedItem = item;
       syncScope(editScope);
     }
+  };
+  $scope.isSelected = function(editScope){
+    return $scope.selectedItem == editScope.$nodeScope.$modelValue;
   };
   $scope.menu = menu;
   $scope.pages = pageList.pages;
