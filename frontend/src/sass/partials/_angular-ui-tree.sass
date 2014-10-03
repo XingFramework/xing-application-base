@@ -1,14 +1,5 @@
-=control-button($color, $text-color)
-  //$first-color: adjust-lightness($color, 5%)
-  //$second-color: adjust-lightness($color, -5%)
-  //$darker-color: adjust-lightness($color, -10%)
-  //+sassy-button("matte", 5px, 12px, $first-color, $second-color, $text-color, "inset")
-  width: 16px
-  height: 16px
+=control-button
   padding: 0.2em 0.6em
-
-  //&.selected
-    //@include sassy-button-style("inset", $darker-color)
 
 
 #item-detail
@@ -18,15 +9,15 @@
 
 .menu
   .collapse.control
-    +control-button(#67c, white)
+    +control-button
   .edit.control
-    +control-button(#67c, white)
+    +control-button
   .remove.control
-    +control-button(#a58, white)
+    +control-button
   .add.control
-    +control-button(#6c6, white)
+    +control-button
   .icon-spacer
-    +control-button(white, white)
+    +control-button
   i.fa 
     width: 16px
     height: 16px
