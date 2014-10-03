@@ -18,7 +18,7 @@ feature "User Signs Up", :js => true, :vcr => {} do
     sign_up_with('joe@joehomebuyer.com', TEST_PASSWORD)
     confirm_user
     sign_in_with('joe@joehomebuyer.com', TEST_PASSWORD)
-    expect(page).to have_link("Sign Out")
+    expect(page).to have_content("Sign Out")
   end
 
 end
