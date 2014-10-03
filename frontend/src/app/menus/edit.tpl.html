@@ -1,8 +1,11 @@
 <h1>Simply Editing {{menuName}}</h1>
-<div ui-tree="treeOptions" >
-  <ul ui-tree-nodes="treeOptions" ng-model="menu.children.items">
-    <li ng-repeat="item in menu.children.items" ui-tree-node ng-include="'menus/item-edit.tpl.html'"> </li>
-  </ul>
+<div class='menu'>
+  <div ui-tree="treeOptions" >
+    <ul ui-tree-nodes="treeOptions" ng-model="menu.children.items">
+      <li ng-repeat="item in menu.children.items" ui-tree-node ng-include="'menus/item-edit.tpl.html'"> </li>
+    </ul>
+  </div>
+  <button class="control add toplevel" ng-click="editing.newTopItem()"><fa name="plus"></fa></button>
 </div>
 
 <div id='item-detail' ng-show='selectedItem'>

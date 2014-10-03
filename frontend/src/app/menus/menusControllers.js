@@ -17,7 +17,6 @@ angular.module(`${appName}.menus`)
       menu.save();
       menu.complete.then((menu) => {
         menuRoot.reload();
-        $state.go("^.^.menus");
         return menu;
       });
     }
@@ -47,6 +46,12 @@ angular.module(`${appName}.menus`)
       }
       editScope.remove();
       syncScope(editScope.$parentNodeScope);
+    },
+    newTopItem(){
+      var item = backend.createMenu();
+      menu.children.items.push(item);
+      $scope.selectedItem = item;
+      menu.children.syncItems();
     },
     newSubItem(editScope){
       var item = backend.createMenu();
