@@ -118,6 +118,12 @@ describe('Page class', function() {
       });
     });
 
+    it('send .remove to backend', function() {
+      mockBackend.remove = jasmine.createSpy("remove");
+      page.remove();
+      expect(mockBackend.remove).toHaveBeenCalledWith(page);
+    });
+
     it('should have a title', function() {
       expect(page.title).toEqual('Title 1');
     });

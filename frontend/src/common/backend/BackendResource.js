@@ -70,6 +70,10 @@ export class BackendResource {
     return this.backend.save(this);
   }
 
+  remove(){
+    return this.backend.remove(this);
+  }
+
   pathGet(path){
     return jsonPath(this._response, path, {flatten: true, wrap: false});
   }
@@ -105,6 +109,9 @@ export class BackendResource {
 
   get putUrl(){
     return this.selfUrl;
+  }
+  get deleteUrl(){
+    return this.putUrl;
   }
 
   get received(){

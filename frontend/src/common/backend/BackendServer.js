@@ -33,6 +33,12 @@ export default class BackendServer {
     resource.backendResponds(this.unwrap(responds));
   }
 
+  remove(resource){ //because 'delete' is a keyword
+    var url = this.mangleUrl(resource.deleteUrl);
+    var backendReq = this.Restangular.restangularizeElement(null, resource._response, url);
+    backendReq.remove();
+  }
+
   load(ResourceClass, url, responseFn){
     var response = this.Restangular.one(this.mangleUrl(url)).get();
     if(responseFn){ response = responseFn(response); }
