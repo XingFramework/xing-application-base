@@ -1,6 +1,6 @@
 server 'appserver2.lrdesign.com', user: 'root', roles: %w{web app}
 set :branch, "staging"
-set :application, "staging.uccf-losangles.org"
+set :application, "staging.uccf-losangeles.org"
 set :rails_warmup_url, 'http://staging.uccf-losangeles.org'
 set :use_sudo, true
 
