@@ -2,6 +2,7 @@
 lock '3.2.1'
 
 set :repo_url, 'git@git.lrdesign.com:lrd/uccf-website.git'
+set :pty, true
 
 # Default value for :format is :pretty
 # set :format, :pretty
@@ -58,30 +59,36 @@ namespace :deploy do
   task :perms do
     on roles(:app), :in => :parallel do
       within File::join(release_path, "backend") do
-        execute "chown", "root:web", "-R", "public"
-        execute "chown", "root:web", "-R", "tmp"
-        execute "chown", "root:web", "-R", "log"
+        execute "chgrp", "web",  "-RL", "public"
+        execute "chmod", "g+wX", "-R", "public"
+        execute "chgrp", "web",  "-RL", "tmp"
+        execute "chmod", "g+wX", "-R", "tmp"
+        execute "chgrp", "web",  "-RL", "log"
+        execute "chmod", "g+wX", "-R", "log"
       end
     end
   end
   after 'symlink:shared', :perms
 
-  task :confirm_writeable_files do
-    on roles(:app), :in => :parallel do
-      within File::join(release_path) do
-        fetch(:required_writeable_files).each do |filename|
-          begin
-            puts "Testing writeability of #{filename}"
-            execute "su", 'apache', '-s /bin/sh', '-c', "'test -w #{filename}'"
-          rescue Object #SSHKit::Runner::ExecuteError
-            error "Test for writeability failed. User 'apache' cannot write #{filename}."
-            exit 1  #TODO: prevent this from printing a stack trace, if possible.
-          end
-        end
-      end
-    end
-  end
-  after 'symlink:shared', :confirm_writeable_files
+#  task :confirm_writeable_files do
+#    on roles(:app), :in => :parallel do
+#      within File::join(release_path) do
+#        fetch(:required_writeable_files).each do |filename|
+#            begin
+#              puts "Testing writeability of #{filename}"
+#              as(:apache){ execute "test -w #{filename}" }
+#              as(:apache){ execute "pwd" }
+#              as(:apache){ execute "ls -l #{filename}" }
+#            rescue Object #SSHKit::Runner::ExecuteError
+#              error "Test for writeability failed. User 'apache' cannot write #{filename}."
+#              raise
+#              exit 1  #TODO: prevent this from printing a stack trace, if possible.
+#            end
+#        end
+#      end
+#    end
+#  end
+#  after 'symlink:shared', :confirm_writeable_files
 
   desc 'Restart application'
   task :restart do
