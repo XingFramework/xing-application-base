@@ -115,7 +115,7 @@ describe MenuItemMapper do
         {
           data: {
             name: 'Services',
-            page_url_slug: page.url_slug,
+            page: { links: { self: "/pages/#{page.url_slug}" } },
             type: 'page'
           }
         }
@@ -136,7 +136,7 @@ describe MenuItemMapper do
           {
             data: {
               name: 'Services',
-              page_url_slug: nil,
+              page: { links: {  } },
               type: 'page'
             }
           }

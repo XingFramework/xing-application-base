@@ -102,7 +102,7 @@
       font-style: italic
 
 .admin.menu.edit
-  ul 
+  ul
     padding-left: 0
     margin-left: 0
   .item-info
@@ -115,8 +115,11 @@
       padding-left: 6em
     &.depth-4
       padding-left: 8em
+  div.menu-item
+    &:after
+      +clearfix
   div.selected
-    background: yellow
+    +box-shadow(inset 2px 2px 2px 0px #ccc, inset -2px -2px 4px 0px #ccc)
 
-  .controls 
+  .controls
     +isolation-span(8, 5)

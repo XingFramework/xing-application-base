@@ -1,14 +1,11 @@
 =control-button($color, $text-color)
-  //$first-color: adjust-lightness($color, 5%)
-  //$second-color: adjust-lightness($color, -5%)
-  //$darker-color: adjust-lightness($color, -10%)
-  //+sassy-button("matte", 5px, 12px, $first-color, $second-color, $text-color, "inset")
-  width: 16px
-  height: 16px
-  padding: 0.2em 0.6em
+  $first-color: adjust-lightness($color, 5%)
+  $second-color: adjust-lightness($color, -5%)
+  $darker-color: adjust-lightness($color, -10%)
+  +sassy-button("matte", 5px, 12px, $first-color, $second-color, $text-color, "inset")
 
-  //&.selected
-    //@include sassy-button-style("inset", $darker-color)
+  &.selected
+    @include sassy-button-style("inset", $darker-color)
 
 
 #item-detail
@@ -17,24 +14,30 @@
   margin-top: 2em
 
 .menu
+  button.collapse.control.ng-hide
+    display: inline-block !important
+    border: 0
+    height: 0
+    box-shadow: none
+    padding: 0
+    width: 50px
   .collapse.control
-    +control-button(#67c, white)
+    +control-button(#9ac, white)
+    width: 50px
   .edit.control
-    +control-button(#67c, white)
+    +control-button(#9ac, white)
   .remove.control
-    +control-button(#a58, white)
+    +control-button(#c99, white)
   .add.control
-    +control-button(#6c6, white)
+    +control-button(#9ca, white)
   .icon-spacer
     +control-button(white, white)
-  i.fa 
-    width: 16px
-    height: 16px
-
-#item-detail
   &:after
     +clearfix
-  margin-top: 2em
+
+  .name
+    display: inline-block
+    margin-top: 3px
 
 .angular-ui-tree-empty
   border: 1px dashed #bbb
