@@ -18,6 +18,9 @@ requireJsConfig = {
     "vendor/angular-froala/angular-froala": {
       deps: [ "angular" ]
     },
+    "vendor/angular-fontawesome/angular-fontawesome": {
+      deps: [ "angular" ]
+    },
     "vendor/angular-cookies/angular-cookies": {
       deps: [ "angular" ]
     },

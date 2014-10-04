@@ -1,6 +1,7 @@
-import {Menu} from './Menu';
+import {Menu, MenuItem} from './Menu';
 import {Page} from './Page';
 import {PageList} from './PageList';
+import MenuList from './MenuList';
 import BackendServer from '../backend/BackendServer';
 
 export default class AppBackend extends BackendServer {
@@ -9,8 +10,12 @@ export default class AppBackend extends BackendServer {
     return this.load(PageList, '/admin/pages');
   }
 
+  menuList(){
+    return this.load(MenuList, '/menus');
+  }
+
   menu(name){
-    return this.load(Menu, `/navigation/${name}`);
+    return this.load(MenuItem, `/navigation/${name}`);
   }
 
   page(slug, forRole){
@@ -35,4 +40,7 @@ export default class AppBackend extends BackendServer {
     return this.create(Page, '/admin/pages');
   }
 
+  createMenu(){
+    return this.create(MenuItem, '/menus');
+  }
 }

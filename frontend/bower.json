@@ -6,6 +6,7 @@
     "angular-mocks": "~1.2.16",
     "angular-ui-router": "~0.2.10",
     "angular-ui-utils": "~0.1.1",
+    "angular-ui-tree": "JimLiu/angular-ui-tree#63a87768259750613b6a6f55a338dfb6b9a6fb8d",
     "sass-import-once": "~0.1.1",
     "angular-resource": "~1.2.16",
     "singularity": "> 0",
@@ -16,6 +17,7 @@
     "ng-token-auth": "~0.0.21",
     "responsive-nav": "~1.0.32",
     "angular-froala": "~1.2.0",
+    "angular-fontawesome": "~0.1.2",
     "FroalaWysiwygEditor": "~1.2.2"
   },
   "exportsOverride": {

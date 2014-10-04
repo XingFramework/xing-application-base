@@ -6,13 +6,6 @@ GIT
       devise (~> 3.2)
       rails (~> 4.1)
 
-GIT
-  remote: https://github.com/collectiveidea/awesome_nested_set
-  revision: a4c1ec42d87736938724e000835d4a910ee5ae09
-  specs:
-    awesome_nested_set (3.0.0)
-      activerecord (>= 4.0.0, < 5)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,6 +41,8 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    awesome_nested_set (3.0.1)
+      activerecord (>= 4.0.0, < 5)
     babosa (0.3.11)
     bcrypt (3.1.7)
     bibliotech (0.2.13)
@@ -208,7 +203,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   annotate
-  awesome_nested_set!
+  awesome_nested_set
   babosa
   bibliotech
   byebug

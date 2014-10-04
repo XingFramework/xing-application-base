@@ -5,14 +5,13 @@ Rails.application.routes.draw do
   get '/navigation/main', :to => "menus#show", :id => Menu.main_menu_id, :as => :main_menu
 
   get "pages/:url_slug", :to => 'pages#show', :as => :page
-  resources :menus, :only => [ :show ]
+  resources :menus, :only => [ :show, :index, :update ]
 
   namespace :admin do
     resources :froala_images, :only => [:index, :create]
     post "/froala_images/delete", :to => 'froala_images#destroy'
     #resources :documents
     resources :pages, :param => :url_slug
-    resources :menus, :only => [ :show, :index ]
     resources :menu_items
     resources :content_blocks
 

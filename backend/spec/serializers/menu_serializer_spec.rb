@@ -2,28 +2,31 @@ require 'spec_helper'
 
 describe MenuSerializer do
   let :rendered_tree do
-    [
-      {
-        data: {
-          name: "About",
-          url: "/about",
-          type: "page",
-          children: []
+    {
+      data: {
+        children: [
+        {
+          data: {
+            name: "About",
+            url: "/about",
+            type: "page",
+            children: []
+          },
+          links: { }
         },
-        links: {
+        {
+          data: {
+            name: "Services",
+            url: "/services",
+            type: "services",
+            children: []
+          },
+          links: {
+          }
         }
-      },
-      {
-        data: {
-          name: "Services",
-          url: "/services",
-          type: "services",
-          children: []
-        },
-        links: {
-        }
+        ]
       }
-    ]
+    }
   end
 
   let :json_tree_lister do
@@ -54,10 +57,8 @@ describe MenuSerializer do
       is_expected.to be_present
       is_expected.to have_json_path('links')
       is_expected.to have_json_type(String).at_path('links/self')
-      is_expected.to have_json_type(String).at_path('links/admin')
       is_expected.to have_json_path('data')
-      is_expected.to be_json_eql(rendered_tree.to_json).at_path('data')
+      is_expected.to be_json_eql(rendered_tree.to_json)
     end
   end
-
 end

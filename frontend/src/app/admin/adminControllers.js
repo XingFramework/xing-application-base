@@ -11,8 +11,11 @@ angular.module( `${appName}.admin` )
   };
   // header info
 })
-.controller( 'AdminMenusCtrl', function() {
-
+.controller( 'AdminMenusCtrl', function($scope, $state, menuList) {
+  $scope.menus = menuList.menus;
+  $scope.newMenu = function(){
+    $state.go('^.menu.new');
+  };
 })
 .controller( 'AdminDocumentsCtrl', function() {
 

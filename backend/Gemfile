@@ -5,7 +5,7 @@ gem 'rails', "~> 4.1"
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'pg'
 gem 'devise'
-gem 'awesome_nested_set', :git => 'https://github.com/collectiveidea/awesome_nested_set'
+gem 'awesome_nested_set'
 gem 'carrierwave'
 gem "rmagick", require: false
 gem "sanitize"

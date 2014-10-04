@@ -26,18 +26,18 @@ describe Role do
 
     describe "for" do
       context 'admin' do
-        subject {Role.for(admin_user) }
+        subject(:role){Role.for(admin_user) }
         it { should be_a(Role::Admin) }
-        its(:user) { should == admin_user }
+        it { role.user.should == admin_user }
       end
     end
 
     describe "find by scope" do
 
       context 'admin' do
-        subject {Role::Admin.users }
-        its(:count) { should == 1 }
-        its(:first) { should == admin_user }
+        subject(:role){Role::Admin.users }
+        it { role.count.should == 1 }
+        it { role.first.should == admin_user }
       end
     end
   end

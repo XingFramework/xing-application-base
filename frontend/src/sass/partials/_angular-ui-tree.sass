@@ -1,0 +1,81 @@
+=control-button
+  padding: 0.2em 0.6em
+
+
+#item-detail
+  &:after
+    +clearfix
+  margin-top: 2em
+
+.menu
+  .collapse.control
+    +control-button
+  .edit.control
+    +control-button
+  .remove.control
+    +control-button
+  .add.control
+    +control-button
+  .icon-spacer
+    +control-button
+  i.fa 
+    width: 16px
+    height: 16px
+
+#item-detail
+  &:after
+    +clearfix
+  margin-top: 2em
+
+.angular-ui-tree-empty
+  border: 1px dashed #bbb
+  min-height: 100px
+  background-color: #e5e5e5
+  background-image: linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff), linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff)
+  background-size: 60px 60px
+  background-position: 0 0, 30px 30px
+
+.angular-ui-tree-nodes
+  display: block
+  position: relative
+  margin: 3px
+  padding: 0px
+  list-style: none
+
+.angular-ui-tree-nodes .angular-ui-tree-nodes
+  padding-left: 20px
+
+.angular-ui-tree-node, .angular-ui-tree-placeholder
+  display: block
+  position: relative
+  margin: 0px
+  padding: 0px
+  min-height: 20px
+  line-height: 20px
+
+.angular-ui-tree-hidden
+  display: none
+
+
+.angular-ui-tree-placeholder
+  $placeholder-outset: 10px
+  min-height: 30px
+  border: 2px dotted darkgray
+  padding: $placeholder-outset
+  border-radius: $placeholder-outset
+
+.angular-ui-tree-handle
+  .name
+    padding: 0 0.5em
+  cursor: pointer
+  text-decoration: none
+  font-weight: bold
+  +box-sizing(border-box)
+  min-height: 20px
+  line-height: 20px
+
+.angular-ui-tree-drag
+  position: absolute
+  pointer-events: none
+  z-index: 999
+  opacity: .8
