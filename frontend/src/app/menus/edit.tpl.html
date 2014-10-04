@@ -8,6 +8,9 @@
 
   <div id='item-detail' ng-show='selectedItem'>
     <form class='admin-form' ng-model='selectedItem'>
+      <fieldset>
+      <legend>Menu Item Details</legend>
+
       <label>
         <span class='label'>Name</span>
         <input type="" ng-model='selectedItem.name' />
@@ -22,6 +25,7 @@
         <select ng-if="selectedItem.internal()" ng-model="selectedItem.target"
           ng-options="page.target as page.title for page in pages"></select>
       </label>
+      </fieldset>
     </form>
   </div>
 
