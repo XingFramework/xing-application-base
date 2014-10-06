@@ -5,10 +5,7 @@ import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 import {} from '../../common/toast/toast';
 
 angular.module( `${configuration.appName}.auth`, [
-  'ui.router.state',
   'ng-token-auth',
-  'serializer',
-  `${configuration.appName}.toast`
 ])
 .config( function ($authProvider) {
 
