@@ -72,7 +72,7 @@ angular.module(`${appName}.menus`)
     }
   };
   $scope.isAdmin = isAdmin;
-  $scope.menuName = "A menu";
+  $scope.menuName = menu.name;
 
   $scope.selectedItem = null;
 })

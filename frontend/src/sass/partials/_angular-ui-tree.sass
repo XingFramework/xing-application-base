@@ -1,5 +1,11 @@
-=control-button
-  padding: 0.2em 0.6em
+=control-button($color, $text-color)
+  $first-color: adjust-lightness($color, 5%)
+  $second-color: adjust-lightness($color, -5%)
+  $darker-color: adjust-lightness($color, -10%)
+  +sassy-button("matte", 5px, 12px, $first-color, $second-color, $text-color, "inset")
+
+  &.selected
+    @include sassy-button-style("inset", $darker-color)
 
 
 #item-detail
@@ -8,24 +14,31 @@
   margin-top: 2em
 
 .menu
+  margin: 0 2em
+  button.collapse.control.ng-hide
+    display: inline-block !important
+    border: 0
+    height: 0
+    box-shadow: none
+    padding: 0
+    width: 50px
   .collapse.control
-    +control-button
+    width: 50px
+    border-width: 0
+    background: none
   .edit.control
-    +control-button
+    +control-button(#9ac, white)
   .remove.control
-    +control-button
+    +control-button(#c99, white)
   .add.control
-    +control-button
+    +control-button(#9ca, white)
   .icon-spacer
-    +control-button
-  i.fa 
-    width: 16px
-    height: 16px
-
-#item-detail
+    +control-button(white, white)
   &:after
     +clearfix
-  margin-top: 2em
+  .name
+    display: inline-block
+    margin-top: 3px
 
 .angular-ui-tree-empty
   border: 1px dashed #bbb
@@ -64,17 +77,39 @@
   padding: $placeholder-outset
   border-radius: $placeholder-outset
 
+ul .angular-ui-tree-placeholder
+  margin-left: 2em
+ul ul .angular-ui-tree-placeholder
+  margin-left: 4em
+ul ul ul .angular-ui-tree-placeholder
+  margin-left: 6em
+ul ul ul ul .angular-ui-tree-placeholder
+  margin-left: 8em
+ul ul ul ul ul .angular-ui-tree-placeholder
+  margin-left: 10em
+ul ul ul ul ul ul .angular-ui-tree-placeholder
+  margin-left: 12em
+
 .angular-ui-tree-handle
   .name
-    padding: 0 0.5em
+    padding: 0.5em 0.75em
+    +box-shadow(2px 2px 2px 0px #ccc, -1px 1px 2px 0px #ccc)
   cursor: pointer
   text-decoration: none
   font-weight: bold
   +box-sizing(border-box)
   min-height: 20px
   line-height: 20px
+  margin: 0.2em 0
 
 .angular-ui-tree-drag
+  button.control
+    display: none
+  .name
+    padding: 0.5em 0.75em
+    +box-shadow(8px 8px 2px 0px #ccc)
+    background: white
+    opacity: 1.0
   position: absolute
   pointer-events: none
   z-index: 999

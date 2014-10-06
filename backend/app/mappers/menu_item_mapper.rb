@@ -33,8 +33,12 @@ class MenuItemMapper < HypermediaJSONMapper
   end
 
   def set_page
+    page_url = nil
     if @embedded_page.present?
       page_url = @embedded_page.with_indifferent_access[:links][:self]
+    end
+
+    if page_url.present?
       url_slug = route_to(page_url)[:url_slug]
       page = Page.find_by_url_slug(url_slug)
       self.menu_item.page = page
