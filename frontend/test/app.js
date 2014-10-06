@@ -1,6 +1,5 @@
-import '../vendor/angular/angular';
-import '../vendor/angular-mocks/angular-mocks';
 import '../src/app/app';
+import '../vendor/angular-mocks/angular-mocks';
 
 describe( 'RootCtrl', function() {
   describe( 'isCurrentUrl', function() {

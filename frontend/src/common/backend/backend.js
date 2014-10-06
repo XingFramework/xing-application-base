@@ -1,7 +1,4 @@
 import {configuration} from '../config';
-import {} from '../../../vendor/angular/angular';
-import {} from '../../../vendor/lodash/lodash';
-import {} from '../../../vendor/restangular/restangular';
 import {} from '../serializer';
 
 import Backend from '../resources/AppBackend';

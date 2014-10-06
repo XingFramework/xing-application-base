@@ -1,6 +1,5 @@
 import { appName } from '../../common/config';
 import {} from "../../../build/templates-app";
-import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
 angular.module( `${appName}.navigationBar`,
   ['templates-app',

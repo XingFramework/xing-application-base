@@ -1,5 +1,3 @@
-import '../vendor/angular/angular';
-import '../vendor/angular-mocks/angular-mocks';
 import '../src/app/navigationBar/navigationBar';
 import {xpath, stringAtXpath} from "../test-help/xpath";
 

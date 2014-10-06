@@ -1,5 +1,3 @@
-import {} from '../../vendor/angular/angular';
-
 angular.module('serializer', []).factory('Inflector', function() {
   return {
     camelize(key) {

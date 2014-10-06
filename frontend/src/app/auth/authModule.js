@@ -1,7 +1,4 @@
 import {configuration} from '../../common/config';
-import {} from '../../../vendor/angular-ui-router/angular-ui-router';
-import {} from '../../../vendor/angular-cookies/angular-cookies';
-import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 
 angular.module( `${configuration.appName}.auth`, [
   'ui.router.state',
