@@ -1,47 +1,6 @@
 requireJsConfig = {
   baseUrl: '/base/',
-  paths: {
-    'angular': './vendor/angular/angular',
-    'jquery': './vendor/jquery/jquery',
-    'froala': './vendor/FroalaWysiwygEditor/froala_editor.min'
-  },
   shim: {
-    'angular': {
-      exports: 'angular'
-    },
-    "vendor/FroalaWysiwygEditor/froala_editor.min": {
-      deps: [ "jquery" ]
-    },
-    "vendor/FroalaWysiwygEditor/media_manager.min": {
-      deps: [ "jquery", "froala"]
-    },
-    "vendor/angular-froala/angular-froala": {
-      deps: [ "angular" ]
-    },
-    "vendor/angular-fontawesome/angular-fontawesome": {
-      deps: [ "angular" ]
-    },
-    "vendor/angular-cookies/angular-cookies": {
-      deps: [ "angular" ]
-    },
-    "vendor/ng-token-auth/ng-token-auth": {
-      deps: [ "angular" ]
-    },
-    "vendor/angular-mocks/angular-mocks": {
-      deps: [ "angular" ]
-    },
-    "vendor/restangular/restangular": {
-      deps: [ "angular" ]
-    },
-    "vendor/angular-ui-router/angular-ui-router": {
-      deps: [ "angular" ]
-    },
-    "build/templates-app": {
-      deps: [ "angular" ]
-    },
-    "build/templates-common": {
-      deps: [ "angular" ]
-    }
 
   },
   callback: window.__karma__.start

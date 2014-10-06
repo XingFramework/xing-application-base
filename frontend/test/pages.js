@@ -1,7 +1,7 @@
 import {configuration} from '../src/common/config';
 import {} from '../src/app/pages/pages';
 import {Page} from '../src/common/resources/Page';
-import {} from './json-fixtures/pages/server.json';
+import {} from '../build/test/fixtureCache';
 
 describe( 'Pages section', function() {
 

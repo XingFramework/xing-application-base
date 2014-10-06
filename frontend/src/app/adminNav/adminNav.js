@@ -1,6 +1,4 @@
 import { appName } from '../../common/config';
-import {} from '../../../vendor/angular-cookies/angular-cookies';
-import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 
 angular.module(`${appName}.adminNav`, [`${appName}.config`, 'ng-token-auth'])
 

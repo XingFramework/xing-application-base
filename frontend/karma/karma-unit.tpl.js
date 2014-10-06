@@ -9,62 +9,21 @@ module.exports = function ( config ) {
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
-      {pattern: 'test/json-fixtures/**/*.json', included: false},
-      {pattern: 'build/**/*.js', included: false},
-      {pattern: 'src/**/*.js', included: false},
-      {pattern: 'test/**/*.js', included: false},
-      {pattern: 'test-help/**/*.js', included: false},
-      {pattern: 'vendor/**/*.js', included: false},
-      'test-main.js'
+      'bin/assets/vendor.js',
+      'bin/assets/traceur-runtime.js',
+      'build/test/test-main.js'
     ],
     exclude: [
       'src/assets/**/*.js'
     ],
-    frameworks: [ 'jasmine', 'requirejs', 'traceur' ],
+    frameworks: [ 'jasmine' ],
     plugins: [
       'karma-jasmine',
       'karma-firefox-launcher',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
       //'karma-coffee-preprocessor',
-      'karma-requirejs',
-      'karma-traceur-preprocessor',
-      'karma-ng-html2js-preprocessor',
     ],
-    preprocessors: {
-      'build/**/*.js': 'traceur',
-      'src/**/*.js': 'traceur',
-      'test/**/*.js': 'traceur',
-      'test-help/**/*.js': 'traceur',
-      //'**/*.coffee': 'coffee',
-      '**/*.html': ['ng-html2js'],
-      '**/*.json': ['ng-html2js']
-    },
-
-    ngHtml2JsPreprocessor: {
-      // strip this from the file path
-      stripPrefix: 'test/',
-      requireDeps: ['angular'],
-      // prepend this to the
-      //prependPrefix: '',
-
-      // or define a custom transform function
-      //cacheIdFromPath: function(filepath) {
-      //  return cacheId;
-      //},
-
-      // setting this option will create only a single module that contains templates
-      // from all the files, so you can load them all with module('foo')
-      moduleName: 'fixtureCache'
-    },
-
-    traceurPreprocessor: {
-      options: {
-        sourceMaps: true,
-        modules: 'amd',
-      }
-    },
-
     /**
      * How to report, by default.
      */
