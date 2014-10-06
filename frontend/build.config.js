@@ -11,7 +11,8 @@ module.exports = {
     root: 'build',
     stylesheets: '<%= build_dirs.root %>/stylesheets',
     js: '<%= build_dirs.root %>/javascripts',
-    assets: '<%= build_dirs.root %>/assets'
+    assets: '<%= build_dirs.root %>/assets',
+    test: '<%= build_dirs.root%>/test'
   },
   build_dir: '<%= build_dirs.root %>',
   compile_dir: 'bin',
@@ -20,6 +21,7 @@ module.exports = {
 
   compile_targets: {
     js: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
+    vendor_js: '<%= compile_dir %>/assets/vendor.js',
     css: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css',
     map: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.map',
   },
@@ -44,7 +46,7 @@ module.exports = {
 
     atpl: [ 'src/app/**/*.tpl.html' ],
     ctpl: [ 'src/common/**/*.tpl.html' ],
-
+    ttpl: [ 'test/**/*.json', 'test/**/*.tpl.html' ],
     html: [ 'src/index.html' ],
     sass: 'src/sass'
   },
@@ -83,7 +85,20 @@ module.exports = {
    */
   vendor_files: {
     js: [
-      'vendor/**/*.js'
+      'vendor/jquery/jquery.js',
+      'vendor/lodash/lodash.js',
+      'vendor/angular/angular.js',
+      'vendor/angular-cookies/angular-cookies.js',
+      'vendor/angular-fontawesome/angular-fontawesome.js',
+      'vendor/FroalaWysiwygEditor/froala_editor.min.js',
+      'vendor/FroalaWysiwygEditor/media_manager.min.js',
+      'vendor/angular-froala/angular-froala.js',
+      'vendor/angular-ui-router/angular-ui-router.js',
+      'vendor/angular-ui-tree/angular-ui-tree.js',
+      'vendor/ng-token-auth/ng-token-auth.js',
+      'vendor/responsive-nav/responsive-nav.js',
+      'vendor/restangular/restangular.js',
+      'vendor/hammerjs/hammerjs.js'
     ],
     css: [
       'vendor/FroalaWysiwygEditor/froala_editor.min.css',

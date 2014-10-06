@@ -1,0 +1,14 @@
+<div class='menu-item' ng-class='{selected: isSelected(this)}' ui-tree-handle>
+  <span class='item-info depth-{{this.depth()}}'>
+     <button class="collapse control" data-nodrag ng-class='{selected: !collapsed}' ng-click="editing.toggle(this)" ng-show="editing.hasChildren(this)"><fa name='{{collapsed ? "chevron-right" : "chevron-down"}}'></fa></button>
+     <span class="name">{{item.name}}</span>
+  </span>
+  <span class='controls'>
+    <button class="edit control" data-nodrag ng-class='{selected: isSelected(this)}' ng-click="editing.select(this)" title='Edit this menu item'><fa name='edit'></fa></button>
+    <button class="add control" data-nodrag ng-click="editing.newSubItem(this)" title='Add button child item'><fa name="plus"></fa></button>
+    <button class="remove control" data-nodrag ng-click="editing.remove(this)" title='Delete this menu item'><fa name="remove"></fa></button>
+  </span>
+</div>
+<ul ui-tree-nodes="treeOptions" ng-model="item.children.items" ng-hide="collapsed">
+  <li ng-repeat="item in item.children.items" ui-tree-node ng-include="'menus/item-edit.tpl.html'"></li>
+</ul>

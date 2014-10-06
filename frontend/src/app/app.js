@@ -1,7 +1,4 @@
-import {} from '../../vendor/jquery/jquery';
 import {appName} from '../common/config';
-import {} from '../../vendor/angular/angular';
-import {} from '../../vendor/angular-ui-router/angular-ui-router';
 import {} from '../../build/templates-app';
 import {} from '../../build/templates-common';
 import {} from './navigationBar/navigationBar';
@@ -10,6 +7,7 @@ import {} from "../common/ui-route-logger";
 import {} from './admin/admin';
 import {} from './auth/auth';
 import {} from './pages/pages';
+import {} from './menus/menus';
 import {} from './homepage/homepage';
 import {} from './metadata/metadata';
 import {} from './responsiveMenu/responsiveMenu';
@@ -18,9 +16,11 @@ import {} from '../common/toast/toast';
 
 angular.module( appName, [
   'templates-app', 'templates-common', 'ui.router',
+  'picardy.fontawesome',
   `${appName}.backend`, `${appName}.navigationBar`,
   `${appName}.route-logger`,
   `${appName}.pages`,
+  `${appName}.menus`,
   `${appName}.homepage`,
   `${appName}.auth`,
   `${appName}.admin`,
@@ -39,9 +39,9 @@ angular.module( appName, [
     abstract: true,
     url: "/",
     resolve: {
-      mainMenu(backend) {
+      menuRoot(backend) {
         var menu = backend.menu("main");
-        return menu;
+        return menu.complete;
       }
     }
   }).state('root.inner', {
@@ -50,6 +50,12 @@ angular.module( appName, [
     url: "inner"
   });
 })
-.controller( 'RootCtrl', function RootCtrl( $scope, $location, mainMenu, $state ) {
-  $scope.mainMenu = mainMenu;
+.controller( 'RootCtrl', function RootCtrl( $scope, $location, menuRoot, $state ) {
+  $scope.mainMenu = menuRoot.children;
+  $scope.$watch(
+    ()=>{ return menuRoot.etag; },
+    ()=>{
+      console.log("app/app.js:58", "menuRoot.etag", menuRoot.etag);
+      $scope.mainMenu = menuRoot.children;
+    });
 });

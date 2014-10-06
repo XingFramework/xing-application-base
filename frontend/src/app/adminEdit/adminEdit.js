@@ -1,7 +1,4 @@
 import { appName } from '../../common/config';
-import {} from "../../../vendor/FroalaWysiwygEditor/froala_editor.min";
-import {} from "../../../vendor/FroalaWysiwygEditor/media_manager.min";
-import {} from '../../../vendor/angular-froala/angular-froala';
 
 angular.module(`${appName}.adminEditDirective`, ['froala'])
 

@@ -1,6 +1,5 @@
 import { appName } from '../../common/config';
 import {} from "../../../build/templates-app";
-import {} from '../../../vendor/responsive-nav/responsive-nav';
 
 angular.module( `${appName}.responsiveMenu`, ['templates-app'])
 .directive('lrdResponsiveMenu', function () {

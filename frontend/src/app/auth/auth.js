@@ -1,6 +1,4 @@
 import {configuration} from '../../common/config';
-import {} from '../../../vendor/angular-cookies/angular-cookies';
-import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 
 // remove modules as neccesary here if you don't want complex authorization
 angular.module( `${configuration.appName}.auth`, [

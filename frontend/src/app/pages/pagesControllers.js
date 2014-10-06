@@ -8,21 +8,33 @@ angular.module(`${appName}.pages`)
 
 })
 
-.controller( 'PageEditCtrl', function( $scope ){
+.controller( 'PageEditCtrl', function( $scope, page ){
   // I think there's potential for improving UX here: duplicate the existing page, edit that -
   // on save, submit that and discard the old page. On cancel, swap it back in.
   // Let admin switch back and forth until they decide "this is good" and save
   //    --jdl
   $scope.nowEditing = true;
+
+  $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
 })
 
-.controller( 'PagesCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {
+.controller( 'PageShowCtrl', function( $scope, page ){
+  $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
+})
+
+.controller( 'PagesCtrl', function( $window, $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.pageActions = {
     edit(){
       $state.go('^.edit', {}, {location: false});
     },
     show(){
       $state.go("^.show", {pageUrl: page.slugUrl});
+    },
+    remove(){
+      if($window.confirm("This will delete the page - it cannot be undone!")){
+        page.remove();
+        $state.go("^.^.^.admin.pages");
+      }
     },
     save(){
       if(!page.title){

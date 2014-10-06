@@ -1,4 +1,3 @@
-import {} from '../../vendor/angular/angular';
 import { environment } from "./environment";
 
 export var backendUrl = environment.backendUrl;

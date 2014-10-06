@@ -122,7 +122,7 @@ describe Admin::MenuItemsController do
       menu_item.should_receive(:destroy).and_return(:true)
       delete :destroy, :id => id
 
-      expect(response).to redirect_to(admin_menus_path)
+      expect(response).to redirect_to(menus_path)
     end
   end
 end

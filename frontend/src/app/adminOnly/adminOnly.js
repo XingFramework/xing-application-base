@@ -1,5 +1,4 @@
 import { appName } from '../../common/config';
-import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 
 angular.module( `${appName}.adminOnly`, [`${appName}.config`, 'ng-token-auth'])
 .directive('adminOnly',

@@ -1,5 +1,5 @@
 /*!
- * froala_editor v1.2.1 (http://editor.froala.com)
+ * froala_editor v1.2.2 (http://editor.froala.com)
  * Copyright 2014-2014 Froala
  */
 .dark-theme.froala-box .html-switch {
@@ -254,6 +254,10 @@
 }
 .dark-theme.froala-editor .froala-popup div.f-popup-line input[type="text"]:focus {
   border: solid 1px #54acd2;
+}
+.dark-theme.froala-editor .froala-popup div.f-popup-line input[type="text"]:disabled {
+  background: #ffffff;
+  color: #aaaaaa;
 }
 .dark-theme.froala-editor .froala-popup div.f-popup-line textarea {
   border: solid 1px #aaaaaa;

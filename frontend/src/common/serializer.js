@@ -1,4 +1,3 @@
-import {} from '../../vendor/angular/angular';
 import {} from './inflector';
 
 angular.module('serializer', ['inflector'])

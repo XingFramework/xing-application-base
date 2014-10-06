@@ -11,7 +11,7 @@ describe "menu_items#destroy", :type => :request do
 
       delete "admin/menu_items/#{menu_item.id}"
 
-      expect(response).to redirect_to( admin_menus_path )
+      expect(response).to redirect_to( menus_path )
     end
 
     it "should delete information" do

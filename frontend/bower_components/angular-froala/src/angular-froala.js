@@ -41,7 +41,6 @@ angular.module('froala', []).
 
 					ngModel.$setViewValue(theHTML);
 					if (!scope.$root.$$phase) {
-
 						scope.$apply();
 					}
 				};

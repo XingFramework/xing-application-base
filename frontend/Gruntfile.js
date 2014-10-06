@@ -224,6 +224,21 @@ module.exports = function( grunt ) {
             ]
           }
         },
+        compile_vendor_js: {
+          files: {
+            '<%= compile_targets.vendor_js %>': [
+              '<%= vendor_files.js %>'
+            ]
+          }
+        },
+        compile_js: {
+          files: {
+            '<%= compile_targets.js %>': [
+              '<%= compile_targets.vendor_js %>',
+              '<%= compile_targets.js %>'
+            ]
+          }
+        }
       },
 
       /**
@@ -253,7 +268,7 @@ module.exports = function( grunt ) {
           includeRuntime: false,
           traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
           traceurCommand: "./node_modules/.bin/traceur",
-          traceurOptions: "--array-comprehension --source-maps"
+          traceurOptions: "--array-comprehension true --source-maps"
         },
         build: {
           files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
@@ -262,12 +277,7 @@ module.exports = function( grunt ) {
           options: {
             includeRuntime: false
           },
-          files: [ {
-            expand: true,
-            src: [ 'test/**/*.es6.js' ],
-            dest: '',
-            ext: '.js'
-          } ]
+          files: { '<%= build_dirs.test%>/test-main.js': '<%= app_files.jsunit %>' }
         }
       },
 
@@ -415,6 +425,12 @@ module.exports = function( grunt ) {
           options: { base: 'src/common' },
           src: [ '<%= app_files.ctpl %>' ],
           dest: '<%= build_dirs.root %>/templates-common.js'
+        },
+
+        test: {
+          options: { base: 'test', module: 'fixtureCache'},
+          src: [ '<%= app_files.ttpl %>' ],
+          dest: '<%= build_dirs.test %>/fixtureCache.js'
         }
       },
 
@@ -458,6 +474,7 @@ module.exports = function( grunt ) {
         build: {
           dir: '<%= compile_dir %>',
           src: [
+            '<%= compile_targets.vendor_js %>',
             '<%= compile_targets.js %>',
             '<%= compile_targets.css %>'
           ]
@@ -561,7 +578,7 @@ module.exports = function( grunt ) {
         jssrc: {
           options: { livereloadOnError: false },
           files: [ 'src/**/*.js', '<%= build_dirs.root %>/**/*.js' ],
-          tasks: [ 'jshint:src', 'karma:unit:run', 'traceur:build' ],
+          tasks: [ 'jshint:src', 'html2js:test', 'traceur:test', 'karma:unit:run', 'traceur:build' ],
         },
 
         js_qa: {
@@ -578,7 +595,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.coffee %>'
           ],
-          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build', 'karma:unit:run' ]
+          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build', 'html2js:test', 'traceur:test', 'karma:unit:run' ]
         },
 
         /**
@@ -611,7 +628,7 @@ module.exports = function( grunt ) {
             '<%= app_files.atpl %>',
             '<%= app_files.ctpl %>'
           ],
-          tasks: [ 'html2js' ]
+          tasks: [ 'html2js', 'html2js:test', 'traceur:test', 'karma:unit:run', 'traceur:build' ],
         },
 
         sass: {
@@ -627,7 +644,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.jstest %>', 'test/json-fixtures/**/*'
           ],
-          tasks: [ 'jsonlint:fixtures', 'jshint:test', 'karma:unit:run' ],
+          tasks: [ 'jsonlint:fixtures', 'jshint:test', 'html2js:test','traceur:test', 'karma:unit:run' ],
           options: {
             livereload: false,
             atBegin: true
@@ -657,7 +674,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.coffeeunit %>'
           ],
-          tasks: [ 'coffeelint:test', 'karma:unit:run' ],
+          tasks: [ 'coffeelint:test', 'html2js:test', 'traceur:test', 'karma:unit:run' ],
           options: {
             livereload: false
           }
@@ -689,6 +706,7 @@ module.exports = function( grunt ) {
     'html2js', 'coffee',
     'traceur:build', //'jshint:target',
     'compass:build',
+    'concat_sourcemap:compile_vendor_js',
     'concat_sourcemap:compile_css',
     'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:compile_assets', 'copy:vendor_fonts',
@@ -701,7 +719,7 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime', 'index:build' ]);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'index:deploy', 'ngAnnotate', 'uglify' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify' ]);
 
   /**
    * A utility function to get all app JavaScript sources.
@@ -744,7 +762,7 @@ module.exports = function( grunt ) {
       return file.replace( dirRE, '' );
     });
     if(!this.data.production){
-      jsFiles.push("http://localhost:35729/livereload.js?snipver=1");
+      jsFiles.push("http://localhost:35729/livereload.js?snipver=1&maxdelay=15000");
     }
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );

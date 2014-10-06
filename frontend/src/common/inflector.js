@@ -1,5 +1,3 @@
-import {} from "../../vendor/angular/angular";
-
 angular.module('inflector', [])
 .factory('Inflector', function() {
   return new Inflector();

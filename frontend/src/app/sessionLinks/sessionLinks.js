@@ -1,5 +1,4 @@
 import { appName } from '../../common/config';
-import {} from '../../../vendor/ng-token-auth/ng-token-auth';
 import {} from '../signOut/signOut';
 
 angular.module( `${appName}.sessionLinks`, [

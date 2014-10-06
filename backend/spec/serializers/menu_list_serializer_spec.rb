@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::MenusSerializer, :type => :serializer do
+describe MenuListSerializer, :type => :serializer do
 
   before do
     MenuItem.delete_all # get rid of the ones from seeds
@@ -17,7 +17,7 @@ describe Admin::MenusSerializer, :type => :serializer do
     subject :json do
       menu_1
       menu_2
-      Admin::MenusSerializer.new(Menu.list).to_json
+      MenuListSerializer.new(Menu.list).to_json
     end
 
     it "should have the right JSON structure" do

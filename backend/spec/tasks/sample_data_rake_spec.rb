@@ -24,10 +24,10 @@ describe 'db:sample_data namespace rake task',
     Page::OneColumn.all.map(&:keywords).should include("about_us", "contact_us", "home", "gallery", "links")
 
     Page::OneColumn.all.each do |page|
-      page.content_blocks.count.should >= 2
-      page.content_blocks.count.should <= 3
-      page.content_blocks.map(&:content_type).should include("text/html")
-      page.content_blocks.map(&:content_type).should include("text/css") if page.page_contents.count == 3
+      expect(page.content_blocks.count).to be >= 2
+      expect(page.content_blocks.count).to be <= 3
+      expect(page.content_blocks.map(&:content_type)).to include("text/html")
+      expect(page.content_blocks.map(&:content_type)).to include("text/css") if page.page_contents.count == 3
     end
 
     Page::OneColumn.all.each do |page|
@@ -36,8 +36,8 @@ describe 'db:sample_data namespace rake task',
     end
 
 
-    expect(Menu.list).to have(2).menus
-    expect(Menu.new('Main Menu').tree.length).to eq(7)
+    expect(Menu.list.length).to eq(2)
+    expect(Menu.new('Main Menu').tree.length).to eq(8)
 
   end
 end

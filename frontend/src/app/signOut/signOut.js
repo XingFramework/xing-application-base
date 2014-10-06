@@ -1,6 +1,4 @@
 import { appName } from '../../common/config';
-import {} from '../../../vendor/ng-token-auth/ng-token-auth';
-import {} from '../../../vendor/angular-ui-router/angular-ui-router';
 
 angular.module( `${appName}.signOutDirective`, [`${appName}.config`,
   'ng-token-auth',

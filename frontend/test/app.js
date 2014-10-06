@@ -1,7 +1,5 @@
-import '../vendor/jquery/jquery';
-import '../vendor/angular/angular';
-import '../vendor/angular-mocks/angular-mocks';
 import '../src/app/app';
+import '../vendor/angular-mocks/angular-mocks';
 
 describe( 'RootCtrl', function() {
   describe( 'isCurrentUrl', function() {
@@ -13,10 +11,10 @@ describe( 'RootCtrl', function() {
       $location = _$location_;
       $scope = $rootScope.$new();
       mockMain = {
-        then(resolve){ resolve(); }
+        children: {}
       };
 
-      RootCtrl = $controller( 'RootCtrl', { $location: $location, $scope: $scope, mainMenu: mockMain });
+      RootCtrl = $controller( 'RootCtrl', { $location: $location, $scope: $scope, menuRoot: mockMain });
     }));
 
     it( 'should pass a dummy test', inject( function() {
@@ -24,7 +22,7 @@ describe( 'RootCtrl', function() {
     }));
 
     it('should assign the menu into the scope', function() {
-      expect( $scope.mainMenu ).toEqual(mockMain);
+      expect( $scope.mainMenu ).toEqual(mockMain.children);
     });
   });
 });

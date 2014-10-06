@@ -42,7 +42,8 @@ angular.module(`${appName}.pages`)
           return page.complete;
         }
       },
-      templateUrl: 'pages/pages.tpl.html',
+      controller: 'PageShowCtrl',
+      templateUrl: 'pages/pages.tpl.html'
     })
 
     .state( 'root.inner.page.edit', {

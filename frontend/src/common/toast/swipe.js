@@ -1,6 +1,4 @@
 import {appName} from '../config';
-import {} from '../../../vendor/hammerjs/hammerjs';
-
 
 (function() {
 

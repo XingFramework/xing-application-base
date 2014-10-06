@@ -6,6 +6,42 @@ describe MenuItemMapper, :type => :mapper do
     FactoryGirl.create(:menu_item)
   end
 
+  describe "saving with a forced parent_id" do
+    let :mapper do
+      MenuItemMapper.new(json).tap do |mapper|
+        mapper.parent_id = menu_item.id
+      end
+    end
+
+    let :page do
+      FactoryGirl.create(:page)
+    end
+
+    let :valid_data do
+      {
+        data: {
+          name: 'Services',
+          path: 'https://www.owasp.org/index.php/Main_Page',
+          type: 'raw_url',
+          parent_id: 666
+        }
+      }
+    end
+
+    let :json do
+      valid_data.to_json
+    end
+
+    it "should be able to return the menu item with correct attributes" do
+      mapper.save
+      expect(mapper.menu_item).to be_a(MenuItem)
+      expect(mapper.menu_item).to be_persisted
+      expect(mapper.menu_item.path).to eq(valid_data[:data][:path])
+      expect(mapper.menu_item.page).to be_nil
+      expect(mapper.menu_item.parent).to eq(menu_item)
+    end
+  end
+
   describe "saving menu item" do
     let :mapper do
       MenuItemMapper.new(json)
@@ -67,6 +103,7 @@ describe MenuItemMapper, :type => :mapper do
         it "should raise an error without saving anything" do
           expect do
             expect do
+              Rails.logger.warn{ "Beginning save" }
               mapper.save
             end.to raise_error(MenuItemMapper::MissingLinkException)
           end.not_to change{ MenuItem.count}
@@ -79,7 +116,7 @@ describe MenuItemMapper, :type => :mapper do
         {
           data: {
             name: 'Services',
-            page_url_slug: page.url_slug,
+            page: { links: { self: "/pages/#{page.url_slug}" } },
             type: 'page'
           }
         }
@@ -100,7 +137,7 @@ describe MenuItemMapper, :type => :mapper do
           {
             data: {
               name: 'Services',
-              page_url_slug: nil,
+              page: { links: {  } },
               type: 'page'
             }
           }
