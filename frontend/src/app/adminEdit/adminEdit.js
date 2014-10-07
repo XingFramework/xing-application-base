@@ -13,10 +13,15 @@ angular.module(`${appName}.adminEditDirective`, ['froala'])
 
       if(scope.nowEditing){
         scope.froalaConfig.placeholder = "";
-        scope.froalaConfig.imageUploadParam = 'image';
-        scope.froalaConfig.imageUploadURL = '/admin/froala_images/';
-        scope.froalaConfig.imagesLoadURL = '/admin/froala_images/';
-        scope.froalaConfig.imageDeleteURL = '/admin/froala_images/delete';
+        scope.froalaConfig = {
+          buttons: ['bold', 'italic', 'uploadFile', 'underline', 'sep', 'align', 'insertOrderedList', 'insertUnorderedList', 'html'],
+          fileUploadParam: 'document',
+          fileUploadURL: '/admin/froala_documents/',
+          imageUploadParam: 'image',
+          imageUploadURL: '/admin/froala_images/',
+          imagesLoadURL: '/admin/froala_images/',
+          imageDeleteURL: '/admin/froala_images/delete'
+        };
         if(scope.editable.content.length === 0){
           scope.froalaConfig.placeholder = `Add content for ${contentName} here`;
         }

@@ -5,7 +5,7 @@ angular.module('picardy.fontawesome', [])
 			template: '<i class="fa"></i>',
 			replace: true,
 			link: function (scope, element, attrs) {
-
+				
 				/*** STRING ATTRS ***/
 				// keep a state of the current attrs so that when they change,
 				// we can remove the old attrs before adding the new ones.

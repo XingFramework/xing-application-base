@@ -13,6 +13,7 @@
     "js/plugins/block_styles.min.js",
     "js/plugins/colors.min.js",
     "js/plugins/media_manager.min.js",
+    "js/plugins/file_upload.min.js",
     "js/plugins/tables.min.js",
     "js/plugins/video.min.js",
     "js/plugins/font_family.min.js",

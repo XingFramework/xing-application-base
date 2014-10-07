@@ -92,6 +92,7 @@ module.exports = {
       'vendor/angular-fontawesome/angular-fontawesome.js',
       'vendor/FroalaWysiwygEditor/froala_editor.min.js',
       'vendor/FroalaWysiwygEditor/media_manager.min.js',
+      'vendor/FroalaWysiwygEditor/file_upload.min.js',
       'vendor/angular-froala/angular-froala.js',
       'vendor/angular-ui-router/angular-ui-router.js',
       'vendor/angular-ui-tree/angular-ui-tree.js',
