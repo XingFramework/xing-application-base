@@ -17,7 +17,7 @@ describe('$lrdToast service', function() {
 
   describe('options', function() {
 
-    xit('should hide after duration', inject(function($timeout, $animate, $rootElement) {
+    it('should hide after duration', inject(function($timeout, $animate, $rootElement) {
       var parent = angular.element('<div>');
       setup({
         template: '<lrd-toast />',
@@ -28,7 +28,7 @@ describe('$lrdToast service', function() {
       expect($rootElement.find('lrd-toast').length).toBe(0);
     }));
 
-    xit('should have template', inject(function($timeout, $rootScope, $rootElement) {
+    it('should have template', inject(function($timeout, $rootScope, $rootElement) {
       var parent = angular.element('<div>');
       setup({
         template: '<lrd-toast>{{1}}234</lrd-toast>',
@@ -39,7 +39,7 @@ describe('$lrdToast service', function() {
       expect(toast.text()).toBe('1234');
     }));
 
-    xit('should have templateUrl', inject(function($timeout, $rootScope, $templateCache, $rootElement) {
+    it('should have templateUrl', inject(function($timeout, $rootScope, $templateCache, $rootElement) {
       $templateCache.put('template.html', '<lrd-toast>hello, {{1}}</lrd-toast>');
       setup({
         templateUrl: 'template.html',
@@ -51,7 +51,7 @@ describe('$lrdToast service', function() {
 
   describe('lifecycle', function() {
 
-    xit('should hide current toast when showing new one', inject(function($rootElement) {
+    it('should hide current toast when showing new one', inject(function($rootElement) {
       setup({
         template: '<lrd-toast class="one">'
       });
@@ -74,7 +74,7 @@ describe('$lrdToast service', function() {
       expect($rootElement.find('lrd-toast.three').length).toBe(1);
     }));
 
-    xit('should add class to toastParent', inject(function($rootElement) {
+    it('should add class to toastParent', inject(function($rootElement) {
       setup({
         template: '<lrd-toast>'
       });
