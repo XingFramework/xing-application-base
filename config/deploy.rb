@@ -59,12 +59,14 @@ namespace :deploy do
   task :perms do
     on roles(:app), :in => :parallel do
       within File::join(release_path, "backend") do
-        execute "chgrp", "web",  "-RL", "public"
-        execute "chmod", "g+wX", "-R", "public"
-        execute "chgrp", "web",  "-RL", "tmp"
-        execute "chmod", "g+wX", "-R", "tmp"
-        execute "chgrp", "web",  "-RL", "log"
-        execute "chmod", "g+wX", "-R", "log"
+        as(:root) do
+          execute "chgrp", "web",  "-RL", "public"
+          execute "chmod", "g+wX", "-R", "public"
+          execute "chgrp", "web",  "-RL", "tmp"
+          execute "chmod", "g+wX", "-R", "tmp"
+          execute "chgrp", "web",  "-RL", "log"
+          execute "chmod", "g+wX", "-R", "log"
+        end
       end
     end
   end
