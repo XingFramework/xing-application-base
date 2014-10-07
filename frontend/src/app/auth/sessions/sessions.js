@@ -1,25 +1,18 @@
-import {appName} from '../../common/config';
-import {} from '../../common/toast/toast';
-import {} from '../../common/inflector';
+import {appName} from '../../../common/config';
+import {} from '../../../common/toast/toast';
+import {} from '../../../common/inflector';
+import {} from '../../../common/serializer';
+import {} from '../config/config';
 import SessionsConfig from './sessionsStates';
-import SessionsController from './SessionsControllers';
+import SessionsController from './sessionsControllers';
 
 angular.module( `${appName}.auth.sessions`, [
   'ui.router.state',
   'ng-token-auth',
   `${appName}.toast`,
-  `${appName}`,
-  'inflector'
+  'inflector',
+  'serializer',
+  `${appName}.auth.config`
 ])
 .config(SessionsConfig)
-.controller(SessionsController)
-.provider('authKey', function() {
-  var authKeyName;
-  authKeyName = "email";
-  this.set = function (name) {
-    authKeyName = name;
-  };
-  this.$get = [function authKey() {
-    return authKeyName;
-  }];
-});
+.controller('SessionsCtrl', SessionsController);

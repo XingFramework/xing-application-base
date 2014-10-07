@@ -1,5 +1,5 @@
-import {appName} from '../../src/common/config';
-import {} from '../../src/app/auth/sessions/sessions';
+import {appName} from '../../../src/common/config';
+import {} from '../../../src/app/auth/sessions/sessions';
 
 describe( 'Sessions controllers', function() {
 

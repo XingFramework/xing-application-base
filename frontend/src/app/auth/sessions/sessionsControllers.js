@@ -1,9 +1,11 @@
-export default function SessionsController( $scope, $auth, $state, $lrdToast, Serializer, authKey, Inflector) {
+export default function SessionsController( $scope, $auth, $state, $lrdToast, Serializer, authConfig, Inflector) {
   $scope.session = {
     password: ''
   };
-  $scope.session[authKey] = '';
-  $scope.humanAuthKey = Inflector.humanize(authKey);
+  $scope.session[authConfig.authKey] = '';
+  $scope.authKey = authConfig.authKey;
+  $scope.humanAuthKey = Inflector.humanize(authConfig.authKey);
+  $scope.passwordShow = authConfig.recoverable;
 
   $scope.sessionSubmit = function() {
     var serializer = new Serializer();

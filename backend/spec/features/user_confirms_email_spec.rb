@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature "User confirms email", :js => true, :vcr => {} do
-  include TestUrlHelpers
 
   background do
     u = User.create!(:email => "joe@joehomebuyer.com",

@@ -1,15 +1,15 @@
 <h1>Sign In</h1>
 
-<div ng-show="flash">
-  <h4>{{flash}}</h4>
-</div>
-
 <form id='sessions-form'>
-    <label for="email">Email:</label>
-    <input name="email" ng-model="session.email" placeholder="Email" />
+    <label for="{{authKey}}">{{humanAuthKey}}:</label>
+    <input name="{{authKey}}" ng-model="session[authKey]" placeholder="{{humanAuthKey}}" />
     <span class='comment'></span>
     <label for="password">Password:</label>
     <input type="password" name="password" ng-model="session.password" placeholder="Password" />
     <span class='comment'></span>
     <button type="submit" ng-click="sessionSubmit()">Sign In</button>
 </form>
+
+<div ng-if="passwordShow">
+  <a ui-sref='root.inner.passwordsRequest'>Forgot your password?</a>
+</div>

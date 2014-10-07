@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "menu#show" do
+describe "menu#show", :type => :request do
   let (:main_menu) { MenuItem.roots.where(:name => "Main Menu").first }
   let (:services_page) { FactoryGirl.create(:page, :url_slug => "services") }
   let (:about_page) { FactoryGirl.create(:page, :url_slug => "about") }

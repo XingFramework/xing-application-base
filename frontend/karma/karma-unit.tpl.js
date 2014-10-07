@@ -24,39 +24,6 @@ module.exports = function ( config ) {
       'karma-phantomjs-launcher',
       //'karma-coffee-preprocessor',
     ],
-    preprocessors: {
-      'build/**/*.js': 'traceur',
-      'src/**/*.js': 'traceur',
-      'test/**/*.js': 'traceur',
-      'test-help/**/*.js': 'traceur',
-      //'**/*.coffee': 'coffee',
-      '**/*.html': ['ng-html2js'],
-      '**/*.json': ['ng-html2js']
-    },
-
-    ngHtml2JsPreprocessor: {
-      // strip this from the file path
-      stripPrefix: 'test/',
-      requireDeps: ['angular'],
-      // prepend this to the
-      //prependPrefix: '',
-
-      // or define a custom transform function
-      //cacheIdFromPath: function(filepath) {
-      //  return cacheId;
-      //},
-
-      // setting this option will create only a single module that contains templates
-      // from all the files, so you can load them all with module('foo')
-      moduleName: 'fixtureCache'
-    },
-
-    traceurPreprocessor: {
-      options: {
-        sourceMaps: true,
-        modules: 'amd',
-      }
-    },
 
     /**
      * How to report, by default.

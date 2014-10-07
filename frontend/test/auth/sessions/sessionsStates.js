@@ -1,8 +1,8 @@
-import {appName} from '../../src/common/config';
-import {} from '../../src/app/auth/sessions/sessions';
-import {} from '../support/testStates';
+import {appName} from '../../../src/common/config';
+import {} from '../../../src/app/auth/sessions/sessions';
+import {} from '../../support/testStates';
 
-describe('auth states', function() {
+describe('Sessions states', function() {
 
   var $rootScope, $state, $injector, state, $auth, $q;
 
@@ -20,8 +20,8 @@ describe('auth states', function() {
 
       $auth = _$auth_;
 
-      $templateCache.put('auth/sessions.tpl.html', '');
-      $templateCache.put('auth/sessions-success.tpl.html', '');
+      $templateCache.put('auth/sessions/sessions.tpl.html', '');
+      $templateCache.put('auth/sessions/sessions-success.tpl.html', '');
     });
   });
 
@@ -36,7 +36,7 @@ describe('auth states', function() {
     });
 
     it('should render the sessions template', function() {
-      expect(state.templateUrl).toEqual('auth/sessions.tpl.html');
+      expect(state.templateUrl).toEqual('auth/sessions/sessions.tpl.html');
     });
 
     it('should use the sessions controller', function() {
@@ -56,7 +56,7 @@ describe('auth states', function() {
     });
 
     it('should render the sessions template', function() {
-      expect(state.templateUrl).toEqual('auth/sessions-success.tpl.html');
+      expect(state.templateUrl).toEqual('auth/sessions/sessions-success.tpl.html');
     });
 
     describe("when not logged in", function() {

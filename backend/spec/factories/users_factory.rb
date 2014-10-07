@@ -23,4 +23,10 @@ FactoryGirl.define do
 
   factory :admin, :parent => :admin_user
 
+  trait :confirmed do
+    confirmed_at Time.now
+  end
+
+  factory :confirmed_user, :parent => :user, :traits => [:confirmed]
+
 end

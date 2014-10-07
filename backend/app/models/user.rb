@@ -29,7 +29,7 @@
 #
 
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :confirmable, :token_authenticatable
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :confirmable, :recoverable, :token_authenticatable
 
   def role
     @role    ||= Role.for(self)

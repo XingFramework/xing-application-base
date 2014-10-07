@@ -168,9 +168,13 @@ function lrdToastService($timeout, $$interimElement, $animate, $lrdSwipe, Inflec
 
   $lrdToast.errorList = function(errors, header = "", type = "error") {
     var messages = [];
-    for (var key in errors) {
-      if (errors.hasOwnProperty(key)) {
-        messages.push(`${Inflector.humanize(key)} ${errors[key]}`);
+    if (Array.isArray(errors)) {
+      messages = errors;
+    } else {
+      for (var key in errors) {
+        if (errors.hasOwnProperty(key)) {
+          messages.push(`${Inflector.humanize(key)} ${errors[key]}`);
+        }
       }
     }
     return this.show({

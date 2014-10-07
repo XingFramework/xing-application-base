@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MenuMapper do
+describe MenuMapper, :type => :mapper do
   let :request_data do
     {
       data: {

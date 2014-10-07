@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   mount_devise_token_auth_for 'User', at: '/users', controllers: {
     registrations:  'registrations',
-    confirmations:  'confirmations'
+    confirmations:  'confirmations',
+    passwords: 'passwords'
   }, :skip => [:omniauth_callbacks]
 
 end
