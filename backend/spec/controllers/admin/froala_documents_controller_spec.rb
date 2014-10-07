@@ -27,27 +27,6 @@ describe Admin::FroalaDocumentsController do
       document
     end
 
-
-    # ########################################################################################
-    # #                                      GET INDEX
-    # ########################################################################################
-    # describe "GET index" do
-    #   it "should expose all admin_documents as @documents" do
-    #     get :index
-    #     assigns[:documents].should == [@document]
-    #   end
-    # end
-
-    # ########################################################################################
-    # #                                      GET SHOW
-    # ########################################################################################
-    # describe "responding to GET show" do
-    #   it "should expose the requested document as @document" do
-    #     get :show, :id => @document.id
-    #     assigns[:document].should == @document
-    #   end
-    # end
-
     ########################################################################################
     #                                      POST CREATE
     ########################################################################################
@@ -76,11 +55,11 @@ describe Admin::FroalaDocumentsController do
           xhr :post, :create, valid_params
         end
 
-        it "should create a new image and expose it" do
+        it "should create a new document and expose it" do
           assigns(:document).should equal(valid_doc)
         end
 
-        it "should create an image and pass the params to it, then redirect to the page" do
+        it "should create an document and pass the params to it, then redirect to the page" do
           expect(response.status).to eq(201)
           expect(response.body).to eq(success_response)
           expect(response.headers["Location"]).to eq(admin_froala_documents_path(valid_doc))
@@ -125,27 +104,6 @@ describe Admin::FroalaDocumentsController do
         end
       end
     end
-    # ########################################################################################
-    # #                                      DELETE DESTROY
-    # ########################################################################################
-    # describe "DELETE destroy" do
-
-    #   it "should reduce document count by one" do
-    #     lambda do
-    #       delete :destroy, :id => @document.id
-    #     end.should change(Document, :count).by(-1)
-    #   end
-
-    #   it "should make the admin_documents unfindable in the database" do
-    #     delete :destroy, :id => @document.id
-    #     lambda{ Document.find(@document.id)}.should raise_error(ActiveRecord::RecordNotFound)
-    #   end
-
-    #   it "should redirect to the admin_documents list" do
-    #     delete :destroy, :id => @document.id
-    #     response.should redirect_to(admin_documents_url)
-    #   end
-    # end
   end
 
   describe "while not logged in" do
@@ -155,14 +113,6 @@ describe Admin::FroalaDocumentsController do
 
     describe "every action", :pending => "Awaiting implementation" do
       it "should redirect to root" do
-        get :index
-        response.should redirect_to(:root)
-        get :show, :id => 1
-        response.should redirect_to(:root)
-        get :new
-        response.should redirect_to(:root)
-        delete :destroy, :id => 1
-        response.should redirect_to(:root)
         post :create
         response.should redirect_to(:root)
       end

@@ -1,6 +1,7 @@
 class Admin::FroalaDocumentsController < Admin::AdminController
   skip_before_filter :check_format, only: [:create]
 
+  # POST /admin/froala_documents/
   def create
     @document = Document.new(:data => params['document'])
 

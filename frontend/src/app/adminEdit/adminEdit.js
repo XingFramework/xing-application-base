@@ -3,7 +3,7 @@ import { appName } from '../../common/config';
 angular.module(`${appName}.adminEditDirective`, ['froala'])
 
 .value('froalaConfig', {
-  buttons: ['bold', 'italic', 'uploadFile', 'underline', 'sep', 'align', 'insertOrderedList', 'insertUnorderedList', 'html'],
+  buttons: ["bold", "italic", "underline", "strikeThrough", "sep", "formatBlock", "align", "outdent", "indent", "insertHorizontalRule", "sep", "createLink", "insertImage","uploadFile", "undo", "redo", "html"],
   fileUploadParam: 'document',
   fileUploadURL: '/admin/froala_documents/',
   imageUploadParam: 'image',
