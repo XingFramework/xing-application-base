@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/LRDesign/rspec-steps.git
-  revision: ae6772af0b288672136654234096376a6f04a93e
-  specs:
-    rspec-steps (0.4.1)
-      rspec (>= 2.6, < 3.99)
-
-GIT
   remote: git://github.com/hannahhoward/devise_token_auth.git
   revision: eb4d7c53c8c40982778fd45eda53d4a67a65980a
   specs:
@@ -251,7 +244,6 @@ DEPENDENCIES
   rmagick
   rspec (< 3.0.0)
   rspec-rails (< 3.0.0)
-  rspec-steps!
   sanitize
   selenium-webdriver
   simplecov
