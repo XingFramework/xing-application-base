@@ -2,6 +2,16 @@ import { appName } from '../../common/config';
 
 angular.module(`${appName}.adminEditDirective`, ['froala'])
 
+.value('froalaConfig', {
+  buttons: ['bold', 'italic', 'uploadFile', 'underline', 'sep', 'align', 'insertOrderedList', 'insertUnorderedList', 'html'],
+  fileUploadParam: 'document',
+  fileUploadURL: '/admin/froala_documents/',
+  imageUploadParam: 'image',
+  imageUploadURL: '/admin/froala_images/',
+  imagesLoadURL: '/admin/froala_images/',
+  imageDeleteURL: '/admin/froala_images/delete'
+})
+
 .directive('lrdAdminEditable', function($sce, $compile, $http, $templateCache) {
   return {
     restrict: 'A',
@@ -13,15 +23,6 @@ angular.module(`${appName}.adminEditDirective`, ['froala'])
 
       if(scope.nowEditing){
         scope.froalaConfig.placeholder = "";
-        scope.froalaConfig = {
-          buttons: ['bold', 'italic', 'uploadFile', 'underline', 'sep', 'align', 'insertOrderedList', 'insertUnorderedList', 'html'],
-          fileUploadParam: 'document',
-          fileUploadURL: '/admin/froala_documents/',
-          imageUploadParam: 'image',
-          imageUploadURL: '/admin/froala_images/',
-          imagesLoadURL: '/admin/froala_images/',
-          imageDeleteURL: '/admin/froala_images/delete'
-        };
         if(scope.editable.content.length === 0){
           scope.froalaConfig.placeholder = `Add content for ${contentName} here`;
         }
