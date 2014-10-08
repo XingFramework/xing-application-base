@@ -1,7 +1,7 @@
 development: &development
   adapter: postgresql
   encoding: unicode
-  database: eqb_dev
+  database: cms2_dev
   username: /your_name_here/
   pool: 5
   host: 127.0.0.1
@@ -16,7 +16,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: eqb_dev
+  database: cms2_dev
   username: /your_name_here/
   pool: 5
   host: 127.0.0.1

@@ -2,7 +2,6 @@ require 'capybara/rspec'
 #require 'selenium-webdriver'
 require 'capybara/email/rspec'
 require 'capybara/poltergeist'
-require 'rspec-steps'
 require 'stringio'
 
 module Capybara::Poltergeist
@@ -46,40 +45,6 @@ end
 
 Capybara.javascript_driver = (ENV['CAPYBARA_DRIVER'] || :selenium_chrome).to_sym
 
-module CKEditorTools
-  def fill_in_ckeditor(id, options = {})
-    raise "Must pass a hash containing 'with'" if not options.is_a?(Hash) or not options.has_key?(:with)
-    raise "CKEeditor fill-in only works with Selenium driver" unless page.driver.class == Capybara::Selenium::Driver
-    browser = page.driver.browser
-    browser.execute_script("CKEDITOR.instances['#{id}'].setData('#{options[:with]}');")
-  end
-end
-
-module TinyMCETools
-  def fill_in_tinymce(id, options = {})
-    content =
-      case options
-      when Hash
-        content = options.fetch(:with)
-      when String
-        options
-      else
-        raise "Must pass a string or a hash containing 'with'"
-      end
-
-    case page.driver
-    when Capybara::Selenium::Driver
-      page.execute_script("$('##{id}').tinymce().setContent('#{content}')")
-    when Capybara::Poltergeist::Driver
-      within_frame("#{id}_ifr") do
-        element = find("body")
-        element.native.send_keys(content)
-      end
-    else
-      raise "fill_in_tinymce called with unrecognized page.driver: #{page.driver.class.name}"
-    end
-  end
-end
 
 module BrowserTools
   def accept_alert
@@ -167,7 +132,6 @@ end
 
 RSpec.configure do |config|
   config.include BrowserTools, :type => :feature
-  config.include TinyMCETools, :type => :feature
 
   config.include SnapStep, :snapshots_into => proc{|v| v.is_a? String}
 end
