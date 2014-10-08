@@ -35,9 +35,9 @@
   "_resolution": {
     "type": "version",
     "tag": "v0.0.22",
-    "commit": "a01397ce2dd81138184ce90ec4aef6455de654c7"
+    "commit": "6d4c72dd72938df567ed3086b6e273ddc8d0ac08"
   },
-  "_source": "git://github.com/lynndylanhurley/ng-token-auth.git",
-  "_target": "~0.0.21",
-  "_originalSource": "ng-token-auth"
+  "_source": "https://github.com/hannahhoward/ng-token-auth.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/hannahhoward/ng-token-auth.git"
 }

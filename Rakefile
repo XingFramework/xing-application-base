@@ -6,6 +6,9 @@ task :build => 'build:all'
 desc "Run rails server and grunt watch to start a dev environment"
 task :develop => 'develop:all'
 
+desc "Run Rspec tests"
+task :spec => "spec:fast"
+
 namespace :frontend do
   task :npm_install do
     Dir.chdir("frontend"){ sh *%w{npm install} }
@@ -123,6 +126,53 @@ namespace :develop do
     end
   end
   task :all => [:links]
+end
+
+namespace :spec do
+
+  task :grunt_develop => 'frontend:setup' do
+    Dir.chdir("frontend"){
+      sh *%w{bundle exec node_modules/.bin/grunt develop}
+    }
+  end
+
+  namespace :backend do
+    task :bundle_install do
+      Bundler.with_clean_env do
+        Dir.chdir("backend"){ sh *%w{bundle install} }
+      end
+    end
+    task :setup => [:bundle_install]
+  end
+
+
+  task :links do
+    %w{index.html assets fonts}.each do |thing|
+      sh "ln", "-sfn", "../../frontend/bin/#{thing}", "backend/public/#{thing}"
+    end
+  end
+
+  task :full, [:spec_files] => [:grunt_develop, :links, 'backend:setup'] do |t, args|
+    Dir.chdir("backend"){
+      commands = %w{bundle exec rspec}
+      if args[:spec_files]
+        commands.push(args[:spec_files])
+      end
+      sh *commands
+    }
+  end
+
+  task :fast, [:spec_files] => [:links, 'backend:setup'] do |t, args|
+    Dir.chdir("backend"){
+      commands = %w{bundle exec rspec}
+      if args[:spec_files]
+        commands.push(args[:spec_files])
+      else
+        commands.push("--tag").push("~type:feature")
+      end
+      sh *commands
+    }
+  end
 end
 
 namespace :build do

@@ -29,16 +29,15 @@
 #
 
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :token_authenticatable
-
-  def email_required?
-    false
-  end
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :confirmable, :recoverable, :token_authenticatable
 
   def role
     @role    ||= Role.for(self)
   end
 
-  validates_presence_of :login
-  validates_uniqueness_of :login
+  validates_presence_of :email
+  validates_uniqueness_of :email
+
+  validates_presence_of :email_confirmation, :on => :create
+  validates :email, confirmation: true, :on => :create
 end

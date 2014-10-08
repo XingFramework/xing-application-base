@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ContentBlockSerializer do
+describe ContentBlockSerializer, :type => :serializer do
   let :content_block do
     FactoryGirl.create(:content_block)
   end

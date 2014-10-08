@@ -1,0 +1,23 @@
+<h1>Sign Up</h1>
+
+<form id='registrations-form'>
+
+    <label for="email">Email:</label>
+    <input name="email" ng-model="registration.email" placeholder="Email" />
+    <span class='comment'></span>
+
+    <label for="email-confirmation">Email Confirmation:</label>
+    <input name="email-confirmation" ng-model="registration.emailConfirmation" placeholder="Email Confirmation" />
+    <span class='comment'></span>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" ng-model="registration.password" placeholder="Password" />
+    <span class='comment'></span>
+
+    <label for="password-confirmation">Password Confirmation:</label>
+    <input type="password" name="password-confirmation" ng-model="registration.passwordConfirmation" placeholder="Password Confirmation" />
+    <span class='comment'></span>
+
+    <button type="submit" ng-click="registrationSubmit()">Sign Up</button>
+
+</form>

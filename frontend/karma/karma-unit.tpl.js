@@ -24,6 +24,7 @@ module.exports = function ( config ) {
       'karma-phantomjs-launcher',
       //'karma-coffee-preprocessor',
     ],
+
     /**
      * How to report, by default.
      */

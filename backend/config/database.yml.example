@@ -11,7 +11,7 @@ development: &development
 # Do not set this db to the same as development or production.
 test:
   <<: *development
-  database: cms2_test
+  database: eqb_test
 
 production:
   adapter: postgresql

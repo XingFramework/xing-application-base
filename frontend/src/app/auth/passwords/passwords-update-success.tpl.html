@@ -1,0 +1,1 @@
+<h1>Your password has been changed successfully.</h1>

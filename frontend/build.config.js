@@ -98,7 +98,8 @@ module.exports = {
       'vendor/angular-ui-tree/angular-ui-tree.js',
       'vendor/ng-token-auth/ng-token-auth.js',
       'vendor/responsive-nav/responsive-nav.js',
-      'vendor/restangular/restangular.js'
+      'vendor/restangular/restangular.js',
+      'vendor/hammerjs/hammerjs.js'
     ],
     css: [
       'vendor/FroalaWysiwygEditor/froala_editor.min.css',

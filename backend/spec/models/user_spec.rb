@@ -33,11 +33,27 @@ require 'spec_helper'
 describe User, :pending => "Awaiting implementation in CMS2" do
   describe "validations" do
     describe "uniqueness" do
-      it "should not create two users with the same login" do
-        user_1 = FactoryGirl.create(:user, :login => 'foo')
-        user_2 = FactoryGirl.build(:user, :login => 'foo')
+      it "should not create two users with the same email" do
+        user_1 = FactoryGirl.create(:user, :email => 'foo@foo.com')
+        user_2 = FactoryGirl.build(:user, :email => 'foo@foo.com')
+        user_1.should be_valid
         user_2.should_not be_valid
       end
     end
+
+    describe "email confirmation" do
+      it "validations confirmation on create" do
+        user = FactoryGirl.build(:user, :email => 'foo@foo.com', :email_confirmation => "bar@bar.com")
+        user.should_not be_valid
+      end
+
+      it "can update without checking confirmation" do
+        user = FactoryGirl.create(:user, :email => 'foo@foo.com')
+        user.reload
+        user.email = "bar@bar.com"
+        user.should be_valid
+      end
+    end
   end
+
 end

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     #resources :blog_posts, :except => 'show'
   end
 
-  mount_devise_token_auth_for 'User', at: '/users'
+  mount_devise_token_auth_for 'User', at: '/users', controllers: {
+    registrations:  'registrations',
+    confirmations:  'confirmations',
+    passwords: 'passwords'
+  }, :skip => [:omniauth_callbacks]
 
 end

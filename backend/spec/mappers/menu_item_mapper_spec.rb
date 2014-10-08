@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe MenuItemMapper do
+describe MenuItemMapper, :type => :mapper do
+
   let! :menu_item do
     FactoryGirl.create(:menu_item)
   end

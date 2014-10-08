@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MenuListSerializer do
+describe MenuListSerializer, :type => :serializer do
 
   before do
     MenuItem.delete_all # get rid of the ones from seeds

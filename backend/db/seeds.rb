@@ -5,7 +5,12 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-User.where(:login => 'admin').first_or_create!(:password => 'wxyz', :password_confirmation => 'wxyz', :uid => 'admin')
+admin = User.where(:email => 'admin@equibid.com').first_or_create!(
+  :email_confirmation => 'admin@equibid.com',
+  :password => 'wxyz',
+  :password_confirmation => 'wxyz',
+  :uid => 'admin@equibid.com')
+admin.confirm!
 
 unless MenuItem.roots.where(:name => "Main Menu").exists?
   MenuItem.create!(:name => "Main Menu", :path => "#")

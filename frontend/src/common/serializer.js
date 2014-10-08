@@ -1,31 +1,6 @@
-angular.module('serializer', []).factory('Inflector', function() {
-  return {
-    camelize(key) {
-      if (!angular.isString(key)) {
-        return key;
-      }
+import {} from './inflector';
 
-      // should this match more than word and digit characters?
-      return key.replace(/_[\w\d]/g, function (match, index, string) {
-        return index === 0 ? match : string.charAt(index + 1).toUpperCase();
-      });
-    },
-    underscore(key) {
-      if (!angular.isString(key)) {
-        return key;
-      }
-
-      // TODO match the latest logic from Active Support
-      return key.replace(/[A-Z]/g, function (match, index) {
-        return index === 0 ? match : '_' + match.toLowerCase();
-      });
-    },
-    pluralize(value) {
-      // TODO match Active Support
-      return value + 's';
-    }
-  };
-})
+angular.module('serializer', ['inflector'])
 .provider('Serializer', function() {
   var defaultOptions = {
     underscore: undefined,

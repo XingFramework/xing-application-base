@@ -25,6 +25,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'selenium-webdriver'
+  gem 'capybara-email'
   gem 'database_cleaner'
   gem 'byebug'
   gem 'cadre'

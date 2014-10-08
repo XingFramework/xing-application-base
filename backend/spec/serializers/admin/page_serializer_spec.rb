@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::PageSerializer do
+describe Admin::PageSerializer, :type => :serializer do
   let :main     do FactoryGirl.create(:content_block) end
   let :headline do FactoryGirl.create(:content_block, :body => 'the content') end
   let :styles   do FactoryGirl.create(:content_block, :content_type => 'text/css', :body => "uncleaned") end

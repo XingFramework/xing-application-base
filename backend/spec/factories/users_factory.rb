@@ -1,11 +1,12 @@
 FactoryGirl.define do
 
   factory :user do
-    sequence :login do |n| "username #{n}" end
     sequence :uid do |n| "uid #{n}" end
     sequence(:email) { |nn| "user_#{nn}@example.com" }
+    email_confirmation { "#{email}"}
     password 'password'
     password_confirmation 'password'
+
     #facebook_uid 1
     sign_in_count 20
     failed_attempts 0
@@ -19,5 +20,13 @@ FactoryGirl.define do
   factory :admin_user, :parent => :user do
     role_name 'Admin'
   end
+
   factory :admin, :parent => :admin_user
+
+  trait :confirmed do
+    confirmed_at Time.now
+  end
+
+  factory :confirmed_user, :parent => :user, :traits => [:confirmed]
+
 end

@@ -8,11 +8,17 @@ require 'rspec/rails'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 ActiveSupport::Deprecation.debug = true
 
+include BrowserTools
+TEST_PASSWORD = 'password'
+TEST_IMAGE = File.join(Rails.root, '/spec/fixtures/test_image.png')
+
 RSpec.configure do |config|
   config.mock_with :rspec
 
   config.include Devise::TestHelpers, :type => :controller
   config.include Devise::TestHelpers, :type => :helper
+  config.include Features::SessionHelpers, type: :feature
+
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
 
@@ -24,7 +30,6 @@ RSpec.configure do |config|
     end
   end
 
-
   config.before :all, :type => [ :view ] do
     pending "Pending removal.  Back-end does not use views."
   end
@@ -33,11 +38,24 @@ RSpec.configure do |config|
     @request.env['HTTP_ACCEPT'] = 'application/json'
   end
 
-  config.before :each do
+  truncation_types = [:feature, :task]
+
+  config.before :all, :type => proc{ |value| truncation_types.include?(value)} do
+    Rails.application.config.action_dispatch.show_exceptions = true
+    DatabaseCleaner.clean_with :truncation, {:except => %w[spatial_ref_sys]}
+    load 'db/seeds.rb'
+  end
+
+  config.after :all, :type => proc{ |value| truncation_types.include?(value)} do
+    DatabaseCleaner.clean_with :truncation, {:except => %w[spatial_ref_sys]}
+    load 'db/seeds.rb'
+  end
+
+  config.before :each, :type => proc{ |value| not truncation_types.include?(value)} do
     DatabaseCleaner.start
   end
 
-  config.after :each do
+  config.after :each, :type => proc{ |value| not truncation_types.include?(value)} do
     DatabaseCleaner.clean
   end
 

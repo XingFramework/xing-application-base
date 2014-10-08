@@ -195,10 +195,7 @@ angular.module('ng-token-auth', ['ngCookies'])
                 $rootScope.$broadcast('auth:login-success', @user)
               )
               .error((resp) =>
-                @rejectDfd({
-                  reason: 'unauthorized'
-                  errors: ['Invalid credentials']
-                })
+                @rejectDfd(resp)
                 $rootScope.$broadcast('auth:login-error', resp)
               )
             @dfd.promise

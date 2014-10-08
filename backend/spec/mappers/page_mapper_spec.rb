@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PageMapper do
+describe PageMapper, :type => :mapper do
   describe "saving content" do
     describe "for a page with two content blocks" do
 
