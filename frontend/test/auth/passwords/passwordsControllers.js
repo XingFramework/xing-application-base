@@ -175,7 +175,7 @@ describe( 'Passwords controllers', function() {
 
         it ("should set the toast error message", function() {
           expect($toastMock.errorList).toHaveBeenCalledWith({ passwordConfirmation: "must match password" },
-          "We could update your password because:");
+          "We could not update your password because:");
         });
       });
     });

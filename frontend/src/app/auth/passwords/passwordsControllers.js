@@ -32,7 +32,7 @@ export function PasswordsUpdateController( $scope, $auth, $state, $lrdToast, Ser
         $state.go('root.inner.passwordsUpdateSuccess');
       })
       .catch(function(resp) {
-        $lrdToast.errorList(resp.data.errors, "We could update your password because:");
+        $lrdToast.errorList(resp.data.errors, "We could not update your password because:");
         // handle error response
       });
   };
