@@ -577,8 +577,8 @@ module.exports = function( grunt ) {
          */
         jssrc: {
           options: { livereloadOnError: false },
-          files: [ 'src/**/*.js', '<%= build_dirs.root %>/**/*.js' ],
-          tasks: [ 'jshint:src', 'html2js:test', 'traceur:test', 'karma:unit:run', 'traceur:build' ],
+          files: [ 'src/**/*.js' ],
+          tasks: [ 'jshint:src', 'traceur:build' ],
         },
 
         js_qa: {
@@ -595,7 +595,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.coffee %>'
           ],
-          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build', 'html2js:test', 'traceur:test', 'karma:unit:run' ]
+          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build' ]
         },
 
         /**
@@ -628,7 +628,7 @@ module.exports = function( grunt ) {
             '<%= app_files.atpl %>',
             '<%= app_files.ctpl %>'
           ],
-          tasks: [ 'html2js', 'html2js:test', 'traceur:test', 'karma:unit:run', 'traceur:build' ],
+          tasks: [ 'html2js', 'traceur:build' ],
         },
 
         sass: {
@@ -642,7 +642,7 @@ module.exports = function( grunt ) {
          */
         jsunit: {
           files: [
-            '<%= app_files.jstest %>', 'test/json-fixtures/**/*'
+            '<%= app_files.jstest %>', 'test/json-fixtures/**/*', '<%= compile_targets.js %>'
           ],
           tasks: [ 'jsonlint:fixtures', 'jshint:test', 'html2js:test','traceur:test', 'karma:unit:run' ],
           options: {
