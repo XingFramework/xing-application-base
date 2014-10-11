@@ -29,3 +29,4 @@ export default function PasswordsConfig( $stateProvider) {
       }
     });
 }
+PasswordsConfig['$inject'] = ['$stateProvider'];

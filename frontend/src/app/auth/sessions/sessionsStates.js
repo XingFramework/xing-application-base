@@ -15,3 +15,4 @@ export default function SessionsConfig( $stateProvider) {
       }
     });
 }
+SessionsConfig['$inject'] = ['$stateProvider'];

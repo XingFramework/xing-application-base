@@ -21,3 +21,4 @@ export default function SessionsController( $scope, $auth, $state, $lrdToast, Se
   };
 
 }
+SessionsController['$inject'] = ['$scope', '$auth', '$state', '$lrdToast', 'Serializer', 'authConfig', 'Inflector'];

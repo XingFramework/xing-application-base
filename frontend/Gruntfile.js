@@ -273,6 +273,13 @@ module.exports = function( grunt ) {
         build: {
           files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
         },
+        deploy: {
+          options: {
+            includeRuntime: true,
+            traceurOptions: "--array-comprehension true --source-maps"
+          },
+          files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
+        },
         test: {
           options: {
             includeRuntime: false
@@ -474,6 +481,7 @@ module.exports = function( grunt ) {
         build: {
           dir: '<%= compile_dir %>',
           src: [
+            "bin/assets/traceur-runtime.js",
             '<%= compile_targets.vendor_js %>',
             '<%= compile_targets.js %>',
             '<%= compile_targets.css %>'
@@ -703,8 +711,7 @@ module.exports = function( grunt ) {
 
   grunt.registerTask( 'build', [
     'clean:build', 'bower:install',
-    'html2js', 'coffee',
-    'traceur:build', //'jshint:target',
+    'html2js', 'coffee', //'jshint:target',
     'compass:build',
     'concat_sourcemap:compile_vendor_js',
     'concat_sourcemap:compile_css',
@@ -715,11 +722,12 @@ module.exports = function( grunt ) {
 
   grunt.registerTask( 'qa', "Check source code before deploy", [ 'jshint:src', 'jsonlint', 'coffeelint', ]);
 
-  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'copy:traceur_runtime', 'index:build']);
-  grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime', 'index:build' ]);
+  grunt.registerTask( 'develop-build', "Compile the app under development", [ 'build', 'traceur:build', 'copy:traceur_runtime', 'index:build']);
+  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'develop-build']);
+  grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'develop-build']);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify' ]);
 
   /**
    * A utility function to get all app JavaScript sources.

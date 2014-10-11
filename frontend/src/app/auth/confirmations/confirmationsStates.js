@@ -10,3 +10,5 @@ export default function ConfirmationsConfig( $stateProvider) {
       }
     });
 }
+
+ConfirmationsConfig['$inject'] = ['$stateProvider'];
