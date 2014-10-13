@@ -20,6 +20,25 @@ angular.module(`${appName}.toast`, [
     '$lrdSwipe',
     'Inflector',
     lrdToastService
+  ])
+  .controller('$lrdToastErrorListCtrl', [
+    '$scope',
+    'type',
+    'header',
+    'messages',
+    lrdToastErrorListCtrl
+  ])
+  .controller('$lrdToastErrorCtrl', [
+    '$scope',
+    'type',
+    'message',
+    lrdToastErrorCtrl
+  ])
+  .controller('$lrdToastNoticeCtrl', [
+    '$scope',
+    'type',
+    'message',
+    lrdToastNoticeCtrl
   ]);
 
 function lrdToastDirective() {
@@ -28,6 +47,21 @@ function lrdToastDirective() {
   };
 }
 
+function lrdToastErrorListCtrl($scope, type, header, messages) {
+  $scope.type = type;
+  $scope.header = header;
+  $scope.messages = messages;
+}
+
+function lrdToastErrorCtrl($scope, type, message) {
+  $scope.type = type;
+  $scope.message = message;
+}
+
+function lrdToastNoticeCtrl($scope, type, message) {
+  $scope.type = type;
+  $scope.message = message;
+}
 /**
  * @ngdoc service
  * @name $lrdToast
@@ -143,10 +177,7 @@ function lrdToastService($timeout, $$interimElement, $animate, $lrdSwipe, Inflec
         type: type,
         message: message
       },
-      controller($scope, type, message) {
-        $scope.type = type;
-        $scope.message = message;
-      }
+      controller: '$lrdToastNoticeCtrl'
     });
   };
 
@@ -159,10 +190,7 @@ function lrdToastService($timeout, $$interimElement, $animate, $lrdSwipe, Inflec
         type: type,
         message: message
       },
-      controller($scope, type, message) {
-        $scope.type = type;
-        $scope.message = message;
-      }
+      controller: '$lrdToastErrorCtrl'
     });
   };
 
@@ -186,11 +214,8 @@ function lrdToastService($timeout, $$interimElement, $animate, $lrdSwipe, Inflec
         header: header,
         messages: messages
       },
-      controller($scope, type, header, messages) {
-        $scope.type = type;
-        $scope.header = header;
-        $scope.messages = messages;
-      }
+      controller: '$lrdToastErrorListCtrl'
+
     });
   };
 
