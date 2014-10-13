@@ -14,18 +14,18 @@ export default function PasswordsConfig( $stateProvider) {
       controller: 'PasswordsUpdateCtrl',
       templateUrl: 'auth/passwords/passwords-update.tpl.html',
       resolve: {
-        isAdmin: function($auth){
+        isAdmin: ['$auth', function($auth){
           return $auth.validateUser();
-        }
+        }]
       }
     })
     .state( 'root.inner.passwordsUpdateSuccess', {
       url: '^/updated-password',
       templateUrl: 'auth/passwords/passwords-update-success.tpl.html',
       resolve: {
-        isAdmin: function($auth){
+        isAdmin: ['$auth', function($auth){
           return $auth.validateUser();
-        }
+        }]
       }
     });
 }
