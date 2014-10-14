@@ -20,3 +20,4 @@ export default function RegistrationsController( $scope, $auth, $state, $lrdToas
   };
 
 }
+RegistrationsController['$inject'] = ['$scope', '$auth', '$state', '$lrdToast', 'Serializer'];

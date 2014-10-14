@@ -1,5 +1,4 @@
 import {appName} from '../../src/common/config';
-import '../../vendor/angular-mocks/angular-mocks';
 import {} from '../../src/common/toast/interimElement';
 
 describe('$$interimElement service', function() {

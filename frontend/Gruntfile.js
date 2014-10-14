@@ -273,6 +273,13 @@ module.exports = function( grunt ) {
         build: {
           files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
         },
+        deploy: {
+          options: {
+            includeRuntime: true,
+            traceurOptions: "--array-comprehension true --source-maps"
+          },
+          files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
+        },
         test: {
           options: {
             includeRuntime: false
@@ -474,6 +481,7 @@ module.exports = function( grunt ) {
         build: {
           dir: '<%= compile_dir %>',
           src: [
+            "bin/assets/traceur-runtime.js",
             '<%= compile_targets.vendor_js %>',
             '<%= compile_targets.js %>',
             '<%= compile_targets.css %>'
@@ -577,8 +585,8 @@ module.exports = function( grunt ) {
          */
         jssrc: {
           options: { livereloadOnError: false },
-          files: [ 'src/**/*.js', '<%= build_dirs.root %>/**/*.js' ],
-          tasks: [ 'jshint:src', 'html2js:test', 'traceur:test', 'karma:unit:run', 'traceur:build' ],
+          files: [ 'src/**/*.js' ],
+          tasks: [ 'jshint:src', 'traceur:build' ],
         },
 
         js_qa: {
@@ -595,7 +603,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.coffee %>'
           ],
-          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build', 'html2js:test', 'traceur:test', 'karma:unit:run' ]
+          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build' ]
         },
 
         /**
@@ -628,7 +636,7 @@ module.exports = function( grunt ) {
             '<%= app_files.atpl %>',
             '<%= app_files.ctpl %>'
           ],
-          tasks: [ 'html2js', 'html2js:test', 'traceur:test', 'karma:unit:run', 'traceur:build' ],
+          tasks: [ 'html2js', 'traceur:build' ],
         },
 
         sass: {
@@ -642,7 +650,7 @@ module.exports = function( grunt ) {
          */
         jsunit: {
           files: [
-            '<%= app_files.jstest %>', 'test/json-fixtures/**/*'
+            '<%= app_files.jstest %>', 'test/json-fixtures/**/*', '<%= compile_targets.js %>'
           ],
           tasks: [ 'jsonlint:fixtures', 'jshint:test', 'html2js:test','traceur:test', 'karma:unit:run' ],
           options: {
@@ -703,8 +711,7 @@ module.exports = function( grunt ) {
 
   grunt.registerTask( 'build', [
     'clean:build', 'bower:install',
-    'html2js', 'coffee',
-    'traceur:build', //'jshint:target',
+    'html2js', 'coffee', //'jshint:target',
     'compass:build',
     'concat_sourcemap:compile_vendor_js',
     'concat_sourcemap:compile_css',
@@ -715,11 +722,12 @@ module.exports = function( grunt ) {
 
   grunt.registerTask( 'qa', "Check source code before deploy", [ 'jshint:src', 'jsonlint', 'coffeelint', ]);
 
-  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'build', 'copy:traceur_runtime', 'index:build']);
-  grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'build', 'copy:traceur_runtime', 'index:build' ]);
+  grunt.registerTask( 'develop-build', "Compile the app under development", [ 'build', 'traceur:build', 'copy:traceur_runtime', 'index:build']);
+  grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'develop-build']);
+  grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'develop-build']);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
 
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify' ]);
 
   /**
    * A utility function to get all app JavaScript sources.

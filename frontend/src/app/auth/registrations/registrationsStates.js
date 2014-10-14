@@ -10,3 +10,4 @@ export default function RegistrationsConfig( $stateProvider) {
       templateUrl: 'auth/registrations/registrations-success.tpl.html'
     });
 }
+RegistrationsConfig['$inject'] = ['$stateProvider'];

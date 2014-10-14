@@ -9,9 +9,10 @@ export default function SessionsConfig( $stateProvider) {
       url: '^/signed-in',
       templateUrl: 'auth/sessions/sessions-success.tpl.html',
       resolve: {
-        isAdmin: function($auth){
+        isAdmin: ['$auth', function($auth){
           return $auth.validateUser();
-        }
+        }]
       }
     });
 }
+SessionsConfig['$inject'] = ['$stateProvider'];

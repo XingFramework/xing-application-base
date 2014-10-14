@@ -4,9 +4,11 @@ export default function ConfirmationsConfig( $stateProvider) {
       url: '^/confirmed',
       templateUrl: 'auth/confirmations/confirmations-success.tpl.html',
       resolve: {
-        isAdmin: function($auth){
+        isAdmin: ['$auth', function($auth){
           return $auth.validateUser();
-        }
+        }]
       }
     });
 }
+
+ConfirmationsConfig['$inject'] = ['$stateProvider'];
