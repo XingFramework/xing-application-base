@@ -130,9 +130,9 @@ end
 
 namespace :spec do
 
-  task :grunt_develop => 'frontend:setup' do
+  task :grunt_ci_test => 'frontend:setup' do
     Dir.chdir("frontend"){
-      sh *%w{bundle exec node_modules/.bin/grunt develop}
+      sh *%w{bundle exec node_modules/.bin/grunt ci-test}
     }
   end
 
@@ -152,7 +152,7 @@ namespace :spec do
     end
   end
 
-  task :full, [:spec_files] => [:grunt_develop, :links, 'backend:setup'] do |t, args|
+  task :full, [:spec_files] => [:grunt_ci_test, :links, 'backend:setup'] do |t, args|
     Dir.chdir("backend"){
       commands = %w{bundle exec rspec}
       if args[:spec_files]

@@ -473,7 +473,6 @@ module.exports = function( grunt ) {
         continuous: { singleRun: true },
         dev: {
           options: {
-            browsers: ['PhantomJS'],
             singleRun: true,
             runnerPort: 9101
           }
