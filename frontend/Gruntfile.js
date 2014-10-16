@@ -177,12 +177,6 @@ module.exports = function( grunt ) {
           }
         },
 
-        es5_shim: {
-          files: {
-            "bin/assets/es5-shim.js": "./vendor/es5-shim/es5-shim.js"
-          }
-        },
-
         karmaUnit: {
           options: { process: function( contents, path ) { return grunt.template.process( contents ); } },
           files: { '<%= build_dirs.root %>/karma-unit.js': ['karma/karma-unit.tpl.js'] }
@@ -500,17 +494,6 @@ module.exports = function( grunt ) {
           ]
         },
 
-        test: {
-          dir: '<%= compile_dir %>',
-          src: [
-            "bin/assets/es5-shim.js",
-            "bin/assets/traceur-runtime.js",
-            '<%= compile_targets.vendor_js %>',
-            '<%= compile_targets.js %>',
-            '<%= compile_targets.css %>'
-          ]
-        },
-
         deploy: {
           production: true,
           dir: '<%= compile_dir %>',
@@ -750,11 +733,7 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'develop-build']);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [
     'copy:test-env',
-    'build',
-    'traceur:build',
-    'copy:traceur_runtime',
-    'copy:es5_shim',
-    'index:test',
+    'develop-build',
     'jsonlint:fixtures',
     'jshint:test',
     'html2js:test',
