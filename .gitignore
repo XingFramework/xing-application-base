@@ -6,3 +6,4 @@ server/public/assets
 server/public/fonts
 server/public/index.html
 server/vendor
+frontend/tmp/
