@@ -43,7 +43,7 @@ Capybara.register_driver :poltergeist_debug do |app|
   Capybara::Poltergeist::Driver.new(app, :inspector => true, phantomjs_logger: WarningSuppressor)
 end
 
-Capybara.javascript_driver = (ENV['CAPYBARA_DRIVER'] || :selenium_chrome).to_sym
+Capybara.javascript_driver = (ENV['CAPYBARA_DRIVER'] || :poltergeist_debug).to_sym
 
 
 module BrowserTools

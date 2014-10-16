@@ -150,6 +150,11 @@ module.exports = function( grunt ) {
           }
           ]
         },
+        "test-env": {
+          files: {
+            "src/common/environment.js": "config/environments/test.js"
+          }
+        },
         "production-env": {
           files: {
             "src/common/environment.js": "config/environments/production.js"
@@ -171,6 +176,13 @@ module.exports = function( grunt ) {
             "bin/assets/traceur-runtime.js": "./node_modules/traceur/bin/traceur-runtime.js",
           }
         },
+
+        es5_shim: {
+          files: {
+            "bin/assets/es5-shim.js": "./vendor/es5-shim/es5-shim.js"
+          }
+        },
+
         karmaUnit: {
           options: { process: function( contents, path ) { return grunt.template.process( contents ); } },
           files: { '<%= build_dirs.root %>/karma-unit.js': ['karma/karma-unit.tpl.js'] }
@@ -461,8 +473,9 @@ module.exports = function( grunt ) {
         continuous: { singleRun: true },
         dev: {
           options: {
+            browsers: ['PhantomJS'],
             singleRun: true,
-            browsers: [ 'PhantomJS' ]
+            runnerPort: 9101
           }
         }
       },
@@ -481,6 +494,17 @@ module.exports = function( grunt ) {
         build: {
           dir: '<%= compile_dir %>',
           src: [
+            "bin/assets/traceur-runtime.js",
+            '<%= compile_targets.vendor_js %>',
+            '<%= compile_targets.js %>',
+            '<%= compile_targets.css %>'
+          ]
+        },
+
+        test: {
+          dir: '<%= compile_dir %>',
+          src: [
+            "bin/assets/es5-shim.js",
             "bin/assets/traceur-runtime.js",
             '<%= compile_targets.vendor_js %>',
             '<%= compile_targets.js %>',
@@ -725,8 +749,18 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'develop-build', "Compile the app under development", [ 'build', 'traceur:build', 'copy:traceur_runtime', 'index:build']);
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'develop-build']);
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'develop-build']);
-  grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
-
+  grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [
+    'copy:test-env',
+    'build',
+    'traceur:build',
+    'copy:traceur_runtime',
+    'copy:es5_shim',
+    'index:test',
+    'jsonlint:fixtures',
+    'jshint:test',
+    'html2js:test',
+    'traceur:test',
+    'karma:dev' ]);
   grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify' ]);
 
   /**
