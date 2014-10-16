@@ -12,7 +12,7 @@ module.exports = function ( config ) {
       'bin/assets/vendor.js',
       'bin/assets/traceur-runtime.js',
       'vendor/angular-mocks/angular-mocks.js',
-      'build/test/test-main.js'
+      'build/test/test-main.js',
     ],
     exclude: [
       'src/assets/**/*.js'
@@ -23,8 +23,12 @@ module.exports = function ( config ) {
       'karma-firefox-launcher',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
+      'karma-sourcemap-loader'
       //'karma-coffee-preprocessor',
     ],
+    preprocessors: {
+      '**/*.js': ['sourcemap']
+    },
 
     /**
      * How to report, by default.
