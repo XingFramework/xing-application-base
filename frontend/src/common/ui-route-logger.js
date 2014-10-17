@@ -19,7 +19,6 @@ export default function setupLogging($rootScope, $state, noTable) {
     });
     $rootScope.$on('$stateChangeSuccess', (event, toState) => {
       console.log("Routing Event", event.name);
-      console.log("From State", fromState.name, fromState.url);
       console.log("To State", toState.name, toState.url);
     });
     $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
