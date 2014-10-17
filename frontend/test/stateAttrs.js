@@ -8,8 +8,8 @@ describe('lrdStateAttrs directive', function() {
   var $compile, $rootScope, $state;
 
   beforeEach(module(`${appName}.stateAttrs`, "ui.router.state", function($stateProvider) {
-    $stateProvider.state('root', {url: "/", template: "<ui-view label='r' />"});
-    $stateProvider.state('root.inner', {url: "/ri", template: "<hr label='r-i' />"});
+    $stateProvider.state('root', {url: "/", template: "<ui-view lrd-state-attrs label='r'></ui-view>"});
+    $stateProvider.state('root.inner', {url: "/ri", template: "<hr label='r-i'/>"});
   }));
 
   beforeEach(inject(function(_$state_, _$compile_, _$rootScope_){
@@ -22,22 +22,22 @@ describe('lrdStateAttrs directive', function() {
     var element;
 
     beforeEach(function() {
-      setupUiRouteLogging($rootScope, $state, true);
       $state.go('root.inner');
       $rootScope.$apply();
-      element = $compile("<p>Before</p><ui-view label='t'></ui-view><p>After</p>")($rootScope);
+      element = $compile("<div ng-app><p>Before</p><ui-view lrd-state-attrs label='t'></ui-view><p>After</p></div>")($rootScope);
+
       $rootScope.$digest();
-      console.log("test/stateAttrs.js:32", "element", element);
     });
 
-    iit('should have an element with an id like "root" and a class with "root"', function() {
+    it('should have an element with an id like "root" and a class with "root"', function() {
+      expect(xpath(element, ".//*[@label='r-i']").snapshotLength).toBeGreaterThan(0);
       expect(xpath(element, ".//*[@id='root'][@label='t']").snapshotLength).toBeGreaterThan(0);
-      expect(xpath(element, ".//*[@class='root'][@label='t']").snapshotLength).toBeGreaterThan(0);
+      expect(xpath(element, ".//*[contains(@class, 'root')][@label='t']").snapshotLength).toBeGreaterThan(0);
     });
 
-    iit('should have an element with an id like "root_inner"', function() {
+    it('should have an element with an id like "root_inner"', function() {
       expect(xpath(element, ".//*[@id='root_inner'][@label='r']").snapshotLength).toBeGreaterThan(0);
-      expect(xpath(element, ".//*[@class='inner'][@label='r']").snapshotLength).toBeGreaterThan(0);
+      expect(xpath(element, ".//*[contains(@class, 'inner')][@label='r']").snapshotLength).toBeGreaterThan(0);
     });
   });
 });

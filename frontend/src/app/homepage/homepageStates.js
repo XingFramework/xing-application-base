@@ -7,7 +7,7 @@ angular.module(`${appName}.homepage`)
 
     .state( 'root.homepage', {
       controller: 'HomepageCtrl',
-      template: "<ui-view></ui-view>",
+      template: "<ui-view lrd-state-attrs></ui-view>",
       abstract: true,
       url: 'home',
       resolve: {

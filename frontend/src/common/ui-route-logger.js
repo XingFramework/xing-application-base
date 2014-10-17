@@ -27,7 +27,9 @@ export default function setupLogging($rootScope, $state, noTable) {
       console.log("To State", toState);
       console.log("Error", error);
       console.log(error.stack);
-
+    });
+    $rootScope.$on('$viewContentLoaded', (event) => {
+      console.log("view event", event.name);
     });
   } else {
     $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {

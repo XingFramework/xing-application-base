@@ -9,7 +9,7 @@ angular.module(`${appName}.pages`)
       url: '^/pages/',
       controller: 'PagesCtrl',
       abstract: true,
-      template: "<ui-view></ui-view>",
+      template: "<ui-view lrd-state-attrs></ui-view>",
       resolve: {
         isAdmin($auth){
           return $auth.validateUser().then(
