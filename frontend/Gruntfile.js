@@ -644,13 +644,17 @@ module.exports = function( grunt ) {
           tasks: [ 'concat_sourcemap:compile_css' ]
         },
 
+        vendor_js: {
+          files: [ 'vendor/**/*.js' ],
+          tasks: [ 'concat_sourcemap:compile_vendor_js' ]
+        },
         /**
          * When a JavaScript unit test file changes, we only want to lint it and
          * run the unit tests. We don't want to do any live reloading.
          */
         jsunit: {
           files: [
-            '<%= app_files.jstest %>', 'test/json-fixtures/**/*', '<%= compile_targets.js %>'
+            'bin/assets/vendor.js', '<%= app_files.jstest %>', 'test/json-fixtures/**/*', '<%= compile_targets.js %>'
           ],
           tasks: [ 'jsonlint:fixtures', 'jshint:test', 'html2js:test','traceur:test', 'karma:unit:run' ],
           options: {
