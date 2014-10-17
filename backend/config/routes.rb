@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "pages/:url_slug", :to => 'pages#show', :as => :page
   resources :menus, :only => [ :show, :index, :update ]
 
+  root to: 'application#index'
+
   namespace :admin do
     resources :froala_images, :only => [:index, :create]
     post "/froala_images/delete", :to => 'froala_images#destroy'
