@@ -26,6 +26,5 @@ angular.module( `${appName}.stateAttrs`,
       }
       attrs.$addClass(className);
     }
-
   };
 });

@@ -55,7 +55,6 @@ angular.module( appName, [
   $scope.$watch(
     ()=>{ return menuRoot.etag; },
     ()=>{
-      console.log("app/app.js:58", "menuRoot.etag", menuRoot.etag);
       $scope.mainMenu = menuRoot.children;
     });
 });
