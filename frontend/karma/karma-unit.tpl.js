@@ -1,5 +1,13 @@
 module.exports = function ( config ) {
+
+  var portOffset = function() {
+    return ((1*process.env.PORT_OFFSET) || 0)
+  }
+  var karmaPort       = 9018 + portOffset();
+  var karmaRunnerPort = 9100 + portOffset();
+
   config.set({
+
     /**
      * From where to look for files, starting with the location of this file.
      */
@@ -38,8 +46,10 @@ module.exports = function ( config ) {
      * On which port should the browser connect, on which port is the test runner
      * operating, and what is the URL path for the browser to use.
      */
-    port: 9018,
-    runnerPort: 9100,
+
+
+    port:       karmaPort,
+    runnerPort: karmaRunnerPort,
     urlRoot: '/',
     browserDisconnectTimeout: 20000,
     browserNoActivityTimeout: 20000,
