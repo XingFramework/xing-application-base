@@ -21,28 +21,15 @@ namespace :frontend do
   task :setup => [:npm_install, :bundle_install]
 end
 
-DEFAULT_RELOAD_PORT = 35729
-DEFAULT_RAILS_PORT  = 3000
-
 namespace :develop do
   child_pids = []
 
-  def port_offset(args)
-    if args.present? and args.first.is_a? Integer
-      offset = args.first
-    else
-      offset = 0
-    end
-    puts "Shifting server ports by #{offset}"
-    offset
-  end
-
-  task :launch_browser do |_task, args|
+  task :launch_browser do
     fork do
       require 'net/http'
       require 'json'
 
-      server_port = DEFAULT_RELOAD_PORT + port_offset(args)
+      server_port = 35729
       setup_time_limit = 60
       begin_time = Time.now
       begin
@@ -88,7 +75,7 @@ namespace :develop do
           end
         end
 
-        sh cmd, "http://localhost:#{DEFAULT_RAILS_PORT + port_offset(args)}/"
+        sh cmd, "http://localhost:3000/"
       else
         puts "There's already a browser attached to the LiveReload server."
         p changes["clients"].first
@@ -117,13 +104,11 @@ namespace :develop do
     task :setup => [:bundle_install]
   end
 
-  task :rails_server => [:links, 'backend:setup'] do |_task, args|
+  task :rails_server => [:links, 'backend:setup'] do
     child_pid = Process.fork do
       Bundler.with_clean_env do
-        words = %w{bundle exec rails server }
-        words << "-p#{DEFAULT_RAILS_PORT + port_offset(args)}"
         Dir.chdir("backend"){
-          sh *words
+          sh *%w{bundle exec rails server}
         }
       end
     end
@@ -131,7 +116,7 @@ namespace :develop do
     child_pids << child_pid
   end
 
-  task :all => [:grunt_watch, :rails_server, :launch_browser] do |_t, args|
+  task :all => [:grunt_watch, :rails_server, :launch_browser] do
     Process.waitall
   end
 
