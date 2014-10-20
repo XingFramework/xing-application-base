@@ -10,6 +10,7 @@ describe('lrdStateAttrs directive', function() {
   beforeEach(module(`${appName}.stateAttrs`, "ui.router.state", function($stateProvider) {
     $stateProvider.state('root', {url: "/", template: "<ui-view lrd-state-attrs label='r'></ui-view>"});
     $stateProvider.state('root.inner', {url: "/ri", template: "<hr label='r-i'/>"});
+    $stateProvider.state('root.other', {url: "/ro", template: "<hr label='r-o'/>"});
   }));
 
   beforeEach(inject(function(_$state_, _$compile_, _$rootScope_){
@@ -38,6 +39,23 @@ describe('lrdStateAttrs directive', function() {
     it('should have an element with an id like "root_inner"', function() {
       expect(xpath(element, ".//*[@id='root_inner'][@label='r']").snapshotLength).toBeGreaterThan(0);
       expect(xpath(element, ".//*[contains(@class, 'inner')][@label='r']").snapshotLength).toBeGreaterThan(0);
+    });
+
+    it('update attrs when state changes', function() {
+      expect(xpath(element, ".//*[@label='r-i']").snapshotLength).toBeGreaterThan(0);
+
+      expect(xpath(element, ".//*[@id='root_other']").snapshotLength).toEqual(0);
+      expect(xpath(element, ".//*[contains(@class, 'other')]").snapshotLength).toEqual(0);
+
+      $state.go('root.other');
+      $rootScope.$apply();
+
+      expect(xpath(element, ".//*[@label='r-i']").snapshotLength).toEqual(0);
+      expect(xpath(element, ".//*[contains(@class, 'inner')]").snapshotLength).toEqual(0);
+      expect(xpath(element, ".//*[@id='root_inner']").snapshotLength).toEqual(0);
+
+      expect(xpath(element, ".//*[@id='root_other'][@label='r']").snapshotLength).toBeGreaterThan(0);
+      expect(xpath(element, ".//*[contains(@class, 'other')][@label='r']").snapshotLength).toBeGreaterThan(0);
     });
   });
 });
