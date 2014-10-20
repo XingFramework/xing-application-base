@@ -1,4 +1,5 @@
 import {Menu, MenuItem} from "../../src/common/resources/Menu";
+import mockResourceTemplates from "../support/mockResourceTemplates";
 
 describe('MenuItem class', function(){
   describe('created by front end', function() {
@@ -6,6 +7,7 @@ describe('MenuItem class', function(){
 
     beforeEach(function() {
       mockBackend = {};
+      mockResourceTemplates();
       menuItem = new MenuItem(mockBackend);
     });
 
@@ -80,6 +82,7 @@ describe('Menu class', function() {
       return resolve(data);
     });
     mockBackend = {};
+    mockResourceTemplates();
     menu = new Menu(mockBackend, promise);
     menu.complete.then(function(){
       done();

@@ -2,6 +2,7 @@ import {configuration} from '../src/common/config';
 import {} from '../src/app/pages/pages';
 import {Page} from '../src/common/resources/Page';
 import {} from '../build/test/fixtureCache';
+import mockResourceTemplates from './support/mockResourceTemplates';
 
 describe( 'Pages section', function() {
 
@@ -27,8 +28,9 @@ describe( 'Pages section', function() {
     var promise = new Promise((resolve, reject) => {
       resolve(pageJson);
     });
+    mockResourceTemplates();
     page = new Page(mockBackend, promise);
-    page.completePromise = page.complete.then((result) => {
+    page.complete.then((result) => {
       done();
       return result;
     });

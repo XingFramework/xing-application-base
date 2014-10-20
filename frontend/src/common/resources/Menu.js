@@ -101,7 +101,6 @@ export class MenuItem extends BackendResource {
       return this.pathSet(this.jsonPaths.externalTarget, value);
     }
   }
-
   get type(){
     return this.pathGet(this.jsonPaths.type);
   }

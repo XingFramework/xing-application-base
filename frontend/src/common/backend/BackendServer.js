@@ -39,7 +39,7 @@ export default class BackendServer {
     backendReq.remove();
   }
 
-  load(ResourceClass, url, responseFn){
+  load(ResourceClass, url = null, responseFn = null){
     var response = this.Restangular.one(this.mangleUrl(url)).get();
     if(responseFn){ response = responseFn(response); }
     return new ResourceClass(this, this.unwrap(response));
@@ -66,5 +66,4 @@ export default class BackendServer {
       }
     });
   }
-
 }
