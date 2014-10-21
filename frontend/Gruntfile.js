@@ -27,6 +27,11 @@ module.exports = function( grunt ) {
    * Load in our build configuration file.
    */
   var userConfig = require( './build.config.js' );
+  var portOffset = function() {
+    return ((1*process.env.PORT_OFFSET) || 0)
+  }
+  var liveReloadPort   = 35729 + portOffset();
+  var karmaRunnerPort  = 9101  + portOffset();
 
   userConfig.pkg = grunt.file.readJSON("package.json");
   /**
@@ -150,6 +155,11 @@ module.exports = function( grunt ) {
           }
           ]
         },
+        "test-env": {
+          files: {
+            "src/common/environment.js": "config/environments/test.js"
+          }
+        },
         "production-env": {
           files: {
             "src/common/environment.js": "config/environments/production.js"
@@ -171,6 +181,7 @@ module.exports = function( grunt ) {
             "bin/assets/traceur-runtime.js": "./node_modules/traceur/bin/traceur-runtime.js",
           }
         },
+
         karmaUnit: {
           options: { process: function( contents, path ) { return grunt.template.process( contents ); } },
           files: { '<%= build_dirs.root %>/karma-unit.js': ['karma/karma-unit.tpl.js'] }
@@ -454,7 +465,7 @@ module.exports = function( grunt ) {
         },
         unit: {
           options: {
-            runnerPort: 9101,
+            runnerPort: karmaRunnerPort,
             background: true
           }
         },
@@ -462,7 +473,7 @@ module.exports = function( grunt ) {
         dev: {
           options: {
             singleRun: true,
-            browsers: [ 'PhantomJS' ]
+            runnerPort: 9101
           }
         }
       },
@@ -525,7 +536,7 @@ module.exports = function( grunt ) {
             open: true,
             port: 9000,
             hostname: 'localhost',
-            livereload: 35729,
+            livereload: liveReloadPort,
             middleware: function(connect, options, middlewares) {
               middlewares.unshift(function(req, res, next) {
                 if(/application\/json/.test(req.headers["accept"])){
@@ -564,7 +575,7 @@ module.exports = function( grunt ) {
          * plugin should auto-detect.
          */
         options: {
-          livereload: true
+          livereload: liveReloadPort
         },
 
         /**
@@ -644,13 +655,17 @@ module.exports = function( grunt ) {
           tasks: [ 'concat_sourcemap:compile_css' ]
         },
 
+        vendor_js: {
+          files: [ 'vendor/**/*.js' ],
+          tasks: [ 'concat_sourcemap:compile_vendor_js' ]
+        },
         /**
          * When a JavaScript unit test file changes, we only want to lint it and
          * run the unit tests. We don't want to do any live reloading.
          */
         jsunit: {
           files: [
-            '<%= app_files.jstest %>', 'test/json-fixtures/**/*', '<%= compile_targets.js %>'
+            'bin/assets/vendor.js', '<%= app_files.jstest %>', 'test/json-fixtures/**/*', '<%= compile_targets.js %>'
           ],
           tasks: [ 'jsonlint:fixtures', 'jshint:test', 'html2js:test','traceur:test', 'karma:unit:run' ],
           options: {
@@ -725,8 +740,14 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'develop-build', "Compile the app under development", [ 'build', 'traceur:build', 'copy:traceur_runtime', 'index:build']);
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'develop-build']);
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'develop-build']);
-  grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [ 'develop', 'karma:dev' ]);
-
+  grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [
+    'copy:test-env',
+    'develop-build',
+    'jsonlint:fixtures',
+    'jshint:test',
+    'html2js:test',
+    'traceur:test',
+    'karma:dev' ]);
   grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify' ]);
 
   /**
@@ -770,7 +791,8 @@ module.exports = function( grunt ) {
       return file.replace( dirRE, '' );
     });
     if(!this.data.production){
-      jsFiles.push("http://localhost:35729/livereload.js?snipver=1&maxdelay=15000");
+      port =
+      jsFiles.push("http://localhost:"+liveReloadPort+"/livereload.js?snipver=1&maxdelay=15000");
     }
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
@@ -808,4 +830,4 @@ module.exports = function( grunt ) {
       }
     });
   });
-};
+process.env.ENV_VARIABLE};

@@ -21,19 +21,39 @@ namespace :frontend do
   task :setup => [:npm_install, :bundle_install]
 end
 
+DEFAULT_RELOAD_PORT = 35729
+DEFAULT_RAILS_PORT  = 3000
+
+
+
 namespace :develop do
   child_pids = []
+
+  def port_offset
+    @port_offset ||= if !ENV['PORT_OFFSET'].nil?
+        ENV['PORT_OFFSET'].to_i
+      else
+        0
+      end.tap do |offset|
+        puts "Shifting server ports by #{offset}"
+      end
+  end
+  def reload_server_port
+    DEFAULT_RELOAD_PORT + port_offset
+  end
+  def rails_server_port
+    DEFAULT_RAILS_PORT + port_offset
+  end
 
   task :launch_browser do
     fork do
       require 'net/http'
       require 'json'
 
-      server_port = 35729
       setup_time_limit = 60
       begin_time = Time.now
       begin
-        test_conn =  TCPSocket.new 'localhost', server_port
+        test_conn =  TCPSocket.new 'localhost', reload_server_port
       rescue Errno::ECONNREFUSED
         if Time.now - begin_time > setup_time_limit
           raise "Couldn't connect to test server after #{setup_time_limit} seconds - bailing out"
@@ -50,7 +70,7 @@ namespace :develop do
 
       changes = {}
       while(Time.now - started < max_wait)
-        changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{server_port}/changed")))
+        changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{reload_server_port}/changed")))
         if changes["clients"].empty?
           sleep 0.25
         else
@@ -75,7 +95,7 @@ namespace :develop do
           end
         end
 
-        sh cmd, "http://localhost:3000/"
+        sh cmd, "http://localhost:#{rails_server_port}/"
       else
         puts "There's already a browser attached to the LiveReload server."
         p changes["clients"].first
@@ -107,8 +127,10 @@ namespace :develop do
   task :rails_server => [:links, 'backend:setup'] do
     child_pid = Process.fork do
       Bundler.with_clean_env do
+        words = %w{bundle exec rails server}
+        words << "-p#{rails_server_port}"
         Dir.chdir("backend"){
-          sh *%w{bundle exec rails server}
+          sh *words
         }
       end
     end
@@ -130,9 +152,9 @@ end
 
 namespace :spec do
 
-  task :grunt_develop => 'frontend:setup' do
+  task :grunt_ci_test => 'frontend:setup' do
     Dir.chdir("frontend"){
-      sh *%w{bundle exec node_modules/.bin/grunt develop}
+      sh *%w{bundle exec node_modules/.bin/grunt ci-test}
     }
   end
 
@@ -152,7 +174,7 @@ namespace :spec do
     end
   end
 
-  task :full, [:spec_files] => [:grunt_develop, :links, 'backend:setup'] do |t, args|
+  task :full, [:spec_files] => [:grunt_ci_test, :links, 'backend:setup'] do |t, args|
     Dir.chdir("backend"){
       commands = %w{bundle exec rspec}
       if args[:spec_files]

@@ -16,10 +16,11 @@ body {
   margin-top: 1em;
 
 }
-#container {
+#root {
   padding: 1em gutter-span();
+  display: block;
 }
-#content {
+#root_inner, #root_homepage {
   @include add-grid(12);
   @include add-gutter(1/3);
   @include sgs-change('output', 'isolation');
