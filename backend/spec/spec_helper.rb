@@ -40,13 +40,13 @@ RSpec.configure do |config|
 
   truncation_types = [:feature, :task]
 
-  config.before :all, :type => proc{ |value| truncation_types.include?(value)} do
+  config.before :each, :type => proc{ |value| truncation_types.include?(value)} do
     Rails.application.config.action_dispatch.show_exceptions = true
     DatabaseCleaner.clean_with :truncation, {:except => %w[spatial_ref_sys]}
     load 'db/seeds.rb'
   end
 
-  config.after :all, :type => proc{ |value| truncation_types.include?(value)} do
+  config.after :each, :type => proc{ |value| truncation_types.include?(value)} do
     DatabaseCleaner.clean_with :truncation, {:except => %w[spatial_ref_sys]}
     load 'db/seeds.rb'
   end
