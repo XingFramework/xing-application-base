@@ -1,4 +1,5 @@
 import MenuList from "../../src/common/resources/MenuList";
+import mockResourceTemplates from "../support/mockResourceTemplates";
 
 describe('MenuList class', function() {
   describe('created in the client', function() {
@@ -6,6 +7,7 @@ describe('MenuList class', function() {
 
     beforeEach(function() {
       mockBackend = {};
+      mockResourceTemplates();
       menuList = new MenuList(mockBackend);
     });
 
@@ -36,6 +38,7 @@ describe('MenuList class', function() {
         return resolve(data);
       });
       mockBackend = {};
+      mockResourceTemplates();
       menuList = new MenuList(mockBackend);
       menuList.backendResponds(promise);
       menuList.complete.then((list) => {

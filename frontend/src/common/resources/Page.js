@@ -152,6 +152,25 @@ export class Page extends BackendResource {
   get pageData() {
     return this._data;
   }
+
+  get resourceName() {
+    return "page";
+  }
+
+  // this should be overridden
+  shortLinkFromParams(params) {
+    return params["url_slug"];
+  }
+
+  // this should be overridden
+  paramsFromShortLink(shortLink) {
+    return {url_slug: shortLink};
+  }
+
+  get shortLink() {
+    return this.shortLinkFromUrl(this.slugUrl);
+  }
+
 }
 
 Page.prototype.defineJsonProperty('publicUrl', "$.links.public");

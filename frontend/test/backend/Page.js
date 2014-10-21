@@ -1,4 +1,5 @@
 import {Page} from "../../src/common/resources/Page";
+import mockResourceTemplates from "../support/mockResourceTemplates";
 
 describe('Page class', function() {
   describe('created in the client', function() {
@@ -6,6 +7,7 @@ describe('Page class', function() {
 
     beforeEach(function() {
       mockBackend = {};
+      mockResourceTemplates();
       page = new Page(mockBackend);
     });
 
@@ -112,6 +114,7 @@ describe('Page class', function() {
         return resolve(data);
       });
       mockBackend = {};
+      mockResourceTemplates();
       page = new Page(mockBackend, promise);
       page.complete.then(function(){
         done();

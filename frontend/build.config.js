@@ -99,7 +99,8 @@ module.exports = {
       'vendor/ng-token-auth/ng-token-auth.js',
       'vendor/responsive-nav/responsive-nav.js',
       'vendor/restangular/restangular.js',
-      'vendor/hammerjs/hammerjs.js'
+      'vendor/hammerjs/hammerjs.js',
+      'vendor/uri-templates/uri-templates.js'
     ],
     css: [
       'vendor/FroalaWysiwygEditor/froala_editor.min.css',
