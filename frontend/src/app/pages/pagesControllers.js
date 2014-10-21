@@ -28,7 +28,7 @@ angular.module(`${appName}.pages`)
       $state.go('^.edit', {}, {location: false});
     },
     show(){
-      $state.go("^.show", {pageUrl: page.slugUrl});
+      $state.go("^.show", {pageUrl: page.shortLink});
     },
     remove(){
       if($window.confirm("This will delete the page - it cannot be undone!")){
@@ -45,7 +45,7 @@ angular.module(`${appName}.pages`)
       }
       page.save();
       page.complete.then((page) => {
-        $state.go("^.show", {pageUrl: page.slugUrl});
+        $state.go("^.show", {pageUrl: page.shortLink});
         return page;
       });
     }

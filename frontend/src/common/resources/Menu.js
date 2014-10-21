@@ -1,4 +1,5 @@
 import {BackendResource} from '../backend/BackendResource';
+import {Page} from "./Page";
 
 export class Menu extends BackendResource {
   emptyData(){
@@ -164,3 +165,4 @@ MenuItem.prototype.defineJsonProperty("internalTarget", '$.data.page.links.self'
 MenuItem.prototype.defineJsonProperty("externalTarget", '$.data.path');
 MenuItem.prototype.defineJsonProperty("type", '$.data.type');
 MenuItem.prototype.defineJsonProperty("name", '$.data.name');
+MenuItem.prototype.defineRelatedShortLink(Page, "pageTarget", "internalTarget");

@@ -82,7 +82,9 @@ describe('Menu class', function() {
       return resolve(data);
     });
     mockBackend = {};
-    mockResourceTemplates();
+    mockResourceTemplates({
+      "page": new UriTemplate("/pages/{url_slug}")
+    });
     menu = new Menu(mockBackend, promise);
     menu.complete.then(function(){
       done();
@@ -95,6 +97,10 @@ describe('Menu class', function() {
 
   it('should have a target', function() {
     expect(menu.items[0].target).toEqual('/pages/test-1');
+  });
+
+  it("should have a page short linkt arget", function() {
+    expect(menu.items[0].pageTarget).toEqual("test-1");
   });
 
   it('should have a name', function() {

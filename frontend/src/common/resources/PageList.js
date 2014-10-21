@@ -1,14 +1,16 @@
 import {BackendResource} from '../backend/BackendResource';
+import {Page} from './Page';
 
 export class PageList extends BackendResource {
   get pages(){
-    return this._data.map((item) => { return new PageItem(item); });
+    return this._data.map((item) => { return new PageItem(item, this._uriTemplates["page"]); });
   }
 }
 
 class PageItem {
-  constructor(itemData){
+  constructor(itemData, uriTemplate){
     this._data = itemData;
+    this._uriTemplate = uriTemplate;
   }
 
   get title(){
@@ -17,5 +19,9 @@ class PageItem {
 
   get target(){
     return this._data["links"]["public"];
+  }
+
+  get shortLink() {
+    return Page.prototype.shortLinkFromParams(this._uriTemplate.fromUri(this.target));
   }
 }

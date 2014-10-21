@@ -35,12 +35,21 @@ export class BackendResource extends BackendResponse {
     }
   }
 
+  shortLinkFromUrl(url) {
+    if (this._uriTemplates && this.resourceName && url) {
+      var params = this._uriTemplates[this.resourceName].fromUri(url);
+      return this.shortLinkFromParams(params);
+    } else {
+      return null;
+    }
+  }
+
   defineRelatedShortLink(ResourceClass, shortLinkName, propertyName) {
     Object.defineProperty(this, shortLinkName, {
       enumerable: true,
       configurable: true,
       get: function() {
-        if (this._uriTemplates && this.resourceName) {
+        if (this._uriTemplates && ResourceClass.prototype.resourceName) {
           var params = this._uriTemplates[ResourceClass.prototype.resourceName].fromUri(this[propertyName]);
           return ResourceClass.prototype.shortLinkFromParams(params);
         } else {
@@ -51,12 +60,7 @@ export class BackendResource extends BackendResponse {
   }
 
   get shortLink() {
-    if (this._uriTemplates && this.resourceName && this.selfUrl) {
-      var params = this._uriTemplates[this.resourceName].fromUri(this.selfUrl);
-      return this.shortLinkFromParams(params);
-    } else {
-      return null;
-    }
+    return this.shortLinkFromUrl(this.selfUrl);
   }
 
   get complete() {
