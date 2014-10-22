@@ -173,8 +173,6 @@ export class Page extends BackendResource {
 
 }
 
-Page.prototype.defineJsonProperty('publicUrl', "$.links.public");
-Page.prototype.defineJsonProperty("adminUrl", "$.links.admin");
 Page.prototype.defineJsonProperty("layout", "$.data.layout");
 Page.prototype.defineJsonProperty("title", "$.data.title");
 Page.prototype.defineJsonProperty("keywords", "$.data.keywords");

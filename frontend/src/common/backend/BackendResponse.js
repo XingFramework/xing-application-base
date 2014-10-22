@@ -1,5 +1,11 @@
 import jsonPath from '../jsonpath';
 
+var paths = {
+  publicUrl: "$.links.public",
+  adminUrl: "$.links.admin",
+  selfUrl: "$.links.self"
+}
+
 export default class BackendResponse {
   constructor(backend, responsePromise) {
     this.backend = backend;
@@ -119,8 +125,16 @@ export default class BackendResponse {
     return (this.responsePromise === null);
   }
 
+  get publicUrl(){
+    return this.pathGet(paths.publicUrl);
+  }
+
+  get adminUrl(){
+    return this.pathGet(paths.adminUrl);
+  }
+
   get selfUrl(){
-    return this.pathGet("$.links.self");
+    return this.pathGet(paths.selfUrl);
   }
 
   get putUrl(){
