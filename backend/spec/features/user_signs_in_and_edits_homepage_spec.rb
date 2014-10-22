@@ -33,7 +33,7 @@ feature "User Signs In and Edits Homepage", :js => true, :vcr => {} do
     edit_homepage
     fill_in "Title", :with => "Brand New Homepage Title"
     click_on("Save")
-    expect(page).to have_content("Edit This Page")
+    expect(page).to have_css("#root_homepage_show")
     expect(page.title).to include("Brand New Homepage Title")
   end
 
@@ -41,16 +41,20 @@ feature "User Signs In and Edits Homepage", :js => true, :vcr => {} do
     edit_homepage
     fill_in "Keywords", :with => "this, that, the other thing"
     click_on("Save")
-    expect(page).to have_content("Edit This Page")
-    find(:xpath, "//meta[@name='keywords']", :visible => false, :text => "this, that, the other thing")
+    expect(page).to have_css("#root_homepage_show")
+
+    meta_content = find(:xpath, "//meta[@name='keywords']", :visible => false)[:content]
+    expect(meta_content).to eq("this, that, the other thing")
   end
 
   scenario "description" do
     edit_homepage
     fill_in "Description", :with => "Question your tea spoons."
     click_on("Save")
-    expect(page).to have_content("Edit This Page")
-    find(:xpath, "//meta[@name='description']", :visible => false, :text => "Question your tea spoons.")
+    expect(page).to have_css("#root_homepage_show")
+
+    meta_content = find(:xpath, "//meta[@name='description']", :visible => false)[:content]
+    expect(meta_content).to eq("Question your tea spoons.")
   end
 
 end
