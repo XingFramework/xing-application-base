@@ -24,11 +24,6 @@ RSpec.configure do |config|
 
   DatabaseCleaner.strategy = :transaction
 
-  # setup VCR to record all external requests with a single casette
-  config.around :each
-    VCR.use_cassette("default_vcr_cassette") { example.call }
-  end
-
   config.before :suite do
     File::open("log/test.log", "w") do |log|
       log.write ""

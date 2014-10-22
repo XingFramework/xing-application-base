@@ -31,7 +31,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'byebug'
   gem 'cadre'
-  gem 'vcr'
 end
 
 group :test do
@@ -42,9 +41,4 @@ group :development do
   gem "populator"
   gem "faker"
   gem "pivotal-github"
-end
-
-
-group :test do
-  gem 'webmock'
 end
