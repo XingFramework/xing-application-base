@@ -19,11 +19,6 @@ feature "User Signs In and Edits Page", :js => true, :vcr => {} do
     click_on("Edit This Page")
   end
 
-  scenario "signs in" do
-    sign_in_with(user.email, user.password)
-    expect(page).to have_content("Sign Out")
-  end
-
   scenario "views a page to edit" do
     sign_in_with(user.email, user.password)
     expect(page).to have_content("Edit Page")
@@ -46,6 +41,7 @@ feature "User Signs In and Edits Page", :js => true, :vcr => {} do
     expect(page).to have_css("*[lrd-admin-editable='main']")
     page.all('.froala-element')[1].set("Spanking new content!")
     click_on("Save")
+    expect(page).to have_css("#root_inner_page_show")
     expect(page).to have_content("Brand New Headline")
     expect(page).to have_content("Spanking new content!")
   end
