@@ -81,10 +81,12 @@ describe PageMapper, :type => :mapper do
         end
 
         # TODO is this supposed to reject the entire page or can we just reject the extra content??
-        it "should not save the extra content" do
+        it "should save the page without the extra content block" do
           expect do
-            mapper.save
-          end.to change{ Page.count}.by(1)
+            expect do
+              mapper.save
+            end.to change{ Page.count }.by(1)
+          end.to change{ ContentBlock.count }.by(2)
           expect(Page.last.contents["sidebar"]).to be_nil
         end
       end
@@ -114,8 +116,10 @@ describe PageMapper, :type => :mapper do
 
           it "should insert an error into the errors hash without saving anything" do
             expect do
-              mapper.save
-            end.not_to change{ Page.count}
+              expect do
+                mapper.save
+              end.not_to change{ Page.count }
+            end.not_to change{ ContentBlock.count }
             expect(mapper.errors).to eq(
               {:data=>{:contents=>{"main"=>{:data=>{:body=>{:type=>:required, :message=>"can't be blank"}}}}}}
             )
@@ -136,10 +140,12 @@ describe PageMapper, :type => :mapper do
 
           it "should insert an error into the errors hash without saving anything" do
             expect do
-              mapper.save
-            end.not_to change{ Page.count}
+              expect do
+                mapper.save
+              end.not_to change{ Page.count }
+            end.not_to change{ ContentBlock.count }
             expect(mapper.errors).to eq(
-              {:data=>{:contents=>{"main"=>{:data=>{:type=>:required, :msg=>"This field is required."}}}}}
+              {:data=>{:contents=>{"main"=>{:data=>{:type=>:required, :msg=>"This block is required: main"}}}}}
             )
           end
         end
@@ -249,7 +255,41 @@ describe PageMapper, :type => :mapper do
       end
     end
 
+    describe "a content body with invalid fields" do
+      let :json do
+        { data: {
+          contents: { main: { data: { body: "" }}},
+          'layout' => 'one_column'
+          }
+        }.to_json
+      end
 
+      it "should not update the desired column" do
+        expect do
+          mapper.save
+        end.not_to change{ page.reload.contents['main'].body }
+      end
+
+      it "should add to errors hash" do
+        mapper.save
+        expect(mapper.errors[:data]).to eq({:contents=>{"main"=>{:data=>{:body=>{:type=>:required, :message=>"can't be blank"}}}}})
+      end
+
+      # is this too clever for its own good?  trying to avoid having to make
+      # a new mapper and save it for each individual attribute
+      it "should not update anything else" do
+        unchanged_fields = [ :url_slug, :keywords, :description, :title ]
+        expect do
+          mapper.save
+        end.not_to change {
+          page.reload
+          unchanged_fields.map do |key|
+            [ key, page.send(key) ]
+          end
+        }
+
+      end
+    end
 
   end
 end

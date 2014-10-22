@@ -10,8 +10,6 @@ class ContentBlockMapper < HypermediaJSONMapper
   end
 
   def build_errors
-    self.error_data = {}
-
     content_block = self.content_block
 
     unless content_block.valid?
