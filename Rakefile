@@ -153,9 +153,11 @@ end
 namespace :spec do
 
   task :grunt_ci_test => 'frontend:setup' do
-    Dir.chdir("frontend"){
-      sh *%w{bundle exec node_modules/.bin/grunt ci-test}
-    }
+    Bundler.with_clean_env do
+      Dir.chdir("frontend"){
+        sh *%w{bundle exec node_modules/.bin/grunt ci-test}
+      }
+    end
   end
 
   namespace :backend do
@@ -175,25 +177,29 @@ namespace :spec do
   end
 
   task :full, [:spec_files] => [:grunt_ci_test, :links, 'backend:setup'] do |t, args|
-    Dir.chdir("backend"){
-      commands = %w{bundle exec rspec}
-      if args[:spec_files]
-        commands.push(args[:spec_files])
-      end
-      sh *commands
-    }
+    Bundler.with_clean_env do
+      Dir.chdir("backend"){
+        commands = %w{bundle exec rspec}
+        if args[:spec_files]
+          commands.push(args[:spec_files])
+        end
+        sh *commands
+      }
+    end
   end
 
   task :fast, [:spec_files] => [:links, 'backend:setup'] do |t, args|
-    Dir.chdir("backend"){
-      commands = %w{bundle exec rspec}
-      if args[:spec_files]
-        commands.push(args[:spec_files])
-      else
-        commands.push("--tag").push("~type:feature")
-      end
-      sh *commands
-    }
+    Bundler.with_clean_env do
+      Dir.chdir("backend"){
+        commands = %w{bundle exec rspec}
+        if args[:spec_files]
+          commands.push(args[:spec_files])
+        else
+          commands.push("--tag").push("~type:feature")
+        end
+        sh *commands
+      }
+    end
   end
 end
 
@@ -202,7 +208,9 @@ namespace :build do
 
   namespace :frontend do
     task :grunt_compile => ['frontend:setup'] do
-      Dir.chdir("frontend"){ sh *%w{bundle exec node_modules/.bin/grunt compile} }
+      Bundler.with_clean_env do
+        Dir.chdir("frontend"){ sh *%w{bundle exec node_modules/.bin/grunt compile} }
+      end
     end
 
     task :all => [:grunt_compile]
