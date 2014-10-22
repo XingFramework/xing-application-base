@@ -15,14 +15,14 @@ feature "Visitor navigates with the main menu", :js => true, :vcr => {} do
   end
 
   let! :path_link do
-    FactoryGirl.create(:menu_item_without_page, name: "Path Link", parent_id: 1, path: 'http://lrdesign.com')
+    FactoryGirl.create(:menu_item_without_page, name: "Path Link", parent_id: 1, path: '/#/sign-in')
   end
 
   scenario "visit a path" do
     visit '/'
     click_on("Path Link")
-    expect(page).to have_content("Logical Reality")
-    expect(URI(current_url).host).to eq('lrdesign.com')
+    expect(page).to have_content("Sign In")
+    expect(URI(current_url).fragment).to eq('/sign-in')
   end
 
   scenario "visit a page" do
