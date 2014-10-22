@@ -22,7 +22,6 @@ angular.module(`${appName}.homepage`)
 })
 
 .controller( 'HomepageShowCtrl', function( $scope, page ){
-  console.log("25");
   $scope.$emit('metadataSet', page.metadata);
 })
 
