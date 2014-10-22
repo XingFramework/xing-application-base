@@ -5,7 +5,7 @@ import {} from './pagesModule';
 angular.module(`${appName}.pages`)
 
 .controller( 'PageNewCtrl', function( $scope ){
-
+  $scope.$emit('metadataSet', page.metadata);
 })
 
 .controller( 'PageEditCtrl', function( $scope, page ){
@@ -20,6 +20,7 @@ angular.module(`${appName}.pages`)
 
 .controller( 'PageShowCtrl', function( $scope, page ){
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
+  $scope.$emit('metadataSet', page.metadata);
 })
 
 .controller( 'PagesCtrl', function( $window, $scope, $state, $stateParams, $sce, page, isAdmin) {
