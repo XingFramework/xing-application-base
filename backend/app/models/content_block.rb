@@ -13,4 +13,5 @@
 class ContentBlock < ActiveRecord::Base
   has_many :page_contents
   has_many :pages, :through => :page_contents
+  validates_presence_of :body
 end

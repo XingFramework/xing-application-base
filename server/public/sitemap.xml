@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://example.com/</loc>
+    <lastmod>2014-09-12T19:21:42Z</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/some_static_path</loc>
+    <lastmod>2014-09-12T19:21:42Z</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/other_static_path</loc>
+    <lastmod>2014-09-12T19:21:42Z</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/homepage</loc>
+    <lastmod>2014-09-12T19:21:42+00:00</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/auto_gen_link_url_17</loc>
+    <lastmod>2014-09-12T19:21:42+00:00</lastmod>
+  </url>
+</urlset>

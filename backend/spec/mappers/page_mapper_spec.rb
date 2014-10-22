@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe PageMapper, :type => :mapper do
   describe "saving content" do
+
     describe "for a page with two content blocks" do
 
       let :mapper do
@@ -56,7 +57,6 @@ describe PageMapper, :type => :mapper do
           page = Page.last
           page.contents['main'].body.should     == 'Fourscore and seven years.'
           page.contents['headline'].body.should == 'The Gettysburg Address'
-
         end
 
         it "should be able to return the page" do
@@ -80,12 +80,12 @@ describe PageMapper, :type => :mapper do
           invalid_data.to_json
         end
 
-        it "should raise an error without saving anything" do
+        # TODO is this supposed to reject the entire page or can we just reject the extra content??
+        it "should not save the extra content" do
           expect do
-            expect do
-              mapper.save
-            end.to raise_error(PageMapper::BadContentException)
-          end.not_to change{ Page.count}
+            mapper.save
+          end.to change{ Page.count}.by(1)
+          expect(Page.last.contents["sidebar"]).to be_nil
         end
       end
 
@@ -112,12 +112,13 @@ describe PageMapper, :type => :mapper do
           end
 
 
-          it "should raise an error without saving anything" do
+          it "should insert an error into the errors hash without saving anything" do
             expect do
-              expect do
-                mapper.save
-              end.to raise_error(PageMapper::MissingContentException)
+              mapper.save
             end.not_to change{ Page.count}
+            expect(mapper.errors).to eq(
+              {:data=>{:contents=>{"main"=>{:data=>{:body=>{:type=>:required, :message=>"can't be blank"}}}}}}
+            )
           end
         end
 
@@ -133,18 +134,17 @@ describe PageMapper, :type => :mapper do
             }}
           end
 
-          it "should raise an error without saving anything" do
+          it "should insert an error into the errors hash without saving anything" do
             expect do
-              expect do
-                mapper.save
-              end.to raise_error(PageMapper::MissingContentException)
+              mapper.save
             end.not_to change{ Page.count}
+            expect(mapper.errors).to eq(
+              {:data=>{:contents=>{"main"=>{:data=>{:type=>:required, :msg=>"This field is required."}}}}}
+            )
           end
         end
-
       end
     end
-
   end
 
 

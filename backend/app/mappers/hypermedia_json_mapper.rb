@@ -24,7 +24,17 @@ class HypermediaJSONMapper
     end
     @locator = locator
   end
-  attr_accessor :locator, :record
+  attr_accessor :locator, :record, :error_data
+
+  ERROR_CONVERSIONS = {
+    "can't be blank" => :required
+  }
+
+  def convert_ar_message(ar_message, my_message = nil)
+    { :type => ERROR_CONVERSIONS[ar_message] || :unknown ,
+      :message => my_message || ar_message
+    }
+  end
 
   def router
     Rails.application.routes
@@ -85,7 +95,22 @@ class HypermediaJSONMapper
     hash['data'].with_indifferent_access
   end
 
+  def wrap_data(hash)
+    {
+      data: hash
+    }
+  end
+
   def errors
-    {}
+    wrap_data(error_data)
+  end
+
+  def build
+    data = unwrap_data(@source_hash)
+    self.error_data = Hash.new { |hash, key| hash[key] = {} }
+
+    assign_values(data)
+    map_nested_models
+    build_errors
   end
 end
