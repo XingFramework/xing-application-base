@@ -7,7 +7,7 @@ feature "User Signs In and Edits Page", :js => true, :vcr => {} do
   end
 
   let! :oc_page do
-    FactoryGirl.create(:one_column_page, :title => "Pagetastic", :url_slug => "page123")
+    FactoryGirl.create(:one_column_page)
   end
 
   def edit_page(page)
@@ -62,4 +62,23 @@ feature "User Signs In and Edits Page", :js => true, :vcr => {} do
     expect(URI(current_url).fragment).to eq("/pages/new_slug")
   end
 
+  scenario "edits and saves a page's keywords" do
+    edit_page(oc_page)
+    fill_in "Keywords", :with => "this, that, the other thing"
+    click_on("Save")
+    expect(page).to have_css("#root_inner_page_show")
+
+    meta_content = find(:xpath, "//meta[@name='keywords']", :visible => false)[:content]
+    expect(meta_content).to eq("this, that, the other thing")
+  end
+
+  scenario "edits and saves a page's description" do
+    edit_page(oc_page)
+    fill_in "Description", :with => "Question your tea spoons."
+    click_on("Save")
+    expect(page).to have_css("#root_inner_page_show")
+
+    meta_content = find(:xpath, "//meta[@name='description']", :visible => false)[:content]
+    expect(meta_content).to eq("Question your tea spoons.")
+  end
 end

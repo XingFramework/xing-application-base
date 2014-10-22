@@ -4,7 +4,7 @@ var paths = {
   publicUrl: "$.links.public",
   adminUrl: "$.links.admin",
   selfUrl: "$.links.self"
-}
+};
 
 export default class BackendResponse {
   constructor(backend, responsePromise) {
