@@ -36,6 +36,15 @@ class HypermediaJSONMapper
     }
   end
 
+  def add_ar_arrors(object)
+    unless object.valid?
+      object.errors.messages.each do |ar_error|
+        message = ar_error[1][0]
+        self.error_data[ar_error[0]] = convert_ar_message(message)
+      end
+    end
+  end
+
   def router
     Rails.application.routes
   end

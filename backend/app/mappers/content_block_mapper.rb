@@ -11,12 +11,6 @@ class ContentBlockMapper < HypermediaJSONMapper
 
   def build_errors
     content_block = self.content_block
-
-    unless content_block.valid?
-      content_block.errors.messages.each do |ar_error|
-        message = ar_error[1][0]
-        self.error_data[ar_error[0]] = convert_ar_message(message)
-      end
-    end
+    self.add_ar_arrors(content_block)
   end
 end

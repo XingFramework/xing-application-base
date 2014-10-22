@@ -45,26 +45,30 @@ class PageMapper < HypermediaJSONMapper
     return unless @block_hash.present?
     @page_class.content_format.each do |content_block_specifier|
       block_name = content_block_specifier[:name]
-      if @block_hash[block_name].present?
-        format = self.page.named_content_format(block_name)
-        block_data = @block_hash[block_name]
-        block_data[:data][:content_type] = format[:content_type]
-        cbm = ContentBlockMapper.new(block_data)
-        cbm.block_name = block_name
-        cbm.page_layout = self.page_layout
-        cbm.build
 
-        if cbm.content_block.body.blank?
-          error_data[:contents][block_name] = error_data[:contents][block_name] = { :data => {:body=>{:type=>:required, :message=>"can't be blank"}} }
-        else
-          set_content_block(self.page, block_name, unwrap_data(block_data) )
-        end
+      if @block_hash[block_name].present?
+        build_content_block(block_name)
       end
+
       build_nested_errors(content_block_specifier, block_name)
+
+      unless @nested_errors > 0 || @block_data.nil?
+        save_content_block(self.page, block_name, unwrap_data(@block_data) )
+      end
     end
   end
 
-  def set_content_block(page, block_name, block_data)
+  def build_content_block(block_name)
+    format = self.page.named_content_format(block_name)
+    @block_data = @block_hash[block_name]
+    @block_data[:data][:content_type] = format[:content_type]
+    @cbm = ContentBlockMapper.new(@block_data)
+    @cbm.block_name = block_name
+    @cbm.page_layout = self.page_layout
+    @cbm.build
+  end
+
+  def save_content_block(page, block_name, block_data)
     if (content_block = page.contents[block_name]).present?
       update_content_block(content_block, block_data)
     else
@@ -88,22 +92,23 @@ class PageMapper < HypermediaJSONMapper
   end
 
   def build_nested_errors(content_block_specifier, block_name)
+    @nested_errors = 0
     if content_block_specifier[:required]
       if  @block_hash[block_name].blank?
         error_data[:contents][block_name] = { :data => { :type => :required, :msg => "This block is required: #{block_name}"} }
+        @nested_errors += 1
+      end
+
+      if @cbm && @cbm.content_block.body.blank?
+        error_data[:contents][block_name] = error_data[:contents][block_name] = { :data => {:body=>{:type=>:required, :message=>"can't be blank"}} }
+        @nested_errors += 1
       end
     end
   end
 
   def build_errors
     page = self.page
-
-    unless page.valid?
-      page.errors.messages.each do |ar_error|
-        message = ar_error[1][0]
-        self.error_data[ar_error[0]] = convert_ar_message(message)
-      end
-    end
+    self.add_ar_arrors(page)
   end
 
 end
