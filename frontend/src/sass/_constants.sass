@@ -1,0 +1,23 @@
+$content_width: 960px
+$admin_menu_height: 22px
+$admin_background_color: #777755
+$breakpoint-to-ems: true
+
+$small: 500px
+$medium: 768px
+$desktop: 960px
+
+@mixin clearfix
+  content: "."
+  display: block
+  height: 0
+  clear: both
+  visibility: hidden
+
+$error_background: #e9b2b2
+
+@mixin error_notice_colors
+  border-width: 2px
+  border-style: solid
+  border-color: #ff4444
+  background: $error_background
