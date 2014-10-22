@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "User navigates with the main menu", :js => true, :vcr => {} do
+feature "Visitor navigates with the main menu", :js => true, :vcr => {} do
 
   let :page_one do
     FactoryGirl.create(:one_column_page)
