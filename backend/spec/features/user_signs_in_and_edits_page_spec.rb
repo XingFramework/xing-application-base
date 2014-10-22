@@ -7,7 +7,7 @@ feature "User Signs In and Edits Page", :js => true, :vcr => {} do
   end
 
   let! :oc_page do
-    FactoryGirl.create(:one_column_page, :title => "Pagetastic", :url_slug => "page123")
+    FactoryGirl.create(:one_column_page)
   end
 
   def edit_page(page)
