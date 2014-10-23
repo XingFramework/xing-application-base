@@ -10,6 +10,7 @@ class ContentBlockMapper < HypermediaJSONMapper
   end
 
   def build_errors
+    #there are currently no AR errors
     content_block = self.content_block
     self.add_ar_arrors(content_block)
   end

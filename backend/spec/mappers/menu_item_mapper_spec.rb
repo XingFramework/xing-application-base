@@ -84,6 +84,32 @@ describe MenuItemMapper, :type => :mapper do
         expect(mapper.menu_item.parent).to eq(menu_item)
       end
 
+      describe "with missing name" do
+        let :invalid_data do
+          {
+            data: {
+              name: nil,
+              path: 'https://www.owasp.org/index.php/Main_Page',
+              type: 'raw_url',
+              parent_id: menu_item.id
+            }
+          }
+        end
+
+        let :json do
+          invalid_data.to_json
+        end
+
+        it "should add to error hash without saving anything" do
+          expect do
+            mapper.save
+          end.not_to change{ MenuItem.count }
+          expect(mapper.errors).to eq(
+            {:data=>{:name=>{:type=>:required, :message=>"can't be blank"}}}
+          )
+        end
+      end
+
       describe "with missing url" do
         let :invalid_data do
           {
@@ -100,13 +126,14 @@ describe MenuItemMapper, :type => :mapper do
           invalid_data.to_json
         end
 
-        it "should raise an error without saving anything" do
+        it "should add to error hash without saving anything" do
           expect do
-            expect do
-              Rails.logger.warn{ "Beginning save" }
-              mapper.save
-            end.to raise_error(MenuItemMapper::MissingLinkException)
-          end.not_to change{ MenuItem.count}
+            Rails.logger.warn{ "Beginning save" }
+            mapper.save
+          end.not_to change{ MenuItem.count }
+          expect(mapper.errors).to eq(
+            {:data=>{:path=>{:type=>:required, :message=>"This field is required"}}}
+          )
         end
       end
     end
@@ -147,12 +174,13 @@ describe MenuItemMapper, :type => :mapper do
           invalid_data.to_json
         end
 
-        it "should raise an error without saving anything" do
+        it "should add to error hash without saving anything" do
           expect do
-            expect do
               mapper.save
-            end.to raise_error(MenuItemMapper::MissingLinkException)
           end.not_to change{ MenuItem.count}
+          expect(mapper.errors).to eq(
+            {:data=>{:page=>{:type=>:required, :message=>"This field is required"}}}
+          )
         end
       end
     end

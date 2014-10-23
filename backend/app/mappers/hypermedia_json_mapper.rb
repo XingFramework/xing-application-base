@@ -1,7 +1,4 @@
 class HypermediaJSONMapper
-  class BadContentException < Exception; end
-  class MissingContentException < Exception; end
-  class MissingLayoutException < Exception; end
   class MissingLinkException < Exception; end
 
   # Subclasses must define:
@@ -25,25 +22,6 @@ class HypermediaJSONMapper
     @locator = locator
   end
   attr_accessor :locator, :record, :error_data
-
-  ERROR_CONVERSIONS = {
-    "can't be blank" => :required
-  }
-
-  def convert_ar_message(ar_message, my_message = nil)
-    { :type => ERROR_CONVERSIONS[ar_message] || :unknown ,
-      :message => my_message || ar_message
-    }
-  end
-
-  def add_ar_arrors(object)
-    unless object.valid?
-      object.errors.messages.each do |ar_error|
-        message = ar_error[1][0]
-        self.error_data[ar_error[0]] = convert_ar_message(message)
-      end
-    end
-  end
 
   def router
     Rails.application.routes
@@ -74,7 +52,7 @@ class HypermediaJSONMapper
   def find_and_update
     find_existing
     update_record
-    save_record
+    # save_record
   end
 
   # Default for saving new records
@@ -98,6 +76,7 @@ class HypermediaJSONMapper
   # (e.g. `return Page`
   def build_new
     self.record = record_class.new
+    update_record
   end
 
   def unwrap_data(hash)
@@ -110,10 +89,6 @@ class HypermediaJSONMapper
     }
   end
 
-  def errors
-    wrap_data(error_data)
-  end
-
   def build
     data = unwrap_data(@source_hash)
     self.error_data = Hash.new { |hash, key| hash[key] = {} }
@@ -122,4 +97,28 @@ class HypermediaJSONMapper
     map_nested_models
     build_errors
   end
+
+  def errors
+    wrap_data(error_data)
+  end
+
+  ERROR_CONVERSIONS = {
+    "can't be blank" => :required
+  }
+
+  def convert_ar_message(ar_message, my_message = nil)
+    { :type => ERROR_CONVERSIONS[ar_message] || :unknown ,
+      :message => my_message || ar_message
+    }
+  end
+
+  def add_ar_arrors(object)
+    unless object.valid?
+      object.errors.messages.each do |ar_error|
+        message = ar_error[1][0]
+        self.error_data[ar_error[0]] = convert_ar_message(message)
+      end
+    end
+  end
+
 end

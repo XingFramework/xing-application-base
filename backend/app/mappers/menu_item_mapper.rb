@@ -4,6 +4,38 @@ class MenuItemMapper < HypermediaJSONMapper
 
   attr_accessor :parent_id
 
+  def save
+    build
+    unless self.errors[:data].present?
+      self.menu_item.save
+    end
+  end
+
+  def assign_values(data_hash)
+    @menu_item_data = data_hash
+    if parent_id.present?
+      @menu_item_data["parent_id"] = parent_id
+    end
+    @menu_item_type = @menu_item_data.delete('type')
+    @external_path = @menu_item_data.delete('path')
+    @embedded_page = @menu_item_data.delete('page')
+
+    if @locator.present?
+      find_and_update
+    else
+      build_new
+    end
+  end
+
+  def map_nested_models
+    #do nothing
+  end
+
+  def build_errors
+    menu_item = self.menu_item
+    self.add_ar_arrors(menu_item)
+  end
+
   def record_class
     MenuItem
   end
@@ -12,16 +44,6 @@ class MenuItemMapper < HypermediaJSONMapper
     attrs_hash = @menu_item_data.slice(*(@menu_item_data.keys - ["children", :children]))
     menu_item.assign_attributes(attrs_hash)
     set_link
-  end
-
-  def extract_data
-    @menu_item_data = unwrap_data(@source_hash)
-    if parent_id.present?
-      @menu_item_data["parent_id"] = parent_id
-    end
-    @menu_item_type = @menu_item_data.delete('type')
-    @external_path = @menu_item_data.delete('path')
-    @embedded_page = @menu_item_data.delete('page')
   end
 
   def set_link
@@ -43,7 +65,7 @@ class MenuItemMapper < HypermediaJSONMapper
       page = Page.find_by_url_slug(url_slug)
       self.menu_item.page = page
     else
-      raise MissingLinkException.new("Page URL not set: #{@menu_item_data.inspect}")
+      error_data[:page] = { :type => :required, :message => "This field is required" }
     end
   end
 
@@ -51,7 +73,7 @@ class MenuItemMapper < HypermediaJSONMapper
     if @external_path.present?
       self.menu_item.path = @external_path
     else
-      raise MissingLinkException.new("External URL not set: #{@menu_item_data.inspect}")
+      error_data[:path] = { :type => :required, :message => "This field is required" }
     end
   end
 end

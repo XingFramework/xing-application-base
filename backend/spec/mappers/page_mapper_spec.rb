@@ -145,7 +145,7 @@ describe PageMapper, :type => :mapper do
               end.not_to change{ Page.count }
             end.not_to change{ ContentBlock.count }
             expect(mapper.errors).to eq(
-              {:data=>{:contents=>{"main"=>{:data=>{:type=>:required, :msg=>"This block is required: main"}}}}}
+              {:data=>{:contents=>{"main"=>{:data=>{:type=>:required, :message=>"This block is required: main"}}}}}
             )
           end
         end
