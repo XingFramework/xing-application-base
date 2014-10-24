@@ -1,4 +1,5 @@
 import {Menu, MenuItem} from "../../src/common/resources/Menu";
+import mockResourceTemplates from "../support/mockResourceTemplates";
 
 describe('MenuItem class', function(){
   describe('created by front end', function() {
@@ -6,6 +7,7 @@ describe('MenuItem class', function(){
 
     beforeEach(function() {
       mockBackend = {};
+      mockResourceTemplates();
       menuItem = new MenuItem(mockBackend);
     });
 
@@ -80,6 +82,9 @@ describe('Menu class', function() {
       return resolve(data);
     });
     mockBackend = {};
+    mockResourceTemplates({
+      "page": new UriTemplate("/pages/{url_slug}")
+    });
     menu = new Menu(mockBackend, promise);
     menu.complete.then(function(){
       done();
@@ -92,6 +97,10 @@ describe('Menu class', function() {
 
   it('should have a target', function() {
     expect(menu.items[0].target).toEqual('/pages/test-1');
+  });
+
+  it("should have a page short linkt arget", function() {
+    expect(menu.items[0].pageTarget).toEqual("test-1");
   });
 
   it('should have a name', function() {

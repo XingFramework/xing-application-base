@@ -2,6 +2,7 @@ import {appName} from '../common/config';
 import {} from '../../build/templates-app';
 import {} from '../../build/templates-common';
 import {} from './navigationBar/navigationBar';
+import {} from './stateAttrs/stateAttrs';
 import {} from '../common/backend/backend';
 import {} from "../common/ui-route-logger";
 import {} from './admin/admin';
@@ -17,7 +18,9 @@ import {} from '../common/toast/toast';
 angular.module( appName, [
   'templates-app', 'templates-common', 'ui.router',
   'picardy.fontawesome',
-  `${appName}.backend`, `${appName}.navigationBar`,
+  `${appName}.backend`,
+  `${appName}.navigationBar`,
+  `${appName}.stateAttrs`,
   `${appName}.route-logger`,
   `${appName}.pages`,
   `${appName}.menus`,
@@ -55,7 +58,6 @@ angular.module( appName, [
   $scope.$watch(
     ()=>{ return menuRoot.etag; },
     ()=>{
-      console.log("app/app.js:58", "menuRoot.etag", menuRoot.etag);
       $scope.mainMenu = menuRoot.children;
     });
 });

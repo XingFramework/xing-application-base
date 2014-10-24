@@ -21,6 +21,10 @@ angular.module(`${appName}.homepage`)
   };
 })
 
+.controller( 'HomepageShowCtrl', function( $scope, page ){
+  $scope.$emit('metadataSet', page.metadata);
+})
+
 .controller( 'HomepageCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.nowEditing = false;
   $scope.edit = function(){

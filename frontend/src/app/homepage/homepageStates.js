@@ -31,7 +31,8 @@ angular.module(`${appName}.homepage`)
 
     .state( 'root.homepage.show', {
       url: '',
-      templateUrl: 'homepage/homepage.tpl.html',
+      controller: 'HomepageShowCtrl',
+      templateUrl: 'homepage/homepage.tpl.html'
     })
 
     .state( 'root.homepage.edit', {

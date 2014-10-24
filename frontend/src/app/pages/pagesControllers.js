@@ -5,7 +5,7 @@ import {} from './pagesModule';
 angular.module(`${appName}.pages`)
 
 .controller( 'PageNewCtrl', function( $scope ){
-
+  $scope.$emit('metadataSet', page.metadata);
 })
 
 .controller( 'PageEditCtrl', function( $scope, page ){
@@ -20,6 +20,7 @@ angular.module(`${appName}.pages`)
 
 .controller( 'PageShowCtrl', function( $scope, page ){
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
+  $scope.$emit('metadataSet', page.metadata);
 })
 
 .controller( 'PagesCtrl', function( $window, $scope, $state, $stateParams, $sce, page, isAdmin) {
@@ -28,7 +29,7 @@ angular.module(`${appName}.pages`)
       $state.go('^.edit', {}, {location: false});
     },
     show(){
-      $state.go("^.show", {pageUrl: page.slugUrl});
+      $state.go("^.show", {pageUrl: page.shortLink});
     },
     remove(){
       if($window.confirm("This will delete the page - it cannot be undone!")){
@@ -45,7 +46,7 @@ angular.module(`${appName}.pages`)
       }
       page.save();
       page.complete.then((page) => {
-        $state.go("^.show", {pageUrl: page.slugUrl});
+        $state.go("^.show", {pageUrl: page.shortLink});
         return page;
       });
     }

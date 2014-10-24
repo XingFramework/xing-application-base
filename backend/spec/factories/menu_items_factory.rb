@@ -25,7 +25,7 @@ FactoryGirl.define do
 
   factory :menu_item_with_single_child, :parent => :menu_item do
     after_create do |me|
-      child = Factory(:menu_item)
+      child = FactoryGirl.build(:menu_item)
       child.move_to_child_of(me)
     end
   end

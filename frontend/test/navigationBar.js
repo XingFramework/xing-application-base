@@ -40,6 +40,7 @@ describe('navigationBar directive', function() {
       element = compiledWithMenu({ items: [ {
         name: "Test Page",
         target: "/pages/test-page",
+        pageTarget: "test-page",
         external: function(){ return false; },
         internal: function(){ return true; },
         hasChildren: function(){ return false; }
@@ -56,7 +57,7 @@ describe('navigationBar directive', function() {
 
 
     it('have a ui-router state link', function() {
-      var sref = $state.href("root.inner.page.show", {pageUrl: encodeURI("/pages/test-page")});
+      var sref = $state.href("root.inner.page.show", {pageUrl: "test-page"});
       expect(xpath(element, `.//a[@href="${sref}"]`).snapshotLength).toBeGreaterThan(0);
       //expect(stringAtXpath(element, './/a[@ui-sref]/@ui-sref')).toMatch(/test-page/);
     });

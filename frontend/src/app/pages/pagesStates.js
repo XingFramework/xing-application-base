@@ -38,7 +38,7 @@ angular.module(`${appName}.pages`)
           } else {
             page.role = "guest";
           }
-          page.loadFrom($stateParams.pageUrl);
+          page.loadFromShortLink($stateParams.pageUrl);
           return page.complete;
         }
       },

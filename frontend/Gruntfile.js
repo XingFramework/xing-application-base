@@ -27,6 +27,11 @@ module.exports = function( grunt ) {
    * Load in our build configuration file.
    */
   var userConfig = require( './build.config.js' );
+  var portOffset = function() {
+    return ((1*process.env.PORT_OFFSET) || 0)
+  }
+  var liveReloadPort   = 35729 + portOffset();
+  var karmaRunnerPort  = 9101  + portOffset();
 
   userConfig.pkg = grunt.file.readJSON("package.json");
   /**
@@ -460,7 +465,7 @@ module.exports = function( grunt ) {
         },
         unit: {
           options: {
-            runnerPort: 9101,
+            runnerPort: karmaRunnerPort,
             background: true
           }
         },
@@ -531,7 +536,7 @@ module.exports = function( grunt ) {
             open: true,
             port: 9000,
             hostname: 'localhost',
-            livereload: 35729,
+            livereload: liveReloadPort,
             middleware: function(connect, options, middlewares) {
               middlewares.unshift(function(req, res, next) {
                 if(/application\/json/.test(req.headers["accept"])){
@@ -570,7 +575,7 @@ module.exports = function( grunt ) {
          * plugin should auto-detect.
          */
         options: {
-          livereload: true
+          livereload: liveReloadPort
         },
 
         /**
@@ -786,7 +791,8 @@ module.exports = function( grunt ) {
       return file.replace( dirRE, '' );
     });
     if(!this.data.production){
-      jsFiles.push("http://localhost:35729/livereload.js?snipver=1&maxdelay=15000");
+      port =
+      jsFiles.push("http://localhost:"+liveReloadPort+"/livereload.js?snipver=1&maxdelay=15000");
     }
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
@@ -824,4 +830,4 @@ module.exports = function( grunt ) {
       }
     });
   });
-};
+process.env.ENV_VARIABLE};

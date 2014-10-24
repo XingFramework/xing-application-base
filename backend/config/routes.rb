@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get "pages/:url_slug", :to => 'pages#show', :as => :page
   resources :menus, :only => [ :show, :index, :update ]
 
+  # This should be the root route, but for the moment public/index.html
+  # overrides root route even with an accept header
+  resources :resources, :only => [:index]
+
   namespace :admin do
     resources :froala_images, :only => [:index, :create]
     post "/froala_images/delete", :to => 'froala_images#destroy'
