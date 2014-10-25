@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :main_menu_root, :class => MenuItem do
-    name "Main Menuz"
+    name "Main Menu"
     parent nil
   end
 

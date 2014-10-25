@@ -4,11 +4,8 @@ class MenuItemMapper < HypermediaJSONMapper
 
   attr_accessor :parent_id
 
-  def save
-    build
-    unless self.errors[:data].present?
-      self.menu_item.save
-    end
+  def record_class
+    MenuItem
   end
 
   def assign_values(data_hash)
@@ -20,24 +17,7 @@ class MenuItemMapper < HypermediaJSONMapper
     @external_path = @menu_item_data.delete('path')
     @embedded_page = @menu_item_data.delete('page')
 
-    if @locator.present?
-      find_and_update
-    else
-      build_new
-    end
-  end
-
-  def map_nested_models
-    #do nothing
-  end
-
-  def build_errors
-    menu_item = self.menu_item
-    self.add_ar_arrors(menu_item)
-  end
-
-  def record_class
-    MenuItem
+    super
   end
 
   def update_record

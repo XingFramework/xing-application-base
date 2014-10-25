@@ -8,25 +8,28 @@ class MenuMapper < HypermediaJSONMapper
   end
   attr_reader :existing_root
 
-  def extract_data
-    @menu_data = unwrap_data(@source_hash)
+  def record_class
+    MenuItem
+  end
+
+  def assign_values(data_hash)
+    @menu_data = data_hash
+
+    super
   end
 
   def find_existing
     super
+
     @existing_root = menu_root
     build_new
-  end
-
-  def record_class
-    MenuItem
   end
 
   def menu_level(items, parent_id)
     items.each do |item_record|
       item_mapper = MenuItemMapper.new(item_record)
       item_mapper.parent_id = parent_id
-      item_mapper.save!
+      item_mapper.save
 
       if item_record["data"]["children"].present?
         menu_level(item_record["data"]["children"], item_mapper.menu_item.id)
@@ -34,13 +37,10 @@ class MenuMapper < HypermediaJSONMapper
     end
   end
 
-  def save_record
-  end
-
   def update_record
     root_mapper = MenuItemMapper.new(@source_hash, menu_root.id)
     root_mapper.menu_item = menu_root
-    root_mapper.save!
+    root_mapper.save
     self.menu_root = root_mapper.menu_item
     menu_level(@menu_data["children"], menu_root.id)
     if existing_root

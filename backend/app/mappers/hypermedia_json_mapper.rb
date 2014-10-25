@@ -2,10 +2,11 @@ class HypermediaJSONMapper
   class MissingLinkException < Exception; end
 
   # Subclasses must define:
+  #  * aliases for self.record
   #   * save
   #   OR
-  #   * extract_data
-  #    * find_and_update and save_new
+  #   * assign_values
+  #    * find_and_update and build_and_update
   #     OR
   #    * record_class OR find_existing and build_new
   #    * update_record
@@ -32,38 +33,23 @@ class HypermediaJSONMapper
   end
 
   # Default save - subclasses might override
-  def save!
-    extract_data
-    if @locator.present?
-      find_and_update
-    else
-      save_new
+  def save
+    build
+    unless self.errors[:data].present?
+      self.record.save
     end
   end
 
-  def save
-    save!
-    return true
-  rescue ActiveRecord::RecordInvalid
-    return false
-  end
-
-  # Default for saving existing records
+  # Default for finding/updating existing records
   def find_and_update
     find_existing
     update_record
-    # save_record
   end
 
-  # Default for saving new records
-  def save_new
+  # Default for building/updating existing records
+  def build_and_update
     build_new
     update_record
-    save_record
-  end
-
-  def save_record
-    self.record.save!
   end
 
   # Default for finding an existing record - override this *or* define
@@ -76,7 +62,15 @@ class HypermediaJSONMapper
   # (e.g. `return Page`
   def build_new
     self.record = record_class.new
-    update_record
+  end
+
+  def build
+    data = unwrap_data(@source_hash)
+    self.error_data = Hash.new { |hash, key| hash[key] = {} }
+
+    assign_values(data)
+    map_nested_models
+    build_errors
   end
 
   def unwrap_data(hash)
@@ -89,13 +83,23 @@ class HypermediaJSONMapper
     }
   end
 
-  def build
-    data = unwrap_data(@source_hash)
-    self.error_data = Hash.new { |hash, key| hash[key] = {} }
+  def assign_values(data_hash)
+    # Override in subclasses to assign needed values here
 
-    assign_values(data)
-    map_nested_models
-    build_errors
+    if @locator.present?
+      find_and_update
+    else
+      build_and_update
+    end
+  end
+
+  # Do nothing if there are no nested models
+  # Override this method in subclass if necessary
+  def map_nested_models
+  end
+
+  def build_errors
+    self.add_ar_arrors(self.record)
   end
 
   def errors

@@ -51,7 +51,7 @@ describe MenuMapper, :type => :mapper do
     end
 
     it "should be able to return the menu item with correct attributes" do
-      mapper.save!
+      mapper.save
       expect(mapper.menu_root).to be_a(MenuItem)
       expect(mapper.menu_root).to be_persisted
       expect(mapper.menu_root).to be_root
@@ -84,7 +84,7 @@ describe MenuMapper, :type => :mapper do
     end
 
     it "should be able to return the menu item with correct attributes" do
-      mapper.save!
+      mapper.save
       expect(mapper.menu_root).to be_a(MenuItem)
       expect(mapper.menu_root).to be_persisted
       expect(mapper.menu_root).to be_root

@@ -1,23 +1,14 @@
 class PageMapper < HypermediaJSONMapper
-  attr_accessor :bad_blocks, :page, :page_layout
-
-  def save
-    build
-    unless self.errors[:data].present?
-      self.page.save
-    end
-  end
+  alias page record
+  alias page= record=
+  attr_accessor :bad_blocks, :page_layout
 
   def assign_values(data_hash)
     @page_data = data_hash
     self.page_layout = data_hash.delete('layout')
     @block_hash = data_hash.delete('contents')
 
-    if @locator.present?
-      find_and_update
-    else
-      build_new
-    end
+    super
   end
 
   def find_and_update
@@ -26,7 +17,7 @@ class PageMapper < HypermediaJSONMapper
     set_page_type
   end
 
-  def build_new
+  def build_and_update
     set_page_type
     self.page = @page_class.new(@page_data)
     self.page.set_url_slug
@@ -63,8 +54,6 @@ class PageMapper < HypermediaJSONMapper
     @block_data = @block_hash[block_name]
     @block_data[:data][:content_type] = format[:content_type]
     @cbm = ContentBlockMapper.new(@block_data)
-    @cbm.block_name = block_name
-    @cbm.page_layout = self.page_layout
     @cbm.build
   end
 
@@ -104,11 +93,6 @@ class PageMapper < HypermediaJSONMapper
         @nested_errors += 1
       end
     end
-  end
-
-  def build_errors
-    page = self.page
-    self.add_ar_arrors(page)
   end
 
 end
