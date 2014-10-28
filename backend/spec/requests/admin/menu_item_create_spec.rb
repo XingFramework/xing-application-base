@@ -41,11 +41,11 @@ describe "admin/menu_items#create", :type => :request do
         it "redirects to admin menu item show path" do
           json_post "admin/menu_items", json_body
           expect(response.status).to eq(422)
-          #TODO:  assert correct errors in response body
+          expect(response.body).to eq("{\"data\":{\"name\":{\"type\":\"required\",\"message\":\"can't be blank\"}}}")
         end
       end
 
-      describe 'required information omitted', :pending => 'awaiting new error-accumulation mechanism' do
+      describe 'required information omitted' do
         let :data do
           valid_data.deep_merge({data: {path: nil}})
         end
@@ -54,8 +54,8 @@ describe "admin/menu_items#create", :type => :request do
           it "redirects to admin menu item show path" do
             json_post "admin/menu_items", json_body
             expect(response.status).to eq(422)
-            #TODO:  assert correct errors in response body
-          end
+            expect(response.body).to eq("{\"data\":{\"path\":{\"type\":\"required\",\"message\":\"This field is required\"}}}")
+        end
         end
       end
     end
