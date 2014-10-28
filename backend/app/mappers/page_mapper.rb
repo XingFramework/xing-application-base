@@ -1,95 +1,98 @@
 class PageMapper < HypermediaJSONMapper
-  attr_accessor :bad_blocks, :page
+  alias page record
+  alias page= record=
+  attr_accessor :bad_blocks, :page_layout
 
-  def save
-    extract_data
-    if @locator.present?
-      find_and_update
-    else
-      save_new
-    end
+  def assign_values(data_hash)
+    @page_data = data_hash
+    self.page_layout = data_hash.delete('layout')
+    @block_hash = data_hash.delete('contents')
+
+    super
   end
 
   def find_and_update
     self.page = Page.find_by_url_slug(@locator)
     self.page.update_attributes(@page_data)
-    add_or_update_contents(page, @contents_data)
-    self.page.save
+    set_page_type
   end
 
-  def save_new
+  def build_and_update
     set_page_type
     self.page = @page_class.new(@page_data)
     self.page.set_url_slug
-
-    add_or_update_contents(page, @contents_data)
-    self.page.save
-  end
-
-  def extract_data
-    @page_data     = unwrap_data(@source_hash)
-    @layout        = @page_data.delete('layout')
-    @contents_data = @page_data.delete('contents')
   end
 
   def set_page_type
-    if @layout.present?
-      page_registry_key = @layout.to_sym
+    if self.page_layout.present?
+      page_registry_key = self.page_layout.to_sym
       @page_class = Page.registry_get(page_registry_key)
     else
-      raise MissingLayoutException.new("JSON missing layout information: #{@page_data.inspect}")
+      @page_class = self.page.class
     end
   end
 
-  def add_or_update_contents(page, contents_data)
-    return unless contents_data.present?
+  def map_nested_models
+    return unless @block_hash.present?
+    @page_class.content_format.each do |content_block_specifier|
+      block_name = content_block_specifier[:name]
 
-    self.bad_blocks = []
-    contents_data.each do |name, content_block_hash|
-      set_content_block(page, name, unwrap_data(content_block_hash))
-    end
-    validate_required_blocks_present(page)
-    if self.bad_blocks.present?
-      # TODO: accumulate errors in JSON reply resource instead
-      raise BadContentException.new("JSON contained invalid content: #{bad_blocks.inspect}")
-    end
-  end
-
-  def validate_required_blocks_present(page)
-    populated_blocks = page.contents.select{ |key,cb| cb.body.present?}.keys
-    missing_blocks = page.required_blocks - populated_blocks
-    if missing_blocks.present?
-      # TODO: accumulate errors in JSON reply resource instead
-      raise MissingContentException.new("Required blocks not set: #{missing_blocks.inspect}")
-    end
-  end
-
-  def set_content_block(page, block_name, block_data)
-    format = page.named_content_format(block_name)
-    if format.present?
-      if (content_block = page.contents[block_name]).present?
-        update_content_block(content_block, block_data)
-      else
-        add_content_block(page, block_name, block_data, format)
+      if @block_hash[block_name].present?
+        build_content_block(block_name)
       end
-      page.sanitize(block_name, page.contents[block_name])
-    else
-      self.bad_blocks << { block_name => block_data['body'] }
+
+      build_nested_errors(content_block_specifier, block_name)
+
+      unless @nested_errors > 0 || @block_data.nil?
+        save_content_block(self.page, block_name, unwrap_data(@block_data) )
+      end
     end
+  end
+
+  def build_content_block(block_name)
+    format = self.page.named_content_format(block_name)
+    @block_data = @block_hash[block_name]
+    @block_data[:data][:content_type] = format[:content_type]
+    @cbm = ContentBlockMapper.new(@block_data)
+    @cbm.build
+  end
+
+  def save_content_block(page, block_name, block_data)
+    if (content_block = page.contents[block_name]).present?
+      update_content_block(content_block, block_data)
+    else
+      add_content_block(page, block_name, block_data)
+    end
+    page.sanitize(block_name, page.contents[block_name])
   end
 
   def update_content_block(content_block, block_data)
     content_block.update_attribute(:body, block_data[:body])
   end
 
-  def add_content_block(page, block_name, block_data, format)
+  def add_content_block(page, block_name, block_data)
     page.page_contents << PageContent.new(
       :name => block_name,
       :content_block => ContentBlock.new(
-        :content_type => format[:content_type],
-        :body         => block_data['body']
+        :content_type => block_data[:content_type],
+        :body         => block_data[:body]
       )
     )
+  end
+
+  def build_nested_errors(content_block_specifier, block_name)
+    @nested_errors = 0
+    if content_block_specifier[:required]
+      if  @block_hash[block_name].blank?
+        error_data[:contents][block_name] = { :data => { :type => :required, :message => "This block is required: #{block_name}"} }
+        @nested_errors += 1
+      end
+
+      if @cbm && @cbm.content_block.body.blank?
+        error_data[:contents][block_name] = { :data => {:body=>{:type=>:required, :message=>"can't be blank"}} }
+        @nested_errors += 1
+      end
+    end
   end
 
 end
