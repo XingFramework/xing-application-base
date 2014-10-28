@@ -144,7 +144,7 @@ describe Admin::FroalaImagesController do
     end
 
     describe "every action" do
-      it "should redirect to root" do
+      it "should return 401" do
         get :index
         expect(response.status).to eq(401)
         xhr :post, :destroy, :src => "awesome"

@@ -152,7 +152,7 @@ describe Admin::PagesController do
     end
 
     describe "every action" do
-      it "should redirect to root" do
+      it "should return 401" do
         get :index
         expect(response.status).to eq(401)
         get :show, :url_slug => url_slug

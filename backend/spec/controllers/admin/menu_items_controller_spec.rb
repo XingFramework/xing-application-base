@@ -138,7 +138,7 @@ describe Admin::MenuItemsController do
     end
 
     describe "every action" do
-      it "should redirect to root" do
+      it "should return 401" do
         get :show, :id => 1
         expect(response.status).to eq(401)
         put :update, :id => 1

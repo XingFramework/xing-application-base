@@ -112,7 +112,7 @@ describe Admin::FroalaDocumentsController do
     end
 
     describe "every action" do
-      it "should redirect to root" do
+      it "should return 401" do
         post :create
         expect(response.status).to eq(401)
       end
