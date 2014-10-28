@@ -1,4 +1,4 @@
-class Admin::PagesController < JsonController
+class Admin::PagesController < Admin::AdminController
 
   # GET /admin/pages
   def index
