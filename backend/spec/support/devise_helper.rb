@@ -7,6 +7,27 @@ module DeviseExtraTestHelper
 
   alias :current_person :current_user
 
+  def warden #:nodoc:
+    @warden ||= begin
+      manager = Warden::Manager.new(nil) do |config|
+        config.merge! Devise.warden_config
+      end
+      @request.env['warden'] = Warden::Proxy.new(@request.env, manager)
+    end
+  end
+
+  def sign_in(user)
+    warden
+    auth_header = user.create_new_auth_token
+    auth_header.each_pair do |k, v|
+      request.headers[k] = v
+    end
+    request.env['devise.mapping'] = :user
+  end
+
+  def sign_out(user)
+  end
+
   def current_user_session(stubs = {}, user_stubs = {})
     @current_user_session = UserSession.find
     # else

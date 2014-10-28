@@ -1,4 +1,5 @@
-class JsonController < ActionController::Base
+class JsonController < ApplicationController
+
   respond_to :json
 
   def json_body

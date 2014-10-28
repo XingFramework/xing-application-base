@@ -111,10 +111,10 @@ describe Admin::FroalaDocumentsController do
       logout
     end
 
-    describe "every action", :pending => "Awaiting implementation" do
+    describe "every action" do
       it "should redirect to root" do
         post :create
-        response.should redirect_to(:root)
+        expect(response.status).to eq(401)
       end
     end
   end
