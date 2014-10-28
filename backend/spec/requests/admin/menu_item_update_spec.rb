@@ -57,7 +57,7 @@ describe "menu_items#update", :type => :request do
           json_put "admin/menu_items/#{menu_item.id}", invalid_json
 
           expect(response.status).to be(422)
-          expect(response.body).to eq("{\"data\":{\"name\":{\"type\":\"required\",\"message\":\"can't be blank\"}}}")
+          expect(response.body).to be_json_eql("\"can't be blank\"").at_path("data/name/message")
         end
       end
     end

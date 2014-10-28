@@ -86,7 +86,7 @@ describe "admin/pages#create", :type => :request do
           it "redirects to admin page show path" do
             json_post "admin/pages", json_body
             expect(response.status).to eq(422)
-            expect(response.body).to eq("{\"data\":{\"contents\":{\"main\":{\"data\":{\"body\":{\"type\":\"required\",\"message\":\"can't be blank\"}}}}}}")
+            expect(response.body).to be_json_eql("\"can't be blank\"").at_path("data/contents/main/data/body/message")
           end
         end
       end

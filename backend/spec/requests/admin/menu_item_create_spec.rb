@@ -41,7 +41,7 @@ describe "admin/menu_items#create", :type => :request do
         it "redirects to admin menu item show path" do
           json_post "admin/menu_items", json_body
           expect(response.status).to eq(422)
-          expect(response.body).to eq("{\"data\":{\"name\":{\"type\":\"required\",\"message\":\"can't be blank\"}}}")
+          expect(response.body).to be_json_eql("\"can't be blank\"").at_path("data/name/message")
         end
       end
 
@@ -54,7 +54,7 @@ describe "admin/menu_items#create", :type => :request do
           it "redirects to admin menu item show path" do
             json_post "admin/menu_items", json_body
             expect(response.status).to eq(422)
-            expect(response.body).to eq("{\"data\":{\"path\":{\"type\":\"required\",\"message\":\"This field is required\"}}}")
+            expect(response.body).to be_json_eql("\"This field is required\"").at_path("data/path/message")
         end
         end
       end
