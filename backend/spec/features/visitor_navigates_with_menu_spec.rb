@@ -11,11 +11,11 @@ feature "Visitor navigates with the main menu", :js => true, :vcr => {} do
   end
 
   let! :page_link do
-    FactoryGirl.create(:menu_item, name: 'Page Link', parent_id: 1, page: page_one)
+    FactoryGirl.create(:menu_item, name: 'Page Link', page: page_one)
   end
 
   let! :path_link do
-    FactoryGirl.create(:menu_item_without_page, name: "Path Link", parent_id: 1, path: '/#/sign-in')
+    FactoryGirl.create(:menu_item_without_page, name: "Path Link", path: '/#/sign-in')
   end
 
   scenario "visit a path" do

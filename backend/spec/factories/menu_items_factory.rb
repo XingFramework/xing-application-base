@@ -12,6 +12,7 @@ FactoryGirl.define do
 
   factory :menu_item do
     name 'test'
+    parent Menu.main_menu
   end
 
   factory :menu_item_with_page, :parent => :menu_item do
