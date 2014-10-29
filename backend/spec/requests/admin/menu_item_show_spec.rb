@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "admin/menu_items#show", :type => :request do
 
+  let :admin do FactoryGirl.create(:admin) end
 
   describe "GET admin/menu_items/:id" do
 
@@ -10,7 +11,7 @@ describe "admin/menu_items#show", :type => :request do
         FactoryGirl.create(:menu_item_with_page)
       end
       it "generates correct json" do
-        json_get "admin/menu_items/#{menu_item.id}"
+        authenticated_json_get admin, "admin/menu_items/#{menu_item.id}"
 
         expect(response).to be_success
         expect(response.body).to     have_json_path("links")
@@ -31,7 +32,7 @@ describe "admin/menu_items#show", :type => :request do
       end
 
       it "generates correct json" do
-        json_get "admin/menu_items/#{menu_item.id}"
+        authenticated_json_get admin, "admin/menu_items/#{menu_item.id}"
 
         expect(response).to be_success
         expect(response.body).to     have_json_path("links")
@@ -45,6 +46,19 @@ describe "admin/menu_items#show", :type => :request do
         expect(response.body).to be_json_eql("\"#{routes.admin_menu_item_path(menu_item)}\"").at_path('links/self')
         expect(response.body).to be_json_eql("\"#{menu_item.name}\"").at_path("data/name")
       end
+    end
+
+
+    describe "not authenticated" do
+      let :menu_item do
+        FactoryGirl.create(:menu_item_with_page)
+      end
+
+      it "should return not authorized" do
+        json_get "admin/menu_items/#{menu_item.id}"
+        expect(response.status).to be(401)
+      end
+
     end
   end
 end

@@ -14,8 +14,6 @@ TEST_IMAGE = File.join(Rails.root, '/spec/fixtures/test_image.png')
 RSpec.configure do |config|
   config.mock_with :rspec
 
-  config.include Devise::TestHelpers, :type => :controller
-  config.include Devise::TestHelpers, :type => :helper
   config.include Features::SessionHelpers, type: :feature
 
   config.use_transactional_fixtures = false

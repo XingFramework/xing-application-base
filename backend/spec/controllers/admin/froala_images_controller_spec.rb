@@ -24,6 +24,7 @@ describe Admin::FroalaImagesController do
       image
     end
 
+
     ########################################################################################
     #                                      GET INDEX
     ########################################################################################
@@ -142,17 +143,11 @@ describe Admin::FroalaImagesController do
       logout
     end
 
-    describe "every action", :pending => "Awaiting implementation" do
-      it "should redirect to root" do
+    describe "every action" do
+      it "should return 401" do
         get :index
         expect(response.status).to eq(401)
-        get :new
-        expect(response.status).to eq(401)
-        get :edit, :url_slug => 1
-        expect(response.status).to eq(401)
-        put :update, :url_slug => 1
-        expect(response.status).to eq(401)
-        delete :destroy, :url_slug => 1
+        xhr :post, :destroy, :src => "awesome"
         expect(response.status).to eq(401)
         post :create
         expect(response.status).to eq(401)

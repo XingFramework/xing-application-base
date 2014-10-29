@@ -1,4 +1,4 @@
-class Admin::MenuItemsController < JsonController
+class Admin::MenuItemsController < Admin::AdminController
 
   # GET /admin/menu_items/:id
   def show

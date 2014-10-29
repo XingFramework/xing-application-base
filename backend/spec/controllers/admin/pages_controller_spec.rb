@@ -151,13 +151,11 @@ describe Admin::PagesController do
       logout
     end
 
-    describe "every action", :pending => "Awaiting implementation" do
-      it "should redirect to root" do
+    describe "every action" do
+      it "should return 401" do
         get :index
         expect(response.status).to eq(401)
-        get :new
-        expect(response.status).to eq(401)
-        get :edit, :url_slug => 1
+        get :show, :url_slug => url_slug
         expect(response.status).to eq(401)
         put :update, :url_slug => 1
         expect(response.status).to eq(401)

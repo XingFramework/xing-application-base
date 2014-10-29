@@ -14,11 +14,13 @@ describe "menu_items#update", :type => :request do
     }.to_json
   end
 
+  let :admin do FactoryGirl.create(:admin) end
+
   describe "Successful update"do
     describe "PUT admin/menu_items/:id" do
       it "is a 200 success including the serialized object" do
 
-        json_put "admin/menu_items/#{menu_item.id}", json_body
+        authenticated_json_put admin, "admin/menu_items/#{menu_item.id}", json_body
 
         expect(response).to be_success
         expect(response.body).to     have_json_path("links")
@@ -36,7 +38,7 @@ describe "menu_items#update", :type => :request do
 
       it "should update information" do
         expect do
-          json_put "admin/menu_items/#{menu_item.id}", json_body
+          authenticated_json_put admin, "admin/menu_items/#{menu_item.id}", json_body
         end.to change { menu_item.reload.name }.to("New Name")
       end
     end
@@ -54,7 +56,7 @@ describe "menu_items#update", :type => :request do
 
       describe "PUT admin/menu_items/:id" do
         it "is a 422 with an error in response body" do
-          json_put "admin/menu_items/#{menu_item.id}", invalid_json
+          authenticated_json_put admin, "admin/menu_items/#{menu_item.id}", invalid_json
 
           expect(response.status).to be(422)
           expect(response.body).to be_json_eql("\"can't be blank\"").at_path("data/name/message")
@@ -62,4 +64,12 @@ describe "menu_items#update", :type => :request do
       end
     end
   end
+
+  describe "not authenticated" do
+    it "should return not authorized" do
+      json_put "admin/menu_items/#{menu_item.id}", json_body
+      expect(response.status).to be(401)
+    end
+  end
+
 end

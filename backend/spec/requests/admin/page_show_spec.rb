@@ -37,9 +37,11 @@ describe "pages#show", :type => :request do
     )
   end
 
+  let :admin do FactoryGirl.create(:admin) end
+
   describe "GET admin/pages/:url_slug" do
     it "shows page as json" do
-      json_get "admin/pages/#{page.url_slug}"
+      authenticated_json_get admin, "admin/pages/#{page.url_slug}"
 
       expect(response).to be_success
       expect(response.body).to have_json_path("links")
@@ -56,6 +58,13 @@ describe "pages#show", :type => :request do
       expect(response.body).to be_json_eql("\"#{page.title}\"").at_path("data/title")
       expect(response.body).to be_json_eql("\"#{admin_content_block_path(headline)}\"").at_path("data/contents/headline/links/self")
       expect(response.body).to be_json_eql("\"#{styles.body}\"").at_path("data/contents/styles/data/body")
+    end
+  end
+
+  describe "not authenticated" do
+    it "should return not authorized" do
+      json_put "admin/pages/#{page.url_slug}"
+      expect(response.status).to be(401)
     end
   end
 end

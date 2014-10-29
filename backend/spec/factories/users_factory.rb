@@ -17,15 +17,16 @@ FactoryGirl.define do
     last_sign_in_ip "10.0.0.1"
   end
 
-  factory :admin_user, :parent => :user do
-    role_name 'Admin'
-  end
-
-  factory :admin, :parent => :admin_user
 
   trait :confirmed do
     confirmed_at Time.now
   end
+
+  factory :admin_user, :parent => :user, :traits => [:confirmed] do
+    role_name 'Admin'
+  end
+
+  factory :admin, :parent => :admin_user
 
   factory :confirmed_user, :parent => :user, :traits => [:confirmed]
 
