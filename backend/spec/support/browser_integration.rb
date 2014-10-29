@@ -188,4 +188,5 @@ module BrowserTools
   rescue Capybara::NotSupportedByDriverError => nsbde
     BrowserTools.warn("Can't use snapshot", nsbde.inspect)
   end
+
 end
