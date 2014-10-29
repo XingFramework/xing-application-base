@@ -33,4 +33,13 @@ feature "Visitor navigates with the main menu", :js => true, :vcr => {} do
     expect(URI(current_url).fragment).to eq("/pages/" + page_one.url_slug)
   end
 
+  context "on a mobile device", :size => :mobile do
+    scenario "visit a path" do
+      visit '/'
+      click_on("Menu")
+      click_on("Path Link")
+      expect(page).to have_content("Sign In")
+      expect(URI(current_url).fragment).to eq('/sign-in')
+    end
+  end
 end
