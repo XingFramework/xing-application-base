@@ -8,18 +8,18 @@ module BrowserSize
 
   RSpec.configure do |config|
     config.before(:each) do
-      if example.metadata[:js]
-        if example.metadata[:size].present?
-          BrowserSize.resize_browser_window(BrowserSize::SIZES[example.metadata[:size]])
-        else
-          BrowserSize.resize_browser_window(BrowserSize::SIZES[:desktop])
-        end
+      if RSpec.current_example.metadata[:js]
+        BrowserSize.resize_browser_window(SIZES[BrowserSize.current_size])
       end
     end
   end
 
   def self.resize_browser_window(size)
     Capybara.current_session.driver.browser.manage.window.resize_to(size[:width], size[:height])
+  end
+
+  def self.current_size
+    (RSpec.current_example.metadata[:size] || ENV['BROWSER_SIZE'] || :desktop).to_sym
   end
 
 end

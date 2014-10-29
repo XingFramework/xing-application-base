@@ -18,25 +18,27 @@ feature "Visitor navigates with the main menu", :js => true, :vcr => {} do
     FactoryGirl.create(:menu_item_without_page, name: "Path Link", path: '/#/sign-in')
   end
 
-  scenario "visit a path" do
-    visit '/'
-    click_on("Path Link")
-    expect(page).to have_content("Sign In")
-    expect(URI(current_url).fragment).to eq('/sign-in')
-  end
+  context "on a desktop", :size => :desktop do
+    scenario "visit a path" do
+      visit '/'
+      click_on("Path Link")
+      expect(page).to have_content("Sign In")
+      expect(URI(current_url).fragment).to eq('/sign-in')
+    end
 
-  scenario "visit a page" do
-    visit '/'
-    click_on("Page Link")
-    expect(page).to have_content(page_one.contents["headline"].body)
-    expect(page.body).to include(page_one.contents["main"].body)
-    expect(URI(current_url).fragment).to eq("/pages/" + page_one.url_slug)
+    scenario "visit a page" do
+      visit '/'
+      click_on("Page Link")
+      expect(page).to have_content(page_one.contents["headline"].body)
+      expect(page.body).to include(page_one.contents["main"].body)
+      expect(URI(current_url).fragment).to eq("/pages/" + page_one.url_slug)
+    end
   end
 
   context "on a mobile device", :size => :mobile do
     scenario "visit a path" do
       visit '/'
-      click_on("Menu")
+      click_on("Menu")  # Expand the currently-collapsed menu
       click_on("Path Link")
       expect(page).to have_content("Sign In")
       expect(URI(current_url).fragment).to eq('/sign-in')
