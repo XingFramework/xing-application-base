@@ -25,7 +25,6 @@ group :development, :test do
   gem 'annotate'
   gem 'simplecov'
   gem 'capybara'
-  gem 'poltergeist'
   gem 'selenium-webdriver'
   gem 'capybara-email'
   gem 'database_cleaner'

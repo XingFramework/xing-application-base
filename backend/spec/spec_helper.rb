@@ -8,7 +8,6 @@ require 'rspec/rails'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 ActiveSupport::Deprecation.debug = true
 
-include BrowserTools
 TEST_PASSWORD = 'password'
 TEST_IMAGE = File.join(Rails.root, '/spec/fixtures/test_image.png')
 
