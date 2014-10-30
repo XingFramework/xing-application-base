@@ -22,7 +22,8 @@ class HypermediaJSONMapper
     end
     @locator = locator
   end
-  attr_accessor :locator, :record, :error_data
+  attr_accessor :locator, :error_data
+  attr_writer :record
 
   def router
     Rails.application.routes
@@ -34,37 +35,25 @@ class HypermediaJSONMapper
 
   # Default save - subclasses might override
   def save
-    build
+    perform_mapping
     unless self.errors[:data].present?
       self.record.save
     end
   end
 
-  # Default for finding/updating existing records
-  def find_and_update
-    find_existing
-    update_record
-  end
-
-  # Default for building/updating existing records
-  def build_and_update
-    build_new
-    update_record
-  end
-
   # Default for finding an existing record - override this *or* define
   # #record_class (e.g. `return Page`
-  def find_existing
-    self.record = record_class.find(@locator)
+  def find_existing_record
+    @record = record_class.find(@locator)
   end
 
   # Default for building a new record - override this *or* define #record_class
   # (e.g. `return Page`
-  def build_new
-    self.record = record_class.new
+  def build_new_record
+    @record = record_class.new
   end
 
-  def build
+  def perform_mapping
     data = unwrap_data(@source_hash)
     self.error_data = Hash.new { |hash, key| hash[key] = {} }
 
@@ -83,14 +72,18 @@ class HypermediaJSONMapper
     }
   end
 
+  def record
+    @record ||= if locator.present?
+                  find_existing_record
+                else
+                  build_new_record
+                end
+  end
+
   def assign_values(data_hash)
     # Override in subclasses to assign needed values here
-
-    if @locator.present?
-      find_and_update
-    else
-      build_and_update
-    end
+    record  # force loading or creation of the underlying DB record
+    update_record
   end
 
   # Do nothing if there are no nested models

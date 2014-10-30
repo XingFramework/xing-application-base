@@ -18,11 +18,11 @@ class MenuMapper < HypermediaJSONMapper
     super
   end
 
-  def find_existing
+  def find_existing_record
     super
 
     @existing_root = menu_root
-    build_new
+    build_new_record
   end
 
   def menu_level(items, parent_id)
