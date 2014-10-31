@@ -183,6 +183,8 @@ namespace :spec do
         if args[:spec_files]
           commands.push(args[:spec_files])
         end
+        p `ruby --version`
+        p ENV
         sh *commands
       }
     end

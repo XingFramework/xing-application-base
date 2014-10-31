@@ -19,7 +19,7 @@
 	var uriTemplateSuffices = {
 		"*": true
 	};
-	
+
 	function notReallyPercentEncode(string) {
 		return encodeURI(string).replace(/%25[0-9][0-9]/g, function (doubleEncoded) {
 			return "%" + doubleEncoded.substring(3);
@@ -171,7 +171,7 @@
 				for (var i = 0; i < arrayValue.length; i++) {
 					var stringValue = arrayValue[i];
 					if (shouldEscape && stringValue.indexOf('=') != -1) {
-						hasEquals = true;  
+						hasEquals = true;
 					}
 					var innerArrayValue = stringValue.split(",");
 					for (var j = 0; j < innerArrayValue.length; j++) {
@@ -185,7 +185,7 @@
 						arrayValue[i] = innerArrayValue;
 					}
 				}
-			
+
 				if (showVariables || hasEquals) {
 					var objectValue = resultObj[varName] || {};
 					for (var j = 0; j < arrayValue.length; j++) {
@@ -266,7 +266,7 @@
 				for (var i = 0; i < arrayValue.length; i++) {
 					var stringValue = arrayValue[i];
 					var innerArrayValue = stringValue.split(",");
-				
+
 					if (showVariables) {
 						var stringValue = innerArrayValue[0]; // using innerArrayValue
 						var varName = stringValue.split("=", 1)[0];
@@ -399,6 +399,6 @@
 			});
 		}
 	};
-	
+
 	return UriTemplate;
 });

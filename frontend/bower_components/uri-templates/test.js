@@ -8,7 +8,7 @@ describe("Basic tests", function () {
 	it("Basic substitution", function () {
 		var template = uriTemplates("/prefix/{var}/suffix");
 		var uri = template.fillFromObject({var: "test"});
-		
+
 		assert.strictEqual(uri, "/prefix/test/suffix");
 	});
 });
@@ -22,7 +22,7 @@ function createTests(title, examplesDoc) {
 				var variableFunction = function (varName) {
 					return variables[varName];
 				};
-			
+
 				for (var i = 0; i < exampleSet.testcases.length; i++) {
 					var pair = exampleSet.testcases[i];
 
@@ -38,10 +38,10 @@ function createTests(title, examplesDoc) {
 						});
 					})(pair[0], pair[1]);
 				}
-			});	
+			});
 		}
 	});
-	
+
 	var unguessable = {};
 
 	describe(title + " (de-substitution)", function () {
@@ -50,7 +50,7 @@ function createTests(title, examplesDoc) {
 			describe(sectionTitle, function () {
 				for (var i = 0; i < exampleSet.testcases.length; i++) {
 					var pair = exampleSet.testcases[i];
-					
+
 					(function (templateString, expected, exampleSet) {
 						if (unguessable[templateString]) {
 							return;
@@ -59,10 +59,10 @@ function createTests(title, examplesDoc) {
 						it(templateString, function () {
 							var original = (typeof expected == 'string') ? expected : expected[0];
 							var template = uriTemplates(templateString);
-					
+
 							var guessedVariables = template.fromUri(original);
 							assert.isObject(guessedVariables);
-							
+
 							var reconstructed = template.fillFromObject(guessedVariables);
 
 							if (typeof expected == "string") {
@@ -73,7 +73,7 @@ function createTests(title, examplesDoc) {
 						});
 					})(pair[0], pair[1], exampleSet);
 				}
-			});	
+			});
 		}
 	});
 }
