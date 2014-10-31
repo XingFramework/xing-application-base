@@ -2,14 +2,18 @@ class HypermediaJSONMapper
   class MissingLinkException < Exception; end
 
   # Subclasses must define:
-  #  * aliases for self.record
-  #   * save
-  #   OR
-  #   * assign_values
-  #    * find_and_update and build_and_update
-  #     OR
-  #    * record_class OR find_existing and build_new
-  #    * update_record
+  #    aliases for self.record
+  #    record_class, if the mapper maps to an AR object
+  #
+  # Subclasses should usually define:
+  #    assign_values  -- move values from JSON into the mapped AR record
+  #
+  # Subclasses may also want to define:
+  #    find_existing_record -- for locating the underlying AR record
+  #    build_new_record     -- for for instantiating a new underlying AR record
+  #    map_nested_models
+  #    build_errors         -- if simply copying AR errors is insufficient
+  #
 
   # When updating records, pass the locator (e.g. DB id, url_slug, or other
   # unique resource extracted from the resource path) as the second argument.
