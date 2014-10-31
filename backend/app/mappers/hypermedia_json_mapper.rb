@@ -13,7 +13,7 @@ class HypermediaJSONMapper
   #    build_new_record     -- for for instantiating a new underlying AR record
   #    map_nested_models
   #    build_errors         -- if simply copying AR errors is insufficient
-  #
+  #    save                 -- if they need to save more than 1 AR record
 
   # When updating records, pass the locator (e.g. DB id, url_slug, or other
   # unique resource extracted from the resource path) as the second argument.
