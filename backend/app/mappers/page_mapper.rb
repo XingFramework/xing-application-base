@@ -11,25 +11,26 @@ class PageMapper < HypermediaJSONMapper
     super
   end
 
-  def find_and_update
-    self.page = Page.find_by_url_slug(@locator)
+  def find_existing_record
+    page = Page.find_by_url_slug(@locator)
+    self.page_layout = page.layout.to_sym
+    lookup_page_class
+    page
+  end
+
+  def build_new_record
+    self.page_layout = @source_hash['data']['layout'].to_sym
+    lookup_page_class
+    @page_class.new
+  end
+
+  def lookup_page_class
+    @page_class = Page.registry_get(self.page_layout)
+  end
+
+  def update_record
     self.page.update_attributes(@page_data)
-    set_page_type
-  end
-
-  def build_and_update
-    set_page_type
-    self.page = @page_class.new(@page_data)
     self.page.set_url_slug
-  end
-
-  def set_page_type
-    if self.page_layout.present?
-      page_registry_key = self.page_layout.to_sym
-      @page_class = Page.registry_get(page_registry_key)
-    else
-      @page_class = self.page.class
-    end
   end
 
   def map_nested_models
@@ -54,7 +55,7 @@ class PageMapper < HypermediaJSONMapper
     @block_data = @block_hash[block_name]
     @block_data[:data][:content_type] = format[:content_type]
     @cbm = ContentBlockMapper.new(@block_data)
-    @cbm.build
+    @cbm.perform_mapping
   end
 
   def save_content_block(page, block_name, block_data)

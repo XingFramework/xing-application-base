@@ -2,14 +2,18 @@ class HypermediaJSONMapper
   class MissingLinkException < Exception; end
 
   # Subclasses must define:
-  #  * aliases for self.record
-  #   * save
-  #   OR
-  #   * assign_values
-  #    * find_and_update and build_and_update
-  #     OR
-  #    * record_class OR find_existing and build_new
-  #    * update_record
+  #    aliases       -- for self.record
+  #    record_class  -- if the mapper maps to an AR object
+  #
+  # Subclasses should usually define:
+  #    assign_values  -- move values from JSON into the mapped AR record
+  #
+  # Subclasses may also want to define:
+  #    find_existing_record -- for locating the underlying AR record
+  #    build_new_record     -- for for instantiating a new underlying AR record
+  #    map_nested_models
+  #    build_errors         -- if simply copying AR errors is insufficient
+  #    save                 -- if they need to save more than 1 AR record
 
   # When updating records, pass the locator (e.g. DB id, url_slug, or other
   # unique resource extracted from the resource path) as the second argument.
@@ -22,7 +26,8 @@ class HypermediaJSONMapper
     end
     @locator = locator
   end
-  attr_accessor :locator, :record, :error_data
+  attr_accessor :locator, :error_data
+  attr_writer :record
 
   def router
     Rails.application.routes
@@ -34,37 +39,25 @@ class HypermediaJSONMapper
 
   # Default save - subclasses might override
   def save
-    build
+    perform_mapping
     unless self.errors[:data].present?
       self.record.save
     end
   end
 
-  # Default for finding/updating existing records
-  def find_and_update
-    find_existing
-    update_record
-  end
-
-  # Default for building/updating existing records
-  def build_and_update
-    build_new
-    update_record
-  end
-
   # Default for finding an existing record - override this *or* define
   # #record_class (e.g. `return Page`
-  def find_existing
-    self.record = record_class.find(@locator)
+  def find_existing_record
+    @record = record_class.find(@locator)
   end
 
   # Default for building a new record - override this *or* define #record_class
   # (e.g. `return Page`
-  def build_new
-    self.record = record_class.new
+  def build_new_record
+    @record = record_class.new
   end
 
-  def build
+  def perform_mapping
     data = unwrap_data(@source_hash)
     self.error_data = Hash.new { |hash, key| hash[key] = {} }
 
@@ -83,14 +76,18 @@ class HypermediaJSONMapper
     }
   end
 
+  def record
+    @record ||= if locator.present?
+                  find_existing_record
+                else
+                  build_new_record
+                end
+  end
+
   def assign_values(data_hash)
     # Override in subclasses to assign needed values here
-
-    if @locator.present?
-      find_and_update
-    else
-      build_and_update
-    end
+    record  # force loading or creation of the underlying DB record
+    update_record
   end
 
   # Do nothing if there are no nested models

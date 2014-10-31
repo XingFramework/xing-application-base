@@ -27,13 +27,13 @@ describe ContentBlockMapper, :type => :mapper do
         # This mapper never saves, it only builds and the PageMapper saves the ContentBlock
         it "should build the content block" do
           expect do
-            mapper.build
+            mapper.perform_mapping
           end.not_to change{ ContentBlock.count}
           mapper.content_block.body.should eq 'foo bar'
         end
 
         it "should be able to return the content block without it being persisted" do
-          mapper.build
+          mapper.perform_mapping
           expect(mapper.content_block).to be_a(ContentBlock)
           expect(mapper.content_block).not_to be_persisted
         end
