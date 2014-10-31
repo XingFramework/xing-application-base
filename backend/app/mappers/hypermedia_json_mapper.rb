@@ -2,8 +2,8 @@ class HypermediaJSONMapper
   class MissingLinkException < Exception; end
 
   # Subclasses must define:
-  #    aliases for self.record
-  #    record_class, if the mapper maps to an AR object
+  #    aliases       -- for self.record
+  #    record_class  -- if the mapper maps to an AR object
   #
   # Subclasses should usually define:
   #    assign_values  -- move values from JSON into the mapped AR record
