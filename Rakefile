@@ -189,7 +189,6 @@ namespace :spec do
   task :full, [:spec_files] => [:grunt_ci_test, :links, 'backend:setup'] do |t, args|
     Bundler.with_clean_env do
       Dir.chdir("backend"){
-        sh *%w{bundle exec rake db:test:prepare}
         commands = %w{bundle exec rspec}
         if args[:spec_files]
           commands.push(args[:spec_files])
