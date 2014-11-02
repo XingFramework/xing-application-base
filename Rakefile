@@ -23,8 +23,11 @@ end
 
 namespace :backend do
   task :bundle_install do
+    # this is a standard bundle install -- we may need to do some configs
+    # on next deploy to capistrano to copy in a bundler config file so
+    # it uses --deployment
     Bundler.with_clean_env do
-      Dir.chdir("backend"){ sh *%w{bundle install --deployment} }
+      Dir.chdir("backend"){ sh *%w{bundle install} }
     end
   end
 
