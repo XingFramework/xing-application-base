@@ -227,6 +227,9 @@ module.exports = function( grunt ) {
        * `grunt concat` concatenates multiple source files into a single file.
        */
       concat_sourcemap: {
+        options: {
+          sourcesContent: true
+        },
         compile_css: {
           files: {
             '<%= compile_targets.css %>': [
