@@ -30,7 +30,6 @@ module.exports = function ( config ) {
       'karma-jasmine',
       'karma-firefox-launcher',
       'karma-chrome-launcher',
-      'karma-phantomjs-launcher',
       'karma-sourcemap-loader'
       //'karma-coffee-preprocessor',
     ],

@@ -42,7 +42,6 @@
     "karma-requirejs": "^0.2.2",
     "karma-sourcemap-loader": "git://github.com/LRDesign/karma-sourcemap-loader",
     "karma-traceur-preprocessor": "^0.3.1",
-    "phantomjs": "^1.9.7-15",
     "requirejs": "^2.1.15",
     "traceur": "0.0.58"
   },
