@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :repo_url, 'git@git.lrdesign.com:lrd/uccf-website.git'
+set :repo_url, 'git@git.lrdesign.com:lrd/cms2.git'
 set :pty, true
 
 # Default value for :format is :pretty

@@ -1,6 +1,7 @@
-server 'www.uccf-losangeles.org', user: 'lrdesign', roles: %w{web app}
+server 'example.com', user: 'root', roles: %w{web app}
 set :branch, "production"
-set :application, "www.uccf-losangeles.org"
+set :application, "example.com"
 
-set :rails_warmup_url, 'http://www.uccf-losangeles.org/'
-set :use_sudo, true
+set :rails_warmup_url, 'http://example.com'
+
+# set :use_sudo, true # <- depends on deployment
