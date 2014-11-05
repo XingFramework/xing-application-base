@@ -17,4 +17,3 @@ describe ResourcesController do
     end
   end
 end
-

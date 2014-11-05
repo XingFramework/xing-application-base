@@ -21,10 +21,42 @@ namespace :frontend do
   task :setup => [:npm_install, :bundle_install]
 end
 
+namespace :backend do
+  task :bundle_install do
+    # this is a standard bundle install -- we may need to do some configs
+    # on next deploy to capistrano to copy in a bundler config file so
+    # it uses --deployment
+    Bundler.with_clean_env do
+      Dir.chdir("backend"){ sh *%w{bundle install} }
+    end
+  end
+
+  desc "Migrate database up to current"
+  task :db_migrate => :bundle_install do
+    Bundler.with_clean_env do
+      Dir.chdir("backend"){ sh *%w{bundle exec rake db:migrate} }
+    end
+  end
+  task :setup => [:bundle_install, :db_migrate]
+
+  task :db_seed => :db_migrate do
+    Bundler.with_clean_env do
+      Dir.chdir("backend"){ sh *%w{bundle exec rake db:seed} }
+    end
+  end
+
+  desc "Precompile rails assets"
+  task :assets_precompile => [:bundle_install, :db_migrate] do
+    Bundler.with_clean_env do
+      Dir.chdir("backend"){ sh *%w{bundle exec rake assets:precompile}}
+    end
+  end
+
+  task :all => [:db_seed, :assets_precompile]
+end
+
 DEFAULT_RELOAD_PORT = 35729
 DEFAULT_RAILS_PORT  = 3000
-
-
 
 namespace :develop do
   child_pids = []
@@ -115,15 +147,6 @@ namespace :develop do
     child_pids << child_pid
   end
 
-  namespace :backend do
-    task :bundle_install do
-      Bundler.with_clean_env do
-        Dir.chdir("backend"){ sh *%w{bundle install} }
-      end
-    end
-    task :setup => [:bundle_install]
-  end
-
   task :rails_server => [:links, 'backend:setup'] do
     child_pid = Process.fork do
       Bundler.with_clean_env do
@@ -159,16 +182,6 @@ namespace :spec do
       }
     end
   end
-
-  namespace :backend do
-    task :bundle_install do
-      Bundler.with_clean_env do
-        Dir.chdir("backend"){ sh *%w{bundle install} }
-      end
-    end
-    task :setup => [:bundle_install]
-  end
-
 
   task :links do
     %w{index.html assets fonts}.each do |thing|
@@ -236,31 +249,6 @@ namespace :build do
 
   task :frontend_to_assets do
     sh *%w{cp -a frontend/bin/* backend/public/}
-  end
-
-  namespace :backend do
-    task :bundle_install do
-      Bundler.with_clean_env do
-        Dir.chdir("backend"){ sh *%w{bundle install --deployment} }
-      end
-    end
-    task :setup => [:bundle_install]
-
-    desc "Migrate database up to current"
-    task :db_migrate => :bundle_install do
-      Bundler.with_clean_env do
-        Dir.chdir("backend"){ sh *%w{bundle exec rake db:migrate db:seed} }
-      end
-    end
-
-    desc "Precompile rails assets"
-    task :assets_precompile => [:bundle_install, :db_migrate] do
-      Bundler.with_clean_env do
-        Dir.chdir("backend"){ sh *%w{bundle exec rake assets:precompile}}
-      end
-    end
-
-    task :all => [:db_migrate, :assets_precompile]
   end
 
   task 'backend:assets_precompile' => :frontend_to_assets
