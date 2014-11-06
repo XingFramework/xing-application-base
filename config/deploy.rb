@@ -85,16 +85,13 @@ namespace :deploy do
     on roles(:app), :in => :parallel do
       within File::join(release_path) do
         fetch(:required_writeable_files).each do |filename|
-            begin
-              puts "Testing writeability of #{filename} (pwd: #{capture("pwd")})"
-              as(:apache){ execute "pwd" }
-              as(:apache){ execute "test -w #{filename}" }
-              as(:apache){ execute "ls -l #{filename}" }
-            rescue Object #SSHKit::Runner::ExecuteError
-              error "Test for writeability failed. User 'apache' cannot write #{filename}."
-              raise
-              exit 1  #TODO: prevent this from printing a stack trace, if possible.
-            end
+          puts "Testing writeability of #{filename} (pwd: #{capture("pwd")})"
+          #SSHKit/Cap3 should handle this, but it just doesn't D:
+          can_write = capture("sudo -u apache test -w #{filename} && echo yes || echo no")
+          unless can_write == "yes"
+            error "Test for writeability failed. User 'apache' cannot write #{filename}."
+            exit 1  #TODO: prevent this from printing a stack trace, if possible.
+          end
         end
       end
     end
