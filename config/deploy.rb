@@ -59,7 +59,7 @@ namespace :deploy do
   task :bundle_config do
     on roles(:app), :in => :parallel do
       within backend_path do
-        sh "mkdir .bundle"
+        execute "mkdir -p .bundle"
       end
       upload! 'config/deploy/bundle-config', "#{backend_path}/.bundle/config"
     end
