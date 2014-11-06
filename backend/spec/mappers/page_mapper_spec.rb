@@ -121,7 +121,7 @@ describe PageMapper, :type => :mapper do
               end.not_to change{ Page.count }
             end.not_to change{ ContentBlock.count }
             expect(mapper.errors).to eq(
-              {:data=>{:contents=>{"main"=>{:data=>{:body=>{:type=>:required, :message=>"can't be blank"}}}}}}
+              {:data=>{:contents=>{"main"=>{:data=>{:body=>{:type=>"required", :message=>"can't be blank"}}}}}}
             )
           end
         end
@@ -145,7 +145,7 @@ describe PageMapper, :type => :mapper do
               end.not_to change{ Page.count }
             end.not_to change{ ContentBlock.count }
             expect(mapper.errors).to eq(
-              {:data=>{:contents=>{"main"=>{:data=>{:type=>:required, :message=>"This block is required: main"}}}}}
+              {:data=>{:contents=>{"main"=>{:data=>{:type=>"required", :message=>"This block is required: main"}}}}}
             )
           end
         end
@@ -272,7 +272,7 @@ describe PageMapper, :type => :mapper do
 
       it "should add to errors hash" do
         mapper.save
-        expect(mapper.errors[:data]).to eq({:contents=>{"main"=>{:data=>{:body=>{:type=>:required, :message=>"can't be blank"}}}}})
+        expect(mapper.errors[:data]).to eq({:contents=>{"main"=>{:data=>{:body=>{:type=>"required", :message=>"can't be blank"}}}}})
       end
 
       # is this too clever for its own good?  trying to avoid having to make

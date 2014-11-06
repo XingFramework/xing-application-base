@@ -45,7 +45,7 @@ class MenuItemMapper < HypermediaJSONMapper
       page = Page.find_by_url_slug(url_slug)
       self.menu_item.page = page
     else
-      error_data[:page] = { :type => :required, :message => "This field is required" }
+      error_data[:page] = { :type => "required", :message => "This field is required" }
     end
   end
 
@@ -53,7 +53,7 @@ class MenuItemMapper < HypermediaJSONMapper
     if @external_path.present?
       self.menu_item.path = @external_path
     else
-      error_data[:path] = { :type => :required, :message => "This field is required" }
+      error_data[:path] = { :type => "required", :message => "This field is required" }
     end
   end
 end
