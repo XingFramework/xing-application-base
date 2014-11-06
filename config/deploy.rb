@@ -61,7 +61,7 @@ namespace :deploy do
       within backend_path do
         execute "mkdir -p .bundle"
       end
-      upload! 'config/deploy/bundle-config', "#{backend_path}/.bundle/config"
+      upload! 'config/deploy/bundle-config', "#{fetch(:backend_path)}/.bundle/config"
     end
   end
   before :build, :bundle_config
