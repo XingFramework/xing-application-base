@@ -42,6 +42,7 @@ set :required_writeable_files, %w{
 # set :keep_releases, 5
 
 set :backend_path, proc{ File::join(release_path, "backend") }
+set :webserver_group, "web"
 
 namespace :deploy do
   desc 'Build app'
@@ -68,11 +69,11 @@ namespace :deploy do
     on roles(:app), :in => :parallel do
       within File::join(release_path, "backend") do
         as(:root) do
-          execute "chgrp", "web",  "-RL", "public"
+          execute "chgrp", fetch(:webserver_group),  "-RL", "public"
           execute "chmod", "g+wX", "-R", "public"
-          execute "chgrp", "web",  "-RL", "tmp"
+          execute "chgrp", fetch(:webserver_group),  "-RL", "tmp"
           execute "chmod", "g+wX", "-R", "tmp"
-          execute "chgrp", "web",  "-RL", "log"
+          execute "chgrp", fetch(:webserver_group),  "-RL", "log"
           execute "chmod", "g+wX", "-R", "log"
         end
       end
