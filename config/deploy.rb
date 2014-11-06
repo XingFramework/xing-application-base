@@ -56,6 +56,16 @@ namespace :deploy do
   end
   after 'symlink:shared', :build
 
+  task :bundle_config do
+    on roles(:app), :in => :parallel do
+      within backend_path do
+        sh "mkdir .bundle"
+      end
+      upload! 'config/deploy/bundle-config', "#{backend_path}/.bundle/config"
+    end
+  end
+  before :build, :bundle_config
+
   task :perms do
     on roles(:app), :in => :parallel do
       within File::join(release_path, "backend") do
