@@ -20,7 +20,7 @@ unless MenuItem.roots.where(:name => "Blog Topics").exists?
   MenuItem.create!(:name => "Blog Topics")
 end
 
-unless Page::Homepage.new.persisted?
+unless Page::Homepage.get.try(:persisted?)
   Page::Homepage.create!(
     :url_slug => 'homepage',
     :title    => "This site's homepage",
