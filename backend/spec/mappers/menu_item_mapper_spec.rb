@@ -105,7 +105,7 @@ describe MenuItemMapper, :type => :mapper do
             mapper.save
           end.not_to change{ MenuItem.count }
           expect(mapper.errors).to eq(
-            {:data=>{:name=>{:type=>:required, :message=>"can't be blank"}}}
+            {:data=>{:name=>{:type=>"required", :message=>"can't be blank"}}}
           )
         end
       end
@@ -132,7 +132,7 @@ describe MenuItemMapper, :type => :mapper do
             mapper.save
           end.not_to change{ MenuItem.count }
           expect(mapper.errors).to eq(
-            {:data=>{:path=>{:type=>:required, :message=>"This field is required"}}}
+            {:data=>{:path=>{:type=>"required", :message=>"This field is required"}}}
           )
         end
       end
@@ -179,7 +179,7 @@ describe MenuItemMapper, :type => :mapper do
               mapper.save
           end.not_to change{ MenuItem.count}
           expect(mapper.errors).to eq(
-            {:data=>{:page=>{:type=>:required, :message=>"This field is required"}}}
+            {:data=>{:page=>{:type=>"required", :message=>"This field is required"}}}
           )
         end
       end
