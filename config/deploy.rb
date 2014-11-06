@@ -81,25 +81,25 @@ namespace :deploy do
   end
   after 'symlink:shared', :perms
 
-#  task :confirm_writeable_files do
-#    on roles(:app), :in => :parallel do
-#      within File::join(release_path) do
-#        fetch(:required_writeable_files).each do |filename|
-#            begin
-#              puts "Testing writeability of #{filename}"
-#              as(:apache){ execute "test -w #{filename}" }
-#              as(:apache){ execute "pwd" }
-#              as(:apache){ execute "ls -l #{filename}" }
-#            rescue Object #SSHKit::Runner::ExecuteError
-#              error "Test for writeability failed. User 'apache' cannot write #{filename}."
-#              raise
-#              exit 1  #TODO: prevent this from printing a stack trace, if possible.
-#            end
-#        end
-#      end
-#    end
-#  end
-#  after 'symlink:shared', :confirm_writeable_files
+  task :confirm_writeable_files do
+    on roles(:app), :in => :parallel do
+      within File::join(release_path) do
+        fetch(:required_writeable_files).each do |filename|
+            begin
+              puts "Testing writeability of #{filename} (pwd: #{capture("pwd")})"
+              as(:apache){ execute "pwd" }
+              as(:apache){ execute "test -w #{filename}" }
+              as(:apache){ execute "ls -l #{filename}" }
+            rescue Object #SSHKit::Runner::ExecuteError
+              error "Test for writeability failed. User 'apache' cannot write #{filename}."
+              raise
+              exit 1  #TODO: prevent this from printing a stack trace, if possible.
+            end
+        end
+      end
+    end
+  end
+  after 'symlink:shared', :confirm_writeable_files
 
   desc 'Restart application'
   task :restart do
