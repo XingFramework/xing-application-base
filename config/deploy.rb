@@ -42,6 +42,7 @@ set :required_writeable_files, %w{
 # set :keep_releases, 5
 
 set :backend_path, proc{ File::join(release_path, "backend") }
+set :webserver_group, "web"
 
 namespace :deploy do
   desc 'Build app'
@@ -68,11 +69,11 @@ namespace :deploy do
     on roles(:app), :in => :parallel do
       within File::join(release_path, "backend") do
         as(:root) do
-          execute "chgrp", "web",  "-RL", "public"
+          execute "chgrp", fetch(:webserver_group),  "-RL", "public"
           execute "chmod", "g+wX", "-R", "public"
-          execute "chgrp", "web",  "-RL", "tmp"
+          execute "chgrp", fetch(:webserver_group),  "-RL", "tmp"
           execute "chmod", "g+wX", "-R", "tmp"
-          execute "chgrp", "web",  "-RL", "log"
+          execute "chgrp", fetch(:webserver_group),  "-RL", "log"
           execute "chmod", "g+wX", "-R", "log"
         end
       end
@@ -80,25 +81,18 @@ namespace :deploy do
   end
   after 'symlink:shared', :perms
 
-#  task :confirm_writeable_files do
-#    on roles(:app), :in => :parallel do
-#      within File::join(release_path) do
-#        fetch(:required_writeable_files).each do |filename|
-#            begin
-#              puts "Testing writeability of #{filename}"
-#              as(:apache){ execute "test -w #{filename}" }
-#              as(:apache){ execute "pwd" }
-#              as(:apache){ execute "ls -l #{filename}" }
-#            rescue Object #SSHKit::Runner::ExecuteError
-#              error "Test for writeability failed. User 'apache' cannot write #{filename}."
-#              raise
-#              exit 1  #TODO: prevent this from printing a stack trace, if possible.
-#            end
-#        end
-#      end
-#    end
-#  end
-#  after 'symlink:shared', :confirm_writeable_files
+  task :confirm_writeable_files do
+    on roles(:app), :in => :parallel do
+      fetch(:required_writeable_files).each do |filename|
+        can_write = capture("sudo -u apache test -w #{File::join(release_path, filename)} && echo yes || echo no")
+        unless can_write == "yes"
+          error "Test for writeability failed. User 'apache' cannot write #{filename}."
+          exit 1  #TODO: prevent this from printing a stack trace, if possible.
+        end
+      end
+    end
+  end
+  after 'symlink:shared', :confirm_writeable_files
 
   desc 'Restart application'
   task :restart do
