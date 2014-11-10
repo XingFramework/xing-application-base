@@ -63,7 +63,7 @@ namespace :deploy do
       bundle_config = StringIO.new(<<-EOC)
 ---
 BUNDLE_FROZEN: '1'
-BUNDLE_PATH: "#{File::join(fetch(:shared_path), "backend/vendor/bundle")}"
+BUNDLE_PATH: "#{File::join(shared_path, "backend/vendor/bundle")}"
 BUNDLE_DISABLE_SHARED_GEMS: '1'
       EOC
       upload! bundle_config, "#{fetch(:backend_path)}/.bundle/config"
