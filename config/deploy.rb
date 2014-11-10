@@ -60,7 +60,13 @@ namespace :deploy do
   task :bundle_config do
     on roles(:app), :in => :parallel do
       execute "mkdir -p #{fetch(:backend_path)}/.bundle"
-      upload! 'config/deploy/bundle-config', "#{fetch(:backend_path)}/.bundle/config"
+      bundle_config = StringIO.new(<<-EOC)
+---
+BUNDLE_FROZEN: '1'
+BUNDLE_PATH: "#{File::join(fetch(:shared_path), "backend/vendor/bundle")}"
+BUNDLE_DISABLE_SHARED_GEMS: '1'
+      EOC
+      upload! bundle_config, "#{fetch(:backend_path)}/.bundle/config"
     end
   end
   before :build, :bundle_config
