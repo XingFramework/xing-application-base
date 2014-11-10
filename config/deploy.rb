@@ -43,6 +43,7 @@ set :required_writeable_files, %w{
 
 set :backend_path, proc{ File::join(release_path, "backend") }
 set :webserver_group, "web"
+set :webserver_user, "web"
 
 namespace :deploy do
   desc 'Build app'
@@ -77,6 +78,7 @@ BUNDLE_DISABLE_SHARED_GEMS: '1'
         as(:root) do
           execute "chgrp", fetch(:webserver_group),  "-RL", ".bundle"
           execute "chmod", "g+wX", "-R", ".bundle"
+          execute "chown", fetch(:webserver_user), ".bundle/config"
           execute "chgrp", fetch(:webserver_group),  "-RL", "public"
           execute "chmod", "g+wX", "-R", "public"
           execute "chgrp", fetch(:webserver_group),  "-RL", "tmp"
