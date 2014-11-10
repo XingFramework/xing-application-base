@@ -75,6 +75,8 @@ BUNDLE_DISABLE_SHARED_GEMS: '1'
     on roles(:app), :in => :parallel do
       within File::join(release_path, "backend") do
         as(:root) do
+          execute "chgrp", fetch(:webserver_group),  "-RL", ".bundle"
+          execute "chmod", "g+wX", "-R", ".bundle"
           execute "chgrp", fetch(:webserver_group),  "-RL", "public"
           execute "chmod", "g+wX", "-R", "public"
           execute "chgrp", fetch(:webserver_group),  "-RL", "tmp"
