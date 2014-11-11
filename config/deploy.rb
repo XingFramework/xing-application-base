@@ -43,6 +43,7 @@ set :required_writeable_files, %w{
 
 set :backend_path, proc{ File::join(release_path, "backend") }
 set :webserver_group, "web"
+set :webserver_user, "web"
 
 namespace :deploy do
   desc 'Build app'
@@ -60,7 +61,13 @@ namespace :deploy do
   task :bundle_config do
     on roles(:app), :in => :parallel do
       execute "mkdir -p #{fetch(:backend_path)}/.bundle"
-      upload! 'config/deploy/bundle-config', "#{fetch(:backend_path)}/.bundle/config"
+      bundle_config = StringIO.new(<<-EOC)
+---
+BUNDLE_FROZEN: '1'
+BUNDLE_PATH: "#{File::join(shared_path, "backend/vendor/bundle")}"
+BUNDLE_DISABLE_SHARED_GEMS: '1'
+      EOC
+      upload! bundle_config, "#{fetch(:backend_path)}/.bundle/config"
     end
   end
   before :build, :bundle_config
@@ -69,6 +76,9 @@ namespace :deploy do
     on roles(:app), :in => :parallel do
       within File::join(release_path, "backend") do
         as(:root) do
+          execute "chgrp", fetch(:webserver_group),  "-RL", ".bundle"
+          execute "chmod", "g+wX", "-R", ".bundle"
+          execute "chown", fetch(:webserver_user), ".bundle/config"
           execute "chgrp", fetch(:webserver_group),  "-RL", "public"
           execute "chmod", "g+wX", "-R", "public"
           execute "chgrp", fetch(:webserver_group),  "-RL", "tmp"
