@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "User Signs In and Edits Page", :js => true, :vcr => {} do
+feature "User Signs In and Creates a new Page", :js => true, :vcr => {} do
 
   let! :user do
     FactoryGirl.create(:confirmed_user)
