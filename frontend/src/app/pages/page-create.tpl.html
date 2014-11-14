@@ -1,7 +1,7 @@
 <form>
 
   <label>
-    <span class="label">Chose a layout for your page</span>
+    <span class="label">Choose a layout for your page</span>
     <select ng-model="page.layout" ng-options="kind.value as kind.name for kind in page.layoutKinds"></select>
   </label>
   <button ng-click="pageActions.edit()">Go</button>
