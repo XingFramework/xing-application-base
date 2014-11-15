@@ -1,6 +1,5 @@
 class Admin::FroalaImagesController < Admin::AdminController
   skip_before_filter :check_format, only: [:index, :create, :destroy]
-  skip_before_filter :reject_if_not_logged_in
 
   # GET /admin/froala_images/
   def index

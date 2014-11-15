@@ -1,6 +1,5 @@
 class Admin::FroalaDocumentsController < Admin::AdminController
   skip_before_filter :check_format, only: [:create]
-  skip_before_filter :reject_if_not_logged_in
 
   # POST /admin/froala_documents/
   def create
