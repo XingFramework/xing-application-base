@@ -2,14 +2,18 @@ import { appName } from '../../common/config';
 
 angular.module(`${appName}.adminEditDirective`, ['froala'])
 
-.value('froalaConfig', {
-  buttons: ["bold", "italic", "underline", "strikeThrough", "sep", "formatBlock", "align", "outdent", "indent", "insertHorizontalRule", "sep", "createLink", "insertImage","uploadFile", "undo", "redo", "html"],
-  fileUploadParam: 'document',
-  fileUploadURL: '/admin/froala_documents/',
-  imageUploadParam: 'image',
-  imageUploadURL: '/admin/froala_images/',
-  imagesLoadURL: '/admin/froala_images/',
-  imageDeleteURL: '/admin/froala_images/delete'
+.factory('froalaConfig', function($auth) {
+  var config = {
+    buttons: ["bold", "italic", "underline", "strikeThrough", "sep", "formatBlock", "align", "outdent", "indent", "insertHorizontalRule", "sep", "createLink", "insertImage","uploadFile", "undo", "redo", "html"],
+    fileUploadParam: 'document',
+    fileUploadURL: '/admin/froala_documents/',
+    imageUploadParam: 'image',
+    imageUploadURL: '/admin/froala_images/',
+    imagesLoadURL: '/admin/froala_images/',
+    imageDeleteURL: '/admin/froala_images/delete'
+  };
+  config.headers = $auth.retrieveData('auth_headers');
+  return config;
 })
 
 .directive('lrdAdminEditable', function($sce, $compile, $http, $templateCache) {
