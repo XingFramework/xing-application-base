@@ -1,4 +1,3 @@
-byebug
 FROM_ADDRESS     = Rails.application.secrets.emails['from']
 REPLY_TO_ADDRESS = Rails.application.secrets.emails['reply_to'] ||
                      Rails.application.secrets.emails['from']
