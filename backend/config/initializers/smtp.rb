@@ -1,6 +1,6 @@
-FROM_ADDRESS     = Rails.application.secrets.emails['from']
-REPLY_TO_ADDRESS = Rails.application.secrets.emails['reply_to'] ||
-                     Rails.application.secrets.emails['from']
+FROM_ADDRESS     = Rails.application.secrets.email['from']
+REPLY_TO_ADDRESS = Rails.application.secrets.email['reply_to'] ||
+                     Rails.application.secrets.email['from']
 
 ActionMailer::Base.smtp_settings = {
   :address              => Rails.application.secrets.smtp['address'],
@@ -17,9 +17,9 @@ ActionMailer::Base.smtp_settings = {
 class DevelopmentMailInterceptor
   def self.delivering_email(message)
     message.subject = "#{message.to} #{message.subject}"
-    message.to      = Rails.application.secrets.emails['test'] rescue "test@lrdesign.com"
+    message.to      = Rails.application.secrets.email['test'] rescue "test@lrdesign.com"
   end
 end
 
-ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+ActionMailer::Base.default_url_options[:host] = Rails.application.secrets.email['from_domain']
 ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
