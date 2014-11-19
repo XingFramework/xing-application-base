@@ -310,8 +310,17 @@ module.exports = function( grunt ) {
        * to code without the array syntax.
        */
       ngAnnotate: {
+        build: {
+          files: { '<%= compile_targets.js %>': '<%= compile_targets.js %>' }
+        },
+        build_vendor: {
+          files: { '<%= compile_targets.vender_js %>': '<%= compile_targets.vendor_js %>' }
+        },
         compile: {
           files: { '<%= compile_targets.js %>': '<%= compile_targets.js %>' }
+        },
+        test: {
+          files: { '<%= build_dirs.test%>/test-main.js': '<%= build_dirs.test%>/test-main.js' }
         }
       },
 
@@ -643,7 +652,7 @@ module.exports = function( grunt ) {
         jssrc: {
           options: { livereloadOnError: false },
           files: [ 'src/**/*.js' ],
-          tasks: [ 'jshint:src', 'traceur:build' ],
+          tasks: [ 'jshint:src', 'traceur:build', 'ngAnnotate:build'],
         },
 
         js_qa: {
@@ -660,7 +669,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.coffee %>'
           ],
-          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build' ]
+          tasks: [ 'coffeelint:src', 'coffee:source', 'traceur:build', 'ngAnnotate:build']
         },
 
         /**
@@ -693,7 +702,7 @@ module.exports = function( grunt ) {
             '<%= app_files.atpl %>',
             '<%= app_files.ctpl %>'
           ],
-          tasks: [ 'html2js', 'traceur:build' ],
+          tasks: [ 'html2js', 'traceur:build', 'ngAnnotate:build'],
         },
 
         sass: {
@@ -703,7 +712,7 @@ module.exports = function( grunt ) {
 
         vendor_js: {
           files: [ 'vendor/**/*.js' ],
-          tasks: [ 'concat_sourcemap:compile_vendor_js' ]
+          tasks: [ 'concat_sourcemap:compile_vendor_js', 'ngAnnotate:build_vendor']
         },
         /**
          * When a JavaScript unit test file changes, we only want to lint it and
@@ -713,7 +722,7 @@ module.exports = function( grunt ) {
           files: [
             'bin/assets/vendor.js', '<%= app_files.jstest %>', 'test/json-fixtures/**/*', '<%= compile_targets.js %>'
           ],
-          tasks: [ 'jsonlint:fixtures', 'jshint:test', 'html2js:test','traceur:test', 'karma:unit:run' ],
+          tasks: [ 'jsonlint:fixtures', 'jshint:test', 'html2js:test','traceur:test', 'ngAnnotate:test', 'karma:unit:run' ],
           options: {
             livereload: false,
             atBegin: true
@@ -743,7 +752,7 @@ module.exports = function( grunt ) {
           files: [
             '<%= app_files.coffeeunit %>'
           ],
-          tasks: [ 'coffeelint:test', 'html2js:test', 'traceur:test', 'karma:unit:run' ],
+          tasks: [ 'coffeelint:test', 'html2js:test', 'traceur:test', 'ngAnnotate:test', 'karma:unit:run' ],
           options: {
             livereload: false
           }
@@ -783,7 +792,7 @@ module.exports = function( grunt ) {
 
   grunt.registerTask( 'qa', "Check source code before deploy", [ 'jshint:src', 'jsonlint', 'coffeelint', ]);
 
-  grunt.registerTask( 'develop-build', "Compile the app under development", [ 'build', 'traceur:build', 'copy:traceur_runtime', 'index:build']);
+  grunt.registerTask( 'develop-build', "Compile the app under development", [ 'build', 'traceur:build', 'copy:traceur_runtime', 'index:build', 'ngAnnotate:build', 'ngAnnotate:build_vendor']);
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'develop-build']);
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'develop-build']);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [
@@ -793,8 +802,9 @@ module.exports = function( grunt ) {
     'jshint:test',
     'html2js:test',
     'traceur:test',
+    'ngAnnotate:test',
     'karma:dev' ]);
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify', 'bushcaster:dist', 'string-replace:dist' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate:compile', 'uglify', 'bushcaster:dist', 'string-replace:dist' ]);
 
   /**
    * A utility function to get all app JavaScript sources.
