@@ -23,7 +23,7 @@ group :development, :test do
   gem "rspec-rails"
   gem 'rspec-activemodel-mocks'
   gem 'rspec-steps'
-  gem 'waterpig', :path => "../../../LRD/waterpig/"
+  gem 'waterpig'
   gem "factory_girl_rails"
   gem 'annotate'
   gem 'simplecov'
