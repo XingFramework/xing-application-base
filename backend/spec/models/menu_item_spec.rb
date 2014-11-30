@@ -15,7 +15,7 @@
 
 require 'spec_helper'
 
-describe MenuItem, :pending => "Awaiting implementation in CMS2" do
+describe MenuItem, :skip => true do
   describe "mass assignment" do
      it "should mass assign name and path" do
        location = MenuItem.new(:name => 'foo', :path => 'bar' )

@@ -5,7 +5,11 @@ require 'rspec/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
+require 'waterpig'
+require 'capybara/email/rspec'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+
 ActiveSupport::Deprecation.debug = true
 
 TEST_PASSWORD = 'password'

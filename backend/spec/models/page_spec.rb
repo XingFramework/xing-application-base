@@ -196,7 +196,7 @@ describe Page do
     end
   end
 
-  describe "published scope", :pending => "decide exactly which published parameters we need" do
+  describe "published scope", :skip => "decide exactly which published parameters we need" do
     let! :published_page   do FactoryGirl.create(:one_column_page, :published => true)  end
     let! :unpublished_page do FactoryGirl.create(:one_column_page, :published => false) end
 
