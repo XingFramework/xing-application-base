@@ -249,6 +249,9 @@ module.exports = function( grunt ) {
           }
         },
         compile_js: {
+          options: {
+            sourcesContent: false
+          },
           files: {
             '<%= compile_targets.js %>': [
               '<%= compile_targets.vendor_js %>',
