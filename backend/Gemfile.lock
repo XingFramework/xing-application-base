@@ -178,7 +178,7 @@ GEM
       rspec-expectations (~> 3.0.0)
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
-    rspec-steps (1.0.2)
+    rspec-steps (1.0.3)
       rspec (>= 3.0, < 3.99)
     rspec-support (3.0.4)
     rubyzip (1.1.6)

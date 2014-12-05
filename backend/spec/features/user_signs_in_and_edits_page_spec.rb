@@ -1,5 +1,54 @@
 require 'spec_helper'
 
+shared_steps "editing a page" do
+  perform_steps "sign in with", @user.email, @user.password
+
+  it "clicks on Edit Page" do
+    click_on("Edit Page")
+  end
+
+  it "clicks on #{@oc_page.title}" do
+    within "#root_admin_pages" do
+      click_on(@oc_page.title)
+    end
+  end
+
+  it "clicks on Edit This Page" do
+    click_on("Edit This Page")
+  end
+end
+
+steps "User views a page to edit" do
+  before :all do
+    @user = FactoryGirl.create(:confirmed_user)
+    @oc_page = FactoryGirl.create(:one_column_page)
+  end
+
+  perform_steps "sign in with"
+
+  it "should have 'Edit Page'" do
+    expect(page).to have_content("Edit Page")
+  end
+
+  it "clicks on Edit Page" do
+    click_on("Edit Page")
+  end
+
+  it "should click on the page title" do
+    within "#root_admin_pages" do
+      click_on(oc_page.title)
+    end
+  end
+
+  it "should have the correct content" do
+    expect(page).to have_title(oc_page.title)
+    expect(URI(current_url).fragment).to eq("/pages/"+ oc_page.url_slug)
+    expect(page.body).to include(oc_page.contents["headline"].body)
+    expect(page.body).to include(oc_page.contents["main"].body)
+    expect(page).to have_content("Edit This Page")
+  end
+end
+
 feature "User Signs In and Edits Page", :js => true, :vcr => {} do
 
   let! :user do
@@ -17,21 +66,6 @@ feature "User Signs In and Edits Page", :js => true, :vcr => {} do
       click_on(page.title)
     end
     click_on("Edit This Page")
-  end
-
-  scenario "views a page to edit" do
-    sign_in_with(user.email, user.password)
-    expect(page).to have_content("Edit Page")
-    click_on("Edit Page")
-    within "#root_admin_pages" do
-      expect(page).to have_content(oc_page.title)
-      click_on(oc_page.title)
-    end
-    expect(page).to have_title(oc_page.title)
-    expect(URI(current_url).fragment).to eq("/pages/"+ oc_page.url_slug)
-    expect(page.body).to include(oc_page.contents["headline"].body)
-    expect(page.body).to include(oc_page.contents["main"].body)
-    expect(page).to have_content("Edit This Page")
   end
 
   scenario "edits and saves page content blocks" do
