@@ -1,23 +1,30 @@
 require 'spec_helper'
 
-feature "User Sends Reset Password", :js => true, :vcr => {} do
-  background do
+steps "User Sends Reset Password", :js => true, :vcr => {} do
+  before :all do
     @user = FactoryGirl.create(:confirmed_user)
   end
 
-  scenario "login page has reset password link" do
-    visit_login
-    page.should have_content("Forgot your password?")
+  perform_steps "visit login"
+
+  step "click forgot password" do
+    click_on("Forgot your password?")
   end
 
-  scenario "send forgot password email" do
-    visit_login
-    click_on("Forgot your password?")
+  step "enter email address" do
     fill_in "Email", :with => @user.email
+  end
+
+  step "click send reset" do
     click_on("Send password reset instructions")
+  end
+
+  it "should have the confirmation" do
     page.should have_content("You will receive an email with instructions on how to reset your password in a few minutes.")
+  end
+
+  it "should send the email" do
     email = open_email(@user.email)
     email.should have_link("Change my password")
   end
-
 end

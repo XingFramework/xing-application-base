@@ -22,8 +22,8 @@ group :development, :test do
   gem "rspec", "~> 3.0.0"
   gem "rspec-rails"
   gem 'rspec-activemodel-mocks'
-  gem 'rspec-steps'
-  gem 'waterpig'
+  gem 'rspec-steps', :path => "../../../gems/rspec-steps/"
+  gem 'waterpig', :path => "../../waterpig/"
   gem "factory_girl_rails"
   gem 'annotate'
   gem 'simplecov'

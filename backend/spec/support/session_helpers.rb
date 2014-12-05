@@ -52,7 +52,12 @@ end
 
 RSpec.shared_steps "visit login" do
   it "visits root" do
-    visit '/'
+    begin
+      visit '/'
+    rescue Object => ex
+      p ex
+      raise
+    end
   end
 
   perform_steps "expand the menu"
@@ -69,13 +74,13 @@ RSpec.shared_steps "sign up with" do
     visit '/'
   end
 
-  peform_steps "expand the menu"
+  perform_steps "expand the menu"
 
   it "clicks Sign Up" do
     click_on "Sign Up"
   end
 
-  it "fills in #{email} and #{pasword}" do
+  it "fills in email and pasword" do
     fill_in "Email",           :with => @user.email
     fill_in "Email Confirmation", :with => @user.email
     fill_in "Password",        :with => @user.password
