@@ -33,6 +33,15 @@ RSpec.configure do |config|
 
   config.before :each, :type => :controller do
     @request.env['HTTP_ACCEPT'] = 'application/json'
+    @request.host = "api.example.com"
+  end
+
+  config.before :each, :type => :request do
+    host! "api.example.com"
+  end
+
+  config.before :each, :type => :request, :frontend => true do
+    host! "www.example.com"
   end
 
   truncation_types = [:feature, :task]
