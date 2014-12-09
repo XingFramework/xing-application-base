@@ -85,12 +85,12 @@ class PageMapper < HypermediaJSONMapper
     @nested_errors = 0
     if content_block_specifier[:required]
       if  @block_hash[block_name].blank?
-        error_data[:contents][block_name] = { :data => { :type => :required, :message => "This block is required: #{block_name}"} }
+        error_data[:contents][block_name] = { :data => { :type => "required", :message => "This block is required: #{block_name}"} }
         @nested_errors += 1
       end
 
       if @cbm && @cbm.content_block.body.blank?
-        error_data[:contents][block_name] = { :data => {:body=>{:type=>:required, :message=>"can't be blank"}} }
+        error_data[:contents][block_name] = { :data => {:body=>{:type=>"required", :message=>"can't be blank"}} }
         @nested_errors += 1
       end
     end

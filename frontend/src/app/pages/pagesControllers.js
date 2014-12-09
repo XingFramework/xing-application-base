@@ -4,7 +4,7 @@ import {} from './pagesModule';
 
 angular.module(`${appName}.pages`)
 
-.controller( 'PageNewCtrl', function( $scope ){
+.controller( 'PageNewCtrl', function( $scope, page ){
   $scope.$emit('metadataSet', page.metadata);
 })
 

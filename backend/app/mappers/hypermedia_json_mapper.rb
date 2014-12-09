@@ -103,23 +103,9 @@ class HypermediaJSONMapper
     wrap_data(error_data)
   end
 
-  ERROR_CONVERSIONS = {
-    "can't be blank" => :required
-  }
-
-  def convert_ar_message(ar_message, my_message = nil)
-    { :type => ERROR_CONVERSIONS[ar_message] || :unknown ,
-      :message => my_message || ar_message
-    }
-  end
-
   def add_ar_arrors(object)
-    unless object.valid?
-      object.errors.messages.each do |ar_error|
-        message = ar_error[1][0]
-        self.error_data[ar_error[0]] = convert_ar_message(message)
-      end
-    end
+    object_errors = ActiveModelErrorConverter.new(object).convert
+    error_data.deep_merge!(object_errors)
   end
 
 end

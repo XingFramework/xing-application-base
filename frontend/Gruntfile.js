@@ -21,8 +21,9 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-traceur-simple');
   grunt.loadNpmTasks('grunt-jsonlint');
-
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-bushcaster');
+  grunt.loadNpmTasks('grunt-string-replace');
   /**
    * Load in our build configuration file.
    */
@@ -38,6 +39,8 @@ module.exports = function( grunt ) {
    * This is the configuration object Grunt uses to give each plugin its
    * instructions.
    */
+
+  grunt.cacheMap = []
 
   var taskConfig = {
     /**
@@ -246,6 +249,9 @@ module.exports = function( grunt ) {
           }
         },
         compile_js: {
+          options: {
+            sourcesContent: false
+          },
           files: {
             '<%= compile_targets.js %>': [
               '<%= compile_targets.vendor_js %>',
@@ -512,6 +518,46 @@ module.exports = function( grunt ) {
         }
       },
 
+      bushcaster: {
+        options: {
+          hashLength: 8,
+          noProcess: true,
+          onComplete: function(map, files) {
+            var dirRE = new RegExp( '^('+grunt.config('build_dirs.root')+'|'+grunt.config('compile_dir')+')\/', 'g' );
+            return files.forEach(function(file) {
+              return grunt.cacheMap.push({
+                pattern: file.replace( dirRE, '' ),
+                replacement: map[file].replace( dirRE, '' )
+              });
+            });
+          }
+        },
+        dist: {
+          files: [
+            {
+              expand: true,
+              cwd: './',
+              src: [
+                '<%= compile_targets.js %>',
+                '<%= compile_targets.css %>'
+              ],
+              dest: './'
+            }
+          ]
+        }
+      },
+      'string-replace': {
+        dist: {
+          files: {
+            '<%= compile_dir %>/index.html': '<%= compile_dir %>/index.html'
+          }
+        },
+        options: {
+          replacements: grunt.cacheMap
+        }
+      },
+
+
       /**
        * XXX remove
        * This task compiles the karma template so that changes to its file array
@@ -751,7 +797,7 @@ module.exports = function( grunt ) {
     'html2js:test',
     'traceur:test',
     'karma:dev' ]);
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate', 'uglify', 'bushcaster:dist', 'string-replace:dist' ]);
 
   /**
    * A utility function to get all app JavaScript sources.
