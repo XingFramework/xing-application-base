@@ -4,7 +4,7 @@ require 'spec_helper'
 # capybara to boot it's HTTP rails server up -- which is what we'll use to take
 # snapshots against
 
-feature "server takes snapshot", :js => true, :vcr => {} do
+steps "server takes snapshot", :js => true, :vcr => {} do
   let :server_url do
     "http://127.0.0.1:#{Capybara.current_session.server.port}/"
   end
