@@ -30,7 +30,7 @@
 
 require 'spec_helper'
 
-describe User, :pending => "Awaiting implementation in CMS2" do
+describe User, :skip => "Awaiting implementation in CMS2" do
   describe "validations" do
     describe "uniqueness" do
       it "should not create two users with the same email" do

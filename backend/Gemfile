@@ -21,6 +21,9 @@ gem 'rack-cors', :require => 'rack/cors'
 group :development, :test do
   gem "rspec", "< 3.0.0"
   gem "rspec-rails", "< 3.0.0"
+  gem 'rspec-activemodel-mocks'
+  gem 'rspec-steps'
+  gem 'waterpig'
   gem "factory_girl_rails"
   gem 'annotate'
   gem 'simplecov'
