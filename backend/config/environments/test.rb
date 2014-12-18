@@ -1,4 +1,4 @@
-require 'deadbeat_connection_release'
+require 'waterpig/deadbeat-connections'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
@@ -15,8 +15,19 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Raise exceptions instead of rendering exception templates
-  config.action_dispatch.show_exceptions = false
+  # Render exception templates instead of raising them -
+  #   The downside of this is that e.g. request specs won't raise exceptions in
+  #   test mode (which may lead to false-passes if the contents aren't
+  #   inspected well enough) but in feature tests we get random false-fails
+  #   because front end requests are still processing when the test is closing
+  #   down - so e.g. we get missing DB resources because the database has been
+  #   truncated.
+  #
+  #   One solution would be a middleware that sees a request with e.g. a
+  #   special header and disables exception raising. Another would be to use a
+  #   signal akin to the Brownie "page ready for rendering" to say "okay, we
+  #   can be done with the tests now."
+  config.action_dispatch.show_exceptions = true
 
   # Disable request forgery protection in test environment
   config.action_controller.allow_forgery_protection    = false
@@ -34,5 +45,5 @@ Rails.application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  config.middleware.insert_before ActiveRecord::ConnectionAdapters::ConnectionManagement, DeadbeatConnectionRelease
+  config.middleware.insert_before ActiveRecord::ConnectionAdapters::ConnectionManagement, Waterpig::DeadbeatConnectionRelease
 end
