@@ -46,17 +46,19 @@ export default class BackendResponse {
 
   backendResponds(responsePromise){
     this.responsePromise = responsePromise;
-    this.completePromise = this.responsePromise.then( (response) => {
-      this.resolved = true;
-      this._dirty = false;
-      this.absorbResponse(response);
-      return this;
-    },
-    (reason) => {
-      console.log("Backend error:", this, reason);
-      this.errorReason = reason;
-      return this;
-    });
+    this.completePromise = this.responsePromise.then( 
+      (response) => {
+        this.resolved = true;
+        this._dirty = false;
+        this.absorbResponse(response);
+        return this;
+      },
+      (reason) => {
+        console.log("Backend error:", this, reason);
+        this.errorReason = reason;
+        throw this;
+      }
+    );
   }
 
   loadFrom(url){
