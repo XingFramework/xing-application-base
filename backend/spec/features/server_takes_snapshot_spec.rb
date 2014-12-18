@@ -31,7 +31,7 @@ steps "server takes snapshot", :js => true, :vcr => {} do
     rescue
     end
 
-    SiteSnapshot.create!(server_url)
+    LocalSiteSnapshot.create!(server_url)
   end
 
   it "will take a snapshot of homepage" do

@@ -6,11 +6,11 @@ module APIResponseMatchers
       expect(response.status).to eq(422)
     end
 
-    failure_message_for_should do |response|
+    failure_message do |response|
       "Expected response to be a 422: Unprocessable Entity"
     end
 
-    failure_message_for_should_not do |source|
+    failure_message_when_negated do |source|
       "Expected response not to be a 422: Unprocessable Entity"
     end
 

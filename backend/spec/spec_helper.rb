@@ -7,6 +7,8 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 require 'waterpig'
 require 'capybara/email/rspec'
+require 'sidekiq/testing'
+
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 

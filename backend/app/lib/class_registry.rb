@@ -5,7 +5,7 @@ module ClassRegistry
     end
 
     def register(name, klass=self)
-      raise "Invalid registration: #{name} exists" if registrar.registry.keys.include?(name)
+      raise "Invalid registration: #{name} exists" if registrar.registry.has_key?(name) && registrar.registry[name] != klass
       registrar.registry[name] = klass
     end
 
@@ -17,7 +17,6 @@ module ClassRegistry
       registrar.registry.fetch(name)
     end
   end
-
 
   def self.included(base)
     base.define_singleton_method(:registrar) do
