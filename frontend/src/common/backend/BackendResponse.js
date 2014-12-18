@@ -46,7 +46,7 @@ export default class BackendResponse {
 
   backendResponds(responsePromise){
     this.responsePromise = responsePromise;
-    this.completePromise = this.responsePromise.then( 
+    this.completePromise = this.responsePromise.then(
       (response) => {
         this.resolved = true;
         this._dirty = false;
