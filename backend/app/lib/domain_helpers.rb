@@ -2,10 +2,12 @@ module DomainHelpers
   def domain(url = nil)
     if url
       url
-    elsif defined? SITEMAP_DEFAULT_URL
-      SITEMAP_DEFAULT_URL
+    elsif defined? Rails.application.secrets.sitemap_base_url
+      Rails.application.secrets.sitemap_base_url
     else
-      "http://CHANGEME.com/"  #TODO: edit for each client
+      "http://CHANGEME.com/"
+
+      # TODO: should we raise an exception here instead?
     end
   end
 
