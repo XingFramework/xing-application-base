@@ -24,7 +24,10 @@ angular.module(`${appName}.homepage`)
         page(isAdmin, backend) {
           var role = "guest";
           if(isAdmin){ role = "admin"; }
-          return backend.page("/homepage", role).complete;
+          return backend.page("/homepage", role).complete.then(
+            (page) => page,
+            (nothing) => nothing
+          );
         }
       }
     })

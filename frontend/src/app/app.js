@@ -44,7 +44,10 @@ angular.module( appName, [
     resolve: {
       menuRoot(backend) {
         var menu = backend.menu("main");
-        return menu.complete;
+        return menu.complete.then(
+          (menu) => menu,
+          (nothing) => nothing
+        );
       }
     }
   }).state('root.inner', {
