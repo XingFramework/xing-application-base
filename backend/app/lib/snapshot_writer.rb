@@ -1,4 +1,4 @@
-module SnapshotWriting
+module SnapshotWriter
   def write(path, html)
     if Rails.env.test?
       snapshot_file = "#{ Rails.root }/spec/fixtures/sitemap_scratch/#{path.present? ? path : 'index'}.html"

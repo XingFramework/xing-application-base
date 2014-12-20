@@ -2,7 +2,7 @@ require 'snapshot_writing'
 
 class RemoteSnapshotFetcher
   include Sidekiq::Worker
-  include SnapshotWriting
+  include SnapshotWriter
 
   def perform(url, path)
     admin_server = Rails.application.secrets.snapshot_server['url']

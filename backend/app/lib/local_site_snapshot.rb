@@ -4,7 +4,7 @@ require 'snapshot_writing'
 
 class LocalSiteSnapshot < SiteSnapshot
   class << self
-    include SnapshotWriting
+    include SnapshotWriter
 
     def setup
       @driver = Selenium::WebDriver.for :chrome
