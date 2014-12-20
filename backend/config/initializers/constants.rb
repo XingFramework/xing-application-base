@@ -1,4 +1,3 @@
-SITE_DOMAIN = "http://my_site_here.example"
 STATIC_PATHS_FOR_SITEMAP = [
   '',
   'sign-in'
