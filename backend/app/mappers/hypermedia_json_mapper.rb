@@ -42,6 +42,12 @@ class HypermediaJSONMapper
     path
   end
 
+  # This helper is used to deconstruct a URL for the purpose of extracting
+  # components.  For example, menu_item_mapper uses it to extract the url_slug
+  # component of a page route. We are here abusing recognize_path, which isn't
+  # supposed to be used outside of tests (see
+  # https://github.com/rails/rails/issues/2656), but we don't know what the
+  # alternative is.
   def route_to(path)
     path = "http://#{BACKEND_SUBDOMAIN}.example.com#{normalize_path(path)}";
     router.recognize_path(path)
