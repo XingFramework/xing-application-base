@@ -1,4 +1,4 @@
-require 'snapshot_writing'
+require 'snapshot_writer'
 
 class RemoteSnapshotFetcher
   include Sidekiq::Worker

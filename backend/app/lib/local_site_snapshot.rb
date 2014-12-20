@@ -1,6 +1,6 @@
 require 'selenium-webdriver'
 require 'site_snapshot'
-require 'snapshot_writing'
+require 'snapshot_writer'
 
 class LocalSiteSnapshot < SiteSnapshot
   class << self
