@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 
   constraints(lambda {|req| req.subdomains.include?(BACKEND_SUBDOMAIN) }) do
 
