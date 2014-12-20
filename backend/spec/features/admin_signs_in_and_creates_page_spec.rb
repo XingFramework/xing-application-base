@@ -21,7 +21,6 @@ feature "User Signs In and Creates a new Page", :js => true, :vcr => {} do
     fill_in "Keywords", :with => "this, that, the other thing"
     fill_in "Description", :with => "Question your tea spoons."
 
-
     page.all('.froala-element')[0].set("Brand New Headline")
     page.all('.froala-element')[1].set("Spanking new content!")
     click_on "Save"

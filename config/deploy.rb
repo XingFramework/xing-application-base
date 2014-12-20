@@ -121,9 +121,20 @@ BUNDLE_DISABLE_SHARED_GEMS: '1'
     end
   end
 
+  desc "Update site snapshots"
+  task :take_snapshot do
+    within fetch(:backend_path) do
+      with :rails_env => fetch(:stage) do
+        rake "take_snapshot"
+      end
+    end
+  end
+
+  after 'symlink:shared', :build
 
   after :publishing, :restart
   after :publishing, :warm_up_rails
+  after :restart, :take_snapshot
 
 #  after :restart, :clear_cache do
 #    on roles(:web), in: :groups, limit: 3, wait: 10 do

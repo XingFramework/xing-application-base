@@ -35,4 +35,5 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
 
   config.middleware.insert_before ActiveRecord::ConnectionAdapters::ConnectionManagement, DeadbeatConnectionRelease
+
 end

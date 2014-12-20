@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::MenuItemsController do
+describe Admin::MenuItemsController, :type => :routing do
   describe "routing" do
     it "recognizes and generates #show" do
       expect({ :get => "/admin/menu_items/1" }).to route_to(:controller => "admin/menu_items", :action => "show", :id => "1")

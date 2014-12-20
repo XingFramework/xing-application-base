@@ -22,7 +22,7 @@ steps "Vistor navigated to a path on desktop", :js => true, :size => :desktop do
 
   it "should have right content" do
     expect(page).to have_content("Sign In")
-    expect(URI(current_url).fragment).to eq('/sign-in')
+    expect(URI(current_url).path).to eq('/sign-in')
   end
 end
 
@@ -40,7 +40,7 @@ steps "Vistor navigated to a page on desktop", :js => true, :size => :desktop do
   it "should have right content" do
     expect(page).to have_content(@page_one.contents["headline"].body)
     expect(page.body).to include(@page_one.contents["main"].body)
-    expect(URI(current_url).fragment).to eq("/pages/" + @page_one.url_slug)
+    expect(URI(current_url).path).to eq("/pages/" + @page_one.url_slug)
   end
 end
 
@@ -61,6 +61,6 @@ steps "Vistor navigated to a path on mobile", :js => true, :size => :mobile do
 
   it "should have right content" do
     expect(page).to have_content("Sign In")
-    expect(URI(current_url).fragment).to eq('/sign-in')
+    expect(URI(current_url).path).to eq('/sign-in')
   end
 end

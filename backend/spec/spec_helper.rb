@@ -7,6 +7,8 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 require 'waterpig'
 require 'capybara/email/rspec'
+require 'sidekiq/testing'
+
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 
@@ -37,6 +39,15 @@ RSpec.configure do |config|
 
   config.before :each, :type => :controller do
     @request.env['HTTP_ACCEPT'] = 'application/json'
+    @request.host = "api.example.com"
+  end
+
+  config.before :each, :type => :request do
+    host! "api.example.com"
+  end
+
+  config.before :each, :type => :request, :frontend => true do
+    host! "www.example.com"
   end
 
   config.waterpig_truncation_types = [:feature, :task]

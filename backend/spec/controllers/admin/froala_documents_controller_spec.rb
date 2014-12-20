@@ -23,7 +23,7 @@ describe Admin::FroalaDocumentsController do
 
     let :valid_doc do
       document = mock_document(:save => true)
-      document.stub_chain(:data, :url).and_return(doc_url)
+      allow(document).to receive_message_chain(:data, :url).and_return(doc_url)
       document
     end
 
@@ -41,7 +41,7 @@ describe Admin::FroalaDocumentsController do
       end
 
       it "should not be rejected if request format other than json" do
-        Document.should_receive(:new).with(:data => 'uploaded_file').and_return(valid_doc)
+        expect(Document).to receive(:new).with(:data => 'uploaded_file').and_return(valid_doc)
 
         request.accept = 'html'
         xhr :post, :create, valid_params
@@ -51,12 +51,12 @@ describe Admin::FroalaDocumentsController do
 
       describe 'with valid params' do
         before(:each) do
-          Document.should_receive(:new).with(:data => 'uploaded_file').and_return(valid_doc)
+          expect(Document).to receive(:new).with(:data => 'uploaded_file').and_return(valid_doc)
           xhr :post, :create, valid_params
         end
 
         it "should create a new document and expose it" do
-          assigns(:document).should equal(valid_doc)
+          expect(assigns(:document)).to equal(valid_doc)
         end
 
         it "should create an document and pass the params to it, then redirect to the page" do
@@ -69,7 +69,7 @@ describe Admin::FroalaDocumentsController do
 
       describe 'with invalid params' do
         before(:each) do
-          Document.should_receive(:new).with(:data => nil).and_return(invalid_doc)
+          expect(Document).to receive(:new).with(:data => nil).and_return(invalid_doc)
           xhr :post, :create, invalid_params
         end
 
@@ -79,7 +79,7 @@ describe Admin::FroalaDocumentsController do
 
         let :invalid_doc do
           document = mock_document(:save => false )
-          document.stub_chain(:errors, :full_messages) { errors_full }
+          allow(document).to receive_message_chain(:errors, :full_messages) { errors_full }
           document
         end
 
@@ -92,7 +92,7 @@ describe Admin::FroalaDocumentsController do
         end
 
         it "should create a new document and expose it" do
-          assigns(:document).should equal(invalid_doc)
+          expect(assigns(:document)).to equal(invalid_doc)
         end
 
         it "should render status 422 if not saved"  do
