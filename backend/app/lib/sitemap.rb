@@ -1,22 +1,14 @@
 require 'builder'
+require 'site_page_set'
 
 class Sitemap
 
   class << self
     def create!(url = nil)
       @bad_pages = []
-      @pages_to_visit = []
-      if url
-        @url = url
-      elsif defined? SITEMAP_DEFAULT_URL
-        @url = SITEMAP_DEFAULT_URL
-      else
-        @url = "http://CHANGEME.com/"  #TODO: edit for each client
-      end
 
-      @url_domain = @url[/([a-z0-9-]+)\.([a-z.]+)/i]
+      @sitemap_page_set = SitePageSet.new(url)
 
-      @pages_to_visit = Page.published.collect { |p| p.url_slug }
       generate_sitemap
       update_search_engines if Rails.env.production?
     end
@@ -28,20 +20,11 @@ class Sitemap
 
       xml.instruct!
       xml.urlset(:xmlns=>'http://www.sitemaps.org/schemas/sitemap/0.9') {
-        STATIC_PATHS_FOR_SITEMAP.each do |path|
+        @sitemap_page_set.visit_pages do |url, path|
           xml.url {
-            xml.loc(@url + path)
-            xml.lastmod(Time.now.utc.iso8601)
+            xml.loc(url+path)
+            xml.lastmod(Time.now.utc.strftime('%Y-%m-%dT%H:%M:%S+00:00'))
           }
-        end
-
-        @pages_to_visit.each do |path|
-          unless @url == path
-            xml.url {
-              xml.loc(@url + path)
-              xml.lastmod(Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S+00:00"))
-             }
-          end
         end
       }
 

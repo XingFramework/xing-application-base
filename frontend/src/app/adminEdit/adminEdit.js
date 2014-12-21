@@ -1,4 +1,4 @@
-import { appName } from '../../common/config';
+import { appName, backendUrl} from '../../common/config';
 
 angular.module(`${appName}.adminEditDirective`, ['froala'])
 
@@ -6,11 +6,12 @@ angular.module(`${appName}.adminEditDirective`, ['froala'])
   var config = {
     buttons: ["bold", "italic", "underline", "strikeThrough", "sep", "formatBlock", "align", "outdent", "indent", "insertHorizontalRule", "sep", "createLink", "insertImage","uploadFile", "undo", "redo", "html"],
     fileUploadParam: 'document',
-    fileUploadURL: '/admin/froala_documents/',
+    fileUploadURL: `${backendUrl}admin/froala_documents/`,
     imageUploadParam: 'image',
-    imageUploadURL: '/admin/froala_images/',
-    imagesLoadURL: '/admin/froala_images/',
-    imageDeleteURL: '/admin/froala_images/delete'
+    imageUploadURL: `${backendUrl}admin/froala_images/`,
+    imagesLoadURL: `${backendUrl}admin/froala_images/`,
+    imageDeleteURL: `${backendUrl}admin/froala_images/delete`,
+    crossDomain: true
   };
   config.headers = $auth.retrieveData('auth_headers');
   return config;

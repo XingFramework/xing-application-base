@@ -161,16 +161,36 @@ namespace :develop do
     child_pids << child_pid
   end
 
-  task :all => [:grunt_watch, :rails_server, :launch_browser] do
+  task :wait do
     Process.waitall
   end
+
+  task :startup => [:grunt_watch, :rails_server, :launch_browser]
 
   task :links do
     %w{index.html assets fonts}.each do |thing|
       sh "ln", "-sfn", "../../frontend/bin/#{thing}", "backend/public/#{thing}"
     end
   end
-  task :all => [:links]
+  task :startup => [:links]
+
+  task :all => [:startup, :wait]
+
+  task :sidekiq do
+    child_pid = Process.fork do
+      Bundler.with_clean_env do
+        words = %w{bundle exec sidekiq}
+        Dir.chdir("backend"){
+          sh *words
+        }
+      end
+    end
+    puts "Sidekiq running in pid #{child_pid}"
+    child_pids << child_pid
+  end
+
+  task :background => [:startup, :sidekiq, :wait]
+
 end
 
 namespace :spec do

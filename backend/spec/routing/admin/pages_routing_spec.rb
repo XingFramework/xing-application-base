@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::PagesController do
+describe Admin::PagesController, :type => :routing do
   describe "routing" do
     it "recognizes and generates #show" do
       expect({ :get => "/admin/pages/url_slug" }).to route_to(:controller => "admin/pages", :action => "show", :url_slug => "url_slug")

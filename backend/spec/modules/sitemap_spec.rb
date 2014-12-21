@@ -11,8 +11,8 @@ describe Sitemap, :type => :module do
 
   describe "with a couple pages" do
     before(:each) do
-      @page_public = FactoryGirl.create(:page, :published => true)
-      @page_private = FactoryGirl.create(:page, :publish_start => Time.now + 3.days)
+      @page_public = FactoryGirl.create(:one_column_page, :published => true)
+      @page_private = FactoryGirl.create(:one_column_page, :publish_start => Time.now + 3.days)
     end
 
     it "should not crash" do
@@ -26,7 +26,7 @@ describe Sitemap, :type => :module do
       expect(xml.inner_html).to include('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
       expect(xml.inner_html).to include('<loc>')
       expect(xml.inner_html).to include('<lastmod>')
-      expect(xml.text).to include('http://example.com/' + @page_public.url_slug)
+      expect(xml.text).to include("http://example.com/#{PAGES_FRONTEND_URL}/" + @page_public.url_slug)
       expect(xml.text).to include(@page_public.updated_at.utc.strftime('%Y-%m-%dT%H:%M:%S+00:00'))
 
       expect(xml.text).to_not include('http://example.com/' + @page_private.url_slug)

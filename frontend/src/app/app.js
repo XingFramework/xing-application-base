@@ -32,7 +32,22 @@ angular.module( appName, [
   `${appName}.sessionLinks`,
   `${appName}.toast`
 ])
-.config( function myAppConfig( $stateProvider, $urlRouterProvider ) {
+.config( function myAppConfig( $stateProvider, $urlRouterProvider, $locationProvider ) {
+  // enable html5 mode
+  $locationProvider.html5Mode(true);
+
+  // html5 mode when frontend urls hit directly they become a backend request
+  // backend in-turn redirects to /?goto=url wher url is the intended frontend url
+  // this function then redirects frontend (via history API) to appropriate frontend
+  // route
+  $urlRouterProvider.when("/?goto", ['$match', function ($match) {
+    if ($match.goto) {
+      return $match.goto;
+    } else {
+      return false;
+    }
+  }]);
+
   $urlRouterProvider.otherwise(($injector, $location) => {
     return '/home';
   });
@@ -53,7 +68,10 @@ angular.module( appName, [
     url: "inner"
   });
 })
-.controller( 'RootCtrl', function RootCtrl( $scope, $location, menuRoot, $state ) {
+.controller( 'RootCtrl', function RootCtrl( $scope, menuRoot, $state, $rootScope, $window ) {
+  $rootScope.$on("$viewContentLoaded", function(event) {
+    $window.frontendContentLoaded = true;
+  });
   $scope.mainMenu = menuRoot.children;
   $scope.$watch(
     ()=>{ return menuRoot.etag; },

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html ng-app="<%= appName %>">
+<html ng-app="<%= appName %>" ng-strict-di>
   <head ng-controller="MetadataCtrl">
     <!-- page information -->
     <title ng-bind="pageTitle"></title>
     <meta name="description" content="{{pageDescription}}">
     <meta name="keywords" content="{{pageKeywords}}">
+
+    <!-- angular html5mode base url -->
+    <base href="/">
+
+    <!-- let google know there is ajax content -->
+    <meta name="fragment" content="!">
+
+    <!-- a value for snapshoting services to check to for page javascript complete -->
+    <meta name="ready-var" content="window.frontendContentLoaded">
 
     <!-- social media tags -->
     <meta name="twitter:card" content="" />

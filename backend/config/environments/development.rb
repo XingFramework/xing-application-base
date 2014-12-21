@@ -30,14 +30,4 @@ Rails.application.configure do
 
   config.assets.initialize_on_precompile = false
 
-  config.middleware.insert_before Warden::Manager, Rack::Cors do
-    allow do
-      origins '*'
-      resource '*',
-        :headers => :any,
-        :expose => ['access-token', 'token-type', 'client', 'expiry', 'uid'],
-        :methods => [:get, :post, :delete, :put, :patch, :options]
-    end
-  end
-
 end

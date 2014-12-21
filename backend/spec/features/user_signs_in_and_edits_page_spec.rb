@@ -43,7 +43,7 @@ steps "User views a page to edit", :type => :feature do
 
   it "should have the correct content" do
     expect(page).to have_title(@oc_page.title)
-    expect(URI(current_url).fragment).to eq("/pages/"+ @oc_page.url_slug)
+    expect(URI(current_url).path).to eq("/pages/"+ @oc_page.url_slug)
     expect(page.body).to include(@oc_page.contents["headline"].body)
     expect(page.body).to include(@oc_page.contents["main"].body)
     expect(page).to have_content("Edit This Page")
@@ -116,7 +116,7 @@ steps "edits and saves a page's url_slug" do
 
   it "should persist correctly" do
     expect(page).to have_css("#root_inner_page_show")
-    expect(URI(current_url).fragment).to eq("/pages/new_slug")
+    expect(URI(current_url).path).to eq("/pages/new_slug")
   end
 end
 
