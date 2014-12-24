@@ -21,7 +21,7 @@ export default class BackendServer {
   save(resource){
     var url, backendReq, responds;
     var data = resource.dataForSave;
-    if(resource.isNew){
+    if(!resource.isPersisted){
       url = this.mangleUrl(resource.postUrl);
       backendReq = this.Restangular.all(url);
       responds = backendReq.post(data);
