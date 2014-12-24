@@ -123,8 +123,8 @@ export default class BackendResponse {
     return this._dirty;
   }
 
-  get isNew(){
-    return (this.responsePromise === null);
+  get isPersisted(){
+    return (this.selfUrl ? true : false );
   }
 
   get publicUrl(){
