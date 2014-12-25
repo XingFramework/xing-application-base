@@ -1,5 +1,107 @@
 require 'bundler'
 
+class ChildManager
+  def initialize
+    @child_pids = []
+    @parent_pid = Process.pid
+    @child_data = {}
+  end
+  attr_accessor :child_pids, :child_data
+
+  ChildRecord = Struct.new(:name, :status)
+
+  def start_child(name, dir, &block)
+    child_pid = Process.fork do
+      Signal.trap("HUP") do
+        puts "Parent exited"
+        exit
+      end
+
+      Bundler.with_clean_env do
+        Dir.chdir(dir, &block)
+      end
+    end
+    puts "#{@parent_pid}: #{name} running in pid #{child_pid}"
+
+    at_exit { kill_child(child_pid) }
+    child_data[child_pid] = ChildRecord.new(name, nil)
+    child_pids << child_pid
+  end
+
+  def exited?(pid)
+    return false unless child_data.has_key?(pid)
+    return true unless child_data[pid].status.nil?
+
+    begin
+      _apid, status = *Process.wait2(pid, Process::WNOHANG | Process::WUNTRACED)
+    rescue Errno::ECHILD
+      return false
+    end
+
+    unless status.nil?
+      child_data[pid].status = status
+      return true
+    end
+    return false
+  end
+
+  def wait_until_dead(pilimit)
+    start = Time.now
+    while Time.now - start < limit
+      Process.waitpid(-1, Process::WNOHANG | Process::WUNTRACED)
+      sleep(0.1)
+    end
+    return false
+  rescue SystemCallError # = no children
+    return true
+  end
+
+  def kill_child(pid)
+    unless Process.pid == @parent_pid
+      puts "#{Process.pid} #@parent_pid Not original parent: not killing"
+      return
+    end
+    puts "PID #{Process.pid} is killing child #{pid} #{child_data[pid].name}"
+
+    if exited?(pid)
+      puts "#{pid} #{child_data[pid].name} already exited"
+      return
+    end
+
+    begin
+      Process::kill("TERM", pid)
+    rescue Errno::ESRCH
+      puts "Hm. #{pid} is already gone: dead?"
+      return
+    end
+
+    limit = 10
+    start = Time.now
+    while Time.now - start < limit
+      begin
+        Process::kill(0, pid)
+        sleep(0.1)
+      rescue Errno::ESRCH
+        return
+      end
+    end
+
+    begin
+      Process::kill("KILL", pid)
+    rescue Errno::ESRCH
+      return
+    end
+  end
+
+  def kill_all
+    child_pids.each do |pid|
+      kill_child(pid)
+    end
+    p Process.waitall rescue []
+    p @child_data
+  end
+end
+
 desc "The whole shebang"
 task :build => 'build:all'
 
@@ -59,22 +161,29 @@ DEFAULT_RELOAD_PORT = 35729
 DEFAULT_RAILS_PORT  = 3000
 
 namespace :develop do
-  child_pids = []
-
   def port_offset
     @port_offset ||= if !ENV['PORT_OFFSET'].nil?
-        ENV['PORT_OFFSET'].to_i
-      else
-        0
-      end.tap do |offset|
-        puts "Shifting server ports by #{offset}"
-      end
+                       ENV['PORT_OFFSET'].to_i
+                     else
+                       0
+                     end.tap do |offset|
+                       puts "Shifting server ports by #{offset}"
+                     end
   end
   def reload_server_port
     DEFAULT_RELOAD_PORT + port_offset
   end
   def rails_server_port
     DEFAULT_RAILS_PORT + port_offset
+  end
+
+  def manager
+    @manager ||= ChildManager.new.tap do |mngr|
+      #Process.setsid
+      at_exit{
+        mngr.kill_all
+      }
+    end
   end
 
   task :launch_browser do
@@ -136,61 +245,40 @@ namespace :develop do
   end
 
   task :grunt_watch => 'frontend:setup' do
-    child_pid = Process.fork do
-      Bundler.with_clean_env do
-        Dir.chdir("frontend"){
-          sh *%w{bundle exec node_modules/.bin/grunt watch:develop}
-        }
-      end
+    manager.start_child("Grunt", "frontend") do
+      sh *%w{bundle exec node_modules/.bin/grunt watch:develop}
     end
-    puts "Grunt running in pid #{child_pid}"
-    child_pids << child_pid
   end
 
   task :rails_server => [:links, 'backend:setup'] do
-    child_pid = Process.fork do
-      Bundler.with_clean_env do
-        words = %w{bundle exec rails server}
-        words << "-p#{rails_server_port}"
-        Dir.chdir("backend"){
-          sh *words
-        }
-      end
+    words = %w{bundle exec rails server}
+    words << "-p#{rails_server_port}"
+    manager.start_child("Rails", "backend") do
+      puts %x"which rails"
+      puts %x"bundle exec which rails"
+      sh *words
     end
-    puts "Rails running in pid #{child_pid}"
-    child_pids << child_pid
+  end
+
+  task :sidekiq do
+    manager.start_child("Sidekiq", "backend") do
+      sh *%w{bundle exec sidekiq}
+    end
   end
 
   task :wait do
     Process.waitall
   end
 
-  task :startup => [:grunt_watch, :rails_server, :launch_browser]
-
   task :links do
     %w{index.html assets fonts}.each do |thing|
       sh "ln", "-sfn", "../../frontend/bin/#{thing}", "backend/public/#{thing}"
     end
   end
-  task :startup => [:links]
+
+  task :startup => [:links, :grunt_watch, :rails_server, :launch_browser, :sidekiq]
 
   task :all => [:startup, :wait]
-
-  task :sidekiq do
-    child_pid = Process.fork do
-      Bundler.with_clean_env do
-        words = %w{bundle exec sidekiq}
-        Dir.chdir("backend"){
-          sh *words
-        }
-      end
-    end
-    puts "Sidekiq running in pid #{child_pid}"
-    child_pids << child_pid
-  end
-
-  task :background => [:startup, :sidekiq, :wait]
-
 end
 
 namespace :spec do
