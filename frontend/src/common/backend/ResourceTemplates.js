@@ -28,23 +28,31 @@ var ResourceTemplates = {
         return resolve(this.fetchedTemplates);
       });
     } else {
-      var remoteResults = backend.load(Templates, "/resources");
-      remoteResults = remoteResults.complete.then((completeResults) => {
-        this.fetchedTemplates = completeResults.uriTemplates;
-        window.localStorage.setItem("resourceTemplates", JSON.stringify(completeResults));
-        return this.fetchedTemplates;
+      return new Promise((globalResolve) => {
+        if (!this.remotePromise) {
+          var remoteResults = backend.load(Templates, "/resources");
+          this.remotePromise = remoteResults.complete.then((completeResults) => {
+            this.fetchedTemplates = completeResults.uriTemplates;
+            window.localStorage.setItem("resourceTemplates", JSON.stringify(completeResults));
+            return this.fetchedTemplates;
+          });
+        }
+        if (window.localStorage.getItem("resourceTemplates")) {
+          var localResults = new Promise(function (localResolve) {
+            return localResolve(JSON.parse(window.localStorage.getItem("resourceTemplates")));
+          });
+          localResults = new Templates(backend, localResults);
+          localResults.complete.then((completeResults) => {
+            globalResolve(completeResults.uriTemplates);
+          });
+        } else {
+          this.remotePromise = this.remotePromise.then(function(fetchedTemplates) {
+            globalResolve(fetchedTemplates);
+            return fetchedTemplates;
+          });
+        }
       });
-      if (window.localStorage.getItem("resourceTemplates")) {
-        var localResults = new Promise(function (resolve) {
-          return resolve(JSON.parse(window.localStorage.getItem("resourceTemplates")));
-        });
-        localResults = new Templates(backend, localResults);
-        return localResults.complete.then((completeResults) => {
-          return completeResults.uriTemplates;
-        });
-      } else {
-        return remoteResults;
-      }
+
     }
   }
 };
