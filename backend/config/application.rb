@@ -51,7 +51,7 @@ module APP_MODULE
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.site_title = "LRD Content Management Engine"
-    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+    config.middleware.insert_before Rack::Runtime, Rack::Cors do
         allow do
             origins '*'
             resource '*',
