@@ -94,6 +94,10 @@ class ChildManager
   end
 
   def kill_all
+    unless Process.pid == @parent_pid
+      puts "Although #{Process.pid} was asked to kill all, it isn't #@parent_pid the original parent"
+      return
+    end
     child_pids.each do |pid|
       kill_child(pid)
     end
