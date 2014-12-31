@@ -9,7 +9,8 @@ admin = User.where(:email => 'admin@lrdesign.com').first_or_create!(
   :email_confirmation => 'admin@lrdesign.com',
   :password => 'wxyz',
   :password_confirmation => 'wxyz',
-  :uid => 'admin@lrdesign.com')
+  :uid => 'admin@lrdesign.com',
+  :role_name => 'admin')
 admin.confirm!
 
 unless MenuItem.roots.where(:name => "Main Menu").exists?
