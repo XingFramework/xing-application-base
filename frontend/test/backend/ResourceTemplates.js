@@ -52,10 +52,6 @@ describe('ResourceTemplates function', function() {
       expect(mockBackend.load).toHaveBeenCalled();
     });
 
-    it('should save to localStorage', function() {
-      expect(window.localStorage.getItem("resourceTemplates")).toEqual(JSON.stringify(responseData()));
-    });
-
     describe("on later calls", function() {
       beforeEach(function(done) {
         resourceTemplates = templates.get(mockBackend);
@@ -100,38 +96,6 @@ describe('ResourceTemplates function', function() {
 
     it('send .load to backend only once', function() {
       expect(mockBackend.load.calls.count()).toEqual(1);
-    });
-
-    it('should save to localStorage', function() {
-      expect(window.localStorage.getItem("resourceTemplates")).toEqual(JSON.stringify(responseData()));
-    });
-
-
-  });
-
-  describe("on return to page", function() {
-    beforeEach(function(done) {
-      window.localStorage.setItem("resourceTemplates", JSON.stringify({
-        data: {
-        },
-        links: {
-          "cheese": "/cheese/{url_slug}"
-        }
-      }));
-      templates.fetchedTemplates = null;
-      templates.remotePromise = null;
-      templates.get(mockBackend).then(function(results) {
-        resourceTemplates = results;
-        done();
-      });
-    });
-
-    it('should have the result from local storage', function() {
-      expect(resourceTemplates["cheese"].toString()).toEqual("/cheese/{url_slug}");
-    });
-
-    it('send .load to backend', function() {
-      expect(mockBackend.load).toHaveBeenCalled();
     });
 
   });
