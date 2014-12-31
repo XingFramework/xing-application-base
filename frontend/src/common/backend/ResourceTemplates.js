@@ -23,15 +23,13 @@ class Templates extends BackendResponse {
 var ResourceTemplates = {
   fetchedTemplates: null,
   get(backend) {
-    if (this.fetchedTemplates) {
-      return this.fetchedTemplates;
-    } else {
+    if (!this.fetchedTemplates) {
       var remoteResults = backend.load(Templates, "/resources");
       this.fetchedTemplates = remoteResults.complete.then((completeResults) => {
           return completeResults.uriTemplates;
       });
-      return this.fetchedTemplates;
     }
+    return this.fetchedTemplates;
   }
 };
 
