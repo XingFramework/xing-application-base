@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :repo_url, 'git@git.lrdesign.com:lrd/cms2.git'
+set :repo_url, 'git@github.com:MindSwarms-Inc/mindswarms-web.git'
 set :pty, true
 
 # Default value for :format is :pretty
@@ -11,6 +11,7 @@ set :pty, true
 # set :log_level, :debug
 
 set :linked_files, %w{
+  frontend/config/environments/production.js
   backend/config/database.yml
   backend/config/secrets.yml
   backend/public/sitemap.xml
@@ -42,8 +43,14 @@ set :required_writeable_files, %w{
 # set :keep_releases, 5
 
 set :backend_path, proc{ File::join(release_path, "backend") }
-set :webserver_group, "web"
-set :webserver_user, "web"
+set :backend_shared, proc{ File::join(shared_path, "backend") }
+set :webserver_group, "apache"
+set :webserver_user, "apache"
+
+set :sidekiq_default_hooks, false
+set :sidekiq_log, proc{ File::join(fetch(:backend_shared), "log", "sidekiq.log") }
+set :sidekiq_pid, proc{ File::join(fetch(:backend_shared), 'tmp', 'pids', 'sidekiq.pid') }
+set :sidekiq_path, proc{ fetch(:backend_path) }
 
 namespace :deploy do
   desc 'Build app'
@@ -74,17 +81,12 @@ BUNDLE_DISABLE_SHARED_GEMS: '1'
 
   task :perms do
     on roles(:app), :in => :parallel do
-      within File::join(release_path, "backend") do
-        as(:root) do
-          execute "chgrp", fetch(:webserver_group),  "-RL", ".bundle"
-          execute "chmod", "g+wX", "-R", ".bundle"
-          execute "chown", fetch(:webserver_user), ".bundle/config"
-          execute "chgrp", fetch(:webserver_group),  "-RL", "public"
-          execute "chmod", "g+wX", "-R", "public"
-          execute "chgrp", fetch(:webserver_group),  "-RL", "tmp"
-          execute "chmod", "g+wX", "-R", "tmp"
-          execute "chgrp", fetch(:webserver_group),  "-RL", "log"
-          execute "chmod", "g+wX", "-R", "log"
+      %w{.bundle public tmp log}.each do |dir|
+        within File::join(release_path, "backend") do
+          as(:root) do
+            execute "chown", [fetch(:webserver_user),fetch(:webserver_group)].join(":"), "-RL", dir
+            execute "chmod", "g+wX", "-R", dir
+          end
         end
       end
     end
@@ -97,7 +99,7 @@ BUNDLE_DISABLE_SHARED_GEMS: '1'
         can_write = capture("sudo -u apache test -w #{File::join(release_path, filename)} && echo yes || echo no")
         unless can_write == "yes"
           error "Test for writeability failed. User 'apache' cannot write #{filename}."
-          exit 1  #TODO: prevent this from printing a stack trace, if possible.
+          exit 1
         end
       end
     end
@@ -123,9 +125,11 @@ BUNDLE_DISABLE_SHARED_GEMS: '1'
 
   desc "Update site snapshots"
   task :take_snapshot do
-    within fetch(:backend_path) do
-      with :rails_env => fetch(:stage) do
-        rake "take_snapshot"
+    on roles(:app), in: :sequence, wait: 5 do
+      within fetch(:backend_path) do
+        with :rails_env => fetch(:stage) do
+          execute :bundle, 'exec', 'rake', "take_snapshot"
+        end
       end
     end
   end
@@ -135,6 +139,10 @@ BUNDLE_DISABLE_SHARED_GEMS: '1'
   after :publishing, :restart
   after :publishing, :warm_up_rails
   after :restart, :take_snapshot
+
+  after :take_snapshot, 'sidekiq:restart'
+  after :published, 'sidekiq:start'
+
 
 #  after :restart, :clear_cache do
 #    on roles(:web), in: :groups, limit: 3, wait: 10 do
