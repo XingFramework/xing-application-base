@@ -23,29 +23,13 @@ class Templates extends BackendResponse {
 var ResourceTemplates = {
   fetchedTemplates: null,
   get(backend) {
-    if (this.fetchedTemplates) {
-      return new Promise((resolve) => {
-        return resolve(this.fetchedTemplates);
-      });
-    } else {
+    if (!this.fetchedTemplates) {
       var remoteResults = backend.load(Templates, "/resources");
-      remoteResults = remoteResults.complete.then((completeResults) => {
-        this.fetchedTemplates = completeResults.uriTemplates;
-        window.localStorage.setItem("resourceTemplates", JSON.stringify(completeResults));
-        return this.fetchedTemplates;
-      });
-      if (window.localStorage.getItem("resourceTemplates")) {
-        var localResults = new Promise(function (resolve) {
-          return resolve(JSON.parse(window.localStorage.getItem("resourceTemplates")));
-        });
-        localResults = new Templates(backend, localResults);
-        return localResults.complete.then((completeResults) => {
+      this.fetchedTemplates = remoteResults.complete.then((completeResults) => {
           return completeResults.uriTemplates;
-        });
-      } else {
-        return remoteResults;
-      }
+      });
     }
+    return this.fetchedTemplates;
   }
 };
 

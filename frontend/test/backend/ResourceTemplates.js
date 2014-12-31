@@ -14,7 +14,7 @@ describe('ResourceTemplates function', function() {
     };
   }
 
-  var mockBackend, resourceTemplates;
+  var mockBackend, resourceTemplates, resourceTemplatesCopy;
 
   beforeEach(function() {
     var promise = new Promise(function(resolve){
@@ -36,6 +36,7 @@ describe('ResourceTemplates function', function() {
     beforeEach(function(done) {
       window.localStorage.removeItem("resourceTemplates");
       templates.fetchedTemplates = null;
+      templates.remotePromise = null;
       templates.get(mockBackend).then(function(results){
         resourceTemplates = results;
         done();
@@ -49,10 +50,6 @@ describe('ResourceTemplates function', function() {
 
     it('send .load to backend', function() {
       expect(mockBackend.load).toHaveBeenCalled();
-    });
-
-    it('should save to localStorage', function() {
-      expect(window.localStorage.getItem("resourceTemplates")).toEqual(JSON.stringify(responseData()));
     });
 
     describe("on later calls", function() {
@@ -71,28 +68,34 @@ describe('ResourceTemplates function', function() {
 
   });
 
-  describe("on return to page", function() {
+  describe("while backend call is happening", function() {
+
     beforeEach(function(done) {
-      window.localStorage.setItem("resourceTemplates", JSON.stringify({
-        data: {
-        },
-        links: {
-          "cheese": "/cheese/{url_slug}"
-        }
-      }));
+      window.localStorage.removeItem("resourceTemplates");
       templates.fetchedTemplates = null;
-      templates.get(mockBackend).then(function(results) {
+      templates.remotePromise = null;
+      var firstCall = templates.get(mockBackend);
+      var secondCall = templates.get(mockBackend);
+      firstCall.then(function(results) {
         resourceTemplates = results;
-        done();
+        secondCall.then(function(secondResults) {
+          resourceTemplatesCopy = secondResults;
+          done();
+        });
       });
+
     });
 
-    it('should have the result from local storage', function() {
-      expect(resourceTemplates["cheese"].toString()).toEqual("/cheese/{url_slug}");
+    it('should have the right results', function() {
+      expect(resourceTemplates["page"].toString()).toEqual("/pages/{url_slug}");
+      expect(resourceTemplates["menu"].toString()).toEqual("/menu/{id}");
+      expect(resourceTemplatesCopy["page"].toString()).toEqual("/pages/{url_slug}");
+      expect(resourceTemplatesCopy["menu"].toString()).toEqual("/menu/{id}");
+
     });
 
-    it('send .load to backend', function() {
-      expect(mockBackend.load).toHaveBeenCalled();
+    it('send .load to backend only once', function() {
+      expect(mockBackend.load.calls.count()).toEqual(1);
     });
 
   });
