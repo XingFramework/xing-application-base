@@ -10,7 +10,7 @@ module SnapshotWriter
       FileUtils.mkdir_p(dirname)
     end
 
-    File.open(snapshot_file, "w+") do |f|
+    File.open(snapshot_file, "w+:ASCII-8BIT:UTF-8") do |f|
       f.write(html)
     end
   end
