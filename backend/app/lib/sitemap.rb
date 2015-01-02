@@ -1,9 +1,12 @@
 require 'builder'
 require 'site_page_set'
+require 'domain_helpers'
 
 class Sitemap
 
   class << self
+    include DomainHelpers
+
     def create!(url = nil)
       @bad_pages = []
 
@@ -49,7 +52,7 @@ class Sitemap
 
     # Notify popular search engines of the updated sitemap.xml
     def update_search_engines
-      sitemap_uri = @url + 'sitemap.xml'
+      sitemap_uri = domain + 'sitemap.xml'
       escaped_sitemap_uri = CGI.escape(sitemap_uri)
 
       update_search_engine('www.google.com', '/webmasters/tools/ping?sitemap=', escaped_sitemap_uri)

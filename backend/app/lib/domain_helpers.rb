@@ -5,9 +5,7 @@ module DomainHelpers
     elsif defined? Rails.application.secrets.sitemap_base_url
       Rails.application.secrets.sitemap_base_url
     else
-      "http://CHANGEME.com/"
-
-      # TODO: should we raise an exception here instead?
+      raise "No Domain is set for the sitemap.  Please set it in secrets.yml."
     end
   end
 
