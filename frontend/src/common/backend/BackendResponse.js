@@ -84,7 +84,12 @@ export default class BackendResponse {
   }
 
   pathGet(path){
-    return jsonPath(this._response, path, {flatten: true, wrap: false});
+    var temp = jsonPath(this._response, path, {flatten: true, wrap: false});
+    if (temp === false) {
+      return undefined;
+    } else {
+      return temp;
+    }
   }
 
   pathSet(jsonpath, value){

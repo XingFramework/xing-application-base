@@ -13,6 +13,7 @@
     "grunt-cli": "~0.1.13",
     "grunt-coffeelint": "0.0.10",
     "grunt-concat-sourcemap": "^0.4.3",
+    "grunt-karma": "~0.8.3",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
@@ -27,7 +28,6 @@
     "grunt-conventional-changelog": "~1.1.0",
     "grunt-html2js": "~0.2.4",
     "grunt-jsonlint": "^1.0.4",
-    "grunt-karma": "~0.8.3",
     "grunt-ng-annotate": "^0.3.2",
     "grunt-string-replace": "^1.0.0",
     "grunt-traceur-simple": "~0.9.7",
@@ -42,6 +42,7 @@
     "karma-requirejs": "^0.2.2",
     "karma-sourcemap-loader": "git://github.com/LRDesign/karma-sourcemap-loader",
     "karma-traceur-preprocessor": "^0.3.1",
+    "load-grunt-config": "^0.16.0",
     "requirejs": "^2.1.15",
     "traceur": "0.0.58"
   },
