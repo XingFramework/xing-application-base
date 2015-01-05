@@ -29,7 +29,7 @@
     "grunt-html2js": "~0.2.4",
     "grunt-jsonlint": "^1.0.4",
     "grunt-ng-annotate": "^0.3.2",
-    "grunt-string-replace": "^1.0.0",
+    "grunt-string-replace": "git://github.com/hannahhoward/grunt-string-replace",
     "grunt-traceur-simple": "~0.9.7",
     "json": "^9.0.1",
     "jsonlint": "^1.6.2",

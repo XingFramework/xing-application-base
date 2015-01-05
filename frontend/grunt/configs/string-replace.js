@@ -1,3 +1,5 @@
+var cacheMap = require("../support/cacheMap.js");
+
 module.exports = function(grunt) {
   return {
     dist: {
@@ -6,7 +8,9 @@ module.exports = function(grunt) {
       }
     },
     options: {
-      replacements: grunt.cacheMap
+      replacements: function() {
+        return cacheMap;
+      }
     }
   };
 };
