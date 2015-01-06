@@ -16,15 +16,16 @@ angular.module( `${appName}.stateAttrs`,
     link(scope, element, attrs, controller, transcludeFn){
       var name = getUiViewName(attrs, element.inheritedData('$uiView'));
       var locals  = name && $state.$current && $state.$current.locals[name];
+      if (locals) {
+        var viewStateName = locals.$$state.self.name;
+        var className = viewStateName.replace(/.*\./,'');
+        var idName = viewStateName.replace(/\./g,'_');
 
-      var viewStateName = locals.$$state.self.name;
-      var className = viewStateName.replace(/.*\./,'');
-      var idName = viewStateName.replace(/\./g,'_');
-
-      if(! attrs.id){
-        attrs.$set("id", idName);
+        if(! attrs.id){
+          attrs.$set("id", idName);
+        }
+        attrs.$addClass(className);
       }
-      attrs.$addClass(className);
     }
   };
 });
