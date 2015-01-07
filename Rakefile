@@ -375,7 +375,7 @@ end
 task :check_dependencies do
   Bundler.with_clean_env do
     Dir.chdir("backend") do
-      sh "rake dependencies:check"
+      sh "bundle exec rake dependencies:check"
     end
   end
 end
