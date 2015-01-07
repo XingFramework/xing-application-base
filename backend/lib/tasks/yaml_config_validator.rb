@@ -19,7 +19,11 @@ class YamlConfigValidator
   end
 
   def report!
-    dep_fail("#{file_under_test} didn't contain required values.  Errors were: #{errors}")
+    if errors.blank?
+      dep_success("#{file_under_test} appears correctly formatted.")
+    else
+      dep_fail("#{file_under_test} didn't contain required values.", errors)
+    end
   end
 
   def errors
