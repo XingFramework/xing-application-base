@@ -43,4 +43,3 @@ class SecretsValidator < YamlConfigValidator
     SECRETS_FILE
   end
 end
-

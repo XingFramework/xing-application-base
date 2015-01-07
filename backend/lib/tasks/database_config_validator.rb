@@ -24,5 +24,3 @@ class DatabaseConfigValidator < YamlConfigValidator
     DATABASE_CONFIG_FILE
   end
 end
-
-

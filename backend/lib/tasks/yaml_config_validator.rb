@@ -38,4 +38,3 @@ class YamlConfigValidator
     end
   end
 end
-
