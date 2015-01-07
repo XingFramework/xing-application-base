@@ -105,6 +105,7 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.5)
     git-utils (0.6.2)
+    hash_validator (0.3.0)
     hike (1.2.3)
     hitimes (1.2.2)
     i18n (0.6.11)
@@ -266,6 +267,7 @@ DEPENDENCIES
   devise_token_auth!
   factory_girl_rails
   faker
+  hash_validator
   json_spec
   pg
   pivotal-github

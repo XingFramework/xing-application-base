@@ -1,4 +1,5 @@
 require 'bundler'
+require File.join(File.dirname(__FILE__), 'lib/tasks/dependencies_common')
 
 class ChildManager
   def initialize
