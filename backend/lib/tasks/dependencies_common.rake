@@ -31,9 +31,10 @@ namespace :dependencies do
 
   namespace :redis do
     task :running => :installed do
+      sh_or_fail "redis-cli ping", "Redis is not running."
     end
     task :installed do
-      sh_or_fail "which redis-cli", "Redis is not running."
+      sh_or_fail "which redis-cli", "Redis is not installed."
     end
   end
 end

@@ -9,7 +9,8 @@ module DependencyUtils
   def dep_fail(fail_message, details = nil)
     message = "Dependency Failed: " + fail_message
     message += "  (Details below):\n#{details.pretty_inspect}" if details
-    fail message
+    puts message
+    exit 1
   end
 
   def dep_success(message)

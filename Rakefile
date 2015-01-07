@@ -1,5 +1,4 @@
 require 'bundler'
-require File.join(File.dirname(__FILE__), 'lib/tasks/dependencies_common')
 
 class ChildManager
   def initialize
@@ -114,13 +113,13 @@ class ChildManager
 end
 
 desc "The whole shebang"
-task :build => 'build:all'
+task :build => [:check_dependencies, 'build:all']
 
 desc "Run rails server and grunt watch to start a dev environment"
-task :develop => 'develop:all'
+task :develop => [:check_dependencies,'develop:all']
 
 desc "Run Rspec tests"
-task :spec => "spec:fast"
+task :spec => [:check_dependencies, "spec:fast"]
 
 namespace :frontend do
   task :npm_install do
@@ -308,7 +307,7 @@ namespace :spec do
     end
   end
 
-  task :full, [:spec_files] => [:grunt_ci_test, :links, 'backend:setup'] do |t, args|
+  task :full, [:spec_files] => [:check_dependencies, :grunt_ci_test, :links, 'backend:setup'] do |t, args|
     Bundler.with_clean_env do
       Dir.chdir("backend"){
         commands = %w{bundle exec rspec}
@@ -371,4 +370,12 @@ namespace :build do
   end
 
   task 'backend:assets_precompile' => :frontend_to_assets
+end
+
+task :check_dependencies do
+  Bundler.with_clean_env do
+    Dir.chdir("backend") do
+      sh "rake dependencies:check"
+    end
+  end
 end
