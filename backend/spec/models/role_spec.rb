@@ -36,8 +36,8 @@ describe Role do
 
       context 'admin' do
         subject(:role){Role::Admin.users }
-        it { role.count.should == 1 }
-        it { role.first.should == admin_user }
+        it { role.count.should == 2 }
+        it { role.last.should == admin_user }
       end
     end
   end
