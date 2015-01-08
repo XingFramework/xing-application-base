@@ -372,7 +372,7 @@ namespace :build do
   task 'backend:assets_precompile' => :frontend_to_assets
 end
 
-task :check_dependencies do
+task :check_dependencies => 'backend:bundle_install' do
   Bundler.with_clean_env do
     Dir.chdir("backend") do
       sh "bundle exec rake dependencies:check"
