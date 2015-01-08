@@ -41,6 +41,17 @@ module.exports = function(grunt) {
     'traceur:test',
     'ngAnnotate:test',
     'karma:dev' ]);
-  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [ 'copy:production-env', 'jshint:precompile', 'build', 'traceur:deploy', 'index:deploy', 'concat_sourcemap:compile_js', 'ngAnnotate:compile', 'uglify', 'bushcaster:dist', 'string-replace:dist' ]);
+  grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [
+    'copy:production-env',
+    'jshint:precompile',
+    'build',
+    'traceur:deploy',
+    'index:deploy',
+    'concat_sourcemap:compile_js',
+    'ngAnnotate:compile',
+    'uglify',
+    'bushcaster:dist',
+    'string-replace:dist',
+    'compress:all' ]);
 
 }
