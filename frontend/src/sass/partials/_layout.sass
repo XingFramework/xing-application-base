@@ -14,15 +14,12 @@ body
   box-sizing: border-box
   margin-top: 1em
 
-#root
-
-#main
-  padding: 1em gutter-span()
-  display: block
 
 #root_inner, #root_homepage
   @include add-grid(12)
   @include add-gutter(1/3)
   @include sgs-change('output', 'isolation')
+  display: block
+  padding: 1em gutter-span()
   /*@include sgs-change('debug', true)*/
   /*@include background-grid($color: #6ff)*/
