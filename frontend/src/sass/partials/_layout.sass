@@ -3,6 +3,9 @@
 *
   @include box-sizing('border-box')
 
+ui-view
+  display: block
+
 body
   background-color: #67c
   font-family: sans-serif
@@ -19,7 +22,6 @@ body
   @include add-grid(12)
   @include add-gutter(1/3)
   @include sgs-change('output', 'isolation')
-  display: block
   padding: 1em gutter-span()
   /*@include sgs-change('debug', true)*/
   /*@include background-grid($color: #6ff)*/

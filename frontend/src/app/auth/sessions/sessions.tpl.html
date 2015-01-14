@@ -1,13 +1,20 @@
 <h1>Sign In</h1>
 
 <form id='sessions-form'>
-    <label for="{{authKey}}">{{humanAuthKey}}:</label>
-    <input name="{{authKey}}" ng-model="session[authKey]" placeholder="{{humanAuthKey}}" />
-    <span class='comment'></span>
-    <label for="password">Password:</label>
-    <input type="password" name="password" ng-model="session.password" placeholder="Password" />
-    <span class='comment'></span>
-    <button type="submit" ng-click="sessionSubmit()">Sign In</button>
+    <div class='input-row'>
+      <label for="{{authKey}}">{{humanAuthKey}}:</label>
+      <input name="{{authKey}}" ng-model="session[authKey]" placeholder="{{humanAuthKey}}" />    
+      <span class='comment'></span>
+    </div>
+
+    <div class='input-row'>
+      <label for="password">Password:</label>
+      <input type="password" name="password" ng-model="session.password" placeholder="Password" />
+      <span class='comment'></span>
+    </div>
+    <div class='input-row'>
+      <button type="submit" ng-click="sessionSubmit()">Sign In</button>
+    </div>
 </form>
 
 <div ng-if="passwordShow">
