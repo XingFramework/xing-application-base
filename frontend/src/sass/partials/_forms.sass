@@ -1,3 +1,9 @@
+$input_types: 'input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="file"]'
+
+$acts_as_input_types: $input_types + ', select, .option-group, .input-like'
+
+$acts_as_input_types: 'input, select, textarea, button, .option-group, .input-like'
+
 .lrd-form-row
   margin: 0.5em 0
   +clearfix
@@ -11,37 +17,50 @@
     &:hover
       cursor: pointer
 
+  label, input, button, .messages
+    //TODO: get baseline vertical alignment working
+    //normal technique (below) seems not to be working in the
+    //context of the singularity grid.
+    //
+    //vertical-align: baseline
+    //box-sizing: border-box
+    //
+  .option-group
+    input
+      display: inline-block
+      margin-right: 1em
+    label
+      display: block
 
-
-label
-  @include isolation-span(10, 2, 'both')
-  text-align: left
-  display: block
-button
-  @include isolation-span(10, 2, 'both')
-input, textarea, .input-like
-  @include isolation-span(10, 2, 'both')
-.messages
-  @include isolation-span(10, 2, 'both')
-
-@include breakpoint($small)
-  label
-    text-align: right
-    @include isolation-span(3, 1, 'both')
+  > label
+    @include isolation-span(10, 2, 'both')
+    text-align: left
+    display: block
   button
-    @include isolation-span(5, 4, 'both')
-  input, textarea, .input-like
-    @include isolation-span(5, 4)
+    @include isolation-span(10, 2, 'both')
+  > #{ $acts_as_input_types }
+    @include isolation-span(10, 2, 'both')
   .messages
-    @include isolation-span(5, 8)
+    @include isolation-span(10, 2, 'both')
 
-@include breakpoint($medium)
-  label
-    @include isolation-span(2, 1, 'both')
-  button
-    @include isolation-span(3, 3, 'both')
-  input, textarea, .input-like
-    @include isolation-span(3, 3)
-  .messages
-    @include isolation-span(7, 6)
+  @include breakpoint($small)
+    > label
+      text-align: right
+      @include isolation-span(3, 1, 'both')
+    button
+      @include isolation-span(5, 4, 'both')
+    > #{ $acts_as_input_types }
+      @include isolation-span(5, 4)
+    .messages
+      @include isolation-span(3, 9)
+
+  @include breakpoint($medium)
+    > label
+      @include isolation-span(2, 1, 'both')
+    button
+      @include isolation-span(3, 3, 'both')
+    > #{ $acts_as_input_types }
+      @include isolation-span(3, 3)
+    .messages
+      @include isolation-span(7, 6)
 

@@ -11,6 +11,7 @@ import {} from './pages/pages';
 import {} from './menus/menus';
 import {} from './homepage/homepage';
 import {} from './metadata/metadata';
+import {} from './exampleForm/exampleForm';
 import {} from './responsiveMenu/responsiveMenu';
 import {} from './sessionLinks/sessionLinks';
 import {} from '../common/toast/toast';
@@ -29,6 +30,7 @@ angular.module( appName, [
   `${appName}.admin`,
   `${appName}.responsiveMenu`,
   `${appName}.metadata`,
+  `${appName}.exampleForm`,
   `${appName}.sessionLinks`,
   `${appName}.toast`
 ])
