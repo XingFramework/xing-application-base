@@ -1,10 +1,47 @@
-.input-row
+.lrd-form-row
   margin: 0.5em 0
   +clearfix
 
-  label
-    font-size: 75%
-  
+  button
+    padding: 1em
+    border: 0
+    border-radius: 4px
+    &.call-to-action
+      background-color: $call-to-action
+    &:hover
+      cursor: pointer
+
+
+
+label
+  @include isolation-span(10, 2, 'both')
+  text-align: left
+  display: block
 button
-  margin: 2px 0
-  padding: 0.25em 0
+  @include isolation-span(10, 2, 'both')
+input, textarea, .input-like
+  @include isolation-span(10, 2, 'both')
+.messages
+  @include isolation-span(10, 2, 'both')
+
+@include breakpoint($small)
+  label
+    text-align: right
+    @include isolation-span(3, 1, 'both')
+  button
+    @include isolation-span(5, 4, 'both')
+  input, textarea, .input-like
+    @include isolation-span(5, 4)
+  .messages
+    @include isolation-span(5, 8)
+
+@include breakpoint($medium)
+  label
+    @include isolation-span(2, 1, 'both')
+  button
+    @include isolation-span(3, 3, 'both')
+  input, textarea, .input-like
+    @include isolation-span(3, 3)
+  .messages
+    @include isolation-span(7, 6)
+
