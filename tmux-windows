@@ -1,0 +1,54 @@
+#!/bin/bash -e
+
+#TODO: port needs to actually do the port addition e.g. -p 1 => +1 to port numbers
+
+existing="yes"
+new_thing="pane"
+port=0
+
+if [ -z $TMUX ]; then
+  existing="no"
+fi
+
+if tmux list-windows -F '#{window_name}' | egrep 'Dev Servers|Grunt Watch|Backend Server|Sidekiq'; then
+  echo "It looks like there are already windows open for this tmux?"
+  exit 2
+fi
+
+while getopts Pw option; do
+  case $option in
+    P) new_thing="pane";;
+  w) new_thing="window";;
+
+esac
+done
+
+rake preflight || exit 1
+
+case $new_thing in
+  pane)
+    if [ $existing == "yes" ]; then
+      tmux new-window -n "Dev Servers" -c frontend 'bundle exec node_modules/.bin/grunt watch:develop'
+    else
+      tmux new-session -d -n "Dev Servers" -c frontend 'bundle exec node_modules/.bin/grunt watch:develop'
+    fi
+    tmux split-window -c backend 'bundle exec sidekiq'
+    tmux split-window -c backend 'bundle exec rails server'
+
+    tmux select-layout -t "Dev Servers" tiled
+    ;;
+  window)
+    if [ $existing == "yes" ]; then
+      tmux new-window -c frontend -n "Grunt Watch" 'bundle exec node_modules/.bin/grunt watch:develop'
+    else
+      tmux new-session -d -c frontend -n "Grunt Watch" 'bundle exec node_modules/.bin/grunt watch:develop'
+    fi
+    tmux new-window -c backend -n "Backend Server" 'bundle exec rails server'
+    tmux new-window -c backend -n "Sidekiq" 'bundle exec sidekiq'
+esac
+
+if [ $existing != "yes" ]; then
+  tmux attach-session -d
+fi
+
+rake develop:launch_browser
