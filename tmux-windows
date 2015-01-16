@@ -56,7 +56,10 @@ case $new_thing in
 esac
 
 if [ -f $extra_config ]; then
+  echo Loading $extra_config
   tmux source-file $extra_config
+else
+  echo No $extra_config to load
 fi
 
 if [ $existing != "yes" ]; then
