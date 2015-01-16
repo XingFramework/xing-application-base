@@ -7,4 +7,3 @@ angular.module(`${appName}.exampleForm`)
 .controller( 'ExampleFormCtrl', function( $scope, page ){
   $scope.$emit('metadataSet', page.metadata);
 });
-
