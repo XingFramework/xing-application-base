@@ -7,7 +7,7 @@ angular.module(`${appName}.homepage`)
 
     .state( 'root.homepage', {
       controller: 'HomepageCtrl',
-      template: "<ui-view lrd-state-attrs></ui-view>",
+      templateUrl: 'homepage/homepage.tpl.html',
       abstract: true,
       url: 'home',
       resolve: {
@@ -35,7 +35,7 @@ angular.module(`${appName}.homepage`)
     .state( 'root.homepage.show', {
       url: '',
       controller: 'HomepageShowCtrl',
-      templateUrl: 'homepage/homepage.tpl.html'
+      templateUrl: 'homepage/homepage-show.tpl.html'
     })
 
     .state( 'root.homepage.edit', {

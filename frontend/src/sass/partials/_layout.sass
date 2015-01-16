@@ -19,9 +19,8 @@ body
 
 
 #root_inner, #root_homepage, #root_admin
-  @include add-grid(12)
-  @include add-gutter(1/3)
-  @include sgs-change('output', 'isolation')
-  padding: 1em gutter-span()
-  /*@include sgs-change('debug', true)*/
-  /*@include background-grid($color: #6ff)*/
+  > ui-view
+    @include add-grid(12)
+    @include add-gutter(1/3)
+    @include sgs-change('output', 'isolation')
+    padding: 1em gutter-span()
