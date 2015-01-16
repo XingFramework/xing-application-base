@@ -5,6 +5,7 @@
 existing="yes"
 new_thing="pane"
 port=0
+extra_config=~/.lrd-dev-tmux.conf
 
 if [ -z $TMUX ]; then
   existing="no"
@@ -32,6 +33,8 @@ case $new_thing in
     else
       tmux new-session -d -n "Dev Servers" -c frontend 'bundle exec node_modules/.bin/grunt watch:develop'
     fi
+    tmux set-window-option -t "Dev Servers" remain-on-exit on
+
     tmux split-window -c backend 'bundle exec sidekiq'
     tmux split-window -c backend 'bundle exec rails server'
 
@@ -43,9 +46,18 @@ case $new_thing in
     else
       tmux new-session -d -c frontend -n "Grunt Watch" 'bundle exec node_modules/.bin/grunt watch:develop'
     fi
+    tmux set-window-option -t "Grunt Watch" remain-on-exit on
+
     tmux new-window -c backend -n "Backend Server" 'bundle exec rails server'
+    tmux set-window-option -t "Backend Server" remain-on-exit on
+
     tmux new-window -c backend -n "Sidekiq" 'bundle exec sidekiq'
+    tmux set-window-option -t "Sidekiq" remain-on-exit on
 esac
+
+if [ -f $extra_config ]; then
+  tmux source-file $extra_config
+fi
 
 if [ $existing != "yes" ]; then
   tmux attach-session -d
