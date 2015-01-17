@@ -1,7 +1,5 @@
 import slugify from '../../common/slugify';
 
-
-
 export function PageNewCtrl( $scope, page ){
   $scope.$emit('metadataSet', page.metadata);
 }
