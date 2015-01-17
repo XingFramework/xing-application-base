@@ -1,14 +1,13 @@
-import {appName} from '../../common/config';
 import slugify from '../../common/slugify';
-import {} from './pagesModule';
 
-angular.module(`${appName}.pages`)
 
-.controller( 'PageNewCtrl', function( $scope, page ){
+
+export function PageNewCtrl( $scope, page ){
   $scope.$emit('metadataSet', page.metadata);
-})
+}
+PageNewCtrl['$inject'] = [ '$scope', 'page' ];
 
-.controller( 'PageEditCtrl', function( $scope, page ){
+export function PageEditCtrl( $scope, page ){
   // I think there's potential for improving UX here: duplicate the existing page, edit that -
   // on save, submit that and discard the old page. On cancel, swap it back in.
   // Let admin switch back and forth until they decide "this is good" and save
@@ -16,14 +15,16 @@ angular.module(`${appName}.pages`)
   $scope.nowEditing = true;
 
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
-})
+}
+PageEditCtrl['$inject'] = [ '$scope', 'page' ];
 
-.controller( 'PageShowCtrl', function( $scope, page ){
+export function PageShowCtrl( $scope, page ){
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
   $scope.$emit('metadataSet', page.metadata);
-})
+}
+PageShowCtrl['$inject'] = [ '$scope', 'page' ];
 
-.controller( 'PagesCtrl', function( $window, $scope, $state, $stateParams, $sce, page, isAdmin) {
+export function PagesCtrl( $window, $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.pageActions = {
     edit(){
       $state.go('^.edit', {}, {location: false});
@@ -66,4 +67,5 @@ angular.module(`${appName}.pages`)
   }
   // header info
   $scope.$emit('metadataSet', page.metadata);
-});
+}
+PagesCtrl['$inject'] = [ '$window', '$scope', '$state', '$stateParams', '$sce', 'page', 'isAdmin'];

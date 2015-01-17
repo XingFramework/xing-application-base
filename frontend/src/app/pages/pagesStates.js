@@ -1,8 +1,4 @@
-import {appName} from '../../common/config';
-import {} from './pagesModule';
-
-angular.module(`${appName}.pages`)
-.config(function config( $stateProvider ) {
+export default function PagesStates( $stateProvider ) {
   $stateProvider
 
     .state( 'root.inner.page', {
@@ -11,28 +7,29 @@ angular.module(`${appName}.pages`)
       abstract: true,
       template: "<ui-view lrd-state-attrs></ui-view>",
       resolve: {
-        isAdmin($auth){
+        isAdmin: ['$auth', function ($auth){
           return $auth.validateUser().then(
             (success) => { return true; },
             (failure) => { return false; }
           ).then((bool) => { return bool; });
-        },
-        page(backend) {
-          return backend.createPage(); }
+        } ],
+        page: [ 'backend', function(backend) {
+          return backend.createPage(); 
+        } ]
       }
     })
     .state( 'root.inner.page.new', {
       url: 'new',
       templateUrl: 'pages/page-create.tpl.html',
       resolve: {
-        onlyAdmin($auth){ return $auth.validateUser(); }
+        onlyAdmin: [ '$auth', function($auth){ return $auth.validateUser(); } ]
       },
       controller: 'PageNewCtrl'
     })
     .state( 'root.inner.page.show', {
       url: '*pageUrl',
       resolve: {
-        pageLoaded(isAdmin, page, $stateParams){
+        pageLoaded: [ 'isAdmin', 'page', '$stateParams', function(isAdmin, page, $stateParams){
           if(isAdmin){
             page.role = "admin";
           } else {
@@ -41,7 +38,7 @@ angular.module(`${appName}.pages`)
           page.loadFromShortLink($stateParams.pageUrl);
           return page.complete;
         }
-      },
+      ] } ,
       controller: 'PageShowCtrl',
       templateUrl: 'pages/pages.tpl.html'
     })
@@ -50,7 +47,8 @@ angular.module(`${appName}.pages`)
       templateUrl: 'pages/page-edit.tpl.html',
       controller: 'PageEditCtrl',
       resolve: {
-        onlyAdmin($auth){ return $auth.validateUser(); }
-        }
+        onlyAdmin: [ '$auth', function($auth){ return $auth.validateUser(); } ]
+      }
     });
-});
+}
+PagesStates['$inject'] = ['$stateProvider'];
