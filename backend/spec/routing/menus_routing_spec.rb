@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe MenusController, :type => :routing do
   describe "routing" do
-    it "recognizes and generates #show" do
-      { :get => "/navigation/main" }.should route_to(:controller => "menus", :action => "show", :id => Menu.main_menu.id)
-    end
-
     it "recognizes and generates #index" do
       expect({ :get => "/menus" }).to route_to(:controller => "menus", :action => "index")
     end

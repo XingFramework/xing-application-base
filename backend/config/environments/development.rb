@@ -30,4 +30,6 @@ Rails.application.configure do
 
   config.assets.initialize_on_precompile = false
 
+  config.middleware.use LogJsonResponses
+  config.middleware.use LogJsonRequests
 end

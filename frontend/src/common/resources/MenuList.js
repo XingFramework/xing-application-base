@@ -18,6 +18,17 @@ export default class MenuList extends BackendResource {
       this.menus.push(new Item(this, index));
     }
   }
+
+  urlForName(name){
+    var menu = this.menus.find((item) => {
+      return item.name == name;
+    });
+    if(menu) {
+      return menu.url;
+    } else {
+      return undefined;
+    }
+  }
 }
 
 class Item {

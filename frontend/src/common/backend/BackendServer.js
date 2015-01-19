@@ -6,7 +6,7 @@ export default class BackendServer {
   }
 
   mangleUrl(url){
-    return url.replace(/^\//,'');
+    if(url){ return url.replace(/^\//,''); }
   }
 
   // GET 200

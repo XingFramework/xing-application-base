@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
     # Top fixed routes for the front-end
     get "/homepage",        :to => 'pages#show', :url_slug => 'homepage', :as => :homepage
-    get '/navigation/main', :to => "menus#show", :id => Menu.main_menu_id, :as => :main_menu
 
     get "pages/:url_slug", :to => 'pages#show', :as => :page
     resources :menus, :only => [ :show, :index, :update ]
