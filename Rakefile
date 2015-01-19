@@ -124,6 +124,8 @@ task :preflight => %w{check_dependencies develop:links}
 desc "Run Rspec tests"
 task :spec => [:check_dependencies, "spec:fast"]
 
+task :check_dependencies => %w{backend:check_dependencies frontend:check_dependencies}
+
 namespace :frontend do
   task :npm_install do
     Dir.chdir("frontend"){ sh *%w{npm install} }
@@ -132,6 +134,8 @@ namespace :frontend do
   task :bundle_install do
     Dir.chdir("frontend"){ sh *%w{bundle install} }
   end
+
+  task :check_dependencies => :npm_install
 
   task :setup => [:npm_install, :bundle_install]
 end
@@ -143,6 +147,18 @@ namespace :backend do
     # it uses --deployment
     Bundler.with_clean_env do
       Dir.chdir("backend"){ sh *%w{bundle install} }
+    end
+  end
+
+  task :require_tmux do
+    sh 'which tmux'
+  end
+
+  task :check_dependencies => %w{bundle_install require_tmux} do
+    Bundler.with_clean_env do
+      Dir.chdir("backend") do
+        sh "bundle exec rake dependencies:check"
+      end
     end
   end
 
@@ -373,12 +389,4 @@ namespace :build do
   end
 
   task 'backend:assets_precompile' => :frontend_to_assets
-end
-
-task :check_dependencies => 'backend:bundle_install' do
-  Bundler.with_clean_env do
-    Dir.chdir("backend") do
-      sh "bundle exec rake dependencies:check"
-    end
-  end
 end
