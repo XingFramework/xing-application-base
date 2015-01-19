@@ -11,7 +11,7 @@ export default class MenuList extends BackendResource {
   }
 
   absorbResponse(data){
-    super(data);
+    super.absorbResponse(data);
 
     var length = data["data"].length;
     for(var index = 0; index < length; index++){
