@@ -4,7 +4,7 @@ module.exports =
     includeRuntime: false,
     traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
     traceurCommand: "./node_modules/.bin/traceur",
-    traceurOptions: "--array-comprehension true --source-maps"
+    traceurOptions: "--array-comprehension true --source-maps --moduleName +"
   },
   build: {
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
