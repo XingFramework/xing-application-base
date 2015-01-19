@@ -33,6 +33,7 @@
     "FroalaWysiwygEditor": "~1.2.2"
   },
   "dependencies": {
-    "uri-templates": "~0.1.5"
+    "uri-templates": "~0.1.5",
+    "a1atscript": "~0.0.2"
   }
 }

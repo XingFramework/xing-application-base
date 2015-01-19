@@ -36,7 +36,7 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
-    js_roots: [ 'src/app/app.js' ],
+    js_roots: [ 'src/app/app.js', 'vendor/a1atscript/a1atscript.js' ],
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'test/**/*.js' ],
     jstest: [ 'test/**/*.js', 'test-help/**/*.js' ],

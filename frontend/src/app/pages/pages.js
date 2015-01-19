@@ -2,7 +2,7 @@ import {appName} from '../../common/config';
 import {} from '../../common/backend/backend';
 import {} from '../adminEdit/adminEdit';
 import PagesStates from './pagesStates';
-import * as Controllers from './pagesControllers'; 
+import * as Controllers from './pagesControllers';
 
 angular.module( `${appName}.pages`, [
   `${appName}.backend`,

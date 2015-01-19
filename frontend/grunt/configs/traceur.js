@@ -12,7 +12,7 @@ module.exports =
   deploy: {
     options: {
       includeRuntime: true,
-      traceurOptions: "--array-comprehension true --source-maps"
+      traceurOptions: "--array-comprehension true --source-maps --atscript"
     },
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
   },

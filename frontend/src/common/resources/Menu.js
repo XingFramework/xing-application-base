@@ -7,7 +7,7 @@ export class Menu extends BackendResource {
   }
 
   backendResponds(promise){
-    super(promise);
+    super.backendResponds(promise);
     this.completePromise = this.completePromise.then((result) => {
       var completes = this._items.map((item) => {
         return item.complete;
@@ -19,7 +19,7 @@ export class Menu extends BackendResource {
   }
 
   absorbResponse(response){
-    super(response);
+    super.absorbResponse(response);
     if (typeof this._data === "undefined" || this._data.length === 0) {
       this._items = [];
     } else {
@@ -53,7 +53,7 @@ export class MenuItem extends BackendResource {
     };
   }
   backendResponds(promise){
-    super(promise);
+    super.backendResponds(promise);
     var childrenPromise = this.responsePromise.then((response) => {
       if(!response["data"]){
         response["data"] = {};
