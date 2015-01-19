@@ -2,7 +2,7 @@ import BackendResponse from './BackendResponse';
 
 class Templates extends BackendResponse {
   absorbResponse(response) {
-    super(response);
+    super.absorbResponse(response);
     this._uriTemplates = {};
     if (typeof this._links !== "undefined") {
       Object.keys(this._links).forEach((key) => {

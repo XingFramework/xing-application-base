@@ -45,7 +45,7 @@
     "karma-traceur-preprocessor": "^0.3.1",
     "load-grunt-config": "^0.16.0",
     "requirejs": "^2.1.15",
-    "traceur": "0.0.58"
+    "traceur": "0.0.79"
   },
   "dependencies": {
     "grunt-bushcaster": "0.0.7",
