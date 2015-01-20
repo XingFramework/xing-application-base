@@ -95,8 +95,8 @@ export class Injector {
       }
     } else {
       Object.keys(dependency).forEach((key) => {
-        subDepenency = dependency[key];
-        sortedSubDependencies = this._sortDependency(subDepenency);
+        var subDependency = dependency[key];
+        var sortedSubDependencies = this._sortDependency(subDependency);
         sorted = this._mergeSortedDependencies(sorted, sortedSubDependencies);
       });
     }

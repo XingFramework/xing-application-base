@@ -1,10 +1,12 @@
 import slugify from '../../common/slugify';
+import { Controller } from 'a1atscript';
 
+@Controller('PageNewCtrl', [ '$scope', 'page' ])
 export function PageNewCtrl( $scope, page ){
   $scope.$emit('metadataSet', page.metadata);
 }
-PageNewCtrl['$inject'] = [ '$scope', 'page' ];
 
+@Controller('PageEditCtrl', [ '$scope', 'page' ])
 export function PageEditCtrl( $scope, page ){
   // I think there's potential for improving UX here: duplicate the existing page, edit that -
   // on save, submit that and discard the old page. On cancel, swap it back in.
@@ -14,14 +16,14 @@ export function PageEditCtrl( $scope, page ){
 
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
 }
-PageEditCtrl['$inject'] = [ '$scope', 'page' ];
 
+@Controller('PageShowCtrl', [ '$scope', 'page' ])
 export function PageShowCtrl( $scope, page ){
   $scope.template = 'pages/templates/' +page.layout + ".tpl.html";
   $scope.$emit('metadataSet', page.metadata);
 }
-PageShowCtrl['$inject'] = [ '$scope', 'page' ];
 
+@Controller('PagesCtrl', [ '$window', '$scope', '$state', '$stateParams', '$sce', 'page', 'isAdmin'])
 export function PagesCtrl( $window, $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.pageActions = {
     edit(){
@@ -66,4 +68,3 @@ export function PagesCtrl( $window, $scope, $state, $stateParams, $sce, page, is
   // header info
   $scope.$emit('metadataSet', page.metadata);
 }
-PagesCtrl['$inject'] = [ '$window', '$scope', '$state', '$stateParams', '$sce', 'page', 'isAdmin'];

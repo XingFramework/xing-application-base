@@ -46,7 +46,8 @@
     "requirejs": "^2.1.15",
     "traceur": "0.0.79",
     "glob": "4.3",
-    "chalk": ">=0.5.1"
+    "chalk": ">=0.5.1",
+    "es6-promise": "^1.0.0"
   },
   "dependencies": {
     "grunt-bushcaster": "0.0.7",

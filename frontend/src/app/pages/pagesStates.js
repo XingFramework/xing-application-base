@@ -1,3 +1,6 @@
+import {Config} from 'a1atscript';
+
+@Config(['$stateProvider'])
 export default function PagesStates( $stateProvider ) {
   $stateProvider
 
@@ -14,7 +17,7 @@ export default function PagesStates( $stateProvider ) {
           ).then((bool) => { return bool; });
         } ],
         page: [ 'backend', function(backend) {
-          return backend.createPage(); 
+          return backend.createPage();
         } ]
       }
     })
@@ -51,4 +54,3 @@ export default function PagesStates( $stateProvider ) {
       }
     });
 }
-PagesStates['$inject'] = ['$stateProvider'];

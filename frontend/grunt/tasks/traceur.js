@@ -38,6 +38,8 @@ var path  = require("path");
 var chalk = require("chalk");
 var traceur = require("traceur");
 var glob = require("glob");
+var fs = require("fs");
+var Promise = require("es6-promise").Promise;
 
 /*  external paths to Traceur  */
 var traceurRuntimePath = traceur.RUNTIME_PATH
@@ -89,6 +91,35 @@ function compile(out, rootSources, options) {
   }
 }
 
+function compileAllJsFilesInDir(inputDir, outputDir, options) {
+  inputDir = path.normalize(inputDir).replace(/\\/g, '/');
+  outputDir = path.normalize(outputDir).replace(/\\/g, '/');
+  files = glob.sync(inputDir + '/**/*.js', {});
+  var NodeCompiler = traceur.NodeCompiler;
+
+  return Promise.all(
+    files.map(function(inputFilePath) {
+      return new Promise(function(resolve, reject) {
+
+      var outputFilePath = inputFilePath.replace(inputDir, outputDir);
+      var compiler = new NodeCompiler(options);
+      inputFilePath = compiler.normalize(inputFilePath);
+      outputFilePath = compiler.normalize(outputFilePath);
+        fs.readFile(inputFilePath, function(err, contents) {
+            if (err) {
+              reject(err)
+            }
+
+            var parsed = compiler.parse(contents.toString(), inputFilePath);
+            compiler.writeTreeToFile(compiler.transform(parsed, undefined, inputFilePath),
+                               outputFilePath);
+            resolve();
+        }.bind(this));
+      });
+    })
+  );
+}
+
 /*  export the Grunt task  */
 module.exports = function (grunt) {
     grunt.registerMultiTask(NAME, DESC, function () {
@@ -121,7 +152,14 @@ module.exports = function (grunt) {
         traceur.options.setFromObject(traceurOptions);
 
         if (options.srcDir && options.destDir) {
-          traceur.compileAllJsFilesInDir(options.srcDir, options.destDir, traceurOptions);
+          result = compileAllJsFilesInDir(options.srcDir, options.destDir, traceurOptions)
+          result.then(function() {
+            done(true);
+          }
+          ).catch(function() {
+            done(false);
+          }
+          );
         } else {
           this.files.forEach(function (f) {
 

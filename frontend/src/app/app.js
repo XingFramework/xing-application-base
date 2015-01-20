@@ -1,13 +1,13 @@
 import {appName} from '../common/config';
 import {} from '../../build/templates-app';
 import {} from '../../build/templates-common';
-import {} from './navigationBar/navigationBar';
+import NavigationBar from './navigationBar/navigationBar';
 import {} from './stateAttrs/stateAttrs';
-import {} from '../common/backend/backend';
+import Backend from '../common/backend/backend';
 import {} from "../common/ui-route-logger";
 import {} from './admin/admin';
 import {} from './auth/auth';
-import {} from './pages/pages';
+import Pages from './pages/pages';
 import {} from './menus/menus';
 import {} from './homepage/homepage';
 import {} from './metadata/metadata';
@@ -24,11 +24,8 @@ import {Module,
 var app = new Module(appName, [
   'templates-app', 'templates-common', 'ui.router',
   'picardy.fontawesome',
-  `${appName}.backend`,
-  `${appName}.navigationBar`,
   `${appName}.stateAttrs`,
   `${appName}.route-logger`,
-  `${appName}.pages`,
   `${appName}.menus`,
   `${appName}.homepage`,
   `${appName}.auth`,
@@ -38,6 +35,9 @@ var app = new Module(appName, [
   `${appName}.exampleForm`,
   `${appName}.sessionLinks`,
   `${appName}.toast`,
+  Pages,
+  Backend,
+  NavigationBar,
   appConfig,
   RootCtrl
 ]);

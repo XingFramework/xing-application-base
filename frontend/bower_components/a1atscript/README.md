@@ -1,7 +1,8 @@
+*WARNING: AtScript is very new technology. Be ready to encounter lots of challenges if you incorporate this in a production project.*
+
 ## A-1 AtScript
 
-This is a package that uses AtScript to provide syntactic sugar around Angular 1.x's Dependency Injection mechanism. It is designed to be a "bridge" to Angular 2.0  -- so you can get a flavor of the way we'll be writing Angular 2.0 code tomorrow, today.
-
+This is a package that uses AtScript annotations to provide syntactic sugar around Angular 1.x's Dependency Injection mechanism. It is designed to be a "bridge" to Angular 2.0  -- so you can get a flavor of the way we'll be writing Angular 2.0 code tomorrow, today.
 
 ### Initial setup
 
@@ -122,6 +123,8 @@ class StateInjector {
     })
   }
 }
+
+registerInjector('state', StateInjector);
 ```
 
 That's just a first pass -- I don't know if it would work but the possibilities for custom Injectors are somewhat endless.

@@ -3,7 +3,9 @@ import {Page} from './Page';
 import {PageList} from './PageList';
 import MenuList from './MenuList';
 import BackendServer from '../backend/BackendServer';
+import {Service} from 'a1atscript';
 
+@Service('backend', 'Restangular')
 export default class AppBackend extends BackendServer {
 
   pageList(){
