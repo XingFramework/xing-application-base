@@ -60,11 +60,7 @@ angular.module( appName, [
     url: "/",
     resolve: {
       menuRoot(backend) {
-        var menu = backend.menu("Main Menu");
-        return menu.complete.then(
-          (menu) => menu,
-          (nothing) => nothing
-        );
+        return backend.menu("Main Menu");
       }
     }
   }).state('root.inner', {

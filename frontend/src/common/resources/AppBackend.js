@@ -16,8 +16,10 @@ export default class AppBackend extends BackendServer {
 
   menu(name){
     var list = this.menuList();
-    var url = list.urlForName(name);
-    return this.load(MenuItem, url);
+    return list.complete.then((list) => {
+      var url = list.urlForName(name);
+      return this.load(MenuItem, url);
+    });
   }
 
   page(slug, forRole){

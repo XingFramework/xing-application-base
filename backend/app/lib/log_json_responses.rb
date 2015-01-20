@@ -4,7 +4,7 @@ class LogJson
   def log_string(string)
     obj = JSON.parse(string)
     pretty_str = JSON.pretty_unparse(obj)
-    Rails.logger.debug("Response: " + pretty_str)
+    Rails.logger.debug(type_string + ": " + pretty_str)
   end
 end
 
@@ -14,11 +14,15 @@ class LogJsonRequests < LogJson
   end
 
   def call(env)
-    if defined?(Rails) and env["HTTP_CONTENT_TYPE"] =~ APPJSON_RE
+    if defined?(Rails) and env["CONTENT_TYPE"] =~ APPJSON_RE
       log_string(env["rack.input"].read)
       env["rack.input"].rewind
     end
     @app.call(env)
+  end
+
+  def type_string
+    "Request"
   end
 end
 
@@ -33,5 +37,9 @@ class LogJsonResponses < LogJson
         log_string(response.body)
       end
     end
+  end
+
+  def type_string
+    "Response"
   end
 end
