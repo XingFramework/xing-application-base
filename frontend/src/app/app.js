@@ -10,8 +10,8 @@ import {} from './auth/auth';
 import Pages from './pages/pages';
 import {} from './menus/menus';
 import {} from './homepage/homepage';
-import {} from './metadata/metadata';
-import {} from './exampleForm/exampleForm';
+import Metadata from './metadata/metadata';
+import ExampleForm from './exampleForm/exampleForm';
 import {} from './responsiveMenu/responsiveMenu';
 import {} from './sessionLinks/sessionLinks';
 import {} from '../common/toast/toast';
@@ -31,8 +31,8 @@ var app = new Module(appName, [
   `${appName}.auth`,
   `${appName}.admin`,
   `${appName}.responsiveMenu`,
-  `${appName}.metadata`,
-  `${appName}.exampleForm`,
+  Metadata,
+  ExampleForm,
   `${appName}.sessionLinks`,
   `${appName}.toast`,
   Pages,

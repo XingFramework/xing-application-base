@@ -1,7 +1,8 @@
 import { appName } from '../../common/config';
+import { Controller } from 'a1atscript'
 
-angular.module(`${appName}.metadata`, [])
-.controller( 'MetadataCtrl', function MetadataCtrl($scope, $rootScope) {
+@Controller( 'MetadataCtrl', ['$scope', '$rootScope'])
+export default function MetadataCtrl($scope, $rootScope) {
   var loadMetadata = function (metadata) {
     if ( angular.isDefined( metadata.pageTitle ) ) {
       $scope.pageTitle = metadata.pageTitle + ' | Logical Reality' ;
@@ -20,4 +21,4 @@ angular.module(`${appName}.metadata`, [])
   $rootScope.$on('metadataSet', function(event, metadata) {
     loadMetadata(metadata);
   });
-});
+}

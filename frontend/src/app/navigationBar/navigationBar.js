@@ -1,8 +1,8 @@
 import { appName } from '../../common/config';
-import { Directive, Module } from 'a1atscript';
+import { Directive } from 'a1atscript';
 
 @Directive('lrdNavbar', ['$compile', '$state'])
-function lrdNavBar($compile, $state) {
+export default function lrdNavbar($compile, $state) {
   return {
     restrict: 'E',
     templateUrl: 'navigationBar/navigationBar.tpl.html',
@@ -30,10 +30,3 @@ function lrdNavBar($compile, $state) {
     }
   };
 }
-
-var NavigationBar = new Module(`${appName}.navigationBar`,
-  ['templates-app',
-  'ui.router.state',
-  `${appName}.pages`,
-  lrdNavBar]);
-export default NavigationBar;

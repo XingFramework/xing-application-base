@@ -1,6 +1,6 @@
-import '../src/app/navigationBar/navigationBar';
+import NavigationBar from '../src/app/navigationBar/navigationBar';
 import {xpath, stringAtXpath} from "../test-help/xpath";
-
+import {} from '../build/templates-app';
 
 describe('navigationBar directive', function() {
   var $compile, $rootScope, $state;
@@ -14,9 +14,10 @@ describe('navigationBar directive', function() {
     return element;
   }
 
-  beforeEach(module('LRD-CMS2.navigationBar', "ui.router.state", function($stateProvider) {
+  beforeEach(module('templates-app', "ui.router.state", function($stateProvider, $compileProvider) {
     $stateProvider.state('root', {url: "/"});
     $stateProvider.state('root.inner', {url: "/"});
+    $compileProvider.directive('lrdNavbar', NavigationBar);
   }));
 
   beforeEach(inject(function(_$state_, _$compile_, _$rootScope_){
