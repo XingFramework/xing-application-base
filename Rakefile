@@ -135,9 +135,9 @@ namespace :frontend do
     Dir.chdir("frontend"){ sh *%w{bundle install} }
   end
 
-  task :check_dependencies => :npm_install
+  task :check_dependencies => [:npm_install, :bundle_install]
 
-  task :setup => [:npm_install, :bundle_install]
+  task :setup => [:check_dependencies]
 end
 
 namespace :backend do
@@ -315,6 +315,7 @@ namespace :spec do
   task :grunt_ci_test => 'frontend:setup' do
     Bundler.with_clean_env do
       Dir.chdir("frontend"){
+        sh "env"
         sh *%w{bundle exec node_modules/.bin/grunt ci-test}
       }
     end
