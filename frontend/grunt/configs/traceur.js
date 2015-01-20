@@ -5,7 +5,12 @@ module.exports =
     traceurOptions: {
       arrayComprehension: true,
       sourceMaps: true,
-      atscript: true
+      types: true,
+      annotations: true,
+      memberVariables: true
+    },
+    moduleMaps: {
+      "a1atscript": "../../vendor/a1atscript/a1atscript"
     }
   },
   build: {
@@ -17,14 +22,25 @@ module.exports =
       traceurOptions: {
         arrayComprehension: true,
         sourceMaps: true,
-        atscript: true
+        atscript: true,
+        types: true,
+        annotations: true,
+        memberVariables: true
       }
     },
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
   },
   test: {
     options: {
-      includeRuntime: false
+      includeRuntime: false,
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: true,
+        atscript: true,
+        types: true,
+        annotations: true,
+        memberVariables: true
+      }
     },
     files: { '<%= build_dirs.test%>/test-main.js': '<%= app_files.jsunit %>' }
   }

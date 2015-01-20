@@ -15,26 +15,16 @@ import {} from './exampleForm/exampleForm';
 import {} from './responsiveMenu/responsiveMenu';
 import {} from './sessionLinks/sessionLinks';
 import {} from '../common/toast/toast';
+import {Module,
+  Injector,
+  Config,
+  Controller
+} from "a1atscript";
 
-angular.module( appName, [
-  'templates-app', 'templates-common', 'ui.router',
-  'picardy.fontawesome',
-  `${appName}.backend`,
-  `${appName}.navigationBar`,
-  `${appName}.stateAttrs`,
-  `${appName}.route-logger`,
-  `${appName}.pages`,
-  `${appName}.menus`,
-  `${appName}.homepage`,
-  `${appName}.auth`,
-  `${appName}.admin`,
-  `${appName}.responsiveMenu`,
-  `${appName}.metadata`,
-  `${appName}.exampleForm`,
-  `${appName}.sessionLinks`,
-  `${appName}.toast`
-])
-.config( function myAppConfig( $stateProvider, $urlRouterProvider, $locationProvider ) {
+console.log(Module);
+
+@Config(['$stateProvider', '$urlRouterProvider', '$locationProvider' ])
+function myAppConfig( $stateProvider, $urlRouterProvider, $locationProvider ) {
   // enable html5 mode
   $locationProvider.html5Mode(true);
 
@@ -72,8 +62,10 @@ angular.module( appName, [
     abstract: true,
     url: "inner"
   });
-})
-.controller( 'RootCtrl', function RootCtrl( $scope, menuRoot, $state, $rootScope, $window ) {
+}
+
+@Controller( 'RootCtrl', ['$scope', 'menuRoot', '$state', '$rootScope', '$window' ])
+function RootCtrl( $scope, menuRoot, $state, $rootScope, $window ) {
   $rootScope.$on("$viewContentLoaded", function(event) {
     $window.frontendContentLoaded = true;
   });
@@ -83,4 +75,29 @@ angular.module( appName, [
     ()=>{
       $scope.mainMenu = menuRoot.children;
     });
-});
+}
+
+
+var app = new Module(appName, [
+  'templates-app', 'templates-common', 'ui.router',
+  'picardy.fontawesome',
+  `${appName}.backend`,
+  `${appName}.navigationBar`,
+  `${appName}.stateAttrs`,
+  `${appName}.route-logger`,
+  `${appName}.pages`,
+  `${appName}.menus`,
+  `${appName}.homepage`,
+  `${appName}.auth`,
+  `${appName}.admin`,
+  `${appName}.responsiveMenu`,
+  `${appName}.metadata`,
+  `${appName}.exampleForm`,
+  `${appName}.sessionLinks`,
+  `${appName}.toast`,
+  myAppConfig,
+  RootCtrl
+]);
+
+var injector = new Injector();
+Injector.instantiate(app);
