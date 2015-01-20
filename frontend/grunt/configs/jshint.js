@@ -8,15 +8,15 @@
  */
 module.exports =
 {
-  src: [ '<%= app_files.js %>' ],
+  src: [ '<%= app_files.js-es6 %>' ],
 
   precompile: {
-    files: [ { src: [ '<%= app_files.js %>' ]}],
+    files: [ { src: [ '<%= app_files.js_es6 %>' ]}],
     options: { debug: false }
   },
 
   test: {
-    files: [ { src: ['<%= app_files.jstest %>' ] }],
+    files: [ { src: ['<%= app_files.jstest_es6 %>' ] }],
     options: {
       debug: true,
     }

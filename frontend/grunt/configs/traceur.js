@@ -5,9 +5,7 @@ module.exports =
     traceurOptions: {
       arrayComprehension: true,
       sourceMaps: true,
-      types: true,
       annotations: true,
-      memberVariables: true
     },
     moduleMaps: {
       "a1atscript": "../../vendor/a1atscript/a1atscript"
@@ -22,10 +20,7 @@ module.exports =
       traceurOptions: {
         arrayComprehension: true,
         sourceMaps: true,
-        atscript: true,
-        types: true,
-        annotations: true,
-        memberVariables: true
+        annotations: true
       }
     },
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
@@ -36,12 +31,45 @@ module.exports =
       traceurOptions: {
         arrayComprehension: true,
         sourceMaps: true,
-        atscript: true,
-        types: true,
-        annotations: true,
-        memberVariables: true
+        annotations: true
       }
     },
     files: { '<%= build_dirs.test%>/test-main.js': '<%= app_files.jsunit %>' }
+  },
+  es6src: {
+    options: {
+      srcDir: '<%= app_files.js_dir %>',
+      destDir: '<%= build_dir %>/<%= app_files.js_dir %>-es6',
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: true,
+        annotations: true,
+        outputLanguage: 'es6'
+      }
+    }
+  },
+  es6test: {
+    options: {
+      srcDir: '<%= app_files.test_dir %>',
+      destDir: '<%= build_dir %>/<%= app_files.test_dir %>-es6',
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: true,
+        annotations: true,
+        outputLanguage: 'es6'
+      }
+    }
+  },
+  es6testhelp: {
+    options: {
+      srcDir: '<%= app_files.test_help_dir %>',
+      destDir: '<%= build_dir %>/<%= app_files.test_help_dir %>-es6',
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: true,
+        annotations: true,
+        outputLanguage: 'es6'
+      }
+    }
   }
 };

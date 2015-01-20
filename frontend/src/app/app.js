@@ -15,68 +15,11 @@ import {} from './exampleForm/exampleForm';
 import {} from './responsiveMenu/responsiveMenu';
 import {} from './sessionLinks/sessionLinks';
 import {} from '../common/toast/toast';
+import appConfig from './appConfig';
+import RootCtrl from './rootController.js';
 import {Module,
-  Injector,
-  Config,
-  Controller
+  Injector
 } from "a1atscript";
-
-console.log(Module);
-
-@Config(['$stateProvider', '$urlRouterProvider', '$locationProvider' ])
-function myAppConfig( $stateProvider, $urlRouterProvider, $locationProvider ) {
-  // enable html5 mode
-  $locationProvider.html5Mode(true);
-
-  // html5 mode when frontend urls hit directly they become a backend request
-  // backend in-turn redirects to /?goto=url wher url is the intended frontend url
-  // this function then redirects frontend (via history API) to appropriate frontend
-  // route
-  $urlRouterProvider.when("/?goto", ['$match', function ($match) {
-    if ($match.goto) {
-      return $match.goto;
-    } else {
-      return false;
-    }
-  }]);
-
-  $urlRouterProvider.otherwise(($injector, $location) => {
-    return '/home';
-  });
-  $stateProvider.state('root', {
-    templateUrl: "root.tpl.html",
-    controller: 'RootCtrl',
-    abstract: true,
-    url: "/",
-    resolve: {
-      menuRoot(backend) {
-        var menu = backend.menu("main");
-        return menu.complete.then(
-          (menu) => menu,
-          (nothing) => nothing
-        );
-      }
-    }
-  }).state('root.inner', {
-    templateUrl: "inner.tpl.html",
-    abstract: true,
-    url: "inner"
-  });
-}
-
-@Controller( 'RootCtrl', ['$scope', 'menuRoot', '$state', '$rootScope', '$window' ])
-function RootCtrl( $scope, menuRoot, $state, $rootScope, $window ) {
-  $rootScope.$on("$viewContentLoaded", function(event) {
-    $window.frontendContentLoaded = true;
-  });
-  $scope.mainMenu = menuRoot.children;
-  $scope.$watch(
-    ()=>{ return menuRoot.etag; },
-    ()=>{
-      $scope.mainMenu = menuRoot.children;
-    });
-}
-
 
 var app = new Module(appName, [
   'templates-app', 'templates-common', 'ui.router',
@@ -95,9 +38,9 @@ var app = new Module(appName, [
   `${appName}.exampleForm`,
   `${appName}.sessionLinks`,
   `${appName}.toast`,
-  myAppConfig,
+  appConfig,
   RootCtrl
 ]);
 
 var injector = new Injector();
-Injector.instantiate(app);
+injector.instantiate(app);

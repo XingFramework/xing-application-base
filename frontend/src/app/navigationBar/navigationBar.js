@@ -1,11 +1,7 @@
 import { appName } from '../../common/config';
-import {} from "../../../build/templates-app";
 
-angular.module( `${appName}.navigationBar`,
-  ['templates-app',
-  'ui.router.state',
-  `${appName}.pages`])
-.directive('lrdNavbar', function ($compile, $state) {
+@Directive('lrdNavbar', ['$compile', '$state'])
+function lrdNavBar($compile, $state) {
   return {
     restrict: 'E',
     templateUrl: 'navigationBar/navigationBar.tpl.html',
@@ -32,4 +28,10 @@ angular.module( `${appName}.navigationBar`,
       };
     }
   };
-});
+}
+
+export var NavigationBar = new Module(`${appName}.navigationBar`,
+  ['templates-app',
+  'ui.router.state',
+  `${appName}.pages`,
+  lrdNavbar]);

@@ -78,11 +78,11 @@ function compile(out, rootSources, options) {
   }
   if (!sourcesToGlob.length) {
     return traceur.recursiveModuleCompileToSingleFile(out, processedSources, options);
-
   } else {
     globSources(sourcesToGlob, function(err, globbedSources) {
       processedSources.push.apply(processedSources, globbedSources);
       if (processedSources.length) {
+
         return traceur.recursiveModuleCompileToSingleFile(out, processedSources, options);
       }
     });
@@ -118,42 +118,45 @@ module.exports = function (grunt) {
         var traceurOptions = new traceur.util.CommandOptions();
         traceurOptions.setFromObject(options.traceurOptions);
         traceurOptions.sourceMaps = options.traceurOptions.sourceMaps;
-        console.log(traceurOptions.sourceMaps_);
         traceur.options.setFromObject(traceurOptions);
 
-        this.files.forEach(function (f) {
+        if (options.srcDir && options.destDir) {
+          traceur.compileAllJsFilesInDir(options.srcDir, options.destDir, traceurOptions);
+        } else {
+          this.files.forEach(function (f) {
 
-            /*  assemble the Traceur shell command  */
+              /*  assemble the Traceur shell command  */
 
-            out = f.dest;
-            rootSources = f.src.map(function (name) { return {name: name, type: 'module'}})
+              out = f.dest;
+              rootSources = f.src.map(function (name) { return {name: name, type: 'module'}})
 
-            compile(out, rootSources, traceurOptions).then(function() {
-              /*  success reporting  */
-              grunt.log.writeln("transpiling: " + chalk.green(f.dest) + " <- " + chalk.green(f.src.join(" ")));
+              compile(out, rootSources, traceurOptions).then(function() {
+                /*  success reporting  */
+                grunt.log.writeln("transpiling: " + chalk.green(f.dest) + " <- " + chalk.green(f.src.join(" ")));
 
-            }).catch(function(err) {
-              var errors = err.errors || [err];
-              grunt.log.writeln("transpiling: " + chalk.red(f.dest) + " <- " + chalk.red(f.src.join(" ")));
-              errors.forEach(function(err) {
-                grunt.log.error(err.stack || err);
+              }).catch(function(err) {
+                var errors = err.errors || [err];
+                grunt.log.writeln("transpiling: " + chalk.red(f.dest) + " <- " + chalk.red(f.src.join(" ")));
+                errors.forEach(function(err) {
+                  grunt.log.error(err.stack || err);
+                });
+                rc = false;
+              }).then(function() {
+                /*  optional runtime inclusion  */
+                if (options.includeRuntime) {
+                    grunt.log.writeln("injecting:   " + chalk.green(f.dest) + " <- " + chalk.green(options.traceurRuntime));
+                    var rt = grunt.file.read(options.traceurRuntime, { encoding: "utf8" });
+                    var txt = grunt.file.read(f.dest, { encoding: "utf8" });
+                    txt = rt + "\n" + txt;
+                    grunt.file.write(f.dest, txt, { encoding: "utf8" });
+                }
+
+                /*  determine end of asynchronous transpiling  */
+                tasksCur++;
+                if (tasksCur === tasksMax)
+                    done(rc);
               });
-              rc = false;
-            }).then(function() {
-              /*  optional runtime inclusion  */
-              if (options.includeRuntime) {
-                  grunt.log.writeln("injecting:   " + chalk.green(f.dest) + " <- " + chalk.green(options.traceurRuntime));
-                  var rt = grunt.file.read(options.traceurRuntime, { encoding: "utf8" });
-                  var txt = grunt.file.read(f.dest, { encoding: "utf8" });
-                  txt = rt + "\n" + txt;
-                  grunt.file.write(f.dest, txt, { encoding: "utf8" });
-              }
-
-              /*  determine end of asynchronous transpiling  */
-              tasksCur++;
-              if (tasksCur === tasksMax)
-                  done(rc);
-            });
-        });
+          });
+        }
     });
 };
