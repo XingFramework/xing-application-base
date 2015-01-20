@@ -2,9 +2,11 @@ module.exports =
 {
   options: {
     includeRuntime: false,
-    traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
-    traceurCommand: "./node_modules/.bin/traceur",
-    traceurOptions: "--array-comprehension true --source-maps --moduleName +"
+    traceurOptions: {
+      arrayComprehension: true,
+      sourceMaps: true,
+      atscript: true
+    }
   },
   build: {
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
@@ -12,7 +14,11 @@ module.exports =
   deploy: {
     options: {
       includeRuntime: true,
-      traceurOptions: "--array-comprehension true --source-maps --atscript"
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: true,
+        atscript: true
+      }
     },
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
   },

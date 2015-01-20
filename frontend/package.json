@@ -31,7 +31,6 @@
     "grunt-karma": "~0.8.3",
     "grunt-ng-annotate": "^0.3.2",
     "grunt-string-replace": "git://github.com/hannahhoward/grunt-string-replace",
-    "grunt-traceur-simple": "~0.9.7",
     "json": "^9.0.1",
     "jsonlint": "^1.6.2",
     "karma": "^0.12.23",
@@ -45,7 +44,9 @@
     "karma-traceur-preprocessor": "^0.3.1",
     "load-grunt-config": "^0.16.0",
     "requirejs": "^2.1.15",
-    "traceur": "0.0.79"
+    "traceur": "0.0.79",
+    "glob": "4.3",
+    "chalk": ">=0.5.1"
   },
   "dependencies": {
     "grunt-bushcaster": "0.0.7",
