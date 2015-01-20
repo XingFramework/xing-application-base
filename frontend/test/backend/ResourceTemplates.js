@@ -23,7 +23,6 @@ describe('ResourceTemplates function', function() {
     });
     mockBackend = {
       load(ResourceClass, url, responseFn = null) {
-        console.log("called!");
         return new ResourceClass(this, promise);
       }
     };
