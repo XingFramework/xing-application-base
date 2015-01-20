@@ -316,6 +316,7 @@ namespace :spec do
     Bundler.with_clean_env do
       Dir.chdir("frontend"){
         sh "env"
+        sh "pwd"
         sh *%w{bundle exec node_modules/.bin/grunt ci-test}
       }
     end
