@@ -8,3 +8,4 @@ server/public/index.html
 server/vendor
 frontend/tmp/
 .vim-role
+tmp/
