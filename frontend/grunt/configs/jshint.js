@@ -8,7 +8,7 @@
  */
 module.exports =
 {
-  src: [ '<%= app_files.js-es6 %>' ],
+  src: [ '<%= app_files.js_es6 %>' ],
 
   precompile: {
     files: [ { src: [ '<%= app_files.js_es6 %>' ]}],
@@ -49,6 +49,7 @@ module.exports =
     esnext: true, //we're using ES6
 
     browser: true, //Automatically allow browser-exposed globals
+    '-W100': true
   },
   globals: {}
 };

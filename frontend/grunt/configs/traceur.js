@@ -42,7 +42,7 @@ module.exports =
       destDir: '<%= build_dir %>/<%= app_files.js_dir %>-es6',
       traceurOptions: {
         arrayComprehension: true,
-        sourceMaps: true,
+        sourceMaps: false,
         annotations: true,
         outputLanguage: 'es6'
       }
@@ -54,7 +54,7 @@ module.exports =
       destDir: '<%= build_dir %>/<%= app_files.test_dir %>-es6',
       traceurOptions: {
         arrayComprehension: true,
-        sourceMaps: true,
+        sourceMaps: false,
         annotations: true,
         outputLanguage: 'es6'
       }
@@ -66,7 +66,7 @@ module.exports =
       destDir: '<%= build_dir %>/<%= app_files.test_help_dir %>-es6',
       traceurOptions: {
         arrayComprehension: true,
-        sourceMaps: true,
+        sourceMaps: false,
         annotations: true,
         outputLanguage: 'es6'
       }

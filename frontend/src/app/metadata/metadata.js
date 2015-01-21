@@ -1,4 +1,3 @@
-import { appName } from '../../common/config';
 import { Controller } from 'a1atscript'
 
 @Controller( 'MetadataCtrl', ['$scope', '$rootScope'])

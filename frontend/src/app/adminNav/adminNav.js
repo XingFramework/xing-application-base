@@ -1,12 +1,9 @@
-import { appName } from '../../common/config';
-import {} from '../signOut/signOut';
+import {Directive} from 'a1atscript';
 
-angular.module(`${appName}.adminNav`, [`${appName}.config`, 'ng-token-auth',
-  `${appName}.signOutDirective`])
-.directive('adminNav',
-  function() {
-    return {
-      restrict: 'E',
-      templateUrl: 'adminNav/admin-nav.tpl.html'
-    };
-  });
+@Directive('adminNav', [])
+export default function adminNav() {
+  return {
+    restrict: 'E',
+    templateUrl: 'adminNav/admin-nav.tpl.html'
+  };
+}

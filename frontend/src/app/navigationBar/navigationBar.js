@@ -1,4 +1,3 @@
-import { appName } from '../../common/config';
 import { Directive } from 'a1atscript';
 
 @Directive('lrdNavbar', ['$compile', '$state'])
