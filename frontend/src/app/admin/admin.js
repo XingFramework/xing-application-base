@@ -1,5 +1,5 @@
-import {appName} from '../../common/config';
-import Backend from '../../common/backend/backend';
+import {appName} from 'config';
+import Backend from 'backend';
 import AdminOnly from "../adminOnly/adminOnly";
 import AdminNav from "../adminNav/adminNav";
 import AdminStates from "./adminStates";

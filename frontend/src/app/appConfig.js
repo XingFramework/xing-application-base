@@ -1,7 +1,8 @@
 import {Config} from 'a1atscript';
+import {State, Resolve} from 'stateInjector';
 
 @Config(['$stateProvider', '$urlRouterProvider', '$locationProvider' ])
-export default function appConfig( $stateProvider, $urlRouterProvider, $locationProvider ) {
+export function appConfig( $stateProvider, $urlRouterProvider, $locationProvider ) {
   // enable html5 mode
   $locationProvider.html5Mode(true);
 
@@ -20,23 +21,32 @@ export default function appConfig( $stateProvider, $urlRouterProvider, $location
   $urlRouterProvider.otherwise(($injector, $location) => {
     return '/home';
   });
-  $stateProvider.state('root', {
-    templateUrl: "root.tpl.html",
-    controller: 'RootCtrl',
-    abstract: true,
-    url: "/",
-    resolve: {
-      menuRoot(backend) {
-        var menu = backend.menu("main");
-        return menu.complete.then(
-          (menu) => menu,
-          (nothing) => nothing
-        );
-      }
-    }
-  }).state('root.inner', {
-    templateUrl: "inner.tpl.html",
-    abstract: true,
-    url: "inner"
-  });
+}
+
+@State('root')
+export class RootState {
+  constructor() {
+    this.templateUrl = "root.tpl.html";
+    this.controller = 'RootCtrl';
+    this.abstract = true;
+    this.url = "/";
+  }
+
+  @Resolve('backend')
+  menuRoot(backend) {
+    var menu = backend.menu("main");
+    return menu.complete.then(
+      (menu) => menu,
+      (nothing) => nothing
+    );
+  }
+}
+
+@State('root.inner')
+export class RootInnerState {
+  constructor() {
+    this.templateUrl ="inner.tpl.html";
+    this.abstract = true;
+    this.url = "inner";
+  }
 }

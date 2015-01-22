@@ -2,45 +2,40 @@ import {appName} from '../common/config';
 import {} from '../../build/templates-app';
 import {} from '../../build/templates-common';
 import NavigationBar from './navigationBar/navigationBar';
-import {} from './stateAttrs/stateAttrs';
+import StateAttrs from './stateAttrs/stateAttrs';
 import Backend from '../common/backend/backend';
-import {} from "../common/ui-route-logger";
-import {} from './admin/admin';
-import {} from './auth/auth';
+import UIRouteLogger from "../common/ui-route-logger";
+import Admin from './admin/admin';
+import Auth from './auth/auth';
 import Pages from './pages/pages';
-import {} from './menus/menus';
-import {} from './homepage/homepage';
+import Menus from './menus/menus';
+import Homepage from './homepage/homepage';
 import Metadata from './metadata/metadata';
 import ExampleForm from './exampleForm/exampleForm';
-import {} from './responsiveMenu/responsiveMenu';
-import {} from './sessionLinks/sessionLinks';
-import {} from '../common/toast/toast';
-import appConfig from './appConfig';
+import ResponsiveMenu from './responsiveMenu/responsiveMenu';
+import SessionLinks from './sessionLinks/sessionLinks';
+import Toast from '../common/toast/toast';
+import * as appConfig from './appConfig';
 import RootCtrl from './rootController.js';
-import {Module,
-  Injector
-} from "a1atscript";
+import { Module } from "a1atscript";
 
 var app = new Module(appName, [
   'templates-app', 'templates-common', 'ui.router',
   'picardy.fontawesome',
-  `${appName}.stateAttrs`,
-  `${appName}.route-logger`,
-  `${appName}.menus`,
-  `${appName}.homepage`,
-  `${appName}.auth`,
-  `${appName}.admin`,
-  `${appName}.responsiveMenu`,
+  StateAttrs,
+  UIRouteLogger,
+  Menus,
+  Homepage,
+  Auth,
+  Admin,
+  ResponsiveMenu,
   Metadata,
   ExampleForm,
-  `${appName}.sessionLinks`,
-  `${appName}.toast`,
+  SessionLinks,
+  Toast,
   Pages,
   Backend,
   NavigationBar,
   appConfig,
   RootCtrl
 ]);
-
-var injector = new Injector();
-injector.instantiate(app);

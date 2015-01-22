@@ -1,7 +1,8 @@
-import {} from './inflector';
+import Inflector from './inflector';
+import {Module, Factory, Provider} from 'a1atscript'
 
-angular.module('serializer', ['inflector'])
-.provider('Serializer', function() {
+@Provider('Serializer')
+function SerializerProvider() {
   var defaultOptions = {
     underscore: undefined,
     camelize: undefined,
@@ -425,21 +426,35 @@ angular.module('serializer', ['inflector'])
     };
 
     return Serializer;
-     }];
-  }).factory('RequestInterceptor', ['Serializer', function(Serializer) {
-    var serializer = new Serializer();
+  }];
+}
 
-    return function(elem, operation, what) {
-      var retElem = elem;
-      if (operation === 'post' || operation === 'put') {
-        retElem = serializer.serialize(elem);
-      }
-      return retElem;
-    };
-  }]).factory('ResponseInterceptor', ['Serializer', function(Serializer) {
-    var serializer = new Serializer();
+@Factory('RequestInterceptor', ['Serializer'])
+function RequestInterceptor(Serializer) {
+  var serializer = new Serializer();
 
-    return function(data, operation, what, url, response, deferred) {
-      return serializer.deserialize(data);
-    };
-  }]);
+  return function(elem, operation, what) {
+    var retElem = elem;
+    if (operation === 'post' || operation === 'put') {
+      retElem = serializer.serialize(elem);
+    }
+    return retElem;
+  };
+}
+
+@Factory('ResponseInterceptor', ['Serializer'])
+function ResponseInterceptor(Serializer) {
+  var serializer = new Serializer();
+
+  return function(data, operation, what, url, response, deferred) {
+    return serializer.deserialize(data);
+  };
+}
+
+var Serializer = new Module('serializer', [
+  'inflector',
+  SerializerProvider,
+  ResponseInterceptor,
+  ResponseInterceptor]);
+
+export default Serializer;

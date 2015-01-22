@@ -8,7 +8,10 @@ module.exports =
       annotations: true,
     },
     moduleMaps: {
-      "a1atscript": "../../vendor/a1atscript/a1atscript"
+      "a1atscript": "../../vendor/a1atscript/a1atscript",
+      "config": "../../src/common/config",
+      "backend": "../../src/common/backend/backend",
+      "stateInjector": "../../src/common/stateInjector"
     }
   },
   build: {

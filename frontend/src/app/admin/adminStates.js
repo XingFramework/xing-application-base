@@ -1,15 +1,10 @@
-import {State, Resolve} from '../../common/stateInjector';
+import {State, Resolve, AdminOnlyState} from 'stateInjector';
 
 @State('root.admin')
-export class AdminState {
+export class AdminState extends AdminOnlyState {
   constructor() {
     this.url = 'admin/';
     this.templateUrl = 'admin/admin.tpl.html';
-  }
-
-  @Resolve('$auth')
-  isAdmin($auth){
-    return $auth.validateUser();
   }
 }
 
@@ -46,7 +41,7 @@ export class AdminDocumentsState {
   constructor() {
     this.url = 'documents';
     this.controller = 'AdminDocumentsCtrl';
-    this.templateUrl = 'admin/documents.tpl.html'
+    this.templateUrl = 'admin/documents.tpl.html';
   }
 }
 

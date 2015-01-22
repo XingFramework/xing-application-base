@@ -1,50 +1,38 @@
-import {appName} from '../../common/config';
-import {} from './homepageModule';
+import {State, Resolve, AdminOnlyState, TrackAdminState} from 'stateInjector';
 
-angular.module(`${appName}.homepage`)
-.config(function config( $stateProvider ) {
-  $stateProvider
+@State('root.homepage')
+export class HomepageState extends TrackAdminState {
+  constructor() {
+    this.controller = 'HomepageCtrl';
+    this.templateUrl = 'homepage/homepage.tpl.html';
+    this.abstract = true;
+    this.url = 'home';
+  }
 
-    .state( 'root.homepage', {
-      controller: 'HomepageCtrl',
-      templateUrl: 'homepage/homepage.tpl.html',
-      abstract: true,
-      url: 'home',
-      resolve: {
-        isAdmin($auth){
-          return $auth.validateUser().then(
-            (success) => {
-            return true; },
-            (failure) => {
-              return false; }
-          ).then((bool) => {
-            return bool;
-          });
-        },
-        page(isAdmin, backend) {
-          var role = "guest";
-          if(isAdmin){ role = "admin"; }
-          return backend.page("/homepage", role).complete.then(
-            (page) => page,
-            (nothing) => nothing
-          );
-        }
-      }
-    })
+  @Resolve('isAdmin', 'backend')
+  page(isAdmin, backend) {
+    var role = "guest";
+    if(isAdmin){ role = "admin"; }
+    return backend.page("/homepage", role).complete.then(
+      (page) => page,
+      (nothing) => nothing
+    );
+  }
+}
 
-    .state( 'root.homepage.show', {
-      url: '',
-      controller: 'HomepageShowCtrl',
-      templateUrl: 'homepage/homepage-show.tpl.html'
-    })
+@State('root.homepage.show')
+export class HomepageShowState {
+  constructor() {
+    this.url = '';
+    this.controller = 'HomepageShowCtrl';
+    this.templateUrl = 'homepage/homepage-show.tpl.html';
+  }
+}
 
-    .state( 'root.homepage.edit', {
-      templateUrl: 'homepage/homepage-edit.tpl.html',
-      controller: 'HomepageEditCtrl',
-      resolve: {
-        onlyAdmin($auth){
-          return $auth.validateUser();
-        }
-      }
-    });
-});
+@State('root.homepage.edit')
+export class HomepageEditState extends AdminOnlyState {
+  constructor() {
+    this.templateUrl = 'homepage/homepage-edit.tpl.html';
+    this.controller = 'HomepageEditCtrl';
+  }
+}

@@ -1,11 +1,10 @@
-import {Config} from 'a1atscript';
+import {State} from 'stateInjector';
 
-@Config(['$stateProvider'])
-export default function config( $stateProvider ) {
-  $stateProvider
-    .state( 'root.inner.exampleForm', {
-      url: '^/example-form',
-      controller: 'ExampleFormCtrl',
-      templateUrl: "exampleForm/example-form.tpl.html"
-    });
+@State( 'root.inner.exampleForm')
+export class ExampleFormState {
+  constructor() {
+    this.url = '^/example-form';
+    this.controller = 'ExampleFormCtrl';
+    this.templateUrl = "exampleForm/example-form.tpl.html";
+  }
 }

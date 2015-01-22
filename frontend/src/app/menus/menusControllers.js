@@ -1,9 +1,8 @@
-import {appName} from '../../common/config';
 import slugify from '../../common/slugify';
-import {} from './menusModule';
+import {Controller} from 'a1atscript';
 
-angular.module(`${appName}.menus`)
-.controller( 'MenusCtrl', function( $scope, $state, $stateParams, menu, isAdmin, pageList, backend, menuRoot) {
+@Controller('MenusCtrl', ['$scope', '$state', '$stateParams', 'menu', 'isAdmin', 'pageList', 'backend', 'menuRoot'])
+export function MenusController( $scope, $state, $stateParams, menu, isAdmin, pageList, backend, menuRoot) {
   $scope.menuActions = {
     edit(){
       $state.go('^.edit', {}, {location: false});
@@ -75,12 +74,18 @@ angular.module(`${appName}.menus`)
   $scope.menuName = menu.name;
 
   $scope.selectedItem = null;
-})
-.controller( 'MenuNewCtrl', ( $scope ) => {
+}
+
+@Controller( 'MenuNewCtrl', ['$scope')
+export function MenuNewController( $scope ) {
   $scope.menuActions.edit();
-})
-.controller( 'MenuShowCtrl', ( $scope ) => {
+}
+
+@Controller('MenuShowCtrl', ['$scope'])
+export function MenuShowController($scope) {
   $scope.menuActions.edit();
-})
-.controller( 'MenuEditCtrl', ( $scope ) => {
-});
+}
+
+@Controller('MenuEditCtrl', ['$scope'])
+export function MenuEditController($scope) {
+}

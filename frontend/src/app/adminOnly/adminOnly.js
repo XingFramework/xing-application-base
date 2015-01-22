@@ -1,7 +1,9 @@
-import { Directive } from 'a1atscript';
+import { appName } from 'config';
+import { Directive, Module } from 'a1atscript';
 
+@Module(`${appName}.adminOnly`, ['ng-token-auth', adminOnly])
 @Directive('adminOnly', ['$rootScope', '$auth'])
-export default function AdminOnly($rootScope, $auth) {
+export default function adminOnly($rootScope, $auth) {
 
   function link(scope, element, attrs) {
     scope.showAdmin = false;

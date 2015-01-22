@@ -1,19 +1,18 @@
-import { appName } from '../../common/config';
+import { appName } from 'config';
+import {Module, Directive} from 'a1atscript';
 
-angular.module( `${appName}.signOutDirective`, [`${appName}.config`,
-  'ng-token-auth',
-  'ui.router.state'])
-.directive('lrdSignOut',
-  ['$state', '$auth', function ($state, $auth) {
-    function link(scope, element, attrs) {
-      element.on('click',() => {
-        $auth.signOut().then((response) => {
-          $state.go('root.homepage.show');
-        });
+@Module(`${appName}.signOutDirective`, ['ng-token-auth', 'ui.router.state'])
+@Directive('lrdSignOut', ['$state', '$auth'])
+export default function lrdSignOut($state, $auth) {
+  function link(scope, element, attrs) {
+    element.on('click',() => {
+      $auth.signOut().then((response) => {
+        $state.go('root.homepage.show');
       });
-    }
-    return {
-      restrict: 'A',
-      link: link
-    };
-  }]);
+    });
+  }
+  return {
+    restrict: 'A',
+    link: link
+  };
+}

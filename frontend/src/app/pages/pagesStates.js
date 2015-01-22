@@ -1,56 +1,53 @@
-import {Config} from 'a1atscript';
+import {State, Resolve, TrackAdminState, AdminOnlyState} from 'stateInjector';
 
-@Config(['$stateProvider'])
-export default function PagesStates( $stateProvider ) {
-  $stateProvider
+@State('root.inner.page')
+export class PagesState extends TrackAdminState {
+  constructor() {
+    this.url = '^/pages/';
+    this.controller = 'PagesCtrl';
+    this.abstract = true;
+    this.template = "<ui-view lrd-state-attrs></ui-view>";
+  }
 
-    .state( 'root.inner.page', {
-      url: '^/pages/',
-      controller: 'PagesCtrl',
-      abstract: true,
-      template: "<ui-view lrd-state-attrs></ui-view>",
-      resolve: {
-        isAdmin: ['$auth', function ($auth){
-          return $auth.validateUser().then(
-            (success) => { return true; },
-            (failure) => { return false; }
-          ).then((bool) => { return bool; });
-        } ],
-        page: [ 'backend', function(backend) {
-          return backend.createPage();
-        } ]
-      }
-    })
-    .state( 'root.inner.page.new', {
-      url: 'new',
-      templateUrl: 'pages/page-create.tpl.html',
-      resolve: {
-        onlyAdmin: [ '$auth', function($auth){ return $auth.validateUser(); } ]
-      },
-      controller: 'PageNewCtrl'
-    })
-    .state( 'root.inner.page.show', {
-      url: '*pageUrl',
-      resolve: {
-        pageLoaded: [ 'isAdmin', 'page', '$stateParams', function(isAdmin, page, $stateParams){
-          if(isAdmin){
-            page.role = "admin";
-          } else {
-            page.role = "guest";
-          }
-          page.loadFromShortLink($stateParams.pageUrl);
-          return page.complete;
-        }
-      ] } ,
-      controller: 'PageShowCtrl',
-      templateUrl: 'pages/pages.tpl.html'
-    })
+  @Resolve('backend')
+  page(backend) {
+    return backend.createPage();
+  }
+}
 
-    .state( 'root.inner.page.edit', {
-      templateUrl: 'pages/page-edit.tpl.html',
-      controller: 'PageEditCtrl',
-      resolve: {
-        onlyAdmin: [ '$auth', function($auth){ return $auth.validateUser(); } ]
-      }
-    });
+@State( 'root.inner.page.new')
+export class PageNewState extends AdminOnlyState {
+  constructor() {
+    this.url = 'new';
+    this.templateUrl = 'pages/page-create.tpl.html';
+    this.controller = 'PageNewCtrl';
+  }
+}
+
+@State( 'root.inner.page.show')
+export class PageShowState {
+  constructor() {
+    this.url = '*pageUrl';
+    this.controller: 'PageShowCtrl';
+    this.templateUrl: 'pages/pages.tpl.html';
+  }
+
+  @Resolve('isAdmin', 'page', '$stateParams')
+  pageLoaded(isAdmin, page, $stateParams){
+    if(isAdmin){
+      page.role = "admin";
+    } else {
+      page.role = "guest";
+    }
+    page.loadFromShortLink($stateParams.pageUrl);
+    return page.complete;
+  }
+}
+
+@State('root.inner.page.edit')
+export class PageEditState extends AdminOnlyState {
+  constructor() {
+    this.templateUrl = 'pages/page-edit.tpl.html';
+    this.controller = 'PageEditCtrl';
+  }
 }

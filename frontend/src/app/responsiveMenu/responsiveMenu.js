@@ -1,8 +1,10 @@
-import { appName } from '../../common/config';
+import { appName } from 'config';
+import { Module, Directive} from 'a1atscript';
 import {} from "../../../build/templates-app";
 
-angular.module( `${appName}.responsiveMenu`, ['templates-app'])
-.directive('lrdResponsiveMenu', function () {
+@Module(`${appName}.responsiveMenu`, ['templates-app'])
+@Directive('lrdResponsiveMenu')
+export default function lrdResponsiveMenu() {
   return {
     restrict: 'E',
     templateUrl: 'responsiveMenu/responsive-menu.tpl.html',
@@ -12,4 +14,4 @@ angular.module( `${appName}.responsiveMenu`, ['templates-app'])
       var nav = responsiveNav(".nav-collapse");
     }
   };
-});
+}

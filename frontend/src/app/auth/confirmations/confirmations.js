@@ -1,8 +1,9 @@
-import {appName} from '../../../common/config';
-import ConfirmationsConfig from './confirmationsStates';
+import {appName} from 'config';
+import {Module} from 'a1atscript';
+import * as ConfirmationsStates from './confirmationsStates';
 
-angular.module( `${appName}.auth.confirmations`, [
+var confirmations = new Module( `${appName}.auth.confirmations`, [
   'ui.router.state',
-  'ng-token-auth'
-])
-.config(ConfirmationsConfig);
+  'ng-token-auth',
+  ConfirmationsStates]);
+export default confirmations;

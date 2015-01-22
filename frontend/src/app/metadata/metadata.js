@@ -1,5 +1,7 @@
-import { Controller } from 'a1atscript'
+import {Module,  Controller } from 'a1atscript';
+import {appName} from 'config';
 
+@Module(`{appName}.metadata`)
 @Controller( 'MetadataCtrl', ['$scope', '$rootScope'])
 export default function MetadataCtrl($scope, $rootScope) {
   var loadMetadata = function (metadata) {

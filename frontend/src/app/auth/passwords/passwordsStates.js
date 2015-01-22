@@ -1,32 +1,35 @@
-export default function PasswordsConfig( $stateProvider) {
-  $stateProvider
-    .state( 'root.inner.passwordsRequest', {
-      url: '^/reset-password',
-      controller: 'PasswordsRequestCtrl',
-      templateUrl: 'auth/passwords/passwords-request.tpl.html'
-    })
-    .state( 'root.inner.passwordsRequestSuccess', {
-      url: '^/reset-password-sent',
-      templateUrl: 'auth/passwords/passwords-request-success.tpl.html',
-    })
-    .state( 'root.inner.passwordsUpdate', {
-      url: '^/update-password',
-      controller: 'PasswordsUpdateCtrl',
-      templateUrl: 'auth/passwords/passwords-update.tpl.html',
-      resolve: {
-        isAdmin: ['$auth', function($auth){
-          return $auth.validateUser();
-        }]
-      }
-    })
-    .state( 'root.inner.passwordsUpdateSuccess', {
-      url: '^/updated-password',
-      templateUrl: 'auth/passwords/passwords-update-success.tpl.html',
-      resolve: {
-        isAdmin: ['$auth', function($auth){
-          return $auth.validateUser();
-        }]
-      }
-    });
+import {State, Resolve, LoggedInOnlyState} from 'a1atscript';
+
+@State( 'root.inner.passwordsRequest')
+export class PasswordsRequestState {
+  constructor() {
+    this.url = '^/reset-password';
+    this.controller = 'PasswordsRequestCtrl';
+    this.templateUrl = 'auth/passwords/passwords-request.tpl.html';
+  }
 }
-PasswordsConfig['$inject'] = ['$stateProvider'];
+
+@State( 'root.inner.passwordsRequestSuccess')
+export class PasswordsRequestSuccessState {
+  constructor() {
+    this.url = '^/reset-password-sent';
+    this.templateUrl = 'auth/passwords/passwords-request-success.tpl.html';
+  }
+}
+
+@State( 'root.inner.passwordsUpdate')
+export class PasswordsUpdateState extends LoggedInOnlyState {
+  constructor() {
+    this.url = '^/update-password';
+    this.controller = 'PasswordsUpdateCtrl';
+    this.templateUrl = 'auth/passwords/passwords-update.tpl.html';
+  }
+}
+
+@State( 'root.inner.passwordsUpdateSuccess')
+export class PasswordsUpdateSuccessState extends LoggedInOnlyState {
+  constructor() {
+    this.url = '^/updated-password';
+    this.templateUrl = 'auth/passwords/passwords-update-success.tpl.html';
+  }
+}

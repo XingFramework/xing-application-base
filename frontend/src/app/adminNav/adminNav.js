@@ -1,13 +1,11 @@
-import {appName} from '../../common/config';
+import {appName} from 'config';
 import {Module, Directive} from 'a1atscript';
 
+@Module(`${appName}.adminNav`)
 @Directive('adminNav', [])
-function adminNav() {
+export default function adminNav() {
   return {
     restrict: 'E',
     templateUrl: 'adminNav/admin-nav.tpl.html'
   };
 }
-
-var adminNavModule = new Module(`${appName}.adminNav`, [adminNav]);
-export default adminNavModule;
