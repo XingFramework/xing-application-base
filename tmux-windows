@@ -24,7 +24,7 @@ while getopts Pw option; do
 esac
 done
 
-rake preflight || exit 1
+DEPENDENCIES_INCLUDE_TMUX=true rake preflight || exit 1
 
 frontend_dir=$(realpath frontend)
 backend_dir=$(realpath backend)
