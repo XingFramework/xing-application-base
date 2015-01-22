@@ -1,46 +1,60 @@
-import {appName} from '../../common/config';
-import {} from './adminModule';
+import {State, Resolve} from '../../common/stateInjector';
 
-angular.module( `${appName}.admin` )
-.config(function config( $stateProvider ) {
-  $stateProvider
-    .state( 'root.admin', {
-      url: 'admin/',
-      templateUrl: 'admin/admin.tpl.html',
-      resolve: {
-        isAdmin($auth){
-          return $auth.validateUser();
-        }
-      }
-   })
-    .state( 'root.admin.pages', {
-      url: 'pages',
-      controller: 'AdminPagesCtrl',
-      templateUrl: 'admin/pages.tpl.html',
-      resolve: {
-        pageList(backend) {
-          return backend.pageList().complete;
-        }
-      }
-    })
-    .state( 'root.admin.menus', {
-      url: 'menus',
-      controller: 'AdminMenusCtrl',
-      templateUrl: 'admin/menus.tpl.html',
-      resolve: {
-        menuList(backend) {
-          return backend.menuList().complete;
-        }
-      }
-    })
-    .state( 'root.admin.documents', {
-      url: 'documents',
-      controller: 'AdminDocumentsCtrl',
-      templateUrl: 'admin/documents.tpl.html',
-    })
-    .state( 'root.admin.images', {
-      url: 'images',
-      controller: 'AdminImagesCtrl',
-      templateUrl: 'admin/images.tpl.html',
-    });
-});
+@State('root.admin')
+export class AdminState {
+  constructor() {
+    this.url = 'admin/';
+    this.templateUrl = 'admin/admin.tpl.html';
+  }
+
+  @Resolve('$auth')
+  isAdmin($auth){
+    return $auth.validateUser();
+  }
+}
+
+@State('root.admin.pages', [pageList])
+export class AdminPagesState {
+  constructor() {
+    this.url = 'pages';
+    this.controller = 'AdminPagesCtrl';
+    this.templateUrl = 'admin/pages.tpl.html';
+  }
+
+  @Resolve('backend')
+  pageList(backend) {
+    return backend.pageList().complete;
+  }
+}
+
+@State( 'root.admin.menus', [menuList])
+class AdminMenusState {
+  constructor() {
+    this.url ='menus';
+    this.controller = 'AdminMenusCtrl';
+    this.templateUrl = 'admin/menus.tpl.html';
+  }
+
+  @Resolve('backend')
+  menuList(backend) {
+    return backend.menuList().complete;
+  }
+}
+
+@State( 'root.admin.documents')
+class AdminDocumentsState {
+  constructor() {
+    this.url = 'documents';
+    this.controller = 'AdminDocumentsCtrl';
+    this.templateUrl = 'admin/documents.tpl.html'
+  }
+}
+
+@State('root.admin.images')
+class AdminImagesState {
+  constructor() {
+    this.url = 'images';
+    this.controller = 'AdminImagesCtrl';
+    templateUrl = 'admin/images.tpl.html';
+  }
+}
