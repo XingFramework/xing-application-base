@@ -28,7 +28,7 @@ export class AdminPagesState {
 }
 
 @State( 'root.admin.menus', [menuList])
-class AdminMenusState {
+export class AdminMenusState {
   constructor() {
     this.url ='menus';
     this.controller = 'AdminMenusCtrl';
@@ -42,7 +42,7 @@ class AdminMenusState {
 }
 
 @State( 'root.admin.documents')
-class AdminDocumentsState {
+export class AdminDocumentsState {
   constructor() {
     this.url = 'documents';
     this.controller = 'AdminDocumentsCtrl';
@@ -51,7 +51,7 @@ class AdminDocumentsState {
 }
 
 @State('root.admin.images')
-class AdminImagesState {
+export class AdminImagesState {
   constructor() {
     this.url = 'images';
     this.controller = 'AdminImagesCtrl';

@@ -1,7 +1,7 @@
-import {Controller} from 'a1atscript';
+import {Controller} from "a1atscript";
 
-@Controller( 'AdminPagesCtrl', ['$scope', '$state', 'pageList'])
-function AdminPagesCtrl( $scope, $state, pageList) {
+@Controller('AdminPagesCtrl', ['$scope', '$state', 'pageList'])
+export function AdminPagesCtrl( $scope, $state, pageList) {
   $scope.pageList = pageList;
   $scope.pages = pageList.pages;
   $scope.newPage = function(){
@@ -10,18 +10,18 @@ function AdminPagesCtrl( $scope, $state, pageList) {
   // header info
 }
 
-@Controller( 'AdminMenusCtrl', ['$scope', '$state', 'menuList'])
-function AdminMenusCtrl($scope, $state, menuList) {
+@Controller('AdminMenusCtrl', ['$scope', '$state', 'menuList'])
+export function AdminMenusCtrl($scope, $state, menuList) {
   $scope.menus = menuList.menus;
   $scope.newMenu = function(){
     $state.go('^.menu.new');
   };
 }
 
-@Controller( 'AdminDocumentsCtrl' )
-function AdminDocumentsCtrl() {
+@Controller('AdminDocumentsCtrl')
+export function AdminDocumentsCtrl() {
 }
 
-@Controller( 'AdminImagesCtrl' )
-function AdminImagesCtrl() {
+@Controller('AdminImagesCtrl')
+export function AdminImagesCtrl() {
 }

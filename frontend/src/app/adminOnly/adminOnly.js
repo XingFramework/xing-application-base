@@ -1,7 +1,7 @@
 import { Directive } from 'a1atscript';
 
 @Directive('adminOnly', ['$rootScope', '$auth'])
-function ($rootScope, $auth) {
+export default function AdminOnly($rootScope, $auth) {
 
   function link(scope, element, attrs) {
     scope.showAdmin = false;
