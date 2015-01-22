@@ -9,3 +9,4 @@ server/vendor
 frontend/tmp/
 .vim-role
 tmp/
+.vim-role

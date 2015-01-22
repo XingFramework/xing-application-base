@@ -1,3 +1,4 @@
+  * Changed clearfix styles to match Compass's clearfix
   * BREAKING CHANGE: Traceur updated. All calls to super() in ES6 classes must
     be updated to call super.instanceMethod() unless in a constructor
   * Menus are now retreived as a list from the server. backend.menu(name)

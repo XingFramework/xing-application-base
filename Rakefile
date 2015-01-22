@@ -157,7 +157,11 @@ namespace :backend do
   task :check_dependencies => %w{bundle_install require_tmux} do
     Bundler.with_clean_env do
       Dir.chdir("backend") do
-        sh "bundle exec rake dependencies:check"
+        if ENV['DEPENDENCIES_INCLUDE_TMUX']
+          sh "bundle exec rake dependencies:check:tmux"
+        else
+          sh "bundle exec rake dependencies:check"
+        end
       end
     end
   end
