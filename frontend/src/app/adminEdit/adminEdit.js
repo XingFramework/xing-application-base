@@ -1,4 +1,4 @@
-import { appName } from 'config';
+import { appName , backendUrl} from 'config';
 import { Factory, Directive, Module } from "a1atscript";
 
 @Factory('froalaConfig', ['$auth'])
