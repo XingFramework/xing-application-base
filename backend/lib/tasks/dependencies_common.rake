@@ -9,6 +9,12 @@ namespace :dependencies do
     :database_config,
     'redis:running'
   ]
+  namespace :check do
+    task :tmux => 'dependencies:check' do
+      sh_or_fail "which tmux", "tmux is not installed."
+      sh_or_fail "which realpath", "realpath is not installed.  Mac users see: http://j.mp/mac_realpath"
+    end
+  end
 
   task :secrets do
     SecretsValidator.new.assert_existence
@@ -37,5 +43,6 @@ namespace :dependencies do
       sh_or_fail "which redis-cli", "Redis is not installed."
     end
   end
-end
 
+
+end

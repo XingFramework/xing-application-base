@@ -34,11 +34,7 @@ export class RootState {
 
   @Resolve('backend')
   menuRoot(backend) {
-    var menu = backend.menu("main");
-    return menu.complete.then(
-      (menu) => menu,
-      (nothing) => nothing
-    );
+    return backend.menu("main");
   }
 }
 

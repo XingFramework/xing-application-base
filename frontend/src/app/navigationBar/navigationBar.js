@@ -1,7 +1,8 @@
 import {appName} from 'config';
+import {} from "../../../build/templates-app";
 import { Module, Directive } from 'a1atscript';
 
-@Module(`${appName}.navigationBar`, ['ui.router.state'])
+@Module(`${appName}.navigationBar`, ['ui.router.state', 'templates-app'])
 @Directive('lrdNavbar', ['$compile', '$state'])
 export default function lrdNavbar($compile, $state) {
   return {

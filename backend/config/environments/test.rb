@@ -46,5 +46,6 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
 
   config.middleware.insert_before ActiveRecord::ConnectionAdapters::ConnectionManagement, Waterpig::DeadbeatConnectionRelease
-
+  config.middleware.use LogJsonResponses
+  config.middleware.use LogJsonRequests
 end

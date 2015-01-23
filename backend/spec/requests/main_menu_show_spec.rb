@@ -49,15 +49,6 @@ describe "menu#show", :type => :request do
     }
   }
 
-  describe "GET /navigation/main" do
-    it "shows page as json" do
-      json_get "/navigation/main"
-
-      expect(response).to be_success
-      expect(response.body).to be_json_eql(expected_result.to_json)
-    end
-  end
-
   describe "GET /menus/:id" do
     it "shows page as json" do
       json_get "menus/#{main_menu.id}"

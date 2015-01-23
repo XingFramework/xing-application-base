@@ -12,7 +12,7 @@ FactoryGirl.define do
 
   factory :menu_item do
     name 'test'
-    parent_id Menu.main_menu_id
+    parent_id { Menu.main_menu.id }
   end
 
   factory :menu_item_with_page, :parent => :menu_item do

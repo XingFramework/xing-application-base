@@ -58,5 +58,13 @@ describe('MenuList class', function() {
     it('should have a url for the first child', function() {
       expect(menuList.menus[0].url).toEqual("/admin/menus/1");
     });
+
+    it('should return a url based on name', function() {
+      expect(menuList.urlForName("I am Sam")).toEqual("/admin/menus/1");
+    });
+
+    it('should return undefined for a missing menu', function() {
+      expect(menuList.urlForName("No such menu")).toEqual(undefined);
+    });
   });
 });
