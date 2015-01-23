@@ -5,9 +5,13 @@ require 'snapshot_writer'
 class LocalSiteSnapshot < SiteSnapshot
   include SnapshotWriter
 
+  def initialize(url)
+    super(url)
+    @wait = Selenium::WebDriver::Wait.new
+  end
+
   def setup
     @driver = Selenium::WebDriver.for :chrome
-    @wait = Selenium::WebDriver::Wait.new
   end
   attr_accessor :driver, :wait
 
