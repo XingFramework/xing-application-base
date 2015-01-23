@@ -1,0 +1,85 @@
+class TmuxManager
+  def initialize
+    @first_child = true
+    @extra_config_path='~/.lrd-dev-tmux.conf'
+  end
+
+  def self.available?
+    system("which tmux")
+  end
+
+  def wait_all
+    path = File.expand_path(@extra_config_path)
+    if File.exists?(path)
+      puts "Loading #{path}"
+      tmux "source-file #{path}"
+    else
+      puts "No extra config found at #{path}"
+    end
+
+    tmux "attach-session -d" unless existing?
+  end
+
+  def existing?
+    !(ENV['TMUX'].nil? or ENV['TMUX'].empty?)
+  end
+
+  def tmux(cmd)
+    str = %{#{tmux_exe} #{cmd}}
+    puts str
+    %x{#{str}}
+  end
+
+  def tmux_exe
+    @tmux_exe ||= %x{which tmux}.chomp
+  end
+end
+
+class TmuxPaneManager < TmuxManager
+  def initialize
+    super
+    @window_name = "Dev Servers"
+  end
+  attr_accessor :window_name
+
+  def start_child(name, task)
+    if @first_child
+      if tmux('list-windows -F \'#{window_name}\'') =~ /#{name}|#{@window_name}/
+        puts "It looks like there are already windows open for this tmux?"
+        exit 2
+      end
+
+      if existing?
+        tmux "new-window -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+      else
+        tmux "new-session -d -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+      end
+    else
+      tmux "split-window 'bundle exec rake #{task}'"
+    end
+    @first_child = false
+  end
+
+  def wait_all
+    tmux "select-layout -t '#@window_name' tiled"
+    super
+  end
+end
+
+class TmuxWindowManager < TmuxManager
+  def start_child(name, task)
+    if @first_child
+      if tmux 'list-windows -F \'#{window_name}\'' =~ /#{name}/
+        puts "It looks like there are already windows open for this tmux?"
+        exit 2
+      end
+    end
+
+    if @first_child and not existing?
+      tmux "new-session -d -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+    else
+      tmux "new-window -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+    end
+    @first_child = false
+  end
+end
