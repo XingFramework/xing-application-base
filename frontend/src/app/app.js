@@ -40,5 +40,5 @@ var app = new Module(appName, [
   RootCtrl
 ]);
 
-var injector = new Injector();
+var injector = new Injector(appName);
 injector.instantiate(app);

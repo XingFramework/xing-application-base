@@ -1,7 +1,6 @@
-import { appName } from 'config';
 import { Directive, Module } from 'a1atscript';
 
-@Module(`${appName}.adminOnly`, ['ng-token-auth'])
+@Module('adminOnly', ['ng-token-auth'])
 @Directive('adminOnly', ['$rootScope', '$auth'])
 export default function adminOnly($rootScope, $auth) {
 

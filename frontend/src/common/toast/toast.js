@@ -2,7 +2,7 @@ import {appName} from '../config';
 import {Factory, Controller, Directive, Module} from 'a1atscript';
 import {} from './swipe';
 import {} from './interimElement';
-import {} from '../inflector';
+import Inflector from '../inflector';
 
 /* This is cribbed from the lrd design toast */
 
@@ -217,10 +217,10 @@ function lrdToastService($timeout, $$interimElement, $animate, $lrdSwipe, Inflec
   }
 }
 
-var Toast = new Module(`${appName}.toast`, [
+var Toast = new Module('toast', [
   `${appName}.interimElement`,
   `${appName}.swipe`,
-  'inflector',
+  Inflector,
   lrdToastDirective,
   lrdToastErrorListCtrl,
   lrdToastErrorCtrl,

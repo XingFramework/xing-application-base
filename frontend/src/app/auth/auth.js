@@ -1,4 +1,4 @@
-import {configuration} from 'config';
+import {backendUrl} from 'config';
 import Sessions from './sessions/sessions';
 import Registrations from './registrations/registrations';
 import Confirmations from './confirmations/confirmations';
@@ -14,7 +14,7 @@ function authSetup($authProvider, authConfigProvider) {
   var passwordResetSuccessLocation = location.split("#")[0] + "#/update-password";
 
   $authProvider.configure({
-    apiUrl: configuration.backendUrl,
+    apiUrl: backendUrl,
     tokenValidationPath:     'users/validate_token',
     signOutUrl:              'users/sign_out',
     // ng-token-auth expects to setup with email -- we've modified the server
@@ -39,7 +39,7 @@ function authSetup($authProvider, authConfigProvider) {
 }
 
 // remove modules as neccesary here if you don't want complex authorization
-var authModule = new Module( `${configuration.appName}.auth`, [
+var authModule = new Module( 'auth', [
   'ng-token-auth',
   Sessions,
   Registrations,

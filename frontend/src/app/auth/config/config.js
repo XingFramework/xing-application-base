@@ -1,7 +1,6 @@
-import {appName} from 'config';
 import {Provider, Module} from 'a1atscript';
 
-@Module(`${appName}.auth.config`)
+@Module('auth.config')
 @Provider('authConfig')
 export default function authConfig() {
   var config = {

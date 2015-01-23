@@ -1,8 +1,7 @@
-import { appName } from 'config';
 import SignOut from '../signOut/signOut';
 import {Module, Directive} from 'a1atscript';
 
-@Module( `${appName}.sessionLinks`, [
+@Module( 'sessionLinks', [
   'ng-token-auth',
   SignOut])
 @Directive('lrdSessionLinks', ['$rootScope', '$auth'])

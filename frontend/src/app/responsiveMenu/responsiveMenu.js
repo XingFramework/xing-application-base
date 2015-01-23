@@ -1,8 +1,7 @@
-import { appName } from 'config';
 import { Module, Directive} from 'a1atscript';
 import {} from "../../../build/templates-app";
 
-@Module(`${appName}.responsiveMenu`, ['templates-app'])
+@Module('responsiveMenu', ['templates-app'])
 @Directive('lrdResponsiveMenu')
 export default function lrdResponsiveMenu() {
   return {

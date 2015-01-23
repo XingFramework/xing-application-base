@@ -1,4 +1,4 @@
-import { appName , backendUrl} from 'config';
+import { backendUrl} from 'config';
 import { Factory, Directive, Module } from "a1atscript";
 
 @Factory('froalaConfig', ['$auth'])
@@ -44,7 +44,7 @@ function lrdAdminEditable($sce, $compile, $http, $templateCache) {
   };
 }
 
-var adminEdit = new Module(`${appName}.adminEditDirective`, [
+var adminEdit = new Module('adminEditDirective', [
   'froala',
   lrdAdminEditable,
   froalaConfig]);

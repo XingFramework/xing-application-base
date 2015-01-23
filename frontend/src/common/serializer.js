@@ -452,7 +452,7 @@ function ResponseInterceptor(Serializer) {
 }
 
 var Serializer = new Module('serializer', [
-  'inflector',
+  Inflector,
   SerializerProvider,
   RequestInterceptor,
   ResponseInterceptor]);

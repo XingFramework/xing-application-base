@@ -1,8 +1,7 @@
-import { appName } from 'config';
 import {} from "../../../build/templates-app";
 import {Module, Directive} from 'a1atscript';
 
-@Module( `${appName}.stateAttrs`, [ 'templates-app', 'ui.router.state'])
+@Module( 'stateAttrs', [ 'templates-app', 'ui.router.state'])
 @Directive('lrdStateAttrs', ['$compile', '$state'])
 export default function lrdStateAttrs($compile, $state) {
   function getUiViewName(attrs, inherited) {
