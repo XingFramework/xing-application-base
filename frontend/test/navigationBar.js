@@ -58,6 +58,7 @@ describe('navigationBar directive', function() {
 
     it('have a ui-router state link', function() {
       var sref = $state.href("root.inner.page.show", {pageUrl: "test-page"});
+      console.log(sref);
       expect(xpath(element, `.//a[@href="${sref}"]`).snapshotLength).toBeGreaterThan(0);
       //expect(stringAtXpath(element, './/a[@ui-sref]/@ui-sref')).toMatch(/test-page/);
     });
