@@ -31,7 +31,9 @@ steps "server takes snapshot", :js => true, :vcr => {} do
     rescue
     end
 
-    LocalSiteSnapshot.create!(server_url)
+    snapshots = LocalSiteSnapshot.new(server_url)
+    snapshots.wait = Selenium::WebDriver::Wait.new(:timeout => $RAW_SELENIUM_WAIT)
+    snapshots.create!
   end
 
   it "will take a snapshot of homepage" do
