@@ -2,7 +2,7 @@ import {Module, Service} from 'a1atscript';
 
 @Module('inflector')
 @Service('Inflector')
-export class Inflector {
+export default class Inflector {
 
   camelize(key) {
     if (!angular.isString(key)) {

@@ -1,14 +1,14 @@
 import {configuration} from '../config';
-import {} from '../serializer';
+import Serializer from '../serializer';
 import {Config, Run, Module} from 'a1atscript';
 import Backend from '../resources/AppBackend';
 
-@Config(['RestangularProvider'])
+@Config('RestangularProvider')
 function myAppConfig (RestangularProvider) {
   RestangularProvider.setBaseUrl(configuration.backendUrl);
 }
 
-@Run(['Restangular', 'RequestInterceptor', 'RequestInterceptor', '$http'])
+@Run('Restangular', 'RequestInterceptor', 'ResponseInterceptor', '$http')
 function run (Restangular, RequestInterceptor, ResponseInterceptor, $http) {
   Restangular.addRequestInterceptor(RequestInterceptor);
   Restangular.addResponseInterceptor(ResponseInterceptor);
@@ -19,7 +19,7 @@ function run (Restangular, RequestInterceptor, ResponseInterceptor, $http) {
 
 var BackendModule = new Module( configuration.appName + '.backend',
   [ 'restangular',
-  'serializer',
+  Serializer,
   Backend,
   myAppConfig,
   run ]);

@@ -28,8 +28,8 @@ export class PageNewState extends AdminOnlyState {
 export class PageShowState {
   constructor() {
     this.url = '*pageUrl';
-    this.controller: 'PageShowCtrl';
-    this.templateUrl: 'pages/pages.tpl.html';
+    this.controller = 'PageShowCtrl';
+    this.templateUrl = 'pages/pages.tpl.html';
   }
 
   @Resolve('isAdmin', 'page', '$stateParams')

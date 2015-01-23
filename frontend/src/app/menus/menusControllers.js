@@ -76,7 +76,7 @@ export function MenusController( $scope, $state, $stateParams, menu, isAdmin, pa
   $scope.selectedItem = null;
 }
 
-@Controller( 'MenuNewCtrl', ['$scope')
+@Controller( 'MenuNewCtrl', ['$scope'])
 export function MenuNewController( $scope ) {
   $scope.menuActions.edit();
 }

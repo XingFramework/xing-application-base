@@ -1,7 +1,7 @@
 import {Config} from 'a1atscript';
 import {State, Resolve} from 'stateInjector';
 
-@Config(['$stateProvider', '$urlRouterProvider', '$locationProvider' ])
+@Config('$stateProvider', '$urlRouterProvider', '$locationProvider')
 export function appConfig( $stateProvider, $urlRouterProvider, $locationProvider ) {
   // enable html5 mode
   $locationProvider.html5Mode(true);

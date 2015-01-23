@@ -2,7 +2,7 @@ import {appName} from 'config';
 import Backend from 'backend';
 import AdminOnly from "../adminOnly/adminOnly";
 import AdminNav from "../adminNav/adminNav";
-import AdminStates from "./adminStates";
+import * as AdminStates from "./adminStates";
 import * as AdminControllers from "./adminControllers";
 import { Module } from "a1atscript";
 

@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "uri-templates": "~0.1.5",
-    "a1atscript": "~0.0.2"
+    "a1atscript": "~0.0.4"
   }
 }

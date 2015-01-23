@@ -21,8 +21,8 @@ export class StateInjector {
   annotateResolves(state) {
     state.resolve = {}
     for (var prop in state) {
-      var resolveItem = state[prop];
-      if (typeof resolveItem == "function") {
+      if (typeof state[prop] == "function") {
+        var resolveItem = state[prop];
         resolveItem.annotations.forEach((annotation) => {
           if (annotation instanceof Resolve) {
             resolveItem['$inject'] = annotation.inject;
@@ -34,12 +34,13 @@ export class StateInjector {
   }
 
   instantiate(module, dependencyList) {
+    var injector = this;
     module.config(function($stateProvider) {
       dependencyList.forEach((dependencyObject) => {
         var metadata = dependencyObject.metadata;
         var StateClass = dependencyObject.dependency;
         var state = new StateClass();
-        this.annotateResolves(state);
+        injector.annotateResolves(state);
         $stateProvider.state(
           metadata.stateName,
           state

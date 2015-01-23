@@ -17,7 +17,7 @@ import SessionLinks from './sessionLinks/sessionLinks';
 import Toast from '../common/toast/toast';
 import * as appConfig from './appConfig';
 import RootCtrl from './rootController.js';
-import { Module } from "a1atscript";
+import { Module, Injector } from "a1atscript";
 
 var app = new Module(appName, [
   'templates-app', 'templates-common', 'ui.router',
@@ -39,3 +39,6 @@ var app = new Module(appName, [
   appConfig,
   RootCtrl
 ]);
+
+var injector = new Injector();
+injector.instantiate(app);

@@ -1,4 +1,4 @@
-import {State, Resolve, LoggedInOnlyState} from 'a1atscript';
+import {State, Resolve, LoggedInOnlyState} from 'stateInjector';
 
 @State( 'root.inner.passwordsRequest')
 export class PasswordsRequestState {

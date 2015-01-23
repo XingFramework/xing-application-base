@@ -454,7 +454,7 @@ function ResponseInterceptor(Serializer) {
 var Serializer = new Module('serializer', [
   'inflector',
   SerializerProvider,
-  ResponseInterceptor,
+  RequestInterceptor,
   ResponseInterceptor]);
 
 export default Serializer;

@@ -2,7 +2,7 @@ import { appName } from 'config';
 import { Factory, Directive, Module } from "a1atscript";
 
 @Factory('froalaConfig', ['$auth'])
-export default function froalaConfig($auth) {
+function froalaConfig($auth) {
   var config = {
     buttons: ["bold", "italic", "underline", "strikeThrough", "sep", "formatBlock", "align", "outdent", "indent", "insertHorizontalRule", "sep", "createLink", "insertImage","uploadFile", "undo", "redo", "html"],
     fileUploadParam: 'document',
@@ -18,7 +18,7 @@ export default function froalaConfig($auth) {
 }
 
 @Directive('lrdAdminEditable', ['$sce', '$compile', '$http', '$templateCache'])
-export default function lrdAdminEditable($sce, $compile, $http, $templateCache) {
+function lrdAdminEditable($sce, $compile, $http, $templateCache) {
   return {
     restrict: 'A',
     scope: true,

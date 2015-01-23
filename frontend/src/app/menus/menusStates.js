@@ -49,7 +49,7 @@ export class AdminMenuShowState {
 }
 
 @State('root.admin.menu.edit')
-export class AdminMenuEditState < AdminOnlyState {
+export class AdminMenuEditState extends AdminOnlyState {
   constructor() {
     this.templateUrl = 'menus/edit.tpl.html';
     this.controller = 'MenuEditCtrl';

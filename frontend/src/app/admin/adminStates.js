@@ -8,7 +8,7 @@ export class AdminState extends AdminOnlyState {
   }
 }
 
-@State('root.admin.pages', [pageList])
+@State('root.admin.pages')
 export class AdminPagesState {
   constructor() {
     this.url = 'pages';
@@ -22,7 +22,7 @@ export class AdminPagesState {
   }
 }
 
-@State( 'root.admin.menus', [menuList])
+@State( 'root.admin.menus')
 export class AdminMenusState {
   constructor() {
     this.url ='menus';
@@ -50,6 +50,6 @@ export class AdminImagesState {
   constructor() {
     this.url = 'images';
     this.controller = 'AdminImagesCtrl';
-    templateUrl = 'admin/images.tpl.html';
+    this.templateUrl = 'admin/images.tpl.html';
   }
 }
