@@ -34,7 +34,7 @@ export class RootState {
 
   @Resolve('backend')
   menuRoot(backend) {
-    return backend.menu("main");
+    return backend.menu("Main Menu");
   }
 }
 
