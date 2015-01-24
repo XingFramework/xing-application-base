@@ -23,7 +23,7 @@ class SiteSnapshot
   end
 
   def generate_snapshot
-    @sitemap_page_set.visit_pages do |url, path|
+    @sitemap_page_set.visit_pages do |url, path, updated_at|
       fetch(url, path)
     end
   end
