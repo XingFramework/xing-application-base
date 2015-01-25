@@ -8,6 +8,20 @@ class TmuxManager
     system("which tmux")
   end
 
+  def copied_env_vars
+    %w{PORT_OFFSET}
+  end
+
+  def session_env_string
+    copied_env_vars.map do |varname|
+      if ENV[varname].nil?
+        ""
+      else
+        "\\; set-environment #{varname} #{ENV[varname]}"
+      end
+    end.join(" ")
+  end
+
   def wait_all
     path = File.expand_path(@extra_config_path)
     if File.exists?(path)
@@ -50,9 +64,9 @@ class TmuxPaneManager < TmuxManager
       end
 
       if existing?
-        tmux "new-window -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+        tmux "new-window -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on" + session_env_string
       else
-        tmux "new-session -d -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+        tmux "new-session -d -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on" + session_env_string
       end
     else
       tmux "split-window 'bundle exec rake #{task}'"
@@ -76,9 +90,9 @@ class TmuxWindowManager < TmuxManager
     end
 
     if @first_child and not existing?
-      tmux "new-session -d -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+      tmux "new-session -d -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on" + session_env_string
     else
-      tmux "new-window -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+      tmux "new-window -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on" + session_env_string
     end
     @first_child = false
   end

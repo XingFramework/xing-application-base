@@ -53,7 +53,10 @@ export default function setupLogging($rootScope, $state, noTable) {
     $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
       console.group();
       /*jshint -W075 */
-      console.table({event, fromState, fromParams, toState, toParams, error});
+      console.table({event});
+      console.table({error});
+      console.table({fromState, toState});
+      //console.table({fromParams, toParams});
       console.log("ui-router error", error.stack);
       console.groupEnd();
     });

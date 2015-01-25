@@ -47,8 +47,12 @@ namespace :develop do
     @manager=manager
   end
 
-  def clean_run(dir, shell_cmd)
+  def clean_run(dir, shell_cmd, env_hash=nil)
+    env_hash ||= {}
     Bundler.with_clean_env do
+      env_hash.each_pair do |name, value|
+        ENV[name] = value
+      end
       Dir.chdir(dir) do
         sh(*shell_cmd)
       end
@@ -63,10 +67,10 @@ namespace :develop do
       setup_time_limit = 60
       begin_time = Time.now
       begin
-        test_conn =  TCPSocket.new 'localhost', reload_server_port
+        test_conn = TCPSocket.new 'localhost', reload_server_port
       rescue Errno::ECONNREFUSED
         if Time.now - begin_time > setup_time_limit
-          raise "Couldn't connect to test server after #{setup_time_limit} seconds - bailing out"
+          raise "Couldn't connect to test server on localhost:#{reload_server_port} after #{setup_time_limit} seconds - bailing out"
         else
           sleep 0.05
           retry
@@ -148,7 +152,7 @@ namespace :develop do
       words = %w{bundle exec rackup}
       words << "-p#{static_server_port}"
       words << "static.ru"
-      clean_run("frontend", words)
+      clean_run("frontend", words, {"LRD_BACKEND_URL" => "http://localhost:#{rails_server_port}"})
     end
   end
 
