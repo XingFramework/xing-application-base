@@ -51,7 +51,8 @@ angular.module( appName, [
   }]);
 
   $urlRouterProvider.otherwise(($injector, $location) => {
-    return '/home';
+    $injector.get('$state').go('root.homepage.show');
+    //return '/home';
   });
   $stateProvider.state('root', {
     templateUrl: "root.tpl.html",
