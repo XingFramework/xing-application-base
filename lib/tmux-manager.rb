@@ -12,12 +12,17 @@ class TmuxManager
     %w{PORT_OFFSET}
   end
 
+  def default_env
+    {"PORT_OFFSET" => 0}
+  end
+
   def session_env_string
     copied_env_vars.map do |varname|
-      if ENV[varname].nil?
+      varvalue = ENV[varname] || default_env[varname]
+      if varvalue.nil?
         ""
       else
-        "\\; set-environment #{varname} #{ENV[varname]}"
+        "\\; set-environment #{varname} #{varvalue}"
       end
     end.join(" ")
   end
