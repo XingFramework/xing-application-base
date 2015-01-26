@@ -94,6 +94,7 @@ namespace :develop do
       end
 
       if changes["clients"].empty?
+        puts
         puts "No running development browsers: launching...."
         p changes
 
@@ -112,6 +113,7 @@ namespace :develop do
 
         sh cmd, "http://localhost:#{static_server_port}/"
       else
+        puts
         puts "There's already a browser attached to the LiveReload server."
         p changes["clients"].first
       end
