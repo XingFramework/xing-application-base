@@ -70,7 +70,8 @@ namespace :develop do
         test_conn = TCPSocket.new 'localhost', reload_server_port
       rescue Errno::ECONNREFUSED
         if Time.now - begin_time > setup_time_limit
-          raise "Couldn't connect to test server on localhost:#{reload_server_port} after #{setup_time_limit} seconds - bailing out"
+          puts "Couldn't connect to test server on localhost:#{reload_server_port} after #{setup_time_limit} seconds - bailing out"
+          exit 1
         else
           sleep 0.05
           retry
@@ -100,7 +101,7 @@ namespace :develop do
         cmd = nil
         begin
           cmd = cmds.shift
-          sh "which", cmd
+          %x{which #{cmd}}
         rescue
           if cmds.empty?
             warn "Can't find any executable to launch a browser with. (WTF?) --jdl"
