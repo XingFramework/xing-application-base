@@ -151,8 +151,8 @@ namespace :develop do
     task :static_assets do
       words = %w{bundle exec rackup}
       words << "-p#{static_server_port}"
-      words << "static.ru"
-      clean_run("frontend", words, {"LRD_BACKEND_URL" => "http://localhost:#{rails_server_port}"})
+      words << "static-app.ru"
+      clean_run(".", words, {"LRD_BACKEND_PORT" => "#{rails_server_port}"})
     end
   end
 
