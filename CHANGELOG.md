@@ -1,3 +1,6 @@
+0.0.2 / 2015-01-26
+==================
+
   * BREAKING: Split the frontend assets and backend API servers, with support for development
     (breaking because deployments will need config changes to support)
   * Changed clearfix styles to match Compass's clearfix
