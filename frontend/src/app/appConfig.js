@@ -19,7 +19,8 @@ export function appConfig( $stateProvider, $urlRouterProvider, $locationProvider
   }]);
 
   $urlRouterProvider.otherwise(($injector, $location) => {
-    return '/home';
+    $injector.get('$state').go('root.homepage.show');
+    //return '/home';
   });
 }
 
