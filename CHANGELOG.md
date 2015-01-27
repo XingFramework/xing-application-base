@@ -1,3 +1,5 @@
+  * BREAKING: Split the frontend assets and backend API servers, with support for development
+    (breaking because deployments will need config changes to support)
   * Changed clearfix styles to match Compass's clearfix
   * BREAKING CHANGE: Traceur updated. All calls to super() in ES6 classes must
     be updated to call super.instanceMethod() unless in a constructor
