@@ -19,7 +19,7 @@ module.exports = function(grunt) {
   grunt.registerTask( 'build', [
     'clean:build', 'bower:install',
     'html2js', //'jshint:target',
-    'compass:build',
+    //'compass:build', Done at top level now
     'concat_sourcemap:compile_vendor_js',
     'concat_sourcemap:compile_css',
     'copy:build_app_assets', 'copy:build_vendor_assets',
