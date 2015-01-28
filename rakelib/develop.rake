@@ -59,6 +59,7 @@ namespace :develop do
     end
   end
 
+  desc "Launch a browser connected to a running development server"
   task :launch_browser do
     fork do
       require 'net/http'
@@ -85,7 +86,13 @@ namespace :develop do
 
       changes = {}
       while(Time.now - started < max_wait)
-        changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{reload_server_port}/changed")))
+        begin
+          changes = JSON.parse(Net::HTTP.get(URI("http://localhost:#{reload_server_port}/changed")))
+        rescue Errno::ECONNREFUSED
+          puts "LiveReload server abruptly stopped receiving connections. Bailing out."
+          exit 2
+        end
+
         if changes["clients"].empty?
           sleep 0.25
         else
@@ -102,13 +109,10 @@ namespace :develop do
         cmd = nil
         begin
           cmd = cmds.shift
-          %x{which #{cmd}}
-        rescue
-          if cmds.empty?
+        end until cmd.nil? or system(%{which #{cmd}})
+
+        if cmd.nil?
             warn "Can't find any executable to launch a browser with. (WTF?) --jdl"
-          else
-            retry
-          end
         end
 
         sh cmd, "http://localhost:#{static_server_port}/"
@@ -122,6 +126,10 @@ namespace :develop do
 
   task :grunt_watch do
     manager.start_child("Grunt", 'develop:service:grunt_watch')
+  end
+
+  task :compass_watch do
+    manager.start_child("Compass", 'develop:service:compass_watch')
   end
 
   task :rails_server do
@@ -139,6 +147,10 @@ namespace :develop do
   namespace :service do
     task :grunt_watch => 'frontend:setup' do
       clean_run("frontend", %w{bundle exec node_modules/.bin/grunt watch:develop})
+    end
+
+    task :compass_watch do
+      clean_run(".", %w{bundle exec compass watch})
     end
 
     task :rails_server => 'backend:setup' do
@@ -163,7 +175,7 @@ namespace :develop do
     manager.wait_all
   end
 
-  task :startup => [:grunt_watch, :static_assets, :rails_server, :launch_browser, :sidekiq]
+  task :startup => [:grunt_watch, :compass_watch, :sidekiq, :static_assets, :rails_server, :launch_browser]
 
   task :all => [:startup, :wait]
 end
