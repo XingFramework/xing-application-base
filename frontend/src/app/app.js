@@ -15,6 +15,7 @@ import {} from './exampleForm/exampleForm';
 import {} from './responsiveMenu/responsiveMenu';
 import {} from './sessionLinks/sessionLinks';
 import {} from '../common/toast/toast';
+import {} from '../common/log_history';
 
 angular.module( appName, [
   'templates-app', 'templates-common', 'ui.router',
