@@ -17,6 +17,8 @@ ActiveSupport::Deprecation.debug = true
 TEST_PASSWORD = 'password'
 TEST_IMAGE = File.join(Rails.root, '/spec/fixtures/test_image.png')
 
+`echo "" > log/test.log`
+
 RSpec.configure do |config|
   config.mock_with :rspec
 
