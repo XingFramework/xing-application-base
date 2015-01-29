@@ -32,6 +32,7 @@ module LrdCms2
     end
   end
 
+  require 'logger'
   class StaticLogger < ::Logger
     # needed to use stdlib logger with Rack < 1.6.0
     def write(msg)
@@ -43,7 +44,10 @@ module LrdCms2
     def self.build(root_path, backend_port)
       backend_url = "http://localhost:#{backend_port}/"
       env = ENV['RAILS_ENV'] || 'development'
-      logger = StaticLogger.new(Rails.root.join("log/#{env}_static.log"))
+      logger = StaticLogger.new(File.join(
+        File.expand_path("../../log", __FILE__),
+        "#{env}_static.log")
+      )
       Rack::Builder.new do
         use BackendUrlCookie, backend_url
         use GotoParam
