@@ -1,10 +1,9 @@
-import { appName } from '../../common/config';
 import {} from "../../../build/templates-app";
+import {Module, Directive} from 'a1atscript';
 
-angular.module( `${appName}.stateAttrs`,
-               [ 'templates-app',
-                 'ui.router.state'])
-.directive('lrdStateAttrs', ($compile, $state) => {
+@Module( 'stateAttrs', [ 'templates-app', 'ui.router.state'])
+@Directive('lrdStateAttrs', ['$compile', '$state'])
+export default function lrdStateAttrs($compile, $state) {
   function getUiViewName(attrs, inherited) {
     var name = attrs.uiView || attrs.name || '';
     return name.indexOf('@') >= 0 ?  name :  (name + '@' + (inherited ? inherited.state.name : ''));
@@ -28,4 +27,4 @@ angular.module( `${appName}.stateAttrs`,
       }
     }
   };
-});
+}

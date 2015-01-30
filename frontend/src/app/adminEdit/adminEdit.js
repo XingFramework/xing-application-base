@@ -1,8 +1,8 @@
-import { appName, backendUrl} from '../../common/config';
+import { backendUrl} from 'config';
+import { Factory, Directive, Module } from "a1atscript";
 
-angular.module(`${appName}.adminEditDirective`, ['froala'])
-
-.factory('froalaConfig', function($auth) {
+@Factory('froalaConfig', ['$auth'])
+function froalaConfig($auth) {
   var config = {
     buttons: ["bold", "italic", "underline", "strikeThrough", "sep", "formatBlock", "align", "outdent", "indent", "insertHorizontalRule", "sep", "createLink", "insertImage","uploadFile", "undo", "redo", "html"],
     fileUploadParam: 'document',
@@ -15,9 +15,10 @@ angular.module(`${appName}.adminEditDirective`, ['froala'])
   };
   config.headers = $auth.retrieveData('auth_headers');
   return config;
-})
+}
 
-.directive('lrdAdminEditable', function($sce, $compile, $http, $templateCache) {
+@Directive('lrdAdminEditable', ['$sce', '$compile', '$http', '$templateCache'])
+function lrdAdminEditable($sce, $compile, $http, $templateCache) {
   return {
     restrict: 'A',
     scope: true,
@@ -41,4 +42,11 @@ angular.module(`${appName}.adminEditDirective`, ['froala'])
 
     }
   };
-});
+}
+
+var adminEdit = new Module('adminEditDirective', [
+  'froala',
+  lrdAdminEditable,
+  froalaConfig]);
+
+export default adminEdit;

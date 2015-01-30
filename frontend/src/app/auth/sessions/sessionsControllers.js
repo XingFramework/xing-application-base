@@ -1,3 +1,6 @@
+import {Controller} from 'a1atscript';
+
+@Controller('SessionsCtrl', ['$scope', '$auth', '$state', '$lrdToast', 'Serializer', 'authConfig', 'Inflector'])
 export default function SessionsController( $scope, $auth, $state, $lrdToast, Serializer, authConfig, Inflector) {
   $scope.session = {
     password: ''
@@ -21,4 +24,3 @@ export default function SessionsController( $scope, $auth, $state, $lrdToast, Se
   };
 
 }
-SessionsController['$inject'] = ['$scope', '$auth', '$state', '$lrdToast', 'Serializer', 'authConfig', 'Inflector'];

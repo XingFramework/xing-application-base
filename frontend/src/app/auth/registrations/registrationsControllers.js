@@ -1,3 +1,6 @@
+import {Controller} from 'a1atscript';
+
+@Controller('RegistrationsCtrl', ['$scope', '$auth', '$state', '$lrdToast', 'Serializer'])
 export default function RegistrationsController( $scope, $auth, $state, $lrdToast, Serializer) {
   $scope.registration = {
     email: '',
@@ -20,4 +23,3 @@ export default function RegistrationsController( $scope, $auth, $state, $lrdToas
   };
 
 }
-RegistrationsController['$inject'] = ['$scope', '$auth', '$state', '$lrdToast', 'Serializer'];

@@ -41,12 +41,12 @@ module.exports =
   jssrc: {
     options: { livereloadOnError: false },
     files: [ 'src/**/*.js' ],
-    tasks: [ 'jshint:src', 'traceur:build', 'ngAnnotate:build'],
+    tasks: [ 'traceur:es6src', 'jshint:src', 'traceur:build', 'ngAnnotate:build'],
   },
 
   js_qa: {
     files: [],
-    tasks: [ 'jshint:src', "jsonlint" ],
+    tasks: [ 'traceur:es6src', 'jshint:src', "jsonlint" ],
     options: { atBegin: true }
   },
 
@@ -100,7 +100,7 @@ module.exports =
     files: [
       'bin/assets/vendor.js', '<%= app_files.jstest %>', 'test/json-fixtures/**/*', '<%= compile_targets.js %>'
     ],
-    tasks: [ 'jsonlint:fixtures', 'jshint:test', 'html2js:test','traceur:test', 'ngAnnotate:test', 'karma:unit:run' ],
+    tasks: [ 'jsonlint:fixtures', 'traceur:es6test', 'traceur:es6testhelp', 'jshint:test', 'html2js:test','traceur:test', 'ngAnnotate:test', 'karma:unit:run' ],
     options: {
       livereload: false,
       atBegin: true

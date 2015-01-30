@@ -1,11 +1,10 @@
-import { appName } from '../../common/config';
 import {} from "../../../build/templates-app";
+import Pages from '../pages/pages';
+import { Module, Directive } from 'a1atscript';
 
-angular.module( `${appName}.navigationBar`,
-  ['templates-app',
-  'ui.router.state',
-  `${appName}.pages`])
-.directive('lrdNavbar', function ($compile, $state) {
+@Module('navigationBar', ['ui.router.state', 'templates-app', Pages])
+@Directive('lrdNavbar', ['$compile', '$state'])
+export default function lrdNavbar($compile, $state) {
   return {
     restrict: 'E',
     templateUrl: 'navigationBar/navigationBar.tpl.html',
@@ -32,4 +31,4 @@ angular.module( `${appName}.navigationBar`,
       };
     }
   };
-});
+}

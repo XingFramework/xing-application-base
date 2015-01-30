@@ -1,63 +1,32 @@
 import {appName} from '../config';
+import {Factory, Controller, Directive, Module} from 'a1atscript';
 import {} from './swipe';
 import {} from './interimElement';
-import {} from '../inflector';
+import Inflector from '../inflector';
 
 /* This is cribbed from the lrd design toast */
 
-angular.module(`${appName}.toast`, [
-  `${appName}.interimElement`,
-  `${appName}.swipe`,
-  'inflector'
-])
-  .directive('$lrdToast', [
-    lrdToastDirective
-  ])
-  .factory('$lrdToast', [
-    '$timeout',
-    '$$interimElement',
-    '$animate',
-    '$lrdSwipe',
-    'Inflector',
-    lrdToastService
-  ])
-  .controller('$lrdToastErrorListCtrl', [
-    '$scope',
-    'type',
-    'header',
-    'messages',
-    lrdToastErrorListCtrl
-  ])
-  .controller('$lrdToastErrorCtrl', [
-    '$scope',
-    'type',
-    'message',
-    lrdToastErrorCtrl
-  ])
-  .controller('$lrdToastNoticeCtrl', [
-    '$scope',
-    'type',
-    'message',
-    lrdToastNoticeCtrl
-  ]);
-
+@Directive('$lrdToast')
 function lrdToastDirective() {
   return {
     restrict: 'E'
   };
 }
 
+@Controller('$lrdToastErrorListCtrl', ['$scope','type','header','messages'])
 function lrdToastErrorListCtrl($scope, type, header, messages) {
   $scope.type = type;
   $scope.header = header;
   $scope.messages = messages;
 }
 
+@Controller('$lrdToastErrorCtrl', ['$scope','type','message'])
 function lrdToastErrorCtrl($scope, type, message) {
   $scope.type = type;
   $scope.message = message;
 }
 
+@Controller('$lrdToastNoticeCtrl', ['$scope','type','message'])
 function lrdToastNoticeCtrl($scope, type, message) {
   $scope.type = type;
   $scope.message = message;
@@ -156,6 +125,7 @@ function lrdToastNoticeCtrl($scope, type, message) {
  *
  */
 
+@Factory('$lrdToast', ['$timeout','$$interimElement','$animate','$lrdSwipe','Inflector'])
 function lrdToastService($timeout, $$interimElement, $animate, $lrdSwipe, Inflector) {
 
   var factoryDef = {
@@ -246,3 +216,16 @@ function lrdToastService($timeout, $$interimElement, $animate, $lrdSwipe, Inflec
       (position.indexOf('top') > -1 ? 'top' : 'bottom');
   }
 }
+
+var Toast = new Module('toast', [
+  `${appName}.interimElement`,
+  `${appName}.swipe`,
+  Inflector,
+  lrdToastDirective,
+  lrdToastErrorListCtrl,
+  lrdToastErrorCtrl,
+  lrdToastNoticeCtrl,
+  lrdToastService
+]);
+
+export default Toast;

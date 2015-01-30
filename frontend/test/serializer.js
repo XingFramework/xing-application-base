@@ -1,4 +1,5 @@
 import '../src/common/serializer';
+import {appName} from 'config';
 
 describe('serializer', function () {
     'use strict';
@@ -7,7 +8,7 @@ describe('serializer', function () {
         it('should allow overriding underscore method', function () {
             var overrideCalled = false;
 
-            module('serializer', function (SerializerProvider) {
+            module(`${appName}.serializer`, function (SerializerProvider) {
                 expect(SerializerProvider.underscore(function (value) {
                     overrideCalled = true;
                     return value;
@@ -24,7 +25,7 @@ describe('serializer', function () {
         it('should allow overriding camelize method', function () {
             var overrideCalled = false;
 
-            module('serializer', function (SerializerProvider) {
+            module(`${appName}.serializer`, function (SerializerProvider) {
                 expect(SerializerProvider.camelize(function (value) {
                     overrideCalled = true;
                     return value;
@@ -39,7 +40,7 @@ describe('serializer', function () {
         });
 
         it('should allow overriding pluralize method', function () {
-            module('serializer', function (SerializerProvider) {
+            module(`${appName}.serializer`, function (SerializerProvider) {
                 expect(SerializerProvider.pluralize(function (value) {
                     return value + 'ies';
                 })).toBe(SerializerProvider);
@@ -51,7 +52,7 @@ describe('serializer', function () {
         });
 
         it('should allow overriding exclusionMatchers method', function () {
-            module('serializer', function (SerializerProvider) {
+            module(`${appName}.serializer`, function (SerializerProvider) {
                 expect(SerializerProvider.exclusionMatchers(['_'])).toBe(SerializerProvider);
             });
 
@@ -65,7 +66,7 @@ describe('serializer', function () {
     describe('default provider options', function () {
         var serializer;
 
-        beforeEach(module('serializer'));
+        beforeEach(module(`${appName}.serializer`));
 
         beforeEach(inject(function ( Serializer) {
             serializer = new Serializer();

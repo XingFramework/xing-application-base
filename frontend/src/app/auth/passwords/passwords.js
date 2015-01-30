@@ -1,14 +1,11 @@
-import {appName} from '../../../common/config';
-import PasswordsConfig from './passwordsStates';
-import {
-  PasswordsRequestController,
-  PasswordsUpdateController
-} from './passwordsControllers';
+import {Module} from 'a1atscript';
+import * as PasswordsStates from './passwordsStates';
+import * as PasswordsControllers from './passwordsControllers';
 
-angular.module( `${appName}.auth.passwords`, [
+var passwords = new Module('auth.passwords', [
   'ui.router.state',
-  'ng-token-auth'
-])
-.config(PasswordsConfig)
-.controller('PasswordsRequestCtrl', PasswordsRequestController)
-.controller('PasswordsUpdateCtrl', PasswordsUpdateController);
+  'ng-token-auth',
+  PasswordsStates,
+  PasswordsControllers]);
+
+export default passwords;
