@@ -1,27 +1,25 @@
 import SignOut from '../signOut/signOut';
-import {Module, Directive} from 'a1atscript';
+import {Module, DirectiveObject} from 'a1atscript';
+import OnLoginDirective from '../../common/OnLoginDirective';
 
 @Module( 'sessionLinks', [
   'ng-token-auth',
   SignOut])
-@Directive('lrdSessionLinks', ['$rootScope', '$auth'])
-export default function lrdSessionLinks($rootScope, $auth) {
-  function link(scope, element, attrs) {
-    scope.isLoggedIn = false;
-    $auth.validateUser().then((user) => {
-      scope.isLoggedIn = true;
-    });
-    $rootScope.$on('auth:login-success', (ev, user) => {
-      scope.isLoggedIn = true;
-    });
-    $rootScope.$on('auth:logout-success', (ev, user) => {
-      scope.isLoggedIn = false;
-    });
+@DirectiveObject('lrdSessionLinks', ['$rootScope', '$auth'])
+export default class SessionLinks extends OnLoginDirective {
+  constructor ($rootScope, $auth) {
+    super($rootScope, $auth);
+    this.restrict = 'E';
+    this.scope = true;
+    this.templateUrl = 'sessionLinks/session-links.tpl.html';
   }
-  return {
-    restrict: 'E',
-    scope: true,
-    link: link,
-    templateUrl: 'sessionLinks/session-links.tpl.html'
-  };
+
+  onLogin(scope, user) {
+    scope.isLoggedIn = true;
+  }
+
+  onLogout(scope) {
+    scope.isLoggedIn = false;
+  }
+
 }

@@ -78,12 +78,36 @@ var AppModule = Module('AppModule', [
   MyModule
 ]);
 
-// The string passed in is prefixed to then names 
+// The string passed in is prefixed to then names
 // of all of the modules when they are instantiated with
 // Angular
 var injector = new Injector("myAppPrefix");
 injector.instantiate(AppModule);
 ```
+
+### Directive Objects
+
+Angular 1.x's interface for defining directives is notoriously one of its most difficult aspects. Typically, you create a factory function that returns a directive definition object, whose attributes specify the behavior of the directive. Since we now have the freedom to create our own injection methods, I decided to include a helper that allows you to define DirectiveObject classes, which in turn are converted properly to an Angular Directive when they are instantiated. Here's the format:
+
+```javascript
+@DirectiveObject('exampleDirective', ['ExampleService'])
+class ExampleDirective {
+  constructor(exampleService) {
+    this.exampleService = exampleService;
+    this.restrict = "E";
+    this.template = "<p>Hello</p>";
+  }
+
+  link(scope, element, attrs) {
+    scope.value = this.exampleService.value;
+    scope.setFromService = () => {
+      scope.value2 = this.exampleService.value2;
+    }
+  }
+}
+```
+
+Note that this is preserved inside a compile or link function. Many thanks to Michael Bromley who provided the code to make this work in [this article](http://www.michaelbromley.co.uk/blog/350/exploring-es6-classes-in-angularjs-1-x).
 
 ### Spice It Up: Write Your Own Injectors
 
@@ -97,16 +121,14 @@ class RootMainInnerState {
     this.controller = 'AwesomeController'
   }
 
-  get resolve() {
-  	return {
-  		@Resolve('Backend')
-  		model: function(Backend) {
-  		}
-  		@Resolve('AuthService')
-  		user: function(AuthService) {
-  		}
-  	}
+  @Resolve('Backend')
+  model: function(Backend) {
   }
+
+  @Resolve('AuthService')
+  user: function(AuthService) {
+  }
+
 }
 ```
 
@@ -115,28 +137,52 @@ Well the good news is you could potentially do that. Just define an Annotation a
 ```javascript
 import {registerInjector} from 'bower_components/dist/a1atscript'
 
-class State {
+export class State {
    constructor(stateName) {
      this.stateName = stateName;
    }
 }
 
+export class Resolve {
+  constructor(...inject) {
+    this.inject = inject;
+  }
+}
+
 // An Injector must define an annotationClass getter and an instantiate method
-class StateInjector {
+export class StateInjector {
   get annotationClass() {
     return State;
   }
 
+  annotateResolves(state) {
+    state.resolve = {}
+    for (var prop in state) {
+      if (typeof state[prop] == "function") {
+        var resolveItem = state[prop];
+        resolveItem.annotations.forEach((annotation) => {
+          if (annotation instanceof Resolve) {
+            resolveItem['$inject'] = annotation.inject;
+            state.resolve[prop] = resolveItem;
+          }
+        });
+      }
+    }
+  }
+
   instantiate(module, dependencyList) {
+    var injector = this;
     module.config(function($stateProvider) {
-	    dependencyList.forEach((dependencyObject) => {
-	      var metadata = dependencyObject.metadata;
-	      var StateClass = dependencyObject.dependency;
-	      $stateProvider.state(
-	        metadata.stateName,
-	        new StateClass()
-	      );
-	    });
+      dependencyList.forEach((dependencyObject) => {
+        var metadata = dependencyObject.metadata;
+        var StateClass = dependencyObject.dependency;
+        var state = new StateClass();
+        injector.annotateResolves(state);
+        $stateProvider.state(
+          metadata.stateName,
+          state
+        );
+      });
     })
   }
 }
@@ -144,7 +190,7 @@ class StateInjector {
 registerInjector('state', StateInjector);
 ```
 
-That's just a first pass -- I don't know if it would work but the possibilities for custom Injectors are somewhat endless.
+That code works -- I've used it in my own projects for making ui-router easy to use. The best part is then you can create base states with common resolves and the extend them for your individual states.
 
 #### Why isn't everything packaged into one file?
 
