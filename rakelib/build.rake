@@ -8,12 +8,6 @@ namespace :build do
       end
     end
 
-    task :compass_compile do
-      Bundler.with_clean_env do
-        Dir.chdir("."){ sh(*%w{bundle exec compass compile --force}) } #--force is maybe unneeded
-      end
-    end
-
-    task :all => [:grunt_compile, :compass_compile]
+    task :all => [:grunt_compile]
   end
 end

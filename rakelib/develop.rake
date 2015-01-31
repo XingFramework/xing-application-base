@@ -150,7 +150,7 @@ namespace :develop do
     end
 
     task :compass_watch do
-      clean_run(".", %w{bundle exec compass watch})
+      clean_run("frontend", %w{bundle exec compass watch})
     end
 
     task :rails_server => 'backend:setup' do
@@ -167,7 +167,7 @@ namespace :develop do
       words = %w{bundle exec rackup}
       words << "-p#{static_server_port}"
       words << "static-app.ru"
-      clean_run(".", words, {"LRD_BACKEND_PORT" => "#{rails_server_port}"})
+      clean_run("backend", words, {"LRD_BACKEND_PORT" => "#{rails_server_port}"})
     end
   end
 
