@@ -17,7 +17,6 @@ ActiveSupport::Deprecation.debug = true
 TEST_PASSWORD = 'password'
 TEST_IMAGE = File.join(Rails.root, '/spec/fixtures/test_image.png')
 
-`echo "" > log/test.log`
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -30,8 +29,10 @@ RSpec.configure do |config|
   DatabaseCleaner.strategy = :transaction
 
   config.before :suite do
-    File::open("log/test.log", "w") do |log|
-      log.write ""
+    config.waterpig_clearable_logs.each do |logfile|
+      File::open("log/#{logfile}.log", "w") do |log|
+        log.write ""
+      end
     end
   end
 

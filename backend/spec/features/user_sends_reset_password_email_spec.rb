@@ -19,11 +19,11 @@ steps "User Sends Reset Password", :js => true, :vcr => {} do
     click_on("Send password reset instructions")
   end
 
-  it "should have the confirmation" do
+  step "should have the confirmation" do
     page.should have_content("You will receive an email with instructions on how to reset your password in a few minutes.")
   end
 
-  it "should send the email" do
+  step "should send the email" do
     email = open_email(@user.email)
     email.should have_link("Change my password")
   end

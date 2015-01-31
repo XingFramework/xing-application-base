@@ -1,4 +1,4 @@
-// very simple console wrapper to preserve history
+ //very simple console wrapper to preserve history
 (function(){
 
   // Returns a version of obj without functions
@@ -17,8 +17,6 @@
             if (cache.indexOf(property) == -1) {
               cache.push(property);
               newObj[property] = strippedObject(value, cache);
-            } else {
-              newObj[property] = "<recursive object reference>";
             }
             break;
           default:
@@ -31,7 +29,7 @@
   function serializable(value) {
     switch (typeof value) {
       case "function":
-        return "function";
+        return "<function>";
       case "object":
         return strippedObject(value);
       default:
@@ -39,27 +37,25 @@
     }
   }
 
-  if (!console.undecorated_log) {
-    console.undecorated_log = console.log;
-    console.history = console.history || [];
-    console.log = function(){
-      for (var arg of arguments) {
-        console.history.push({
-          time: (new Date()).toString(),
-          value: serializable(arg),
-          type: 'message' } );
-      }
-      console.undecorated_log.apply(console, arguments);
-    };
-
-    console.undecorated_table = console.table;
-    console.table = function(){
+  var undecorated_log = console.log;
+  console.history = console.history || [];
+  console.log = function(){
+    for (var arg of arguments) {
       console.history.push({
         time: (new Date()).toString(),
-        value:  serializable(Array.prototype.slice.call(arguments)),
-        type: 'table'
-      });
-      console.undecorated_table.apply(console, arguments);
-    };
-  }
+        value: serializable(arg),
+        type: 'message' } );
+    }
+    undecorated_log.apply(console, arguments);
+  };
+
+  var undecorated_table = console.table;
+  console.table = function(){
+    console.history.push({
+      time: (new Date()).toString(),
+      value:  serializable(Array.prototype.slice.call(arguments)[0]),
+      type: 'table'
+    });
+    undecorated_table.apply(console, arguments);
+  };
 })();

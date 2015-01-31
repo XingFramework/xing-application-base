@@ -40,8 +40,12 @@ export default class BackendServer {
   }
 
   load(ResourceClass, url = null, responseFn = null){
+    console.log(ResourceClass);
+    console.log("Resource load for: " + url);
     var response = this.Restangular.one(this.mangleUrl(url)).get();
-    if(responseFn){ response = responseFn(response); }
+    console.log("A")
+    if(responseFn){ response = responseFn(response); console.log("B"); }
+    console.log("C")
     return new ResourceClass(this, this.unwrap(response));
   }
 

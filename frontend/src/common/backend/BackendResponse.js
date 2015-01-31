@@ -48,6 +48,8 @@ export default class BackendResponse {
     this.responsePromise = responsePromise;
     this.completePromise = this.responsePromise.then(
       (response) => {
+        console.log("Resource Class " + Object.getPrototypeOf(this));
+        console.log("Response in backendResponds: " + JSON.stringify(response));
         this.resolved = true;
         this._dirty = false;
         this.absorbResponse(response);

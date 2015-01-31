@@ -19,7 +19,12 @@ shared_steps "edit homepage" do
   end
 
   it "clicks on Edit" do
-    click_on("Edit This Page")
+    #byebug
+    #if self.class.description == "title"
+      #click_on("Edit This Chickenshit")
+    #else
+      click_on("Edit This Page")
+    #end
   end
 end
 
