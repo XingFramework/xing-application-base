@@ -1,6 +1,22 @@
 import { environment } from "./environment";
 
-export var backendUrl = environment.backendUrl;
+
+export var backendUrl = (function(){
+  var cookies = [];
+  if(document.cookie) {
+    cookies = document.cookie.split(';');
+  }
+
+  var matches = cookies.filter((cookie) => {
+    return /^lrdBackendUrl=/.test(cookie);
+  });
+
+  if(matches.length > 0) {
+    return matches[0].split('=')[1];
+  } else {
+    return environment.backendUrl;
+  }
+}());
 export var appName = "LRD-CMS2";
 export var configuration = { backendUrl, appName };
 
@@ -9,4 +25,3 @@ if(environment.name){
 } else {
   configuration.appTitle = configuration.appName;
 }
-angular.module(configuration.appName + '.config', []).constant('configuration', configuration);

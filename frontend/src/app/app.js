@@ -1,82 +1,44 @@
 import {appName} from '../common/config';
 import {} from '../../build/templates-app';
 import {} from '../../build/templates-common';
-import {} from './navigationBar/navigationBar';
-import {} from './stateAttrs/stateAttrs';
-import {} from '../common/backend/backend';
-import {} from "../common/ui-route-logger";
-import {} from './admin/admin';
-import {} from './auth/auth';
-import {} from './pages/pages';
-import {} from './menus/menus';
-import {} from './homepage/homepage';
-import {} from './metadata/metadata';
-import {} from './exampleForm/exampleForm';
-import {} from './responsiveMenu/responsiveMenu';
-import {} from './sessionLinks/sessionLinks';
-import {} from '../common/toast/toast';
+import NavigationBar from './navigationBar/navigationBar';
+import StateAttrs from './stateAttrs/stateAttrs';
+import Backend from '../common/backend/backend';
+import UIRouteLogger from "../common/ui-route-logger";
+import Admin from './admin/admin';
+import Auth from './auth/auth';
+import Pages from './pages/pages';
+import Menus from './menus/menus';
+import Homepage from './homepage/homepage';
+import Metadata from './metadata/metadata';
+import ExampleForm from './exampleForm/exampleForm';
+import ResponsiveMenu from './responsiveMenu/responsiveMenu';
+import SessionLinks from './sessionLinks/sessionLinks';
+import Toast from '../common/toast/toast';
+import * as appConfig from './appConfig';
+import RootCtrl from './rootController.js';
+import { Module, Injector } from "a1atscript";
 
-angular.module( appName, [
+var app = new Module(appName, [
   'templates-app', 'templates-common', 'ui.router',
   'picardy.fontawesome',
-  `${appName}.backend`,
-  `${appName}.navigationBar`,
-  `${appName}.stateAttrs`,
-  `${appName}.route-logger`,
-  `${appName}.pages`,
-  `${appName}.menus`,
-  `${appName}.homepage`,
-  `${appName}.auth`,
-  `${appName}.admin`,
-  `${appName}.responsiveMenu`,
-  `${appName}.metadata`,
-  `${appName}.exampleForm`,
-  `${appName}.sessionLinks`,
-  `${appName}.toast`
-])
-.config( function myAppConfig( $stateProvider, $urlRouterProvider, $locationProvider ) {
-  // enable html5 mode
-  $locationProvider.html5Mode(true);
+  StateAttrs,
+  UIRouteLogger,
+  Menus,
+  Homepage,
+  Auth,
+  Admin,
+  ResponsiveMenu,
+  Metadata,
+  ExampleForm,
+  SessionLinks,
+  Toast,
+  Pages,
+  Backend,
+  NavigationBar,
+  appConfig,
+  RootCtrl
+]);
 
-  // html5 mode when frontend urls hit directly they become a backend request
-  // backend in-turn redirects to /?goto=url wher url is the intended frontend url
-  // this function then redirects frontend (via history API) to appropriate frontend
-  // route
-  $urlRouterProvider.when("/?goto", ['$match', function ($match) {
-    if ($match.goto) {
-      return $match.goto;
-    } else {
-      return false;
-    }
-  }]);
-
-  $urlRouterProvider.otherwise(($injector, $location) => {
-    return '/home';
-  });
-  $stateProvider.state('root', {
-    templateUrl: "root.tpl.html",
-    controller: 'RootCtrl',
-    abstract: true,
-    url: "/",
-    resolve: {
-      menuRoot(backend) {
-        return backend.menu("Main Menu");
-      }
-    }
-  }).state('root.inner', {
-    templateUrl: "inner.tpl.html",
-    abstract: true,
-    url: "inner"
-  });
-})
-.controller( 'RootCtrl', function RootCtrl( $scope, menuRoot, $state, $rootScope, $window ) {
-  $rootScope.$on("$viewContentLoaded", function(event) {
-    $window.frontendContentLoaded = true;
-  });
-  $scope.mainMenu = menuRoot.children;
-  $scope.$watch(
-    ()=>{ return menuRoot.etag; },
-    ()=>{
-      $scope.mainMenu = menuRoot.children;
-    });
-});
+var injector = new Injector(appName);
+injector.instantiate(app);

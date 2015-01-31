@@ -1,9 +1,8 @@
-angular.module('inflector', [])
-.factory('Inflector', function() {
-  return new Inflector();
-});
+import {Module, Service} from 'a1atscript';
 
-export class Inflector {
+@Module('inflector')
+@Service('Inflector')
+export default class Inflector {
 
   camelize(key) {
     if (!angular.isString(key)) {

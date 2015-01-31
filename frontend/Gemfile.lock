@@ -16,6 +16,7 @@ GEM
       sass (>= 3.2, < 3.5)
     ffi (1.9.3)
     multi_json (1.10.1)
+    rack (1.5.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -26,4 +27,5 @@ PLATFORMS
 
 DEPENDENCIES
   compass
+  rack
   sass

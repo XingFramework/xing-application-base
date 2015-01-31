@@ -1,18 +1,19 @@
-import {appName} from '../../../common/config';
-import {} from '../../../common/toast/toast';
-import {} from '../../../common/inflector';
-import {} from '../../../common/serializer';
-import {} from '../config/config';
-import SessionsConfig from './sessionsStates';
+import {Module} from 'a1atscript';
+import Toast from '../../../common/toast/toast';
+import Inflector from '../../../common/inflector';
+import Serializer from '../../../common/serializer';
+import Config from '../config/config';
+import * as SessionsStates from './sessionsStates';
 import SessionsController from './sessionsControllers';
 
-angular.module( `${appName}.auth.sessions`, [
+var sessions = new Module('auth.sessions', [
   'ui.router.state',
   'ng-token-auth',
-  `${appName}.toast`,
-  'inflector',
-  'serializer',
-  `${appName}.auth.config`
-])
-.config(SessionsConfig)
-.controller('SessionsCtrl', SessionsController);
+  Toast,
+  Inflector,
+  Serializer,
+  Config,
+  SessionsStates,
+  SessionsController]);
+
+export default sessions;

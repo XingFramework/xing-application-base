@@ -1,3 +1,6 @@
+import { Controller } from 'a1atscript';
+
+@Controller('PasswordsRequestCtrl', ['$scope', '$auth', '$state', '$lrdToast', 'Serializer'])
 export function PasswordsRequestController( $scope, $auth, $state, $lrdToast, Serializer) {
   $scope.passwordRequest = {
     email: '',
@@ -15,11 +18,9 @@ export function PasswordsRequestController( $scope, $auth, $state, $lrdToast, Se
         // handle error response
       });
   };
-
 }
 
-PasswordsRequestController['$inject'] =  ['$scope', '$auth', '$state', '$lrdToast', 'Serializer'];
-
+@Controller('PasswordsUpdateCtrl', ['$scope', '$auth', '$state', '$lrdToast', 'Serializer'])
 export function PasswordsUpdateController( $scope, $auth, $state, $lrdToast, Serializer) {
   $scope.passwordUpdate = {
     password: '',
@@ -40,5 +41,3 @@ export function PasswordsUpdateController( $scope, $auth, $state, $lrdToast, Ser
   };
 
 }
-
-PasswordsUpdateController['$inject'] = ['$scope', '$auth', '$state', '$lrdToast', 'Serializer'];

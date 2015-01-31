@@ -2,9 +2,17 @@ module.exports =
 {
   options: {
     includeRuntime: false,
-    traceurRuntime: "./node_modules/traceur/bin/traceur-runtime.js",
-    traceurCommand: "./node_modules/.bin/traceur",
-    traceurOptions: "--array-comprehension true --source-maps"
+    traceurOptions: {
+      arrayComprehension: true,
+      sourceMaps: true,
+      annotations: true,
+    },
+    moduleMaps: {
+      "a1atscript": "../../vendor/a1atscript/a1atscript",
+      "config": "../../src/common/config",
+      "backend": "../../src/common/backend/backend",
+      "stateInjector": "../../src/common/stateInjector"
+    }
   },
   build: {
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
@@ -12,14 +20,59 @@ module.exports =
   deploy: {
     options: {
       includeRuntime: true,
-      traceurOptions: "--array-comprehension true --source-maps"
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: true,
+        annotations: true
+      }
     },
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
   },
   test: {
     options: {
-      includeRuntime: false
+      includeRuntime: false,
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: true,
+        annotations: true
+      }
     },
     files: { '<%= build_dirs.test%>/test-main.js': '<%= app_files.jsunit %>' }
+  },
+  es6src: {
+    options: {
+      srcDir: '<%= app_files.js_dir %>',
+      destDir: '<%= build_dir %>/<%= app_files.js_dir %>-es6',
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: false,
+        annotations: true,
+        outputLanguage: 'es6'
+      }
+    }
+  },
+  es6test: {
+    options: {
+      srcDir: '<%= app_files.test_dir %>',
+      destDir: '<%= build_dir %>/<%= app_files.test_dir %>-es6',
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: false,
+        annotations: true,
+        outputLanguage: 'es6'
+      }
+    }
+  },
+  es6testhelp: {
+    options: {
+      srcDir: '<%= app_files.test_help_dir %>',
+      destDir: '<%= build_dir %>/<%= app_files.test_help_dir %>-es6',
+      traceurOptions: {
+        arrayComprehension: true,
+        sourceMaps: false,
+        annotations: true,
+        outputLanguage: 'es6'
+      }
+    }
   }
 };
