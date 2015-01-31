@@ -9,13 +9,13 @@ steps "server takes snapshot", :js => true, :vcr => {} do
     "http://127.0.0.1:#{Capybara.current_session.server.port}/"
   end
 
-  let! :page do
-    p = FactoryGirl.create(:one_column_page, url_slug: "integration_test")
-    headline = p.page_contents.where(:name => :headline).first.content_block
-    headline.body = "Welcome to our super site"
-    headline.save
-    p.reload
-    p
+  let! :one_column_page do
+    FactoryGirl.create(:one_column_page, url_slug: "integration_test").tap do |page|
+      headline = page.page_contents.where(:name => :headline).first.content_block
+      headline.body = "Welcome to our super site"
+      headline.save
+      page.reload
+    end
   end
 
   before do
@@ -31,7 +31,9 @@ steps "server takes snapshot", :js => true, :vcr => {} do
     rescue
     end
 
-    LocalSiteSnapshot.create!(server_url)
+    snapshots = LocalSiteSnapshot.new(server_url)
+    snapshots.wait = Selenium::WebDriver::Wait.new(:timeout => $RAW_SELENIUM_WAIT)
+    snapshots.create!
   end
 
   it "will take a snapshot of homepage" do

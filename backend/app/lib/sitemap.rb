@@ -23,10 +23,10 @@ class Sitemap
 
       xml.instruct!
       xml.urlset(:xmlns=>'http://www.sitemaps.org/schemas/sitemap/0.9') {
-        @sitemap_page_set.visit_pages do |url, path|
+        @sitemap_page_set.visit_pages do |url, path, update_time|
           xml.url {
             xml.loc(url+path)
-            xml.lastmod(Time.now.utc.strftime('%Y-%m-%dT%H:%M:%S+00:00'))
+            xml.lastmod(update_time.utc.strftime('%Y-%m-%dT%H:%M:%S+00:00'))
           }
         end
       }
