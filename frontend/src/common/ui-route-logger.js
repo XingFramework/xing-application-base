@@ -1,5 +1,8 @@
-import {configuration} from './config';
+import {configuration} from 'config';
+import {Module, Run} from 'a1atscript';
 
+@Module(`${configuration.appName}.route-logger`)
+@Run('$rootScope', '$state')
 export default function setupLogging($rootScope, $state, noTable) {
   if(noTable){
     $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
@@ -62,6 +65,3 @@ export default function setupLogging($rootScope, $state, noTable) {
     });
   }
 }
-
-angular.module( `${configuration.appName}.route-logger`, [] )
-.run( [ '$rootScope', '$state', setupLogging ] );

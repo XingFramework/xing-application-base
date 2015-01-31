@@ -1,3 +1,14 @@
-import {} from './pagesModule';
-import {} from './pagesStates';
-import {} from './pagesControllers';
+import Backend from '../../common/backend/backend';
+import adminEdit from '../adminEdit/adminEdit';
+import * as PagesStates from './pagesStates';
+import * as PagesControllers from './pagesControllers';
+import { Module } from 'a1atscript';
+
+var Pages = new Module( 'pages', [
+  Backend,
+  adminEdit,
+  'ui.router.state',
+  PagesControllers,
+  PagesStates]);
+
+export default Pages;

@@ -1,9 +1,7 @@
-import {appName} from '../../common/config';
-import {} from './homepageModule';
+import {Controller} from 'a1atscript';
 
-angular.module(`${appName}.homepage`)
-
-.controller( 'HomepageEditCtrl', function( $scope, $state, page ){
+@Controller( 'HomepageEditCtrl', ['$scope', '$state', 'page'])
+export function HomepageEditController( $scope, $state, page ){
   // I think there's potential for improving UX here: duplicate the existing page, edit that -
   // on save, submit that and discard the old page. On cancel, swap it back in.
   // Let admin switch back and forth until they decide "this is good" and save
@@ -19,13 +17,15 @@ angular.module(`${appName}.homepage`)
       return page;
     });
   };
-})
+}
 
-.controller( 'HomepageShowCtrl', function( $scope, page ){
+@Controller('HomepageShowCtrl', ['$scope', 'page'])
+export function HomepageShowController( $scope, page ){
   $scope.$emit('metadataSet', page.metadata);
-})
+}
 
-.controller( 'HomepageCtrl', function( $scope, $state, $stateParams, $sce, page, isAdmin) {
+@Controller('HomepageCtrl', [ '$scope', '$state', '$stateParams', '$sce', 'page', 'isAdmin'])
+export function HomepageController( $scope, $state, $stateParams, $sce, page, isAdmin) {
   $scope.nowEditing = false;
   $scope.edit = function(){
     $state.go('^.edit');
@@ -45,4 +45,4 @@ angular.module(`${appName}.homepage`)
   }
   // header info
   $scope.$emit('metadataSet', page.metadata);
-});
+}

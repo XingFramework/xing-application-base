@@ -1,18 +1,18 @@
-export default function SessionsConfig( $stateProvider) {
-  $stateProvider
-    .state( 'root.inner.sessions', {
-      url: '^/sign-in',
-      controller: 'SessionsCtrl',
-      templateUrl: 'auth/sessions/sessions.tpl.html',
-    })
-    .state( 'root.inner.sessionsSuccess', {
-      url: '^/signed-in',
-      templateUrl: 'auth/sessions/sessions-success.tpl.html',
-      resolve: {
-        isAdmin: ['$auth', function($auth){
-          return $auth.validateUser();
-        }]
-      }
-    });
+import {State, Resolve, LoggedInOnlyState} from 'stateInjector';
+
+@State( 'root.inner.sessions')
+export class SessionsState {
+  constructor() {
+    this.url = '^/sign-in';
+    this.controller = 'SessionsCtrl';
+    this.templateUrl = 'auth/sessions/sessions.tpl.html';
+  }
 }
-SessionsConfig['$inject'] = ['$stateProvider'];
+
+@State( 'root.inner.sessionsSuccess')
+export class SessionsSuccessState extends LoggedInOnlyState {
+  constructor() {
+    this.url = '^/signed-in';
+    this.templateUrl = 'auth/sessions/sessions-success.tpl.html';
+  }
+}

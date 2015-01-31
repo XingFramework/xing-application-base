@@ -21,7 +21,7 @@ module LrdCms2
       status, headers, body = @app.call(env)
       default = [ status, headers, body ]
       request_path = env["SCRIPT_NAME"] + env["PATH_INFO"]
-      redirect = [ 301, headers.merge("Location" => "/?goto=#{request_path}"), [] ] #possible SCRIPT_NAME needs to be prefixed
+      redirect = [ 301, headers.merge("Location" => "/?goto=#{request_path}", "Content-Length" => "0"), [] ]
 
       return default unless status == 404
       return default if /\A(assets|fonts|system)/ =~ request_path

@@ -25,4 +25,3 @@ if(environment.name){
 } else {
   configuration.appTitle = configuration.appName;
 }
-angular.module(configuration.appName + '.config', []).constant('configuration', configuration);

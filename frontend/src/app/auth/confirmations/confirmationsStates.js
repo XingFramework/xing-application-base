@@ -1,14 +1,9 @@
-export default function ConfirmationsConfig( $stateProvider) {
-  $stateProvider
-    .state( 'root.inner.confirmationsSuccess', {
-      url: '^/confirmed',
-      templateUrl: 'auth/confirmations/confirmations-success.tpl.html',
-      resolve: {
-        isAdmin: ['$auth', function($auth){
-          return $auth.validateUser();
-        }]
-      }
-    });
-}
+import {State, LoggedInOnlyState} from "stateInjector";
 
-ConfirmationsConfig['$inject'] = ['$stateProvider'];
+@State('root.inner.confirmationsSuccess')
+export class ConfirmationsSuccessState extends LoggedInOnlyState {
+  constructor() {
+    this.url = '^/confirmed';
+    this.templateUrl = 'auth/confirmations/confirmations-success.tpl.html';
+  }
+}

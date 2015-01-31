@@ -1,27 +1,20 @@
-import {configuration} from '../../common/config';
-import {} from './sessions/sessions';
-import {} from './registrations/registrations';
-import {} from './confirmations/confirmations';
-import {} from './passwords/passwords';
-import {} from './config/config';
+import {backendUrl} from 'config';
+import Sessions from './sessions/sessions';
+import Registrations from './registrations/registrations';
+import Confirmations from './confirmations/confirmations';
+import Passwords from './passwords/passwords';
+import AuthConfig from './config/config';
+import {Config, Module} from 'a1atscript';
 
-// remove modules as neccesary here if you don't want complex authorization
-angular.module( `${configuration.appName}.auth`, [
-  'ng-token-auth',
-  `${configuration.appName}.auth.sessions`,
-  `${configuration.appName}.auth.registrations`,
-  `${configuration.appName}.auth.confirmations`,
-  `${configuration.appName}.auth.passwords`,
-  `${configuration.appName}.auth.config`
-])
-.config( function ($authProvider, authConfigProvider) {
+@Config('$authProvider', 'authConfigProvider')
+function authSetup($authProvider, authConfigProvider) {
 
   var location = window.location.href;
   var confirmationLocation = location.split("#")[0] + "#/confirmed";
   var passwordResetSuccessLocation = location.split("#")[0] + "#/update-password";
 
   $authProvider.configure({
-    apiUrl: configuration.backendUrl,
+    apiUrl: backendUrl,
     tokenValidationPath:     'users/validate_token',
     signOutUrl:              'users/sign_out',
     // ng-token-auth expects to setup with email -- we've modified the server
@@ -43,4 +36,17 @@ angular.module( `${configuration.appName}.auth`, [
   // turn this off to remove links to reset password
   authConfigProvider.enableRecovery();
 
-});
+}
+
+// remove modules as neccesary here if you don't want complex authorization
+var authModule = new Module( 'auth', [
+  'ng-token-auth',
+  Sessions,
+  Registrations,
+  Confirmations,
+  Passwords,
+  AuthConfig,
+  authSetup
+]);
+
+export default authModule;

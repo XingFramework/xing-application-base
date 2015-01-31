@@ -43,6 +43,8 @@ module.exports = function(grunt) {
     'copy:test-env',
     'develop-build',
     'jsonlint:fixtures',
+    'traceur:es6test',
+    'traceur:es6testhelp',
     'jshint:test',
     'html2js:test',
     'traceur:test',
@@ -50,6 +52,7 @@ module.exports = function(grunt) {
     'karma:dev' ]);
   grunt.registerTask( 'compile', "Compile the app in preparation for deploy", [
     'copy:production-env',
+    'traceur:es6src',
     'jshint:precompile',
     'build',
     'traceur:deploy',
