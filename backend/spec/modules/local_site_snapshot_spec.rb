@@ -42,7 +42,7 @@ describe LocalSiteSnapshot do
     expect(wait).to receive(:until).and_yield
     expect(driver).to receive(:execute_script).and_return(true)
     expect(SitePageSet).to receive(:new).with("http://www.awesome.com/").and_return(site_page_set)
-    expect(site_page_set).to receive(:visit_pages).and_yield("http://www.awesome.com/", "test")
+    expect(site_page_set).to receive(:visit_pages).and_yield("http://www.awesome.com/", "test", Time.now)
     expect(driver).to receive(:close)
   end
 
