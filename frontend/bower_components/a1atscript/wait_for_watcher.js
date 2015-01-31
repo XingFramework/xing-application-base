@@ -22,5 +22,3 @@ setTimeout(function() {
     }
   });
 }, START_DELAY);
-
-
