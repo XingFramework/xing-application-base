@@ -1,6 +1,3 @@
-require 'child-manager'
-require 'tmux-manager'
-
 DEFAULT_RELOAD_PORT = 35729
 DEFAULT_RAILS_PORT  = 3000
 DEFAULT_STATIC_PORT  = 9292
@@ -31,6 +28,8 @@ namespace :develop do
   def manager
     @manager ||=
       begin
+        require 'child-manager'
+        require 'tmux-manager'
         if TmuxManager.available?
           TmuxPaneManager.new
         else
