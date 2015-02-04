@@ -1,3 +1,6 @@
+0.0.4 / 2015-02-03
+=================
+
   * Change to the rakelibs to only require files as tasks need them - was breaking Capistrano deploys
   * Updated A1AtScript and refactored several directives to use the A1AtScript's new DirectiveObject annotation pattern. Note: the old Directive annotation is still present so this is not a breaking change
 
