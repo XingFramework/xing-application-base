@@ -1,8 +1,7 @@
-$topbar-link-padding: 10px
 
 @mixin hamburger($width, $left, $top, $thickness, $gap, $color, $hover-color, $offcanvas)
   position: relative
-  padding-right: $width + $topbar-link-padding*2
+  padding-right: $width + $navbar_link_h_padding*2
 
   &::after
     content: ""
@@ -27,7 +26,7 @@ $topbar-link-padding: 10px
     @else
       top: 50%
       margin-top: -($width/2)
-      right: $topbar-link-padding
+      right: $navbar_link_h_padding
 
     box-shadow: 0 0px 0 $thickness $color, 0 $gap + $thickness 0 $thickness $color, 0 (2 * $gap + 2*$thickness) 0 $thickness $color
     width: $width
@@ -141,3 +140,6 @@ lrd-responsive-menu
     li:hover ul
       left: auto
       background: white
+
+    li a
+      padding: $navbar_link_v_padding $navbar_link_h_padding
