@@ -114,7 +114,7 @@ module.exports =
 
   karmaconfig: {
     files: [
-      "<%= build_dirs.root %>/karma-unit.js", "karma/karma-unit.tpl.js"
+      "karma/karma-unit.tpl.js"
     ],
     tasks: [ 'copy:karmaUnit' ],
     options: {
