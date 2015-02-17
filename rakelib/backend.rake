@@ -4,22 +4,20 @@ namespace :backend do
     # on next deploy to capistrano to copy in a bundler config file so
     # it uses --deployment
     Bundler.with_clean_env do
-      Dir.chdir("backend"){ sh *%w{bundle install} }
+      Dir.chdir("backend"){
+        sh(*%w{bundle check}) do |ok, res|
+          if !ok
+            sh(*%w{bundle install})
+          end
+        end
+      }
     end
   end
 
-  task :require_tmux do
-    sh 'which tmux'
-  end
-
-  task :check_dependencies => %w{bundle_install require_tmux} do
+  task :check_dependencies => %w{bundle_install} do
     Bundler.with_clean_env do
       Dir.chdir("backend") do
-        if ENV['DEPENDENCIES_INCLUDE_TMUX']
-          sh "bundle exec rake dependencies:check:tmux"
-        else
-          sh "bundle exec rake dependencies:check"
-        end
+        sh "bundle exec rake dependencies:check"
       end
     end
   end

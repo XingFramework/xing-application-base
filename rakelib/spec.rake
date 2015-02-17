@@ -1,6 +1,6 @@
 namespace :spec do
 
-  task :grunt_ci_test => 'frontend:setup' do
+  task :grunt_ci_test => 'build:frontend:all' do
     Bundler.with_clean_env do
       Dir.chdir("frontend"){
         sh *%w{bundle exec node_modules/.bin/grunt ci-test}
@@ -8,13 +8,7 @@ namespace :spec do
     end
   end
 
-  task :links do
-    %w{index.html assets fonts}.each do |thing|
-      sh "ln", "-sfn", "../../frontend/bin/#{thing}", "backend/public/#{thing}"
-    end
-  end
-
-  task :full, [:spec_files] => [:check_dependencies, :grunt_ci_test, :links, 'backend:setup'] do |t, args|
+  task :full, [:spec_files] => [:check_dependencies, :grunt_ci_test, 'backend:setup'] do |t, args|
     Bundler.with_clean_env do
       Dir.chdir("backend"){
         commands = %w{bundle exec rspec}
@@ -27,7 +21,7 @@ namespace :spec do
   end
 
   desc "Run all feature specs, repeating with each browser width as default"
-  task :responsivity, [:spec_files] => [:links, 'backend:setup'] do |t, args|
+  task :responsivity, [:spec_files] => ['backend:setup'] do |t, args|
     Bundler.with_clean_env do
       %w{mobile small medium desktop}.each do |size|
         Dir.chdir("backend"){
@@ -44,7 +38,7 @@ namespace :spec do
     end
   end
 
-  task :fast, [:spec_files] => [:links, 'backend:setup'] do |t, args|
+  task :fast, [:spec_files] => ['backend:setup'] do |t, args|
     Bundler.with_clean_env do
       Dir.chdir("backend"){
         commands = %w{bundle exec rspec}

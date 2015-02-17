@@ -1,4 +1,4 @@
 export var environment = {
-  backendUrl: `http://api.127.0.0.1.xip.io:${window.location.port}/`,
+  backendUrl: `http://localhost:3000/`,
   name: "test",
 };

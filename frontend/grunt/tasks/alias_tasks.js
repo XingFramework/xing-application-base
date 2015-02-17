@@ -29,7 +29,14 @@ module.exports = function(grunt) {
 
   grunt.registerTask( 'qa', "Check source code before deploy", [ 'jshint:src', 'jsonlint']);
 
-  grunt.registerTask( 'develop-build', "Compile the app under development", [ 'build', 'traceur:build', 'copy:traceur_runtime', 'index:build', 'ngAnnotate:build', 'ngAnnotate:build_vendor']);
+  grunt.registerTask( 'develop-build', "Compile the app under development", [
+    'build',
+    'traceur:build',
+    'copy:traceur_runtime',
+    'index:build',
+    'ngAnnotate:build',
+    'ngAnnotate:build_vendor'
+  ]);
   grunt.registerTask( 'develop', "Compile the app under development", [ 'copy:development-env', 'develop-build']);
   grunt.registerTask( 'integrate', "Compile the app under development", [ 'copy:integration-env', 'develop-build']);
   grunt.registerTask( 'ci-test', "First pass at a build-and-test run", [
