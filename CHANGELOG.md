@@ -1,11 +1,15 @@
+0.0.5 / 2015-02-17
+==================
+  * Move compass:watch function out of grunt and into rake develop.
+
 0.0.4 / 2015-02-03
-=================
+==================
 
   * Change to the rakelibs to only require files as tasks need them - was breaking Capistrano deploys
   * Updated A1AtScript and refactored several directives to use the A1AtScript's new DirectiveObject annotation pattern. Note: the old Directive annotation is still present so this is not a breaking change
 
 0.0.3 / 2015-01-29
-=================
+==================
 
   * BREAKING: AtScript Refactor -- while this should generally not affect existing code, merges to app.js may have conflicts that need resolution. All regular angular modules of projects should be added as dependencies of the main module in app.js as strings. Also, it may be important to check appConfig.js and rootController.js to make sure all changes are moved over.
   * Compass watch moved to top level, out of frontend
