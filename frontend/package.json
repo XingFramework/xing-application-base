@@ -48,9 +48,5 @@
     "glob": "4.3",
     "chalk": ">=0.5.1",
     "es6-promise": "^1.0.0"
-  },
-  "dependencies": {
-    "grunt-bushcaster": "0.0.7",
-    "grunt-string-replace": "^1.0.0"
   }
 }
