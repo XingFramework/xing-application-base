@@ -52,7 +52,7 @@ module.exports = {
     ctpl: [ 'src/common/**/*.tpl.html' ],
     ttpl: [ 'test/**/*.json', 'test/**/*.tpl.html' ],
     html: [ 'src/index.html' ],
-    sass: 'src/sass'
+    sass: 'src/styles'
   },
 
 
