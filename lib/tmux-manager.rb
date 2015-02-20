@@ -77,14 +77,10 @@ class TmuxPaneManager < TmuxManager
     else
       tmux session_env_string
       tmux "new-window -d -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
-      tmux "join-pane -s 0:#{name}"
+      tmux "join-pane -s '#{name}.0' -t '#{@window_name}.bottom'"
+      tmux "select-layout -t '#@window_name' even-vertical"
     end
     @first_child = false
-  end
-
-  def wait_all
-    tmux "select-layout -t '#@window_name' tiled"
-    super
   end
 end
 
