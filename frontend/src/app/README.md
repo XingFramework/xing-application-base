@@ -5,14 +5,16 @@
 ```
 src/
   |- app/
-  |  |- home/
-  |  |- about/
+  |  |- auth/
+  |  |- pages/
+  |  |- homepage/
   |  |- app.js
-  |  |- app.spec.js
+  |  |- appConfig.js
+  |  |- rootController.js
 ```
 
 The `src/app` directory contains all code specific to this application. Apart
-from `app.js` and its accompanying tests (discussed below), this directory is
+from `app.js` , this directory is
 filled with subdirectories corresponding to high-level sections of the
 application, often corresponding to top-level routes. Each directory can have as
 many subdirectories as it needs, and the build system will understand what to
@@ -21,10 +23,6 @@ within the `src/app` directory that conceptually corresponds to the top-level
 route `/products`, though this is in no way enforced. Products may then have
 subdirectories for "create", "view", "search", etc. The "view" submodule may
 then define a route of `/products/:id`, ad infinitum.
-
-As `Reasoning` is quite minimal, take a look at the two provided submodules
-to gain a better understanding of how these are used as well as to get a
-glimpse of how powerful this simple construct can be.
 
 ## `app.js`
 
@@ -42,46 +40,29 @@ submodules that need them to ensure proper dependency handling. These are
 app-wide dependencies that are required to assemble your app.
 
 ```js
-angular.module( 'Reasoning', [
-  'templates-app',
-  'templates-common',
-  'Reasoning.home',
-  'Reasoning.about'
-  'ui.state',
-  'ui.route'
-])
+var app = new Module(appName, [
+  'templates-app', 'templates-common', 'ui.router',
+  'picardy.fontawesome',
+  StateAttrs,
+  UIRouteLogger,
+  Menus,
+  Homepage,
+  Auth,
+  Admin,
+  ResponsiveMenu,
+  Metadata,
+  ExampleForm,
+  SessionLinks,
+  Toast,
+  Pages,
+  Backend,
+  NavigationBar,
+  appConfig,
+  RootCtrl
+]);
 ```
 
 With app modules broken down in this way, all routing is performed by the
 submodules we include, as that is where our app's functionality is really
 defined.  So all we need to do in `app.js` is specify a default route to follow,
-which route of course is defined in a submodule. In this case, our `home` module
-is where we want to start, which has a defined route for `/home` in
-`src/app/home/home.js`.
-
-```js
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
-})
-```
-
-Use the main applications run method to execute any code after services
-have been instantiated.
-
-```js
-.run( function run () {
-})
-```
-
-And then we define our main application controller. This is a good place for logic
-not specific to the template or route, such as menu logic or page title wiring.
-
-```js
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-  $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    if ( angular.isDefined( toState.data.pageTitle ) ) {
-      $scope.pageTitle = toState.data.pageTitle + ' | Reasoning' ;
-    }
-  });
-})
-```
+which route of course is defined in a submodule.

@@ -1,7 +1,7 @@
-import {backendUrl} from '../config';
+import {backendUrl} from 'config';
 import Serializer from '../serializer';
 import {Config, Run, Module} from 'a1atscript';
-import Backend from '../resources/AppBackend';
+import Backend from 'AppBackend';
 
 @Config('RestangularProvider')
 function myAppConfig (RestangularProvider) {

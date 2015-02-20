@@ -1,6 +1,6 @@
 import SignOut from '../signOut/signOut';
 import {Module, DirectiveObject} from 'a1atscript';
-import OnLoginDirective from '../../common/OnLoginDirective';
+import OnLoginDirective from 'components/OnLoginDirective';
 
 @Module( 'sessionLinks', [
   'ng-token-auth',

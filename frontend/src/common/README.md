@@ -5,10 +5,15 @@ The `src/common/` directory is reusable components that serve as the business lo
 ```
 src/
   |- common/
-  |  |- backend/
   |  |- resources
+  |  |- components
+  |  |- config.js
+  |  |- environment.js
+  |  |- AppBackend.js
 ```
 
-- `backend` - this houses the general module which handles communication with the backend server
-- `resources` - this houses sub-classes of BackendResource which provide an object oriented interface to backend data, and AppBackend, which provides app specific endpoints to the backend
-
+- `resources` - this houses sub-classes of BackendResource which provide an object oriented interface to backend data
+- `components` - reusuable UI components, usually directives, that do not make up an entire new view on the page that would change the URL
+- config.js - contains important configuration variables used throughout the app
+- environment.js - DON'T EDIT THIS FILE. it gets regenerated. instead, edit the individual environment files in frontend/config
+- AppBackend.js provides app specific endpoints to the backend

@@ -1,4 +1,4 @@
-import {BackendResource} from "../../src/common/backend/BackendResource";
+import BackendResource from "BackendResource";
 import mockResourceTemplates from "../support/mockResourceTemplates";
 
 class TestResource extends BackendResource {

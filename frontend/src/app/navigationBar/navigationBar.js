@@ -1,4 +1,4 @@
-import {} from "../../../build/templates-app";
+import {} from "templates-app";
 import Pages from '../pages/pages';
 import { Module, DirectiveObject } from 'a1atscript';
 

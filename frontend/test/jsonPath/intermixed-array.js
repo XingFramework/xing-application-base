@@ -1,4 +1,4 @@
-import jsonpath from '../../src/common/jsonpath';
+import jsonpath from 'jsonpath';
 
 describe('JsonPath', function() {
   describe('with intermixed arrays', function() {

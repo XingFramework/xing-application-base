@@ -1,4 +1,4 @@
-import Backend from '../../common/backend/backend';
+import Backend from 'backend';
 import adminEdit from '../adminEdit/adminEdit';
 import * as PagesStates from './pagesStates';
 import * as PagesControllers from './pagesControllers';

@@ -1,6 +1,6 @@
 import {} from '../../src/app/admin/adminStates';
-import setupLogging from "../../src/common/ui-route-logger";
-import {appName} from '../../src/common/config';
+import setupLogging from "ui-route-logger";
+import {appName} from 'config';
 
 xdescribe('adminStates', function() {
   describe('root.admin.menus', function() {

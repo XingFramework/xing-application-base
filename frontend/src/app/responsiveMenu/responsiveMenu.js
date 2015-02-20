@@ -1,5 +1,5 @@
 import { Module, DirectiveObject } from 'a1atscript';
-import {} from "../../../build/templates-app";
+import {} from "templates-app";
 
 @Module('responsiveMenu', ['templates-app'])
 @DirectiveObject('lrdResponsiveMenu')
