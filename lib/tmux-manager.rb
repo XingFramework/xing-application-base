@@ -68,13 +68,8 @@ class TmuxPaneManager < TmuxManager
     min_cols = (ENV["XING_TMUX_MIN_COLS"] || MINIMUM_WINDOW_COLUMNS).to_i
     lines = %x{tput lines}.to_i
     cols = %x{tput cols}.to_i
-    if lines > min_lines * 3
-      @new_window_after = 3
-    elsif lines > min_lines * 2
-      @new_window_after = 2
-    else
-      @new_window_after = 1
-    end
+    @new_window_after = lines / min_lines
+    @new_window_after = 1 if @new_window_after == 0
     if cols > min_cols * 2
       @layout = "tiled"
       @new_window_after = @new_window_after * 2
