@@ -4,12 +4,13 @@ require 'compass/import-once/activate'
 # Set this to the root of your project when deployed:
 http_path = "/"
 css_dir = "build/stylesheets"
-sass_dir = "src/sass/"
+sass_dir = "src/styles/"
 images_dir = "images"
 javascripts_dir = "javascripts"
+sourcemap = true
 
 add_import_path "vendor"
-add_import_path "src/sass/"
+add_import_path "src/styles/"
 
 # You can select your preferred output style here (can be overridden via the
 # command line):

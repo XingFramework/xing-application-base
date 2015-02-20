@@ -1,4 +1,4 @@
-import {State, Resolve} from "../src/common/stateInjector";
+import {State, Resolve} from "stateInjector";
 import {Module, Injector} from "a1atscript";
 import {} from './support/testStates';
 import {appName} from 'config';

@@ -10,10 +10,21 @@ module.exports =
     moduleMaps: {
       "a1atscript": "../../vendor/a1atscript/a1atscript",
       "config": "../../src/common/config",
-      "backend": "../../src/common/backend/backend",
-      "stateInjector": "../../src/common/stateInjector"
-    }
-  },
+      "templates-app": "../../build/templates-app",
+      "templates-common": "../../build/templates-common",
+      "AppBackend": "../../src/common/AppBackend",
+     },
+    moduleMapDirs: [
+      {
+        pattern: '<%= app_files.js_dir %>/framework/**/*.js'
+      },
+      {
+        pattern: '<%= app_files.js_dir %>/common/components/**/*.js',
+        prefix: 'components'
+      }
+    ]
+
+    },
   build: {
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
   },

@@ -1,7 +1,7 @@
 import BackendResponse from './BackendResponse';
 import ResourceTemplates from './ResourceTemplates';
 
-export class BackendResource extends BackendResponse {
+export default class BackendResource extends BackendResponse {
   constructor(backend, responsePromise) {
     super(backend, responsePromise);
     this._uriTemplates = null;
