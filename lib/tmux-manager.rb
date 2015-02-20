@@ -75,7 +75,9 @@ class TmuxPaneManager < TmuxManager
         tmux "new-session -d -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
       end
     else
-      tmux "split-window 'bundle exec rake #{task}'"
+      tmux session_env_string
+      tmux "new-window -d -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+      tmux "join-pane -s 0:#{name}"
     end
     @first_child = false
   end
