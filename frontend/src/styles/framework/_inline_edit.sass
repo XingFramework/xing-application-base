@@ -1,0 +1,15 @@
+@mixin lrd-inline-edit-defaults 
+  .froala-box
+    border: 1px solid #ccc
+    background: rgba(#eee, 0.3)
+
+    &:before
+      @include background(linear-gradient(white, #cccccc, #aaaaaa))
+      content: "Click to edit"
+      font-size: 10px
+      color: black
+      line-height: 1
+      text-align: left
+      padding: 2px
+      display: block
+      font-weight: normal

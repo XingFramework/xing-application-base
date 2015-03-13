@@ -20,7 +20,7 @@ steps "User Sends Reset Password", :js => true, :vcr => {} do
   end
 
   it "should have the confirmation" do
-    page.should have_content("You will receive an email with instructions on how to reset your password in a few minutes.")
+    page.should have_content("Password reset email sent!")
   end
 
   it "should send the email" do

@@ -1,3 +1,7 @@
+0.0.6 / 2015-02-20
+==================
+  * BREAKING: Reorganization of stylesheets directory. Default styles provided by framework are now located in the styles/framework, with app-specific overrides in styles/partials or styles/states.
+
 0.0.5 / 2015-02-17
 ==================
   * Move compass:watch function out of grunt and into rake develop.

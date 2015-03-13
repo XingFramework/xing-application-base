@@ -1,0 +1,15 @@
+// Base rules - i.e. overrides for individual element types and similar that 
+// should apply app-wide.  
+//
+// These are framework defaults, and should not be edited for each project. 
+
+@include sgs-change('include clearfix', true)
+
+*
+  @include box-sizing('border-box')
+
+ui-view
+  display: block
+
+a, a:link, a:visited
+  color: $link_color
