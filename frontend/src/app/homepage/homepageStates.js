@@ -12,27 +12,20 @@ angular.module(`${appName}.homepage`)
       url: 'home',
       resolve: {
         isAdmin($auth){
-          console.log('home A - isAdmin');
           return $auth.validateUser().then(
             (success) => {
-            console.log('Found Admin');
             return true;
           },
             (failure) => {
-            console.log('Found No Admin');
               return false;
           }
           ).then((bool) => {
-            console.log('Admin state : bool');
             return bool;
           });
         },
         page(isAdmin, backend) {
-          console.log('home B - page');
-          console.log('backend: ' + backend);
           var role = "guest";
           if(isAdmin){ role = "admin"; }
-          console.log('home c - page');
           return backend.page("/homepage", role).complete.then(
             (page) => page,
             (nothing) => nothing

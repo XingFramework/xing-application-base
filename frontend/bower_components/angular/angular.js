@@ -9593,7 +9593,6 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
     } else {
 
       var xhr = createXhr();
-      console.log("XHR request,  method: " + method + " url " + url);
 
       xhr.open(method, url, true);
       forEach(headers, function(value, key) {
@@ -9603,13 +9602,12 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
       });
 
       xhr.onload = function requestLoaded() {
-        console.log("XHR response,  method: " + method + " url " + url);
         var statusText = xhr.statusText || '';
 
         // responseText is the old-school way of retrieving response (supported by IE8 & 9)
         // response/responseType properties were introduced in XHR Level2 spec (supported by IE10)
         var response = ('response' in xhr) ? xhr.response : xhr.responseText;
-        console.log("XHR Response data: " + JSON.stringify(response));
+
         // normalize IE9 bug (http://bugs.jquery.com/ticket/1450)
         var status = xhr.status === 1223 ? 204 : xhr.status;
 

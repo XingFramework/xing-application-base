@@ -38,7 +38,6 @@ angular.module(`${appName}.menus`)
           }
           menu.loadFrom($stateParams.menuUrl);
           return menu.complete.catch((error) => {
-            console.log("menus/menusStates.js:40", "error", error);
             throw error;
           });
         }

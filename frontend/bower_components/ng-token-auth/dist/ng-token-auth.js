@@ -359,15 +359,12 @@ angular.module('ng-token-auth', ['ngCookies']).provider('$auth', function() {
               return this.dfd.promise;
             },
             validateToken: function(opts) {
-              console.log("validateToken running with " + JSON.stringify(opts));
               if (opts == null) {
                 opts = {};
               }
               if (!this.tokenHasExpired()) {
-                console.log("Token not expired");
                 return $http.get(this.apiUrl(opts.config) + this.getConfig(opts.config).tokenValidationPath).success((function(_this) {
                   return function(resp) {
-                    console.log("Auth successful");
                     var authData;
                     authData = _this.getConfig(opts.config).handleTokenValidationResponse(resp);
                     _this.handleValidAuth(authData);
@@ -381,7 +378,6 @@ angular.module('ng-token-auth', ['ngCookies']).provider('$auth', function() {
                   };
                 })(this)).error((function(_this) {
                   return function(data) {
-                    console.log("Auth failed");
                     if (_this.firstTimeLogin) {
                       $rootScope.$broadcast('auth:email-confirmation-error', data);
                     }
@@ -396,7 +392,6 @@ angular.module('ng-token-auth', ['ngCookies']).provider('$auth', function() {
                   };
                 })(this));
               } else {
-                console.log("Token expired");
                 return this.rejectDfd({
                   reason: 'unauthorized',
                   errors: ['Expired credentials']
@@ -560,7 +555,6 @@ angular.module('ng-token-auth', ['ngCookies']).provider('$auth', function() {
       '$injector', function($injector) {
         return {
           request: function(req) {
-            console.log("HTTP Request Started "+ JSON.stringify(req));
             $injector.invoke([
               '$http', '$auth', function($http, $auth) {
                 var key, val, _ref, _results;
@@ -575,11 +569,9 @@ angular.module('ng-token-auth', ['ngCookies']).provider('$auth', function() {
                 }
               }
             ]);
-            console.log("HTTP Request Done");
             return req;
           },
           response: function(resp) {
-            console.log("HTTP Response Received "+ JSON.stringify(resp));
             $injector.invoke([
               '$http', '$auth', function($http, $auth) {
                 var key, newHeaders, val, _ref;
@@ -596,7 +588,6 @@ angular.module('ng-token-auth', ['ngCookies']).provider('$auth', function() {
                 }
               }
             ]);
-            console.log("HTTP Response Done");
             return resp;
           }
         };
