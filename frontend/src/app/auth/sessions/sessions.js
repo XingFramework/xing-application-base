@@ -1,7 +1,7 @@
 import {Module} from 'a1atscript';
-import Toast from '../../../common/toast/toast';
-import Inflector from '../../../common/inflector';
-import Serializer from '../../../common/serializer';
+import Toast from 'components/toast';
+import Inflector from 'inflector';
+import Serializer from 'serializer';
 import Config from '../config/config';
 import * as SessionsStates from './sessionsStates';
 import SessionsController from './sessionsControllers';

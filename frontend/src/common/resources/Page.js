@@ -1,4 +1,4 @@
-import {BackendResource} from '../backend/BackendResource';
+import BackendResource from 'BackendResource';
 
 var layouts = {
   "one_column": {

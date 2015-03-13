@@ -1,4 +1,4 @@
-import {} from "../../../build/templates-app";
+import {} from "templates-app";
 import {Module, DirectiveObject} from 'a1atscript';
 
 @Module( 'stateAttrs', [ 'templates-app', 'ui.router.state'])

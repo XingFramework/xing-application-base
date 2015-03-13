@@ -1,4 +1,4 @@
-import {appName} from '../../src/common/config';
+import {appName} from 'config';
 
 angular.module(`${appName}.testStates`, ['ui.router']).config([
     '$stateProvider',

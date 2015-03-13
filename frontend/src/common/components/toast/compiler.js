@@ -1,4 +1,4 @@
-import {appName} from "../config";
+import {appName} from "config";
 
 
 function lrdCompilerService($q, $http, $injector, $compile, $controller, $templateCache) {

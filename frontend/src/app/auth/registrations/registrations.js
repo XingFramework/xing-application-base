@@ -1,6 +1,6 @@
 import {Module} from 'a1atscript';
-import Toast from '../../../common/toast/toast';
-import Serializer from '../../../common/serializer';
+import Toast from 'components/toast';
+import Serializer from 'serializer';
 import * as RegistrationsStates from './registrationsStates';
 import RegistrationsController from './registrationsControllers';
 

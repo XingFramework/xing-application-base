@@ -1,4 +1,4 @@
-import {appName} from '../../../src/common/config';
+import {appName} from 'config';
 import {} from '../../../src/app/auth/passwords/passwords';
 import {} from '../../support/testStates';
 

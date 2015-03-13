@@ -6,19 +6,15 @@ var Promise = require("es6-promise").Promise;
 
 var options = {}
 
-function globSources(sourcesToGlob, cb) {
+function globAbstractSources(sourcesToGlob, attr, build, cb) {
   var processedCount = 0;
   var globbedSources = [];
   sourcesToGlob.forEach(function(item) {
-    glob(item.name, {}, function(err, matches) {
+    glob(attr(item), {}, function(err, matches) {
       if (err)
-        throw new Error('While scanning ' + item.name + ': ' + err);
+        throw new Error('While scanning ' + attr(item) + ': ' + err);
       for (var i = matches.length - 1; i >= 0; i--) {
-        var globbedSource = {
-          name: matches[i],
-          type: item.type,
-          format: item.format
-        };
+        var globbedSource = build(matches[i], item);
         globbedSources.push(globbedSource);
       }
       processedCount++;
@@ -27,6 +23,18 @@ function globSources(sourcesToGlob, cb) {
       }
     });
   });
+}
+
+function globSources(sourcesToGlob, cb) {
+  var attr = function(item) { return item.name; };
+  var build = function(match, item) {
+    return {
+            name: matche,
+            type: item.type,
+            format: item.format
+          };
+  };
+  globAbstractSources(sourcesToGlob, attr, build, cb);
 }
 
 function recursiveCompile(out, rootSources) {
@@ -82,6 +90,15 @@ function compileAllJsFilesInDir(inputDir, outputDir) {
   );
 }
 
+function globMaps(globStrings, cb) {
+  var attr = function(item) { return item.pattern };
+  var build = function(match, item) {
+   return {
+    name: match,
+    prefix: item.prefix}; };
+  globAbstractSources(globStrings, attr, build, cb)
+}
+
 function setOptions(traceurOptions) {
   options = new traceur.util.CommandOptions();
   options.setFromObject(traceurOptions);
@@ -93,5 +110,6 @@ module.exports = {
   recursiveCompile: recursiveCompile,
   compileAllJsFilesInDir: compileAllJsFilesInDir,
   setOptions: setOptions,
+  globMaps: globMaps,
   RUNTIME_PATH: traceur.RUNTIME_PATH
 }

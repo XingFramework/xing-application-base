@@ -1,4 +1,4 @@
-import Inflector from '../src/common/inflector';
+import Inflector from 'inflector';
 
 describe('Inflector class', function() {
   var camelCase, underscore, dasherized, humanized, plural_humanized, inflector;
