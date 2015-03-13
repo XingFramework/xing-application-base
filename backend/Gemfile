@@ -27,7 +27,7 @@ group :development, :test do
   gem "rspec-rails"
   gem 'rspec-activemodel-mocks'
   gem 'rspec-steps'
-  gem 'waterpig', :path => '../../../gems/waterpig'
+  gem 'waterpig', :git => 'https://github.com/LRDesign/waterpig', :branch => 'browser-console-logger'
   gem "factory_girl_rails"
   gem 'annotate'
   gem 'simplecov'

@@ -37,7 +37,17 @@ angular.module(`${appName}.homepage`)
     .state( 'root.homepage.show', {
       url: '',
       controller: 'HomepageShowCtrl',
-      templateUrl: 'homepage/homepage-show.tpl.html'
+      templateUrl: 'homepage/homepage-show.tpl.html',
+      onEnter: function() {
+          console.log("Test simple log line");
+          console.table(["Array", "with", 4, "elements"]);
+          console.table({ attr_1: 'JS object', attr_2: 'with', attr_3: 4, attr_4: "properties"});
+          console.table([[ 2, 'dimensional', 'Array'],[ 'has', 2, 'rows', 'of', 'content']]);
+          console.table({
+            first:  { an:   'inner',  with: 'objects'},
+            second: { also: 'object', with: 'more objects'},
+          });
+      }
     })
 
     .state( 'root.homepage.edit', {
