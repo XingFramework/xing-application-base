@@ -6,6 +6,7 @@ module.exports =
       arrayComprehension: true,
       sourceMaps: true,
       annotations: true,
+      types: true
     },
     moduleMaps: {
       "a1atscript": "../../vendor/a1atscript/dist/a1atscript.js",
@@ -23,7 +24,8 @@ module.exports =
       traceurOptions: {
         arrayComprehension: true,
         sourceMaps: true,
-        annotations: true
+        annotations: true,
+        types: true
       }
     },
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
@@ -34,7 +36,8 @@ module.exports =
       traceurOptions: {
         arrayComprehension: true,
         sourceMaps: true,
-        annotations: true
+        annotations: true,
+        types: true
       }
     },
     files: { '<%= build_dirs.test%>/test-main.js': '<%= app_files.jsunit %>' }
@@ -47,6 +50,7 @@ module.exports =
         arrayComprehension: true,
         sourceMaps: false,
         annotations: true,
+        types: true,
         outputLanguage: 'es6'
       }
     }
@@ -59,6 +63,7 @@ module.exports =
         arrayComprehension: true,
         sourceMaps: false,
         annotations: true,
+        types: true,
         outputLanguage: 'es6'
       }
     }
@@ -71,6 +76,7 @@ module.exports =
         arrayComprehension: true,
         sourceMaps: false,
         annotations: true,
+        types: true,
         outputLanguage: 'es6'
       }
     }

@@ -1,11 +1,14 @@
-import {Module, DirectiveObject} from 'a1atscript';
+import {Module, Component, Template} from 'a1atscript';
 import SignOutDirective from '../signOut/signOut';
 
 @Module('adminNav', ['ng-token-auth', SignOutDirective])
-@DirectiveObject('adminNav')
+@Component({
+  selector: 'adminNav'
+})
+@Template({
+  url: "adminNav/admin-nav.tpl.html"
+})
 export default class AdminNav {
   constructor() {
-    this.restrict = 'E';
-    this.templateUrl = 'adminNav/admin-nav.tpl.html';
   }
 }
