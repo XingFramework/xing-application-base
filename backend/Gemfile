@@ -27,8 +27,7 @@ group :development, :test do
   gem "rspec-rails"
   gem 'rspec-activemodel-mocks'
   gem 'rspec-steps'
-  # TODO: Change this after waterpig is approved and I can do a release
-  gem 'waterpig', :git => 'https://github.com/LRDesign/waterpig', :branch => 'browser-console-logger'
+  gem 'waterpig', "~> 0.6.0"
   gem "factory_girl_rails"
   gem 'annotate'
   gem 'simplecov'
