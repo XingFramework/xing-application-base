@@ -54,7 +54,6 @@ export default class BackendResponse {
         return this;
       },
       (reason) => {
-        console.log("Backend error:", this, reason);
         this.errorReason = reason;
         throw this;
       }

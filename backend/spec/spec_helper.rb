@@ -17,6 +17,7 @@ ActiveSupport::Deprecation.debug = true
 TEST_PASSWORD = 'password'
 TEST_IMAGE = File.join(Rails.root, '/spec/fixtures/test_image.png')
 
+
 RSpec.configure do |config|
   config.mock_with :rspec
 
@@ -24,14 +25,10 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
+  config.waterpig_log_browser_console = true
 
   DatabaseCleaner.strategy = :transaction
 
-  config.before :suite do
-    File::open("log/test.log", "w") do |log|
-      log.write ""
-    end
-  end
 
   config.before :all, :type => [ :view ] do
     pending "Pending removal.  Back-end does not use views."
