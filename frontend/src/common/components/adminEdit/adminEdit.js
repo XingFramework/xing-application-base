@@ -32,7 +32,7 @@ function lrdAdminEditable($sce, $compile, $http, $templateCache) {
         if(scope.editable.content.length === 0){
           scope.froalaConfig.placeholder = `Add content for ${contentName} here`;
         }
-        $http.get('adminEdit/admin-edit.tpl.html', {cache: $templateCache}).then( (template) => {
+        $http.get('components/adminEdit/admin-edit.tpl.html', {cache: $templateCache}).then( (template) => {
           $elem.html(template.data);
           $compile($elem.contents())(scope);
         });

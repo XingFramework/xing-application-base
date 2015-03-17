@@ -10,7 +10,7 @@ export default class AdminOnly extends OnLoginDirective {
     this.restrict = 'E';
     this.scope = true;
     this.transclude = true;
-    this.templateUrl = 'adminOnly/admin-only.tpl.html';
+    this.templateUrl = 'components/adminOnly/admin-only.tpl.html';
   }
 
   onLogout(scope) {

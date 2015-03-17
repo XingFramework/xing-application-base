@@ -1,5 +1,5 @@
 import Backend from 'backend';
-import adminEdit from '../adminEdit/adminEdit';
+import adminEdit from 'components/adminEdit';
 import * as PagesStates from './pagesStates';
 import * as PagesControllers from './pagesControllers';
 import { Module } from 'a1atscript';

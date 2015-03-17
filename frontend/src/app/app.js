@@ -4,19 +4,21 @@ import {} from 'templates-common';
 import StateAttrs from 'stateAttrs';
 import Backend from 'backend';
 import UIRouteLogger from "ui-route-logger";
-import NavigationBar from './navigationBar/navigationBar';
-import Toast from 'components/toast';
 import { Module, Injector } from "a1atscript";
+
+import NavigationBar from 'components/navigationBar';
+import Toast from 'components/toast';
+import ResponsiveMenu from 'components/responsiveMenu';
+import SessionLinks from 'components/sessionLinks';
+import Metadata from 'components/metadata';
 
 import Admin from './admin/admin';
 import Auth from './auth/auth';
 import Pages from './pages/pages';
 import Menus from './menus/menus';
 import Homepage from './homepage/homepage';
-import Metadata from './metadata/metadata';
 import ExampleForm from './exampleForm/exampleForm';
-import ResponsiveMenu from './responsiveMenu/responsiveMenu';
-import SessionLinks from './sessionLinks/sessionLinks';
+
 import * as appConfig from './appConfig';
 import RootCtrl from './rootController.js';
 

@@ -1,6 +1,6 @@
 import {Module} from 'a1atscript';
 import Backend from 'backend';
-import AdminEdit from '../adminEdit/adminEdit';
+import AdminEdit from 'components/adminEdit';
 import * as HomepageControllers from './homepageControllers';
 import * as HomepageStates from './homepageStates';
 
