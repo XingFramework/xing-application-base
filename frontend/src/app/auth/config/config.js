@@ -1,7 +1,8 @@
-import {appName} from '../../../common/config';
+import {Provider, Module} from 'a1atscript';
 
-angular.module(`${appName}.auth.config`, [])
-.provider('authConfig', function() {
+@Module('auth.config')
+@Provider('authConfig')
+export default function authConfig() {
   var config = {
     authKey: "email",
     recoverable: false
@@ -18,4 +19,4 @@ angular.module(`${appName}.auth.config`, [])
   this.$get = [function authKey() {
     return config;
   }];
-});
+}

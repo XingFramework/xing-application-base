@@ -37,10 +37,14 @@ module.exports = {
    */
   app_files: {
     js_roots: [ 'src/app/app.js' ],
+    js_dir: 'src',
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
+    js_es6: [ 'build/src-es6/**/*.js', '!build/src-es6/**/*.spec.js', '!build/src-es6/assets/**/*.js' ],
     jsunit: [ 'test/**/*.js' ],
     jstest: [ 'test/**/*.js', 'test-help/**/*.js' ],
-
+    jstest_es6: [ 'build/test-es6/**/*.js', 'build/test-help-es6/**/*.js' ],
+    test_dir: 'test',
+    test_help_dir: 'test-help',
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'test/**/*.coffee' ],
 
@@ -48,7 +52,7 @@ module.exports = {
     ctpl: [ 'src/common/**/*.tpl.html' ],
     ttpl: [ 'test/**/*.json', 'test/**/*.tpl.html' ],
     html: [ 'src/index.html' ],
-    sass: 'src/sass'
+    stylesheets: 'src/styles'
   },
 
 

@@ -1,7 +1,7 @@
 module.exports =
 {
   server: {
-    tasks: ['compass:server', 'delta'],
+    tasks: ['delta'],
     options: {
       logConcurrentOutput: true
     }

@@ -1,4 +1,4 @@
-import ResourceTemplates from '../../src/common/backend/ResourceTemplates';
+import ResourceTemplates from '../../src/framework/backend/ResourceTemplates';
 
 export default function mockResourceTemplates(uriTemplates = {}) {
   spyOn(ResourceTemplates, 'get').and.returnValue(

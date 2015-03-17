@@ -1,26 +1,24 @@
-import { appName } from '../../common/config';
+import { DirectiveObject, Module } from 'a1atscript';
+import OnLoginDirective from 'components/OnLoginDirective';
 
-angular.module( `${appName}.adminOnly`, [`${appName}.config`, 'ng-token-auth'])
-.directive('adminOnly',
-  ['$rootScope', '$auth', function ($rootScope, $auth) {
+@Module('adminOnly', ['ng-token-auth'])
+@DirectiveObject('adminOnly', ['$rootScope', '$auth'])
+export default class AdminOnly extends OnLoginDirective {
 
-    function link(scope, element, attrs) {
-      scope.showAdmin = false;
-      $auth.validateUser().then((user) => {
-        scope.showAdmin = true;
-      });
-      $rootScope.$on('auth:login-success', (ev, user) => {
-        scope.showAdmin = true;
-      });
-      $rootScope.$on('auth:logout-success', (ev, user) => {
-        scope.showAdmin = false;
-      });
-    }
-    return {
-      restrict: 'E',
-      scope: true,
-      link: link,
-      transclude: true,
-      templateUrl: 'adminOnly/admin-only.tpl.html'
-    };
-  }]);
+  constructor($rootScope, $auth) {
+    super($rootScope, $auth)
+    this.restrict = 'E';
+    this.scope = true;
+    this.transclude = true;
+    this.templateUrl = 'adminOnly/admin-only.tpl.html';
+  }
+
+  onLogout(scope) {
+    scope.showAdmin = false;
+  }
+
+  onLogin(scope, user) {
+    scope.showAdmin = true;
+  }
+
+}

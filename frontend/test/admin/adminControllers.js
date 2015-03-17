@@ -1,5 +1,5 @@
 import {} from '../../src/app/admin/adminControllers';
-import {appName} from '../../src/common/config';
+import {appName} from 'config';
 
 describe('Admin Controllers', function() {
   describe('AdminMenusCtrl', function() {

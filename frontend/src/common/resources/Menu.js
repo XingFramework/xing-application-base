@@ -1,4 +1,4 @@
-import {BackendResource} from '../backend/BackendResource';
+import BackendResource from 'BackendResource';
 import {Page} from "./Page";
 
 export class Menu extends BackendResource {

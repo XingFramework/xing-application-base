@@ -4,7 +4,13 @@ namespace :frontend do
   end
 
   task :bundle_install do
-    Dir.chdir("frontend"){ sh *%w{bundle install} }
+    Dir.chdir("frontend"){
+      sh(*%w{bundle check}) do |ok, res|
+        unless ok
+          sh *%w{bundle install}
+        end
+      end
+    }
   end
 
   task :check_dependencies => :npm_install

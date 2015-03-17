@@ -10,3 +10,4 @@ frontend/tmp/
 .vim-role
 tmp/
 .vim-role
+.sass-cache/

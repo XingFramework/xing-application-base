@@ -1,4 +1,4 @@
-import {appName} from '../../../src/common/config';
+import {appName} from 'config';
 import {} from '../../../src/app/auth/auth';
 import {} from '../../support/testStates';
 
@@ -64,7 +64,7 @@ describe('confirmations states', function() {
       });
 
       it("should resolve isAdmin", function() {
-        expect($injector.invoke($state.current.resolve.isAdmin).$$state.value).toBe('Awesome');
+        expect($injector.invoke($state.current.resolve.onlyAdmin).$$state.value).toBe('Awesome');
       });
     });
 

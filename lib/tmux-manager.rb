@@ -55,33 +55,72 @@ class TmuxManager
 end
 
 class TmuxPaneManager < TmuxManager
+
+  MINIMUM_WINDOW_COLUMNS = 75
+  MINIMUM_WINDOW_LINES = 18
+
   def initialize
     super
     @window_name = "Dev Servers"
+    @pane_count = 0
+    @window_count = 1
+    min_lines = (ENV["XING_TMUX_MIN_LINES"] || MINIMUM_WINDOW_LINES).to_i
+    min_cols = (ENV["XING_TMUX_MIN_COLS"] || MINIMUM_WINDOW_COLUMNS).to_i
+    lines = %x{tput lines}.to_i
+    cols = %x{tput cols}.to_i
+    @new_window_after = lines / min_lines
+    @new_window_after = 1 if @new_window_after == 0
+    if cols > min_cols * 2
+      @layout = "tiled"
+      @new_window_after = @new_window_after * 2
+    else
+      @layout = "even-vertical"
+    end
   end
   attr_accessor :window_name
 
+  def open_new_pane(name, task)
+    tmux session_env_string
+    tmux "new-window -d -n '#{name}' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+    tmux "join-pane -d -s '#{name}.0' -t '#{@window_name}.bottom'"
+  end
+
+  def open_first_window(name, task)
+    if tmux('list-windows -F \'#{window_name}\'') =~ /#{name}|#{@window_name}/
+      puts "It looks like there are already windows open for this tmux?"
+      exit 2
+    end
+
+    if existing?
+      tmux session_env_string
+      tmux "new-window -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+    else
+      tmux "new-session -d -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+    end
+  end
+
+  def open_additional_window(name, task)
+    tmux "select-layout -t '#@window_name' #{@layout}"
+    @window_count = @window_count + 1
+    @window_name = "Dev Servers #{@window_count}"
+    tmux "new-window -d -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
+    @pane_count = 0
+  end
+
   def start_child(name, task)
     if @first_child
-      if tmux('list-windows -F \'#{window_name}\'') =~ /#{name}|#{@window_name}/
-        puts "It looks like there are already windows open for this tmux?"
-        exit 2
-      end
-
-      if existing?
-        tmux session_env_string
-        tmux "new-window -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
-      else
-        tmux "new-session -d -n '#@window_name' 'bundle exec rake #{task}' \\; set-window-option remain-on-exit on"
-      end
+      open_first_window(name, task)
+    elsif @pane_count >= @new_window_after
+      open_additional_window(name, task)
     else
-      tmux "split-window 'bundle exec rake #{task}'"
+      open_new_pane(name, task)
     end
+    @pane_count = @pane_count + 1
     @first_child = false
   end
 
   def wait_all
-    tmux "select-layout -t '#@window_name' tiled"
+    tmux "select-layout -t '#@window_name' #{@layout}"
     super
   end
 end
