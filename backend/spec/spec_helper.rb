@@ -25,16 +25,10 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
+  config.waterpig_log_browser_console = true
 
   DatabaseCleaner.strategy = :transaction
 
-  config.before :suite do
-    config.waterpig_clearable_logs.each do |logfile|
-      File::open("log/#{logfile}.log", "w") do |log|
-        log.write ""
-      end
-    end
-  end
 
   config.before :all, :type => [ :view ] do
     pending "Pending removal.  Back-end does not use views."
