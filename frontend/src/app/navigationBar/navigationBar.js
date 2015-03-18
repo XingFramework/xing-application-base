@@ -1,5 +1,5 @@
-import {} from "templates-app";
-import Pages from '../pages/pages';
+import {} from "build/templates-app.js";
+import Pages from '../pages/pages.js';
 import { Module, DirectiveObject } from 'a1atscript';
 
 @Module('navigationBar', ['ui.router.state', 'templates-app', Pages])

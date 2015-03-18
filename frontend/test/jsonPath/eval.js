@@ -1,4 +1,4 @@
-import jsonpath from 'jsonpath';
+import jsonpath from 'framework/jsonpath.js';
 
 xdescribe('JsonPath', function() { //this feature needs careful review
   describe('evaluated JS', function() {

@@ -3,6 +3,7 @@ import {State, Resolve, AdminOnlyState} from 'stateInjector';
 @State('root.admin')
 export class AdminState extends AdminOnlyState {
   constructor() {
+    super();
     this.url = 'admin/';
     this.templateUrl = 'admin/admin.tpl.html';
   }

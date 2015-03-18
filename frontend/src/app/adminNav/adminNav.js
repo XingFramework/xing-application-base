@@ -1,5 +1,5 @@
 import {Module, DirectiveObject} from 'a1atscript';
-import SignOutDirective from '../signOut/signOut';
+import SignOutDirective from '../signOut/signOut.js';
 
 @Module('adminNav', ['ng-token-auth', SignOutDirective])
 @DirectiveObject('adminNav')
