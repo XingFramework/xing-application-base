@@ -1,6 +1,7 @@
 UNTAGGED / 2015-03-XX
 ==================
   Accumulating changes for next release
+  * BREAKING: All non state based components moved to src/common/components
   * BREAKING: Many front-end classes are moved to frontend/src/framework
   * Loggable browser console:  front-end JS shim/console wrapper + Waterpig version bump logs 
     browser console to backend/log/test_browser_console.log during feature specs

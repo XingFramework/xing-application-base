@@ -1,12 +1,11 @@
 import { Module, DirectiveObject } from 'a1atscript';
-import {} from "build/templates-app.js";
 
-@Module('responsiveMenu', ['templates-app'])
+@Module('responsiveMenu')
 @DirectiveObject('lrdResponsiveMenu')
 export default class ResponsiveMenu {
   constructor() {
     this.restrict = 'E';
-    this.templateUrl = 'responsiveMenu/responsive-menu.tpl.html';
+    this.templateUrl = 'components/responsiveMenu/responsive-menu.tpl.html';
     this.transclude = true;
     this.scope = true;
   }

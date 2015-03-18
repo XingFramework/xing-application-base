@@ -1,8 +1,6 @@
-import {} from "build/templates-app.js";
-import Pages from '../pages/pages.js';
 import { Module, DirectiveObject } from 'a1atscript';
 
-@Module('navigationBar', ['ui.router.state', 'templates-app', Pages])
+@Module('navigationBar', ['ui.router.state'])
 @DirectiveObject('lrdNavbar', ['$compile', '$state'])
 export default class Navbar {
 
@@ -10,7 +8,7 @@ export default class Navbar {
     this.$compile = $compile;
     this.$state = $state;
     this.restrict = 'E';
-    this.templateUrl = 'navigationBar/navigationBar.tpl.html';
+    this.templateUrl = 'components/navigationBar/navigationBar.tpl.html';
     this.scope = {
       menuId: "@?id",
       menu: "=",

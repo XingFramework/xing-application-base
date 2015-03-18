@@ -1,6 +1,6 @@
 import {Module} from 'a1atscript';
 import Backend from 'backend/backend.js';
-import AdminEdit from '../adminEdit/adminEdit.js';
+import AdminEdit from 'components/adminEdit/adminEdit.js';
 import * as HomepageControllers from './homepageControllers.js';
 import * as HomepageStates from './homepageStates.js';
 
