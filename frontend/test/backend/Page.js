@@ -1,5 +1,5 @@
-import {Page} from "../../src/common/resources/Page";
-import mockResourceTemplates from "../support/mockResourceTemplates";
+import {Page} from "../../src/common/resources/Page.js";
+import mockResourceTemplates from "../support/mockResourceTemplates.js";
 
 describe('Page class', function() {
   describe('created in the client', function() {

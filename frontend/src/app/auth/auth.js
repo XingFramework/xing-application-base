@@ -1,9 +1,9 @@
 import {backendUrl} from 'config';
-import Sessions from './sessions/sessions';
-import Registrations from './registrations/registrations';
-import Confirmations from './confirmations/confirmations';
-import Passwords from './passwords/passwords';
-import AuthConfig from './config/config';
+import Sessions from './sessions/sessions.js';
+import Registrations from './registrations/registrations.js';
+import Confirmations from './confirmations/confirmations.js';
+import Passwords from './passwords/passwords.js';
+import AuthConfig from './config/config.js';
 import {Config, Module} from 'a1atscript';
 
 @Config('$authProvider', 'authConfigProvider')

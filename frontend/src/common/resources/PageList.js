@@ -1,5 +1,5 @@
-import BackendResource from 'BackendResource';
-import {Page} from './Page';
+import BackendResource from 'framework/backend/BackendResource.js';
+import {Page} from './Page.js';
 
 export class PageList extends BackendResource {
   get pages(){

@@ -1,5 +1,5 @@
 import {appName} from 'config';
-import {} from '../../../src/app/auth/passwords/passwords';
+import {} from '../../../src/app/auth/passwords/passwords.js';
 
 describe( 'Passwords controllers', function() {
 

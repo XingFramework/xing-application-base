@@ -1,5 +1,5 @@
 import { DirectiveObject, Module } from 'a1atscript';
-import OnLoginDirective from 'components/OnLoginDirective';
+import OnLoginDirective from 'components/OnLoginDirective/OnLoginDirective.js';
 
 @Module('adminOnly', ['ng-token-auth'])
 @DirectiveObject('adminOnly', ['$rootScope', '$auth'])

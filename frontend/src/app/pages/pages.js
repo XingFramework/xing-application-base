@@ -1,7 +1,7 @@
-import Backend from 'backend';
-import adminEdit from 'components/adminEdit';
-import * as PagesStates from './pagesStates';
-import * as PagesControllers from './pagesControllers';
+import Backend from 'backend/backend.js';
+import adminEdit from 'components/adminEdit/adminEdit.js';
+import * as PagesStates from './pagesStates.js';
+import * as PagesControllers from './pagesControllers.js';
 import { Module } from 'a1atscript';
 
 var Pages = new Module( 'pages', [

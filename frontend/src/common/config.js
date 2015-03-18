@@ -1,4 +1,4 @@
-import { environment } from "./environment";
+import { environment } from "./environment.js";
 
 
 export var backendUrl = (function(){

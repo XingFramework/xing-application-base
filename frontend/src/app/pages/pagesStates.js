@@ -3,6 +3,7 @@ import {State, Resolve, TrackAdminState, AdminOnlyState} from 'stateInjector';
 @State('root.inner.page')
 export class PagesState extends TrackAdminState {
   constructor() {
+    super();
     this.url = '^/pages/';
     this.controller = 'PagesCtrl';
     this.abstract = true;
@@ -18,6 +19,7 @@ export class PagesState extends TrackAdminState {
 @State( 'root.inner.page.new')
 export class PageNewState extends AdminOnlyState {
   constructor() {
+    super();
     this.url = 'new';
     this.templateUrl = 'pages/page-create.tpl.html';
     this.controller = 'PageNewCtrl';
@@ -47,6 +49,7 @@ export class PageShowState {
 @State('root.inner.page.edit')
 export class PageEditState extends AdminOnlyState {
   constructor() {
+    super();
     this.templateUrl = 'pages/page-edit.tpl.html';
     this.controller = 'PageEditCtrl';
   }

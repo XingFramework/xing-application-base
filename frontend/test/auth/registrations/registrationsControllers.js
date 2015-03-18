@@ -1,5 +1,5 @@
-import {appName} from '../../../src/common/config';
-import {} from '../../../src/app/auth/registrations/registrations';
+import {appName} from '../../../src/common/config.js';
+import {} from '../../../src/app/auth/registrations/registrations.js';
 
 describe( 'Registrations controllers', function() {
 

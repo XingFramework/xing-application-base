@@ -1,4 +1,4 @@
-import BackendResponse from './BackendResponse';
+import BackendResponse from './BackendResponse.js';
 
 class Templates extends BackendResponse {
   absorbResponse(response) {

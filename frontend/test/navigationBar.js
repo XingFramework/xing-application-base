@@ -1,6 +1,6 @@
-import 'components/navigationBar';
-import {} from 'templates-common';
-import {xpath, stringAtXpath} from "../test-help/xpath";
+import 'components/navigationBar/navigationBar.js';
+import {} from 'build/templates-common.js';
+import {xpath, stringAtXpath} from "../test-help/xpath.js";
 import {appName} from 'config';
 
 describe('navigationBar directive', function() {

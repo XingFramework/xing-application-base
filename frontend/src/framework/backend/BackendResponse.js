@@ -1,4 +1,4 @@
-import jsonPath from '../jsonpath';
+import jsonPath from '../jsonpath.js';
 
 var paths = {
   publicUrl: "$.links.public",
