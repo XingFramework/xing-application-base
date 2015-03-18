@@ -1,9 +1,10 @@
 UNTAGGED / 2015-03-XX
 ==================
   Accumulating changes for next release
+  * Update to Rails 4.1.9
   * BREAKING: All non state based components moved to src/common/components
   * BREAKING: Many front-end classes are moved to frontend/src/framework
-  * Loggable browser console:  front-end JS shim/console wrapper + Waterpig version bump logs 
+  * Loggable browser console:  front-end JS shim/console wrapper + Waterpig version bump logs
     browser console to backend/log/test_browser_console.log during feature specs
   * BREAKING: Updated traceur -- means all import statements now include .js in the title
 
@@ -19,12 +20,18 @@ UNTAGGED / 2015-03-XX
 ==================
 
   * Change to the rakelibs to only require files as tasks need them - was breaking Capistrano deploys
-  * Updated A1AtScript and refactored several directives to use the A1AtScript's new DirectiveObject annotation pattern. Note: the old Directive annotation is still present so this is not a breaking change
+  * Updated A1AtScript and refactored several directives to use the
+    A1AtScript's new DirectiveObject annotation pattern. Note: the old
+    Directive annotation is still present so this is not a breaking change
 
 0.0.3 / 2015-01-29
 ==================
 
-  * BREAKING: AtScript Refactor -- while this should generally not affect existing code, merges to app.js may have conflicts that need resolution. All regular angular modules of projects should be added as dependencies of the main module in app.js as strings. Also, it may be important to check appConfig.js and rootController.js to make sure all changes are moved over.
+  * BREAKING: AtScript Refactor -- while this should generally not affect
+    existing code, merges to app.js may have conflicts that need resolution.
+    All regular angular modules of projects should be added as dependencies of
+    the main module in app.js as strings. Also, it may be important to check
+    appConfig.js and rootController.js to make sure all changes are moved over.
   * Compass watch moved to top level, out of frontend
 
 0.0.2 / 2015-01-26
