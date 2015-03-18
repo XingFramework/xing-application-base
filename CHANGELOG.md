@@ -1,9 +1,10 @@
 UNTAGGED / 2015-03-XX
 ==================
   Accumulating changes for next release
-  * Many front-end classes are moved to frontend/src/framework
+  * BREAKING: Many front-end classes are moved to frontend/src/framework
   * Loggable browser console:  front-end JS shim/console wrapper + Waterpig version bump logs 
     browser console to backend/log/test_browser_console.log during feature specs
+  * BREAKING: Updated traceur -- means all import statements now include .js in the title
 
 0.0.6 / 2015-02-20
 ==================
