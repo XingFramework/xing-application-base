@@ -3,6 +3,7 @@ import {State, Resolve, AdminOnlyState, TrackAdminState} from 'stateInjector';
 @State('root.homepage')
 export class HomepageState extends TrackAdminState {
   constructor() {
+    super();
     this.controller = 'HomepageCtrl';
     this.templateUrl = 'homepage/homepage.tpl.html';
     this.abstract = true;
@@ -32,6 +33,7 @@ export class HomepageShowState {
 @State('root.homepage.edit')
 export class HomepageEditState extends AdminOnlyState {
   constructor() {
+    super();
     this.templateUrl = 'homepage/homepage-edit.tpl.html';
     this.controller = 'HomepageEditCtrl';
   }

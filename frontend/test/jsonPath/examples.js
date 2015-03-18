@@ -1,4 +1,4 @@
-import jsonpath from 'jsonpath';
+import jsonpath from 'framework/jsonpath.js';
 
 describe('JsonPath', function() {
   describe('canonical examples', function() {

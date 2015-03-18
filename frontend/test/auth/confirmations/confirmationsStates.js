@@ -1,6 +1,6 @@
 import {appName} from 'config';
-import {} from '../../../src/app/auth/auth';
-import {} from '../../support/testStates';
+import {} from '../../../src/app/auth/auth.js';
+import {} from '../../support/testStates.js';
 
 describe('confirmations states', function() {
 

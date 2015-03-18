@@ -1,5 +1,5 @@
-import MenuList from "../../src/common/resources/MenuList";
-import mockResourceTemplates from "../support/mockResourceTemplates";
+import MenuList from "../../src/common/resources/MenuList.js";
+import mockResourceTemplates from "../support/mockResourceTemplates.js";
 
 describe('MenuList class', function() {
   describe('created in the client', function() {

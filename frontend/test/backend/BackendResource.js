@@ -1,5 +1,5 @@
-import BackendResource from "BackendResource";
-import mockResourceTemplates from "../support/mockResourceTemplates";
+import BackendResource from "framework/backend/BackendResource.js";
+import mockResourceTemplates from "../support/mockResourceTemplates.js";
 
 class TestResource extends BackendResource {
   get resourceName() {

@@ -3,6 +3,7 @@ import {State, Resolve, TrackAdminState, AdminOnlyState} from 'stateInjector';
 @State('root.admin.menu')
 export class AdminMenuState extends TrackAdminState {
   constructor() {
+    super();
     this.url = '^/menus/';
     this.controller = 'MenusCtrl';
     this.abstract = true;
@@ -19,6 +20,7 @@ export class AdminMenuState extends TrackAdminState {
 @State('root.admin.menu.new')
 export class AdminMenuNewState extends AdminOnlyState {
   constructor() {
+    super();
     this.url = 'new';
     this.controller = 'MenuNewCtrl';
     //this.templateUrl = 'menus/menu-create.tpl.html';
@@ -51,6 +53,7 @@ export class AdminMenuShowState {
 @State('root.admin.menu.edit')
 export class AdminMenuEditState extends AdminOnlyState {
   constructor() {
+    super();
     this.templateUrl = 'menus/edit.tpl.html';
     this.controller = 'MenuEditCtrl';
   }

@@ -1,8 +1,8 @@
 import {appName} from 'config';
 import {Factory, Controller, Directive, Module} from 'a1atscript';
-import {} from './swipe';
-import {} from './interimElement';
-import Inflector from 'inflector';
+import {} from './swipe.js';
+import {} from './interimElement.js';
+import Inflector from 'framework/inflector.js';
 
 /* This is cribbed from the lrd design toast */
 

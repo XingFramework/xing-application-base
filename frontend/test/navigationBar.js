@@ -1,5 +1,5 @@
-import '../src/app/navigationBar/navigationBar';
-import {xpath, stringAtXpath} from "../test-help/xpath";
+import '../src/app/navigationBar/navigationBar.js';
+import {xpath, stringAtXpath} from "../test-help/xpath.js";
 
 
 describe('navigationBar directive', function() {

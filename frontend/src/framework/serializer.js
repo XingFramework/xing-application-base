@@ -1,4 +1,4 @@
-import Inflector from './inflector';
+import Inflector from './inflector.js';
 import {Module, Factory, Provider} from 'a1atscript'
 
 @Provider('Serializer')

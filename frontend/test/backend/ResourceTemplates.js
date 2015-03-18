@@ -1,4 +1,4 @@
-import templates from "../../src/framework/backend/ResourceTemplates";
+import templates from "../../src/framework/backend/ResourceTemplates.js";
 
 describe('ResourceTemplates function', function() {
 

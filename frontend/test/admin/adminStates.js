@@ -1,5 +1,5 @@
-import {} from '../../src/app/admin/adminStates';
-import setupLogging from "ui-route-logger";
+import {} from '../../src/app/admin/adminStates.js';
+import setupLogging from "framework/ui-route-logger.js";
 import {appName} from 'config';
 
 xdescribe('adminStates', function() {
