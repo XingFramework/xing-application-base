@@ -1,4 +1,4 @@
-UNTAGGED / 2015-03-XX
+0.0.7 / 2015-03-18
 ==================
   Accumulating changes for next release
   * Update to Rails 4.1.9
