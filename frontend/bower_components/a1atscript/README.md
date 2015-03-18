@@ -249,4 +249,8 @@ The /dist folder contains the es6 source files so that you can package up A1AtSc
 
 It is. T1000TypeScript anyone?
 
+#### Wait a second, I thought AtScript was called TypeScript now
+
+It is. I've thought about renaming this T1000TypeScript... but I don't know who's using this.
+
 # That's It. Enjoy

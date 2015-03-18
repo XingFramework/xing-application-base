@@ -1,6 +1,6 @@
-import {appName} from '../../../src/common/config';
-import {} from '../../../src/app/auth/sessions/sessions';
-import {} from '../../support/testStates';
+import {appName} from 'config';
+import {} from '../../../src/app/auth/sessions/sessions.js';
+import {} from '../../support/testStates.js';
 
 describe('Sessions states', function() {
 

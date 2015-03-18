@@ -1,4 +1,4 @@
-import jsonpath from '../../src/common/jsonpath';
+import jsonpath from 'framework/jsonpath.js';
 
 describe('JsonPath', function() {
   describe('parent selector', function() {

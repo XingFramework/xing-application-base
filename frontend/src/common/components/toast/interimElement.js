@@ -1,5 +1,5 @@
-import {appName} from '../config';
-import {} from './compiler';
+import {appName} from 'config';
+import {} from './compiler.js';
 
 angular.module(`${appName}.interimElement`, [
   `${appName}.compiler`

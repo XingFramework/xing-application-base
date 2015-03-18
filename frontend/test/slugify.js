@@ -1,4 +1,4 @@
-import slugify from '../src/common/slugify';
+import slugify from 'framework/slugify.js';
 
 describe("slugify", function() {
   describe("slugify", function() {

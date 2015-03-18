@@ -1,8 +1,8 @@
-import {Menu, MenuItem} from './Menu';
-import {Page} from './Page';
-import {PageList} from './PageList';
-import MenuList from './MenuList';
-import BackendServer from '../backend/BackendServer';
+import {Menu, MenuItem} from './resources/Menu.js';
+import {Page} from './resources/Page.js';
+import {PageList} from './resources/PageList.js';
+import MenuList from './resources/MenuList.js';
+import BackendServer from 'framework/backend/BackendServer.js';
 import {Service} from 'a1atscript';
 
 @Service('backend', ['Restangular'])

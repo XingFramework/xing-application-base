@@ -1,7 +1,7 @@
 import {Module} from 'a1atscript';
-import Backend from 'backend';
-import * as MenuStates from './menusStates';
-import * as MenuControllers from './menusControllers';
+import Backend from 'backend/backend.js';
+import * as MenuStates from './menusStates.js';
+import * as MenuControllers from './menusControllers.js';
 
 var Menus = new Module( 'menus', [
   Backend,

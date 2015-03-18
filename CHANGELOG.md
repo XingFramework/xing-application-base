@@ -1,3 +1,11 @@
+UNTAGGED / 2015-03-XX
+==================
+  Accumulating changes for next release
+  * BREAKING: Many front-end classes are moved to frontend/src/framework
+  * Loggable browser console:  front-end JS shim/console wrapper + Waterpig version bump logs 
+    browser console to backend/log/test_browser_console.log during feature specs
+  * BREAKING: Updated traceur -- means all import statements now include .js in the title
+
 0.0.6 / 2015-02-20
 ==================
   * BREAKING: Reorganization of stylesheets directory. Default styles provided by framework are now located in the styles/framework, with app-specific overrides in styles/partials or styles/states.

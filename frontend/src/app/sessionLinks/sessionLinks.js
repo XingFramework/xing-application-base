@@ -1,13 +1,13 @@
-import SignOut from '../signOut/signOut';
+import SignOut from '../signOut/signOut.js';
 import {Module, DirectiveObject} from 'a1atscript';
-import OnLoginDirective from '../../common/OnLoginDirective';
+import OnLoginDirective from 'components/OnLoginDirective.js';
 
 @Module( 'sessionLinks', [
   'ng-token-auth',
   SignOut])
 @DirectiveObject('lrdSessionLinks', ['$rootScope', '$auth'])
 export default class SessionLinks extends OnLoginDirective {
-  constructor ($rootScope, $auth) {
+  constructor($rootScope, $auth) {
     super($rootScope, $auth);
     this.restrict = 'E';
     this.scope = true;

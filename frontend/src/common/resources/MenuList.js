@@ -1,4 +1,4 @@
-import {BackendResource} from '../backend/BackendResource';
+import BackendResource from 'framework/backend/BackendResource.js';
 
 export default class MenuList extends BackendResource {
   constructor(backend, url){

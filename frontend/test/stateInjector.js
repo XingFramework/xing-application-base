@@ -1,6 +1,6 @@
-import {State, Resolve} from "../src/common/stateInjector";
+import {State, Resolve} from "stateInjector";
 import {Module, Injector} from "a1atscript";
-import {} from './support/testStates';
+import {} from './support/testStates.js';
 import {appName} from 'config';
 
 @State('root.inner.page')

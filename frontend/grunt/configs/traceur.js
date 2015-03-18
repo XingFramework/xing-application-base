@@ -8,13 +8,28 @@ module.exports =
       annotations: true,
       types: true
     },
+    //These maps can be used in any import statement. Note that they're
+    //relative ultimately to the *output* file's directory (e.g. frontend/bin/assets/)
     moduleMaps: {
+      "build": "../../build",
+      "common": "../../src/common",
+      "components": "../../src/common/components",
+      "framework": "../../src/framework",
+      "resources": "../../src/common/resources",
       "a1atscript": "../../vendor/a1atscript/dist/a1atscript.js",
       "config": "../../src/common/config.js",
-      "backend": "../../src/common/backend/backend.js",
-      "stateInjector": "../../src/common/stateInjector.js"
+      "backend": "../../src/framework/backend",
+      "stateInjector": "../../src/framework/stateInjector.js",
+      "stateClasses": "../../src/framework/stateClasses.js",
+      // Example for multi-platform setups:
+      //"../../../web/src/app/app.js": {
+      //  "frontend": "../..",
+      //  "common": "../../src/common",
+      //  "app": "../../src/app"
+      //}
     }
-  },
+
+    },
   build: {
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
   },

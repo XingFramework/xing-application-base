@@ -1,5 +1,5 @@
-import {Menu, MenuItem} from "../../src/common/resources/Menu";
-import mockResourceTemplates from "../support/mockResourceTemplates";
+import {Menu, MenuItem} from "../../src/common/resources/Menu.js";
+import mockResourceTemplates from "../support/mockResourceTemplates.js";
 
 describe('MenuItem class', function(){
   describe('created by front end', function() {

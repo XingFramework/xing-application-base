@@ -1,6 +1,6 @@
-import {appName} from '../../../src/common/config';
-import {} from '../../../src/app/auth/passwords/passwords';
-import {} from '../../support/testStates';
+import {appName} from 'config';
+import {} from '../../../src/app/auth/passwords/passwords.js';
+import {} from '../../support/testStates.js';
 
 describe('Password Recovery states', function() {
 

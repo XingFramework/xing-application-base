@@ -1,4 +1,4 @@
-import jsonPath from '../jsonpath';
+import jsonPath from '../jsonpath.js';
 
 var paths = {
   publicUrl: "$.links.public",
@@ -54,7 +54,6 @@ export default class BackendResponse {
         return this;
       },
       (reason) => {
-        console.log("Backend error:", this, reason);
         this.errorReason = reason;
         throw this;
       }

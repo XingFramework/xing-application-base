@@ -1,5 +1,5 @@
-import {appName} from "../../src/common/config";
-import {} from "../../src/common/toast/compiler";
+import {appName} from "config";
+import {} from "../../src/common/components/toast/compiler.js";
 
 describe('$lrdCompiler service', function() {
   beforeEach(

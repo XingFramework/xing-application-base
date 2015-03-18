@@ -12,6 +12,7 @@ export class SessionsState {
 @State( 'root.inner.sessionsSuccess')
 export class SessionsSuccessState extends LoggedInOnlyState {
   constructor() {
+    super();
     this.url = '^/signed-in';
     this.templateUrl = 'auth/sessions/sessions-success.tpl.html';
   }

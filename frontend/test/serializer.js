@@ -1,4 +1,4 @@
-import '../src/common/serializer';
+import 'framework/serializer.js';
 import {appName} from 'config';
 
 describe('serializer', function () {
