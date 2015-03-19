@@ -1,5 +1,4 @@
 require 'site_snapshot'
-require 'remote_snapshot_fetcher'
 
 class RemoteSiteSnapshot < SiteSnapshot
   def setup
