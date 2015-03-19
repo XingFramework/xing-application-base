@@ -1,4 +1,4 @@
-import slugify from 'slugify';
+import slugify from 'framework/slugify.js';
 import {Controller} from 'a1atscript';
 
 @Controller('MenusCtrl', ['$scope', '$state', '$stateParams', 'menu', 'isAdmin', 'pageList', 'backend', 'menuRoot'])

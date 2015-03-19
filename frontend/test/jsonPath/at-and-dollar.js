@@ -1,4 +1,4 @@
-import jsonpath from 'jsonpath';
+import jsonpath from 'framework/jsonpath.js';
 describe('JsonPath', function() {
   describe('special property names', function() {
     var t1 = {

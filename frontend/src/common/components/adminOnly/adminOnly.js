@@ -1,5 +1,5 @@
 import { DirectiveObject, Module } from 'a1atscript';
-import OnLoginDirective from 'components/OnLoginDirective';
+import OnLoginDirective from 'components/OnLoginDirective/OnLoginDirective.js';
 
 @Module('adminOnly', ['ng-token-auth'])
 @DirectiveObject('adminOnly', ['$rootScope', '$auth'])
@@ -10,7 +10,7 @@ export default class AdminOnly extends OnLoginDirective {
     this.restrict = 'E';
     this.scope = true;
     this.transclude = true;
-    this.templateUrl = 'adminOnly/admin-only.tpl.html';
+    this.templateUrl = 'components/adminOnly/admin-only.tpl.html';
   }
 
   onLogout(scope) {

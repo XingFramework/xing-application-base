@@ -1,5 +1,5 @@
-import BackendResponse from './BackendResponse';
-import ResourceTemplates from './ResourceTemplates';
+import BackendResponse from './BackendResponse.js';
+import ResourceTemplates from './ResourceTemplates.js';
 
 export default class BackendResource extends BackendResponse {
   constructor(backend, responsePromise) {

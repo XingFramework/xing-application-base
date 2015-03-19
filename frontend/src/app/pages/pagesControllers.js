@@ -1,4 +1,4 @@
-import slugify from 'slugify';
+import slugify from 'framework/slugify.js';
 import { Controller } from 'a1atscript';
 
 @Controller('PageNewCtrl', [ '$scope', 'page' ])

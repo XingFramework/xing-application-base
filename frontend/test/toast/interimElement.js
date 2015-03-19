@@ -1,5 +1,5 @@
 import {appName} from 'config';
-import {} from '../../src/common/components/toast/interimElement';
+import {} from '../../src/common/components/toast/interimElement.js';
 
 describe('$$interimElement service', function() {
   var $compilerSpy, resolvingPromise;

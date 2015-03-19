@@ -1,5 +1,5 @@
 import {appName} from "config";
-import {} from "../../src/common/components/toast/toast";
+import {} from "../../src/common/components/toast/toast.js";
 
 describe('$lrdToast service', function() {
   beforeEach(module(`${appName}.toast`, 'ngAnimateMock', function($provide) {

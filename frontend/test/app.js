@@ -1,4 +1,4 @@
-import '../src/app/app';
+import '../src/app/app.js';
 
 describe( 'RootCtrl', function() {
   describe( 'isCurrentUrl', function() {

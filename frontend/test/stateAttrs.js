@@ -1,7 +1,7 @@
 import {appName} from 'config';
-import 'stateAttrs';
-import {xpath, stringAtXpath} from "../test-help/xpath";
-import setupUiRouteLogging from "ui-route-logger";
+import 'framework/stateAttrs.js';
+import {xpath, stringAtXpath} from "../test-help/xpath.js";
+import setupUiRouteLogging from "framework/ui-route-logger.js";
 
 
 describe('lrdStateAttrs directive', function() {

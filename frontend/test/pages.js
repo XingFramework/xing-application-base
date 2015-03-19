@@ -1,8 +1,8 @@
-import {configuration} from '../src/common/config';
-import {} from '../src/app/pages/pages';
-import {Page} from '../src/common/resources/Page';
-import {} from '../build/test/fixtureCache';
-import mockResourceTemplates from './support/mockResourceTemplates';
+import {configuration} from '../src/common/config.js';
+import {} from '../src/app/pages/pages.js';
+import {Page} from '../src/common/resources/Page.js';
+import {} from '../build/test/fixtureCache.js';
+import mockResourceTemplates from './support/mockResourceTemplates.js';
 
 describe( 'Pages section', function() {
 

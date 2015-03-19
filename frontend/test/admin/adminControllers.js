@@ -1,4 +1,4 @@
-import {} from '../../src/app/admin/adminControllers';
+import {} from '../../src/app/admin/adminControllers.js';
 import {appName} from 'config';
 
 describe('Admin Controllers', function() {
