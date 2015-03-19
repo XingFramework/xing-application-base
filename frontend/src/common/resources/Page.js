@@ -58,7 +58,7 @@ export class Page extends BackendResource {
   backendResponds(promise){
     super.backendResponds(promise);
     this.completePromise = this.completePromise.then((page) => {
-      if(page.role === "admin" && page.adminUrl){
+      if(page.role === "admin" && page.selfUrl != page.adminUrl){
         page.loadFrom(page.adminUrl); //XXX Whole new load flow - other complete.thens unpredictable
       }
       return page;
