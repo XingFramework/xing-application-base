@@ -5,6 +5,12 @@ module.exports =
     options: {
       expand: true,
       packageSpecific: {
+        'FroalaWysiwygEditor': {
+          keepExpandedHierarchy: false
+        },
+        'angular-ui-tree': {
+          keepExpandedHierarchy: false
+        },
         'breakpoint-sass': {
           files: [
             'stylesheets/**'
