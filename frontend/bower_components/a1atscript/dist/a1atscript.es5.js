@@ -1,5 +1,5 @@
 define('a1atscript/annotations',[], function() {
-  
+
   var NgAnnotation = function NgAnnotation() {
     for (var dependencies = [],
         $__1 = 0; $__1 < arguments.length; $__1++)
@@ -115,7 +115,7 @@ define('a1atscript/annotations',[], function() {
 });
 
 define('a1atscript/injectorTypes',["./annotations"], function($__0) {
-  
+
   if (!$__0 || !$__0.__esModule)
     $__0 = {default: $__0};
   var $__1 = $__0,
@@ -322,7 +322,7 @@ define('a1atscript/injectorTypes',["./annotations"], function($__0) {
 });
 
 define('a1atscript/Injector',["./annotations", "./injectorTypes"], function($__0,$__2) {
-  
+
   if (!$__0 || !$__0.__esModule)
     $__0 = {default: $__0};
   if (!$__2 || !$__2.__esModule)
@@ -516,7 +516,7 @@ define('a1atscript/Injector',["./annotations", "./injectorTypes"], function($__0
 });
 
 define('a1atscript/DirectiveObject',["./injectorTypes", "./Injector"], function($__0,$__2) {
-  
+
   if (!$__0 || !$__0.__esModule)
     $__0 = {default: $__0};
   if (!$__2 || !$__2.__esModule)
@@ -588,7 +588,7 @@ define('a1atscript/DirectiveObject',["./injectorTypes", "./Injector"], function(
 });
 
 define('a1atscript/ng2Directives/Ng2Directive',[], function() {
-  
+
   var Ng2Directive = function Ng2Directive(descriptor) {
     this.selector = descriptor.selector;
     this.bind = descriptor.bind;
@@ -607,7 +607,7 @@ define('a1atscript/ng2Directives/Ng2Directive',[], function() {
 });
 
 define('a1atscript/ng2Directives/Component',["./Ng2Directive"], function($__0) {
-  
+
   if (!$__0 || !$__0.__esModule)
     $__0 = {default: $__0};
   var Ng2Directive = $__0.default;
@@ -634,7 +634,7 @@ define('a1atscript/ng2Directives/Component',["./Ng2Directive"], function($__0) {
 });
 
 define('a1atscript/ng2Directives/TemplateProperties',["./Component"], function($__0) {
-  
+
   if (!$__0 || !$__0.__esModule)
     $__0 = {default: $__0};
   var Template = $__0.Template;
@@ -662,7 +662,7 @@ define('a1atscript/ng2Directives/TemplateProperties',["./Component"], function($
 });
 
 define('a1atscript/ng2Directives/SelectorMatcher',[], function() {
-  
+
   var SelectorMatcher = function SelectorMatcher(selector) {
     this._selector = selector;
   };
@@ -705,7 +705,7 @@ define('a1atscript/ng2Directives/SelectorMatcher',[], function() {
 });
 
 define('a1atscript/ng2Directives/Ng2DirectiveDefinitionObject',["./SelectorMatcher"], function($__0) {
-  
+
   if (!$__0 || !$__0.__esModule)
     $__0 = {default: $__0};
   var SelectorMatcher = $__0.default;
@@ -787,7 +787,7 @@ define('a1atscript/ng2Directives/Ng2DirectiveDefinitionObject',["./SelectorMatch
 });
 
 define('a1atscript/ng2Directives/BindBuilder',[], function() {
-  
+
   var prefix = "___bindable___";
   var BindBuilder = function BindBuilder(bindObj, component) {
     this._bindObj = bindObj;
@@ -824,7 +824,7 @@ define('a1atscript/ng2Directives/BindBuilder',[], function() {
 });
 
 define('a1atscript/ng2Directives/ComponentInjector',["../Injector", "./Component", "./TemplateProperties", "../injectorTypes", "./Ng2DirectiveDefinitionObject", "./BindBuilder"], function($__0,$__2,$__4,$__6,$__8,$__10) {
-  
+
   if (!$__0 || !$__0.__esModule)
     $__0 = {default: $__0};
   if (!$__2 || !$__2.__esModule)
@@ -885,7 +885,7 @@ define('a1atscript/ng2Directives/ComponentInjector',["../Injector", "./Component
 });
 
 define('a1atscript',["./a1atscript/Injector", "./a1atscript/annotations", "./a1atscript/DirectiveObject", "./a1atscript/ng2Directives/ComponentInjector", "./a1atscript/ng2Directives/Component"], function($__0,$__1,$__2,$__3,$__4) {
-  
+
   if (!$__0 || !$__0.__esModule)
     $__0 = {default: $__0};
   if (!$__1 || !$__1.__esModule)
@@ -903,4 +903,3 @@ define('a1atscript',["./a1atscript/Injector", "./a1atscript/annotations", "./a1a
   var $__a1atscript_47_ng2Directives_47_Component_46_js__ = $__4;
   return $traceurRuntime.exportStar({__esModule: true}, $__a1atscript_47_Injector_46_js__, $__a1atscript_47_annotations_46_js__, $__a1atscript_47_DirectiveObject_46_js__, $__a1atscript_47_ng2Directives_47_Component_46_js__);
 });
-
