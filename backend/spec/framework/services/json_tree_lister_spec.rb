@@ -2,14 +2,36 @@ require 'spec_helper'
 
 describe JsonTreeLister do
 
-  let (:a) { FactoryGirl.create(:menu_item, :path => "a", :name => "a") }
-  let (:b) { FactoryGirl.create(:menu_item, :path => "b", :name => "b", :parent => a) }
-  let (:c) { FactoryGirl.create(:menu_item, :path => "c", :name => "c", :parent => b) }
-  let!(:d) { FactoryGirl.create(:menu_item, :path => "d", :name => "d", :parent => c) }
-  let!(:e) { FactoryGirl.create(:menu_item, :path => "e", :name => "e", :parent => a) }
-  let (:f) { FactoryGirl.create(:menu_item, :path => "f", :name => "f", :parent => a) }
-  let!(:g) { FactoryGirl.create(:menu_item, :path => "g", :name => "g", :parent => f) }
-  let!(:h) { FactoryGirl.create(:menu_item, :path => "h", :name => "h", :parent => f) }
+  # This simulates a node returned by an ActsAsNestedSet instance,
+  # for purposes of JsonTreeLister, by simulating the is_ancestor_of?
+  # behavior of that module.
+  class FauxNode
+    attr_accessor :path, :name, :parent
+    def initialize(args)
+      self.path = args[:path]
+      self.name = args[:name]
+      self.parent = args[:parent]
+    end
+
+    def is_ancestor_of?(other)
+      if other.parent.blank?
+        false
+      elsif self == other.parent
+        true
+      else
+        is_ancestor_of?(other.parent)
+      end
+    end
+  end
+
+  let (:a) { FauxNode.new(:path => "a", :name => "a") }
+  let (:b) { FauxNode.new(:path => "b", :name => "b", :parent => a) }
+  let (:c) { FauxNode.new(:path => "c", :name => "c", :parent => b) }
+  let!(:d) { FauxNode.new(:path => "d", :name => "d", :parent => c) }
+  let!(:e) { FauxNode.new(:path => "e", :name => "e", :parent => a) }
+  let (:f) { FauxNode.new(:path => "f", :name => "f", :parent => a) }
+  let!(:g) { FauxNode.new(:path => "g", :name => "g", :parent => f) }
+  let!(:h) { FauxNode.new(:path => "h", :name => "h", :parent => f) }
 
   let :expected_tree do
     {
@@ -75,11 +97,13 @@ describe JsonTreeLister do
   end
 
   it "should produce a correct tree for a node with no childen" do
-    expect(JsonTreeLister.new(d.reload.self_and_descendants, SimpleNodeSerializer).render).to eq({name: "d", url: "d", children: []})
+    expect(d).to receive(:self_and_descendants).and_return([d])
+    expect(JsonTreeLister.new(d.self_and_descendants, SimpleNodeSerializer).render).to eq({name: "d", url: "d", children: []})
   end
 
   it "should produce a correct tree for a parent of a big tree" do
-    expect(JsonTreeLister.new(a.reload.self_and_descendants, SimpleNodeSerializer).render).to eq(expected_tree)
+    expect(a).to receive(:self_and_descendants).and_return([a, b, c, d, e, f, g, h])
+    expect(JsonTreeLister.new(a.self_and_descendants, SimpleNodeSerializer).render).to eq(expected_tree)
   end
 
 end
