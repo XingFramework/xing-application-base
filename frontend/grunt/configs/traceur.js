@@ -6,6 +6,7 @@ module.exports =
       arrayComprehension: true,
       sourceMaps: true,
       annotations: true,
+      types: true
     },
     //These maps can be used in any import statement. Note that they're
     //relative ultimately to the *output* file's directory (e.g. frontend/bin/assets/)
@@ -15,7 +16,7 @@ module.exports =
       "components": "../../src/common/components",
       "framework": "../../src/framework",
       "resources": "../../src/common/resources",
-      "a1atscript": "../../vendor/a1atscript/a1atscript.js",
+      "a1atscript": "../../vendor/a1atscript/dist/a1atscript.js",
       "config": "../../src/common/config.js",
       "backend": "../../src/framework/backend",
       "stateInjector": "../../src/framework/stateInjector.js",
@@ -38,7 +39,8 @@ module.exports =
       traceurOptions: {
         arrayComprehension: true,
         sourceMaps: true,
-        annotations: true
+        annotations: true,
+        types: true
       }
     },
     files: { '<%= compile_targets.js %>': '<%= app_files.js_roots %>' }
@@ -49,7 +51,8 @@ module.exports =
       traceurOptions: {
         arrayComprehension: true,
         sourceMaps: true,
-        annotations: true
+        annotations: true,
+        types: true
       }
     },
     files: { '<%= build_dirs.test%>/test-main.js': '<%= app_files.jsunit %>' }
@@ -62,6 +65,7 @@ module.exports =
         arrayComprehension: true,
         sourceMaps: false,
         annotations: true,
+        types: true,
         outputLanguage: 'es6'
       }
     }
@@ -74,6 +78,7 @@ module.exports =
         arrayComprehension: true,
         sourceMaps: false,
         annotations: true,
+        types: true,
         outputLanguage: 'es6'
       }
     }
@@ -86,6 +91,7 @@ module.exports =
         arrayComprehension: true,
         sourceMaps: false,
         annotations: true,
+        types: true,
         outputLanguage: 'es6'
       }
     }
