@@ -10,6 +10,6 @@ class PageSerializer < BaseSerializer
   end
 
   def links
-    { :self => routes.page_path(object), :admin => routes.admin_page_path(object) }
+    { :self => routes.page_path(object), :admin => routes.admin_page_path(object), :public => routes.page_path(object)  }
   end
 end
