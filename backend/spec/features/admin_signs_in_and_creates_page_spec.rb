@@ -30,6 +30,11 @@ steps "User Signs In and Creates a new Page", :js => true, :vcr => {} do
     click_on "Go"
   end
 
+  it "should have correct placeholders" do
+    expect(page).to have_xpath("//*[@placeholder='Add content for headline here']", :visible => false)
+    expect(page).to have_xpath("//*[@placeholder='Add content for main here']", :visible => false)
+  end
+
   it "should fill in metadata" do
     fill_in "Title", :with => "Page Title"
     fill_in "Keywords", :with => "this, that, the other thing"

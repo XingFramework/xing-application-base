@@ -25,6 +25,9 @@ function lrdAdminEditable($sce, $compile, $http, $templateCache) {
     transclude: true,
     link (scope, $elem, attrs, _ctrl, $transclude) {
       var contentName = attrs.lrdAdminEditable;
+      if(!scope.hasOwnProperty("froalaConfig")){
+        scope.froalaConfig = angular.copy(scope.froalaConfig);
+      }
       scope.editable = scope.page.contentBody(contentName);
 
       if(scope.nowEditing){
