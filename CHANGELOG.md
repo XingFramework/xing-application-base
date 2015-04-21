@@ -1,3 +1,8 @@
+Untagged 
+==================
+  * Update to Rails 4.1.10
+  * Extract back-end framework code to backend/framework
+
 0.0.7 / 2015-03-18
 ==================
   Accumulating changes for next release

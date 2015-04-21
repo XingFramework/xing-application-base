@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ResourcesController do
+describe ResourcesController, :type => :controller do
 
   let :serializer do
     double(ResourcesSerializer)
