@@ -168,3 +168,27 @@ steps "edits and saves a page's description" do
     expect(meta_content).to eq("Question your tea spoons.")
   end
 end
+
+steps "edits and saves a page's custom styles" do
+  before :all do
+    @user = FactoryGirl.create(:confirmed_user)
+    @oc_page = FactoryGirl.create(:one_column_page)
+  end
+
+  perform_steps "editing a page"
+
+  it "changes the custom css" do
+    fill_in "Custom CSS Styles", :with => "h1{color:red;}"
+  end
+
+  it "Saves" do
+    click_on("Save")
+  end
+
+  it "should change the style" do
+    expect(page).to have_css("#root_inner_page_show")
+
+    custom_styles = find(:xpath, "//style[@class='ng-binding']", :visible => false)['innerHTML']
+    expect(custom_styles).to eq("h1{color:red;}")
+  end
+end

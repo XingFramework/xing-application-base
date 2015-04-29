@@ -113,7 +113,7 @@ class Page < ActiveRecord::Base
     sanitize_html(content, ADMIN_CONTENT_DEFAULT_SANITIZER)
   end
   def sanitize_css(content, config = Sanitize::Config::RELAXED)
-    Sanitize::CSS.properties(content, config)
+    Sanitize::CSS.stylesheet(content, config)
   end
 
 end

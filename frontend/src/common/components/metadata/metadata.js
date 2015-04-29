@@ -13,8 +13,8 @@ export default function MetadataCtrl($scope, $rootScope) {
     if ( angular.isDefined( metadata.pageDescription ) ) {
       $scope.pageDescription = metadata.pageDescription;
     }
-    if ( angular.isDefined( metadata.pageCss ) ) {
-      $scope.pageCss = metadata.pageCss ;
+    if ( angular.isDefined( metadata.pageStyles ) ) {
+      $scope.pageStyles = metadata.pageStyles ;
     }
   };
 
