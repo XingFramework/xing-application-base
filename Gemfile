@@ -3,3 +3,4 @@ gem 'rails', '4.2.1'
 gem "capistrano"
 gem 'rack'
 gem 'compass'
+gem 'capistrano-passenger'
