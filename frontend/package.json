@@ -4,6 +4,7 @@
   "repository": "git@git.lrdesign.com:lrd/cms2.git",
   "author": "Logical Reality Design",
   "homepage": "http://lrdesign.com",
+  "scripts": { "test": "grunt test" },
   "devDependencies": {
     "bower": "~1.3.2",
     "grunt": "^0.4.5",
