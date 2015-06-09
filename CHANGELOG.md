@@ -1,4 +1,4 @@
-UNTAGGED CHANGES / 2015-06-09
+0.0.8 / 2015-06-09
 ==================
   * Update to Rails 4.2.0
   * Extract back-end framework code to backend/framework
