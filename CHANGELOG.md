@@ -8,7 +8,6 @@ UNTAGGED CHANGES / 2015-06-09
 
 0.0.7 / 2015-03-18
 ==================
-  Accumulating changes for next release
   * Update to Rails 4.1.9
   * BREAKING: All non state based components moved to src/common/components
   * BREAKING: Many front-end classes are moved to frontend/src/framework
