@@ -1,7 +1,10 @@
-Untagged 
+UNTAGGED CHANGES / 2015-06-09
 ==================
-  * Update to Rails 4.1.10
+  * Update to Rails 4.2.0
   * Extract back-end framework code to backend/framework
+  * Fixes to saving/displaying per-page CSS in CMS pages
+  * Fixes to styling of inline <i> and <b> tags in CMS pages
+  * Update to A1Atscript 0.2.0 
 
 0.0.7 / 2015-03-18
 ==================
