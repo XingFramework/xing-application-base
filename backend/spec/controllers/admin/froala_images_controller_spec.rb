@@ -20,7 +20,7 @@ describe Admin::FroalaImagesController do
 
     let :valid_img do
       image = mock_proper_image(:save => true)
-      image.stub_chain(:image, :url).and_return(img_url)
+      allow(image).to receive_message_chain(:image, :url).and_return(img_url)
       image
     end
 
@@ -31,7 +31,7 @@ describe Admin::FroalaImagesController do
     describe "responding to GET index" do
 
       before(:each) do
-        Image.should_receive(:all).and_return([valid_img])
+        expect(Image).to receive(:all).and_return([valid_img])
         get :index
       end
 
@@ -40,7 +40,7 @@ describe Admin::FroalaImagesController do
       end
 
       it "should expose all images as @images" do
-        assigns(:images).should eq([valid_img])
+        expect(assigns(:images)).to eq([valid_img])
       end
 
       it "should respond with an array of the image urls" do
@@ -62,7 +62,7 @@ describe Admin::FroalaImagesController do
       end
 
       it "should not be rejected if request format other than json" do
-        Image.should_receive(:new).with(:image => 'uploaded_file').and_return(valid_img)
+        expect(Image).to receive(:new).with(:image => 'uploaded_file').and_return(valid_img)
 
         request.accept = 'html'
         xhr :post, :create, valid_params
@@ -72,12 +72,12 @@ describe Admin::FroalaImagesController do
 
       describe 'with valid params' do
         before(:each) do
-          Image.should_receive(:new).with(:image => 'uploaded_file').and_return(valid_img)
+          expect(Image).to receive(:new).with(:image => 'uploaded_file').and_return(valid_img)
           xhr :post, :create, valid_params
         end
 
         it "should create a new image and expose it" do
-          assigns(:image).should equal(valid_img)
+          expect(assigns(:image)).to equal(valid_img)
         end
 
         it "should create an image and pass the params to it, then redirect to the page" do
@@ -90,7 +90,7 @@ describe Admin::FroalaImagesController do
 
       describe 'with invalid params' do
         before(:each) do
-          Image.should_receive(:new).with(:image => nil).and_return(invalid_img)
+          expect(Image).to receive(:new).with(:image => nil).and_return(invalid_img)
           xhr :post, :create, invalid_params
         end
 
@@ -100,7 +100,7 @@ describe Admin::FroalaImagesController do
 
         let :invalid_img do
           image = mock_improper_image(:save => false )
-          image.stub_chain(:errors, :full_messages) { errors_full }
+          allow(image).to receive_message_chain(:errors, :full_messages).and_return( errors_full )
           image
         end
 
@@ -113,7 +113,7 @@ describe Admin::FroalaImagesController do
         end
 
         it "should create a new image and expose it" do
-          assigns(:image).should equal(invalid_img)
+          expect(assigns(:image)).to equal(invalid_img)
         end
 
         it "should render status 422 if not saved"  do
@@ -130,8 +130,8 @@ describe Admin::FroalaImagesController do
     ########################################################################################
     describe "DELETE destroy" do
       it "should delete the record and respond with 204" do
-        Image.should_receive(:find).with(img_id).and_return(valid_img)
-        valid_img.should_receive(:destroy)
+        expect(Image).to receive(:find).with(img_id).and_return(valid_img)
+        expect(valid_img).to receive(:destroy)
         xhr :post, :destroy, :src => valid_img.image.url
         expect(response.status).to eql(204)
       end

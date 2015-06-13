@@ -11,7 +11,7 @@ admin = User.where(:email => 'admin@lrdesign.com').first_or_create!(
   :password_confirmation => 'wxyz',
   :uid => 'admin@lrdesign.com',
   :role_name => 'Admin')
-admin.confirm!
+admin.confirm
 
 unless MenuItem.roots.where(:name => "Main Menu").exists?
   MenuItem.create!(:name => "Main Menu", :path => "#")

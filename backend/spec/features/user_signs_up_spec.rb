@@ -21,7 +21,7 @@ steps "User Signs Up", :js => true, :vcr => {} do
   end
 
   step "confirm user" do
-    User.last.confirm!
+    User.last.confirm
   end
 
   perform_steps "sign in with"
