@@ -15,7 +15,7 @@ describe Role do
 
     it 'should allow registration of role subclasses' do
       Role::TestRole.register('test_role')
-      Role.registry['test_role'].should == Role::TestRole
+      expect(Role.registry['test_role']).to eq(Role::TestRole)
     end
   end
 
@@ -27,8 +27,8 @@ describe Role do
     describe "for" do
       context 'admin' do
         subject(:role){Role.for(admin_user) }
-        it { should be_a(Role::Admin) }
-        it { role.user.should == admin_user }
+        it { is_expected.to be_a(Role::Admin) }
+        it { expect(role.user).to eq(admin_user) }
       end
     end
 
@@ -36,8 +36,8 @@ describe Role do
 
       context 'admin' do
         subject(:role){Role::Admin.users }
-        it { role.count.should == 2 }
-        it { role.last.should == admin_user }
+        it { expect(role.count).to eq(2) }
+        it { expect(role.last).to eq(admin_user) }
       end
     end
   end
@@ -45,7 +45,7 @@ describe Role do
   describe "initialization and attachment" do
 
     it "should attach a AdminRole to the researcher user" do
-      admin_user.role.should be_a(Role::Admin)
+      expect(admin_user.role).to be_a(Role::Admin)
     end
 
     it "should attach the user to the role" do
@@ -53,12 +53,12 @@ describe Role do
       # Below should be expanded when future user types are added.
       # I left it as an array of one on purpose.  -ED
       [ admin_user ].each do |user|
-        user.role.user.should == user
+        expect(user.role.user).to eq(user)
       end
     end
 
     it "should return its role name" do
-      admin_user.role.role_name.should == 'Admin'
+      expect(admin_user.role.role_name).to eq('Admin')
     end
   end
 end

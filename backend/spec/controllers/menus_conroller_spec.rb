@@ -79,16 +79,16 @@ describe MenusController do
     it "should update with page mapper and pass the JSON to it" do
       allow(MenuMapper).to receive(:new).with(json, menu_id.to_s).and_return(mock_menu_mapper)
 
-      mock_menu_mapper.should_receive(:save).and_return(true)
+      expect(mock_menu_mapper).to receive(:save).and_return(true)
 
       allow(mock_menu_mapper).to receive(:menu_root).and_return(mock_menu_root)
       allow(MenuItem).to receive(:find).with(menu_id.to_s).and_return(mock_menu_root)
 
       allow(Menu).to receive(:new).with(mock_menu_root).and_return(mock_menu)
 
-      MenuSerializer.should_receive(:new).with(mock_menu).and_return(serializer)
+      expect(MenuSerializer).to receive(:new).with(mock_menu).and_return(serializer)
 
-      controller.should_receive(:render).with(:json => serializer).and_call_original
+      expect(controller).to receive(:render).with(:json => serializer).and_call_original
 
       put :update, json, { :id => menu_id }
     end
@@ -96,11 +96,11 @@ describe MenusController do
     it "should render status 422 if not updated" do
       allow(MenuMapper).to receive(:new).with(json, menu_id.to_s).and_return(mock_menu_mapper)
 
-      mock_menu_mapper.should_receive(:save).and_return(false)
+      expect(mock_menu_mapper).to receive(:save).and_return(false)
 
       allow(mock_menu_mapper).to receive(:errors).and_return(mock_errors)
 
-      controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
+      expect(controller).to receive(:failed_to_process).with(mock_errors).and_call_original
 
       put :update, json, { :id => menu_id }
 

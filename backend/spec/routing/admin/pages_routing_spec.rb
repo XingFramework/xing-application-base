@@ -14,11 +14,11 @@ describe Admin::PagesController, :type => :routing do
       expect({ :put => "/admin/pages/url_slug" }).to route_to(:controller => "admin/pages", :action => "update", :url_slug => "url_slug")
     end
     it "recognizes and generates #index" do
-      { :get => "/admin/pages" }.should route_to(:controller => "admin/pages", :action => "index")
+      expect({ :get => "/admin/pages" }).to route_to(:controller => "admin/pages", :action => "index")
     end
 
     it "recognizes and generates #destroy" do
-      { :delete => "/admin/pages/url_slug" }.should route_to(:controller => "admin/pages", :action => "destroy", :url_slug => "url_slug")
+      expect({ :delete => "/admin/pages/url_slug" }).to route_to(:controller => "admin/pages", :action => "destroy", :url_slug => "url_slug")
     end
   end
 end

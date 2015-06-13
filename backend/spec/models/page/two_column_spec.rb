@@ -22,6 +22,6 @@ describe Page::TwoColumn do
   end
 
   it "should appear in the registry" do
-    Page.registry_get(:two_column).should == Page::TwoColumn
+    expect(Page.registry_get(:two_column)).to eq(Page::TwoColumn)
   end
 end

@@ -1,7 +1,7 @@
 module JSONRequests
 
   def json_get(url, arg2 = nil)
-    get rootify(url).tap{ |u| puts "REQUESTING: #{u}"}, arg2, { 'HTTP_ACCEPT' => 'application/json' }
+    get rootify(url), arg2, { 'HTTP_ACCEPT' => 'application/json' }
   end
 
   def json_post(url, arg2 = nil)

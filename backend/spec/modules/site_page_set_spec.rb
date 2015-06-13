@@ -7,7 +7,7 @@ describe SitePageSet do
   end
 
   before do
-    STATIC_PATHS_FOR_SITEMAP.should_receive(:each).and_yield("awesome")
+    expect(STATIC_PATHS_FOR_SITEMAP).to receive(:each).and_yield("awesome")
   end
 
   subject :sitemap_page_set do

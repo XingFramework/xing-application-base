@@ -51,9 +51,9 @@ describe Admin::MenuItemsController do
     describe "responding to GET show" do
 
       it "should expose the requested published menu_item as @menu_item" do
-        MenuItem.should_receive(:find).with(id).and_return(menu_item)
-        Admin::MenuItemSerializer.should_receive(:new).with(menu_item).and_return(serializer)
-        controller.should_receive(:render).
+        expect(MenuItem).to receive(:find).with(id).and_return(menu_item)
+        expect(Admin::MenuItemSerializer).to receive(:new).with(menu_item).and_return(serializer)
+        expect(controller).to receive(:render).
           with(:json => serializer).
           and_call_original
         get :show, :id => id
@@ -66,9 +66,9 @@ describe Admin::MenuItemsController do
     ########################################################################################
     describe "responding to POST create" do
       it "creates a new menu item mapper and pass the JSON to it, then redirect to " do
-        MenuItemMapper.should_receive(:new).with(json).and_return(mock_menu_item_mapper)
-        mock_menu_item_mapper.should_receive(:save).and_return(true)
-        mock_menu_item_mapper.should_receive(:menu_item).and_return(mock_menu_item)
+        expect(MenuItemMapper).to receive(:new).with(json).and_return(mock_menu_item_mapper)
+        expect(mock_menu_item_mapper).to receive(:save).and_return(true)
+        expect(mock_menu_item_mapper).to receive(:menu_item).and_return(mock_menu_item)
         post :create, json
 
         expect(response.status).to eq(201)
@@ -77,10 +77,10 @@ describe Admin::MenuItemsController do
     end
 
     it "should render status 422 if not saved"  do
-      MenuItemMapper.should_receive(:new).with(json).and_return(mock_menu_item_mapper)
-      mock_menu_item_mapper.should_receive(:save).and_return(false)
-      mock_menu_item_mapper.should_receive(:errors).and_return(mock_errors)
-      controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
+      expect(MenuItemMapper).to receive(:new).with(json).and_return(mock_menu_item_mapper)
+      expect(mock_menu_item_mapper).to receive(:save).and_return(false)
+      expect(mock_menu_item_mapper).to receive(:errors).and_return(mock_errors)
+      expect(controller).to receive(:failed_to_process).with(mock_errors).and_call_original
 
       post :create, json
 
@@ -93,12 +93,12 @@ describe Admin::MenuItemsController do
     describe "responding to PUT update" do
 
       it "should update with menu item mapper and pass the JSON to it" do
-        MenuItemMapper.should_receive(:new).with(json, id).and_return(mock_menu_item_mapper)
-        mock_menu_item_mapper.should_receive(:save).and_return(true)
-        mock_menu_item_mapper.should_receive(:menu_item).and_return(mock_menu_item)
-        Admin::MenuItemSerializer.should_receive(:new).with(mock_menu_item).and_return(serializer)
+        expect(MenuItemMapper).to receive(:new).with(json, id).and_return(mock_menu_item_mapper)
+        expect(mock_menu_item_mapper).to receive(:save).and_return(true)
+        expect(mock_menu_item_mapper).to receive(:menu_item).and_return(mock_menu_item)
+        expect(Admin::MenuItemSerializer).to receive(:new).with(mock_menu_item).and_return(serializer)
 
-        controller.should_receive(:render).
+        expect(controller).to receive(:render).
           with(:json => serializer).
           and_call_original
 
@@ -106,10 +106,10 @@ describe Admin::MenuItemsController do
       end
 
       it "should render status 422 if not updated" do
-        MenuItemMapper.should_receive(:new).with(json, id).and_return(mock_menu_item_mapper)
-        mock_menu_item_mapper.should_receive(:save).and_return(false)
-        mock_menu_item_mapper.should_receive(:errors).and_return(mock_errors)
-        controller.should_receive(:failed_to_process).with(mock_errors).and_call_original
+        expect(MenuItemMapper).to receive(:new).with(json, id).and_return(mock_menu_item_mapper)
+        expect(mock_menu_item_mapper).to receive(:save).and_return(false)
+        expect(mock_menu_item_mapper).to receive(:errors).and_return(mock_errors)
+        expect(controller).to receive(:failed_to_process).with(mock_errors).and_call_original
 
         post :update, json, { :id => id }
 
@@ -123,8 +123,8 @@ describe Admin::MenuItemsController do
     describe "DELETE destroy" do
 
       it "should find menu item and destroy" do
-        MenuItem.should_receive(:find).with(id).and_return(menu_item)
-        menu_item.should_receive(:destroy).and_return(:true)
+        expect(MenuItem).to receive(:find).with(id).and_return(menu_item)
+        expect(menu_item).to receive(:destroy).and_return(:true)
         delete :destroy, :id => id
 
         expect(response).to redirect_to(menus_path)

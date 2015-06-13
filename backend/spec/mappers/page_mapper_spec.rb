@@ -10,7 +10,7 @@ describe PageMapper, :type => :mapper do
       end
 
       before do
-        Page::OneColumn.stub(:content_format).and_return(format)
+        allow(Page::OneColumn).to receive(:content_format).and_return(format)
       end
 
       let :format do
@@ -43,7 +43,7 @@ describe PageMapper, :type => :mapper do
           expect do
             mapper.save
           end.to change{ Page::OneColumn.count}.by(1)
-          Page.last.title.should eq 'foo bar'
+          expect(Page.last.title).to eq 'foo bar'
         end
 
         it "should return as page" do
@@ -55,8 +55,8 @@ describe PageMapper, :type => :mapper do
             mapper.save
           end.to change{ ContentBlock.count}.by(2)
           page = Page.last
-          page.contents['main'].body.should     == 'Fourscore and seven years.'
-          page.contents['headline'].body.should == 'The Gettysburg Address'
+          expect(page.contents['main'].body).to     eq('Fourscore and seven years.')
+          expect(page.contents['headline'].body).to eq('The Gettysburg Address')
         end
 
         it "should be able to return the page" do

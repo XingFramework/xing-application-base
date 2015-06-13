@@ -17,14 +17,14 @@ describe SecretsValidator do
     expect(YAML).to receive(:load).and_return(dev_yaml.deep_merge({'development' => { 'email' => nil }}))
     validator = SecretsValidator.new
     validator.validate('development')
-    validator.errors['development'].should_not be_blank
-    validator.errors['test'].should be_blank
+    expect(validator.errors['development']).not_to be_blank
+    expect(validator.errors['test']).to be_blank
   end
   it "when development has no missing keys" do
     expect(YAML).to receive(:load).and_return(dev_yaml)
     validator = SecretsValidator.new
     validator.validate('development')
-    validator.errors.should be_blank
+    expect(validator.errors).to be_blank
   end
   it "when development has a missing key and test has a misformatted value " do
     expect(YAML).to receive(:load).and_return(dev_yaml.deep_merge({
@@ -33,8 +33,8 @@ describe SecretsValidator do
     )
     validator = SecretsValidator.new
     validator.validate('development')
-    validator.errors['development']['email'] .should_not be_blank
-    validator.errors['test']['email']['from'].should_not be_blank
+    expect(validator.errors['development']['email']) .not_to be_blank
+    expect(validator.errors['test']['email']['from']).not_to be_blank
   end
 
 
