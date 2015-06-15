@@ -6,7 +6,7 @@ describe MenuNodeSerializer, :type => :serializer do
 
   let :menu_node do
     mn = double(JsonTreeLister::TreeNode)
-    mn.stub(:read_attribute_for_serialization).with(:children) { [] }
+    allow(mn).to receive(:read_attribute_for_serialization).with(:children) { [] }
     mn
   end
 
@@ -18,7 +18,7 @@ describe MenuNodeSerializer, :type => :serializer do
 
     context "for menu item for a page" do
       before do
-        menu_node.stub(:node) { menu_item_with_page }
+        allow(menu_node).to receive(:node) { menu_item_with_page }
       end
 
       it { is_expected.to     be_present}
@@ -33,7 +33,7 @@ describe MenuNodeSerializer, :type => :serializer do
 
     context "for menu item for a link" do
       before do
-        menu_node.stub(:node) { menu_item_without_page }
+        allow(menu_node).to receive(:node) { menu_item_without_page }
       end
 
       it { is_expected.to     be_present}

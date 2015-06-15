@@ -20,11 +20,11 @@ steps "User Sends Reset Password", :js => true, :vcr => {} do
   end
 
   step "should have the confirmation" do
-    page.should have_content("Password reset email sent!")
+    expect(page).to have_content("Password reset email sent!")
   end
 
   step "should send the email" do
     email = open_email(@user.email)
-    email.should have_link("Change my password")
+    expect(email).to have_link("Change my password")
   end
 end

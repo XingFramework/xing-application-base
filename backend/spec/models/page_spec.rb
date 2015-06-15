@@ -51,7 +51,7 @@ describe Page do
 
     describe "when content_format is present" do
       before do
-        Page.stub(:content_format).and_return(format)
+        allow(Page).to receive(:content_format).and_return(format)
       end
 
       let :format do
@@ -101,7 +101,7 @@ describe Page do
           }]
         end
         it "should use the validator for that content body" do
-          page.should_receive(:clean_this_thing).and_return('cleaned content')
+          expect(page).to receive(:clean_this_thing).and_return('cleaned content')
           expect(contents['headline'].body).to eq('cleaned content')
         end
       end
@@ -113,7 +113,7 @@ describe Page do
           }]
         end
         it "should use the default validator for html" do
-          page.should_receive(:sanitize_html).with(headline.body).and_return('cleaned content')
+          expect(page).to receive(:sanitize_html).with(headline.body).and_return('cleaned content')
           expect(contents['headline'].body).to eq('cleaned content')
         end
       end
@@ -125,7 +125,7 @@ describe Page do
           }]
         end
         it "should use the default validator for css" do
-          page.should_receive(:sanitize_css).with(styles.body).and_return('.clean { white-space: nowrap; } ')
+          expect(page).to receive(:sanitize_css).with(styles.body).and_return('.clean { white-space: nowrap; } ')
           expect(contents['styles'].body).to eq('.clean { white-space: nowrap; } ')
         end
       end
@@ -138,7 +138,7 @@ describe Page do
     end
 
     before do
-      page.stub(:content_format).and_return(format)
+      allow(page).to receive(:content_format).and_return(format)
     end
 
     let :format do
@@ -223,13 +223,13 @@ describe Page do
 
     it 'should allow registration of page subclasses' do
       Page::TestPage.register('test_page')
-      Page.registry['test_page'].should == Page::TestPage
+      expect(Page.registry['test_page']).to eq(Page::TestPage)
     end
 
     it "registers sub pages" do
       Page::TestPage.register('test_page')
       Page::SubTestPage.register('sub_test_page')
-      Page.registry['sub_test_page'].should == Page::SubTestPage
+      expect(Page.registry['sub_test_page']).to eq(Page::SubTestPage)
     end
 
   end

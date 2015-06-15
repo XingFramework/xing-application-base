@@ -13,15 +13,15 @@ describe 'db:sample_data namespace rake task',
   it "should succeed and create reasonable data" do
     Rake::Task["db:sample_data:load"].invoke
 
-    Page::OneColumn.count.should == 5
-    Page::TwoColumn.count.should == 1
+    expect(Page::OneColumn.count).to eq(5)
+    expect(Page::TwoColumn.count).to eq(1)
 
-    Page::OneColumn.all.map(&:title).should include("About Us", "Contact Us", "Home", "Gallery", "Links")
+    expect(Page::OneColumn.all.map(&:title)).to include("About Us", "Contact Us", "Home", "Gallery", "Links")
 
     # Should be adjusted once url_slug method is created.
-    Page::OneColumn.all.map(&:url_slug).should include("about_us", "contact_us", "home", "gallery", "links")
+    expect(Page::OneColumn.all.map(&:url_slug)).to include("about_us", "contact_us", "home", "gallery", "links")
 
-    Page::OneColumn.all.map(&:keywords).should include("about_us", "contact_us", "home", "gallery", "links")
+    expect(Page::OneColumn.all.map(&:keywords)).to include("about_us", "contact_us", "home", "gallery", "links")
 
     Page::OneColumn.all.each do |page|
       expect(page.content_blocks.count).to be >= 2
@@ -31,8 +31,8 @@ describe 'db:sample_data namespace rake task',
     end
 
     Page::OneColumn.all.each do |page|
-      page.page_contents.map(&:name).should include("headline", "main")
-      page.page_contents.map(&:name).should include("styles") if page.contents.count == 3
+      expect(page.page_contents.map(&:name)).to include("headline", "main")
+      expect(page.page_contents.map(&:name)).to include("styles") if page.contents.count == 3
     end
 
 

@@ -68,14 +68,14 @@ describe Menu do
 
     it "should delegate proper methods" do
       [:name, :parent, :id, :reload ].each do |method|
-        root_1.should_receive(method)
+        expect(root_1).to receive(method)
         menu.send(method)
       end
     end
 
     it "should correctly return the menu_item's id" do
       item = FactoryGirl.create(:main_menu_root)
-      Menu.new(item).id.should == item.id
+      expect(Menu.new(item).id).to eq(item.id)
     end
 
 

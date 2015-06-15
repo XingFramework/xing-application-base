@@ -11,7 +11,7 @@ describe ResourcesController, :type => :controller do
   ########################################################################################
   describe "responding to GET index" do
     it "should render all routes as json" do
-      ResourcesSerializer.should_receive(:new).and_return(:serializer)
+      expect(ResourcesSerializer).to receive(:new).and_return(:serializer)
       get :index
       expect(assigns[:resources][:page]).to be_a_kind_of(Addressable::Template)
     end

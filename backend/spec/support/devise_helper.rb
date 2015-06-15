@@ -56,11 +56,11 @@ module DeviseExtraTestHelper
   end
 
   def verify_authorization_successful
-    response.should_not redirect_to(login_path)
+    expect(response).not_to redirect_to(login_path)
   end
 
   def verify_authorization_unsuccessful
-    response.should redirect_to(login_path)
+    expect(response).to redirect_to(login_path)
   end
 
 end

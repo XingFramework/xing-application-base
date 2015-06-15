@@ -19,18 +19,18 @@ describe MenuItem, :skip => true do
   describe "mass assignment" do
      it "should mass assign name and path" do
        location = MenuItem.new(:name => 'foo', :path => 'bar' )
-       location.name.should == 'foo'
-       location.path.should == 'bar'
+       expect(location.name).to eq('foo')
+       expect(location.path).to eq('bar')
      end
    end
 
    describe "validations" do
      describe "presence" do
        it "should not create a location with blank name" do
-         FactoryGirl.build(:location, :name => nil).should_not be_valid
+         expect(FactoryGirl.build(:location, :name => nil)).not_to be_valid
        end
       it "should allow alocation with a name" do
-        FactoryGirl.build(:location, :name => 'foo').should be_valid
+        expect(FactoryGirl.build(:location, :name => 'foo')).to be_valid
       end
      end
    end
@@ -41,12 +41,12 @@ describe MenuItem, :skip => true do
        loc = FactoryGirl.build(:location, :path => 'foobar')
        loc.page = page
        loc.save!
-       loc.resolved_path.should == "/" + page.permalink
+       expect(loc.resolved_path).to eq("/" + page.permalink)
      end
 
      it "should return the location's path if there's no page foreign key" do
        loc = FactoryGirl.build(:location, :path => 'foobar')
-       loc.resolved_path.should == "/" + 'foobar'
+       expect(loc.resolved_path).to eq("/" + 'foobar')
      end
    end
 end

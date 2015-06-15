@@ -18,13 +18,13 @@ describe PageSerializer, :type => :serializer do
       PageSerializer.new(page).to_json
     end
 
-    it { should be_present}
-    it { should have_json_path('links/self')}
-    it { should have_json_path('links/admin')}
-    it { should have_json_path('data/title')}
-    it { should have_json_path('data/keywords')}
-    it { should have_json_path('data/description')}
-    it { should have_json_path('data/layout')}
-    it { should have_json_size(3).at_path('data/contents')}
+    it { is_expected.to be_present}
+    it { is_expected.to have_json_path('links/self')}
+    it { is_expected.to have_json_path('links/admin')}
+    it { is_expected.to have_json_path('data/title')}
+    it { is_expected.to have_json_path('data/keywords')}
+    it { is_expected.to have_json_path('data/description')}
+    it { is_expected.to have_json_path('data/layout')}
+    it { is_expected.to have_json_size(3).at_path('data/contents')}
   end
 end

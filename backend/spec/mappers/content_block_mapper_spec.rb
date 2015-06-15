@@ -29,7 +29,7 @@ describe ContentBlockMapper, :type => :mapper do
           expect do
             mapper.perform_mapping
           end.not_to change{ ContentBlock.count}
-          mapper.content_block.body.should eq 'foo bar'
+          expect(mapper.content_block.body).to eq 'foo bar'
         end
 
         it "should be able to return the content block without it being persisted" do
