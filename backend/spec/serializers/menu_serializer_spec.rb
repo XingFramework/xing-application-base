@@ -39,13 +39,13 @@ describe MenuSerializer, :type => :serializer do
 
   let :main_menu do
     mm = double(Menu)
-    mm.stub(:tree) { menu_item_list }
+    allow(mm).to receive(:tree) { menu_item_list }
     mm
   end
 
   before do
-    JsonTreeLister.should_receive(:new).with(menu_item_list, MenuNodeSerializer).and_return(json_tree_lister)
-    json_tree_lister.should_receive(:render).and_return(rendered_tree)
+    expect(JsonTreeLister).to receive(:new).with(menu_item_list, MenuNodeSerializer).and_return(json_tree_lister)
+    expect(json_tree_lister).to receive(:render).and_return(rendered_tree)
   end
 
   describe "as_json" do

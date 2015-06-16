@@ -19,6 +19,6 @@ describe Page::OneColumn do
   end
 
   it "should appear in the registry" do
-    Page.registry_get(:one_column).should == Page::OneColumn
+    expect(Page.registry_get(:one_column)).to eq(Page::OneColumn)
   end
 end

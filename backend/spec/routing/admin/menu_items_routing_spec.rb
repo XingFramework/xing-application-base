@@ -15,7 +15,7 @@ describe Admin::MenuItemsController, :type => :routing do
     end
 
     it "recognizes and generates #destroy" do
-      { :delete => "/admin/menu_items/1" }.should route_to(:controller => "admin/menu_items", :action => "destroy", :id => "1")
+      expect({ :delete => "/admin/menu_items/1" }).to route_to(:controller => "admin/menu_items", :action => "destroy", :id => "1")
     end
   end
 end

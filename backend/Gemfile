@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'rails', "~> 4.1.9"
+gem 'rails', "~> 4.2.0"
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'pg'
@@ -13,7 +13,7 @@ gem "babosa"
 gem 'active_model_serializers'
 gem 'rails-observers'
 gem 'cancancan'
-gem 'devise_token_auth', :github => 'hannahhoward/devise_token_auth'
+gem 'devise_token_auth', :github => 'lrdesign/devise_token_auth'
 gem 'bibliotech'
 gem 'rails-rfc6570', '~> 0.1'
 gem 'rack-cors', :require => 'rack/cors'
@@ -23,7 +23,7 @@ gem "typhoeus"
 gem 'hash_validator'
 
 group :development, :test do
-  gem "rspec", "~> 3.0.0"
+  gem "rspec", "~> 3.1.0"
   gem "rspec-rails"
   gem 'rspec-activemodel-mocks'
   gem 'rspec-steps'

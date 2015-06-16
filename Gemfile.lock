@@ -133,3 +133,6 @@ DEPENDENCIES
   compass
   rack
   rails (= 4.2.1)
+
+BUNDLED WITH
+   1.10.3

@@ -29,3 +29,6 @@ DEPENDENCIES
   compass
   rack
   sass
+
+BUNDLED WITH
+   1.10.3
