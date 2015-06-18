@@ -1,4 +1,4 @@
-class MenuSerializer < BaseSerializer
+class MenuSerializer < Xing::Serializers::Base
 
   def as_json(options={})
     root = Xing::Services::JsonTreeLister.new(object.tree, MenuNodeSerializer).render

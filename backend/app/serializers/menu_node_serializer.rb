@@ -1,4 +1,4 @@
-class MenuNodeSerializer < BaseSerializer
+class MenuNodeSerializer < Xing::Serializers::Base
   attributes :type, :name, :path, :page, :type, :children
 
   def node
