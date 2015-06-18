@@ -1,3 +1,7 @@
+0.0.12 / 2015-06-18 
+===================
+  * Update to match version of xing-backend gem that includes paginated list resources.
+
 0.0.11 / 2015-06-18 
 ===================
   * BREAKING: references to old JsonController and BaseController MUST be replaced by 
