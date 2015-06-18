@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RemoteSnapshotFetcher do
+describe Xing::Services::SnapshotFetcher do
   describe "if remote succeeds" do
     before do
       begin
@@ -23,7 +23,7 @@ describe RemoteSnapshotFetcher do
     end
 
     subject :remote_snapshot_fetcher do
-      RemoteSnapshotFetcher.new
+      Xing::Services::SnapshotFetcher.new
     end
 
     it "should read html contents from remote server and output to the file" do
@@ -49,7 +49,7 @@ describe RemoteSnapshotFetcher do
     end
 
     subject :remote_snapshot_fetcher do
-      RemoteSnapshotFetcher.new.tap do |fetcher|
+      Xing::Services::SnapshotFetcher.new.tap do |fetcher|
         allow(fetcher).to receive(:logger).and_return(logger)
       end
     end

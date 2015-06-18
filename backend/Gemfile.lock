@@ -1,3 +1,15 @@
+PATH
+  remote: ../../../gems/xing-backend
+  specs:
+    xing-backend (0.0.10)
+      active_model_serializers (~> 0.9.3)
+      i18n (~> 0.7)
+      rails (~> 4.2.0)
+      rails-rfc6570 (~> 0.3)
+      sidekiq (~> 3.3)
+      typhoeus (~> 0.7)
+      xing_backend_token_auth (~> 0.1.31)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -254,14 +266,6 @@ GEM
       rspec-steps (> 0)
       text-table (~> 1.2.3)
     websocket (1.2.1)
-    xing-backend (0.0.10)
-      active_model_serializers (~> 0.9.3)
-      i18n (~> 0.7)
-      rails (~> 4.2.0)
-      rails-rfc6570 (~> 0.3)
-      sidekiq (~> 3.3)
-      typhoeus (~> 0.7)
-      xing_backend_token_auth (~> 0.1.31)
     xing_backend_token_auth (0.1.31)
       devise (~> 3.2)
       rails (~> 4.1)
@@ -308,7 +312,7 @@ DEPENDENCIES
   sinatra (>= 1.3.0)
   typhoeus
   waterpig (>= 0.6.1)
-  xing-backend (= 0.0.10)
+  xing-backend!
   xing_backend_token_auth (~> 0.1.31)
 
 BUNDLED WITH

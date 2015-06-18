@@ -2,7 +2,7 @@ require 'site_snapshot'
 
 class RemoteSiteSnapshot < SiteSnapshot
   def setup
-    @fetcher = RemoteSnapshotFetcher.new
+    @fetcher = Xing::Services::SnapshotFetcher.new
   end
 
   def fetch(url, path)
