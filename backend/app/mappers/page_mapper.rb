@@ -1,4 +1,4 @@
-class PageMapper < HypermediaJSONMapper
+class PageMapper < Xing::Mappers::Base
   alias page record
   alias page= record=
   attr_accessor :bad_blocks, :page_layout

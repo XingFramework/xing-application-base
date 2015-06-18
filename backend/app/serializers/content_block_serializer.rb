@@ -1,4 +1,4 @@
-class ContentBlockSerializer < BaseSerializer
+class ContentBlockSerializer < Xing::Serializers::Base
   attributes :content_type, :body
 
   def links

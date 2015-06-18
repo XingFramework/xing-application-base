@@ -19,12 +19,12 @@ describe PageSnapshotObserver, :type => :observer do
   end
 
   it "should take snapshots of homepage" do
-    expect(RemoteSnapshotFetcher).to receive(:perform_async).with(anything, "")
+    expect(Xing::Services::SnapshotFetcher).to receive(:perform_async).with(anything, "")
     page_snapshot_observer.take_snapshot(homepage)
   end
 
   it "should take snapshots of other pages" do
-    expect(RemoteSnapshotFetcher).to receive(:perform_async).with(anything, PAGES_FRONTEND_URL + "/" + one_column.url_slug)
+    expect(Xing::Services::SnapshotFetcher).to receive(:perform_async).with(anything, PAGES_FRONTEND_URL + "/" + one_column.url_slug)
     page_snapshot_observer.take_snapshot(one_column)
   end
 

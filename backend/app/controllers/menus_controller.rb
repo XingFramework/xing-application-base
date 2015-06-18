@@ -1,4 +1,4 @@
-class MenusController < JsonController
+class MenusController < ApplicationController
   def index
     render :json => MenuListSerializer.new(Menu.list)
   end

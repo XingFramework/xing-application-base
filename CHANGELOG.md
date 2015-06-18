@@ -1,3 +1,19 @@
+0.0.11 / 2015-06-18 
+===================
+  * BREAKING: references to old JsonController and BaseController MUST be replaced by 
+    Xing::Controllers::Base.  Deprecation warnings will NOT be emitted.
+
+  * BREAKING: references to ResourcesController MUST be replaced by Xing::Controllers::RootResourcesController.
+    Deprecation warnings will NOT be emitted.
+    
+  * Update to Rails 4.2 in backend
+  * Set depenency for mappers/serializers/controllers to extracted xing-backend gem
+  * Set dependecy for token authn to xing_backend_token_auth gem (replacing the a git fork 
+    of devise_token_auth)
+  * Sass updates, including making flexbox available
+  * Replace all constants deprecated by the new xing-backend gem
+
+
 0.0.8 / 2015-06-09
 ==================
   * Update to Rails 4.2.0

@@ -5,7 +5,7 @@ describe MenuNodeSerializer, :type => :serializer do
   let :menu_item_without_page do FactoryGirl.create(:menu_item_without_page) end
 
   let :menu_node do
-    mn = double(JsonTreeLister::TreeNode)
+    mn = double(Xing::Services::JsonTreeLister::TreeNode)
     allow(mn).to receive(:read_attribute_for_serialization).with(:children) { [] }
     mn
   end

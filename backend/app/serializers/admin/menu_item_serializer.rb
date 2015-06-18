@@ -1,4 +1,4 @@
-class Admin::MenuItemSerializer < BaseSerializer
+class Admin::MenuItemSerializer < Xing::Serializers::Base
   attributes :type, :name, :path, :page, :parent_id
 
 
