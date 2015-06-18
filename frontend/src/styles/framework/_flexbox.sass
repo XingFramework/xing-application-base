@@ -1,0 +1,8 @@
+//Supporting prefixed flexbox directives gets us the large majority of browsers,
+//but the flex{,box} naming is a hassle, so...
+//Use where you might use display: flex (iow, in a flex container) like this:
+//  +poly-flexbox( ( flex-direction: row, flex-flow: row) )
+// (or @include poly-flexbox( ... ) if you prefer
+=poly-flexbox( $properties )
+  +flexbox( map-merge( ( display: flexbox ), $properties ), $version: 2)
+  +flexbox( map-merge( ( display: flex), $properties ))

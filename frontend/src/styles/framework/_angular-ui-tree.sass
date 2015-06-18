@@ -8,7 +8,9 @@
     @include sassy-button-style("inset", $darker-color)
 
 
-
+// Note that there are lots of hardcoded colors in this file.
+// If it's ever used in a public facing way, or a client wants the admin trees fixed,
+// we should extract the values to constants and backport the change
 @mixin angular-ui-tree-menu-defaults
   .menu
     margin: 0 2em
@@ -115,5 +117,3 @@
     pointer-events: none
     z-index: 999
     opacity: .8
-
-
