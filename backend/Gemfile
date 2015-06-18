@@ -1,8 +1,9 @@
 source "https://rubygems.org"
 
-gem 'rails', "~> 4.2.0"
+gem 'rails', "~> 4.2.1"
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'xing-backend', '= 0.0.12'
 gem 'pg'
 gem 'devise'
 gem 'awesome_nested_set'
@@ -13,7 +14,7 @@ gem "babosa"
 gem 'active_model_serializers'
 gem 'rails-observers'
 gem 'cancancan'
-gem 'devise_token_auth', :github => 'lrdesign/devise_token_auth'
+gem 'xing_backend_token_auth', '~> 0.1.31'
 gem 'bibliotech'
 gem 'rails-rfc6570', '~> 0.1'
 gem 'rack-cors', :require => 'rack/cors'

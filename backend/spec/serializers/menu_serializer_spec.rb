@@ -30,7 +30,7 @@ describe MenuSerializer, :type => :serializer do
   end
 
   let :json_tree_lister do
-    double(JsonTreeLister)
+    double(Xing::Services::JsonTreeLister)
   end
 
   let :menu_item_list do
@@ -44,7 +44,8 @@ describe MenuSerializer, :type => :serializer do
   end
 
   before do
-    expect(JsonTreeLister).to receive(:new).with(menu_item_list, MenuNodeSerializer).and_return(json_tree_lister)
+    expect(Xing::Services::JsonTreeLister).to receive(:new)
+      .with(menu_item_list, MenuNodeSerializer).and_return(json_tree_lister)
     expect(json_tree_lister).to receive(:render).and_return(rendered_tree)
   end
 

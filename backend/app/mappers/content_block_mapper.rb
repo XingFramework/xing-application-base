@@ -1,4 +1,4 @@
-class ContentBlockMapper < HypermediaJSONMapper
+class ContentBlockMapper < Xing::Mappers::Base
   alias content_block record
   alias content_block= record=
   attr_accessor :block_name

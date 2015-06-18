@@ -1,3 +1,3 @@
-class ApplicationController < BaseController
+class ApplicationController < Xing::Controllers::Base
 
 end

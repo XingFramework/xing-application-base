@@ -1,4 +1,4 @@
-class MenuMapper < HypermediaJSONMapper
+class MenuMapper < Xing::Mappers::Base
   alias menu_root record
   alias menu_root= record=
 

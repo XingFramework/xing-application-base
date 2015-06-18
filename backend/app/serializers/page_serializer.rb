@@ -1,4 +1,4 @@
-class PageSerializer < BaseSerializer
+class PageSerializer < Xing::Serializers::Base
   attributes :title, :keywords, :description, :layout, :contents
 
   def contents

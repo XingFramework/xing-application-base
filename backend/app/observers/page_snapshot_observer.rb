@@ -21,7 +21,7 @@ class PageSnapshotObserver < ActiveRecord::Observer
       else
         path = page_frontend_url(page.url_slug)
       end
-      RemoteSnapshotFetcher.perform_async(self.domain, path)
+      Xing::Services::SnapshotFetcher.perform_async(self.domain, path)
     end
   end
 end
