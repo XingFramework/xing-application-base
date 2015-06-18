@@ -3,8 +3,7 @@ source "https://rubygems.org"
 gem 'rails', "~> 4.2.1"
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'
-#gem 'xing-backend', '= 0.0.10'
-gem 'xing-backend', :path => '../../../gems/xing-backend'
+gem 'xing-backend', '= 0.0.11'
 gem 'pg'
 gem 'devise'
 gem 'awesome_nested_set'
