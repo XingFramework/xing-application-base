@@ -293,7 +293,7 @@ DEPENDENCIES
   pivotal-github
   populator
   rack-cors
-  rails (~> 4.2.0)
+  rails (~> 4.2.1)
   rails-observers
   rails-rfc6570 (~> 0.1)
   rmagick
