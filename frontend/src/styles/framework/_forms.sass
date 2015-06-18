@@ -12,7 +12,7 @@ $acts_as_input_types: 'input, select, textarea, button, .option-group, .input-li
     //
     //vertical-align: baseline
     //box-sizing: border-box
-    
+
 @mixin lrd-form-mobile-layout-defaults
   // Mobile-first.  Small screen values
   > label
@@ -27,7 +27,7 @@ $acts_as_input_types: 'input, select, textarea, button, .option-group, .input-li
     @include isolation-span(10, 2, 'both')
     text-align: right
 
-@mixin lrd-form-small-layout-defaults    
+@mixin lrd-form-small-layout-defaults
   @include breakpoint($small)
     > label
       text-align: right
@@ -108,6 +108,7 @@ $acts_as_input_types: 'input, select, textarea, button, .option-group, .input-li
 
 @mixin lrd-form-defaults
   .lrd-form-row
+    clear: both
     margin: 0.5em 0
     @include clearfix
     @include lrd-form-base-layout-defaults
@@ -121,11 +122,21 @@ $acts_as_input_types: 'input, select, textarea, button, .option-group, .input-li
 
   .button
     @include lrd-button-style-defaults
-    
+
+legend
+  text-align: center
+  font-size: 200%
+  color: $text_highlight_color
+  line-height: 1.2em
+  margin: 0.5em
+  @include isolation-span(10, 2, 'both')
+
+// Mobile-first.  Small screen values
+@include breakpoint($small)
+  legend
+    @include isolation-span(5, 4)
 
 
-
-
-
-
-
+@include breakpoint($medium)
+  legend
+    @include isolation-span(3, 4)
