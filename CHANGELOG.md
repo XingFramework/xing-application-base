@@ -1,3 +1,9 @@
+UNTAGGED
+========
+  * Update Rails to 4.2.2 and Rack to 1.6.4
+  * Fix bug with latest chromedriver and mobile browser size in E2E tests
+  * (TODO!) Fix sidekiq ... again
+
 0.0.12 / 2015-06-18 
 ===================
   * Update to match version of xing-backend gem that includes paginated list resources.
