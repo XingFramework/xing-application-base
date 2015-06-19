@@ -1,22 +1,26 @@
 require 'spec_helper'
 
 describe "pages#update", :type => :request do
-  let :main     do FactoryGirl.create(:content_block) end
-  let :headline do FactoryGirl.create(:content_block, :body => 'the content') end
-  let :styles   do FactoryGirl.create(:content_block, :content_type => 'text/css', :body => "h1 { text-align: center; }") end
-
   let! :page do
-    FactoryGirl.create(:one_column_page,
-      :title => "One Column Page Title",
-      :page_contents => [  PageContent.new(:name => 'main', :content_block => main),
-                           PageContent.new(:name => 'headline', :content_block => headline),
-                           PageContent.new(:name => 'styles', :content_block => styles)]
-    )
-    #.tap do |pg|
-      #expect(pg.contents['styles']['body']).to eq('h1 { text-align: center; }')
-    #end
+    FactoryGirl.create(:one_column_page, :title => "One Column Page Title")
   end
 
+  let :main do
+    page.contents['main']
+  end
+
+  let :headline do
+    page.contents['headline']
+  end
+
+  let :styles do
+    page.contents['styles']
+  end
+
+  # XXX this was created near the beginning of the Xing project
+  # The meaning of this PUT *should* be "this is the new page"
+  # To send a request to only change the body of one content block, we'd need
+  # PATCH
   let :json_body do
     {
       data: {

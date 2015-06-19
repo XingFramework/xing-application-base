@@ -312,4 +312,4 @@ DEPENDENCIES
   xing_backend_token_auth (~> 0.1.31)
 
 BUNDLED WITH
-   1.10.3
+   1.10.4
