@@ -1,8 +1,9 @@
-UNTAGGED
+0.0.13 / 2015-06-19
 ========
   * Update Rails to 4.2.2 and Rack to 1.6.4
   * Fix bug with latest chromedriver and mobile browser size in E2E tests
-  * (TODO!) Fix sidekiq ... again
+  * xing-backend 0.0.13 includes list serializers
+  * Fix sidekiq ... again
 
 0.0.12 / 2015-06-18 
 ===================

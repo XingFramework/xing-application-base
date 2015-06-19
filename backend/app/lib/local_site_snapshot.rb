@@ -1,9 +1,9 @@
 require 'selenium-webdriver'
 require 'site_snapshot'
-require 'snapshot_writer'
+require 'xing/services/snapshot_writer'
 
 class LocalSiteSnapshot < SiteSnapshot
-  include SnapshotWriter
+  include Xing::Services::SnapshotWriter
 
   def initialize(url)
     super(url)
