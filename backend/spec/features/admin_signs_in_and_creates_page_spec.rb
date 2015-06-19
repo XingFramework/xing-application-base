@@ -10,8 +10,12 @@ steps "User Signs In and Creates a new Page", :js => true, :vcr => {} do
     FactoryGirl.create(:one_column_page)
   end
 
-  it "should sign in" do
-    sign_in_with(user.email, user.password)
+  perform_steps "visit login"
+
+  it "should sign in" do |example|
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => user.password
+    click_button "Sign In"
   end
 
   it "should click edit pages" do
