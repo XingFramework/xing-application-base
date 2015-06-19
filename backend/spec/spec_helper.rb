@@ -21,11 +21,16 @@ TEST_IMAGE = File.join(Rails.root, '/spec/fixtures/test_image.png')
 RSpec.configure do |config|
   config.mock_with :rspec
 
-  config.include Features::SessionHelpers, type: :feature
-
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.waterpig_log_browser_console = true
+
+  config.waterpig_browser_sizes = {
+    :mobile  => { :width => 348, :height => 480 },
+    :small   => { :width => 550, :height => 700 },
+    :medium  => { :width => 800, :height => 900 },
+    :desktop => { :width => 1024, :height => 1024 }
+  }
 
   DatabaseCleaner.strategy = :transaction
 
