@@ -1,3 +1,7 @@
+UNTAGGED
+========
+  * Modify traceur-es6 task to handle files in batches, to avoid crashes due to too many files open simultaneously.
+
 0.0.13 / 2015-06-19
 ========
   * Update Rails to 4.2.2 and Rack to 1.6.4
