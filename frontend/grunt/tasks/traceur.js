@@ -62,7 +62,12 @@ function gruntTask(grunt) {
 
   function logCompileErrors(f) {
     return function(err){
-      var errors = err.errors || [err];
+      var errors;
+      if (Array.isArray(err)) {
+        errors = err;
+      } else {
+        errors = err.errors || [err];
+      }
       grunt.log.writeln("error while transpiling: " + chalk.red(f.dest + " <- " + f.src.join(" ")));
       errors.forEach(function(err) {
         grunt.log.error(err.stack || err);
@@ -112,13 +117,14 @@ function gruntTask(grunt) {
     commandOptions = traceurCompiler.buildOptions(options.traceurOptions);
 
     if (options.srcDir && options.destDir) {
+      var f = { src: [options.srcDir], dest: options.destDir };
       return makeDone( traceurCompiler.compileAllJsFilesInDir(options.srcDir, options.destDir, commandOptions).then(function(pairs){
         pairs.forEach(function(pair){
           grunt.verbose.writeln("  transpiled: " + chalk.green(pair.in + " <- " + pair.out));
         });
         grunt.log.writeln(chalk.green("Transpiled " + pairs.length + " files"));
         return pairs;
-      }), done );
+      }, logCompileErrors(f)), done );
     } else {
       return makeDone(Promise.all(this.files.map(function (f) {
         var promise = compileSingleFile(f, commandOptions);

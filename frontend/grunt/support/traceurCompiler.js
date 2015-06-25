@@ -22,26 +22,42 @@ function compileAllJsFilesInDir(inputDir, outputDir, options) {
     //adapted from:
     //compiler.compileSingleFile(inputFilePath, outputFilePath, function(err) {
     var compiler = new traceurAPI.NodeCompiler(options);
-    return Promise.all(files.map(function(inputFilePath){
-      var outputFilePath = inputFilePath.replace(inputDir, outputDir);
-      inputFilePath = compiler.normalize(inputFilePath);
-      outputFilePath = compiler.normalize(outputFilePath);
 
-      return new Promise(function(resolve, reject) {
+    // to prevent a "too many open files" error, we must do this sequentially in batches of 100
+    var size = 100;
+    return new Promise(function(overResolve, overReject) {
+      function nextBatch(pairs) {
+        if (files.length > 0) {
+          newFiles = files.splice(0, size);
+          return Promise.all(newFiles.map(function(inputFilePath){
+            var outputFilePath = inputFilePath.replace(inputDir, outputDir);
+            inputFilePath = compiler.normalize(inputFilePath);
+            outputFilePath = compiler.normalize(outputFilePath);
 
-        fs.readFile(inputFilePath, function(err, contents) {
-          if (err) {
-            reject(Error(err));
-          } else {
-            resolve(contents);
-          }
-        }.bind(this));
-      })
-      .then(function(contents){      return compiler.parse(contents.toString(), inputFilePath); })
-      .then(function(parsed){        return compiler.transform(parsed, inputFilePath) })
-      .then(function(transformed){   return compiler.writeTreeToFile(transformed, outputFilePath); })
-      .then(function(written){       return {in: inputFilePath, out: outputFilePath}; });
-    }));
+            return new Promise(function(resolve, reject) {
+
+              fs.readFile(inputFilePath, function(err, contents) {
+                if (err) {
+                  reject(Error(err));
+                } else {
+                  resolve(contents);
+                }
+              }.bind(this));
+            })
+            .then(function(contents){      return compiler.parse(contents.toString(), inputFilePath); })
+            .then(function(parsed){        return compiler.transform(parsed, inputFilePath) })
+            .then(function(transformed){   return compiler.writeTreeToFile(transformed, outputFilePath); })
+            .then(function(written){       return {in: inputFilePath, out: outputFilePath}; })
+          })).then(function(results) { return nextBatch(pairs.concat(results)); },
+            function(error) {
+              overReject(error);
+            });
+        } else {
+          return overResolve(pairs);
+        }
+      }
+      nextBatch([]);
+    });
   });
 }
 
