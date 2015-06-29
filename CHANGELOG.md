@@ -1,6 +1,15 @@
-UNTAGGED
+0.0.16 2-15-06-29
+========
+  * Update xing-backend to 0.0.16
+
+0.0.15 2-15-06-29
+========
+  * Update xing-backend to 0.0.15
+
+0.0.14 2-15-06-29
 ========
   * Modify traceur-es6 task to handle files in batches, to avoid crashes due to too many files open simultaneously.
+  * Update xing-backend to 0.0.14
 
 0.0.13 / 2015-06-19
 ========
@@ -9,21 +18,21 @@ UNTAGGED
   * xing-backend 0.0.13 includes list serializers
   * Fix sidekiq ... again
 
-0.0.12 / 2015-06-18 
+0.0.12 / 2015-06-18
 ===================
   * Update to match version of xing-backend gem that includes paginated list resources.
 
-0.0.11 / 2015-06-18 
+0.0.11 / 2015-06-18
 ===================
-  * BREAKING: references to old JsonController and BaseController MUST be replaced by 
+  * BREAKING: references to old JsonController and BaseController MUST be replaced by
     Xing::Controllers::Base.  Deprecation warnings will NOT be emitted.
 
   * BREAKING: references to ResourcesController MUST be replaced by Xing::Controllers::RootResourcesController.
     Deprecation warnings will NOT be emitted.
-    
+
   * Update to Rails 4.2 in backend
   * Set depenency for mappers/serializers/controllers to extracted xing-backend gem
-  * Set dependecy for token authn to xing_backend_token_auth gem (replacing the a git fork 
+  * Set dependecy for token authn to xing_backend_token_auth gem (replacing the a git fork
     of devise_token_auth)
   * Sass updates, including making flexbox available
   * Replace all constants deprecated by the new xing-backend gem
@@ -35,7 +44,7 @@ UNTAGGED
   * Extract back-end framework code to backend/framework
   * Fixes to saving/displaying per-page CSS in CMS pages
   * Fixes to styling of inline <i> and <b> tags in CMS pages
-  * Update to A1Atscript 0.2.0 
+  * Update to A1Atscript 0.2.0
 
 0.0.7 / 2015-03-18
 ==================
