@@ -1,4 +1,4 @@
-import Inflector from './inflector.js';
+import Inflector from 'xing-inflector';
 import {Module, Factory, Provider} from 'a1atscript'
 
 @Provider('Serializer')

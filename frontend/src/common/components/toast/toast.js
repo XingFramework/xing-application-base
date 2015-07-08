@@ -2,7 +2,7 @@ import {appName} from 'config';
 import {Factory, Controller, Directive, Module} from 'a1atscript';
 import {} from './swipe.js';
 import {} from './interimElement.js';
-import Inflector from 'framework/inflector.js';
+import Inflector from 'xing-inflector';
 
 /* This is cribbed from the lrd design toast */
 

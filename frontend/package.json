@@ -47,6 +47,9 @@
     "karma-traceur-preprocessor": "^0.3.1",
     "load-grunt-config": "^0.16.0",
     "requirejs": "^2.1.15",
-    "xing-traceur": "0.0.3"
+    "xing-traceur": "0.0.3",
+    "a1atscript": "^0.4.3",
+    "relayer": "0.0.1-beta2",
+    "xing-inflector": "0.0.2"
   }
 }
