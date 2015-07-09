@@ -89,29 +89,29 @@ module.exports = {
    */
   vendor_files: {
     js: [
-      'vendor/jquery/jquery.js',
-      'vendor/lodash/lodash.js',
-      'vendor/angular/angular.js',
-      'vendor/angular-cookies/angular-cookies.js',
-      'vendor/angular-fontawesome/angular-fontawesome.js',
-      'vendor/FroalaWysiwygEditor/froala_editor.min.js',
-      'vendor/FroalaWysiwygEditor/media_manager.min.js',
-      'vendor/FroalaWysiwygEditor/file_upload.min.js',
-      'vendor/angular-froala/angular-froala.js',
-      'vendor/angular-ui-router/angular-ui-router.js',
-      'vendor/angular-ui-tree/angular-ui-tree.js',
-      'vendor/ng-token-auth/ng-token-auth.js',
-      'vendor/responsive-nav/responsive-nav.js',
-      'vendor/restangular/restangular.js',
-      'vendor/hammerjs/hammerjs.js',
-      'vendor/uri-templates/uri-templates.js'
+      'node_modules/jquery/dist/jquery.js',
+      'node_modules/lodash/dist/lodash.js',
+      'node_modules/angular/angular.js',
+      'node_modules/angular-cookies/angular-cookies.js',
+      'node_modules/angular-fontawesome/dist/angular-fontawesome.js',
+      'node_modules/froala-editor/js/froala_editor.min.js',
+      'node_modules/froala-editor/js/plugins/media_manager.min.js',
+      'node_modules/froala-editor/js/plugins/file_upload.min.js',
+      'bower_components/angular-froala/src/angular-froala.js',
+      'node_modules/angular-ui-router/release/angular-ui-router.js',
+      'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
+      'bower_components/ng-token-auth/dist/ng-token-auth.js',
+      'node_modules/responsive-nav/responsive-nav.js',
+      'node_modules/restangular/dist/restangular.js',
+      'node_modules/hammerjs/hammer.js',
+      'node_modules/uri-templates/uri-templates.js'
     ],
     css: [
-      'vendor/FroalaWysiwygEditor/froala_editor.min.css',
-      'vendor/FroalaWysiwygEditor/font-awesome.min.css'
+      'node_modules/froala-editor/css/froala_editor.min.css',
+      'node_modules/froala-editor/css/font-awesome.min.css'
     ],
     assets: [
-      'vendor/FroalaWysiwygEditor/fontawesome-webfont.*'
+      'node_modules/froala-editor/fonts/fontawesome-webfont.*'
     ]
   },
 };

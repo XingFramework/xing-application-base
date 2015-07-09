@@ -17,7 +17,7 @@ module.exports = function(grunt) {
   grunt.registerTask( 'default', [ 'compile' ] );
 
   grunt.registerTask( 'build', [
-    'clean:build', 'bower:install',
+    'clean:build',
     'html2js', //'jshint:target',
     'compass:build',
     'concat_sourcemap:compile_vendor_js',

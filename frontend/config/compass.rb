@@ -9,8 +9,9 @@ images_dir = "images"
 javascripts_dir = "javascripts"
 sourcemap = true
 
-add_import_path "vendor"
 add_import_path "src/styles/"
+add_import_path "node_modules"
+add_import_path "bower_components"
 
 # You can select your preferred output style here (can be overridden via the
 # command line):

@@ -19,7 +19,7 @@ module.exports = function ( config ) {
     files: [
       'bin/assets/vendor.js',
       'bin/assets/traceur-runtime.js',
-      'vendor/angular-mocks/angular-mocks.js',
+      'node_modules/angular-mocks/angular-mocks.js',
       'build/test/test-main.js',
     ],
     exclude: [
