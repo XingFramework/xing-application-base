@@ -65,6 +65,6 @@
     "singularitygs": "> 0",
     "uri-templates": "~0.1.5",
     "xing-inflector": "0.0.2",
-    "xing-traceur": "0.0.3"
+    "xing-traceur": "0.0.7"
   }
 }
