@@ -1,3 +1,9 @@
+UNTAGGED
+  * extraction of the xing-traceur task
+  * extraction of the xing-inflector
+  * And the relayer library (not actually used here though -- just available as importable file)
+  * Converted most bower files to node_modules, removed from repository
+
 0.0.16 2-15-06-29
 ========
   * Update xing-backend to 0.0.16
@@ -8,10 +14,6 @@
 
 0.0.14 2-15-06-29
 ========
-  * extraction of the xing-traceur task
-  * extraction of the xing-inflector
-  * And the relayer library (not actually used here though -- just available as importable file)
-  * Converted most bower files to node_modules, removed from repository
   * Modify traceur-es6 task to handle files in batches, to avoid crashes due to too many files open simultaneously.
   * Update xing-backend to 0.0.14
 
