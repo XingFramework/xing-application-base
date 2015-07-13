@@ -50,7 +50,7 @@ module.exports = function(grunt) {
     vendor_fonts: {
       files: [ {
         expand: true,
-        src: ["vendor/**/*.eot", "vendor/**/*.ttf", "vendor/**/*.woff", "vendor/**/fontawesome-webfont.svg"],
+        src: ["node_modules/froala-editor/**/*.eot", "node_modules/froala-editor/**/*.ttf", "node_modules/froala-editor/**/*.woff", "node_modules/froala-editor/**/fontawesome-webfont.svg"],
         flatten: true,
         dest: "bin/fonts"
       }]
