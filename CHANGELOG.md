@@ -1,4 +1,5 @@
-UNTAGGED
+0.0.17 2-15-06-29
+========
   * extraction of the xing-traceur task
   * extraction of the xing-inflector
   * And the relayer library (not actually used here though -- just available as importable file)
