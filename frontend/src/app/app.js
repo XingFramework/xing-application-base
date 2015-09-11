@@ -4,6 +4,7 @@ import {} from 'build/templates-common.js';
 import StateAttrs from 'framework/stateAttrs.js';
 import Backend from 'backend/backend.js';
 import UIRouteLogger from "framework/ui-route-logger.js";
+import StateFallback from 'framework/stateFallback/stateFallback.js';
 
 import { Module, Injector } from "a1atscript";
 
