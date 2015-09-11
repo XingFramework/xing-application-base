@@ -14,6 +14,7 @@ import ResponsiveMenu from 'components/responsiveMenu/responsiveMenu.js';
 import SessionLinks from 'components/sessionLinks/sessionLinks.js';
 import Metadata from 'components/metadata/metadata.js';
 
+import Fallback from './fallback/fallback.js'
 import Admin from './admin/admin.js';
 import Auth from './auth/auth.js';
 import Pages from './pages/pages.js';
@@ -29,9 +30,11 @@ var app = new Module(appName, [
   'picardy.fontawesome',
   StateAttrs,
   UIRouteLogger,
+  StateFallback,
   Menus,
   Homepage,
   Auth,
+  Fallback,
   Admin,
   ResponsiveMenu,
   Metadata,
