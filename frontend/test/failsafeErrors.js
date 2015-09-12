@@ -18,7 +18,7 @@ describe("FailsafeErrors", () => {
   });
 
 
-  ddescribe('nearly triggered', function() {
+  describe('nearly triggered', function() {
     beforeEach(function() {
       for(let i = 0; i < errors.errorLimit - 1; i++) {
         errors.transitionError(root, failOne);
