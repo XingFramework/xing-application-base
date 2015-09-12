@@ -6,3 +6,11 @@
 =poly-flexbox( $properties )
   +flexbox( map-merge( ( display: flexbox ), $properties ), $version: 2)
   +flexbox( map-merge( ( display: flex), $properties ))
+
+@mixin flexbox-absolute-center
+  +poly-flexbox( (flex-direction: column, justify-content: center, align-items: center) )
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
