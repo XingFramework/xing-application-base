@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 
     traceur_runtime: {
       files: {
-        "bin/assets/traceur-runtime.js": "./node_modules/traceur/bin/traceur-runtime.js",
+        "bin/assets/traceur-runtime.js": "./node_modules/xing-traceur/node_modules/traceur/bin/traceur-runtime.js",
       }
     },
 
