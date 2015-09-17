@@ -1,3 +1,3 @@
 $:.unshift(".")
 require 'lib/static-app'
-run LrdCms2::StaticApp.build("../frontend/bin", ENV['LRD_BACKEND_PORT'])
+run APP_MODULE::StaticApp.build("../frontend/bin", ENV['LRD_BACKEND_PORT'])

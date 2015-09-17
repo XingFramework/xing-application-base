@@ -1,3 +1,8 @@
+ACCUMULATING UNRELEASED CHANGES
+========
+  * Use APP_MODULE consistently in backend, eliminate references to LrdCms and LrdCms2 modules.
+  * Use $appName consistently in frontend, eliminate literals & references to LRD-CMS2 in code
+
 0.0.18  / 2015-09-27
 ========
   * Add error fallback condition to break infinite state redirect loops, with default error page

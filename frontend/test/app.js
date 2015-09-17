@@ -1,10 +1,11 @@
 import '../src/app/app.js';
+import {appName} from 'config';
 
 describe( 'RootCtrl', function() {
   describe( 'isCurrentUrl', function() {
     var RootCtrl, $location, $scope, mockMain;
 
-    beforeEach( module( 'LRD-CMS2' ) );
+    beforeEach( module( `${appName}` ) );
 
     beforeEach( inject( function( $controller, _$location_, $rootScope ) {
       $location = _$location_;
