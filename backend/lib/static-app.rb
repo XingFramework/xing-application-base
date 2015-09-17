@@ -1,4 +1,4 @@
-module LrdCms2
+module APP_MODULE
   class BackendUrlCookie
     def initialize(app, backend_url)
       @backend_url = backend_url
