@@ -5,7 +5,7 @@ describe( 'RootCtrl', function() {
   describe( 'isCurrentUrl', function() {
     var RootCtrl, $location, $scope, mockMain;
 
-    beforeEach( module( `${appName}` ) );
+    beforeEach( module( appName ) );
 
     beforeEach( inject( function( $controller, _$location_, $rootScope ) {
       $location = _$location_;
