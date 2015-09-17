@@ -1,19 +1,24 @@
-0.0.17 2-15-06-29
+0.0.18  / 2015-09-27
+========
+  * Add error fallback condition to break infinite state redirect loops, with default error page
+  * Update angular 1.3.x to 1.4.15, and Relayer to 0.0.9
+
+0.0.17 / 2015-06-29
 ========
   * extraction of the xing-traceur task
   * extraction of the xing-inflector
   * And the relayer library (not actually used here though -- just available as importable file)
   * Converted most bower files to node_modules, removed from repository
 
-0.0.16 2-15-06-29
+0.0.16 / 2015-06-29
 ========
   * Update xing-backend to 0.0.16
 
-0.0.15 2-15-06-29
+0.0.15 / 2015-06-29
 ========
   * Update xing-backend to 0.0.15
 
-0.0.14 2-15-06-29
+0.0.14 / 2015-06-29
 ========
   * Modify traceur-es6 task to handle files in batches, to avoid crashes due to too many files open simultaneously.
   * Update xing-backend to 0.0.14
