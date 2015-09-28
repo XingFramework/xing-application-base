@@ -1,4 +1,5 @@
-import {State, Resolve, AdminOnlyState} from 'stateInjector';
+import {State, Resolve} from 'stateInjector';
+import {AdminOnlyState} from 'stateClasses';
 
 @State('root.admin')
 export class AdminState extends AdminOnlyState {
