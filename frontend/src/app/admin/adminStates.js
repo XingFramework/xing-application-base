@@ -5,7 +5,7 @@ import {AdminOnlyState} from 'stateClasses';
 export class AdminState extends AdminOnlyState {
   constructor() {
     super();
-    this.url = 'admin/';
+    this.url = 'admin';
     this.templateUrl = 'admin/admin.tpl.html';
   }
 }
@@ -13,7 +13,7 @@ export class AdminState extends AdminOnlyState {
 @State('root.admin.pages')
 export class AdminPagesState {
   constructor() {
-    this.url = 'pages';
+    this.url = '/pages';
     this.controller = 'AdminPagesCtrl';
     this.templateUrl = 'admin/pages.tpl.html';
   }
@@ -27,7 +27,7 @@ export class AdminPagesState {
 @State( 'root.admin.menus')
 export class AdminMenusState {
   constructor() {
-    this.url ='menus';
+    this.url ='/menus';
     this.controller = 'AdminMenusCtrl';
     this.templateUrl = 'admin/menus.tpl.html';
   }
@@ -41,7 +41,7 @@ export class AdminMenusState {
 @State( 'root.admin.documents')
 export class AdminDocumentsState {
   constructor() {
-    this.url = 'documents';
+    this.url = '/documents';
     this.controller = 'AdminDocumentsCtrl';
     this.templateUrl = 'admin/documents.tpl.html';
   }
@@ -50,7 +50,7 @@ export class AdminDocumentsState {
 @State('root.admin.images')
 export class AdminImagesState {
   constructor() {
-    this.url = 'images';
+    this.url = '/images';
     this.controller = 'AdminImagesCtrl';
     this.templateUrl = 'admin/images.tpl.html';
   }

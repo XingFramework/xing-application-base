@@ -1,22 +1,22 @@
 import {} from '../../src/app/admin/adminControllers.js';
 import {appName} from 'config';
+import {AdminMenusCtrl} from "../../src/app/admin/adminControllers.js";
 
 describe('Admin Controllers', function() {
+  var controller, $scope, $state, stateSpy, menuList;
+  beforeEach(function() {
+    $state = {
+      go() {}
+    };
+    stateSpy = spyOn($state, "go");
+  });
+
   describe('AdminMenusCtrl', function() {
-    var $scope, $state, menuList;
-
     beforeEach(function() {
-      module(`${appName}.admin`);
-
       $scope = {};
-      $state = jasmine.createSpyObj('$state', ["go", "get"]);
-      $state.get.and.returnValue([]);
       menuList = { menus: ["Some", "Menus"] };
 
-      inject(function($controller){
-        /* jshint -W075 */
-        $controller('AdminMenusCtrl', { $scope, $state, menuList });
-      });
+      controller = new AdminMenusCtrl($scope, $state, menuList);
     });
 
     it('should set up the scope', function() {
@@ -25,9 +25,7 @@ describe('Admin Controllers', function() {
 
     it('should set up the newMenu action', function() {
       $scope.newMenu();
-      expect($state.go).toHaveBeenCalledWith('^.menu.new');
+      expect(stateSpy).toHaveBeenCalledWith('^.menu.new');
     });
-
   });
-
 });
