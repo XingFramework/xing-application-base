@@ -24,7 +24,15 @@ steps "User Signs Up", :js => true, :vcr => {} do
     User.last.confirm
   end
 
-  perform_steps "sign in with"
+  it "should go to sign in" do
+    first(:link, "Sign In").click
+  end
+
+  it "should log in" do
+    fill_in "Email", :with => @user.email
+    fill_in "Password", :with => @user.password
+    click_button "Sign In"
+  end
 
   it "should have sign out" do
     expect(page).to have_content("Sign Out")
