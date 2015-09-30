@@ -5,15 +5,13 @@ describe( 'Passwords controllers', function() {
 
   beforeEach( module( `${appName}.auth.passwords` ) );
 
-  var $scope, $stateMock, $authMock, $toastMock, mockSerializer;
+  var $scope, $stateMock, $authMock, $toastMock, mockSerializer, mockLocation;
 
   beforeEach(inject(function($q) {
     $toastMock = {};
     $toastMock.errorList = jasmine.createSpy('errorList');
 
-    $stateMock = {
-      go(state){}
-    };
+    $stateMock = jasmine.createSpyObj('$state', ["go", "href"]);
 
     mockSerializer = function() {
       this.serialize = function(data) {
@@ -21,8 +19,10 @@ describe( 'Passwords controllers', function() {
       };
     };
 
-    spyOn($stateMock, 'go').and.callThrough();
-
+    // Lest anyone see this and think to imitate: don't.
+    // What should be happening is that we check that the authMock receives
+    // calls to requestPasswordReset with certain arguments, possibly returning
+    // certain values - *not* building a little mini $auth service in the test.
     $authMock = {
       requestPasswordReset(password_request) {
         if (password_request.user.email) {
@@ -57,20 +57,23 @@ describe( 'Passwords controllers', function() {
       }
     };
 
+    // And just to be clear "and.callThrough()" is the code smell here.
     spyOn($authMock, 'requestPasswordReset').and.callThrough();
     spyOn($authMock, 'updatePassword').and.callThrough();
-
   }));
 
   describe("Passwords Request Controller", function() {
+    var theUpdateUrl;
 
     beforeEach( inject(function($controller, $rootScope) {
+      theUpdateUrl = "the://update.url/for_passwords";
       $scope = $rootScope.$new();
       $controller('PasswordsRequestCtrl', {
         $scope: $scope,
         $state: $stateMock,
         $auth: $authMock,
         $lrdToast: $toastMock,
+        $location: mockLocation,
         Serializer: mockSerializer
       });
       $scope.$apply();
@@ -84,6 +87,7 @@ describe( 'Passwords controllers', function() {
     describe("passwordRequestSubmit", function() {
       describe("with valid request", function() {
         beforeEach(function() {
+          $stateMock.href.and.returnValue(theUpdateUrl);
           $scope.passwordRequest = { email: "bob@bob.com" };
           $scope.passwordRequestSubmit();
           $scope.$apply();
@@ -91,12 +95,12 @@ describe( 'Passwords controllers', function() {
 
         it ("should call the auth service", function() {
           expect($authMock.requestPasswordReset).toHaveBeenCalled();
+          expect($authMock.requestPasswordReset.calls.mostRecent().args[0].update_url).toEqual(theUpdateUrl);
         });
 
         it ("should redirect to the password request success page", function() {
           expect($stateMock.go).toHaveBeenCalledWith("root.inner.passwordsRequestSuccess");
         });
-
       });
 
       describe("with invalid request", function() {
@@ -118,15 +122,21 @@ describe( 'Passwords controllers', function() {
   });
 
   describe("Passwords Update Controller", function() {
+    var theToken;
 
     beforeEach( inject(function($controller, $rootScope) {
+      theToken = "someCryptoThingOrWhat";
+      mockLocation = jasmine.createSpyObj('$location', ['search']);
+      mockLocation.search.and.returnValue({token: theToken});
+
       $scope = $rootScope.$new();
       $controller('PasswordsUpdateCtrl', {
         $scope: $scope,
         $state: $stateMock,
         $auth: $authMock,
         $lrdToast: $toastMock,
-        Serializer: mockSerializer
+        Serializer: mockSerializer,
+        $location: mockLocation
       });
       $scope.$apply();
     }));
@@ -151,12 +161,12 @@ describe( 'Passwords controllers', function() {
 
         it ("should call the auth service", function() {
           expect($authMock.updatePassword).toHaveBeenCalled();
+          expect($authMock.updatePassword.calls.mostRecent().args[0].token).toEqual(theToken);
         });
 
         it ("should redirect to the passwords update success page", function() {
           expect($stateMock.go).toHaveBeenCalledWith("root.inner.passwordsUpdateSuccess");
         });
-
       });
 
       describe("with invalid request", function() {
