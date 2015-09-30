@@ -1,3 +1,5 @@
+require 'pp'
+
 module APP_MODULE
   class BackendUrlCookie
     def initialize(app, backend_url)
@@ -21,6 +23,10 @@ module APP_MODULE
       status, headers, body = @app.call(env)
       default = [ status, headers, body ]
       request_path = env["SCRIPT_NAME"] + env["PATH_INFO"]
+      if env["QUERY_STRING"]
+        request_path += "&#{env["QUERY_STRING"]}"
+      end
+
       redirect = [ 301, headers.merge("Location" => "/?goto=#{request_path}", "Content-Length" => "0"), [] ]
 
       return default unless status == 404
@@ -29,6 +35,8 @@ module APP_MODULE
       return default if /goto=/ =~ env["QUERY_STRING"]
 
       return redirect
+    rescue => ex
+      pp ex
     end
   end
 
