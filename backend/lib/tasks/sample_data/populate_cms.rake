@@ -65,13 +65,11 @@ namespace :db do
     end
 
     def menu_item_for_page(name, parent)
-      item = MenuItem.create(:name => name, :page => Page.where(:title => name).first, :parent => parent)
-      item
+      MenuItem.create(:name => name, :page => Page.where(:title => name).first, :parent => parent)
     end
 
     def menu_item_for_url(name, parent, url)
-      item = MenuItem.create(:name => name, :path => url, :parent => parent)
-      item
+      MenuItem.create(:name => name, :path => url, :parent => parent)
     end
 
     def create_two_column_page(options = {})
