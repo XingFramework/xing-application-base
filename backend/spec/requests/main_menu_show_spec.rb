@@ -70,8 +70,7 @@ describe "menus#index", :type => :request do
       expect(response.body).to have_json_path("data")
 
       expect(response.body).to have_json_path("data/0/data/name")
-      expect(response.body).to have_json_path("data/1/data/name")
-      expect(JSON.parse(response.body)['data'].length).to eq(2)
+      expect(JSON.parse(response.body)['data'].length).to eq(1)
     end
   end
 end
