@@ -5,20 +5,16 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-admin = User.where(:email => 'admin@lrdesign.com').first_or_create!(
-  :email_confirmation => 'admin@lrdesign.com',
-  :password => 'wxyz',
-  :password_confirmation => 'wxyz',
-  :uid => 'admin@lrdesign.com',
+admin = User.where(:email => 'admin@xingframework.com').first_or_create!(
+  :email_confirmation => 'admin@xingframework.com',
+  :password => 'password',
+  :password_confirmation => 'password',
+  :uid => 'admin@xingframework.com',
   :role_name => 'Admin')
 admin.confirm
 
 unless MenuItem.roots.where(:name => "Main Menu").exists?
   MenuItem.create!(:name => "Main Menu", :path => "#")
-end
-
-unless MenuItem.roots.where(:name => "Blog Topics").exists?
-  MenuItem.create!(:name => "Blog Topics")
 end
 
 unless Page::Homepage.get.try(:persisted?)
