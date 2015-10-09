@@ -5,6 +5,7 @@ ACCUMULATING UNRELEASED CHANGES
   * Create xng-unimplemented directive to mark visual features that are not yet built
   * Fix loading of FontAwesome icons
   * Make Froala editor toolbar show by default in CMS rich text editor
+  * Clean up and improve sample_data task and seeds.rb.
 
 0.0.18  / 2015-09-27
 ========
