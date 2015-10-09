@@ -6,6 +6,7 @@
   * Fix loading of FontAwesome icons
   * Make Froala editor toolbar show by default in CMS rich text editor
   * Clean up and improve sample_data task and seeds.rb.
+  * update relayer to 0.1.0
 
 0.0.18  / 2015-09-27
 ========
