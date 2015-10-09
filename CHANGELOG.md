@@ -3,6 +3,8 @@ ACCUMULATING UNRELEASED CHANGES
   * Use APP_MODULE consistently in backend, eliminate references to LrdCms and LrdCms2 modules.
   * Use $appName consistently in frontend, eliminate literals & references to LRD-CMS2 in code
   * Create xng-unimplemented directive to mark visual features that are not yet built
+  * Fix loading of FontAwesome icons
+  * Make Froala editor toolbar show by default in CMS rich text editor
   * Clean up and improve sample_data task and seeds.rb.
 
 0.0.18  / 2015-09-27
