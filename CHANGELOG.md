@@ -1,4 +1,4 @@
-ACCUMULATING UNRELEASED CHANGES
+0.0.19 / 2015-10-07
 ========
   * Use APP_MODULE consistently in backend, eliminate references to LrdCms and LrdCms2 modules.
   * Use $appName consistently in frontend, eliminate literals & references to LRD-CMS2 in code
