@@ -11,3 +11,6 @@ frontend/tmp/
 tmp/
 .vim-role
 .sass-cache/
+**/last_run
+**/*.log
+
