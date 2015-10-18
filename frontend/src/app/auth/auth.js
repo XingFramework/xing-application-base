@@ -21,9 +21,8 @@ function authSetup($authProvider, authConfigProvider) {
   var storageType = 'localStorage';
 
   try {
-    localStorage.setItem(mod, mod);
-    localStorage.removeItem(mod);
-    return true;
+    localStorage.setItem("mod", "mod");
+    localStorage.removeItem("mod");
   } catch(e) {
     storageType = 'cookies';
   }
