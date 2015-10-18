@@ -1,4 +1,5 @@
 module.exports = function( grunt ) {
+  require('xing-frontend-grunt')(grunt);
 
   /**
    * Load in our build configuration file.
