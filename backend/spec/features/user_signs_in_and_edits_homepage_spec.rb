@@ -23,7 +23,7 @@ shared_steps "edit homepage" do
   end
 end
 
-steps "views homepage to edit", :skip => "changes to auth.js localStorage makes visit '/' fail now" do
+steps "views homepage to edit" do
   perform_steps "Setup for homepage"
 
   perform_steps "sign in with"
@@ -48,7 +48,7 @@ steps "views homepage to edit", :skip => "changes to auth.js localStorage makes 
   end
 end
 
-steps "title", :skip => "changes to auth.js localStorage makes visit '/' fail now" do
+steps "title" do
   perform_steps "Setup for homepage"
   perform_steps "edit homepage"
 
@@ -66,7 +66,7 @@ steps "title", :skip => "changes to auth.js localStorage makes visit '/' fail no
   end
 end
 
-steps "keywords", :skip => "changes to auth.js localStorage makes visit '/' fail now" do
+steps "keywords" do
   perform_steps "Setup for homepage"
   perform_steps "edit homepage"
 
@@ -85,7 +85,7 @@ steps "keywords", :skip => "changes to auth.js localStorage makes visit '/' fail
   end
 end
 
-steps "description", :skip => "changes to auth.js localStorage makes visit '/' fail now" do
+steps "description" do
   perform_steps "Setup for homepage"
   perform_steps "edit homepage"
 
