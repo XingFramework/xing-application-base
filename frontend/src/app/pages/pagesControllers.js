@@ -53,7 +53,7 @@ export function PagesCtrl( $window, $scope, $state, $stateParams, $sce, page, is
     }
   };
   $scope.nowEditing = false;
-  $scope.froalaConfig = { };
+  $scope.froalaConfig = { toolbarFixed: true, inlineMode: false };
 
   $scope.page = page;
   $scope.isAdmin = isAdmin;

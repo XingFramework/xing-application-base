@@ -31,7 +31,7 @@ export function HomepageController( $scope, $state, $stateParams, $sce, page, is
     $state.go('^.edit');
   };
 
-  $scope.froalaConfig = { };
+  $scope.froalaConfig = { toolbarFixed: true, inlineMode: false };
 
   $scope.page = page;
   $scope.isAdmin = isAdmin;

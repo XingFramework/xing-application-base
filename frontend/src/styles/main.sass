@@ -17,6 +17,12 @@ $include-clearfix: true
 @import "sassy-buttons/sassybuttons"
 @import "singularitygs/stylesheets/singularitygs"
 
+// fontawesome.  the constant is required to override the default
+// path so that the FA styles will find the fonts in the place our
+// assets build puts them
+$fa-font-path: '../assets'
+@import "font-awesome/scss/font-awesome"
+
 
 // Load reusable constants.  First the framework defaults,
 // then any app overides.

@@ -111,7 +111,7 @@ module.exports = {
       'node_modules/froala-editor/css/font-awesome.min.css'
     ],
     assets: [
-      'node_modules/froala-editor/fonts/fontawesome-webfont.*'
+      'node_modules/font-awesome/fonts/fontawesome-webfont.*'
     ]
   },
 };

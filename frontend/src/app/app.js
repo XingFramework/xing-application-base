@@ -13,6 +13,7 @@ import Toast from 'components/toast/toast.js';
 import ResponsiveMenu from 'components/responsiveMenu/responsiveMenu.js';
 import SessionLinks from 'components/sessionLinks/sessionLinks.js';
 import Metadata from 'components/metadata/metadata.js';
+import XngUnimplementedDirective from 'components/unimplemented/unimplemented.js'
 
 import Fallback from './fallback/fallback.js'
 import Admin from './admin/admin.js';
@@ -38,6 +39,7 @@ var app = new Module(appName, [
   Admin,
   ResponsiveMenu,
   Metadata,
+  XngUnimplementedDirective,
   ExampleForm,
   SessionLinks,
   Toast,
