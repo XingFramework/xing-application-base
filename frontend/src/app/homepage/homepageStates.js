@@ -1,4 +1,5 @@
-import {State, Resolve, AdminOnlyState, TrackAdminState} from 'stateInjector';
+import {State, Resolve} from 'stateInjector';
+import {AdminOnlyState, TrackAdminState} from 'stateClasses';
 
 @State('root.homepage')
 export class HomepageState extends TrackAdminState {

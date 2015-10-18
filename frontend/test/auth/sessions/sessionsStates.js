@@ -1,6 +1,7 @@
 import {appName} from 'config';
 import {} from '../../../src/app/auth/sessions/sessions.js';
 import {} from '../../support/testStates.js';
+import {LoggedInOnlyState} from 'stateClasses';
 
 describe('Sessions states', function() {
 
@@ -51,42 +52,16 @@ describe('Sessions states', function() {
       state = $state.get('root.inner.sessionsSuccess');
     });
 
+    it('should extend LoggedInOnlyState', function() {
+      expect(state instanceof LoggedInOnlyState).toBe(true);
+    });
+
     it('should respond to URL', function() {
       expect($state.href(state)).toEqual('#/signed-in');
     });
 
     it('should render the sessions template', function() {
       expect(state.templateUrl).toEqual('auth/sessions/sessions-success.tpl.html');
-    });
-
-    describe("when not logged in", function() {
-      beforeEach(function() {
-        spyOn($auth, 'validateUser').and.returnValue($q(
-          (resolve, reject) => { reject(); }));
-        $state.go('root.inner.sessionsSuccess');
-        $rootScope.$digest();
-      });
-
-      it("should not transition successfully", function() {
-        expect($state.current.name).not.toBe(state.name);
-      });
-    });
-
-    describe("when logged in", function() {
-      beforeEach(function() {
-        spyOn($auth, 'validateUser').and.returnValue($q(
-          (resolve, reject) => { resolve("Awesome"); }));
-        $state.go('root.inner.sessionsSuccess', {location: false});
-        $rootScope.$apply();
-      });
-
-      it("should transition successfully", function() {
-        expect($state.current.name).toBe(state.name);
-      });
-
-      it("should resolve isAdmin", function() {
-        expect($injector.invoke($state.current.resolve.onlyAdmin).$$state.value).toBe('Awesome');
-      });
     });
   });
 });

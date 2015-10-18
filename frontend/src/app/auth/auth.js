@@ -10,8 +10,22 @@ import {Config, Module} from 'a1atscript';
 function authSetup($authProvider, authConfigProvider) {
 
   var location = window.location.href;
-  var confirmationLocation = location.split("#")[0] + "#/confirmed";
-  var passwordResetSuccessLocation = location.split("#")[0] + "#/update-password";
+  var confirmationLocation = new URL(location)
+      confirmationLocation.pathname = "/confirmed";
+      confirmationLocation.search = "";
+
+  var passwordResetSuccessLocation = new URL(location)
+      passwordResetSuccessLocation.pathname = "/update-password";
+      passwordResetSuccessLocation.search = "";
+
+  var storageType = 'localStorage';
+
+  try {
+    localStorage.setItem("mod", "mod");
+    localStorage.removeItem("mod");
+  } catch(e) {
+    storageType = 'cookies';
+  }
 
   $authProvider.configure({
     apiUrl: backendUrl,
@@ -25,9 +39,9 @@ function authSetup($authProvider, authConfigProvider) {
     passwordResetPath:       'users/password',
     passwordUpdatePath:      'users/password',
     emailSignInPath:         'users/sign_in',
-    storage:                 'localStorage',
-    confirmationSuccessUrl:  confirmationLocation,
-    passwordResetSuccessUrl: passwordResetSuccessLocation
+    storage:                 storageType,
+    confirmationSuccessUrl:  confirmationLocation.toString(),
+    passwordResetSuccessUrl: passwordResetSuccessLocation.toString()
   });
 
   // change this to a different key as the auth key
