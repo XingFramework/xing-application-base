@@ -1,5 +1,5 @@
 
-steps "User Signs In and Creates a new Page", :js => true, :vcr => {}, :type => 'feature' do
+steps "User Signs In and Creates a new Page", :js => true, :vcr => {}, :type => :feature do
 
   let! :user do
     FactoryGirl.create(:confirmed_user)
@@ -18,7 +18,6 @@ steps "User Signs In and Creates a new Page", :js => true, :vcr => {}, :type => 
 
     p :factoried_user => user
     p :database_user => User.where(:email => user.email).first
-    byebug
 
     click_button "Sign In"
   end

@@ -9,7 +9,6 @@ gem 'capistrano-passenger'
 
 # To support integration tests
 group :test do
-  gem 'rspec-steps'
   gem 'waterpig', ">= 0.6.1"
   gem 'capybara'
   gem 'selenium-webdriver'

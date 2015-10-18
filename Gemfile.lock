@@ -227,7 +227,7 @@ GEM
       rspec-expectations (~> 3.1.0)
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
-    rspec-steps (1.0.7)
+    rspec-steps (2.0.1)
       rspec (>= 3.0, < 3.99)
     rspec-support (3.1.2)
     rubyzip (1.1.7)
@@ -335,7 +335,7 @@ DEPENDENCIES
   rspec (~> 3.1.0)
   rspec-activemodel-mocks
   rspec-rails
-  rspec-steps
+  rspec-steps (~> 2.0.0)
   sanitize
   selenium-webdriver
   sidekiq
