@@ -1,4 +1,6 @@
-import {State, LoggedInOnlyState} from "stateInjector";
+import {State} from "stateInjector";
+import {LoggedInOnlyState} from "stateClasses";
+
 
 @State('root.inner.confirmationsSuccess')
 export class ConfirmationsSuccessState extends LoggedInOnlyState {
