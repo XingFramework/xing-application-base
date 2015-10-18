@@ -32,11 +32,6 @@ export class RootState {
     this.abstract = true;
     this.url = "/";
   }
-
-  @Resolve('backend')
-  menuRoot(backend) {
-    return backend.menu("Main Menu");
-  }
 }
 
 @State('root.inner')

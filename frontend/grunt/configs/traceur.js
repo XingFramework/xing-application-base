@@ -28,6 +28,7 @@ module.exports =
       "resources": "../../src/common/resources",
       "a1atscript": "../../node_modules/a1atscript/dist/a1atscript.js",
       "xing-inflector": "../../node_modules/xing-inflector/dist/xing-inflector.js",
+      "xing-serializer": "../../node_modules/xing-serializer/dist/xing-serializer.js",
       "config": "../../src/common/config.js",
       "backend": "../../src/framework/backend",
       "relayer": "../../node_modules/relayer/dist/relayer.js",
