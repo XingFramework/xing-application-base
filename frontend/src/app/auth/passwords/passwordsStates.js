@@ -1,4 +1,5 @@
-import {State, Resolve, LoggedInOnlyState} from 'stateInjector';
+import {State, Resolve} from 'stateInjector';
+import {LoggedInOnlyState} from 'stateClasses';
 
 @State( 'root.inner.passwordsRequest')
 export class PasswordsRequestState {

@@ -1,4 +1,5 @@
-import {State, Resolve, TrackAdminState, AdminOnlyState} from 'stateInjector';
+import {State, Resolve} from 'stateInjector';
+import {TrackAdminState, AdminOnlyState} from 'stateClasses';
 
 @State('root.inner.page')
 export class PagesState extends TrackAdminState {

@@ -12,6 +12,12 @@ export class Resolve {
   }
 }
 
+export class Inject {
+  constructor(...inject) {
+    this.inject = inject;
+  }
+}
+
 // An Injector must define an annotationClass getter and an instantiate method
 export class StateInjector {
   get annotationClass() {
@@ -27,6 +33,9 @@ export class StateInjector {
           if (annotation instanceof Resolve) {
             resolveItem['$inject'] = annotation.inject;
             state.resolve[prop] = resolveItem;
+          }
+          if (annotation instanceof Inject) {
+            resolveItem['$inject'] = annotation.inject;
           }
         });
       }
@@ -47,32 +56,6 @@ export class StateInjector {
         );
       });
     })
-  }
-}
-
-export class AdminOnlyState {
-  @Resolve('$auth')
-  onlyAdmin($auth) {
-    return $auth.validateUser();
-  }
-}
-
-// in simply apps being logged in means you're an admin
-// override this in a more complex app
-export class LoggedInOnlyState extends AdminOnlyState {
-}
-
-export class TrackAdminState {
-  @Resolve('$auth')
-  isAdmin($auth){
-    return $auth.validateUser().then(
-      (success) => {
-      return true; },
-      (failure) => {
-        return false; }
-    ).then((bool) => {
-      return bool;
-    });
   }
 }
 

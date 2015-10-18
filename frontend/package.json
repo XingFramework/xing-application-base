@@ -10,6 +10,7 @@
   "devDependencies": {
     "a1atscript": "0.4.4",
     "angular": "~1.4.5",
+    "angular-animate": "~1.4.5",
     "angular-cookies": "~1.4.5",
     "angular-fontawesome": "~0.3.1",
     "angular-mocks": "~1.4.5",

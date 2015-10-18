@@ -325,19 +325,28 @@ angular.module('ng-token-auth', ['ngCookies']).provider('$auth', function() {
                 this.initDfd();
                 if (!this.userIsAuthenticated()) {
                   if ($location.search().token !== void 0) {
-                    token = $location.search().token;
-                    clientId = $location.search().client_id;
-                    uid = $location.search().uid;
-                    configName = $location.search().config;
+                    var search = $location.search();
+                    token = search.token;
+                    clientId = search.client_id;
+                    uid = search.uid;
+                    configName = search.config;
                     this.setConfigName(configName);
-                    this.mustResetPassword = $location.search().reset_password;
-                    this.firstTimeLogin = $location.search().account_confirmation_success;
+                    this.mustResetPassword = search.reset_password;
+                    this.firstTimeLogin = search.account_confirmation_success;
                     this.setAuthHeaders(this.buildAuthHeaders({
                       token: token,
                       clientId: clientId,
                       uid: uid
                     }));
-                    $location.url($location.path() || '/');
+                    delete search["token"];
+                    delete search["uid"];
+                    delete search["client_id"];
+                    delete search["config"];
+                    delete search["reset_password"];
+                    delete search["account_confirmation_success"];
+                    delete search["expiry"];
+
+                    $location.search(search);
                   } else if (this.retrieveData('currentConfigName')) {
                     configName = this.retrieveData('currentConfigName');
                   }

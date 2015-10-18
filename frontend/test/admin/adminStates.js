@@ -1,50 +1,119 @@
-import {} from '../../src/app/admin/adminStates.js';
-import setupLogging from "framework/ui-route-logger.js";
-import {appName} from 'config';
+import {AdminState,
+        AdminPagesState,
+        AdminMenusState,
+        AdminDocumentsState,
+        AdminImagesState} from '../../src/app/admin/adminStates.js';
+import {AdminOnlyState} from 'stateClasses';
 
-xdescribe('adminStates', function() {
-  describe('root.admin.menus', function() {
-    var mockBackend, mockMenuList;
-    var $rootScope, $state;
-    var mockScope;
-    var stateName = "root.admin.menus";
-
+describe('admin states', function() {
+  var state, mockBackend, mockPageList, mockMenuList;
+  describe('root.admin', function() {
     beforeEach(function() {
-      mockMenuList = { };
-      mockMenuList.complete = mockMenuList;
-      mockBackend = { menuList(){
-        console.log("mBmL");
-        return mockMenuList; }};
-      mockScope = {};
-      module('ui.router.state', ($provide, $stateProvider) => {
-        $provide.constant('backend', mockBackend);
-        $provide.constant('$auth', {
-          validateUser(){
-            console.log("here");
-            return true;
-          },
-          initialize(){},
-          config: {}
-        });
-        $stateProvider.state('root', {url: "/", template: "<ui-view></ui-view>"});
-      }, `${appName}.admin`);
-
-      inject((_$rootScope_, _$state_, $httpBackend) => {
-        $httpBackend.when("GET", "admin/admin.tpl.html").respond("<ui-view></ui-view>");
-        $httpBackend.when("GET", "admin/menus.tpl.html").respond("<ui-view></ui-view>");
-        $rootScope = _$rootScope_;
-        $state = _$state_;
-        setupLogging($rootScope, $state, true);
-      });
+      state = new AdminState();
     });
 
-    // Never arrives at the state being tested, never raises an error. Dunno.
-    it('set up the menuList', inject(function($injector) {
-      $state.go(stateName);
-      $rootScope.$digest();
+    it("should extend AdminOnlyState", function() {
+      expect(state instanceof AdminOnlyState).toBe(true);
+    });
 
-      expect($state.current.name).toBe(stateName);
-      expect($injector.invoke($state.current.resolve.menuList)).toBe(mockMenuList);
-    }));
+    it('should respond to URL', function() {
+      expect(state.url).toEqual('admin');
+    });
+
+    it('should render template url', function() {
+      expect(state.templateUrl).toEqual('admin/admin.tpl.html');
+    });
+  });
+
+  describe('root.admin.pages', function() {
+    beforeEach(function() {
+      mockBackend = {
+        pageList() {
+          return mockPageList;
+        }
+      };
+      mockPageList = {
+        complete: "list of pages"
+      };
+      state = new AdminPagesState();
+    });
+
+    it('should respond to URL', function() {
+      expect(state.url).toEqual('/pages');
+    });
+
+    it('should render template url', function() {
+      expect(state.templateUrl).toEqual('admin/pages.tpl.html');
+    });
+
+    it('should resolve pageList', function() {
+      expect(state.pageList(mockBackend)).toEqual('list of pages');
+    });
+  });
+
+  describe('root.admin.menus', function() {
+    beforeEach(function() {
+      mockBackend = {
+        menuList() {
+          return mockMenuList;
+        }
+      };
+      mockMenuList = {
+        complete: "list of menus"
+      };
+      state = new AdminMenusState();
+    });
+
+    it('should respond to URL', function() {
+      expect(state.url).toEqual('/menus');
+    });
+
+    it("should have the correct controller", function() {
+      expect(state.controller).toEqual('AdminMenusCtrl');
+    });
+
+    it('should render template url', function() {
+      expect(state.templateUrl).toEqual('admin/menus.tpl.html');
+    });
+
+    it('should resolve menuList', function() {
+      expect(state.menuList(mockBackend)).toEqual('list of menus');
+    });
+  });
+
+  describe('root.admin.documents', function() {
+    beforeEach(function() {
+      state = new AdminDocumentsState();
+    });
+
+    it('should respond to URL', function() {
+      expect(state.url).toEqual('/documents');
+    });
+
+    it("should have the correct controller", function() {
+      expect(state.controller).toEqual('AdminDocumentsCtrl');
+    });
+
+    it('should render template url', function() {
+      expect(state.templateUrl).toEqual('admin/documents.tpl.html');
+    });
+  });
+
+  describe('root.admin.images', function() {
+    beforeEach(function() {
+      state = new AdminImagesState();
+    });
+
+    it('should respond to URL', function() {
+      expect(state.url).toEqual('/images');
+    });
+
+    it("should have the correct controller", function() {
+      expect(state.controller).toEqual('AdminImagesCtrl');
+    });
+
+    it('should render template url', function() {
+      expect(state.templateUrl).toEqual('admin/images.tpl.html');
+    });
   });
 });

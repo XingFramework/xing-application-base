@@ -1,4 +1,5 @@
-import {State, Resolve, TrackAdminState, AdminOnlyState} from 'stateInjector';
+import {State, Resolve} from 'stateInjector';
+import {TrackAdminState, AdminOnlyState} from 'stateClasses';
 
 @State('root.admin.menu')
 export class AdminMenuState extends TrackAdminState {
