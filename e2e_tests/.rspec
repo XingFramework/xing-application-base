@@ -1,0 +1,7 @@
+--format documentation
+--out last_run
+--color
+--format documentation
+-I support
+--require simplecov
+--require spec_helper.rb

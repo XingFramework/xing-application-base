@@ -1,13 +1,12 @@
-require 'spec_helper'
 
-shared_steps "Setup for homepage" do
+shared_steps "Setup for homepage", :type => 'feature' do
   before :all do
     @user = FactoryGirl.create(:confirmed_user)
     @homepage = Page::Homepage.last
   end
 end
 
-shared_steps "edit homepage" do
+shared_steps "edit homepage", :type => 'feature' do
   perform_steps "sign in with"
 
   it "should should have Sign Out" do
@@ -23,7 +22,7 @@ shared_steps "edit homepage" do
   end
 end
 
-steps "views homepage to edit" do
+steps "views homepage to edit", :type => 'feature' do
   perform_steps "Setup for homepage"
 
   perform_steps "sign in with"
@@ -48,7 +47,7 @@ steps "views homepage to edit" do
   end
 end
 
-steps "title" do
+steps "title", :type => 'feature' do
   perform_steps "Setup for homepage"
   perform_steps "edit homepage"
 
@@ -66,7 +65,7 @@ steps "title" do
   end
 end
 
-steps "keywords" do
+steps "keywords", :type => 'feature' do
   perform_steps "Setup for homepage"
   perform_steps "edit homepage"
 
@@ -85,7 +84,7 @@ steps "keywords" do
   end
 end
 
-steps "description" do
+steps "description",  :type => 'feature' do
   perform_steps "Setup for homepage"
   perform_steps "edit homepage"
 

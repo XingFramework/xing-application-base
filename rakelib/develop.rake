@@ -166,7 +166,7 @@ namespace :develop do
       words = %w{bundle exec rackup}
       words << "-p#{static_server_port}"
       words << "static-app.ru"
-      clean_run("backend", words, {"LRD_BACKEND_PORT" => "#{rails_server_port}"})
+      clean_run(words, {"LRD_BACKEND_PORT" => "#{rails_server_port}"})
     end
   end
 

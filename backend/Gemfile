@@ -32,9 +32,6 @@ group :development, :test do
   gem "factory_girl_rails"
   gem 'annotate'
   gem 'simplecov'
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'capybara-email'
   gem 'database_cleaner'
   gem 'byebug'
   gem 'cadre'

@@ -1,0 +1,2143 @@
+
+User Signs In and Creates a new Page
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 1)[0m
+[33m  should sign in (PENDING: Previous step failed)[0m
+[33m  should click edit pages (PENDING: Previous step failed)[0m
+[33m  should click Create Page (PENDING: Previous step failed)[0m
+[33m  should select a layout (PENDING: Previous step failed)[0m
+[33m  should start editing new page (PENDING: Previous step failed)[0m
+[33m  should have correct placeholders (PENDING: Previous step failed)[0m
+[33m  should fill in metadata (PENDING: Previous step failed)[0m
+[33m  should fill in content (PENDING: Previous step failed)[0m
+[33m  should save the page (PENDING: Previous step failed)[0m
+[33m  should have the edited content (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 2)[0m
+
+User Sends Reset Password
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 3)[0m
+[33m  step click forgot password (PENDING: Previous step failed)[0m
+[33m  step enter email address (PENDING: Previous step failed)[0m
+[33m  step click send reset (PENDING: Previous step failed)[0m
+[33m  step should have the confirmation (PENDING: Previous step failed)[0m
+[33m  step should send the email (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 4)[0m
+
+views homepage to edit
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 5)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  should have correct content (PENDING: Previous step failed)[0m
+[33m  click on edit (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 6)[0m
+
+title
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 7)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  enter new title (PENDING: Previous step failed)[0m
+[33m  save (PENDING: Previous step failed)[0m
+[33m  persist correctly (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 8)[0m
+
+keywords
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 9)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  enter new keywords (PENDING: Previous step failed)[0m
+[33m  save (PENDING: Previous step failed)[0m
+[33m  have correct metadata (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 10)[0m
+
+description
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 11)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  enter new description (PENDING: Previous step failed)[0m
+[33m  save (PENDING: Previous step failed)[0m
+[33m  should have correct content (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 12)[0m
+
+User views a page to edit
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 13)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should have 'Edit Page' (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  should click on the page title (PENDING: Previous step failed)[0m
+[33m  should have the correct content (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 14)[0m
+
+edits and saves page content blocks
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 15)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  should edit correctly (PENDING: Previous step failed)[0m
+[33m  should save the page (PENDING: Previous step failed)[0m
+[33m  should save correctly (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 16)[0m
+
+edits and saves a page's title
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 17)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  change the title (PENDING: Previous step failed)[0m
+[33m  click Save (PENDING: Previous step failed)[0m
+[33m  should persist the Title (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 18)[0m
+
+edits and saves a page's url_slug
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 19)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  changes the Slug (PENDING: Previous step failed)[0m
+[33m  Saves (PENDING: Previous step failed)[0m
+[33m  should persist correctly (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 20)[0m
+
+edits and saves a page's keywords
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 21)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  change the Keywords (PENDING: Previous step failed)[0m
+[33m  Saves (PENDING: Previous step failed)[0m
+[33m  should change the meta data (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 22)[0m
+
+edits and saves a page's description
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 23)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  changes the description (PENDING: Previous step failed)[0m
+[33m  Saves (PENDING: Previous step failed)[0m
+[33m  should change the description (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 24)[0m
+
+edits and saves a page's custom styles
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 25)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  changes the custom css (PENDING: Previous step failed)[0m
+[33m  Saves (PENDING: Previous step failed)[0m
+[33m  should change the style (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 26)[0m
+
+User Signs Up
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 27)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks Sign Up (PENDING: Previous step failed)[0m
+[33m  fills in email and pasword (PENDING: Previous step failed)[0m
+[33m  clicks Sign Up (PENDING: Previous step failed)[0m
+[33m  should have confirmation link (PENDING: Previous step failed)[0m
+[33m  should send email (PENDING: Previous step failed)[0m
+[33m  should have link in email (PENDING: Previous step failed)[0m
+[33m  step confirm user (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should have sign out (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 28)[0m
+
+Vistor navigated to a path on desktop
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 29)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  click on Path Link (PENDING: Previous step failed)[0m
+[33m  should have right content (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 30)[0m
+
+Vistor navigated to a page on desktop
+[32m  visits root[0m
+[32m  clicks on the menu (if needed)[0m
+[31m  clicks on Sign In (FAILED - 31)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Page Link (PENDING: Previous step failed)[0m
+[33m  should have right content (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 32)[0m
+
+Vistor navigated to a path on mobile
+[32m  visits root[0m
+[31m  clicks on the menu (if needed) (FAILED - 33)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  should should have Sign Out (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Edit (PENDING: Previous step failed)[0m
+[33m  visits root (PENDING: Previous step failed)[0m
+[33m  clicks on the menu (if needed) (PENDING: Previous step failed)[0m
+[33m  clicks on Sign In (PENDING: Previous step failed)[0m
+[33m  fills in email and password (PENDING: Previous step failed)[0m
+[33m  clicks Sign In (PENDING: Previous step failed)[0m
+[33m  clicks on Edit Page (PENDING: Previous step failed)[0m
+[33m  clicks on page title (PENDING: Previous step failed)[0m
+[33m  clicks on Edit This Page (PENDING: Previous step failed)[0m
+[33m  visit root (PENDING: Previous step failed)[0m
+[33m  clicks on Menu (PENDING: Previous step failed)[0m
+[33m  clicks on Path Link (PENDING: Previous step failed)[0m
+[33m  should have right content (PENDING: Previous step failed)[0m
+[31m  step list (FAILED - 34)[0m
+
+Pending:
+  [33mUser Signs In and Creates a new Page should sign in[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:15[0m
+  [33mUser Signs In and Creates a new Page should click edit pages[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:21[0m
+  [33mUser Signs In and Creates a new Page should click Create Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:25[0m
+  [33mUser Signs In and Creates a new Page should select a layout[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:29[0m
+  [33mUser Signs In and Creates a new Page should start editing new page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:33[0m
+  [33mUser Signs In and Creates a new Page should have correct placeholders[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:37[0m
+  [33mUser Signs In and Creates a new Page should fill in metadata[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:42[0m
+  [33mUser Signs In and Creates a new Page should fill in content[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:48[0m
+  [33mUser Signs In and Creates a new Page should save the page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:53[0m
+  [33mUser Signs In and Creates a new Page should have the edited content[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/admin_signs_in_and_creates_page_spec.rb:57[0m
+  [33mUser Sends Reset Password step click forgot password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_sends_reset_password_email_spec.rb:10[0m
+  [33mUser Sends Reset Password step enter email address[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_sends_reset_password_email_spec.rb:14[0m
+  [33mUser Sends Reset Password step click send reset[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_sends_reset_password_email_spec.rb:18[0m
+  [33mUser Sends Reset Password step should have the confirmation[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_sends_reset_password_email_spec.rb:22[0m
+  [33mUser Sends Reset Password step should send the email[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_sends_reset_password_email_spec.rb:26[0m
+  [33mviews homepage to edit fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mviews homepage to edit clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mviews homepage to edit should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mviews homepage to edit visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mviews homepage to edit clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mviews homepage to edit visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mviews homepage to edit clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mviews homepage to edit clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mviews homepage to edit fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mviews homepage to edit clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mviews homepage to edit should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:31[0m
+  [33mviews homepage to edit visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:35[0m
+  [33mviews homepage to edit should have correct content[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:39[0m
+  [33mviews homepage to edit click on edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:46[0m
+  [33mtitle fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mtitle clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mtitle should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mtitle visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mtitle clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mtitle visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mtitle clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mtitle clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mtitle fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mtitle clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mtitle should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mtitle visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mtitle clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mtitle enter new title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:55[0m
+  [33mtitle save[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:59[0m
+  [33mtitle persist correctly[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:63[0m
+  [33mkeywords fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mkeywords clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mkeywords should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mkeywords visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mkeywords clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mkeywords visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mkeywords clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mkeywords clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mkeywords fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mkeywords clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mkeywords should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mkeywords visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mkeywords clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mkeywords enter new keywords[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:73[0m
+  [33mkeywords save[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:77[0m
+  [33mkeywords have correct metadata[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:81[0m
+  [33mdescription fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mdescription clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mdescription should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mdescription visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mdescription clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mdescription visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mdescription clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mdescription clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mdescription fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mdescription clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mdescription should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mdescription visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mdescription clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mdescription enter new description[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:92[0m
+  [33mdescription save[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:96[0m
+  [33mdescription should have correct content[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:100[0m
+  [33mUser views a page to edit fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mUser views a page to edit clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mUser views a page to edit should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mUser views a page to edit visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mUser views a page to edit clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mUser views a page to edit visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mUser views a page to edit clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mUser views a page to edit clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mUser views a page to edit fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mUser views a page to edit clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mUser views a page to edit clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33mUser views a page to edit clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33mUser views a page to edit clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33mUser views a page to edit visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mUser views a page to edit clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mUser views a page to edit clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mUser views a page to edit fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mUser views a page to edit clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mUser views a page to edit should have 'Edit Page'[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:30[0m
+  [33mUser views a page to edit clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:34[0m
+  [33mUser views a page to edit should click on the page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:38[0m
+  [33mUser views a page to edit should have the correct content[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:44[0m
+  [33medits and saves page content blocks fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves page content blocks clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves page content blocks should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33medits and saves page content blocks visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33medits and saves page content blocks clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33medits and saves page content blocks visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves page content blocks clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves page content blocks clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves page content blocks fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves page content blocks clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves page content blocks clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves page content blocks clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves page content blocks clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves page content blocks visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves page content blocks clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves page content blocks clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves page content blocks fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves page content blocks clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves page content blocks clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves page content blocks clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves page content blocks clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves page content blocks should edit correctly[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:61[0m
+  [33medits and saves page content blocks should save the page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:68[0m
+  [33medits and saves page content blocks should save correctly[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:72[0m
+  [33medits and saves a page's title fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's title clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's title should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33medits and saves a page's title visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33medits and saves a page's title clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33medits and saves a page's title visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's title clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's title clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's title fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's title clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's title clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's title clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's title clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's title visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's title clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's title clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's title fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's title clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's title clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's title clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's title clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's title change the title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:87[0m
+  [33medits and saves a page's title click Save[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:91[0m
+  [33medits and saves a page's title should persist the Title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:95[0m
+  [33medits and saves a page's url_slug fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's url_slug clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's url_slug should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33medits and saves a page's url_slug visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33medits and saves a page's url_slug clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33medits and saves a page's url_slug visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's url_slug clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's url_slug clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's url_slug fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's url_slug clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's url_slug clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's url_slug clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's url_slug clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's url_slug visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's url_slug clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's url_slug clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's url_slug fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's url_slug clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's url_slug clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's url_slug clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's url_slug clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's url_slug changes the Slug[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:109[0m
+  [33medits and saves a page's url_slug Saves[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:113[0m
+  [33medits and saves a page's url_slug should persist correctly[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:117[0m
+  [33medits and saves a page's keywords fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's keywords clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's keywords should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33medits and saves a page's keywords visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33medits and saves a page's keywords clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33medits and saves a page's keywords visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's keywords clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's keywords clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's keywords fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's keywords clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's keywords clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's keywords clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's keywords clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's keywords visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's keywords clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's keywords clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's keywords fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's keywords clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's keywords clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's keywords clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's keywords clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's keywords change the Keywords[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:131[0m
+  [33medits and saves a page's keywords Saves[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:135[0m
+  [33medits and saves a page's keywords should change the meta data[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:139[0m
+  [33medits and saves a page's description fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's description clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's description should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33medits and saves a page's description visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33medits and saves a page's description clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33medits and saves a page's description visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's description clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's description clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's description fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's description clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's description clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's description clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's description clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's description visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's description clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's description clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's description fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's description clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's description clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's description clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's description clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's description changes the description[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:156[0m
+  [33medits and saves a page's description Saves[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:160[0m
+  [33medits and saves a page's description should change the description[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:164[0m
+  [33medits and saves a page's custom styles fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's custom styles clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's custom styles should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33medits and saves a page's custom styles visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33medits and saves a page's custom styles clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33medits and saves a page's custom styles visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's custom styles clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's custom styles clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's custom styles fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's custom styles clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's custom styles clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's custom styles clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's custom styles clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's custom styles visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33medits and saves a page's custom styles clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33medits and saves a page's custom styles clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33medits and saves a page's custom styles fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33medits and saves a page's custom styles clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33medits and saves a page's custom styles clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33medits and saves a page's custom styles clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33medits and saves a page's custom styles clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33medits and saves a page's custom styles changes the custom css[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:180[0m
+  [33medits and saves a page's custom styles Saves[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:184[0m
+  [33medits and saves a page's custom styles should change the style[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:188[0m
+  [33mUser Signs Up fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mUser Signs Up clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mUser Signs Up should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mUser Signs Up visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mUser Signs Up clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mUser Signs Up visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mUser Signs Up clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mUser Signs Up clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mUser Signs Up fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mUser Signs Up clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mUser Signs Up clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33mUser Signs Up clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33mUser Signs Up clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33mUser Signs Up visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:34[0m
+  [33mUser Signs Up clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mUser Signs Up clicks Sign Up[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:40[0m
+  [33mUser Signs Up fills in email and pasword[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:44[0m
+  [33mUser Signs Up clicks Sign Up[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:51[0m
+  [33mUser Signs Up should have confirmation link[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_up_spec.rb:10[0m
+  [33mUser Signs Up should send email[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_up_spec.rb:14[0m
+  [33mUser Signs Up should have link in email[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_up_spec.rb:18[0m
+  [33mUser Signs Up step confirm user[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_up_spec.rb:23[0m
+  [33mUser Signs Up visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mUser Signs Up clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mUser Signs Up clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mUser Signs Up fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mUser Signs Up clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mUser Signs Up should have sign out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_up_spec.rb:29[0m
+  [33mVistor navigated to a path on desktop fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mVistor navigated to a path on desktop clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mVistor navigated to a path on desktop should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mVistor navigated to a path on desktop visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mVistor navigated to a path on desktop clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mVistor navigated to a path on desktop visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mVistor navigated to a path on desktop clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mVistor navigated to a path on desktop clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mVistor navigated to a path on desktop fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mVistor navigated to a path on desktop clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mVistor navigated to a path on desktop clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33mVistor navigated to a path on desktop clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33mVistor navigated to a path on desktop clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33mVistor navigated to a path on desktop visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:15[0m
+  [33mVistor navigated to a path on desktop click on Path Link[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:19[0m
+  [33mVistor navigated to a path on desktop should have right content[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:23[0m
+  [33mVistor navigated to a page on desktop fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mVistor navigated to a page on desktop clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mVistor navigated to a page on desktop should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mVistor navigated to a page on desktop visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mVistor navigated to a page on desktop clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mVistor navigated to a page on desktop visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mVistor navigated to a page on desktop clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mVistor navigated to a page on desktop clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mVistor navigated to a page on desktop fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mVistor navigated to a page on desktop clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mVistor navigated to a page on desktop clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33mVistor navigated to a page on desktop clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33mVistor navigated to a page on desktop clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33mVistor navigated to a page on desktop visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:32[0m
+  [33mVistor navigated to a page on desktop clicks on Page Link[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:36[0m
+  [33mVistor navigated to a page on desktop should have right content[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:40[0m
+  [33mVistor navigated to a path on mobile clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mVistor navigated to a path on mobile fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mVistor navigated to a path on mobile clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mVistor navigated to a path on mobile should should have Sign Out[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:13[0m
+  [33mVistor navigated to a path on mobile visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:17[0m
+  [33mVistor navigated to a path on mobile clicks on Edit[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_homepage_spec.rb:21[0m
+  [33mVistor navigated to a path on mobile visits root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:15[0m
+  [33mVistor navigated to a path on mobile clicks on the menu (if needed)[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:7[0m
+  [33mVistor navigated to a path on mobile clicks on Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:26[0m
+  [33mVistor navigated to a path on mobile fills in email and password[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:59[0m
+  [33mVistor navigated to a path on mobile clicks Sign In[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/support/session_helpers.rb:64[0m
+  [33mVistor navigated to a path on mobile clicks on Edit Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:7[0m
+  [33mVistor navigated to a path on mobile clicks on page title[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:11[0m
+  [33mVistor navigated to a path on mobile clicks on Edit This Page[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/user_signs_in_and_edits_page_spec.rb:17[0m
+  [33mVistor navigated to a path on mobile visit root[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:50[0m
+  [33mVistor navigated to a path on mobile clicks on Menu[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:54[0m
+  [33mVistor navigated to a path on mobile clicks on Path Link[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:58[0m
+  [33mVistor navigated to a path on mobile should have right content[0m
+    # [36mPrevious step failed[0m
+    # [36m./e2e_tests/features/visitor_navigates_with_menu_spec.rb:62[0m
+
+Failures:
+
+  1) User Signs In and Creates a new Page clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  2) User Signs In and Creates a new Page step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  3) User Sends Reset Password clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  4) User Sends Reset Password step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  5) views homepage to edit clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  6) views homepage to edit step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  7) title clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  8) title step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  9) keywords clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  10) keywords step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  11) description clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  12) description step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  13) User views a page to edit clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  14) User views a page to edit step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  15) edits and saves page content blocks clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  16) edits and saves page content blocks step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  17) edits and saves a page's title clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  18) edits and saves a page's title step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  19) edits and saves a page's url_slug clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  20) edits and saves a page's url_slug step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  21) edits and saves a page's keywords clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  22) edits and saves a page's keywords step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  23) edits and saves a page's description clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  24) edits and saves a page's description step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  25) edits and saves a page's custom styles clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  26) edits and saves a page's custom styles step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  27) User Signs Up clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  28) User Signs Up step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  29) Vistor navigated to a path on desktop clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  30) Vistor navigated to a path on desktop step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  31) Vistor navigated to a page on desktop clicks on Sign In
+     [31mFailure/Error: within ".session-links" do[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  32) Vistor navigated to a page on desktop step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find css ".session-links"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:282:in `within'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:27:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  33) Vistor navigated to a path on mobile clicks on the menu (if needed)
+     [31mFailure/Error: click_on('Menu')[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find link or button "Menu"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/actions.rb:13:in `click_link_or_button'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:9:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+  34) Vistor navigated to a path on mobile step list
+     [31mFailure/Error: example.run(self, reporter)[0m
+     [31mCapybara::ElementNotFound:[0m
+     [31m  Unable to find link or button "Menu"[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:41:in `block in find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/base.rb:84:in `synchronize'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/finders.rb:30:in `find'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/node/actions.rb:13:in `click_link_or_button'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/session.rb:676:in `block (2 levels) in <class:Session>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/capybara-2.4.4/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'[0m
+     [36m# ./e2e_tests/support/session_helpers.rb:9:in `block (2 levels) in <top (required)>'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:49:in `block (3 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:256:in `with_indelible_ivars'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:48:in `block (2 levels) in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `each'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `inject'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:37:in `block in build_example_block'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:245:in `block in run_examples'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:103:in `suspend_transactional_fixtures'[0m
+     [36m# /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:244:in `run_examples'[0m
+
+Finished in 37.37 seconds (files took 2.2 seconds to load)
+[31m388 examples, 34 failures, 321 pending[0m
+
+Failed examples:
+
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# User Signs In and Creates a new Page clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# User Signs In and Creates a new Page step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# User Sends Reset Password clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# User Sends Reset Password step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# views homepage to edit clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# views homepage to edit step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# title clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# title step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# keywords clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# keywords step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# description clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# description step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# User views a page to edit clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# User views a page to edit step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# edits and saves page content blocks clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# edits and saves page content blocks step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# edits and saves a page's title clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# edits and saves a page's title step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# edits and saves a page's url_slug clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# edits and saves a page's url_slug step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# edits and saves a page's keywords clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# edits and saves a page's keywords step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# edits and saves a page's description clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# edits and saves a page's description step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# edits and saves a page's custom styles clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# edits and saves a page's custom styles step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# User Signs Up clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# User Signs Up step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# Vistor navigated to a path on desktop clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# Vistor navigated to a path on desktop step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:26[0m [36m# Vistor navigated to a page on desktop clicks on Sign In[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# Vistor navigated to a page on desktop step list[0m
+[31mrspec ./e2e_tests/support/session_helpers.rb:7[0m [36m# Vistor navigated to a path on mobile clicks on the menu (if needed)[0m
+[31mrspec /Users/evan/.rvm/gems/ruby-2.2.2@xing/gems/rspec-steps-1.0.7/lib/rspec-steps/stepwise.rb:17[0m [36m# Vistor navigated to a path on mobile step list[0m

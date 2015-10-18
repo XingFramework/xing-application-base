@@ -1,4 +1,4 @@
-module APP_MODULE
+module Xing
   class BackendUrlCookie
     def initialize(app, backend_url)
       @backend_url = backend_url

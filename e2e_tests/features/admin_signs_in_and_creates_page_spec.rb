@@ -1,6 +1,5 @@
-require 'spec_helper'
 
-steps "User Signs In and Creates a new Page", :js => true, :vcr => {} do
+steps "User Signs In and Creates a new Page", :js => true, :vcr => {}, :type => 'feature' do
 
   let! :user do
     FactoryGirl.create(:confirmed_user)
@@ -13,16 +12,24 @@ steps "User Signs In and Creates a new Page", :js => true, :vcr => {} do
   perform_steps "visit login"
 
   it "should sign in" do |example|
+    #byebug
     fill_in "Email", :with => user.email
     fill_in "Password", :with => user.password
+
+    p :factoried_user => user
+    p :database_user => User.where(:email => user.email).first
+    byebug
+
     click_button "Sign In"
   end
 
   it "should click edit pages" do
+    #byebug
     click_on "Edit Pages"
   end
 
   it "should click Create Page" do
+    #byebug
     click_on "Create A New Page"
   end
 

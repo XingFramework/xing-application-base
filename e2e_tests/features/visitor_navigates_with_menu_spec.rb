@@ -1,4 +1,3 @@
-require 'spec_helper'
 
 shared_steps "Setup for navigation" do
   before :all do
@@ -9,7 +8,7 @@ shared_steps "Setup for navigation" do
   end
 end
 
-steps "Vistor navigated to a path on desktop", :js => true, :size => :desktop do
+steps "Vistor navigated to a path on desktop", :js => true, :size => :desktop, :type => 'feature' do
   perform_steps "Setup for navigation"
 
   it "visit root" do
@@ -26,7 +25,7 @@ steps "Vistor navigated to a path on desktop", :js => true, :size => :desktop do
   end
 end
 
-steps "Vistor navigated to a page on desktop", :js => true, :size => :desktop do
+steps "Vistor navigated to a page on desktop", :js => true, :size => :desktop, :type => 'feature' do
   perform_steps "Setup for navigation"
 
   it "visit root" do
@@ -44,7 +43,7 @@ steps "Vistor navigated to a page on desktop", :js => true, :size => :desktop do
   end
 end
 
-steps "Vistor navigated to a path on mobile", :js => true, :size => :mobile do
+steps "Vistor navigated to a path on mobile", :js => true, :size => :mobile, :type => 'feature' do
   perform_steps "Setup for navigation"
 
   it "visit root" do

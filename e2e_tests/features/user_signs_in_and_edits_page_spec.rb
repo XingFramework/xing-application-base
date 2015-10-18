@@ -1,7 +1,6 @@
-require 'spec_helper'
 
 
-shared_steps "editing a page" do
+shared_steps "editing a page", :type => 'feature' do
   perform_steps "sign in with"
 
   it "clicks on Edit Page" do
@@ -50,7 +49,7 @@ steps "User views a page to edit", :type => :feature do
   end
 end
 
-steps "edits and saves page content blocks" do
+steps "edits and saves page content blocks", :type => 'feature' do
   before :all do
     @user = FactoryGirl.create(:confirmed_user)
     @oc_page = FactoryGirl.create(:one_column_page)
@@ -76,7 +75,7 @@ steps "edits and saves page content blocks" do
   end
 end
 
-steps "edits and saves a page's title" do
+steps "edits and saves a page's title", :type => 'feature' do
   before :all do
     @user = FactoryGirl.create(:confirmed_user)
     @oc_page = FactoryGirl.create(:one_column_page)
@@ -98,7 +97,7 @@ steps "edits and saves a page's title" do
   end
 end
 
-steps "edits and saves a page's url_slug" do
+steps "edits and saves a page's url_slug" , :type => 'feature' do
   before :all do
     @user = FactoryGirl.create(:confirmed_user)
     @oc_page = FactoryGirl.create(:one_column_page)
@@ -120,7 +119,7 @@ steps "edits and saves a page's url_slug" do
   end
 end
 
-steps "edits and saves a page's keywords" do
+steps "edits and saves a page's keywords", :type => 'feature' do
   before :all do
     @user = FactoryGirl.create(:confirmed_user)
     @oc_page = FactoryGirl.create(:one_column_page)
@@ -145,7 +144,7 @@ steps "edits and saves a page's keywords" do
 end
 
 
-steps "edits and saves a page's description" do
+steps "edits and saves a page's description", :type => 'feature' do
   before :all do
     @user = FactoryGirl.create(:confirmed_user)
     @oc_page = FactoryGirl.create(:one_column_page)
@@ -169,7 +168,7 @@ steps "edits and saves a page's description" do
   end
 end
 
-steps "edits and saves a page's custom styles" do
+steps "edits and saves a page's custom styles", :type => 'feature' do
   before :all do
     @user = FactoryGirl.create(:confirmed_user)
     @oc_page = FactoryGirl.create(:one_column_page)

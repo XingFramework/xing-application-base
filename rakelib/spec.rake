@@ -20,6 +20,15 @@ namespace :spec do
     end
   end
 
+  task :e2e, [:spec_files] => [:check_dependencies, :grunt_ci_test, 'backend:setup'] do |t, args|
+    Bundler.with_clean_env do
+      Dir.chdir("e2e_tests"){
+        commands = %w{bundle exec rspec features}
+        sh *commands
+      }
+    end
+  end
+
   desc "Run all feature specs, repeating with each browser width as default"
   task :responsivity, [:spec_files] => ['backend:setup'] do |t, args|
     Bundler.with_clean_env do

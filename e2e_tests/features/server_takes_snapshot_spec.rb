@@ -1,4 +1,3 @@
-require 'spec_helper'
 
 # this is not a feature spec per say, but I couldn't find an easy way to force
 # capybara to boot it's HTTP rails server up -- which is what we'll use to take
