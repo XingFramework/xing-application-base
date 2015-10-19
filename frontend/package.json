@@ -8,7 +8,7 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "a1atscript": "0.4.4",
+    "a1atscript": "0.4.5",
     "angular": "~1.4.5",
     "angular-animate": "~1.4.5",
     "angular-cookies": "~1.4.5",
@@ -64,6 +64,7 @@
     "singularitygs": "> 0",
     "traceur": "0.0.87",
     "uri-templates": "~0.1.5",
+    "xing-frontend-utils": "0.0.1-beta3",
     "xing-inflector": "0.0.2",
     "xing-traceur": "0.0.7"
   }

@@ -3,9 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "a1atscript": {
-      "version": "0.4.3",
-      "from": "https://registry.npmjs.org/a1atscript/-/a1atscript-0.4.3.tgz",
-      "resolved": "https://registry.npmjs.org/a1atscript/-/a1atscript-0.4.3.tgz"
+      "version": "0.4.5",
+      "from": "a1atscript@0.4.5"
     },
     "amdefine": {
       "version": "1.0.0",
@@ -16,6 +15,11 @@
       "version": "1.4.5",
       "from": "https://registry.npmjs.org/angular/-/angular-1.4.5.tgz",
       "resolved": "https://registry.npmjs.org/angular/-/angular-1.4.5.tgz"
+    },
+    "angular-animate": {
+      "version": "1.4.7",
+      "from": "angular-animate@>=1.4.5 <1.5.0",
+      "resolved": "https://registry.npmjs.org/angular-animate/-/angular-animate-1.4.7.tgz"
     },
     "angular-cookies": {
       "version": "1.4.5",
@@ -1522,13 +1526,8 @@
     },
     "font-awesome": {
       "version": "4.4.0",
-      "from": "font-awesome@*",
+      "from": "https://registry.npmjs.org/font-awesome/-/font-awesome-4.4.0.tgz",
       "resolved": "https://registry.npmjs.org/font-awesome/-/font-awesome-4.4.0.tgz"
-    },
-    "froala-editor": {
-      "version": "1.2.8",
-      "from": "https://registry.npmjs.org/froala-editor/-/froala-editor-1.2.8.tgz",
-      "resolved": "https://registry.npmjs.org/froala-editor/-/froala-editor-1.2.8.tgz"
     },
     "grunt": {
       "version": "0.4.5",
@@ -3848,7 +3847,7 @@
     },
     "grunt-string-replace": {
       "version": "1.0.0",
-      "from": "grunt-string-replace@git://github.com/hannahhoward/grunt-string-replace.git#1304717ba2d75107152323fbb3af2fc3779b38bb",
+      "from": "git://github.com/hannahhoward/grunt-string-replace.git#1304717ba2d75107152323fbb3af2fc3779b38bb",
       "resolved": "git://github.com/hannahhoward/grunt-string-replace.git#1304717ba2d75107152323fbb3af2fc3779b38bb",
       "dependencies": {
         "async": {
@@ -4623,7 +4622,7 @@
     },
     "karma-sourcemap-loader": {
       "version": "0.2.0",
-      "from": "karma-sourcemap-loader@git://github.com/LRDesign/karma-sourcemap-loader.git#c86080951570388bc3eaa3a5cee91cd2f0023696",
+      "from": "git://github.com/LRDesign/karma-sourcemap-loader.git#c86080951570388bc3eaa3a5cee91cd2f0023696",
       "resolved": "git://github.com/LRDesign/karma-sourcemap-loader.git#c86080951570388bc3eaa3a5cee91cd2f0023696"
     },
     "load-grunt-config": {
@@ -4754,7 +4753,7 @@
     },
     "relayer": {
       "version": "0.1.0",
-      "from": "relayer@0.1.0",
+      "from": "https://registry.npmjs.org/relayer/-/relayer-0.1.0.tgz",
       "resolved": "https://registry.npmjs.org/relayer/-/relayer-0.1.0.tgz"
     },
     "requirejs": {
@@ -4766,11 +4765,6 @@
       "version": "1.0.39",
       "from": "https://registry.npmjs.org/responsive-nav/-/responsive-nav-1.0.39.tgz",
       "resolved": "https://registry.npmjs.org/responsive-nav/-/responsive-nav-1.0.39.tgz"
-    },
-    "restangular": {
-      "version": "1.3.1",
-      "from": "https://registry.npmjs.org/restangular/-/restangular-1.3.1.tgz",
-      "resolved": "https://registry.npmjs.org/restangular/-/restangular-1.3.1.tgz"
     },
     "sass-import-once": {
       "version": "0.1.1",
@@ -4828,6 +4822,17 @@
       "version": "1.0.1",
       "from": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.1.tgz",
       "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.1.tgz"
+    },
+    "xing-frontend-utils": {
+      "version": "0.0.1-beta3",
+      "from": "xing-frontend-utils@0.0.1-beta3",
+      "dependencies": {
+        "xing-promise": {
+          "version": "0.0.1",
+          "from": "xing-promise@>=0.0.1 <0.0.2",
+          "resolved": "https://registry.npmjs.org/xing-promise/-/xing-promise-0.0.1.tgz"
+        }
+      }
     },
     "xing-inflector": {
       "version": "0.0.2",
