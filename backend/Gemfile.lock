@@ -2,7 +2,10 @@ PATH
   remote: ../../../gems/xing-cms-backend
   specs:
     xing-cms-backend (0.0.1)
+      carrierwave
       rails (~> 4.2.1)
+      rails-observers
+      rmagick
       xing-backend (~> 0.0.18)
       xing_backend_token_auth (~> 0.1.31)
 
@@ -305,7 +308,6 @@ DEPENDENCIES
   cancancan
   capybara
   capybara-email
-  carrierwave
   database_cleaner
   devise
   factory_girl_rails
@@ -317,9 +319,7 @@ DEPENDENCIES
   populator
   rack-cors
   rails (~> 4.2.2)
-  rails-observers
   rails-rfc6570 (~> 0.1)
-  rmagick
   rspec (~> 3.1.0)
   rspec-activemodel-mocks
   rspec-rails
@@ -336,4 +336,4 @@ DEPENDENCIES
   xing_backend_token_auth (~> 0.1.31)
 
 BUNDLED WITH
-   1.10.4
+   1.10.6

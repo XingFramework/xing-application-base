@@ -7,12 +7,9 @@ gem 'xing-backend', '~> 0.0.18'
 gem 'pg'
 gem 'devise'
 gem 'awesome_nested_set'
-gem 'carrierwave'
-gem "rmagick", require: false
 gem "sanitize"
 gem "babosa"
 gem 'active_model_serializers'
-gem 'rails-observers'
 gem 'cancancan'
 gem 'xing_backend_token_auth', '~> 0.1.31'
 gem 'bibliotech'
