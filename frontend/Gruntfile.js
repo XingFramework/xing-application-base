@@ -1,3 +1,3 @@
-module.exports = function( grunt ) {
-  require('xing-frontend-grunt')(grunt);
+module.exports = function( grunt , options ) {
+  require('xing-frontend-grunt')(grunt, options);
 };
