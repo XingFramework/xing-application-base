@@ -2,7 +2,7 @@ development: &development
   adapter: postgresql
   encoding: unicode
   database: xing_dev
-  #username: /your_name_here/
+  #username: postgres
   pool: 5
   host: 127.0.0.1
 
@@ -17,6 +17,6 @@ production:
   adapter: postgresql
   encoding: unicode
   database: xing_dev
-  #username: /your_name_here/
+  #username: postgres
   pool: 5
   host: 127.0.0.1
