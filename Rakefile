@@ -1,6 +1,14 @@
-$:.unshift './lib'
+#$:.unshift './lib'
 
 require 'bundler'
+
+require 'xing/tasks'
+Xing::Tasks::Backend.new
+Xing::Tasks::Build.new
+Xing::Tasks::Develop.new
+Xing::Tasks::Frontend.new
+Xing::Tasks::Spec.new
+
 
 desc "The whole shebang"
 task :build => [:check_dependencies, 'build:all']

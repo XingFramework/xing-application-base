@@ -38,6 +38,8 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.0)
     builder (3.2.2)
+    calibrate (0.0.1)
+    caliph (0.3.1)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -58,6 +60,8 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
+    edict (0.0.1)
+      calibrate (> 0)
     erubis (2.7.0)
     ffi (1.9.8)
     globalid (0.3.5)
@@ -68,6 +72,12 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mattock (0.10.0)
+      calibrate (~> 0.0.1)
+      caliph (~> 0.3.1)
+      rake (~> 10.0)
+      tilt (> 0)
+      valise (~> 1.1.1)
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
@@ -121,8 +131,14 @@ GEM
       net-ssh (>= 2.8.0)
     thor (0.19.1)
     thread_safe (0.3.5)
+    tilt (2.0.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    valise (1.1.4)
+    xing-root (0.0.4)
+      caliph (~> 0.3)
+      edict (< 1.0)
+      mattock (~> 0.10)
 
 PLATFORMS
   ruby
@@ -133,6 +149,7 @@ DEPENDENCIES
   compass
   rack
   rails (= 4.2.2)
+  xing-root
 
 BUNDLED WITH
    1.10.4
