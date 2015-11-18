@@ -43,6 +43,8 @@
     "grunt-jsonlint": "https://registry.npmjs.org/grunt-jsonlint/-/grunt-jsonlint-1.0.4.tgz",
     "grunt-karma": "https://registry.npmjs.org/grunt-karma/-/grunt-karma-0.8.3.tgz",
     "grunt-ng-annotate": "https://registry.npmjs.org/grunt-ng-annotate/-/grunt-ng-annotate-0.3.2.tgz",
+    "grunt-string-replace": "^1.2.0",
+    "grunt-xing-index": "0.0.1",
     "hammerjs": "~2.0.4",
     "jquery": "^2.1.1",
     "json": "^9.0.1",
@@ -64,10 +66,9 @@
     "singularitygs": "> 0",
     "traceur": "0.0.87",
     "uri-templates": "~0.1.5",
-    "xing-frontend-grunt": "0.0.3",
+    "xing-frontend-grunt": "git://github.com/XingFramework/xing-frontend-grunt.git#update-tasks",
     "xing-grunt-revise": "0.0.1",
-    "xing-index": "0.0.1",
     "xing-inflector": "0.0.2",
-    "xing-traceur": "https://registry.npmjs.org/xing-traceur/-/xing-traceur-0.0.7.tgz"
+    "xing-traceur": "0.0.8"
   }
 }
