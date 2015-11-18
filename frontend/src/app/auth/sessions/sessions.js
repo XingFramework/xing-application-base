@@ -1,7 +1,7 @@
 import {Module} from 'a1atscript';
 import {Toast, Serializer} from 'xing-frontend-utils';
 import Inflector from 'xing-inflector';
-import Config from '../config/config.js';
+import Config from '../config.js';
 import * as SessionsStates from './sessionsStates.js';
 import SessionsController from './sessionsControllers.js';
 
