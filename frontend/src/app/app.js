@@ -14,12 +14,13 @@ import {
   uiRouteLogger,
   stateFallback,
   ExampleForm,
+  appConfig
 } from 'xing-frontend-utils';
 
 import Auth from './auth/auth.js';
 import Homepage from './homepage/homepage.js';
 
-import * as appConfig from './appConfig.js';
+import * as RootStates from './rootStates.js';
 import RootCtrl from './rootController.js';
 
 var app = new Module(appName, [
@@ -37,6 +38,7 @@ var app = new Module(appName, [
   SessionLinks,
   Toast,
   appConfig,
+  RootStates,
   RootCtrl
 ]);
 
