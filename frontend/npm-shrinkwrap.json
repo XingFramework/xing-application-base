@@ -4,7 +4,8 @@
   "dependencies": {
     "a1atscript": {
       "version": "0.4.5",
-      "from": "a1atscript@0.4.5"
+      "from": "a1atscript@0.4.5",
+      "resolved": "https://registry.npmjs.org/a1atscript/-/a1atscript-0.4.5.tgz"
     },
     "amdefine": {
       "version": "1.0.0",
@@ -5029,8 +5030,8 @@
     },
     "xing-frontend-grunt": {
       "version": "0.0.4",
-      "from": "git://github.com/XingFramework/xing-frontend-grunt.git#update-tasks",
-      "resolved": "git://github.com/XingFramework/xing-frontend-grunt.git#8a7b085ae76bec46d187790b4e6ab9941fd56ab8",
+      "from": "git://github.com/XingFramework/xing-frontend-grunt.git#update_traceur_for_extractions",
+      "resolved": "git://github.com/XingFramework/xing-frontend-grunt.git#bf08f1c2985bbecacd68cc4733fab2b313aabfa6",
       "dependencies": {
         "load-grunt-config": {
           "version": "0.17.2",
@@ -5193,6 +5194,18 @@
           "version": "3.10.1",
           "from": "lodash@>=3.10.1 <4.0.0",
           "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
+        }
+      }
+    },
+    "xing-frontend-utils": {
+      "version": "0.0.1-beta4",
+      "from": "xing-frontend-utils@0.0.1-beta4",
+      "resolved": "https://registry.npmjs.org/xing-frontend-utils/-/xing-frontend-utils-0.0.1-beta4.tgz",
+      "dependencies": {
+        "xing-promise": {
+          "version": "0.0.1",
+          "from": "xing-promise@>=0.0.1 <0.0.2",
+          "resolved": "https://registry.npmjs.org/xing-promise/-/xing-promise-0.0.1.tgz"
         }
       }
     },

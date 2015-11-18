@@ -64,7 +64,7 @@
     "singularitygs": "> 0",
     "traceur": "0.0.87",
     "uri-templates": "~0.1.5",
-    "xing-frontend-grunt": "git://github.com/XingFramework/xing-frontend-grunt.git#update-tasks",
+    "xing-frontend-grunt": "git://github.com/XingFramework/xing-frontend-grunt.git#update_traceur_for_extractions",
     "xing-grunt-revise": "0.0.1",
     "xing-frontend-utils": "0.0.1-beta4",
     "xing-inflector": "0.0.2",
