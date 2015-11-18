@@ -67,6 +67,7 @@
     "xing-frontend-grunt": "git://github.com/XingFramework/xing-frontend-grunt.git#update-tasks",
     "xing-grunt-revise": "0.0.1",
     "xing-inflector": "0.0.2",
-    "xing-traceur": "0.0.8"
+    "xing-traceur": "0.0.8",
+    "xing-framework-sass": "0.0.1"
   }
 }
