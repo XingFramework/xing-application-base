@@ -30,7 +30,7 @@ module APP_MODULE
       redirect = [ 301, headers.merge("Location" => "/?goto=#{request_path}", "Content-Length" => "0"), [] ]
 
       return default unless status == 404
-      return default if /\A(assets|fonts|system)/ =~ request_path
+      return default if /\A\/(assets|fonts|system)/ =~ request_path
       return default if /\.(xml|html|ico|txt)\z/ =~ request_path
       return default if /goto=/ =~ env["QUERY_STRING"]
 

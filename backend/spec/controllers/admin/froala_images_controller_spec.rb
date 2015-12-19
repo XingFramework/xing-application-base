@@ -83,7 +83,7 @@ describe Admin::FroalaImagesController do
         it "should create an image and pass the params to it, then redirect to the page" do
           expect(response.status).to eq(201)
           expect(response.body).to eq(success_response)
-          expect(response.headers["Location"]).to eq(admin_froala_images_path(valid_img))
+          expect(response.headers["Location"]).to eq(admin_froala_images_url(valid_img))
         end
 
       end

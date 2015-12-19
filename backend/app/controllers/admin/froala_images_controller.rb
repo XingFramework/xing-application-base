@@ -24,7 +24,7 @@ class Admin::FroalaImagesController < Admin::AdminController
 
     if @image.save
       response = { link: @image.image.url }
-      render :status => 201, :json => response, :location => admin_froala_images_path(@image)
+      render :status => 201, :json => response, :location => admin_froala_images_url(@image)
     else
       response = { error: @image.errors.full_messages }
       render :status => 422, :json => response
