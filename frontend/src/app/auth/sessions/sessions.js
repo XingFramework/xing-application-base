@@ -2,7 +2,7 @@ import {Module} from 'a1atscript';
 import Toast from 'components/toast/toast.js';
 import Inflector from 'xing-inflector';
 import Serializer from 'framework/serializer.js';
-import Config from '../config/config.js';
+import Config from '../config.js';
 import * as SessionsStates from './sessionsStates.js';
 import SessionsController from './sessionsControllers.js';
 

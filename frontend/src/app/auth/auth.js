@@ -3,7 +3,7 @@ import Sessions from './sessions/sessions.js';
 import Registrations from './registrations/registrations.js';
 import Confirmations from './confirmations/confirmations.js';
 import Passwords from './passwords/passwords.js';
-import AuthConfig from './config/config.js';
+import AuthConfig from './config.js';
 import {Config, Module} from 'a1atscript';
 
 @Config('$authProvider', 'authConfigProvider')
