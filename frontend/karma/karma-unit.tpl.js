@@ -21,6 +21,8 @@ module.exports = function ( config ) {
       'bin/assets/traceur-runtime.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'build/test/test-main.js',
+      'node_modules/xing-traceur/node_modules/traceur/bin/traceur-runtime.js',
+      {pattern: 'build/test/test-main.js.map', included: false}
     ],
     exclude: [
       'src/assets/**/*.js'

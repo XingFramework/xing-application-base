@@ -4,4 +4,4 @@ gem "capistrano"
 gem 'rack'
 gem 'compass'
 gem 'capistrano-passenger'
-gem 'xing-root', :github => 'XingFramework/xing-root'
+gem 'xing-root'

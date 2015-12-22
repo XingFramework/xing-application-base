@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-steps "User Signs Up", :js => true, :vcr => {} do
+RSpec.steps "User Signs Up", :js => true, :vcr => {} do
   before :all do
     @user = FactoryGirl.build(:user)
   end

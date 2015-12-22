@@ -13,9 +13,10 @@ import {
   StateAttrs,
   uiRouteLogger,
   stateFallback,
-  ExampleForm,
-  appConfig
+  ExampleForm
 } from 'xing-frontend-utils';
+
+import appConfig from './appConfig.js';
 
 import Auth from './auth/auth.js';
 import Homepage from './homepage/homepage.js';
