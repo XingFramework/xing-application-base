@@ -3,16 +3,13 @@ source "https://rubygems.org"
 gem 'rails', "~> 4.2.2"
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'xing-backend', '= 0.0.16'
+gem 'xing-backend', '~> 0.0.18'
 gem 'pg'
 gem 'devise'
 gem 'awesome_nested_set'
-gem 'carrierwave'
-gem "rmagick", require: false
 gem "sanitize"
 gem "babosa"
 gem 'active_model_serializers'
-gem 'rails-observers'
 gem 'cancancan'
 gem 'xing_backend_token_auth', '~> 0.1.31'
 gem 'bibliotech'
@@ -22,6 +19,7 @@ gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem "typhoeus"
 gem 'hash_validator'
+#gem 'xing-cms-backend'
 
 group :development, :test do
   gem "rspec", "~> 3.1.0"

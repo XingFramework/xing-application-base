@@ -2,6 +2,9 @@ require 'builder'
 require 'site_page_set'
 require 'domain_helpers'
 
+
+puts Builder::XmlMarkup.new().method(:urlset).source_location
+
 class Sitemap
 
   class << self
@@ -19,6 +22,7 @@ class Sitemap
     private
     def generate_sitemap
       xml_str = ""
+
       xml = Builder::XmlMarkup.new(:target => xml_str, :indent => 2)
 
       xml.instruct!
