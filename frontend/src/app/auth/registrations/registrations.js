@@ -1,6 +1,5 @@
 import {Module} from 'a1atscript';
-import Toast from 'components/toast/toast.js';
-import Serializer from 'framework/serializer.js';
+import {Toast, Serializer} from 'xing-frontend-utils';
 import * as RegistrationsStates from './registrationsStates.js';
 import RegistrationsController from './registrationsControllers.js';
 
