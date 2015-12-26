@@ -26,29 +26,23 @@ $fa-font-path: '../assets'
 
 // Load reusable constants.  First the framework defaults,
 // then any app overides.
-@import "framework/_default_constants"
+@import "xing-framework-sass/_default_constants"
 @import "_constants"
 
 // Framework default styling for common DOM structures
 // Don't edit these files in an individual project.  In the base framework,
 // try only to make edits that will not break projects.
-@import "framework/_base"
-@import "framework/_forms"
-@import "framework/_navbar"
-@import "framework/_admin"
-@import "framework/_inline_edit"
-@import "framework/_angular-ui-tree"
-@import "framework/_flexbox"
-@import "framework/_errorFallback"
+@import "xing-framework-sass/_base"
+@import "xing-framework-sass/_forms"
+@import "xing-framework-sass/_navbar"
+@import "xing-framework-sass/_flexbox"
+@import "xing-framework-sass/_errorFallback"
 
 // Application-specific style files.  Add new files below this line.
-// Default-override group.  These files all have equivalents in framework/
+// Default-override group.  These files all have equivalents in xing-framework-sass/
 @import "partials/_forms"
 @import "partials/_navbar"
-@import "partials/_admin"
 @import "partials/_footer"
-@import "partials/_inline_edit"
-@import "partials/_angular-ui-tree"
 
 // Project-specific group.  Put files new to a project under here.
 @import "partials/_layout"

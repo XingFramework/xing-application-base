@@ -15,16 +15,12 @@ describe( 'RootCtrl', function() {
         children: {}
       };
 
-      RootCtrl = $controller( 'RootCtrl', { $location: $location, $scope: $scope, menuRoot: mockMain });
+      RootCtrl = $controller( 'RootCtrl', { $location: $location, $scope: $scope });
     }));
 
     it( 'should pass a dummy test', inject( function() {
       expect( RootCtrl ).toBeTruthy();
     }));
-
-    it('should assign the menu into the scope', function() {
-      expect( $scope.mainMenu ).toEqual(mockMain.children);
-    });
   });
 });
 

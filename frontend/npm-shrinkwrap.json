@@ -1530,11 +1530,6 @@
       "from": "https://registry.npmjs.org/font-awesome/-/font-awesome-4.4.0.tgz",
       "resolved": "https://registry.npmjs.org/font-awesome/-/font-awesome-4.4.0.tgz"
     },
-    "froala-editor": {
-      "version": "1.2.8",
-      "from": "https://registry.npmjs.org/froala-editor/-/froala-editor-1.2.8.tgz",
-      "resolved": "https://registry.npmjs.org/froala-editor/-/froala-editor-1.2.8.tgz"
-    },
     "grunt": {
       "version": "0.4.5",
       "from": "https://registry.npmjs.org/grunt/-/grunt-0.4.5.tgz",
@@ -4971,11 +4966,6 @@
       "from": "https://registry.npmjs.org/responsive-nav/-/responsive-nav-1.0.39.tgz",
       "resolved": "https://registry.npmjs.org/responsive-nav/-/responsive-nav-1.0.39.tgz"
     },
-    "restangular": {
-      "version": "1.3.1",
-      "from": "https://registry.npmjs.org/restangular/-/restangular-1.3.1.tgz",
-      "resolved": "https://registry.npmjs.org/restangular/-/restangular-1.3.1.tgz"
-    },
     "sass-import-once": {
       "version": "0.1.1",
       "from": "https://registry.npmjs.org/sass-import-once/-/sass-import-once-0.1.1.tgz",
@@ -5032,6 +5022,11 @@
       "version": "1.0.1",
       "from": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.1.tgz",
       "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.1.tgz"
+    },
+    "xing-framework-sass": {
+      "version": "0.0.1",
+      "from": "xing-framework-sass@0.0.1",
+      "resolved": "https://registry.npmjs.org/xing-framework-sass/-/xing-framework-sass-0.0.1.tgz"
     },
     "xing-frontend-grunt": {
       "version": "0.0.4",
