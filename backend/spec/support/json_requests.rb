@@ -50,4 +50,9 @@ end
 module RSpec::Rails::RequestExampleGroup
   include JSONRequests
   include JsonSpec::Matchers
+  include JsonSpec::Helpers
+end
+
+RSpec.configure do |config|
+  config.include JsonSpec::Helpers, :type => :serializer
 end

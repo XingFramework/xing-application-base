@@ -43,9 +43,6 @@ GEM
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
     arel (6.0.0)
-    awesome_nested_set (3.0.2)
-      activerecord (>= 4.0.0, < 5)
-    babosa (1.0.2)
     bcrypt (3.1.10)
     bibliotech (0.4.1)
       caliph (~> 0.3.1)
@@ -156,6 +153,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     rails-rfc6570 (0.3.0)
       actionpack (>= 4, < 5)
       addressable (~> 2.3)
@@ -266,8 +265,6 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   annotate
-  awesome_nested_set
-  babosa
   bibliotech
   byebug
   cadre
@@ -285,6 +282,7 @@ DEPENDENCIES
   populator
   rack-cors
   rails (~> 4.2.2)
+  rails-observers
   rails-rfc6570 (~> 0.1)
   rspec (~> 3.1.0)
   rspec-activemodel-mocks

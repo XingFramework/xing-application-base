@@ -16,9 +16,7 @@ describe "resources#index", :type => :request do
       json_get "/resources"
 
       expect(response).to be_success
-      expect(response.body).to be_json_eql("\"/pages/{url_slug}\"").at_path("links/page")
-      expect(response.body).to be_json_eql("\"/menus/{id}\"").at_path("links/menu")
-
+      expect(parse_json(response.body,"links/validate_token")).to eq("/users/validate_token")
     end
   end
 end

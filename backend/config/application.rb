@@ -6,14 +6,13 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module LrdCms; end
-APP_MODULE = LrdCms
+module XingApp; end
+APP_MODULE = XingApp
 
 module APP_MODULE
   class Application < Rails::Application
-    # Add Xing framework files
-    config.autoload_paths += Dir[ Rails.root.join("lib", "framework", "**")]
-    # Settings in config/environments/* take precedence over those specified here.
+    # Settings in config/environments/* take precedence over those specified
+    # here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
@@ -26,7 +25,6 @@ module APP_MODULE
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-    config.active_record.observers = :sitemap_observer, :page_snapshot_observer
     config.active_record.raise_in_transactional_callbacks = true
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
@@ -51,14 +49,15 @@ module APP_MODULE
     ###### COPIED FROM PREVIOUS VERSION OF XING in commit a0f7e416 #######
 
     #observers are define in app/observers
-    config.active_record.observers = :sitemap_observer, :page_snapshot_observer
+    #config.active_record.observers = :sitemap_observer,
+    #:page_snapshot_observer
 
     # Enable the asset pipeline
     config.assets.enabled = false
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    config.site_title = "LRD Content Management Engine"
+    config.site_title = "Another Quality Xing App"
     config.middleware.insert_before Rack::Runtime, Rack::Cors do
         allow do
             origins '*'

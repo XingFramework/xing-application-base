@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
-  mount Xing::Cms::Engine => '/cms'
 
   # Top fixed routes for the front-end
   #get "/homepage",        :to => 'pages#show', :url_slug => 'homepage', :as => :homepage

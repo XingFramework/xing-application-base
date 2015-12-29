@@ -7,28 +7,30 @@ gem 'xing_backend_token_auth', '~> 0.1.31'
 
 gem 'xing-backend', '~> 0.0.18'
 # until next blank line: should move to xing-backend
-# but there are several instances where there are rake tasks to be extracted 
+# but there are several instances where there are rake tasks to be extracted
 # first
 gem 'active_model_serializers'
 gem 'rails-rfc6570', '~> 0.1'
-gem 'pg'
 gem "sanitize"
 gem 'rack-cors', :require => 'rack/cors'
 gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'hash_validator'
+gem 'rails-observers'
+
+gem 'pg'
 
 # These are related to authentication
 # New gem?
 gem 'devise'
 gem 'cancancan'
 
-# Is BT part of Xing?
-gem 'bibliotech'
-
 # For sitemap? Own gem?
 gem "typhoeus"
 
+
+# Is BT part of Xing?
+gem 'bibliotech'
 
 
 #gem 'xing-cms-backend'

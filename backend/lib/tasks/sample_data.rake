@@ -34,28 +34,11 @@ namespace :db do
     desc "Destroy the database and reload sample data"
     task :recycle => [ 'db:recycle', :load ]
 
-    task :wipe => [ :environment,
-                    :wipe_cms ] do
-      [ User].each do |table|
-        table.delete_all
-      end
-
+    task :wipe => [ :environment ] do
     end
 
     desc "Fill the database with sample data for demo purposes"
-    task :load => [
-      :environment,
-      :populate_cms
-      ]
-
-    task :populate_images => :environment do
-      # todo
-    end
-
-    task :populate_documents => :environment do
-      # todo
-    end
-
+    task :load => [ :environment, :seed ]
   end
 end
 
