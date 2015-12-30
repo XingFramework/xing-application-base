@@ -5,18 +5,12 @@ gem 'rails', "~> 4.2.2"
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'xing_backend_token_auth', '~> 0.1.31'
 
-gem 'xing-backend', '~> 0.0.18'
+gem 'xing-backend', :path => "../../backend-gem" #'~> 0.0.18'
 # until next blank line: should move to xing-backend
 # but there are several instances where there are rake tasks to be extracted
 # first
-gem 'active_model_serializers'
-gem 'rails-rfc6570', '~> 0.1'
-gem "sanitize"
 gem 'rack-cors', :require => 'rack/cors'
-gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'hash_validator'
-gem 'rails-observers'
 
 gem 'pg'
 
@@ -25,17 +19,9 @@ gem 'pg'
 gem 'devise'
 gem 'cancancan'
 
-# For sitemap? Own gem?
-gem "typhoeus"
 
-
-# Is BT part of Xing?
-gem 'bibliotech'
-
-
-#gem 'xing-cms-backend'
-#gem 'awesome_nested_set'
-#gem "babosa"
+# Bibliotech is a gem for managing database backups and synchronization
+# gem 'bibliotech'
 
 group :development, :test do
   gem "rspec", "~> 3.1.0"

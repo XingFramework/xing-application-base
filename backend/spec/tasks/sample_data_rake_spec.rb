@@ -6,8 +6,7 @@ describe 'db:sample_data namespace rake task',
   :type => :task do
 
   before do
-    load File.expand_path("../../../lib/tasks/sample_data.rake", __FILE__)
-    Dir.glob("#{Rails.root}/lib/tasks/sample_data/*.rake").each{ |r| load(r) }
+    Rake::Application.new.rake_require "xing/tasks/sample_data"
     Rake::Task.define_task(:environment)
     Rake::Task.define_task('db:seed')
   end

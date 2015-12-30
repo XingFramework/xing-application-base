@@ -1,3 +1,16 @@
+PATH
+  remote: ../../backend-gem
+  specs:
+    xing-backend (0.0.18)
+      active_model_serializers (~> 0.9.3)
+      hash_validator (~> 0.4)
+      i18n (~> 0.7)
+      rails (~> 4.2.1)
+      rails-rfc6570 (~> 0.3)
+      sidekiq (~> 3.3)
+      typhoeus (~> 0.7)
+      xing_backend_token_auth (~> 0.1.31)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,17 +51,12 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.3.7)
+    addressable (2.4.0)
     annotate (2.6.8)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
     arel (6.0.0)
     bcrypt (3.1.10)
-    bibliotech (0.4.1)
-      caliph (~> 0.3.1)
-      mattock (~> 0.9.0)
-      thor (~> 0.19.1)
-      valise (~> 1.1.4)
     builder (3.2.2)
     byebug (4.0.2)
       columnize (= 0.9.0)
@@ -56,7 +64,6 @@ GEM
       thor (>= 0.14, < 1.0)
       tilt (> 1.0)
       valise (~> 1.1.2)
-    caliph (0.3.1)
     cancancan (1.10.1)
     capybara (2.5.0)
       mime-types (>= 1.16)
@@ -67,13 +74,27 @@ GEM
     capybara-email (2.4.0)
       capybara (~> 2.4)
       mail
-    celluloid (0.16.0)
-      timers (~> 4.0.0)
+    celluloid (0.17.2)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.5)
+      timers (>= 4.1.1)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     columnize (0.9.0)
-    connection_pool (2.1.2)
-    crass (1.0.1)
+    connection_pool (2.2.0)
     database_cleaner (1.3.0)
     devise (3.5.1)
       bcrypt (~> 3.0)
@@ -85,7 +106,7 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
-    ethon (0.7.3)
+    ethon (0.8.0)
       ffi (>= 1.3.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -98,8 +119,8 @@ GEM
     git-utils (0.6.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    hash_validator (0.3.0)
-    hitimes (1.2.2)
+    hash_validator (0.4.0)
+    hitimes (1.2.3)
     i18n (0.7.0)
     json (1.8.3)
     json_spec (1.1.4)
@@ -109,19 +130,12 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mattock (0.9.0)
-      caliph (~> 0.3.1)
-      rake (~> 10.0)
-      tilt (> 0)
-      valise (~> 1.1.1)
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.7.0)
     multi_json (1.11.1)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
-    nokogumbo (1.2.0)
-      nokogiri
     orm_adapter (0.5.0)
     pg (0.18.1)
     pivotal-github (1.2.2)
@@ -153,8 +167,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
-    rails-observers (0.1.2)
-      activemodel (~> 4.0)
     rails-rfc6570 (0.3.0)
       actionpack (>= 4, < 5)
       addressable (~> 2.3)
@@ -164,8 +176,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
-    redis (3.2.1)
-    redis-namespace (1.5.1)
+    redis (3.2.2)
+    redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
@@ -196,21 +208,17 @@ GEM
       rspec (>= 3.0, < 3.99)
     rspec-support (3.1.2)
     rubyzip (1.1.7)
-    sanitize (3.1.2)
-      crass (~> 1.0.1)
-      nokogiri (>= 1.4.4)
-      nokogumbo (= 1.2.0)
     selenium-webdriver (2.45.0)
       childprocess (~> 0.5)
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    sidekiq (3.3.2)
-      celluloid (>= 0.16.0)
-      connection_pool (>= 2.1.1)
-      json
-      redis (>= 3.0.6)
-      redis-namespace (>= 1.3.1)
+    sidekiq (3.5.3)
+      celluloid (~> 0.17.2)
+      connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
+      redis (~> 3.2, >= 3.2.1)
+      redis-namespace (~> 1.5, >= 1.5.2)
     simplecov (0.9.2)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -230,10 +238,10 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    timers (4.0.1)
+    timers (4.1.1)
       hitimes
-    typhoeus (0.7.1)
-      ethon (>= 0.7.1)
+    typhoeus (0.8.0)
+      ethon (>= 0.8.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     valise (1.1.4)
@@ -245,14 +253,6 @@ GEM
       rspec-steps (~> 2.1)
       text-table (~> 1.2.3)
     websocket (1.2.1)
-    xing-backend (0.0.18)
-      active_model_serializers (~> 0.9.3)
-      i18n (~> 0.7)
-      rails (~> 4.2.1)
-      rails-rfc6570 (~> 0.3)
-      sidekiq (~> 3.3)
-      typhoeus (~> 0.7)
-      xing_backend_token_auth (~> 0.1.31)
     xing_backend_token_auth (0.1.31)
       devise (~> 3.2)
       rails (~> 4.1)
@@ -263,9 +263,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
   annotate
-  bibliotech
   byebug
   cadre
   cancancan
@@ -275,26 +273,20 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
-  hash_validator
   json_spec
   pg
   pivotal-github
   populator
   rack-cors
   rails (~> 4.2.2)
-  rails-observers
-  rails-rfc6570 (~> 0.1)
   rspec (~> 3.1.0)
   rspec-activemodel-mocks
   rspec-rails
-  sanitize
   selenium-webdriver
-  sidekiq
   simplecov
   sinatra (>= 1.3.0)
-  typhoeus
   waterpig
-  xing-backend (~> 0.0.18)
+  xing-backend!
   xing_backend_token_auth (~> 0.1.31)
 
 BUNDLED WITH
