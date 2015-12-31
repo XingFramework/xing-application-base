@@ -65,3 +65,4 @@ config/secrets.yml
 public/frontend_snapshots
 spec/fixtures/sitemap_scratch
 db/migrate/*.rb
+dump.rdb
