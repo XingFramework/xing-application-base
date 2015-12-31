@@ -9,6 +9,7 @@ PATH
       json_spec (~> 1.1)
       rails (~> 4.2)
       rails-rfc6570 (~> 0.3)
+      selenium-webdriver
       sidekiq (~> 3.3)
       typhoeus (~> 0.7)
       xing_backend_token_auth (~> 0.1, >= 0.1.31)
