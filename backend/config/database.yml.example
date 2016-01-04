@@ -1,8 +1,8 @@
 development: &development
   adapter: postgresql
   encoding: unicode
-  database: xing_dev
-  #username: postgres
+  # database: CHANGEME IN database.yml.example
+  # username: postgres
   pool: 5
   host: 127.0.0.1
 
@@ -11,12 +11,12 @@ development: &development
 # Do not set this db to the same as development or production.
 test:
   <<: *development
-  database: xing_test
+  # database: CHANGEME IN database.yml.example
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: xing_dev
-  #username: postgres
+  # database: CHANGEME IN database.yml.example
+  # username: postgres
   pool: 5
   host: 127.0.0.1
