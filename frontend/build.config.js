@@ -95,7 +95,7 @@ module.exports = {
       'node_modules/angular-cookies/angular-cookies.js',
       'node_modules/angular-fontawesome/dist/angular-fontawesome.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
-      'bower_components/ng-token-auth/dist/ng-token-auth.js',
+      'node_modules/xing-frontend-token-auth/src/xing-frontend-token-auth.js',
       'node_modules/responsive-nav/responsive-nav.js',
       'node_modules/hammerjs/hammer.js',
       'node_modules/uri-templates/uri-templates.js'

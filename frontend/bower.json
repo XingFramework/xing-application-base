@@ -2,22 +2,11 @@
   "name": "ng-boilerplate",
   "version": "0.3.1",
   "devDependencies": {
-    "angular-ui-tree": "JimLiu/angular-ui-tree#63a87768259750613b6a6f55a338dfb6b9a6fb8d",
-    "sassy-buttons": "",
-    "ng-token-auth": "https://git.lrdesign.com/lrd/ng-token-auth.git",
-    "angular-froala": "~1.2.0"
+    "sassy-buttons": ""
   },
   "exportsOverride": {
     "sass-import-once": {
       "stylesheets": "_sass-import-once.scss"
     }
-  },
-  "resolutions": {
-    "angular": "~1.3.0",
-    "FroalaWysiwygEditor": "~1.2.2"
-  },
-  "dependencies": {
-    "uri-templates": "~0.1.5",
-    "a1atscript": "~0.2.0"
   }
 }
