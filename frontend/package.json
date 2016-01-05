@@ -64,10 +64,10 @@
     "singularitygs": "> 0",
     "traceur": "0.0.87",
     "uri-templates": "~0.1.5",
-    "xing-framework-sass": "0.0.1",
+    "xing-framework-sass": "0.0.2",
     "xing-frontend-grunt": "git://github.com/XingFramework/xing-frontend-grunt.git#update_traceur_for_extractions",
     "xing-frontend-token-auth": "0.0.3",
-    "xing-frontend-utils": "0.0.1-beta4",
+    "xing-frontend-utils": "0.0.1-beta5",
     "xing-grunt-revise": "0.0.1",
     "xing-inflector": "0.0.2",
     "xing-traceur": "0.0.8"
