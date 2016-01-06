@@ -34,4 +34,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Enable serving of images, stylesheets, and javascripts from an asset server
+  # XXXXX
+  # Currently, in development, this needs to be set to the backend server
+  config.action_controller.asset_host = Rails.application.secrets[:asset_host]
+
 end
