@@ -7,10 +7,12 @@ PATH
       hash_validator (~> 0.4)
       i18n (~> 0.7)
       json_spec (~> 1.1)
+      rack-cors (~> 0.4)
       rails (~> 4.2)
       rails-rfc6570 (~> 0.3)
       selenium-webdriver
       sidekiq (~> 3.3)
+      sinatra (~> 1.3)
       typhoeus (~> 0.7)
       xing_backend_token_auth (~> 0.1, >= 0.1.31)
 
@@ -36,7 +38,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
-    active_model_serializers (0.9.3)
+    active_model_serializers (0.9.4)
       activemodel (>= 3.2)
     activejob (4.2.2)
       activesupport (= 4.2.2)
@@ -146,7 +148,7 @@ GEM
       nokogiri
     populator (1.0.0)
     rack (1.6.4)
-    rack-cors (0.3.1)
+    rack-cors (0.4.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -227,10 +229,10 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.9.0)
     simplecov-html (0.9.0)
-    sinatra (1.4.5)
+    sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
+      tilt (>= 1.3, < 3)
     sprockets (3.2.0)
       rack (~> 1.0)
     sprockets-rails (2.3.1)
@@ -280,17 +282,15 @@ DEPENDENCIES
   pg
   pivotal-github
   populator
-  rack-cors
   rails (~> 4.2.2)
   rspec (~> 3.1.0)
   rspec-activemodel-mocks
   rspec-rails
   selenium-webdriver
   simplecov
-  sinatra (>= 1.3.0)
   waterpig
   xing-backend!
   xing_backend_token_auth (~> 0.1.31)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
