@@ -42,4 +42,6 @@ Rails.application.configure do
   # Currently, in development, this needs to be set to the backend server
   config.action_controller.asset_host = Rails.application.secrets[:asset_host]
 
+  config.middleware.use(Xing::Services::LogJsonResponses)
+  config.middleware.use(Xing::Services::LogJsonRequests)
 end
