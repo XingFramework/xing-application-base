@@ -7,9 +7,6 @@ describe Role::Admin do
   describe 'abilities' do
     subject(:ability) { Ability.new(user) }
 
-    it{ expect(ability).to be_able_to :manage, Page }
-    it{ expect(ability).to be_able_to :manage, MenuItem }
-    it{ expect(ability).to be_able_to :manage, Document }
-    it{ expect(ability).to be_able_to :manage, Image }
+    it{ expect(ability).to be_able_to :manage, User }
   end
 end

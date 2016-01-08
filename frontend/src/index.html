@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="<%= appName %>" ng-strict-di>
-  <head ng-controller="MetadataCtrl">
+  <head>
     <!-- page information -->
-    <title ng-bind="pageTitle"></title>
-    <meta name="description" content="{{pageDescription}}">
-    <meta name="keywords" content="{{pageKeywords}}">
+    <title>Xing Framework Based Website</title>
 
     <!-- angular html5mode base url -->
     <base href="/">
@@ -15,26 +13,11 @@
     <!-- a value for snapshoting services to check to for page javascript complete -->
     <meta name="ready-var" content="window.frontendContentLoaded">
 
-    <!-- social media tags -->
-    <meta name="twitter:card" content="" />
-    <meta name="twitter:site" content="">
-    <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:creator" content="">
-    <meta name="twitter:image:src" content="">
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:description" content="">
-
     <!-- enable mobile responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0;">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
-
-    <!-- user CSS -->
-    <style ng-bind="pageStyles"></style>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
@@ -86,9 +69,6 @@
 
 
   <body>
-    <admin-only>
-        <admin-nav></admin-nav>
-    </admin-only>
     <div id='wrap'>
       <ui-view lrd-state-attrs>
         <div class="intro-loading-circle-outer">

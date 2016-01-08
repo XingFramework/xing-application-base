@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+lock '3.4'
 
 set :repo_url, 'git@git.lrdesign.com:lrd/cms2.git'
 set :pty, true

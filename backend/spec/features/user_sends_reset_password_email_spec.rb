@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-steps "User Sends Reset Password", :js => true, :vcr => {} do
+RSpec.steps "User Sends Reset Password", :js => true, :vcr => {} do
   before :all do
     @user = FactoryGirl.create(:confirmed_user)
   end

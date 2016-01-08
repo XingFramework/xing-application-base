@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'waterpig'
 require 'capybara/email/rspec'
 require 'sidekiq/testing'
+require 'xing/spec_helpers'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 

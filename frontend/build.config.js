@@ -94,20 +94,13 @@ module.exports = {
       'node_modules/angular/angular.js',
       'node_modules/angular-cookies/angular-cookies.js',
       'node_modules/angular-fontawesome/dist/angular-fontawesome.js',
-      'node_modules/froala-editor/js/froala_editor.min.js',
-      'node_modules/froala-editor/js/plugins/media_manager.min.js',
-      'node_modules/froala-editor/js/plugins/file_upload.min.js',
-      'bower_components/angular-froala/src/angular-froala.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
-      'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
-      'bower_components/ng-token-auth/dist/ng-token-auth.js',
+      'node_modules/xing-frontend-token-auth/src/xing-frontend-token-auth.js',
       'node_modules/responsive-nav/responsive-nav.js',
-      'node_modules/restangular/dist/restangular.js',
       'node_modules/hammerjs/hammer.js',
       'node_modules/uri-templates/uri-templates.js'
     ],
     css: [
-      'node_modules/froala-editor/css/froala_editor.min.css',
       'node_modules/froala-editor/css/font-awesome.min.css'
     ],
     assets: [

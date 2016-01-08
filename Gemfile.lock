@@ -135,7 +135,7 @@ GEM
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     valise (1.1.4)
-    xing-root (0.0.4)
+    xing-root (0.0.5)
       caliph (~> 0.3)
       edict (< 1.0)
       mattock (~> 0.10)
@@ -152,4 +152,4 @@ DEPENDENCIES
   xing-root
 
 BUNDLED WITH
-   1.10.4
+   1.10.6
