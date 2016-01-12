@@ -6,7 +6,7 @@
   "data": {
     "title": "This site's homepage",
     "keywords": "Info, about, this, site.",
-    "description": "This site was built with LRD's CMS framework.",
+    "description": "This site was built with the Xing framework.",
     "layout": "homepage",
     "contents": {
     },
