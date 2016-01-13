@@ -3,7 +3,6 @@
 *.orig
 .DS_Store
 .ruby-gemset
-frontend/tmp/
 tmp/
 .vim-role
 .sass-cache/
