@@ -3,11 +3,10 @@ screenlog.*
 *.log
 tmp/**/*
 tmp/*
+tmp/.*
+tmp/profile*
 .dotest/
 .dotest/*.
-tmp/.*
-tmp/*
-tmp/profile*
 .DS_Store
 doc/plugins
 doc/api
