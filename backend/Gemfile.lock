@@ -1,3 +1,9 @@
+PATH
+  remote: ~/xing/dev-assets
+  specs:
+    xing-dev-assets (0.0.1)
+      rack (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -288,6 +294,7 @@ DEPENDENCIES
   simplecov
   waterpig
   xing-backend
+  xing-dev-assets!
   xing_backend_token_auth (~> 0.1.31)
 
 BUNDLED WITH

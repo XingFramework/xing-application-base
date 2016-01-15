@@ -6,6 +6,7 @@ gem 'rails', "~> 4.2.2"
 gem 'xing_backend_token_auth', '~> 0.1.31'
 
 gem 'xing-backend'
+gem 'xing-dev-assets', :path => "~/xing/dev-assets"
 
 gem 'pg'
 
