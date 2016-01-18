@@ -4,4 +4,5 @@ gem "capistrano"
 gem 'rack'
 gem 'compass'
 gem 'capistrano-passenger'
-gem 'xing-root'
+gem 'xing-dev-assets', :path => '~/xing/dev-assets'
+gem 'xing-root', :path => '~/xing/root'
