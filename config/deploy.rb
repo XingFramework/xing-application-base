@@ -43,6 +43,7 @@ set :required_writeable_files, %w{
 # set :keep_releases, 5
 
 set :backend_path, proc{ File::join(release_path, "backend") }
+set :frontend_path, proc{ File::join(release_path, "frontend") }
 set :backend_shared, proc{ File::join(shared_path, "backend") }
 set :webserver_group, "apache"
 set :webserver_user, "apache"
