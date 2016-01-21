@@ -1,0 +1,40 @@
+I'm leaving off here. You can see the current state of things by running
+'rspec spec' from the root of the app.
+
+The general form of the issue is that in order to interact with a lot of the
+testing framework we rely on, we need Rails to be available. I've come to the
+conclusion that the testing environment, to reuse the feature tests directly,
+would need to have every dependency on Rails that the backend app does.
+
+The final straw on trying to build a "minimal" Rails env was FactoryGirl
+complaining about a UserSession factory - because UserSession is a devise
+model.
+
+The way forward that HH and I were discussing looks something like this:
+
+A tool to do this:
+Build a test database using something like seeds/sample_data, and dump that
+database to a file. Keep a directory of such dumps, and tasks to recreate
+them.
+
+A Rails middleware to:
+Intercept POSTs for '/__integration_testing__/load_scenario?name=<something>'
+and load that dumpfile into the test database. Maybe also:
+'/__integration_testing__/reset' to truncate everything and load seeds. The
+actions available are intentionally coarse grained and limited. The middleware
+would only be added in RAILS_ENV=test and maybe only if ENV[INTEGRATION] or
+something. Goes without saying that it doesn't go into a production
+environment ever - maybe to extremes of deleting the code on deploy. Even
+better might be to inject such a middleware ourselves, much the way that
+Capybara injects its __indentify__ middleware, so that the code isn't
+available after deploy.
+
+A change to xing-rspec-features's split-servers implementation that starts the
+backend server in a completely different process, and exposes the URL it's
+listening on in e.g. a global variable. N.b. this is a change from running the
+backend in a separate thread, and not doing a simple Ruby fork, since they'd
+share state (e.g. loaded ruby files) if we did that.
+
+A testing tool (in e.g. RSpec) to send the __integration_testing__ requests to
+the backend, so that an integration test starts with something like `before{
+scenario :many_unconfirmed_users }`
