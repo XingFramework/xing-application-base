@@ -17,8 +17,6 @@ export default function RegistrationsController( $scope, $auth, $state, $xngToas
         $state.go('root.inner.registrationsSuccess');
       })
       .catch(function(resp) {
-        console.log(resp);
-        console.log(resp.data);
         $xngToast.errorList(resp.data.errors, "We cannot process your registration because:");
         // handle error response
       });
