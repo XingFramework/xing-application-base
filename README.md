@@ -16,11 +16,10 @@ have been pre-solved in Xing.
 
 The Xing Application Base contains the starting files for a new Xing Framework application.  Don't depend
 on this repository - it is a temporary solution and will go away soon as we can move these into proper
-templates. 
+templates.
 
 
 [![Code Climate](https://codeclimate.com/github/XingFramework/xing-application-base/badges/gpa.svg)](https://codeclimate.com/github/XingFramework/xing-application-base)
-[![Test Coverage](https://codeclimate.com/github/XingFramework/xing-application-base/badges/coverage.svg)](https://codeclimate.com/github/XingFramework/xing-application-base/coverage)
-[![Build Status](https://travis-ci.org/XingFramework/xing-application-base.svg?branch=master)](https://travis-ci.org/XingFramework/xing-application-base)
 [![Dependency Status](https://gemnasium.com/XingFramework/xing-application-base.svg)](https://gemnasium.com/XingFramework/xing-application-base)
 
+The Xing Framework strives to be an open and inclusive project. All Contributors to the Xing Framework must abide by our [Code Of Conduct](http://github.com/XingFramework/xing-application-base/blob/master/CODE_OF_CONDUCT.md)
